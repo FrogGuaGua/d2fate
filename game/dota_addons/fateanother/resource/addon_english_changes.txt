@@ -1,0 +1,489 @@
+    //=====================================
+    //  NEW VERSION
+    //====================================
+    //==================================
+    //  ERROR MESSAGES
+    //==================================
+    "test_msg"    "TEST BOYS"
+    "Not_Enough_Gold_Item"   "Not Enough Gold(Items cost 50% more out of base)"
+    "Out_Of_Stock_C_Scroll"   "Can buy only up to 10 C Scrolls at base price"
+    "Not_Enough_Master_Mana"  "Not Enough Master Mana"
+    "Already_In_Marble"     "Already Within Reality Marble"
+    "Cannot_Travel"       "Cannot Travel to Targeted Location"
+    "Out_Of_Range"        "Out of Range"
+    "Cannot_Be_Cast_Now"    "Cannot be cast now"
+    "Cannot_Blink"        "Cannot Blink"
+    "Workshop_Exists"     "Workshop Already Exists"
+    "Cannot_Target_Self"    "Cannot Target Self"
+    "Caster_Out_Of_Radius"    "Caster must be within 500 radius of Workshop"
+    "Cannot_Unmount"      "Must Be Used on Traversable Terrain"
+    "Not_Enough_Madness"    "Not Enough Madness"
+    "Cannot_Summon"       "Cannot Summon Now"
+    "Tentacle_Out_Of_Radius"  "Must Target Within 500 Range from Caster"
+    "Cannot_Use_While_Integrated" "Cannot Use While Integrated"
+    "Entered_Base"        "Entered Base(Regular Item Cost)"
+    "Left_Base"       "Left Base(50% Additional Item Cost)"
+    "No_Items_Found"    "No Items Found in Chosen Slot of Stash"
+    "Invalid_Location"    "Invalid Location"
+    "Attribute_Not_Earned"  "Attribute Not Earned"
+    "Revoked_Error"     "Revoked From Master"
+    "Master_Not_Enough_Health"    "Not Enough Health(Wait for Health Reset from Holy Grail's Blessing)"
+    "Cannot_Get_Over_50_Stats"    "Cannot Acquire Over 50 Stat"
+    "Cannot_Acquire_Shard"      "Have Not Died 7 Times Yet"
+    "Presence_Detected"     "Enemy Servant's presence has been detected"
+
+
+    //==================================
+    //  NEW VERSION
+    //==================================
+
+    "DOTA_Tooltip_ability_gawain_blade_of_the_devoted"  "Blade of the Devoted"
+    "DOTA_Tooltip_ability_gawain_blade_of_the_devoted_Description"  "Saber enchants his blade, gaining bonus movespeed and granting special effect on his next base attack.\n<font color='#58ACFA'>On Ally</font> : Heals target.\n<font color='#58ACFA'>On Enemy</font> : Deals physical damage instead, and ministuns"
+    "DOTA_Tooltip_ability_gawain_blade_of_the_devoted_Lore"     ""
+    "DOTA_Tooltip_ability_gawain_blade_of_the_devoted_bonus_speed"      "%BONUS MOVESPEED:"
+
+    "DOTA_Tooltip_ability_item_healing_scroll"  "Mass Heal Scroll"
+    "DOTA_Tooltip_ability_item_healing_scroll_Lore" ""
+    "DOTA_Tooltip_ability_item_healing_scroll_Description"  "Instantly restores health and grants bonus armor for yourself and all allies nearby.\n<font color='#FF0000'>\nItem costs 50%% more once you leave your base.</font>"
+    "DOTA_Tooltip_ability_item_healing_scroll_heal_amount"  "HEAL AMOUNT:"
+    "DOTA_Tooltip_ability_item_healing_scroll_armor_amount" "BONUS ARMOR AMOUNT:"
+    "DOTA_Tooltip_ability_item_healing_scroll_armor_duration"   "BONUS ARMOR DURATION:"
+    "DOTA_Tooltip_ability_item_healing_scroll_radius"   "RADIUS:"
+
+
+    //=====================================
+    //  NEW VERSION
+    //====================================
+    "DOTA_Tooltip_Ability_gawain_attribute_sunlight"         "Sunlight"
+    "DOTA_Tooltip_ability_gawain_attribute_sunlight_Description"       "Enchances supportive nature of Saber, improving ability effects on ally.\n<font color='#58ACFA'>Invigorating Ray </font>: Also grants 30%% bonus magic resistance and 20 armor.\n<font color='#58ACFA'>Blade of the Devoted </font>: Also replenishes mana and reduces cooldown of all abilities by 15 seconds.\n<font color='#58ACFA'>Excalibur Galatine </font>: 50%% additional heal is done over next 3 seconds\n<font color='#58ACFA'>Sun's Embrace</font> : Grants 30%% bonus magic resistance\n\n<font color='#FF0000'>Saber may not obtain both Sunlight and Eclipse attribute.</font>"  
+
+    
+    "DOTA_Tooltip_Ability_false_assassin_attribute_quickdraw"               "Quickdraw"
+    "DOTA_Tooltip_ability_false_assassin_attribute_quickdraw_Description"   "Enables Quickdraw for 5 seconds after using Gate Keeper.\n<font color='#58ACFA'>Quickdraw : </font>Assassin rapidly draws blade and rushes forward to cut through all enemies in path, inflicting damage based on AGI and applying on-hit effect."
+
+    "DOTA_Tooltip_Ability_false_assassin_windblade" "Windblade"
+    "DOTA_Tooltip_ability_false_assassin_windblade_Description" "Assassin swirls his blade to create slicing wind around him, dealing damage to nearby enemies, applying on-hit effects, and briefly pushing them back."
+
+    //=====================================
+    //  NEW VERSION
+    //====================================
+    "DOTA_Tooltip_Ability_saber_caliburn"                   "Caliburn"
+    "DOTA_Tooltip_ability_saber_caliburn_description"       "Strikes enemy with Caliburn, dealing damage and slowing it. Nearby enemies also take a portion of damage."
+    "DOTA_Tooltip_ability_saber_caliburn_Lore"      ""
+    "DOTA_Tooltip_ability_saber_caliburn_damage"        "TARGET DAMAGE:"
+    "DOTA_Tooltip_ability_saber_caliburn_aoe_damage_percent_tooltip"    "%AOE DAMAGE:"
+    "DOTA_Tooltip_ability_saber_caliburn_slow_amount"   "%SLOW AMOUNT:"
+    "DOTA_Tooltip_ability_lancelot_caliburn_slow_duration"  "SLOW DURATION:"
+
+    "DOTA_Tooltip_Ability_lancelot_caliburn"                    "Caliburn"
+    "DOTA_Tooltip_ability_lancelot_caliburn_description"        "Strikes enemy with Caliburn, dealing damage and slowing it. Nearby enemies also take a portion of damage."
+    "DOTA_Tooltip_ability_lancelot_caliburn_Lore"       ""
+    "DOTA_Tooltip_ability_lancelot_caliburn_damage"     "TARGET DAMAGE:"
+    "DOTA_Tooltip_ability_lancelot_caliburn_aoe_damage_percent_tooltip" "%AOE DAMAGE:"
+    "DOTA_Tooltip_ability_lancelot_caliburn_slow_amount"    "%SLOW AMOUNT:"
+    "DOTA_Tooltip_ability_lancelot_caliburn_slow_duration"      "SLOW DURATION:"
+
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream"              "Strike Air - Upstream"
+    "DOTA_Tooltip_ability_saber_attribute_strike_air_upstream_Description"  "Enables Strike Air-Upstream.\n<font color='#58ACFA'>Strike Air-Upstream : </font>Gives a chance to deal bonus magic damage based on attack damage and launch enemy into the air.\nStrike Air-Upstream will be always triggered by the first base attack after landing Invisible Air or Avalon counterattack."
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_proc_chance"      "%PROC CHANCE:"
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_base_damage"      "BASE DAMAGE:"
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_ad_ratio"         "ATTACK DAMAGE RATIO:"
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_knockup_duration"         "KNOCKUP DURATION:"
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_Note0"            "Passive proc has 4 second built-in cooldown, but proc by Invisible Air or Avalon does not."
+
+    "DOTA_Tooltip_Ability_false_assassin_minds_eye" "Mind's Eye"
+    "DOTA_Tooltip_ability_false_assassin_minds_eye_Description" "Assassin analyzes his foe's weakness with 6th sense, causing his base attack to deal additional pure damage based on AGI. If enemy is Revoked, damage is significantly amplified.\nIn addition, prevents any damage from Invisible Air, Strike Air, and Strike Air-Upstream."
+
+    "DOTA_Tooltip_Ability_true_assassin_attribute_protection_from_wind"             "Protection from Wind"
+    "DOTA_Tooltip_ability_true_assassin_attribute_protection_from_wind_Description" "Causes Assassin to be immune to Invisible Air, Strike Air, Strike Air-Upstream, and Windblade. Also, grants a chance to avoid incoming targeting spell."
+
+
+    //=====================================
+    //  NEW VERSION
+    //====================================
+    "DOTA_Tooltip_Ability_false_assassin_attribute_ganryu"              "Ganryu"
+    "DOTA_Tooltip_ability_false_assassin_attribute_ganryu_Description"  "Windblade has its global cooldown removed and teleports Assassin to closest enemy hit.\nIn addition, Tsubame Gaeshi <font color='#FF3399'>silences</font> target."
+
+    "DOTA_Tooltip_Ability_jeanne_luminosite_eternelle"      "Luminosite Eternelle"
+    "DOTA_Tooltip_Ability_jeanne_luminosite_eternelle_Description"  "Ruler hurls her flag in target direction, <font color='#FF3399'>rooting, disarming</font>, and dimensionally <font color='#FF3399'>locking</font> enemies along its path. The flag is then planted in the ground, creating a sacred zone that reduces incoming damage for allied heroes.\nWhenever allies suffer damage, the flag is damaged as well. Destroying the flag removes root and lock statuses remaining on victims.\n<font color='#ff9900'>UNJUST BONUS:</font>Victim takes 30%% increased damage."
+
+    //=====================================
+    //  NEW VERSION
+    //====================================
+    "DOTA_Tooltip_Ability_rider_5th_attribute_seal"             "Seal"
+    "DOTA_Tooltip_ability_rider_5th_attribute_seal_Description" "Causes Breaker Gorgon to increase turn rate of affected enemies.\nIn addition, Bloodfort Andromeda charms enemies caught within, forcing them to move towards the singularity."
+    "DOTA_Tooltip_Ability_rider_5th_attribute_seal_petrify_chance"              "%TURN RATE INCREASE:"
+
+    //=================================
+    //  NEW VERSION
+    //=================================
+    "npc_dota_hero_windrunner"             "Caster(Extra), N.N"
+    "npc_dota_hero_enchantress"             "Caster(Extra), Tamamo"
+    "npc_dota_hero_lina"        "Saber(Extra), Nero"
+    "npc_dota_hero_omniknight"      "White Saber(Extra)"
+
+    //==================================
+    //  NEW VERSION
+    //==================================
+    "DOTA_Tooltip_Ability_tamamo_mantra"     "Mantra"
+    "DOTA_Tooltip_Ability_tamamo_mantra_damage_modifier"     "DAMAGE MODIFICATION ON ALLY:"
+    "DOTA_Tooltip_Ability_tamamo_mantra_damage_modifier_enemy"  "DAMAGE MODIFICATION ON ENEMY:"
+
+    //====================================
+    //      Caster(Extra) - Nursery Rhyme
+    //====================================
+    "npc_dota_hero_windrunner"             "Caster(Extra), N.R"
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift"      "Shapeshift"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_Description"      "Caster sends a copy of herself towards target direction. Upon getting in close to enemy hero, clone will deal magic damage to surrounding enemies, slow their movespeed, and disappear.\nWhile it persists, activating this ability again will shift the position of Caster and a copy."
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_duration"        "CLONE DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_damage"          "DAMAGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_radius"          "RADIUS:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_slow"            "%SLOW AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_slow_duration"   "SLOW DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_Note0"       "Clone Caster has the base movement speed of Caster and takes 300%% extra damage."
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_Note1"       "Cannot shift position more than once."
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_Note2"       "Both Casters are phased while clone persists."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_swap"      "Swap Position"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_swap_Description"    "Instantly switches position with clone."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_nameless_forest"      "Nameless Forest"
+    "DOTA_Tooltip_Ability_nursery_rhyme_nameless_forest_Description"      "Caster confines target hero in her Reality Marble, <font color='#FF3399'>expelling</font> it from the game for duration."
+    "DOTA_Tooltip_Ability_nursery_rhyme_nameless_forest_duration"       "DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_nameless_forest_Note0"          "Applies soft dispel."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma"      "White Queen's Enigma"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Description"      "Launches an enigmatic force in a line. When hit, it deals magic damage based on target's current health, <font color='#FF3399'>stuns</font> briefly, and causes victim to suffer <font color='#FF3399'>number of randomly chosen Crowd Control effects.</font>"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_damage"     "%DAMAGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_default_stun_duration"  "DEFAULT STUN DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_cc_numbers"         "NUMBER OF CC APPLIED:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_stun_duration"      "STUN DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_silence_duration"   "SILENCE DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_revoke_duration"    "REVOKE DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_lock_duration"  "LOCK DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_root_duration"  "ROOT DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_disarm_duration"    "DISARM DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Note0"          "The pool of Crowd Control effects are Stun, Silence, Revoke, Lock, Root, and Disarm."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water"      "The Plains of Water"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_Description"      "Hurls a frost bolt that bounces through nearby enemy units. Each bounce reduces bolt's damage, but applies <font color='#FF3399'>all Crowd Control effects primary target is being affected by.</font>"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_damage"         "DAMAGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_max_bounce"     "MAX BOUNCE COUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_dmg_reduction"  "%DAMAGE REDUCTION PER BOUNCE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_Note0"          "Can hit the same unit multiple times."
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_Note1"          "Crowd Control effect duration follows current level of White Queen's Enigma."
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_Note2"          "The table of Crowd Control effects is snapshot when primary target takes first bounce."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger"      "I Am You, and You Are Me"
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_Description"      "Caster conjures a stationary doppelganger of target enemy hero, which can be attacked by Caster and her allies. Doppelganger cannot act, has percentage of original's max health, and shares the pain with original."
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_doppelganger_health"           "%DOPPELGANGER HEALTH:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_damage_shared"     "%SHARED DAMAGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_duration"  "DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_Note0"     "Only 1 doppelganger can exist at a time."
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_Note1"     "Shared damage from doppelganger cannot be lethal."
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_Note2"     "Doppelganger cannot be linked with Spirit Link."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game"      "Queen's Glass Game"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_Description"      "CHANNELING: Caster winds back the battle, healing all allies instantly and over time.\nDuring channeling and 1 second after finishing it, Caster takes additional damage."
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_radius"       "RADIUS:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_channel_duration"     "CHANNELING DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_instant_heal"     "INSTANT HEAL:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_instant_heal_pct" "%INSTANT HEAL BASED ON MISSING HEALTH:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_heal_over_time_pct"   "%HEAL OVER TIME BASED ON MAX HEALTH:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_upkeep_mana_cost"     "%UPKEEP MANA COST PER SEC:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_incoming_damage"      "%INCOMING DAMAGE:"
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake"   "A Story for Somebody's Sake"
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Description"   "<font color='#58ACFA'>Combo Requirement: 20 in all stats</font>\n<font color='#58ACFA'>Combo Sequence: R-R in 2 seconds</font>\n\nCaster conjures a time-rewinding Noble Phantasm. If she is not killed in a given time, current round will reset back to the beginning with an unconditional draw.\nThis abiity cannot be used if round timer is past 60 seconds."
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_time_limit"    "TIME LIMIT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Note0"         "Until the spell's completion, Caster's location will be pinged by enemy team every 5 seconds."
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Note1"         "Caster cannot use Teleport Scroll, Gem of Speed, and Blink Scroll while channeling."
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Note2"         "If a draw occurs due to this ability's effect, default win condition will not apply."
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Lore"  "This story will go on forever.\nAs long as the slender fingers return to the first page,\nAs if picking up the next volume.\nOnce again denying reality to the reader."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together"     "Forever Together"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_Description"     "I Am You, and You Are Me causes target to be slowed and take damage every second based on INT continuously if it is looking away from its doppelganger. Also, improves Shapeshift's max duration and slow, and reduces its cooldown."
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_slow_amount"     "%LOOKAWAY SLOW AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_damage_per_sec"  "LOOKAWAY DAMAGE INT RATIO:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_shapeshift_duration"     "SHAPESHIFT DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_shapeshift_slow"         "SHAPESHIFT SLOW:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_shapeshift_cd"           "SHAPESHIFT COOLDOWN:"
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare"            "Nightmare"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_Description"        "Increases The Plains of Water's max bounce count and damage based on Caster's INT. Also, each bounce onto enemy hero steals INT from them."
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_extra_bounce"       "EXTRA BOUNCE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_int_ratio"          "INT RATIO:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_int_steal"          "INT STEAL AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_int_steal_duration" "INT STEAL DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_Note0"      "Bonus damage from INT does not diminish after bounce."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence"     "Reminiscence"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_Description" "Reduces Nameless Forest's cooldown, increaes its cast range, and causes it to steal STR, AGI, and INT from enemy hero. Also, enables Reminiscence.\nReminiscence: Releases hero from Nameless Forest immediately."
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_cdr"     "COOLDOWN REDUCTION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_bonus_cast_range"    "BONUS CAST RANGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_stat_steal"          "STAT STEAL AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_stat_steal_duration" "STAT STEAL DURATION:"
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game"        "Improve Queen's Glass Game"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_Description"        "Increaes Queen's Glass Game's instant heal amount based on Caster's INT and causes its healing effect to replenish portion of mana as well.\nIn addition, A Story for Somebody's Sake's cooldown is reduced."
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_heal_bonus"     "BONUS INSTANT HEAL AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_heal_bonus_int_ratio"   "EXTRA INSTANT HEAL AMOUNT INT RATIO:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_heal_bonus_missing_health"  "BONUS HEAL AMOUNT BASED ON MISSING HEALTH:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_mana_ratio" "HEALTH TO MANA RATIO:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_cdr"            "COMBO COOLDOWN REDUCTION:"
+
+
+    //==================================
+    //  NEW VERSION
+    //==================================
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol"   "Divine Symbol"
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_Description"   "Increases Luminosite Eternelle's maximum crowd control duration, and causes it to apply Charisma to all allied Servants within sacred zone at cast. In addition, Ruler automatically casts Charisma on herself when La Pucelle activates."
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_Note0"             "Charisma effect follows current level."
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_bonus_duration"    "EXTRA CC DURATION:"
+
+    "DOTA_Tooltip_Ability_jeanne_saint"     "Saint"
+    "DOTA_Tooltip_Ability_jeanne_saint_Description" "Ruler judges each enemy Servant by their K/D counts. Servants whose Kills are higher than their Deaths are marked as <font color='#ff9900'>Unjust.</font>\nRuler's abilities gain special effects against Unjust enemies."
+
+
+
+    //==================================
+    //  NEW VERSION
+    //==================================
+    "DOTA_Tooltip_ability_attribute_bonus_custom"   "Acquire All Stats"
+    "DOTA_Tooltip_ability_attribute_bonus_custom_Description"       "Increases your STR, AGI, and INT."
+    "DOTA_Tooltip_ability_attribute_bonus_custom_stats"         "STAT BONUS:"
+
+    //====================================
+    // Empty Abilities
+    //====================================
+    "DOTA_Tooltip_ability_fate_empty1"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty2"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty3"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty4"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty5"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty6"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty7"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty8"			"Empty"
+
+    //====================================
+    // Atalanta
+    //====================================
+    "DOTA_Tooltip_modifier_arrows_of_the_big_dipper"                                  "Arrows of the Big Dipper"
+    "DOTA_Tooltip_modifier_arrows_of_the_big_dipper_Description"                      ""
+
+    "DOTA_Tooltip_modifier_calydonian_hunt"                                           "Calydonian Hunt"
+    "DOTA_Tooltip_modifier_calydonian_hunt_Description"                               ""
+
+    "DOTA_Tooltip_modifier_calydonian_hunt_root"                                      "Calydonian Hunt Root"
+    "DOTA_Tooltip_modifier_calydonian_hunt_root_Description"                          ""
+
+    "DOTA_Tooltip_modifier_celestial_arrow"                                           "Celestial Arrow"
+    "DOTA_Tooltip_modifier_celestial_arrow_Description"                               ""
+
+    "DOTA_Tooltip_modifier_last_spurt"                                                "Last Spurt"
+    "DOTA_Tooltip_modifier_last_spurt_Description"                                    ""
+
+    "DOTA_Tooltip_modifier_priestess_of_the_hunt"                                     "Priestess of the Hunt"
+    "DOTA_Tooltip_modifier_priestess_of_the_hunt_Description"                         ""
+
+    "DOTA_Tooltip_modifier_tauropolos"                                                "Tauropolos - Bow of Heaven"
+    "DOTA_Tooltip_modifier_tauropolos_Description"                                    ""
+
+    "DOTA_Tooltip_modifier_phoebus_catastrophe_cooldown"                              "Phoebus Catastrophe Cooldown"
+    "DOTA_Tooltip_modifier_phoebus_catastrophe_cooldown_Description"                  ""
+
+    "DOTA_Tooltip_modifier_golden_apple_cooldown"                                     "Golden Apple Cooldown"
+    "DOTA_Tooltip_modifier_golden_apple_cooldown_Description"                         ""
+
+        "npc_dota_hero_drow_ranger"             "Archer of Red(Apocrypha)"
+
+          "DOTA_Tooltip_ability_atalanta_celestial_arrow"                                   "Celestial Arrow"
+        "DOTA_Tooltip_ability_atalanta_celestial_arrow_Description"                       "<font color='#FF6600'>Arrows Used: 1</font>\nFires an single powerful shot, damaging all enemies in a straight line. Grants bonus max arrow charges and damage."
+        "DOTA_Tooltip_ability_atalanta_celestial_arrow_range"                             "RANGE:"
+        "DOTA_Tooltip_ability_atalanta_celestial_arrow_bonus_arrows"                      "BONUS ARROWS:"
+        "DOTA_Tooltip_ability_atalanta_celestial_arrow_bonus_damage"                      "BONUS DAMAGE:"
+
+        "DOTA_Tooltip_ability_atalanta_calydonian_hunt"                                   "Calydonian Hunt"
+        "DOTA_Tooltip_ability_atalanta_calydonian_hunt_Description"                       "<font color='#58ACFA'>PASSIVE:</font> Enemies wounded by Archer's arrows have a stacking debuff applied on them, while dealing extra physical damage based on the number of stacks present. Stacks are applied before damage.\n<font color='#58ACFA'>ACTIVE:</font> Applies a <font color='#FF3399'>root</font> on each visible enemy with the Calydonian Hunt debuff on them. Also grants Fog of War vision on them."
+        "DOTA_Tooltip_ability_atalanta_calydonian_hunt_max_stacks"                        "MAX STACKS:"
+        "DOTA_Tooltip_ability_atalanta_calydonian_hunt_debuff_duration"                   "DEBUFF DURATION:"
+        "DOTA_Tooltip_ability_atalanta_calydonian_hunt_root_duration"                     "ROOT DURATION:"
+        "DOTA_Tooltip_ability_atalanta_calydonian_hunt_damage_per_stack"                  "DAMAGE % PER STACK:"
+
+        "DOTA_Tooltip_ability_atalanta_golden_apple"                                      "Golden Apple"
+        "DOTA_Tooltip_ability_atalanta_golden_apple_Description"                          "Fires an irresistable Golden Apple at a location. Enemies within the radius will be forced to move towards it in an attempt to pick it up."
+	"DOTA_Tooltip_ability_atalanta_golden_apple_Lore"                                 "Look, this is the fruit of fate. This glorious treasure once sparked the burning of Troy. Come closer if you wish for it." 
+        "DOTA_Tooltip_ability_atalanta_golden_apple_range"                                "RANGE:"
+        "DOTA_Tooltip_ability_atalanta_golden_apple_lure_duration"                        "LURE DURATION:"
+        "DOTA_Tooltip_ability_atalanta_golden_apple_aoe"                                  "AOE:"
+
+        "DOTA_Tooltip_ability_atalanta_crossing_arcadia"                                  "Crossing Arcadia"
+        "DOTA_Tooltip_ability_atalanta_crossing_arcadia_Description"                      "<font color='#FF6600'>Arrows Used: 1</font>\nArcher leaps into the air over the target location and fires an arrow downwards. The arrow applies a mininstun upon impact."
+        "DOTA_Tooltip_ability_atalanta_crossing_arcadia_Lore"                             "Arcadia, my far-away homeland, I shall jump stone by stone across the steep mountain range that lead to you."
+        "DOTA_Tooltip_ability_atalanta_crossing_arcadia_range"                            "RANGE:"
+        "DOTA_Tooltip_ability_atalanta_crossing_arcadia_jump_time"                        "JUMP DELAY:"
+        "DOTA_Tooltip_ability_atalanta_crossing_arcadia_aoe"                              "AOE:"
+        "DOTA_Tooltip_ability_atalanta_crossing_arcadia_stun_duration"                    "STUN DURATION:"
+
+        "DOTA_Tooltip_ability_atalanta_last_spurt"                                        "Last Spurt"
+        "DOTA_Tooltip_ability_atalanta_last_spurt_Description"                            "Grants bonus movement speed. Movement speed bonus increases for each unit in the area of effect not facing Archer."
+        "DOTA_Tooltip_ability_atalanta_last_spurt_Lore"                                   "Go ahead. I shall pass in front of you afterward like a squall."
+        "DOTA_Tooltip_ability_atalanta_last_spurt_base_ms"                                "BASE MS%:"
+        "DOTA_Tooltip_ability_atalanta_last_spurt_ms_per_unit"                            "MS% PER UNIT:"
+        "DOTA_Tooltip_ability_atalanta_last_spurt_duration"                               "DURATION:"
+        "DOTA_Tooltip_ability_atalanta_last_spurt_aoe"                                    "AOE:"
+
+        "DOTA_Tooltip_ability_atalanta_priestess_of_the_hunt"                             "Priestess Of The Hunt"
+        "DOTA_Tooltip_ability_atalanta_priestess_of_the_hunt_Description"                 "In exchange for the ability to autoattack, Archer fires her arrows with great range and power. Her spells use charges of arrows which replenish over time. Arrows apply damage equal to her physical attack. Arrows replenish based on her attack time (e.g. 1 attack per 3 seconds equates to 1 arrow every 3 seconds). Arrows pierce spell immunity."
+        "DOTA_Tooltip_ability_atalanta_priestess_of_the_hunt_arrows"                      "ARROW CHARGES:"
+
+        "DOTA_Tooltip_ability_atalanta_tauropolos"                                        "Tauropolos - Bow of Heaven"
+        "DOTA_Tooltip_ability_atalanta_tauropolos_Description"                            "For a short duration, Archer draws upon the might of Artemis. Grants arrow charges which can exceed the maximum arrow charge count. Reduces the cast time of Archer's abilities and for each point of agility, increases the range of Celestial Arrows and radius of AoE arrows."
+        "DOTA_Tooltip_ability_atalanta_tauropolos_duration"                               "DURATION:"
+        "DOTA_Tooltip_ability_atalanta_tauropolos_bonus_arrows"                           "BONUS ARROWS:"
+        "DOTA_Tooltip_ability_atalanta_tauropolos_cast_time_reduction"                    "CAST TIME % REDUCTION:"
+        "DOTA_Tooltip_ability_atalanta_tauropolos_bonus_range_per_agi"                    "BONUS RANGE PER AGI:"
+        "DOTA_Tooltip_ability_atalanta_tauropolos_bonus_aoe_per_agi"                      "BONUS AOE PER AGI:"
+
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy"                         "Phoebus Catastrophe - Complaint Message on an Arrow"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_Description"             "<font color='#58ACFA'>Combo Requirement: 20 in all stats</font>\n<font color='#58ACFA'>Combo Sequence: R-W-D or F in 6 seconds</font>\n<font color='#FF6600'>Arrows Used: 2</font>\n\nArcher fires 2 arrows seeking divine protection from Apollo the Sun God and Artemis the Goddess of the Hunt.\nShe is able to choose between raining arrows over an area or snipe a target with precise strikes."
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_Lore"                    "Very well, it's the time to hunt then. This is an offering to the two Gods. Phoebus Catastrophe!"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_range"                   "RANGE:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_aoe"                     "AOE:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_arrow_aoe"               "ARROW AOE:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_barrage_arrows"          "BARRAGE ARROWS:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_snipe_arrows"            "SNIPE ARROWS:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_delay"                   "DELAY TO FIRST ARROW:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_cast_time_delay"               "CAST TIME:"
+
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage"                       "Phoebus Catastrophe: Barrage"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_Description"           "<font color='#58ACFA'>Combo Requirement: 20 in all stats</font>\n<font color='#58ACFA'>Combo Sequence: R-W-D in 6 seconds</font>\n<font color='#FF6600'>Arrows Used: 2</font>\n\nArcher fires 2 arrows seeking divine protection from Apollo the Sun God and Artemis the Goddess of the Hunt.\nA barrage of arrows rains on the area after a delay."
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_Lore"                  "Very well, it's the time to hunt then. This is an offering to the two Gods. Phoebus Catastrophe!"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_range"                 "RANGE:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_aoe"                   "AOE:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_arrow_aoe"             "ARROW AOE:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_arrows"                "ARROWS:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_delay"                   "DELAY TO FIRST ARROW:"
+
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe"                         "Phoebus Catastrophe: Snipe"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_Description"             "<font color='#58ACFA'>Combo Requirement: 20 in all stats</font>\n<font color='#58ACFA'>Combo Sequence: R-W-F in 6 seconds</font>\n<font color='#FF6600'>Arrows Used: 2</font>\n\nArcher fires 2 arrows seeking divine protection from Apollo the Sun God and Artemis the Goddess of the Hunt.\nArrows strike the target with deadly precision after a delay."
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_Lore"                    "Very well, it's the time to hunt then. This is an offering to the two Gods. Phoebus Catastrophe!"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_range"                   "RANGE:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_arrow_aoe"               "ARROW AOE:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_arrows"                  "ARROWS:"
+        "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_delay"                   "DELAY TO FIRST ARROW:"
+
+        "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper"                "Arrows Of The Big Dipper"
+        "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_Description"    "Archer imbues her arrows with the blessing of Artemis. Celestial Arrows have increased range and provides vision.\nAfter firing a number of arrows, a copy of the last one will be fired again. Combo arrows do not count towards this number. The extra arrow fired does not use an arrow charge."
+        "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_attribute_bonus_range"                "BONUS RANGE:"
+        "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_attribute_vision_radius"                "VISION RADIUS:"
+        "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_attribute_vision_duration"                "VISION DURATION:"
+        "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_attribute_arrows_needed"                "ARROWS NEEDED:"
+
+        "DOTA_Tooltip_ability_atalanta_attribute_hunters_mark"                            "Hunter's Mark"
+        "DOTA_Tooltip_ability_atalanta_attribute_hunters_mark_Description"                "Damage applied by Calydonian Hunt has 100%% armor penetration."
+
+        "DOTA_Tooltip_ability_atalanta_attribute_golden_apple"                            "Golden Apple"
+        "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_Description"                "Increases max stack and debuff duration of Calydonian Hunt. Calydonian Hunt active will now apply to enemies in fog.\nGolden Apple can be used within 6 seconds after casting Calydonian Hunt.\n<font color='#58ACFA'>Golden Apple :</font> Fires an irresistable Golden Apple at a location. Enemies within the radius will be forced to move towards it in an attempt to pick it up."
+        "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_range"                      "RANGE:"
+        "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_lure_duration"              "LURE DURATION:"
+        "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_aoe"                        "AOE:"
+        "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_attribute_stack_bonus"      "STACK BONUS:"
+        "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_attribute_bonus_duration"   "BONUS DURATION:"
+
+        "DOTA_Tooltip_ability_atalanta_attribute_crossing_arcadia_plus"                   "Crossing Arcadia Plus"
+        "DOTA_Tooltip_ability_atalanta_attribute_crossing_arcadia_plus_Description"       "Fires extra arrows during Crossing Arcadia. The arrows are spread in such a way that targets directly under Archer will be hit by all of them. Extra arrows do not consume arrow charges, but count towards Arrows of the Big Dipper.\nUpon landing, applies a free cast of Last Spurt."
+        "DOTA_Tooltip_ability_atalanta_attribute_crossing_arcadia_plus_extra_arrows"      "EXTRA ARROWS:"
+
+    //==================================
+    //  NEW VERSION
+    //==================================
+
+    EA's combo requirement from Q-W-E to W-E
+
+
+    //====================================
+    //	Scout Familiar
+    //====================================
+    
+    "DOTA_Tooltip_ability_ward_conversion"                                  "Ward Conversion"
+    "DOTA_Tooltip_ability_ward_conversion_Description"                      "Turns the scout familiar into a ward."
+
+    //====================================
+    //	Master 3 
+    //====================================
+
+    "DOTA_Tooltip_ability_master_transfer_1"	"Transfer Item 1"
+    "DOTA_Tooltip_ability_master_transfer_1_Description"	"Transfer the item in Stash slot 1 to your Servant."	
+    
+    "DOTA_Tooltip_ability_master_transfer_2"	"Transfer Item 2"
+    "DOTA_Tooltip_ability_master_transfer_2_Description"	"Transfer the item in Stash slot 2 to your Servant."
+    
+    "DOTA_Tooltip_ability_master_transfer_3"	"Transfer Item 3"
+    "DOTA_Tooltip_ability_master_transfer_3_Description"	"Transfer the item in Stash slot 3 to your Servant."	
+    
+    "DOTA_Tooltip_ability_master_transfer_4"	"Transfer Item 4"
+    "DOTA_Tooltip_ability_master_transfer_4_Description"	"Transfer the item in Stash slot 4 to your Servant."
+    
+    "DOTA_Tooltip_ability_master_transfer_5"	"Transfer Item 5"
+    "DOTA_Tooltip_ability_master_transfer_5_Description"	"Transfer the item in Stash slot 5 to your Servant."
+    
+    "DOTA_Tooltip_ability_master_transfer_6"	"Transfer Item 6"
+    "DOTA_Tooltip_ability_master_transfer_6_Description"	"Transfer the item in Stash slot 6 to your Servant."
+
+
+    //====================================
+    //	Balance
+    //====================================
+
+        "DOTA_Tooltip_Ability_lishuwen_raging_dragon_strike_Description"	"<font color='#58ACFA'>Combo Requirement : 20 all stats</font>\n<font color='#58ACFA'>Combo Sequence : W-E in 3 seconds</font>\nAssassin chains together 3 fearful moves.\n<font color='#58ACFA'>1st:</font> Dashes to target, striking all enemies in his path for magic damage, ***applying Mark of Fatality*** and <font color='#FF3399'>slowing</font> them.\n<font color='#58ACFA'>2nd:</font> Stomps the ground, dealing physical damage to nearby enemies and stunning them if they are affected by Mark of Fatality.\n<font color='#58ACFA'>3rd:</font> Ascends into the sky with a powerful roundhouse, <font color='#FF3399'>launching enemies into the air</font>. Assassin then rapidly teleports around airborne enemies, delivering multiple hits each dealing composite damage and applying Mark of Fatality.\nIf Assassin fails to activate the 3rd strike, cooldown is significantly reduced."
+
+
+		"DOTA_Tooltip_ability_true_assassin_attribute_weakening_venom_Description"	"Dagger Throw deals bonus damage based on AGI ***and has reduced cooldown***. In addition, its poison effect reduces target's STR and lasts longer.\nAlso, Assassin's base attack applies stackable poison effect that slows and reduces target's STR."	
+REMOVE		"DOTA_Tooltip_Ability_true_assassin_attribute_weakening_venom_bonus_range"				"DAGGER THROW BONUS RANGE:"
+
+        "DOTA_Tooltip_Ability_jeanne_purge_the_unjust_Description"		"Ruler marks the ground with a holy symbol. After a delay, heavenly light strikes the area, damaging enemies and <font color='#FF3399'>silencing</font> them.\n<font color='#ff9900'>UNJUST BONUS:</font> Deals additional ***magic*** damage based on the difference between Kill and Death counts(K-D)."
+
+		"DOTA_Tooltip_ability_gilgamesh_attribute_rain_of_swords_Description"	"Increases Sword Barrage's radius ***and damage***. Archer automatically casts Sword Barrage when casting Enkidu."
+		"DOTA_Tooltip_Ability_gilgamesh_attribute_rain_of_swords_barrage_damage"				"INCREASED DAMAGE:"
+
+
+        "DOTA_Tooltip_ability_diarmuid_rampant_warrior_Description"     "<font color='#58ACFA'>Combo Requirement : 20 all stats</font>\n<font color='#58ACFA'>Combo Sequence : D-W in 3 seconds</font>\nLancer puts everything he's got into battle. ***Lancer gains Double Spearsmanship's effect with double the chance***, and his base attack always critically strikes."
+
+        "DOTA_Tooltip_ability_nero_attribute_pari_tenu_blauserum_Description"       "Gladiusanus Blauserum inflicts bonus magic damage based on AGI, and <font color='#FF3399'>stuns</font> enemies in small radius. ***Stun duration increases based on STR.\n***"  
+        "DOTA_Tooltip_Ability_nero_attribute_pari_tenu_blauserum_str_ratio"          "STR RATIO:"
+        "DOTA_Tooltip_Ability_nero_attribute_pari_tenu_blauserum_stun_duration"          "***BASE STUN DURATION:***"
+REMOVE        "DOTA_Tooltip_Ability_nero_attribute_pari_tenu_blauserum_stun_radius"          "RADIUS:"
+        "DOTA_Tooltip_Ability_nero_attribute_pari_tenu_blauserum_radius"          "RADIUS:"
+
+        "DOTA_Tooltip_Ability_tamamo_mystic_shackle_Description"	"Sews the target's spirit with Caster's, forcing it to stay within certain distance. Caster is dimensionally <font color='#FF3399'>locked</font> while Mystic Shackle lasts. Caster must be no further than 500 distance away from where she initially casted Mantra and ***the target must be no further than 1000 range away to cast this ability. Applies dimensional <font color='#FF3399'>lock</font> on enemy targets.***"
+
+        "DOTA_Tooltip_Ability_tamamo_attribute_mystic_shackle"		"Mystic Shackle"
+        "DOTA_Tooltip_Ability_tamamo_attribute_mystic_shackle_Description"	"Casting Mantra grants bonus magic resistance to an allied target, or reduces magic resistance of an enemy. In addition, Mystic Shackle can be used within 3 seconds after casting Mantra.\n<font color='#58ACFA'>Mystic Shackle :</font> Sews the target's spirit with Caster's, forcing it to stay within certain distance. Caster is dimensionally <font color='#FF3399'>locked</font> while Mystic Shackle lasts. Caster must be no further than 500 distance away from where she initially casted Mantra and ***the target must be no further than 1000 range away to cast this ability. Applies dimensional <font color='#FF3399'>lock</font> on enemy targets.***"
+
+
+        "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Description"      "Launches an enigmatic force in a line. When hit, it deals magic damage based on target's current health, <font color='#FF3399'>stuns</font> briefly, and causes victim to suffer <font color='#FF3399'>number of randomly chosen Crowd Control effects.</font> ***Effects already on the target will not be chosen and if the target has all possible effects, the target will be revoked.***"
+REARRANGE        "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_revoke_duration"	"REVOKE DURATION:"
+        "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Note0"			"The pool of Crowd Control effects are Stun, Silence, *** ****Lock, Root, and Disarm."
+        "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Note1"			"If there are no more effects to choose from, a random one will be chosen."
+	"DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Note2"			"Applying revoke has a cooldown of 1.4s on the same target."
+
+        "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_Description"	"***Increases Luminosite Eternelle's damage reduction***, and causes it to apply Charisma to all allied Servants within sacred zone at cast. In addition, Ruler automatically casts Charisma on herself when La Pucelle activates."
+        "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_bonus_reduction"	"%BONUS REDUCTION:"
+
+		"DOTA_Tooltip_modifier_luminosite_eternelle_flag_improved_aura"                   "Luminosite Eternelle Flag Improved Aura"
+		"DOTA_Tooltip_modifier_luminosite_eternelle_flag_improved_aura_Description"       ""
+
+		"DOTA_Tooltip_modifier_luminosite_eternelle_flag_improved_aura_buff"              "Luminosite Eternelle Flag Improved Aura Buff"
+		"DOTA_Tooltip_modifier_luminosite_eternelle_flag_improved_aura_buff_Description"  ""
+
+		"DOTA_Tooltip_ability_caster_5th_attribute_improve_territory_creation_Description"	"Increases Workshop's health, mana, mana regen and Workshop Explosion's damage. Also enables All-Seeing Orb, True Sight, and Brilliance Aura."
+		"caster_5th_territory_improved"                                                   "Caster 5th Territory"
+		"DOTA_Tooltip_ability_caster_5th_attribute_improve_territory_creation_workshop_mana"	"WORKSHOP MANA:"
+
+		"DOTA_Tooltip_ability_caster_5th_territory_explosion_Description"	"Causes stored mana to run amok, self-destructing and dealing damage based on the Workshop's current mana to all nearby enemies.\nDamage dealt scales with distance from center, with full damage below 300 range and half damage at max range.\n\nDamage increases with Caster's INT.\nDAMAGE : 300 + Workshop's current mana + INT*8"
+
+        "DOTA_Tooltip_Ability_jeanne_gods_resolution_Description"	"<font color='#58ACFA'>PASSIVE:</font> Ruler's attacks have a chance to *** *** deal bonus magic damage based on the target's current health.\n<font color='#58ACFA'>ACTIVE:</font> Channels the wrath of god around her, continously dealing damage to nearby enemies and <font color='#FF3399'>slowing</font> their movement and attack speeds. Ruler gains bonus armor and magic resistance while channeling.\n<font color='#ff9900'>UNJUST BONUS:</font> Also ministuns."
+REMOVE        "DOTA_Tooltip_Ability_jeanne_gods_resolution_passive_chance"		"%PASSIVE CHANCE:"
+REMOVE        "DOTA_Tooltip_Ability_jeanne_gods_resolution_passive_revoke_duration"		"%REVOKE DURATION:"
