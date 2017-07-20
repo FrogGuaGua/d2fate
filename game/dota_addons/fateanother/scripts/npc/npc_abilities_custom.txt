@@ -13764,7 +13764,7 @@
 		"AbilityCastRange"				"150"
 		"AbilityCastRangeBuffer"		"100"
 		"AbilityCooldown"				"50"
-		"AbilityManaCost"				"450"
+		"AbilityManaCost"				"0"
 		
 		"precache"
 		{
