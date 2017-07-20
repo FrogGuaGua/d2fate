@@ -269,7 +269,7 @@ function OnPurgeStart(keys)
 	        DoDamage(caster, v, baseDamage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	        giveUnitDataDrivenModifier(caster, v, "silenced", silenceDuration)
 	        giveUnitDataDrivenModifier(caster, v, "disarmed", silenceDuration)
-	        if caster.IsPunishmentAcquired and caster:HasModifier("modifier_saint_buff:") then
+	        if caster.IsPunishmentAcquired and caster:HasModifier("modifier_saint_buff") then
 	        	giveUnitDataDrivenModifier(caster, v, "revoked", silenceDuration)
 	        end
 	    end
