@@ -1,5 +1,0 @@
-<root>
-	<scripts>
-		<include src="file://{resources}/scripts/sounds.js"/>
-	</scripts>
-</root>

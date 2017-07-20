@@ -1,1 +1,0 @@
-dir /B | grep ".png" | sed "s/^\(.*\)$/<Image src=\"file:\/\/{images}\/items\/\1\" \/>/g" > temp.txt
