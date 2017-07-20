@@ -1,4 +1,5 @@
 // Dota Heroes File
+
 "DOTAAbilities"
 {
 	"Version"		"1"
@@ -1742,12 +1743,12 @@
 		"MaxLevel"						"5"
 		"RequiredLevel"					"1"
 		"LevelsBetweenUpgrades"			"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"custom/lancer_5th_rune_magic"
-		"AbilityCooldown"				"0.5"
+		"AbilityCooldown"				"0.0"
 		"AbilityCastPoint"				"0.0"
 
-		"OnSpellStart"
+		"OnToggleOn"
 		{
 			"RunScript"
 			{
@@ -2035,13 +2036,13 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_TOGGLE"
 		"AbilityTextureName"			"silencer_last_word"
 		
-		"AbilityCooldown"				"0.5"
+		"AbilityCooldown"				"0.0"
 		"AbilityCastPoint"				"0.0"
 
-		"OnSpellStart"
+		"OnToggleOn"
 		{
 			"RunScript"
 			{
@@ -2151,6 +2152,8 @@
 		"AbilityTextureName"			"custom/lancer_5th_gae_bolg"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
 		"AnimationPlaybackRate" 		"1.0"
+		
+		"IsCastableWhileHidden"			"1"
 		
 		"precache"
 		{
@@ -2367,6 +2370,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AnimationPlaybackRate" 		"0.5"
 		"AOERadius"						"%radius"
+		"IsCastableWhileHidden"			"1"
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"

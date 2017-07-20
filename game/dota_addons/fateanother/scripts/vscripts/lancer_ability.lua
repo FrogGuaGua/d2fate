@@ -64,20 +64,31 @@ function RuneMagicOpen(keys)
 	if a3:GetName() == "lancer_5th_wesen_gae_bolg" then
 		caster:SwapAbilities("lancer_5th_rune_of_trap", a3:GetName(), true, false) 
 	else
-		caster:SwapAbilities("lancer_5th_rune_of_trap", a3:GetName(), true, true) -- opening a spellbook should not cancel gae bolg's casting point
+		caster:SwapAbilities("lancer_5th_rune_of_trap", a3:GetName(), true, false)
 	end 
 	caster:SwapAbilities("lancer_5th_rune_of_flame", a4:GetName(), true, false) 
 	caster:SwapAbilities("lancer_5th_close_spellbook", a5:GetName(), true, false) 
-	caster:SwapAbilities("lancer_5th_rune_of_conversion", a6:GetName(), true, true) -- same as above
+	caster:SwapAbilities("lancer_5th_rune_of_conversion", a6:GetName(), true, false)
+	keys.ability:ToggleAbility()
 end
 
 function RuneLevelUp(keys)
 	local caster = keys.caster
-	caster:FindAbilityByName("lancer_5th_rune_of_disengage"):SetLevel(keys.ability:GetLevel())
-	caster:FindAbilityByName("lancer_5th_rune_of_replenishment"):SetLevel(keys.ability:GetLevel())
-	caster:FindAbilityByName("lancer_5th_rune_of_trap"):SetLevel(keys.ability:GetLevel())
-	caster:FindAbilityByName("lancer_5th_rune_of_flame"):SetLevel(keys.ability:GetLevel())
-	caster:FindAbilityByName("lancer_5th_rune_of_conversion"):SetLevel(keys.ability:GetLevel())
+	
+	local hAbility = nil
+	local tAbilities = {
+		"lancer_5th_rune_of_disengage",
+		"lancer_5th_rune_of_replenishment",
+		"lancer_5th_rune_of_trap",
+		"lancer_5th_rune_of_flame",
+		"lancer_5th_rune_of_conversion",
+	}
+	
+	for k, v in pairs(tAbilities) do
+		hAbility = caster:FindAbilityByName(v)
+		hAbility:SetLevel(keys.ability:GetLevel())
+		hAbility:EndCooldown()
+	end
 end
 
 function RuneMagicUsed(keys)
@@ -120,6 +131,7 @@ function RuneMagicClose(keys)
 		caster:SwapAbilities(a5:GetName(), "fate_empty1", false, true) 
 	end
 	caster:SwapAbilities(a6:GetName(), "lancer_5th_gae_bolg_jump", false, true) 
+	keys.ability:ToggleAbility()
 	--caster:GetAbilityByIndex(0):EndCooldown() 
 
 end

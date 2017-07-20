@@ -32,7 +32,7 @@
 		// Talent
 		var UIRoot = $.GetContextPanel().GetParent().GetParent()
 
-		var hudRoot;
+		/*var hudRoot;
 		var panel;
 		for( panel = $.GetContextPanel(); panel != null; panel = panel.GetParent())
 		{
@@ -51,8 +51,16 @@
 			{
 				statLevel.style.visibility = "collapse";
 			}
-		}
+		}*/
 
+		
+		var talentButton = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("AbilitiesAndStatBranch").FindChildTraverse("StatBranch");
+		talentButton.style.visibility = "collapse";
+		
+		var glyphUI = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("minimap_container").FindChildTraverse("GlyphScanContainer");
+		glyphUI.style.visibility = "collapse";
+		
+		
         // startegy
         var strategyUI = UIRoot.FindChildTraverse("MainContents").FindChildTraverse("ScreenContainer").FindChildTraverse("StrategyScreen").FindChildTraverse("RightContainer");
         strategyUI.style.visibility = "collapse";
@@ -91,7 +99,7 @@
 
         // Glyph, Scan
         var glyphScanUI = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("GlyphScanContainer");
-	// glyphScanUI.style.visibility = "collapse";
+		//glyphScanUI.style.visibility = "collapse";
 
         // Common item search
         var commonItemSearchUI = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("shop").FindChildTraverse("Main").FindChildTraverse("HeightLimiter").FindChildTraverse("SearchContainer");
