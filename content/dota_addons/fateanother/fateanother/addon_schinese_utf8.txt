@@ -1,0 +1,265 @@
+﻿ "lang"
+{
+	"Language"		"schinese"
+	"Tokens"
+	{
+		"addon_game_name"			"Fate/Another"
+
+		// Bounty and other misc stuffs
+		"DOTA_Chat_NoBattlePoints_WrongLobby"		""		//"Battle Points will not be awarded for this match because it is a practice lobby."
+		"Dota_shared_content_available"				""		//"Players are sharing items in the Shared Content tab."
+
+		// Stat override
+		"DOTA_StatTooltip_StrengthBonus"	"- 每点增加16点生命值\n- 每点提升0.25点的生命回复速率\n"
+		"DOTA_StatTooltip_AgilityBonus"		"- 每点增加0.3点护甲\n- 每点提升2点攻击速度\n"
+		"DOTA_StatTooltip_IntelligenceBonus"	"- 每点增加14点魔力值上限\n- 每点提升0.25点的魔力回复速率\n"
+
+	    "DOTA_Chat_PlayerKilled"    ""
+	    "DOTA_Chat_PlayerKilledNearby"    ""
+	    "DOTA_Chat_PlayerKilledNearbySingle"    ""
+	    "DOTA_Chat_PlayerDenied"    ""
+	    "DOTA_Chat_PlayerDeniedSelf"  ""
+	    "DOTA_Chat_PlayerKilledGood"  ""
+	    "DOTA_Chat_PlayerKilledGoodNearby"  ""
+	    "DOTA_Chat_PlayerKilledGoodNearbySingle"  ""
+	    "DOTA_Chat_PlayerKilledBad"   ""
+	    "DOTA_Chat_PlayerKilledBadNearby" ""
+	    "DOTA_Chat_PlayerKilledBadNearbySingle" ""
+	    "DOTA_Chat_PlayerKilledGeneric" ""
+	    "DOTA_Chat_PlayerKilledRoshan"  ""
+	    "DOTA_Chat_PlayerKilledAssist"  ""
+	    "DOTA_Chat_PlayerKilledAssistNearby"  ""
+	    "DOTA_Chat_PlayerKilledAssistNearbySingle"  ""
+	    "DOTA_Chat_TowerPlayerKilled" ""
+	    "DOTA_Chat_TowerKilledGood"   ""
+	    "DOTA_Chat_TowerKilledBad"    ""
+	    "DOTA_Chat_BarracksKilled"    ""
+	    "DOTA_Chat_EffigyKilled"    ""
+	    "DOTA_Chat_TowerDenied"     ""
+	    "DOTA_Chat_FirstBlood"      ""
+	    "DOTA_Chat_DoubleKill"      ""
+	    "DOTA_Chat_TripleKill"      ""
+	    "DOTA_Chat_QuadKill"      ""
+	    "DOTA_Chat_QuintupleKill"   ""
+	    "DOTA_Chat_BeastKilledPlayer"   ""
+	    
+	    "DOTA_Chat_DoubleKill_noname" ""
+	    "DOTA_Chat_TripleKill_noname" ""
+	    "DOTA_Chat_QuadKill_noname"   ""
+	    "DOTA_Chat_QuintupleKill_noname" ""
+	    "DOTA_Chat_QuintupleKill_10streak" ""
+	    
+	    "DOTA_Chat_Rampage"       ""
+
+	    "DOTA_Chat_New_KillStreak_3"  ""
+	    "DOTA_Chat_New_KillStreak_4"  ""
+	    "DOTA_Chat_New_KillStreak_5"  ""
+	    "DOTA_Chat_New_KillStreak_6"  ""
+	    "DOTA_Chat_New_KillStreak_7"  ""
+	    "DOTA_Chat_New_KillStreak_8"  ""
+	    "DOTA_Chat_New_KillStreak_9"  ""
+	    "DOTA_Chat_New_KillStreak_10" ""
+	      
+	    "DOTA_Chat_KillStreak_3_Ended"  ""
+	    "DOTA_Chat_KillStreak_4_Ended"  ""
+	    "DOTA_Chat_KillStreak_5_Ended"  ""
+	    "DOTA_Chat_KillStreak_6_Ended"  ""
+	    "DOTA_Chat_KillStreak_7_Ended"  ""
+	    "DOTA_Chat_KillStreak_8_Ended"  ""
+	    "DOTA_Chat_KillStreak_9_Ended"  ""
+	    "DOTA_Chat_KillStreak_10_Ended" ""
+		
+		//====================================
+		// Fatepedia
+		//====================================
+		"Fate_Tip1"			"<font color='#58ACFA'>提示：</font>C级魔力卷轴是十分好用的物品，强烈推荐时刻随身携带。它可以用来帮助你完成击杀，或者帮助你的队友打断敌人的动作。"
+		"Fate_Tip2"			"<font color='#58ACFA'>提示：</font>努力获得20点以上的全属性以获得从者的<font color='#58ACFA'>连击技能</font>，利用从者一系列特定的动作来触发连击技能，可以在战场上形成力挽狂澜的效果。你可以升级属性附加或者使用御主的魔力来为你的从者购买属性，以尽快解锁连击技能。"
+		"Fate_Tip3"			"<font color='#58ACFA'>提示：</font>如果想提升你的生存能力，可以考虑携带<font color='#58ACFA'>A级或B级魔力卷轴</font>，它们能在一定时间内为你吸收大量伤害。"
+		"Fate_Tip4"			"<font color='#58ACFA'>提示：</font>使用<font color='#58ACFA'>侦察使魔和岗哨使魔</font>来获得视野控制，使你的队伍能够对敌方的行动有一个预先判断。"
+		"Fate_Tip5"			"<font color='#58ACFA'>提示：</font>当你的从者感受到2500范围内的敌方从者的气息时，你将在该位置看到一个感叹号信号。"
+		"Fate_Tip6"			"<font color='#58ACFA'>提示：</font>御主每10分钟内由于生命值的限制，最多只能使用12个令咒。而御主的生命值每10分钟重置一次。"
+		"Fate_Tip7"			"<font color='#58ACFA'>提示：</font>利用[CTRL+数字键]来为你的御主编队，以便为你的从者提供紧急援助，例如传送物品或使用令咒。"
+		"Fate_Tip8"			"<font color='#58ACFA'>提示：</font>每死亡7次，玩家都将获得一个利用圣杯碎片来为自己获得多种优势加成的机会，请在御主2处查看详情。"
+		"Fate_Tip9"			"<font color='#58ACFA'>提示：</font>你可以在御主2处查看连击技能的详细描述和冷却时间。"
+		"Fate_Tip10"			"<font color='#58ACFA'>提示：</font>当你十分需要金钱时，可以考虑使用<font color='#58ACFA'>-goldpls</font>命令来向你的队友请求经济援助。"
+		"Fate_Tip11"			"<font color='#58ACFA'>提示：</font>正确的<font color='#58ACFA'>令咒</font>使用时机可以为你获得巨大的防守上的优势，或者进攻上的优势。"
+
+		//====================================
+		// Fate System Message
+		//====================================
+
+		"Fate_Choose_Hero_Alert_60"		"请选择你要召唤的英灵。游戏将在60秒后开始。"
+		"Fate_Choose_Hero_Alert_30_1"	"游戏将在30秒后开始。届时未选择英灵的玩家将被分配一名随机的英灵。"
+		"Fate_Choose_Hero_Alert_30_2"	"强制随机现在处于禁用状态，请在60秒内尽快决定你要召唤的英灵。"
+		"Fate_Game_Begin"	"游戏开始！"
+
+		"Fate_Presence_Alert"	"已经过去了1分钟，现在从者可以探测到2500范围内的敌方从者。"
+		"Fate_Timer_30_Alert"	"还剩30秒！"
+		"Fate_Timer_10_Alert"	"还剩10秒！"
+		"Fate_Timer_Timeout"	"时间到！"
+		"Fate_Timer_10minute"	"<font color='#58ACFA'>已经过去了10分钟。</font>圣杯的降临<font color='#58ACFA'>将恢复所有御主全部的生命值与15点魔力值。</font>"
+		"Fate_Timer_10minute_quest"	"下次圣杯降临所需时间"
+
+		"Fate_Round_Winner_1"	"本轮天辉获胜！"
+		"Fate_Round_Winner_2"	"本轮夜魇获胜！"
+		"Fate_Round_Draw"	"本轮是平局。"
+		"Fate_Round_Winner_1_By_Default"	"由于两队存活从者数量相等，因此本轮判定落后方（天辉）获胜。"
+		"Fate_Round_Winner_2_By_Default"	"由于两队存活从者数量相等，因此本轮判定落后方（夜魇）获胜。"
+		"Fate_Round_Gold_Note"				"所有金钱数量少于5000的玩家将在5秒内获得起始金钱。"
+		
+		//====================================
+		// Fatepedia : Servant tips
+		//====================================
+
+		"Fatepedia_Servants"				"从者"
+		"Fatepedia_Innate"					"天赋技能"
+		"Fatepedia_Combo"					"连击技能"
+		"Fatepedia_Attributes"				"宝具强化"
+		"Fatepedia_Build_Suggestion"		"装备推荐"
+		"Fatepedia_Playing_As"				"作为从者"
+		"Fatepedia_Playing_Against"			"作为对手"
+		"Fatepedia_Skill_Order"				"加点顺序"
+		"Fatepedia_Core_Attributes_Stats"	"核心宝具强化与核心属性升级"
+
+
+		"Fatepedia_Saber"	"阿尔托莉雅-Saber"
+		"Fatepedia_playing_as_Saber_1"	"阿尔托莉雅可以作为前排的战士也可以作为远距离杀伤的角色。根据你的队伍需要来为自己定位。"
+		"Fatepedia_playing_as_Saber_2"	"盟誓卷轴使用在阿尔托莉雅身上将具有十分强大的效果，在连接状态下所有技能伤害都将转化为魔法伤害，而阿尔托莉雅具有相当高的对魔力。而且平摊到的队友所受伤害也可以触发遗世独立的理想乡的效果。"
+		"Fatepedia_playing_as_Saber_3"	"遗世独立的理想乡也可以在进攻时使用——提前开启，直接冲入敌方火力中。"
+		"Fatepedia_playing_against_Saber_1"	"阿尔托莉雅天生具有最高的基础对魔力，可以考虑利用纯粹伤害来对她进行杀伤。"
+		"Fatepedia_playing_against_Saber_2"	"当先手阿尔托莉雅时请万分注意，因为她可以开启遗世独立的理想乡来反扑。"
+		"Fatepedia_playing_against_Saber_3"	"阿尔托莉雅总共有三个向前释放光束的技能，随时关注其盲区使用A级、B级魔术卷轴或者立即闪烁逃离。"
+
+		"Fatepedia_Saber_Alter"		"黑化阿尔托莉雅-Saber"
+		"Fatepedia_playing_as_saber_alter_1"	"阿尔托莉雅可以作为前排的战士也可以作为远距离杀伤的角色。根据你的队伍需要来为自己定位。"
+		"Fatepedia_playing_against_saber_alter_1"	""
+
+		"Fatepedia_Lancer_5th"		"库丘林-Lancer(5th)"
+		"Fatepedia_playing_as_Lancer(5th)_1"		"穿刺死棘之枪是游戏中最好用、最强的单体爆发技能之一。与令咒配合使用将使你的队伍在火力上对对方形成巨大优势。"
+		"Fatepedia_playing_as_Lancer(5th)_2"		"请善加利用卢恩符文的多功能性。"
+		"Fatepedia_playing_as_Lancer(5th)_3"		"连击技能-贪欲之枪迦耶伯格可以有效地清理掉那些防御卷轴处于冷却中的目标，机不可失。"
+		"Fatepedia_playing_against_Lancer(5th)_1"		"库丘林可以非常有效地杀伤低生命值的目标，在他面前请尽量保持较高的生命值。"
+		"Fatepedia_playing_against_Lancer(5th)_2"		"战斗续行使得库丘林有机会获得第二次生命，尽量使用不会落在其判定范围内的伤害处决他。"
+
+		"Fatepedia_Archer_5th"		"英灵卫宫-Archer(5th)"
+		"Fatepedia_playing_as_Archer(5th)_1"		"幻想崩坏配合千里眼可以对毫无防备的敌人发起致命的先手，多与队友沟通以寻找最好的时机。"
+		"Fatepedia_playing_as_Archer(5th)_2"		"在使用无限剑制前请三思，滥用此技能将有可能使你的队友陷入危险的境地。"
+		"Fatepedia_playing_as_Archer(5th)_3"		"在无限剑制中，寻找一个能够完整释放剑幕轰杀的机会可以使你的伤害输出最大化。"
+		"Fatepedia_playing_against_Archer(5th)_1"	"无限剑制的施法延迟和固定的传送地点都使得英灵卫宫容易被带有施法延迟的爆发技能杀伤，例如誓约胜利之剑和射杀百头等。在无限剑制开始和结束时都可以善加利用这一点。"
+		"Fatepedia_playing_against_Archer(5th)_2"	"小心远距离的幻想崩坏和赤原猎犬，通常这意味着英灵卫宫的队友会紧随其后。"
+		"Fatepedia_playing_against_Archer(5th)_3"	"英灵卫宫在远处寻找目标时相对来说比较脆弱，可以让队伍中的刺客去后排优先击杀之。"
+
+		"Fatepedia_Rider_5th"		"美杜莎-Rider(5th)"
+		"Fatepedia_playing_as_Rider(5th)_1"		"锁链剑钉的用法很多，它可以作为强力爆发技能的先导，也可以用来打断敌人的持续施法。时刻准备好当机会出现时直接跃入战场。"
+		"Fatepedia_playing_as_Rider(5th)_2"		"正确的带有封印宝具强化的他者封印·鲜血结界将使得敌方队伍在5秒钟之内处于混乱状态。"
+		"Fatepedia_playing_as_Rider(5th)_3"		"在释放骑英的驾驭之后立即释放锁链剑钉可能会在骑英的驾驭冲击到地面之前将敌方单位拖拽到其作用范围内，以最大化伤害范围。"
+		"Fatepedia_playing_against_Rider(5th)_1"		"美杜莎的打断技能相当多，如果你的队伍中延迟类的技能很多，可以把美杜莎作为第一顺位的解决目标。"
+		"Fatepedia_playing_against_Rider(5th)_2"		"骑英的驾驭具有相当远的射程，要小心从阴影中冲出的伏击。"
+
+		"Fatepedia_Caster_5th"		"美狄亚-Caster(5th)"
+		"Fatepedia_playing_as_Caster(5th)_1"			"可以利用工房创造出的召唤生物以获得视野控制。"
+		"Fatepedia_playing_as_Caster(5th)_2"			"破尽万法戒律之符将使目标失去行动能力，并且使得他们受到的魔法伤害翻倍，可以作为针对较抗打击从者的先手。"
+		"Fatepedia_playing_as_Caster(5th)_3"			"可以考虑与你的队友共享由道具作成技能制造出的魔术卷轴。特别是刺客，可以将S级和EX级魔术卷轴发挥出其最大效果。"
+
+		"Fatepedia_playing_against_Caster(5th)_1"	"美狄亚的工房可以为其队伍提供关键的防御地形，请在入侵敌人领地时有限考虑摧毁工房。"
+		"Fatepedia_playing_against_Caster(5th)_2"			"美狄亚可以利用自己的奉献结界将对其队友的击杀机会无效化，在团战时最好将她作为第一顺位的击杀目标。"
+		"Fatepedia_playing_against_Caster(5th)_3"			"破尽万法戒律之符之后接C级魔术卷轴的火球在周围没有队友帮助的情况下是无法躲避的，单独行动时注意与美狄亚保持距离！"
+
+		"Fatepedia_Assassin_5th"	"佐佐木小次郎-Assassin(5th)"
+		"Fatepedia_playing_as_Assassin(5th)_1"		"风之刃与S级和/或EX级魔术卷轴一起使用可以在眨眼间击杀低生命值的目标。"
+		"Fatepedia_playing_as_Assassin(5th)_2"		"佐佐木小次郎的技能不消耗魔力值，这使得令咒在他身上更加有效率，请善加利用。"
+		"Fatepedia_playing_as_Assassin(5th)_3"		"随身携带A级和B级魔术卷轴，因为佐佐木小次郎是游戏中最脆弱的几个英雄之一。"
+		"Fatepedia_playing_against_Assassin(5th)_1"		"当佐佐木小次郎对你释放秘剑·燕返的时候，在第二次和第三次斩击之间，你将有极短时间治疗自己以避免被一击毙命的机会。这种情况下，强烈推荐使用第三令咒。"
+		"Fatepedia_playing_against_Assassin(5th)_2"		"盟誓卷轴可以完美克制佐佐木小次郎，它可以防止佐佐木小次郎秒杀其攻击的目标，并且将秘剑·燕返的纯粹伤害转化为魔法伤害。"
+		"Fatepedia_playing_against_Assassin(5th)_3"		"一旦被控制住，佐佐木小次郎由于较低的生命值和对魔力将很容易被击杀可以考虑选择带有强控制的从者，例如赫拉克勒斯，来克制他。"
+
+
+		"Fatepedia_True_Assassin"	"哈桑·萨巴赫-真Assassin(5th)"
+		"Fatepedia_playing_as_TrueAssassin(5th)_1"	"当哈桑处于伏击状态时，在妄想心音结束之前，他都可以保持隐形状态。"
+		"Fatepedia_playing_as_TrueAssassin(5th)_2"	"在后期可以考虑利用通过自我改造获得的额外敏捷值来使用普通攻击输出。"
+		"Fatepedia_playing_as_TrueAssassin(5th)_3"	""
+
+		"Fatepedia_playing_against_TrueAssassin(5th)_1" "哈桑很难被其他从者探测到，多利用岗哨使魔来探测他。"
+		"Fatepedia_playing_against_TrueAssassin(5th)_2"	"隐形和避风的加护使得哈桑很难被抓住击杀，在遭遇他之前请准备好反隐。"
+
+		"Fatepedia_Berserker_5th"	"赫拉克勒斯-Berserker(5th)"
+		"Fatepedia_playing_as_Berserker(5th)_1"	"赫拉克勒斯是游戏中最抗打击的从者，可以随时随身携带A级和B级魔术卷轴承担起前排肉盾的作用。"
+		"Fatepedia_playing_as_Berserker(5th)_2"	"射杀百头的冲刺将在赫拉克勒斯遇到不可逾越地形时立即停止，可以利用这个技巧对靠墙的敌人形成瞬间的眩晕控制效果。"
+		"Fatepedia_playing_as_Berserker(5th)_3"	"连击技能-狂战士的咆哮将在几秒内遮挡屏幕，使你的队友有机会在不被看见的情形下放心地释放他们的延迟爆发技能。"
+
+		"Fatepedia_playing_against_Berserker(5th)_1"	"狂暴使得赫拉克勒斯在受到非致死伤害时能够瞬间回复生命值，与你的队友沟通以一击带走他。"
+		"Fatepedia_playing_against_Berserker(5th)_2"	"不要停留在赫拉克勒斯附近的障碍旁。"
+		"Fatepedia_playing_against_Berserker(5th)_3"	"如果你们这一轮已经确定胜利，可以围攻带有十二试炼的赫拉克勒斯以快速减少其余下的生命数量。"
+
+		"Fatepedia_Archer_4th"		"吉尔伽美什-Archer(4th)"
+		"Fatepedia_playing_as_Archer(4th)_1"	"强烈推荐与队友分享通过黄金律获得的额外金钱。"
+		"Fatepedia_playing_as_Archer(4th)_2"	"天之锁不仅可以眩晕目标，还可以阻止目标使用令咒，非常适合作为先手使用。"
+		"Fatepedia_playing_as_Archer(4th)_3"	"可以考虑强化力量属性以弥补吉尔伽美什的生存能力。"
+
+		"Fatepedia_playing_against_Archer(4th)_1"	"吉尔伽美什可以对单个目标造成超高伤害，注意使用C级魔术卷轴打断他的天之锁。"
+		"Fatepedia_playing_against_Archer(4th)_2"	"对吉尔伽美什慎用固有结界类技能，因为他的连击技能-终极天地乖离·开辟之星可以在固有结界结束时直接团灭你的队伍。"
+
+		"Fatepedia_Avenger"			"安格拉·曼纽-Avenger"
+		"Fatepedia_playing_as_avenger_1"	"在前几轮释放若干次无尽之残骸可以帮助你的队伍建立视野优势，安格拉同样可以攻击残骸以获得魔力回复。"
+		"Fatepedia_playing_as_avenger_2"	"伪写记载之万象可以在开启之后通过故意被敌方击中来杀伤敌人，但是注意致命的伤害不能被返还。使用本源形态提升最大生命值以使得伪写记载之万象发挥最大效果。"
+		"Fatepedia_playing_as_avenger_3"	"宝具强化-超速复仇可以使得安格拉利用普通攻击对目标造成巨大伤害。"
+
+		"Fatepedia_playing_against_avenger_1"	"安格拉可以返还范围爆发技能的伤害，因此在对他释放技能之前请三思。"
+		"Fatepedia_playing_against_avenger_2"	"暗夜巡礼使得安格拉具有很强的机动性，可以使用S级魔术卷轴来对其进行克制。"
+		"Fatepedia_playing_against_avenger_3"	"鲜血印记配合S级魔术卷轴可以瞬间消灭目标，利用B级魔术卷轴来避免这一点。"
+
+        "Fatepedia_Berserker_4th"               "兰斯洛特-Berserker(4th)"
+        "Fatepedia_playing_as_Berserker(4th)_1" "由于破尽万法戒律之符和射杀百头的存在，兰斯洛特可以作为游戏中最强的先手英雄之一。时刻保持在前线以寻找先手机会。"
+        "Fatepedia_playing_as_Berserker(4th)_2" "在使用无毁的湖光时，兰斯洛特将无可匹敌。利用这段时间寻找高优先级的目标击杀之。"
+        "Fatepedia_playing_as_Berserker(4th)_3" "连击技能-空袭会误伤友军，使用前请注意你的队友是否在目标区域附近。"
+
+        "Fatepedia_playing_against_Berserker(4th)_1"    "在获得光辉之湖的荣耀宝具强化之后，兰斯洛特可以利用骑士不死于徒手技能形成一些强力的连招。但是这些连招将会具有一些间隔时间，看准时机利用C级魔术卷轴打断他。"
+        "Fatepedia_playing_against_Berserker(4th)_2"    "无毁的湖光使得指向性技能对他无效，在这段时间内请与其保持距离！"
+        "Fatepedia_playing_against_Berserker(4th)_3"    "兰斯洛特利用无毁的湖光和无尽之试炼技能可以无视很多群体控制效果。"
+
+        "Fatepedia_Lancer_4th"                  "迪卢木多-Lancer(4th)"
+        "Fatepedia_playing_as_Lancer(4th)_1"    "迪卢木多在游戏的前中期可以利用他的宝具强化-双枪连击为队伍获得很大的优势，请善加使用。"
+        "Fatepedia_playing_as_Lancer(4th)_2"    "利用S级和EX级魔术卷轴可以进一步增加迪卢木多的单体爆发。"
+        "Fatepedia_playing_as_Lancer(4th)_3"    "连击技能-举世无双是游戏中最强的近战攻击技能。在游戏进入后期时，可以考虑增加一些攻击力。"
+
+        "Fatepedia_playing_against_Lancer(4th)_1"       "迪卢木多是低生命值英雄的噩梦，请尽量不要与其单挑。"
+        "Fatepedia_playing_against_Lancer(4th)_2"       "破魔的红蔷薇使得护盾类技能无效，并且可以打破盟誓卷轴的效果。闪烁躲避，或者利用C级魔术卷轴打断该技能。"
+        "Fatepedia_playing_against_Lancer(4th)_3"       "迪卢木多在获得心眼的宝具强化之后将具有高空视野，当心来自视野盲区中的攻击。"
+
+        "Fatepedia_Caster_4th"                  "吉尔·德·莱斯-Caster(4th)"
+        "Fatepedia_playing_as_Caster(4th)_1"    "小海魔可以在吉尔的命令下自杀，以积累疯狂值。"
+        "Fatepedia_playing_as_Caster(4th)_2"    "深渊海魔具有很强的阵地战能力，将其放在战略地点以牵制敌人。"
+        "Fatepedia_playing_as_Caster(4th)_3"    "螺湮城教本的主动效果是一把双刃剑，可能伤及你的队友，请慎重使用。"
+
+        "Fatepedia_playing_against_Caster(4th)_1"       "深渊海魔在受到较高单次伤害时将有伤害加成，并且将其击杀可以获得大量金钱和经验奖励。战斗时可以考虑先击杀之。"
+        "Fatepedia_playing_against_Caster(4th)_2"       "吉尔的技能效果极度依赖充足的疯狂值，他可以通过让召唤物在他附近死亡来补充疯狂值。"
+        "Fatepedia_playing_against_Caster(4th)_3"       "避免从尸体上或者小海魔附近经过，因为它们可能被吉尔利用引爆尸体技能引爆而产生爆炸。"
+
+        "Fatepedia_Rider_4th"                   "伊斯坎达尔-Rider(4th)"
+        "Fatepedia_playing_as_Rider(4th)_1"     "神威车轮将使伊斯坎达尔获得大量移动速度加成，可以看作是将魔力转化为移动速度。"
+        "Fatepedia_playing_as_Rider(4th)_2"     "在王之军势中命令士兵跟随敌方单位不停攻击可以最大化王之军势的效果，因为王之军势中的士兵在统御和两面夹击的作用下获得移动速度加成，并且有更大的几率产生多重攻击。"
+        "Fatepedia_playing_as_Rider(4th)_3"     "方阵步兵中的士兵也算入王之军势中的士兵数，因此在王之军势中尽早释放方阵步兵可以使王之军势持续更长时间。"
+
+        "Fatepedia_playing_against_Rider(4th)_1"        "王之军势可以通过击杀其中的士兵使其中的士兵数小于阈值来提前终止，释放大范围杀伤技能来确保这一点。"
+        "Fatepedia_playing_against_Rider(4th)_2"        "王之军势的的施法延迟和固定的传送地点都使得伊斯坎达尔容易被带有施法延迟的爆发技能杀伤，例如誓约胜利之剑和射杀百头等。在王之军势开始和结束时都可以善加利用这一点。"
+        "Fatepedia_playing_against_Rider(4th)_3"        "伊斯坎达尔在神威车轮上可以获得极高的移动速度，但是转身速率大幅降低。通过Z字形走位来对其放风筝以减小该技能对自己的伤害。"
+
+
+        "Fatepedia_Red_Saber_Extra"             "尼禄-Saber(Extra)"
+        "Fatepedia_playing_as_RedSaber(Extra)_1"        "尼禄可以很轻易地在她的黄金剧场中形成单挑的局面，可以考虑强化攻击力或者强化敏捷值以在单挑中获得胜利。"
+        "Fatepedia_playing_as_RedSaber(Extra)_2"        "皇帝特权使得尼禄可以轻易适应多种角色，可以根据你的游戏方式来选择需要的被动技能。"
+        "Fatepedia_playing_as_RedSaber(Extra)_3"        "喝采声犹如剑戟交错可以在遭遇敌人前提前开启以最大化下一击的攻击力，或者在前排吸收伤害。"
+
+        "Fatepedia_playing_against_RedSaber(Extra)_1"   "邀至心荡神驰的黄金剧场在你面对尼禄的时候不会使你受到伤害，回击并将她击倒。"
+        "Fatepedia_playing_against_RedSaber(Extra)_2"   "当喝采声犹如剑戟交错完全充能时尽量避免与尼禄战斗。"
+        "Fatepedia_playing_against_RedSaber(Extra)_3"   "尼禄造成的伤害大多是物理伤害，提升护甲可以减少她对你造成的伤害。"
+
+        "Fatepedia_White_Saber_Extra"           "高文-Saber(Extra)"
+        "Fatepedia_playing_as_WhiteSaber(Extra)_1"      "高文的所有技能都具有进攻性和防御性两种用法，这使得高文可以适应多种位置，请根据你队伍的需求灵活调整。"
+        "Fatepedia_playing_as_WhiteSaber(Extra)_2"      "烈阳之簇拥可以与其他非魔法伤害技能构成致命的连击，例如轮转胜利之剑或佐佐木小次郎的秘剑·燕返。"
+        "Fatepedia_playing_as_WhiteSaber(Extra)_3"      "连击技能-超新星爆发最好用在具有极高伤害输出，但自身十分脆弱的从者身上，例如佐佐木小次郎。"
+        "Fatepedia_playing_against_WhiteSaber(Extra)_1" "烈阳之簇拥会依据目标的当前对魔力值提升其受到的物理伤害和纯粹伤害，在使用A级魔术卷轴之前请三思。"
+        "Fatepedia_playing_against_WhiteSaber(Extra)_2" "高文非常善于救队友，因此在团战时可以考虑优先击杀他。"
+        "Fatepedia_playing_against_WhiteSaber(Extra)_3" "拟似太阳可以提供高空视野，注意观察高文拟似太阳的位置。"
+	}
+}

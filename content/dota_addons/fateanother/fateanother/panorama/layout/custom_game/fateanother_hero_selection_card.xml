@@ -1,0 +1,10 @@
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/fateanother_hero_selection.js" />
+    </scripts>
+    <Panel class="HeroSelectionCard" hittest="false">
+    </Panel>
+</root>

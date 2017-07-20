@@ -1,0 +1,187 @@
+"Iskander.Charge"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/iskander_charge.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"4.5000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+
+"Iskander.AOTK"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/iskander_ionion_hetairoi.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+
+"Iskander.AOTK_Ambient"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/iskander_ionion_hetairoi_ambient.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+
+"Iskander.Annihilate"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/iskander_annihilate.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Iskander.Aye"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/iskander_aye.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,111 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 80
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 800.0 ]
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+		},
+		{
+			_class = "C_OP_OscillateScalarSimple"
+			m_Rate = 100.0
+			m_Frequency = 100.0
+			m_nField = 3
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.7
+			m_flEndScale = 0.2
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.7
+			m_flStartScale = 0.2
+			m_flEndScale = 0.0
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 255, 0, 0, 255 ]
+			m_flFadeStartTime = 0.3
+		},
+		{
+			_class = "C_OP_Spin"
+			m_nSpinRateDegrees = 90
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = 2
+			m_hTexture = resource:"materials/particle/juggernaut/juggernaut_blade_fury.vtex"
+			VisibilityInputs = 
+			{
+				m_flInputMax = 0.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 1.0
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMin = 3
+			m_nSequenceMax = 6
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 250.0
+			m_flRadiusMax = 250.0
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 255, 85, 0, 255 ]
+			m_ColorMax = [ 85, 0, 0, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_nFieldOutput = 12
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 20.0
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

@@ -1,0 +1,420 @@
+    //带%的先不要动
+    //看到<>标签的也不要动
+
+
+    "test_msg"                      "测试消息"
+    "Not_Enough_Gold_Item"          "你太穷(物品比基地贵50%)"
+    "Out_Of_Stock_C_Scroll"         "每回合C卷最多只能以基础价格买十张"
+    "Not_Enough_Master_Mana"        "御主魔力不够"
+    "Already_In_Marble"             "已经在Reality Marble内"
+    "Cannot_Travel"                 "不能移至指定位置"
+    "Out_Of_Range"                  "超出射程"
+    "Cannot_Be_Cast_Now"            "现在不能施展"
+    "Cannot_Blink"                  "不能闪现"
+    "Workshop_Exists"               "已经有工房了"
+    "Cannot_Target_Self"            "不能指定自己"
+    "Caster_Out_Of_Radius"          "C妈必须在工房500范围内"
+    "Cannot_Unmount"                "只能在移动可达到的位置使用"
+    "Not_Enough_Madness"            "疯狂值不够"
+    "Cannot_Summon"                 "现在不能召唤"
+    "Tentacle_Out_Of_Radius"        "必须指定距离caster500范围内的地方"
+    "Cannot_Use_While_Integrated"   "合体时不能使用"
+    "Entered_Base"                  "进入了基地(价格恢复正常)"
+    "Left_Base"                     "离开了基地(物品价格提升50%)"
+    "No_Items_Found"                "这一格没有物品"
+    "Invalid_Location"              "不允许的位置"
+    "Attribute_Not_Earned"          "属性未获得"
+    "Revoked_Error"                 "令咒被封"
+    "Master_Not_Enough_Health"      "御主生命不够(等圣杯发点吧)"
+    "Cannot_Get_Over_50_Stats"      "不能超过50点"
+    "Cannot_Acquire_Shard"          "还没死够7次"
+    "Presence_Detected"             "侦测到敌方从者"
+
+
+    "DOTA_Tooltip_ability_gawain_blade_of_the_devoted"                  "信者之刃"
+    "DOTA_Tooltip_ability_gawain_blade_of_the_devoted_Description"      "将剑附魔,获得额外移动速度,下次普攻附带特效.\n<font color='#58ACFA'>On Ally</font> : 医治目标.\n<font color='#58ACFA'>On Enemy</font> : 造成物理伤害附加短晕"
+    "DOTA_Tooltip_ability_gawain_blade_of_the_devoted_Lore"             ""
+    "DOTA_Tooltip_ability_gawain_blade_of_the_devoted_bonus_speed"      "%BONUS MOVESPEED:"
+
+    "DOTA_Tooltip_ability_item_healing_scroll"                          "群体医疗卷轴"
+    "DOTA_Tooltip_ability_item_healing_scroll_Lore"                     ""
+    "DOTA_Tooltip_ability_item_healing_scroll_Description"              "立即恢复生命,并为自己和附近友军提供额外护甲.\n<font color='#FF0000'>\nItem costs 50%% more once you leave your base.</font>"
+    "DOTA_Tooltip_ability_item_healing_scroll_heal_amount"              "HEAL AMOUNT:"
+    "DOTA_Tooltip_ability_item_healing_scroll_armor_amount"             "BONUS ARMOR AMOUNT:"
+    "DOTA_Tooltip_ability_item_healing_scroll_armor_duration"           "BONUS ARMOR DURATION:"
+    "DOTA_Tooltip_ability_item_healing_scroll_radius"                   "RADIUS:"
+
+    "DOTA_Tooltip_Ability_gawain_attribute_sunlight"                    "日光"
+    "DOTA_Tooltip_ability_gawain_attribute_sunlight_Description"        "提升支援能力,提升施加在友军身上的技能效果.\n<font color='#58ACFA'>振奋之光 </font>: 同时给予 30%% 额外魔抗 和 20 护甲.\n<font color='#58ACFA'>信者之刃 </font>: 同时补充魔法以及减少15秒全技能冷却.\n<font color='#58ACFA'>Excalibur Galatine </font>: 50%% 的额外医疗生效于3秒内\n<font color='#58ACFA'>日光之拥</font> : 给予 30%% 额外魔抗\n\n<font color='#FF0000'>不能同时成为日光和月光高文</font>"
+
+
+    "DOTA_Tooltip_Ability_false_assassin_attribute_quickdraw"                   "拔刀术"
+    "DOTA_Tooltip_ability_false_assassin_attribute_quickdraw_Description"       "使用守门人后激活拔刀术5秒.\n<font color='#58ACFA'>拔刀术 : </font>前冲对路上所有敌人造成基于敏捷的伤害并附带攻击特效"
+
+    "DOTA_Tooltip_Ability_false_assassin_windblade"                             "风刃"
+    "DOTA_Tooltip_ability_false_assassin_windblade_Description"                 "对周围敌人造成伤害并附加攻击特效,把他们推后一段距离."
+
+    "DOTA_Tooltip_Ability_saber_caliburn"                               "Caliburn"
+    "DOTA_Tooltip_ability_saber_caliburn_description"                   "用Caliburn打击敌人造成伤害和减速. 附近敌人也受到一些伤害."
+    "DOTA_Tooltip_ability_saber_caliburn_Lore"                          ""
+    "DOTA_Tooltip_ability_saber_caliburn_damage"                        "TARGET DAMAGE:"
+    "DOTA_Tooltip_ability_saber_caliburn_aoe_damage_percent_tooltip"    "%AOE DAMAGE:"
+    "DOTA_Tooltip_ability_saber_caliburn_slow_amount"                   "%SLOW AMOUNT:"
+    "DOTA_Tooltip_ability_lancelot_caliburn_slow_duration"              "SLOW DURATION:"
+
+    "DOTA_Tooltip_Ability_lancelot_caliburn"                            "Caliburn"
+    "DOTA_Tooltip_ability_lancelot_caliburn_description"                "用Caliburn打击敌人造成伤害和减速. 附近敌人也受到一些伤害."
+    "DOTA_Tooltip_ability_lancelot_caliburn_Lore"                       ""
+    "DOTA_Tooltip_ability_lancelot_caliburn_damage"                     "TARGET DAMAGE:"
+    "DOTA_Tooltip_ability_lancelot_caliburn_aoe_damage_percent_tooltip" "%AOE DAMAGE:"
+    "DOTA_Tooltip_ability_lancelot_caliburn_slow_amount"                "%SLOW AMOUNT:"
+    "DOTA_Tooltip_ability_lancelot_caliburn_slow_duration"              "SLOW DURATION:"
+
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream"                  "上击气流斩"
+    "DOTA_Tooltip_ability_saber_attribute_strike_air_upstream_Description"      "激活上击气流斩.\n<font color='#58ACFA'>Strike Air-Upstream : </font>给予一定几率造成基于普攻伤害的额外魔法伤害并将敌击飞.\n上击气流斩在不可视气流或阿瓦隆反击后的第一次普攻一定会触发."
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_proc_chance"      "%PROC CHANCE:"
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_base_damage"      "BASE DAMAGE:"
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_ad_ratio"         "ATTACK DAMAGE RATIO:"
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_knockup_duration" "KNOCKUP DURATION:"
+    "DOTA_Tooltip_Ability_saber_attribute_strike_air_upstream_Note0"            "被动几率触发有至少4秒的固定冷却,这不包括不可视气流或阿瓦隆反击后的固定触发"
+
+    "DOTA_Tooltip_Ability_false_assassin_minds_eye"             "心眼"
+    "DOTA_Tooltip_ability_false_assassin_minds_eye_Description" "普攻造成基于敏捷的额外纯粹伤害. 如果敌人令咒被封, 那么伤害大幅增加.\n与此同时, 阻止来自不可视气流,气流斩,上击气流斩的伤害."
+
+    "DOTA_Tooltip_Ability_true_assassin_attribute_protection_from_wind"             "避风"
+    "DOTA_Tooltip_ability_true_assassin_attribute_protection_from_wind_Description" "获得对不可视气流, 气流斩, 上击气流斩, 风刃的免疫. 同时, 给予一定几率无视来袭的指定目标型法术."
+
+    "DOTA_Tooltip_Ability_false_assassin_attribute_ganryu"              "Ganryu"
+    "DOTA_Tooltip_ability_false_assassin_attribute_ganryu_Description"  "风刃不再拥有全局冷却并且会将佐佐木传送至被击中的最近敌人.\n同时, 燕返 <font color='#FF3399'>沉默</font> 目标."
+
+    "DOTA_Tooltip_Ability_jeanne_luminosite_eternelle"      "Luminosite Eternelle"
+    "DOTA_Tooltip_Ability_jeanne_luminosite_eternelle_Description"  "贞德向指定方向挥出旗帜, <font color='#FF3399'>禁锢移动, 缴械</font>, 并且 <font color='#FF3399'>禁闪</font> 沿途的敌人. 旗帜立于地面, 生成圣域为友方英雄减少来袭伤害.\n每当友军承受伤害, 旗帜也会受到伤害. 摧毁旗帜可以移除残留的禁锢和禁闪状态.\n<font color='#ff9900'>UNJUST BONUS:</font>不公者承受 30%% 额外伤害."
+
+    "DOTA_Tooltip_Ability_rider_5th_attribute_seal"             "封印"
+    "DOTA_Tooltip_ability_rider_5th_attribute_seal_Description" "w会按一定的百分比减缓受影响敌人的转身.\n同时, 血堡魅惑其中的敌人, 迫使他们向奇点移动."
+    "DOTA_Tooltip_Ability_rider_5th_attribute_seal_petrify_chance"              "%TURN RATE INCREASE:"
+
+    "npc_dota_hero_windrunner"              "Caster(Extra), N.N"
+    "npc_dota_hero_enchantress"             "Caster(Extra), Tamamo"
+    "npc_dota_hero_lina"                    "Saber(Extra), Nero"
+    "npc_dota_hero_omniknight"              "White Saber(Extra)"
+
+    "DOTA_Tooltip_Ability_tamamo_mantra"                        "冥想"
+    "DOTA_Tooltip_Ability_tamamo_mantra_damage_modifier"        "DAMAGE MODIFICATION ON ALLY:"
+    "DOTA_Tooltip_Ability_tamamo_mantra_damage_modifier_enemy"  "DAMAGE MODIFICATION ON ENEMY:"
+
+    "npc_dota_hero_windrunner"                                   "Caster(Extra), N.R"
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift"                 "变身"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_Description"     "向指定方向送出自身的复制品. 接近敌方英雄时, 克隆体对周围敌人造成魔法伤害, 减速, 然后消失.\n当它存在时再次激活技能可以切换本体和复制品的位置."
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_duration"        "CLONE DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_damage"          "DAMAGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_radius"          "RADIUS:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_slow"            "%SLOW AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_slow_duration"   "SLOW DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_Note0"           "克隆体共享本体的移动速度, 承受 300%% 额外伤害."
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_Note1"           "不能多次换位."
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_Note2"           "本体和克隆体在克隆体存在时都处于无视碰撞体积的状态."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_swap"                "换位"
+    "DOTA_Tooltip_Ability_nursery_rhyme_shapeshift_swap_Description"    "立即与克隆体换位."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_nameless_forest"                "无名之森"
+    "DOTA_Tooltip_Ability_nursery_rhyme_nameless_forest_Description"    "把目标困在她的Reality Marble内, <font color='#FF3399'>移出游戏</font> 于持续时间内."
+    "DOTA_Tooltip_Ability_nursery_rhyme_nameless_forest_duration"       "DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_nameless_forest_Note0"          "施加软驱散."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma"                        "白色女皇的谜题"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Description"            "直线发射一股神秘力量. 击中时造成基于目标当前生命值的魔法伤害, <font color='#FF3399'>眩晕</font> 一段不长的时间, 并使被害人承受 <font color='#FF3399'>多种随机种类的控制效果.</font>"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_damage"                 "%DAMAGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_default_stun_duration"  "DEFAULT STUN DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_cc_numbers"             "NUMBER OF CC APPLIED:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_stun_duration"          "STUN DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_silence_duration"       "SILENCE DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_revoke_duration"        "REVOKE DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_lock_duration"          "LOCK DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_root_duration"          "ROOT DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_disarm_duration"        "DISARM DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Note0"                  "随机种类控制效果包括眩晕, 沉默, 令咒被封, 禁闪, 禁锢移动, 以及 缴械."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water"                    "水之位面"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_Description"        "扔出一团在敌方单位间弹跳的冰霜. 每一跳会降低冰霜的伤害, 但是会对后面的目标施加 <font color='#FF3399'>主目标所受的所有控制效果.</font>"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_damage"             "DAMAGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_max_bounce"         "MAX BOUNCE COUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_dmg_reduction"      "%DAMAGE REDUCTION PER BOUNCE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_Note0"              "可以多次击中同一单位."
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_Note1"              "当前白皇之谜的等级决定了控制效果的持续时间."
+    "DOTA_Tooltip_Ability_nursery_rhyme_the_plains_of_water_Note2"              "主目标承受第一击的瞬间就决定了之后施加的所有控制效果."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger"                           "我是你, 你也是我"
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_Description"               "召出一个不动的目标敌方英雄复制品, 它可被caster和caster的盟友们攻击. 复制品不能行动, 拥有其本体最大血量一定百分比的血量, 并与其本体共享所受的痛苦."
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_doppelganger_health"       "%DOPPELGANGER HEALTH:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_damage_shared"             "%SHARED DAMAGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_duration"                  "DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_Note0"                     "同时只能存在一个这种复制品."
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_Note1"                     "共享伤害不会致命."
+    "DOTA_Tooltip_Ability_nursery_rhyme_doppelganger_Note2"                     "这种复制品不能被 灵链 连接."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game"                      "Queen's Glass Game"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_Description"          "CHANNELING: 咏唱型技能, 立即恢复所有友军基于已损失生命量的生命并基于最大生命值持续恢复他们的生命.\n在咏唱期间以及结束咏唱后1秒内caster会承受额外的伤害."
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_radius"               "RADIUS:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_channel_duration"     "CHANNELING DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_instant_heal"         "INSTANT HEAL:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_instant_heal_pct"     "%INSTANT HEAL BASED ON MISSING HEALTH:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_heal_over_time_pct"   "%HEAL OVER TIME BASED ON MAX HEALTH:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_upkeep_mana_cost"     "%UPKEEP MANA COST PER SEC:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_queens_glass_game_incoming_damage"      "%INCOMING DAMAGE:"
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake"               "为了某人的故事"
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Description"   "<font color='#58ACFA'>Combo 要求: 20 全属性</font>\n<font color='#58ACFA'>Combo Sequence: R-R 于2秒内</font>\n\n一种时间宝具. 如果一定时间内caster没死, 那么当前回合重置并视为一场无条件平局.\n这个能力在回合开始超过60秒后就不能使用."
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_time_limit"    "TIME LIMIT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Note0"         "直到法术完成前caster的位置每五秒一次向敌军标示."
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Note1"         "咏唱时caster不能使用传送卷轴加速宝石和闪烁卷轴."
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Note2"         "如果这个能力造成了平局那么原本的胜利条件不再结算."
+    "DOTA_Tooltip_Ability_nursery_rhyme_story_for_somebodys_sake_Lore"          "这故事将永远持续.\n只要纤细的手指回到第一页,\n仿佛要拾起下一卷.\n它将再度否决读者的现实."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together"                         "永远在一起"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_Description"             "如果被复制者持续背向复制品, 那么 我是你, 你也是我 会不断造成目标减速并且每秒造成基于智力的伤害. 同时该宝具升级会提升 变身 最大持续时间和减速效果, 并缩减其冷却."
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_slow_amount"             "%LOOKAWAY SLOW AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_damage_per_sec"          "LOOKAWAY DAMAGE INT RATIO:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_shapeshift_duration"     "SHAPESHIFT DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_shapeshift_slow"         "SHAPESHIFT SLOW:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_forever_together_shapeshift_cd"           "SHAPESHIFT COOLDOWN:"
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare"                    "噩梦"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_Description"        "提升 水之位面 的最大弹跳次数以及基于caster的智力值的伤害. 而且每次弹到敌方英雄时会偷取他们的智力值."
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_extra_bounce"       "EXTRA BOUNCE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_int_ratio"          "INT RATIO:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_int_steal"          "INT STEAL AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_int_steal_duration" "INT STEAL DURATION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_nightmare_Note0"              "基于智力的额外伤害是不会随着弹跳衰减的."
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence"                     "回忆"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_Description"         "减少无名之森的冷却, 增加施法距离, 并使它能偷取敌方英雄的力量敏捷智力属性. 并且, 激活技能 回忆.\n回忆: 立即释放无名之森中的英雄."
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_cdr"                 "COOLDOWN REDUCTION:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_bonus_cast_range"    "BONUS CAST RANGE:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_stat_steal"          "STAT STEAL AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_reminiscence_stat_steal_duration" "STAT STEAL DURATION:"
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game"                            "提升 Queen's Glass Game"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_Description"                "提升 Queen's Glass Game 基于caster智力值的立即恢复量并且允许它的医疗效果同时补充一些魔法.\n并且 为了某人的故事 的冷却时间会缩短."
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_heal_bonus"                 "BONUS INSTANT HEAL AMOUNT:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_heal_bonus_int_ratio"       "EXTRA INSTANT HEAL AMOUNT INT RATIO:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_heal_bonus_missing_health"  "BONUS HEAL AMOUNT BASED ON MISSING HEALTH:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_mana_ratio"                 "HEALTH TO MANA RATIO:"
+    "DOTA_Tooltip_Ability_nursery_rhyme_attribute_improve_queens_glass_game_cdr"                        "COMBO COOLDOWN REDUCTION:"
+
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol"                   "圣印"
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_Description"       "延长 Luminosite Eternelle 的最大控制效果持续时间, 并使它能在施法时给所有圣域内友方从者施加 领袖魅力 的buff. 另外, 当La Pucelle激活时贞德自动给自己施加 领袖魅力 ."
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_Note0"             "领袖魅力 的效果取决于当前等级."
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_bonus_duration"    "EXTRA CC DURATION:"
+
+    "DOTA_Tooltip_Ability_jeanne_saint"                 "圣者"
+    "DOTA_Tooltip_Ability_jeanne_saint_Description"     "贞德审判敌方从者, 基于他们的 杀/死 计数. 那些 杀 高于 死 的从者被标记为 <font color='#ff9900'>不公.</font>\n贞德的能力对不公的敌人造成特效."
+
+    "DOTA_Tooltip_ability_attribute_bonus_custom"                   "获得全属性"
+    "DOTA_Tooltip_ability_attribute_bonus_custom_Description"       "增加力量, 敏捷和智力值."
+    "DOTA_Tooltip_ability_attribute_bonus_custom_stats"             "STAT BONUS:"
+
+    "DOTA_Tooltip_ability_fate_empty1"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty2"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty3"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty4"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty5"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty6"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty7"			"Empty"
+    "DOTA_Tooltip_ability_fate_empty8"			"Empty"
+
+    "DOTA_Tooltip_modifier_arrows_of_the_big_dipper"                                  "Arrows of the Big Dipper"
+    "DOTA_Tooltip_modifier_arrows_of_the_big_dipper_Description"                      ""
+
+    "DOTA_Tooltip_modifier_calydonian_hunt"                                           "Calydonian Hunt"
+    "DOTA_Tooltip_modifier_calydonian_hunt_Description"                               ""
+
+    "DOTA_Tooltip_modifier_calydonian_hunt_root"                                      "Calydonian Hunt Root"
+    "DOTA_Tooltip_modifier_calydonian_hunt_root_Description"                          ""
+
+    "DOTA_Tooltip_modifier_celestial_arrow"                                           "Celestial Arrow"
+    "DOTA_Tooltip_modifier_celestial_arrow_Description"                               ""
+
+    "DOTA_Tooltip_modifier_last_spurt"                                                "Last Spurt"
+    "DOTA_Tooltip_modifier_last_spurt_Description"                                    ""
+
+    "DOTA_Tooltip_modifier_priestess_of_the_hunt"                                     "Priestess of the Hunt"
+    "DOTA_Tooltip_modifier_priestess_of_the_hunt_Description"                         ""
+
+    "DOTA_Tooltip_modifier_tauropolos"                                                "Tauropolos - Bow of Heaven"
+    "DOTA_Tooltip_modifier_tauropolos_Description"                                    ""
+
+    "DOTA_Tooltip_modifier_phoebus_catastrophe_cooldown"                              "Phoebus Catastrophe Cooldown"
+    "DOTA_Tooltip_modifier_phoebus_catastrophe_cooldown_Description"                  ""
+
+    "DOTA_Tooltip_modifier_golden_apple_cooldown"                                     "Golden Apple Cooldown"
+    "DOTA_Tooltip_modifier_golden_apple_cooldown_Description"                         ""
+
+    "npc_dota_hero_drow_ranger"             "Archer of Red(Apocrypha)"
+
+    "DOTA_Tooltip_ability_atalanta_celestial_arrow"                                   "天箭"
+    "DOTA_Tooltip_ability_atalanta_celestial_arrow_Description"                       "<font color='#FF6600'>使用箭矢: 1</font>\n发射单发强力箭矢, 伤害一直线的所有敌人. 给予额外的最大箭矢枚数和伤害."
+    "DOTA_Tooltip_ability_atalanta_celestial_arrow_range"                             "RANGE:"
+    "DOTA_Tooltip_ability_atalanta_celestial_arrow_bonus_arrows"                      "BONUS ARROWS:"
+    "DOTA_Tooltip_ability_atalanta_celestial_arrow_bonus_damage"                      "BONUS DAMAGE:"
+
+    "DOTA_Tooltip_ability_atalanta_calydonian_hunt"                                   "Calydonian之猎"
+    "DOTA_Tooltip_ability_atalanta_calydonian_hunt_Description"                       "<font color='#58ACFA'>PASSIVE:</font> 被动地在被archer所伤的敌人身上堆叠一种负面计数, 对背负负面计数者会造成基于计数的额外物理伤害. 计数是在施加伤害前就附加的.\n<font color='#58ACFA'>ACTIVE:</font> 主动施加 <font color='#FF3399'>禁锢移动</font> 于每个可见的背负计数的敌人. 并且给予他们的战争迷雾视野."
+    "DOTA_Tooltip_ability_atalanta_calydonian_hunt_max_stacks"                        "MAX STACKS:"
+    "DOTA_Tooltip_ability_atalanta_calydonian_hunt_debuff_duration"                   "DEBUFF DURATION:"
+    "DOTA_Tooltip_ability_atalanta_calydonian_hunt_root_duration"                     "ROOT DURATION:"
+    "DOTA_Tooltip_ability_atalanta_calydonian_hunt_damage_per_stack"                  "DAMAGE % PER STACK:"
+
+    "DOTA_Tooltip_ability_atalanta_golden_apple"                                      "金苹果"
+    "DOTA_Tooltip_ability_atalanta_golden_apple_Description"                          "向一个位置发射金苹果. 范围内的敌人将被迫向其移动并试图拾取它."
+    "DOTA_Tooltip_ability_atalanta_golden_apple_Lore"                                 "看哪, 这就是命运的果实. 这光辉的宝藏曾燃起特洛伊的战火. 想要的话就靠近它吧."
+    "DOTA_Tooltip_ability_atalanta_golden_apple_range"                                "RANGE:"
+    "DOTA_Tooltip_ability_atalanta_golden_apple_lure_duration"                        "LURE DURATION:"
+    "DOTA_Tooltip_ability_atalanta_golden_apple_aoe"                                  "AOE:"
+
+    "DOTA_Tooltip_ability_atalanta_crossing_arcadia"                                  "穿越Arcadia"
+    "DOTA_Tooltip_ability_atalanta_crossing_arcadia_Description"                      "<font color='#FF6600'>使用箭矢: 1</font>\n跳至目标地点的空中并向下发射一发箭矢. 箭矢会施加短晕."
+    "DOTA_Tooltip_ability_atalanta_crossing_arcadia_Lore"                             "Arcadia啊, 遥远的家乡, 我当翻山越岭回归你的怀抱."
+    "DOTA_Tooltip_ability_atalanta_crossing_arcadia_range"                            "RANGE:"
+    "DOTA_Tooltip_ability_atalanta_crossing_arcadia_jump_time"                        "JUMP DELAY:"
+    "DOTA_Tooltip_ability_atalanta_crossing_arcadia_aoe"                              "AOE:"
+    "DOTA_Tooltip_ability_atalanta_crossing_arcadia_stun_duration"                    "STUN DURATION:"
+
+    "DOTA_Tooltip_ability_atalanta_last_spurt"                                        "最后冲刺"
+    "DOTA_Tooltip_ability_atalanta_last_spurt_Description"                            "给予额外移动速度. 基于效果范围内没有面向archer的单位数量获得更多的移动速度."
+    "DOTA_Tooltip_ability_atalanta_last_spurt_Lore"                                   "我当如暴风般赶至汝前."
+    "DOTA_Tooltip_ability_atalanta_last_spurt_base_ms"                                "BASE MS%:"
+    "DOTA_Tooltip_ability_atalanta_last_spurt_ms_per_unit"                            "MS% PER UNIT:"
+    "DOTA_Tooltip_ability_atalanta_last_spurt_duration"                               "DURATION:"
+    "DOTA_Tooltip_ability_atalanta_last_spurt_aoe"                                    "AOE:"
+
+    "DOTA_Tooltip_ability_atalanta_priestess_of_the_hunt"                             "猎之祭司"
+    "DOTA_Tooltip_ability_atalanta_priestess_of_the_hunt_Description"                 "失去自动攻击能力, 获得更大射程和火力. 法术消耗箭矢枚数而箭矢枚数会随时间补充. 箭矢造成基于她物理攻击的伤害. 箭矢补充基于她的攻击速度 (例子: 3秒1次攻击等同于三秒生成1发箭矢). 箭矢会穿透法术免疫."
+    "DOTA_Tooltip_ability_atalanta_priestess_of_the_hunt_arrows"                      "ARROW CHARGES:"
+
+    "DOTA_Tooltip_ability_atalanta_tauropolos"                                        "金牛天弓"
+    "DOTA_Tooltip_ability_atalanta_tauropolos_Description"                            "短时间获得可超过最大箭矢枚数的箭矢恢复能力. 减少技能施法时间并且基于敏捷提升 天箭 射程和AoE箭矢的作用半径."
+    "DOTA_Tooltip_ability_atalanta_tauropolos_duration"                               "DURATION:"
+    "DOTA_Tooltip_ability_atalanta_tauropolos_bonus_arrows"                           "BONUS ARROWS:"
+    "DOTA_Tooltip_ability_atalanta_tauropolos_cast_time_reduction"                    "CAST TIME % REDUCTION:"
+    "DOTA_Tooltip_ability_atalanta_tauropolos_bonus_range_per_agi"                    "BONUS RANGE PER AGI:"
+    "DOTA_Tooltip_ability_atalanta_tauropolos_bonus_aoe_per_agi"                      "BONUS AOE PER AGI:"
+
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy"                         "日神之灾"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_Description"             "<font color='#58ACFA'>Combo 需求: 20 全属性</font>\n<font color='#58ACFA'>Combo 按键: R-W-D 或 F 于 6 秒内</font>\n<font color='#FF6600'>使用箭矢: 2</font>\n\n在阿波罗和阿忒米斯的庇佑下发出2发箭矢.\n她可以选择向一个地区发射箭雨或者精准狙击单个目标."
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_Lore"                    "很好, 是狩猎时间了. 这是对二神的供品."
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_range"                   "RANGE:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_aoe"                     "AOE:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_arrow_aoe"               "ARROW AOE:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_barrage_arrows"          "BARRAGE ARROWS:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_snipe_arrows"            "SNIPE ARROWS:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_delay"                   "DELAY TO FIRST ARROW:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_cast_time_delay"               "CAST TIME:"
+
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage"                       "日神之灾: 弹幕"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_Description"           "<font color='#58ACFA'>Combo 需求: 20 全属性</font>\n<font color='#58ACFA'>Combo 按键: R-W-D 或 F 于 6 秒内</font>\n<font color='#FF6600'>使用箭矢: 2</font>\n\n在阿波罗和阿忒米斯的庇佑下发出2发箭矢.\n在一段延迟后弹幕降临指定区域."
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_Lore"                  "很好, 是狩猎时间了. 这是对二神的供品."
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_range"                 "RANGE:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_aoe"                   "AOE:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_arrow_aoe"             "ARROW AOE:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_barrage_arrows"                "ARROWS:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_delay"                   "DELAY TO FIRST ARROW:"
+
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe"                         "日神之灾: 狙击"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_Description"             "<font color='#58ACFA'>Combo 需求: 20 全属性</font>\n<font color='#58ACFA'>Combo 按键: R-W-D 或 F 于 6 秒内</font>\n<font color='#FF6600'>使用箭矢: 2</font>\n\n在阿波罗和阿忒米斯的庇佑下发出2发箭矢.\n在一段延迟后箭矢以致命的精准打击目标."
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_Lore"                    "很好, 是狩猎时间了. 这是对二神的供品."
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_range"                   "RANGE:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_arrow_aoe"               "ARROW AOE:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_snipe_arrows"                  "ARROWS:"
+    "DOTA_Tooltip_ability_atalanta_phoebus_catastrophe_proxy_delay"                   "DELAY TO FIRST ARROW:"
+
+    "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper"                              "Arrows Of The Big Dipper"
+    "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_Description"                  "以阿忒米斯的祝福附魔弓箭. 天箭获得射程提升并提供视野.\n在发射一定数量箭矢后, 最后箭矢的复制品会被再次发射. Combo 箭矢不纳入这个计数. 这发额外的箭矢不消耗箭矢枚数."
+    "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_attribute_bonus_range"        "BONUS RANGE:"
+    "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_attribute_vision_radius"      "VISION RADIUS:"
+    "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_attribute_vision_duration"    "VISION DURATION:"
+    "DOTA_Tooltip_ability_atalanta_attribute_arrows_of_the_big_dipper_attribute_arrows_needed"      "ARROWS NEEDED:"
+
+    "DOTA_Tooltip_ability_atalanta_attribute_hunters_mark"                            "猎手标记"
+    "DOTA_Tooltip_ability_atalanta_attribute_hunters_mark_Description"                "Calydonian之猎的伤害获得 100%% 护甲穿透."
+
+    "DOTA_Tooltip_ability_atalanta_attribute_golden_apple"                            "金苹果"
+    "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_Description"                "提升Calydonian之猎的负面计数持续时间和允许的最大负面层数. 现在Calydonian之猎的主动技能可以对迷雾中的敌人生效了.\n金苹果可以在施展Calydonian之猎6秒内使用.\n<font color='#58ACFA'>金苹果 :</font> 向一个位置发射金苹果. 范围内的敌人将被迫向其移动并试图拾取它."
+    "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_range"                      "RANGE:"
+    "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_lure_duration"              "LURE DURATION:"
+    "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_aoe"                        "AOE:"
+    "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_attribute_stack_bonus"      "STACK BONUS:"
+    "DOTA_Tooltip_ability_atalanta_attribute_golden_apple_attribute_bonus_duration"   "BONUS DURATION:"
+
+    "DOTA_Tooltip_ability_atalanta_attribute_crossing_arcadia_plus"                   "穿越Arcadia 增强"
+    "DOTA_Tooltip_ability_atalanta_attribute_crossing_arcadia_plus_Description"       "穿越Arcadia 期间发射额外箭矢. 这些箭矢的散布能保证正下方的目标会被所有这些箭矢命中. 额外箭矢不会消耗箭矢枚数, 而且纳入Arrows of the Big Dipper的计数.\n在着陆时,附送一次免费的 最后冲刺 ."
+    "DOTA_Tooltip_ability_atalanta_attribute_crossing_arcadia_plus_extra_arrows"      "EXTRA ARROWS:"
+
+    "DOTA_Tooltip_ability_ward_conversion"                                              "守卫转化"
+    "DOTA_Tooltip_ability_ward_conversion_Description"                                  "把侦查使魔变成一个眼."
+
+    "DOTA_Tooltip_ability_master_transfer_1"	            "Transfer Item 1"
+    "DOTA_Tooltip_ability_master_transfer_1_Description"	"把格子1中的物品传给从者."
+
+    "DOTA_Tooltip_ability_master_transfer_2"	            "Transfer Item 2"
+    "DOTA_Tooltip_ability_master_transfer_2_Description"	"把格子2中的物品传给从者."
+
+    "DOTA_Tooltip_ability_master_transfer_3"	            "Transfer Item 3"
+    "DOTA_Tooltip_ability_master_transfer_3_Description"	"把格子3中的物品传给从者."
+
+    "DOTA_Tooltip_ability_master_transfer_4"	            "Transfer Item 4"
+    "DOTA_Tooltip_ability_master_transfer_4_Description"	"把格子4中的物品传给从者."
+
+    "DOTA_Tooltip_ability_master_transfer_5"	            "Transfer Item 5"
+    "DOTA_Tooltip_ability_master_transfer_5_Description"	"把格子5中的物品传给从者."
+
+    "DOTA_Tooltip_ability_master_transfer_6"	            "Transfer Item 6"
+    "DOTA_Tooltip_ability_master_transfer_6_Description"	"把格子6中的物品传给从者."
+
+    "DOTA_Tooltip_Ability_lishuwen_raging_dragon_strike_Description"	        "<font color='#58ACFA'>Combo 需求 : 20 全属性</font>\n<font color='#58ACFA'>Combo 按键 : W-E 于3秒内</font>\n发动一组令人畏惧的3连动作.\n<font color='#58ACFA'>1st:</font> 冲向目标,路上所有敌人受到魔法伤害, ***附加致命标记*** 并且 <font color='#FF3399'>减速</font> 他们.\n<font color='#58ACFA'>2nd:</font> 踩地板, 对附近敌人造成物理伤害并且如果他们受致命标记影响那么眩晕他们.\n<font color='#58ACFA'>3rd:</font> 飞跃至天空, <font color='#FF3399'>将敌人击至空中</font>. 然后快速传送到空中的敌人身边, 击出数拳造成混合伤害并施加致命标记.\n如果第三个技能没能发动, 那么冷却会显著缩减."
+
+
+    "DOTA_Tooltip_ability_true_assassin_attribute_weakening_venom_Description"	"投掷匕首 造成基于敏捷的额外伤害 ***并拥有更短冷却***. 另外, 它的毒素降低目标力量值并持续更长时间.\n同时, assassin的普攻附加一种可堆叠的毒素效果, 减速并降低目标力量值."
+
+    "DOTA_Tooltip_modifier_ta_damage_bonus"                                     "真a 伤害加成"
+    "DOTA_Tooltip_modifier_ta_damage_bonus_Description"                         ""
+
+    "DOTA_Tooltip_ability_true_assassin_self_modification_Description"	        "每次击杀会被动地获取额外 ***伤害*** . 激活时, 重筑肉体, 立即医治自身一定生命以及提供一些延时的渐效恢复. "
+    "DOTA_Tooltip_ability_true_assassin_self_modification_damage_increase"	    "BONUS DAMAGE PER KILL:"
+
+    "DOTA_Tooltip_Ability_jeanne_purge_the_unjust_Description"		            "贞德以圣印标记地面. 一段延迟后, 天堂之光击中地面, 伤害敌人并 <font color='#FF3399'>沉默</font> 他们.\n<font color='#ff9900'>UNJUST BONUS:</font> 造成额外 ***魔法*** 伤害, 基于杀死计数之差(杀-死)."
+
+    "DOTA_Tooltip_ability_caster_5th_territory_explosion_Description"	        "使储存的魔力暴走, 自毁并基于工房当前魔力量对周围敌人造成伤害.\n***伤害与距离爆心远近有关, 300范围内会造成最大伤害而最大范围时衰减一半的伤害.\n\n伤害随caster智力值增长.\nDAMAGE : 300 + 工房当前魔力 + 智力*8 ***"
+
+
+    "DOTA_Tooltip_ability_gilgamesh_attribute_rain_of_swords_Description"	    "提升 剑幕 范围 ***以及伤害***. 施展天之锁时自动附送一次 剑幕 ."
+    "DOTA_Tooltip_Ability_gilgamesh_attribute_rain_of_swords_barrage_damage"	"INCREASED DAMAGE:"
+
+
+    "DOTA_Tooltip_ability_diarmuid_rampant_warrior_Description"                 "<font color='#58ACFA'>Combo 需求 : 20 全属性</font>\n<font color='#58ACFA'>Combo 按键 : D-W 于3秒内</font>\nLancer使出浑身解数. ***Lancer 获得双倍 双矛手 效果触发几率***, 并且普攻自动暴击."
+
+    "DOTA_Tooltip_ability_nero_attribute_pari_tenu_blauserum_Description"       "Gladiusanus Blauserum 造成基于敏捷的额外魔法伤害, 并且 <font color='#FF3399'>眩晕</font> 小范围内的敌人. ***眩晕时长随力量值增加.\n***"
+    "DOTA_Tooltip_Ability_nero_attribute_pari_tenu_blauserum_stun_duration"     "***BASE STUN DURATION:***"
+    "DOTA_Tooltip_Ability_nero_attribute_pari_tenu_blauserum_radius"            "RADIUS:"
+
+    "DOTA_Tooltip_Ability_tamamo_mystic_shackle_Description"	                "将目标灵魂与caster的缝合, 迫使其保持在一定距离内. Caster 在持续时间内处于 <font color='#FF3399'>禁闪</font> 状态. Caster 必须保持在最初施展冥想位置的500范围内并且 ***目标必须在1000范围内才能施展这个技能. 施加 <font color='#FF3399'>禁闪</font> 于敌方目标.***"
+
+    "DOTA_Tooltip_Ability_tamamo_attribute_mystic_shackle"		                "神秘镣铐"
+    "DOTA_Tooltip_Ability_tamamo_attribute_mystic_shackle_Description"	        "施展冥想会给予一个友方目标额外魔抗, 或者削减一名敌军的魔抗. 另外,  神秘镣铐 可以在 冥想 后的3秒内使用.\n<font color='#58ACFA'>Mystic Shackle :</font> 将目标灵魂与caster的缝合, 迫使其保持在一定距离内. Caster 在持续时间内处于 <font color='#FF3399'>禁闪</font> 状态. Caster 必须保持在最初施展冥想位置的500范围内并且 ***目标必须在1000范围内才能施展这个技能. 施加 <font color='#FF3399'>禁闪</font> 于敌方目标.***"
+
+
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Description"        "直线发射一股神秘力量. 击中时造成基于目标当前生命值的魔法伤害, <font color='#FF3399'>眩晕</font> 一段不长的时间, 并使被害人承受 <font color='#FF3399'>多种随机种类的控制效果.</font> ***目标已有的效果不会再次被随机选取并且如果目标身上已有所有可能的效果, 那么目标令咒被封.***"
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Note0"			    "随机种类控制效果包括眩晕, 沉默, *** ****禁闪, 禁锢移动, 以及 缴械."
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Note1"			    "如果没有更多效果可被选取, 一种随机效果将被选取."
+    "DOTA_Tooltip_Ability_nursery_rhyme_white_queens_enigma_Note2"			    "在同一个目标上施加令咒被封有着 1.4秒 冷却."
+
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_Description"	        "***增强 Luminosite Eternelle 的 减伤效果***, 并使它能在施法时给所有圣域内友方从者施加 领袖魅力 的buff. 另外, 当La Pucelle激活时贞德自动给自己施加 领袖魅力 ."
+    "DOTA_Tooltip_Ability_jeanne_attribute_divine_symbol_bonus_reduction"	    "%BONUS REDUCTION:"
+
+    "DOTA_Tooltip_modifier_luminosite_eternelle_flag_improved_aura"                   "Luminosite Eternelle 旗帜提升光环"
+    "DOTA_Tooltip_modifier_luminosite_eternelle_flag_improved_aura_Description"       ""
+
+    "DOTA_Tooltip_modifier_luminosite_eternelle_flag_improved_aura_buff"              "Luminosite Eternelle 旗帜提升光环 Buff"
+    "DOTA_Tooltip_modifier_luminosite_eternelle_flag_improved_aura_buff_Description"  ""

@@ -1,0 +1,1482 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CVModel"
+	m_meshList =
+	{
+		_class = "CVmeshList"
+		m_meshList =
+		[
+			{
+				_class = "CVmesh"
+				m_meshName = "lancer2"
+				m_meshFile = "models/lancer/lancer2.fbx"
+				m_materialSearchPath = ""
+				m_bSkinParentedObjects = true
+				m_bLegacySkinParentedTransforms = false
+				m_bExpensiveTangents = false
+				m_bExpensiveVertices = false
+				m_bIgnoreCloth = false
+				m_bGetSkinningFromLod0 = false
+				m_pMorphInfo = null
+			},
+		]
+	}
+	m_clothProxyMeshList =
+	{
+		_class = "CVClothProxyMeshList"
+		m_flClothEnableThreshold = 0.050000
+		m_bCreateStaticBone = false
+		m_nMaxBonesPerVertex = 4
+		m_bRemoveUnusedBonesEnabled = false
+		m_bDriveMeshesWithBacksolvedJointsOnly = true
+		m_flMatchProxiesToMeshes = 1.000000
+		m_flReservedFloat = 0.000000
+		m_nReservedInt = 0
+		m_bReservedBool1 = false
+		m_bReservedBool2 = false
+		m_bReservedBool3 = false
+		m_bReservedBool4 = false
+		m_clothProxyMeshList =
+		[
+		]
+	}
+	m_physicsMeshList =
+	{
+		_class = "CVphysicsMeshList"
+		m_meshList =
+		[
+		]
+	}
+	m_pModelInfo = null
+	m_pBoneFlagList =
+	{
+		_class = "CVBoneFlagListReference"
+		m_pObject = null
+	}
+	m_pHitBoxSetLists =
+	[
+		{
+			_class = "CVhitBoxSetListReference"
+			m_pObject =
+			{
+				_class = "CVhitBoxSetList"
+				m_HitBoxSets =
+				[
+					{
+						_class = "CVhitBoxSet"
+						m_name = "default"
+						m_HitBoxes =
+						[
+							{
+								_class = "CVhitBox"
+								m_name = "bone92"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone92"
+								m_vMinBounds =
+								[
+									-18.790352,
+									-11.168339,
+									-10.465866,
+								]
+								m_vMaxBounds =
+								[
+									18.797470,
+									11.798981,
+									20.703728,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone94"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone94"
+								m_vMinBounds =
+								[
+									-80.000000,
+									-80.000000,
+									-80.000000,
+								]
+								m_vMaxBounds =
+								[
+									80.000000,
+									80.000000,
+									80.000000,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone90"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone90"
+								m_vMinBounds =
+								[
+									-14.163921,
+									-10.940966,
+									-6.799149,
+								]
+								m_vMaxBounds =
+								[
+									8.481234,
+									11.167582,
+									11.116562,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone97"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone97"
+								m_vMinBounds =
+								[
+									-27.025818,
+									-6.482661,
+									-6.514893,
+								]
+								m_vMaxBounds =
+								[
+									-3.017860,
+									6.680928,
+									6.121567,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone95"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone95"
+								m_vMinBounds =
+								[
+									-10.313353,
+									-12.484386,
+									0.507538,
+								]
+								m_vMaxBounds =
+								[
+									10.313353,
+									11.678173,
+									27.005966,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone99"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone99"
+								m_vMinBounds =
+								[
+									-8.724642,
+									-11.014574,
+									-6.817032,
+								]
+								m_vMaxBounds =
+								[
+									13.920420,
+									11.093975,
+									11.098679,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone87"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone87"
+								m_vMinBounds =
+								[
+									-29.736919,
+									-4.263070,
+									-5.077042,
+								]
+								m_vMaxBounds =
+								[
+									-1.617031,
+									6.511939,
+									5.553009,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone82"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone82"
+								m_vMinBounds =
+								[
+									-2.306539,
+									1.348395,
+									-13.223129,
+								]
+								m_vMaxBounds =
+								[
+									1.827359,
+									8.959200,
+									-2.233963,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone96"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone96"
+								m_vMinBounds =
+								[
+									-1.166342,
+									-7.479279,
+									-6.043976,
+								]
+								m_vMaxBounds =
+								[
+									25.694902,
+									5.684313,
+									4.662384,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone100"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone100"
+								m_vMinBounds =
+								[
+									-7.948949,
+									-10.532865,
+									-50.206688,
+								]
+								m_vMaxBounds =
+								[
+									9.380648,
+									10.718295,
+									-2.626740,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone93"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone93"
+								m_vMinBounds =
+								[
+									-9.409163,
+									-10.532864,
+									-50.136650,
+								]
+								m_vMaxBounds =
+								[
+									7.920435,
+									10.718296,
+									-2.556702,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone85"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone85"
+								m_vMinBounds =
+								[
+									-17.032883,
+									-5.503720,
+									-7.105942,
+								]
+								m_vMaxBounds =
+								[
+									-2.375923,
+									5.577970,
+									3.898712,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone81"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone81"
+								m_vMinBounds =
+								[
+									-2.267997,
+									0.952658,
+									-12.390594,
+								]
+								m_vMaxBounds =
+								[
+									1.966049,
+									6.062387,
+									-5.032806,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone98"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone98"
+								m_vMinBounds =
+								[
+									-1.153370,
+									-4.085527,
+									-5.684433,
+								]
+								m_vMaxBounds =
+								[
+									29.270851,
+									6.689483,
+									4.945618,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone86"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone86"
+								m_vMinBounds =
+								[
+									-7.280952,
+									-5.095486,
+									-45.769958,
+								]
+								m_vMaxBounds =
+								[
+									7.902626,
+									10.001890,
+									-0.585632,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone89"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone89"
+								m_vMinBounds =
+								[
+									-7.840813,
+									-5.071851,
+									-45.787766,
+								]
+								m_vMaxBounds =
+								[
+									7.342758,
+									10.025525,
+									-0.603439,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone88"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone88"
+								m_vMinBounds =
+								[
+									-124.830185,
+									-2.465492,
+									-2.997078,
+								]
+								m_vMaxBounds =
+								[
+									116.434494,
+									2.465523,
+									3.049889,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone80"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone80"
+								m_vMinBounds =
+								[
+									-1.241100,
+									1.494350,
+									-14.150360,
+								]
+								m_vMaxBounds =
+								[
+									0.778152,
+									5.364149,
+									-6.265167,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone91"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone91"
+								m_vMinBounds =
+								[
+									2.375824,
+									-5.503741,
+									-7.105911,
+								]
+								m_vMaxBounds =
+								[
+									17.032898,
+									5.577949,
+									3.898743,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone83"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone83"
+								m_vMinBounds =
+								[
+									-5.754639,
+									-26.743649,
+									-12.691769,
+								]
+								m_vMaxBounds =
+								[
+									7.143570,
+									6.808528,
+									1.970587,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+							{
+								_class = "CVhitBox"
+								m_name = "bone84"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "bone84"
+								m_vMinBounds =
+								[
+									-7.143572,
+									-26.743645,
+									-12.691772,
+								]
+								m_vMaxBounds =
+								[
+									5.754639,
+									6.808529,
+									1.970583,
+								]
+								m_bTranslationOnly = false
+								m_cRenderColor =
+								[
+									0,
+									0,
+									0,
+									0,
+								]
+							},
+						]
+					},
+				]
+				m_AutoCreateSetName = ""
+			}
+		},
+	]
+	m_pAttachmentLists =
+	[
+		{
+			_class = "CVattachmentListReference"
+			m_pObject =
+			{
+				_class = "CVattachmentList"
+				m_name = ""
+				m_attachments =
+				[
+					{
+						_class = "CVattachment"
+						m_name = "attach_hitloc"
+						m_influences =
+						[
+							{
+								_class = "CVattachmentInfluence"
+								m_influenceName = "bone94"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+					{
+						_class = "CVattachment"
+						m_name = "attach_weapon"
+						m_influences =
+						[
+							{
+								_class = "CVattachmentInfluence"
+								m_influenceName = "bone88"
+								m_vTranslationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_vRotationOffset =
+								[
+									0.000000,
+									0.000000,
+									0.000000,
+								]
+								m_flWeight = 1.000000
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
+	]
+	m_pAnimGroup =
+	{
+		_class = "CVanimGroupReference"
+		m_pObject =
+		{
+			_class = "CVanimGroup"
+			m_Name = ""
+			m_pReferenceSkeleton =
+			{
+				_class = "CVReferenceSkeletonReference"
+				m_pObject = null
+			}
+			m_pBoneFlagList =
+			{
+				_class = "CVBoneFlagListReference"
+				m_pObject = null
+			}
+			m_pSeqGroup =
+			{
+				_class = "CVseqGroupReference"
+				m_pObject = null
+			}
+			m_pAnimGroups =
+			[
+				{
+					_class = "CVanimGroupReference"
+					m_pObject =
+					{
+						_class = "CVanimGroup"
+						m_Name = ""
+						m_pReferenceSkeleton =
+						{
+							_class = "CVReferenceSkeletonReference"
+							m_pObject = null
+						}
+						m_pBoneFlagList =
+						{
+							_class = "CVBoneFlagListReference"
+							m_pObject = null
+						}
+						m_pSeqGroup =
+						{
+							_class = "CVseqGroupReference"
+							m_pObject = null
+						}
+						m_pAnimGroups =
+						[
+						]
+						m_Vanim =
+						[
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_walk"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 312
+								m_nEndframe = 333
+								m_flFps = 32.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = true
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_RUN"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_idle"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 32
+								m_nEndframe = 63
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = true
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_IDLE"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_attack_poke"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 156
+								m_nEndframe = 179
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_ATTACK"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_attack_thrash"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 188
+								m_nEndframe = 213
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_ATTACK2"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_cast"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 282
+								m_nEndframe = 304
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_CAST_ABILITY_1"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_gae_bolg_cast"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 156
+								m_nEndframe = 165
+								m_flFps = 10.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_CAST_ABILITY_3"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_gae_bolg_poke"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 212
+								m_nEndframe = 232
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_CAST_ABILITY_3_END"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_jump"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 250
+								m_nEndframe = 272
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_CAST_ABILITY_4"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+							{
+								_class = "CVanim"
+								m_Animationname = "lancer2_death"
+								m_Filepath = "models/lancer/lancer2_anim.FBX"
+								m_nStartframe = 344
+								m_nEndframe = 368
+								m_flFps = 30.000000
+								m_Loop =
+								{
+									_class = "CAnimationLoop"
+									m_bLoop = false
+									m_bSmoothLoop = false
+									m_nSmoothLoopStart = 0
+									m_nSmoothLoopEnd = 0
+									m_StartLoop =
+									{
+										_class = "CVAnimCmdStartLoop"
+										m_bEnabled = false
+										m_nLoopRestart = 0
+									}
+								}
+								m_bHidden = false
+								m_bDisable = false
+								m_Activities =
+								[
+									{
+										_class = "CActivity"
+										m_Name = "ACT_DOTA_DIE"
+										m_nWeight = 1
+									},
+								]
+								m_AnimationEvents =
+								[
+								]
+								m_MotionFrames =
+								[
+								]
+								m_pIkRules =
+								[
+								]
+								m_pAlignAnimation = null
+								m_adjustAnimation =
+								{
+									_class = "CAdjustAnimation"
+									m_translation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+									m_rotation =
+									[
+										0.000000,
+										0.000000,
+										0.000000,
+									]
+								}
+								m_Keywords =
+								[
+								]
+								m_sequenceParams =
+								{
+									_class = "CVAnimResourceSequenceParams"
+									m_flFadeInTime = 0.200000
+									m_flFadeOutTime = 0.200000
+								}
+								m_folderName = ""
+								m_MotionFramesRootBone = ""
+							},
+						]
+						m_sScripts =
+						[
+						]
+						m_folderNames =
+						[
+						]
+					}
+				},
+			]
+			m_Vanim =
+			[
+			]
+			m_sScripts =
+			[
+			]
+			m_folderNames =
+			[
+			]
+		}
+	}
+	m_pMaterialGroupList =
+	{
+		_class = "CVNodeMaterialGroupListReference"
+		m_pObject = null
+	}
+	m_pMeshGroupList =
+	{
+		_class = "CVMeshGroupListReference"
+		m_pObject = null
+	}
+	m_pLodGroupList =
+	{
+		_class = "CVLODGroupListReference"
+		m_pObject = null
+	}
+	m_pPropBreakableList =
+	{
+		_class = "CVpropBreakableListReference"
+		m_pObject = null
+	}
+	m_pPropDataList =
+	{
+		_class = "CVpropDataListReference"
+		m_pObject = null
+	}
+	m_pConstraintLists =
+	[
+	]
+	m_collision = ""
+	m_softbody = ""
+	m_sMDLFilename = ""
+	m_sOffsetHitboxSets =
+	[
+	]
+	m_vHitboxSetOffset =
+	[
+		0.000000,
+		0.000000,
+		0.000000,
+	]
+	m_scriptFiles =
+	[
+	]
+	m_pMaterialRemapList =
+	{
+		_class = "CVMaterialRemapList"
+		m_vMaterialRemapList =
+		[
+			{
+				_class = "CVMaterialRemap"
+				m_sSearchMaterial = "model1.vmat"
+				m_sReplaceMaterial = "materials/lancer/lancer_texture.vmat"
+			},
+			{
+				_class = "CVMaterialRemap"
+				m_sSearchMaterial = "model2.vmat"
+				m_sReplaceMaterial = "materials/lancer/lancer_texture.vmat"
+			},
+		]
+	}
+	m_flFbxScale = 1.000000
+	m_flQCScale = 1.000000
+	m_vOrigin =
+	[
+		0.000000,
+		0.000000,
+		0.000000,
+	]
+	m_pPsfList = null
+	m_keyValueText = ""
+	m_bStaticProp = false
+	m_bEnableClothProcessing = true
+	m_flClothEnableThreshold = 0.050000
+	m_nMaxClothVertsPerMesh = 2048
+	m_bBuildClothBoneHierarchy = false
+	m_nNavType = "AUTH_NAV_MESH"
+	m_bMakeUniqueVMeshes = false
+	m_bMakeImplicitBindPoseSequence = false
+	m_bAdjustSkeletonFromBoneFlags = false
+	m_pAnimGroups =
+	[
+	]
+}
