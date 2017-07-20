@@ -1,3 +1,5 @@
+#base "items/item_blink_scroll.txt"
+
 "DOTAAbilities"
 {
 
@@ -1205,7 +1207,7 @@
 	    }
 	}
 
-	"item_blink_scroll" 
+	"item_blink_scroll_old" 
 	{
 	    "ID"           "1113"
 	    "BaseClass"    "item_datadriven"
