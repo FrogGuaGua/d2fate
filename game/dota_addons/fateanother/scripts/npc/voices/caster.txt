@@ -1,0 +1,61 @@
+"FATEVoices"
+{
+	"npc_dota_hero_crystal_maiden"
+	{
+		"Spawn"
+		{
+			"01"						"caster_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"caster_move_01"
+			"02"						"caster_move_02"
+			"03"						"caster_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"caster_attack_01"
+			"02"						"caster_attack_02"
+			"03"						"caster_attack_03"
+			"04"						"caster_attack_04"
+		}
+		
+		"Cast"
+		{
+			"01"						"caster_laugh"
+			"02"						"caster_other_01"
+			"03"						"caster_other_02"
+			"04"						"caster_kill"
+		}
+		
+		"Hurt"
+		{
+			"01"						"caster_hurt"
+		}
+		
+		"Respawn"
+		{
+			"01"						"caster_other_03"
+			"02"						"caster_other_05"
+			"03"						"caster_respawn01"
+			"04"						"caster_respawn02"
+			"05"						"caster_respawn03"
+			"06"						"caster_respawn04"
+		}
+		
+		"Death"
+		{
+			"01"						"caster_death"
+			"02"						"caster_death01"
+			"03"						"caster_death02"
+		}
+		
+		"Kill"
+		{
+			"01"						"caster_battle_start"
+			"02"						"caster_kill01"
+		}
+	}
+}
