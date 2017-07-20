@@ -71,7 +71,7 @@ XP_BOUNTY_PER_LEVEL_TABLE = {}
 PRE_ROUND_DURATION = 6
 PRESENCE_ALERT_DURATION = 60
 ROUND_DURATION = 120
-FIRST_BLESSING_PERIOD = 360
+FIRST_BLESSING_PERIOD = 300
 BLESSING_PERIOD = 480
 BLESSING_MANA_REWARD = 15
 SPAWN_POSITION_RADIANT_DM = Vector(-1600, 5820, 320)
@@ -83,7 +83,7 @@ SPAWN_POSITION_T4_TRIO = Vector(-888,1748,512)
 TRIO_RUMBLE_CENTER = Vector(2436,4132,1000)
 FFA_CENTER = Vector(368,3868,1000)
 mode = nil
-FATE_VERSION = "v1.21f"
+FATE_VERSION = "v1.22a"
 roundQuest = nil
 IsGameStarted = false
 
@@ -396,7 +396,7 @@ function FateGameMode:OnGameInProgress()
         if _G.GameMap == "fate_elim_6v6" then
             self.nCurrentRound = 1
             self:InitializeRound() -- Start the game after forcing a pick for every player
-            BLESSING_PERIOD = 480
+            BLESSING_PERIOD = 600
         elseif _G.GameMap == "fate_ffa" then
             BLESSING_PERIOD = 300
             SHARD_DROP_PERIOD = 180
