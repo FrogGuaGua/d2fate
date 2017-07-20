@@ -1,0 +1,147 @@
+"ZL.Buidhe_Cast"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/zl/zl_buidhe_cast.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.500000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"ZL.Dearg_Cast"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/zl/zl_dearg_cast.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.500000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"ZL.Gae_Buidhe"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/zl/zl_gae_buidhe.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.500000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"ZL.Gae_Dearg"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/zl/zl_gae_dearg.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.500000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}

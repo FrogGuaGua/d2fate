@@ -1,0 +1,146 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_flConstantRadius = 0.5
+	m_nConstantSequenceNumber1 = 2
+	m_nMaxParticles = 7
+	m_bShouldSort = false
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -1000.0 ]
+			m_fDrag = 0.05
+			m_flOpStartFadeInTime = 1.0
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.6
+			m_flEndScale = 0.5
+			m_flBias = 0.6
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/soil_fx_a.vmdl"
+				},
+			]
+			m_bOrientZ = true
+			m_flAnimationRate = 70.0
+			m_bAnimated = true
+			VisibilityInputs = 
+			{
+				m_flInputMax = 0.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 2.0
+			m_fLifetimeMax = 2.0
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 20.0
+			m_flRadiusMax = 20.0
+		},
+		{
+			_class = "C_INIT_RemapInitialCPDirectionToRotation"
+			m_nFieldOutput = 12
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_PositionWarp"
+			m_vecWarpMin = [ 0.65, 0.65, 0.65 ]
+			m_flWarpTime = 3.0
+			m_bUseCount = true
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 500.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 500.0 ]
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = -0.25
+			m_flMaxTraceLength = 2048.0
+			m_CollisionGroupName = "DEBRIS"
+			m_bSetNormal = true
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nFieldOutput = 13
+			m_nInputMax = 2
+			m_flOutputMin = 4.0
+			m_bActiveRange = true
+		},
+		{
+			_class = "C_INIT_RemapParticleCountToScalar"
+			m_nInputMin = 5
+			m_nInputMax = 8
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.5
+			m_bScaleInitialRange = true
+		},
+		{
+			_class = "C_INIT_RandomYaw"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMax = 10.0
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_INIT_RandomTrailLength"
+			m_flMinLength = 40.0
+			m_flMaxLength = 70.0
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 3.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 9.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}
