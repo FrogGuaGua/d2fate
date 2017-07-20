@@ -337,8 +337,20 @@ function OnFirstHitStart(keys)
 end
 
 function OnFirstHitLanded(keys)
+	local hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	hero.bIsAmbushHitOnCooldown = true
 	if IsSpellBlocked(keys.target) then keys.caster:RemoveModifierByName("modifier_thrown") return end -- Linken effect checker
-	DoDamage(keys.caster, keys.target, keys.Damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+	if hero.bIsAmbushHitOnCooldown ~= true then
+		DoDamage(keys.caster, keys.target, keys.Damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+	end
+	hero.bIsAmbushHitOnCooldown = true
+	Timers:CreateTimer(1,function()
+		hero.bIsAmbushHitOnCooldown = false
+	end)
+
+	if keys.target:GetName() == "npc_dota_ward_base" then
+		DoDamage(keys.caster, keys.target, 2, DAMAGE_TYPE_PURE, 0, keys.ability, false)
+	end
 	keys.caster:EmitSound("Hero_TemplarAssassin.Meld.Attack")
 	keys.caster:RemoveModifierByName("modifier_thrown")
 	keys.caster:RemoveModifierByName("modifier_ambush")
