@@ -464,7 +464,14 @@ function HasLeaversInTeam(hero)
     end)
     return leaverCount
 end
-
+function round(num, numDecimalPlaces)
+    if numDecimalPlaces and numDecimalPlaces>0 then
+        local mult = 10^numDecimalPlaces
+        return math.floor(num * mult + 0.5) / mult
+    end
+    return math.floor(num + 0.5)
+end
+ 
 function StartQuestTimer(questname, questtitle, questendtime)
   local entQuest = SpawnEntityFromTableSynchronous( "quest", { name = questname, title = questtitle } )
   --add   "QuestTimer"  "Survive for %quest_current_value% seconds"   in addon_english
@@ -1721,3 +1728,4 @@ function OnHeroTakeDamage(keys)
     attackerHero.ServStat:doActualDamage(damageTaken)
     hero.ServStat:takeActualDamage(damageTaken)
 end
+

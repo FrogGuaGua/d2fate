@@ -74,8 +74,8 @@ ROUND_DURATION = 120
 FIRST_BLESSING_PERIOD = 360
 BLESSING_PERIOD = 480
 BLESSING_MANA_REWARD = 15
-SPAWN_POSITION_RADIANT_DM = Vector(-1551, 5704, 300)
-SPAWN_POSITION_DIRE_DM = Vector(3012, -1224, 300)
+SPAWN_POSITION_RADIANT_DM = Vector(-7103, 6121, 619)
+SPAWN_POSITION_DIRE_DM = Vector(7670, 1884, 320)
 SPAWN_POSITION_T1_TRIO = Vector(-796,7032,512)
 SPAWN_POSITION_T2_TRIO = Vector(5676,6800,512)
 SPAWN_POSITION_T3_TRIO = Vector(5780,2504,512)
@@ -630,6 +630,10 @@ function FateGameMode:OnPlayerChat(keys)
         CustomGameEventManager:Send_ServerToPlayer( ply, "player_bgm_off", {} )
     end
 
+    if text == "-bgmcheck" then
+        CustomGameEventManager:Send_ServerToPlayer( ply, "player_bgm_check", {} )
+    end
+
     if text == "-roll" then
         DoRoll(plyID, 100)
     end
@@ -681,6 +685,73 @@ function FateGameMode:OnPlayerChat(keys)
             DistributeGoldV2(hero, 4950)
         end
     end
+
+    if text == "-dmg" then
+        if hero.AntiSpamCooldown1 ~= true then
+            local teamHeroes = {}
+            local values = {}
+            local rank = {}
+            LoopOverPlayers(function(ply, plyID, playerHero)
+                if playerHero:GetTeamNumber() == hero:GetTeamNumber() then
+                    table.insert(teamHeroes, FindName(playerHero:GetName()))
+                    table.insert(values, math.floor(playerHero.ServStat.damageDealt/playerHero.ServStat.round))
+                end
+            end)
+            for index,value in spairs(values, function(values,a,b) return values[b] < values[a] end) do
+                table.insert(rank, index)
+            end
+            hero.AntiSpamCooldown1 = true
+            Timers:CreateTimer(1, function()
+                hero.AntiSpamCooldown1 = false
+            end)
+            Say(hero:GetPlayerOwner(), "Average damage done per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
+        end
+    end
+
+    if text == "-tank" then
+        if hero.AntiSpamCooldown2 ~= true then
+            local teamHeroes = {}
+            local values = {}
+            local rank = {}
+            LoopOverPlayers(function(ply, plyID, playerHero)
+                if playerHero:GetTeamNumber() == hero:GetTeamNumber() then
+                    table.insert(teamHeroes, FindName(playerHero:GetName()))
+                    table.insert(values, math.floor(playerHero.ServStat.damageTaken/playerHero.ServStat.round))
+                end
+            end)
+            for index,value in spairs(values, function(values,a,b) return values[b] < values[a] end) do
+                table.insert(rank, index)
+            end
+            hero.AntiSpamCooldown2 = true
+            Timers:CreateTimer(1, function()
+                hero.AntiSpamCooldown2 = false
+            end)
+            Say(hero:GetPlayerOwner(), "Average damage taken per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
+        end
+    end
+
+    if text == "-c" then
+        if hero.AntiSpamCooldown3 ~= true then
+            local teamHeroes = {}
+            local values = {}
+            local rank = {}
+            LoopOverPlayers(function(ply, plyID, playerHero)
+                if playerHero:GetTeamNumber() == hero:GetTeamNumber() then
+                    table.insert(teamHeroes, FindName(playerHero:GetName()))
+                    table.insert(values, round(playerHero.ServStat.cScroll/playerHero.ServStat.round,2))
+                end
+            end)
+            for index,value in spairs(values, function(values,a,b) return values[b] < values[a] end) do
+                table.insert(rank, index)
+            end
+            hero.AntiSpamCooldown3 = true
+            Timers:CreateTimer(1, function()
+                hero.AntiSpamCooldown3 = false
+            end)
+            Say(hero:GetPlayerOwner(), "Average number of C scrolls used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
+        end
+    end
+
     -- distribute excess gold above specified amount
     if limit then
         DistributeGoldV2(hero, tonumber(limit))
@@ -733,11 +804,15 @@ function FateGameMode:OnPlayerChat(keys)
         hero.ServStat:printconsole()
     end
 
+    if text == "-nplayer" then
+        print(self.numberOfPlayersInTeam, "is the number of players in a team")
+    end
+
     local heroText = string.match(text, "^-pick (.+)")
     if heroText ~= nil then
         if GameRules:IsCheatMode() then
             Selection:RemoveHero(heroText)
-	end
+        end
     end
 end
 

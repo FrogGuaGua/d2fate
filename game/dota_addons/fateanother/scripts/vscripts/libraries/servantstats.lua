@@ -193,11 +193,38 @@ function SendChatToPanorama(string)
 end
 
 function ServantStatistics:printconsole()
+  local heroNames = {
+    ["npc_dota_hero_legion_commander"] = "Saber",
+    ["npc_dota_hero_phantom_lancer"] = "Lancer(5th)",
+    ["npc_dota_hero_spectre"] = "Saber Alter(5th)",
+    ["npc_dota_hero_ember_spirit"] = "Archer(5th)",
+    ["npc_dota_hero_templar_assassin"] = "Rider(5th)",
+    ["npc_dota_hero_doom_bringer"] = "Berserker(5th)",
+    ["npc_dota_hero_juggernaut"] = "Assassin(5th)",
+    ["npc_dota_hero_bounty_hunter"] = "True Assassin(5th)",
+    ["npc_dota_hero_crystal_maiden"] = "Caster(5th)",
+    ["npc_dota_hero_skywrath_mage"] = "Archer(4th)",
+    ["npc_dota_hero_sven"] = "Berserker(4th)",
+    ["npc_dota_hero_vengefulspirit"] = "Avenger",
+    ["npc_dota_hero_huskar"] = "Lancer(4th)",
+    ["npc_dota_hero_chen"] = "Rider(4th)",
+    ["npc_dota_hero_shadow_shaman"] = "Caster(4th)",
+    ["npc_dota_hero_lina"] = "Saber(Extra), Nero",
+    ["npc_dota_hero_omniknight"] = "Saber(Extra), Gawain",
+    ["npc_dota_hero_enchantress"] = "Caster(Extra), Tamamo",
+    ["npc_dota_hero_bloodseeker"] = "Assassin(Extra)",
+    ["npc_dota_hero_mirana"] = "Ruler(Apocrypha)",
+    ["npc_dota_hero_queenofpain"] = "Rider of Black(Apocrypha)",
+    ["npc_dota_hero_windrunner"] = "Caster(Extra), N.R",
+    ["npc_dota_hero_drow_ranger"] = "Archer of Red(Apocrypha)",
+  }
+
+
   SendChatToPanorama("------------------------------------------------------------------------------------------------------------------------------------------------------------------")
   SendChatToPanorama("Date / Time / Map / Game Duration in seconds:     "..tostring(GetSystemDate()).."\t"..tostring(GetSystemTime()).."\t"..tostring(GetMapName()).."\t"..tostring(math.ceil(GameRules:GetGameTime())))
   SendChatToPanorama("Player Name:                                      "..tostring(self.playerName))
   SendChatToPanorama("Steam ID:                                         "..tostring(self.steamId))
-  SendChatToPanorama("Hero Name:                                        "..tostring(self.heroName))
+  SendChatToPanorama("Hero Name:                                        "..tostring(heroNames[tostring(self.heroName)]))
   SendChatToPanorama("Hero Level:                                       "..tostring(self.lvl))
   SendChatToPanorama("Round Number / Good Vs Bad Score / Won Game?:     "..tostring(self.round.."\t"..self.radiantWin.."-"..self.direWin.." "..self.winGame))
   SendChatToPanorama("K / D / A / TeamKill:                             "..tostring(self.kill.."\t"..self.death.."\t"..self.assist.."\t"..self.tkill))
