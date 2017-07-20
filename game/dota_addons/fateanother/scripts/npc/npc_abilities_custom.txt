@@ -13768,7 +13768,7 @@
 		"AbilityCastRange"				"150"
 		"AbilityCastRangeBuffer"		"100"
 		"AbilityCooldown"				"50"
-		"AbilityManaCost"				"450"
+		"AbilityManaCost"				"0"
 		
 		"precache"
 		{
@@ -20344,7 +20344,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_scorched_earth.vpcf"
+						"EffectName"		"particles/custom/nero/nero_scorched_earth.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"CASTER"
 						"ControlPoints"
@@ -20463,7 +20463,7 @@
 		"precache"
 		{
 			"particle"		"particles/items_fx/battlefury_cleave.vpcf"
-			"particle"		"particles/custom/nero/nero_tres_fonte.vpcf"
+			"particle"		"particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
 		}
 		
@@ -20492,7 +20492,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"chance"			"50"
+				"chance"			"30"
 			}
 		}
 		
@@ -20514,7 +20514,7 @@
 		{	
 			"modifier_tres_fontaine_ardent"
 			{
-				"EffectName"		"particles/custom/nero/nero_tres_fonte.vpcf"
+				"EffectName"		"particles/econ/items/crystal_maiden/ti7_immortal_shoulder/cm_ti7_immortal_ambient.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"Duration"			"%duration"
 				"Properties"
@@ -20527,7 +20527,7 @@
 					{
 						"CleavePercent"		"%cleave_damage"
 						"CleaveRadius"		"%cleave_radius"
-						"CleaveEffect"		"particles/items_fx/battlefury_cleave.vpcf"
+						"CleaveEffect"		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf"
 					}
 					"RunScript"
 					{
@@ -20560,7 +20560,7 @@
 		// Ability stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1050"
-		"AbilityCastRangeBuffer"		"300"
+		"AbilityCastRangeBuffer"		"0"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCooldown"				"21"
 		"AbilityManaCost"				"400"
@@ -20591,7 +20591,7 @@
 		"precache"						
 		{
 			"particle"			"particles/custom/archer/archer_overedge_slash.vpcf"
-			"particle"			"particles/custom/nero/nero_scorched_earth_child_embers_rosa.vpcf"
+			"particle"			"particles/units/heroes/hero_legion_commander/legion_duel_start_text_burst_flare.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
 		}
 		
@@ -20665,7 +20665,7 @@
 			"particle"			"particles/custom/nero/nero_domus_ring_energy.vpcf"
 			"particle"			"particles/custom/nero/nero_domus_ray.vpcf"
 			"particle"			"models/particle/legion_duel_banner.vmdl"
-			"particle"			"particles/custom/nero/nero_radiance_owner.vpcf"
+			"particle"			"particles/items2_fx/radiance_owner.vpcf"
 			"particle"			"particles/units/heroes/hero_phoenix/phoenix_supernova_radiance.vpcf"
 			"particle"			"particles/custom/nero/nero_domus_ring_border.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
@@ -20727,8 +20727,8 @@
 			"modifier_aestus_domus_aurea"
 			{
 				"Duration"		"%duration"
-				"IsHidden"		"1"
-				"EffectName"			"particles/custom/nero/nero_radiance_owner.vpcf"
+				"IsHidden"		"2"
+				"EffectName"			"particles/custom/nero/nero_scorched_earth_child_embers_dominus.vpcf"
 				"EffectAttachType"		"follow_origin"
 				"RunScript"
 				{
@@ -20771,9 +20771,9 @@
 			}
 			"modifier_aestus_domus_aurea_debuff_attribute"
 			{
-				"Duration"		"2.5"
+				"Duration"		"2.1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"IsDebuff"		"1"
+				"IsDebuff"		"2"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"-5"

@@ -683,7 +683,6 @@ function OnRainStart(keys)
 	local ascendCount = 0
 	local descendCount = 0
 	local radius = 1000
-	local originalDirection = caster:GetForwardVector()
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_arrow_rain_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
 	-- Set master's combo cooldown
 	local masterCombo = caster.MasterUnit2:FindAbilityByName(keys.ability:GetAbilityName())
@@ -717,18 +716,10 @@ function OnRainStart(keys)
 	end
 	})
 
-
-
 	-- Barrage attack
 	local barrageCount = 0
 	Timers:CreateTimer( 0.3, function()
-		if barrageCount == 0 then
-			caster:SetForwardVector(Vector(originalDirection.x,originalDirection.y,-(originalDirection.x^2 + originalDirection.y^2)^0.5))
-		end
-		if barrageCount == 100 or not caster:IsAlive() then 
-			caster:SetForwardVector(originalDirection)
-			return 
-		end
+		if barrageCount == 100 or not caster:IsAlive() then return end
 		local arrowVector = Vector( RandomFloat( -radius, radius ), RandomFloat( -radius, radius ), 0 )
 		caster:EmitSound("Hero_DrowRanger.FrostArrows")
 		-- Create Arrow particles
@@ -737,7 +728,7 @@ function OnRainStart(keys)
 
 		-- Side variables
 		local groundVector = caster:GetAbsOrigin() - Vector(0,0,1000)
-		local spawn_location = caster:GetAbsOrigin() + 100 * originalDirection
+		local spawn_location = caster:GetAbsOrigin()
 		local target_location = groundVector + arrowVector
 		local forwardVec = ( target_location - caster:GetAbsOrigin() ):Normalized()
 		local delay = ( target_location - caster:GetAbsOrigin() ):Length2D() / speed
@@ -781,9 +772,6 @@ function OnRainStart(keys)
 		)
 		
 	    barrageCount = barrageCount + 1
-	    if barrageCount%5 == 0 then
-		    ability:ApplyDataDrivenModifier(caster, caster, "modifier_arrow_rain_anim", {})
-		end
 		return 0.03
     end)
 

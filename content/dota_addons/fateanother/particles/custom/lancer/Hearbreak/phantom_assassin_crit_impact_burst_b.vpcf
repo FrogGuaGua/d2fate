@@ -80,7 +80,7 @@
 		{
 			_class = "C_INIT_RandomRadius"
 			m_flRadiusMin = 20.0
-			m_flRadiusMax = 24.0
+			m_flRadiusMax = 20.0
 			m_flOpTimeOffsetMax = 1.0
 			m_flOpStrengthMinScale = 0.0
 			m_flRadiusRandExponent = -0.575

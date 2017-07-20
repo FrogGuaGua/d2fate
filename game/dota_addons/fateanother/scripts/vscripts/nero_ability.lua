@@ -343,7 +343,7 @@ function OnRIHit(keys)
 	DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	target:AddNewModifier(caster, target, "modifier_stunned", {Duration = keys.StunDuration})
 	target:EmitSound("Hero_Lion.FingerOfDeath")
-	local slashFx = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_duel_start_text_burst_flare.vpcf", PATTACH_ABSORIGIN, target )
+	local slashFx = ParticleManager:CreateParticle("particles/custom/nero/nero_scorched_earth_child_embers_rosa.vpcf", PATTACH_ABSORIGIN, target )
 	ParticleManager:SetParticleControl( slashFx, 0, target:GetAbsOrigin() + Vector(0,0,300))
 
 	Timers:CreateTimer( 2.0, function()

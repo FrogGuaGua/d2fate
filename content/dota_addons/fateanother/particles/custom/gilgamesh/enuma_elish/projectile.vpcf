@@ -14,17 +14,24 @@
 		},
 		{
 			m_ChildRef = resource:"particles/custom/gilgamesh/enuma_elish/ring_outline.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/custom/gilgamesh/enuma_elish/pulses.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/custom/gilgamesh/enuma_elish/cracks.vpcf"
+			m_bDisableChild = true
 		},
 		{
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/custom/gilgamesh/enuma_elish/gilgamesh_enuma_elish_charge_tornadotesting.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/custom/gilgamesh/enuma_knight_ti7_shield_ambient.vpcf"
 		},
 	]
 	m_Operators = 
