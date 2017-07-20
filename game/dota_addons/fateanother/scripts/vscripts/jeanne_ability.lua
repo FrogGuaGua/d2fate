@@ -12,7 +12,7 @@ function OnMREXDamageTaken(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local attacker = keys.attacker
-	if caster.IsSaintImproved and (PlayerResource:GetSelectedHeroEntity(attacker:GetPlayerOwnerID()):HasModifier("modifier_saint_debuff") or PlayerResource:GetSelectedHeroEntity(attacker:GetPlayerOwnerID()):HasModifier("modifier_saint_debuff_attr")) then return end
+	if caster.IsSaintImproved and caster:HasModifier("modifier_saint_buff") then return end
 	--print("asdasd")
 	ChangeMREXStack(keys, -1)
 end
@@ -69,11 +69,11 @@ function UpdateMREXProgress(caster)
 	caster:SetModifierStackCount("modifier_magic_resistance_ex_progress", caster, progress)
 end
 
-function OnSaintRespawn(keys)
+function OnSaintThink(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	--print("saint respawn")
-    LoopOverPlayers(function(player, playerID, playerHero)
+    --[[LoopOverPlayers(function(player, playerID, playerHero)
     	--print("looping through " .. playerHero:GetName())
         if playerHero:GetTeamNumber() ~= caster:GetTeamNumber() then
         	--print(playerHero:GetName() ..  " " .. playerHero:GetKills() .. " " .. playerHero:GetDeaths())
@@ -89,7 +89,46 @@ function OnSaintRespawn(keys)
         	end
 
         end
+    end)]]
+
+    local nRadiantAlive = 0
+    local nDireAlive = 0
+    local nDead = 0
+    LoopOverPlayers(function(player, playerID, playerHero)
+        if playerHero:IsAlive() then
+            if playerHero:GetTeam() == DOTA_TEAM_GOODGUYS then
+                nRadiantAlive = nRadiantAlive + 1
+            else
+                nDireAlive = nDireAlive + 1
+            end
+        else
+        	nDead = nDead + 1
+        end
     end)
+    if caster:HasModifier("modifier_la_pucelle_spirit_form") then
+    	ability:ApplyDataDrivenModifier(caster, caster, "modifier_saint_buff", {})
+    elseif caster:GetTeam() == DOTA_TEAM_GOODGUYS and nRadiantAlive < nDireAlive or caster:GetTeam() == DOTA_TEAM_BADGUYS and nDireAlive < nRadiantAlive then
+    	ability:ApplyDataDrivenModifier(caster, caster, "modifier_saint_buff", {})
+    elseif nRadiantAlive == nDireAlive and nDead > 0 and caster.IsSaintImproved then
+    	ability:ApplyDataDrivenModifier(caster, caster, "modifier_saint_buff", {})
+    end
+
+    if caster.IsSaintImproved and caster:HasModifier("modifier_saint_buff") then
+
+	    LoopOverPlayers(function(player, playerID, playerHero)
+	        if playerHero:IsAlive() and playerHero:GetTeam() ~= caster:GetTeam() then
+	            ability:ApplyDataDrivenModifier(caster, playerHero, "modifier_saint_debuff_attr", {})
+	        end
+	    end)
+    	--charisma
+		local newKeys = keys
+		newKeys.ability = caster:FindAbilityByName("jeanne_charisma")
+		newKeys.target = caster
+		newKeys.Radius = newKeys.ability:GetSpecialValueFor("radius_modifier")
+ 		newKeys.Duration = 1.1
+		OnIRStart(newKeys, false)
+    end
+
 end
 
 function OnIDPing(keys)
@@ -106,8 +145,8 @@ function OnIDPing(keys)
         	Timers:CreateTimer(delay, function()
         		MinimapEvent( caster:GetTeamNumber(), caster, playerHero:GetAbsOrigin().x, playerHero:GetAbsOrigin().y, DOTA_MINIMAP_EVENT_HINT_LOCATION, 2)
         	end)
-        	--ability:ApplyDataDrivenModifier(caster, playerHero, "modifier_identity_discernment_unjust", {})
-        	if playerHero:HasModifier("modifier_saint_debuff") or playerHero:HasModifier("modifier_saint_debuff_attr") then
+        	-- Score is updated at end of round in addon_game_mode.lua. Since I'm already tracking score over there, I may as well use it...
+        	if caster.ServStat.radiantWin <= caster.ServStat.direWin and caster:GetTeam() == DOTA_TEAM_GOODGUYS or caster.ServStat.radiantWin >= caster.ServStat.direWin and caster:GetTeam() == DOTA_TEAM_BADGUYS then
         		SpawnAttachedVisionDummy(caster, playerHero, 200, duration, true)
         	end
         end
@@ -123,54 +162,88 @@ function OnIDRespawn(keys)
 end
 
 
-function OnIRStart(keys)
+function OnIRStart(keys, fromFlag)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
 	local radius = keys.Radius
 	local duration = keys.Duration
-
+	fromFlag = fromFlag or nil
 	local primaryStat = target:GetPrimaryAttribute()
-
-	if primaryStat == 0 then 
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_str", {duration = duration})
-	elseif primaryStat == 1 then
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_agi", {duration = duration})
-	elseif primaryStat == 2 then
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_int", {duration = duration})
-	end 
+	if fromFlag == true then
+		if primaryStat == 0 then 
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_str_flag", {duration = duration})
+		elseif primaryStat == 1 then
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_agi_flag", {duration = duration})
+		elseif primaryStat == 2 then
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_int_flag", {duration = duration})
+		end 
+	else
+		if primaryStat == 0 then 
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_str", {duration = duration})
+		elseif primaryStat == 1 then
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_agi", {duration = duration})
+		elseif primaryStat == 2 then
+			ability:ApplyDataDrivenModifier(caster, target, "modifier_jeanne_charisma_int", {duration = duration})
+		end
+	end
 	SpawnAttachedVisionDummy(caster, target, radius, duration, true)
 
-	target:EmitSound("Hero_Dazzle.Shadow_Wave")
-
-	if not target.jeanne_charisma_particle then
-		target.jeanne_charisma_particle = ParticleManager:CreateParticle("particles/custom/ruler/charisma/buff.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	if caster ~= target or not caster:HasModifier("modifier_saint_buff") then
+		target:EmitSound("Hero_Dazzle.Shadow_Wave")
 	end
-	ParticleManager:SetParticleControl(target.jeanne_charisma_particle, 1, Vector(radius,0,0))
+	local jeanne_charisma_particle = ParticleManager:CreateParticle("particles/custom/ruler/charisma/buff.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+
+	ParticleManager:SetParticleControl(jeanne_charisma_particle, 1, Vector(radius,0,0))
 	-- DebugDrawCircle(caster:GetAbsOrigin(), Vector(255,0,0), 0.5, radius, true, 0.5)
+	Timers:CreateTimer(duration, function()
+		ParticleManager:DestroyParticle(jeanne_charisma_particle, false)
+		ParticleManager:ReleaseParticleIndex(jeanne_charisma_particle )
+	end)
+
 end
 
-function OnCharismaBuffEnd(keys)
+function OnCharismaBuffEnd(keys) --DEFUNCT
 	ParticleManager:DestroyParticle(keys.target.jeanne_charisma_particle, false)
 	keys.target.jeanne_charisma_particle = nil
 end
 
-ATTRIBUTE_PUNISHMENT_BONUS_DAMAGE = 45
+function CountDeadTeammates(bIsRadiant)
+	local nRadiantDead = 0
+    local nDireDead = 0
+    LoopOverPlayers(function(player, playerID, playerHero)
+        if playerHero:IsAlive() == false then
+            if playerHero:GetTeam() == DOTA_TEAM_GOODGUYS then
+                nRadiantDead = nRadiantDead + 1
+            else
+                nDireDead = nDireDead + 1
+            end
+        end
+    end)
+    if bIsRadiant == true then
+    	print(nRadiantDead)
+    	return nRadiantDead
+    else
+    	print(nDireDead)
+    	return nDireDead
+    end
+end
+
 function OnPurgeStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local targetPoint = keys.target_points[1]
 	local radius = keys.Radius
 	local delay = keys.Delay
-	local damage = keys.Damage
-	local damagePerKill = keys.DamagePerKill
+	local baseDamage = keys.Damage
 	local silenceDuration = keys.SilenceDuration
 
 	if caster.IsPunishmentAcquired then
-		damagePerKill = ATTRIBUTE_PUNISHMENT_BONUS_DAMAGE
 		local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
-			if not IsImmuneToSlow(v) then ability:ApplyDataDrivenModifier(caster, v, "modifier_purge_the_unjust_slow", {}) end
+			if not IsImmuneToSlow(v) then 
+				ability:ApplyDataDrivenModifier(caster, v, "modifier_purge_the_unjust_slow", {})
+			end
 		end
 	end
 
@@ -179,15 +252,26 @@ function OnPurgeStart(keys)
 	EmitSoundOnLocationWithCaster(targetPoint, "Hero_Chen.PenitenceImpact", caster)	
 
 	Timers:CreateTimer(delay, function()
+		if caster:HasModifier("modifier_saint_buff") then
+			local nDeadTeam = CountDeadTeammates(caster:GetTeam()==DOTA_TEAM_GOODGUYS)
+			baseDamage = (1 + 0.1 * nDeadTeam) * keys.Damage
+
+			if caster.IsPunishmentAcquired then
+				baseDamage = 0.1 * nDeadTeam * keys.Damage + baseDamage
+			end
+		end
+
+		print(baseDamage)
+
 		local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
-			local targetDamage = damage
-			if (v:HasModifier("modifier_saint_debuff") or v:HasModifier("modifier_saint_debuff_attr")) and  (v:GetKills() - v:GetDeaths()) > 0 then
-				DoDamage(caster, v, damagePerKill * (v:GetKills() - v:GetDeaths()), DAMAGE_TYPE_MAGICAL, 0, ability, false)
-			end
-	        DoDamage(caster, v, targetDamage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+
+	        DoDamage(caster, v, baseDamage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	        giveUnitDataDrivenModifier(caster, v, "silenced", silenceDuration)
 	        giveUnitDataDrivenModifier(caster, v, "disarmed", silenceDuration)
+	        if caster.IsPunishmentAcquired then
+	        	giveUnitDataDrivenModifier(caster, v, "revoked", silenceDuration)
+	        end
 	    end
 
 	    EmitSoundOnLocationWithCaster(targetPoint, "Hero_Chen.TestOfFaith.Target", caster)		
@@ -208,12 +292,15 @@ function OnGodResolutionProc(keys)
 	if caster.IsPunishmentAcquired then
 		damage = target:GetMaxHealth() * keys.Damage/100
 	end
-
-	DoDamage(caster, target, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
-	if target:HasModifier("modifier_saint_debuff") or target:HasModifier("modifier_saint_debuff_attr") then
+	if caster:HasModifier("modifier_saint_buff") then
 		 giveUnitDataDrivenModifier(caster, target, "stunned", 0.1)
 	end
 
+	if caster.IsPunishmentAcquired and caster:HasModifier("modifier_saint_buff") then
+		DoDamage(caster, target, damage, DAMAGE_TYPE_PURE, 0, ability, false)
+	else
+		DoDamage(caster, target, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	end
 
 	target:EmitSound("Hero_Chen.TeleportOut")
 	local bashFx = ParticleManager:CreateParticle("particles/units/heroes/hero_chen/chen_teleport_flash_sparks.vpcf", PATTACH_CUSTOMORIGIN, nil)
@@ -250,7 +337,7 @@ function OnGodResolutionStart(keys)
 		end
 		local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
-			if v:HasModifier("modifier_saint_debuff") or v:HasModifier("modifier_saint_debuff_attr") then
+			if caster:HasModifier("modifier_saint_buff") then
 				 giveUnitDataDrivenModifier(caster, v, "stunned", 0.1)
 			end
 	        DoDamage(caster, v, tickDamage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
@@ -286,7 +373,7 @@ function OnLECastStart(keys)
 			if IsValidEntity(caster.LETargetTable[i]) and caster.LETargetTable[i]:IsAlive() then
 				caster.LETargetTable[i]:RemoveModifierByName("rooted")
 				caster.LETargetTable[i]:RemoveModifierByName("locked")
-				caster.LETargetTable[i]:RemoveModifierByName("modifier_luminosite_eternelle_unjust_debuff")
+				caster.LETargetTable[i]:RemoveModifierByName("modifier_luminosite_eternelle_saint_debuff")
 			end
 		end
 	end
@@ -302,7 +389,8 @@ function OnLEStart(keys)
 	local travelTime = 1/3
 
 	if caster.CurrentFlag and not caster.CurrentFlag:IsNull() then
-		caster.CurrentFlag:RemoveModifierByName("modifier_luminosite_eternelle_flag_aura")
+		OnFlagCleanup(keys)
+		--caster.CurrentFlag:RemoveModifierByName("modifier_luminosite_eternelle_flag_aura")
 	end
 	caster.LETargetTable = {}
 
@@ -376,7 +464,7 @@ function OnLEStart(keys)
 				newKeys.target = v
 				newKeys.Radius = newKeys.ability:GetSpecialValueFor("radius_modifier")
 		 		newKeys.Duration = newKeys.ability:GetSpecialValueFor("duration")
-				OnIRStart(newKeys)
+				OnIRStart(newKeys, true)
 			end
 		end
 
@@ -408,7 +496,9 @@ function OnLEHit(keys)
 	giveUnitDataDrivenModifier(caster, target, "locked", duration)
 	giveUnitDataDrivenModifier(caster, target, "rooted", duration)
 	giveUnitDataDrivenModifier(caster, target, "disarmed", duration)
-	ability:ApplyDataDrivenModifier(caster, target, "modifier_luminosite_eternelle_unjust_debuff", {}) 
+	if caster:HasModifier("modifier_saint_buff") then
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_luminosite_eternelle_saint_debuff", {})
+	end
 	target:EmitSound("Hero_ArcWarden.Flux.Cast")
 end
 
@@ -417,14 +507,14 @@ function OnLEAllyDamageTaken(keys)
 	local ability = keys.ability
 	local victim = keys.unit
 	local attacker = keys.attacker
-	if caster.IsSaintImproved and PlayerResource:GetSelectedHeroEntity(attacker:GetPlayerOwnerID()):HasModifier("modifier_saint_debuff") or PlayerResource:GetSelectedHeroEntity(attacker:GetPlayerOwnerID()):HasModifier("modifier_saint_debuff_attr") then
+	if caster.IsSaintImproved and caster:HasModifier("modifier_saint_buff") then
 		return
 	end
 
 	if not caster.CurrentFlag:IsNull() then
 		caster.CurrentFlagHealth = caster.CurrentFlagHealth - 1
 		if caster.CurrentFlagHealth <= 0 then
-			caster.CurrentFlag:RemoveModifierByName("modifier_luminosite_eternelle_flag_aura")
+			OnFlagCleanup(keys)
 		else
 			caster.CurrentFlag:SetHealth(caster.CurrentFlagHealth)
 		end
@@ -454,7 +544,7 @@ function OnLaPucelleTakeDamage(keys)
 	local originalScale = caster:GetModelScale()
 
 	if caster:GetHealth() == 0 and caster:GetStrength() >= 19.1 and caster:GetAgility() >= 19.1 and caster:GetIntellect() >= 19.1 and ability:IsCooldownReady() and IsRevivePossible(caster) then
-		if _G.GameMap == "fate_elim_6v6" and IsTeamWiped(caster) then
+		if (_G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7") and IsTeamWiped(caster) then
 			return
 		else
 			caster:SetHealth(caster:GetMaxHealth())
@@ -464,14 +554,14 @@ function OnLaPucelleTakeDamage(keys)
 			ability:ApplyDataDrivenModifier(caster, caster, "modifier_la_pucelle_anim", {})
 
 			-- apply charisma
-			if caster.IsDivineSymbolAcquired then
+			--[[if caster.IsDivineSymbolAcquired then
 				local newKeys = keys
 				newKeys.ability = caster:FindAbilityByName("jeanne_charisma")
 				newKeys.target = caster
 				newKeys.Radius = newKeys.ability:GetSpecialValueFor("radius_modifier")
 		 		newKeys.Duration = duration
 				OnIRStart(newKeys)
-			end
+			end]]
 
 			GameRules:SendCustomMessage("#la_pucelle_alert_1", 0, 0)
 			caster.bIsLaPucelleActivatedThisRound = true
@@ -520,7 +610,7 @@ function OnLaPucelleDeath(keys)
 
 	if _G.CurrentGameState == "FATE_ROUND_ONGOING" or _G.CurrentGameState == "FATE_PRE_GAME" then
 		caster:Kill(ability, PlayerResource:GetSelectedHeroEntity(caster.LaPucelleKiller:GetPlayerID()) )
-		if _G.GameMap == "fate_elim_6v6" and not IsTeamWiped(caster) then
+		if (_G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7") and not IsTeamWiped(caster) then
 			GameRules:SendCustomMessage("#la_pucelle_alert_2", 0, 0)
 		end
 	end

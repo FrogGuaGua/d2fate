@@ -30,11 +30,11 @@ function OnSMGStart(keys)
     LancelotCheckCombo(keys.caster, keys.ability)
 
        --[[print("dudududu")
-	local caster = keys.caster
-	local frontward = caster:GetForwardVector()
-	local smg = 
-	{
-        	Ability = keys.ability,
+    local caster = keys.caster
+    local frontward = caster:GetForwardVector()
+    local smg = 
+    {
+            Ability = keys.ability,
                 EffectName = "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf",
                 iMoveSpeed = 2000,
                 vSpawnOrigin = nil,
@@ -48,60 +48,60 @@ function OnSMGStart(keys)
                 iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
                 iUnitTargetType = DOTA_UNIT_TARGET_ALL,
                 fExpireTime = GameRules:GetGameTime() + 2.0,
-        	bDeleteOnHit = false,
-        	vVelocity = frontward * 2000
-	}
-	smg.vSpawnOrigin = caster:GetAbsOrigin() 
-	ProjectileManager:CreateLinearProjectile(smg)]]
-	
-	
-	-- Store inheritted variables
-	local caster = keys.caster
-	local ability = keys.ability
-	local range = ability:GetLevelSpecialValueFor( "range", ability:GetLevel() - 1 )
-	local start_radius = ability:GetLevelSpecialValueFor( "start_radius", ability:GetLevel() - 1 )
-	local end_radius = ability:GetLevelSpecialValueFor( "end_radius", ability:GetLevel() - 1 )
-	
-	-- Initialize local variables
-	local current_point = caster:GetAbsOrigin()
-	local currentForwardVec = forwardVec
-	local current_radius = start_radius
-	local current_distance = 0
-	local forwardVec = ( keys.target_points[1] - current_point ):Normalized()
-	local end_point = current_point + range * forwardVec
-	local difference = end_radius - start_radius
-	
-	-- Loop creating particles
-	while current_distance < range do
-		-- Create particle
-		local particleIndex = ParticleManager:CreateParticle( "particles/custom/lancelot/lancelot_smg.vpcf", PATTACH_CUSTOMORIGIN, caster )
-		ParticleManager:SetParticleControl( particleIndex, 0, current_point )
-		ParticleManager:SetParticleControl( particleIndex, 1, Vector( current_radius, 0, 0 ) )
-		
-		Timers:CreateTimer( 1.0, function()
-				ParticleManager:DestroyParticle( particleIndex, false )
-				ParticleManager:ReleaseParticleIndex( particleIndex )
-				return nil
-			end
-		)
-		
-		-- Update current point
-		current_point = current_point + current_radius * forwardVec
-		current_distance = current_distance + current_radius
-		current_radius = start_radius + current_distance / range * difference
-	end
-	
-	-- Create particle
-	local particleIndex = ParticleManager:CreateParticle( "particles/custom/lancelot/lancelot_smg.vpcf", PATTACH_CUSTOMORIGIN, caster )
-	ParticleManager:SetParticleControl( particleIndex, 0, end_point )
-	ParticleManager:SetParticleControl( particleIndex, 1, Vector( end_radius, 0, 0 ) )
-		
-	Timers:CreateTimer( 1.0, function()
-			ParticleManager:DestroyParticle( particleIndex, true )
-			ParticleManager:ReleaseParticleIndex( particleIndex )
-			return nil
-		end
-	)
+            bDeleteOnHit = false,
+            vVelocity = frontward * 2000
+    }
+    smg.vSpawnOrigin = caster:GetAbsOrigin() 
+    ProjectileManager:CreateLinearProjectile(smg)]]
+    
+    
+    -- Store inheritted variables
+    local caster = keys.caster
+    local ability = keys.ability
+    local range = ability:GetLevelSpecialValueFor( "range", ability:GetLevel() - 1 )
+    local start_radius = ability:GetLevelSpecialValueFor( "start_radius", ability:GetLevel() - 1 )
+    local end_radius = ability:GetLevelSpecialValueFor( "end_radius", ability:GetLevel() - 1 )
+    
+    -- Initialize local variables
+    local current_point = caster:GetAbsOrigin()
+    local currentForwardVec = forwardVec
+    local current_radius = start_radius
+    local current_distance = 0
+    local forwardVec = ( keys.target_points[1] - current_point ):Normalized()
+    local end_point = current_point + range * forwardVec
+    local difference = end_radius - start_radius
+    
+    -- Loop creating particles
+    while current_distance < range do
+        -- Create particle
+        local particleIndex = ParticleManager:CreateParticle( "particles/custom/lancelot/lancelot_smg.vpcf", PATTACH_CUSTOMORIGIN, caster )
+        ParticleManager:SetParticleControl( particleIndex, 0, current_point )
+        ParticleManager:SetParticleControl( particleIndex, 1, Vector( current_radius, 0, 0 ) )
+        
+        Timers:CreateTimer( 1.0, function()
+                ParticleManager:DestroyParticle( particleIndex, false )
+                ParticleManager:ReleaseParticleIndex( particleIndex )
+                return nil
+            end
+        )
+        
+        -- Update current point
+        current_point = current_point + current_radius * forwardVec
+        current_distance = current_distance + current_radius
+        current_radius = start_radius + current_distance / range * difference
+    end
+    
+    -- Create particle
+    local particleIndex = ParticleManager:CreateParticle( "particles/custom/lancelot/lancelot_smg.vpcf", PATTACH_CUSTOMORIGIN, caster )
+    ParticleManager:SetParticleControl( particleIndex, 0, end_point )
+    ParticleManager:SetParticleControl( particleIndex, 1, Vector( end_radius, 0, 0 ) )
+        
+    Timers:CreateTimer( 1.0, function()
+            ParticleManager:DestroyParticle( particleIndex, true )
+            ParticleManager:ReleaseParticleIndex( particleIndex )
+            return nil
+        end
+    )
 end
 
 function OnSMGHit(keys)
@@ -162,51 +162,51 @@ function OnKnightStart(keys)
         caster:SwapAbilities("lancelot_close_spellbook", a5:GetName(), true,false) 
         if ability:GetLevel() == 1 then
 
-                caster:FindAbilityByName("lancelot_caliburn"):SetLevel(NPLevel) 
-                caster:SwapAbilities("lancelot_caliburn", a1:GetName(), true, false)
+                caster:FindAbilityByName("lancelot_vortigern"):SetLevel(NPLevel) 
+                caster:SwapAbilities("lancelot_vortigern", a1:GetName(), true, false)
                 print("opening spellbook")
                 caster:SwapAbilities("fate_empty1", a2:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty2", a3:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty3", a4:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty4", a6:GetName(), true, false) 
         elseif ability:GetLevel() == 2 then
-                caster:FindAbilityByName("lancelot_caliburn"):SetLevel(NPLevel) 
+                caster:FindAbilityByName("lancelot_vortigern"):SetLevel(NPLevel) 
                 caster:FindAbilityByName("lancelot_gae_bolg"):SetLevel(NPLevel)
 
-                caster:SwapAbilities("lancelot_caliburn", a1:GetName(), true, false) 
+                caster:SwapAbilities("lancelot_vortigern", a1:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_gae_bolg", a2:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty2", a3:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty3", a4:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty4", a6:GetName(), true, false)                 
         elseif ability:GetLevel() == 3 then
-                caster:FindAbilityByName("lancelot_caliburn"):SetLevel(NPLevel) 
+                caster:FindAbilityByName("lancelot_vortigern"):SetLevel(NPLevel) 
                 caster:FindAbilityByName("lancelot_gae_bolg"):SetLevel(NPLevel)
                 caster:FindAbilityByName("lancelot_nine_lives"):SetLevel(NPLevel)
 
-                caster:SwapAbilities("lancelot_caliburn", a1:GetName(), true, false) 
+                caster:SwapAbilities("lancelot_vortigern", a1:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_gae_bolg", a2:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty3", a3:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_nine_lives", a4:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty4", a6:GetName(), true, false)               
         elseif ability:GetLevel() == 4 then
-                caster:FindAbilityByName("lancelot_caliburn"):SetLevel(NPLevel) 
+                caster:FindAbilityByName("lancelot_vortigern"):SetLevel(NPLevel) 
                 caster:FindAbilityByName("lancelot_gae_bolg"):SetLevel(NPLevel)
                 caster:FindAbilityByName("lancelot_nine_lives"):SetLevel(NPLevel)
                 caster:FindAbilityByName("lancelot_rule_breaker"):SetLevel(NPLevel)
 
-                caster:SwapAbilities("lancelot_caliburn", a1:GetName(), true, false) 
+                caster:SwapAbilities("lancelot_vortigern", a1:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_gae_bolg", a2:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_rule_breaker", a3:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_nine_lives", a4:GetName(), true, false) 
                 caster:SwapAbilities("fate_empty4", a6:GetName(), true, false)                    
         elseif ability:GetLevel() == 5 then
-                caster:FindAbilityByName("lancelot_caliburn"):SetLevel(NPLevel) 
+                caster:FindAbilityByName("lancelot_vortigern"):SetLevel(NPLevel) 
                 caster:FindAbilityByName("lancelot_gae_bolg"):SetLevel(NPLevel)
                 caster:FindAbilityByName("lancelot_nine_lives"):SetLevel(NPLevel)
                 caster:FindAbilityByName("lancelot_rule_breaker"):SetLevel(NPLevel)
                 caster:FindAbilityByName("lancelot_tsubame_gaeshi"):SetLevel(NPLevel)
 
-                caster:SwapAbilities("lancelot_caliburn", a1:GetName(), true, false) 
+                caster:SwapAbilities("lancelot_vortigern", a1:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_gae_bolg", a2:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_rule_breaker", a3:GetName(), true, false) 
                 caster:SwapAbilities("lancelot_nine_lives", a4:GetName(), true, false) 
@@ -244,7 +244,7 @@ function KnightInitialize(keys)
 
         if caster.KnightInitialized ~= true then
                 print("knight initialized")
-                caster:RemoveAbility("lancelot_caliburn") 
+                caster:RemoveAbility("lancelot_vortigern") 
                 caster:RemoveAbility("lancelot_gae_bolg") 
                 caster:RemoveAbility("lancelot_nine_lives") 
                 caster:RemoveAbility("lancelot_rule_breaker") 
@@ -254,29 +254,29 @@ function KnightInitialize(keys)
 
         if ability:GetLevel() == 1 then
                 --print("ability lvl 1")
-                caster:AddAbility("lancelot_caliburn")
+                caster:AddAbility("lancelot_vortigern")
                 caster:AddAbility("fate_empty1")
                 caster:AddAbility("fate_empty2")
                 caster:AddAbility("fate_empty3")
                 caster:AddAbility("fate_empty4")
         elseif ability:GetLevel() == 2 then
                 caster:RemoveAbility("fate_empty1")
-                --caster:AddAbility("lancelot_caliburn")
+                --caster:AddAbility("lancelot_vortigern")
                 caster:AddAbility("lancelot_gae_bolg")
         elseif ability:GetLevel() == 3 then
                 caster:RemoveAbility("fate_empty2")
-                --caster:AddAbility("lancelot_caliburn")
+                --caster:AddAbility("lancelot_vortigern")
                -- caster:AddAbility("lancelot_gae_bolg")
                 caster:AddAbility("lancelot_nine_lives")
         elseif ability:GetLevel() == 4 then
                 caster:RemoveAbility("fate_empty3") 
-                --caster:AddAbility("lancelot_caliburn")
+                --caster:AddAbility("lancelot_vortigern")
                 --caster:AddAbility("lancelot_gae_bolg")
                 --caster:AddAbility("lancelot_nine_lives")
                 caster:AddAbility("lancelot_rule_breaker")
         elseif ability:GetLevel() == 5 then
                 caster:RemoveAbility("fate_empty4")
-                --caster:AddAbility("lancelot_caliburn")
+                --caster:AddAbility("lancelot_vortigern")
                 --caster:AddAbility("lancelot_gae_bolg")
                 --caster:AddAbility("lancelot_nine_lives")
                 --caster:AddAbility("lancelot_rule_breaker")
@@ -315,7 +315,7 @@ function OnAronditeStart(keys)
 
     --Fix for Arondight-KoH abuse, UPDATE: seeing as how SwapAbilities(,,,false) appears to effectively kills off abuse, below fix may no longer be necessary.
     levelKoH = caster:FindAbilityByName("lancelot_knight_of_honor"):GetLevel()
-    listOfSkills={"lancelot_caliburn","lancelot_gae_bolg","lancelot_nine_lives","lancelot_rule_breaker","lancelot_tsubame_gaeshi"}
+    listOfSkills={"lancelot_vortigern","lancelot_gae_bolg","lancelot_nine_lives","lancelot_rule_breaker","lancelot_tsubame_gaeshi"}
     for i = 1,levelKoH do
         caster:FindAbilityByName(listOfSkills[i]):StartCooldown(10)
         --print(caster:FindAbilityByName(listOfSkills[i]).IsResetable)

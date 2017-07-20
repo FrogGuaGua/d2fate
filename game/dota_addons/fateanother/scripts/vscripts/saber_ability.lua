@@ -289,6 +289,116 @@ function OnExcaliburHit(keys)
 	DoDamage(keys.caster, keys.target, keys.Damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 end
 
+function OnExcaliburVfxStart(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	ability:ApplyDataDrivenModifier(caster, caster, "excalibur_vfx_phase_1", {})
+	ability:ApplyDataDrivenModifier(caster, caster, "excalibur_vfx_phase_3", {})
+end
+
+function OnExcaliburSwordVfxStart(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	Timers:CreateTimer(1.1, function()
+		ability:ApplyDataDrivenModifier(caster, caster, "excalibur_vfx_phase_2", {})
+	end)
+end
+
+function OnExcaliburStart(keys)
+	EmitGlobalSound("Saber.Excalibur_Ready")
+	local caster = keys.caster
+	local targetPoint = keys.target_points[1]
+	local ability = keys.ability
+	keys.Range = keys.Range - keys.EndRadius -- We need this to take end radius of projectile into account
+	
+	giveUnitDataDrivenModifier(keys.caster, keys.caster, "pause_sealdisabled", 4.0)
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_excalibur", {})
+	ability:ApplyDataDrivenModifier(caster, caster, "saber_anim_vfx", {})
+	local excal = 
+	{
+		Ability = keys.ability,
+        EffectName = "",
+        iMoveSpeed = keys.Speed,
+        vSpawnOrigin = casterloc,
+        fDistance = keys.Range,
+        fStartRadius = keys.StartRadius,
+        fEndRadius = keys.EndRadius,
+        Source = caster,
+        bHasFrontalCone = true,
+        bReplaceExisting = false,
+        iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+        iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+        iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+        fExpireTime = GameRules:GetGameTime() + 5.0,
+		bDeleteOnHit = false,
+		vVelocity = caster:GetForwardVector() * keys.Speed
+	}
+	Timers:CreateTimer(0.5, function() 
+		if caster:IsAlive() then
+			EmitGlobalSound("Saber.Excalibur") return 
+		end
+	end)
+
+	-- Create linear projectile
+	Timers:CreateTimer(keys.Delay - 0.3, function()
+		if caster:IsAlive() then
+			excal.vSpawnOrigin = caster:GetAbsOrigin() 
+			excal.vVelocity = caster:GetForwardVector() * keys.Speed
+			local projectile = ProjectileManager:CreateLinearProjectile(excal)
+			ScreenShake(caster:GetOrigin(), 5, 0.1, 2, 20000, 0, true)
+		end
+	end)
+	
+	local casterFacing = caster:GetForwardVector()
+	-- for i=0,1 do
+		Timers:CreateTimer(keys.Delay - 0.3, function() -- Adjust 2.5 to 3.2 to match the sound
+			if caster:IsAlive() then
+				-- Create Particle for projectile
+				local dummy = CreateUnitByName("dummy_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
+				dummy:FindAbilityByName("dummy_unit_passive"):SetLevel(1)
+				dummy:SetForwardVector(casterFacing)
+				Timers:CreateTimer( function()
+						if IsValidEntity(dummy) then
+							local newLoc = dummy:GetAbsOrigin() + keys.Speed * 0.03 * casterFacing
+							dummy:SetAbsOrigin(GetGroundPosition(newLoc,dummy))
+							-- DebugDrawCircle(newLoc, Vector(255,0,0), 0.5, keys.StartRadius, true, 0.15)
+							return 0.03
+						else
+							return nil
+						end
+					end
+				)
+				
+				local excalFxIndex = ParticleManager:CreateParticle( "particles/custom/saber/excalibur/shockwave.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, dummy )
+				ParticleManager:SetParticleControl(excalFxIndex, 4, Vector(keys.StartRadius,0,0))
+
+				Timers:CreateTimer( 1.65, function()
+						ParticleManager:DestroyParticle( excalFxIndex, false )
+						ParticleManager:ReleaseParticleIndex( excalFxIndex )
+						Timers:CreateTimer( 0.5, function()
+								dummy:RemoveSelf()
+								return nil
+							end
+						)
+						return nil
+					end
+				)
+				return 
+			end
+		end)
+	-- end
+end
+
+function OnExcaliburHit(keys)
+	local caster = keys.caster
+	local target = keys.target 
+	local ply = caster:GetPlayerOwner()
+	if caster.IsExcaliburAcquired == true then keys.Damage = keys.Damage + 300 end
+	if target:GetUnitName() == "gille_gigantic_horror" then keys.Damage = keys.Damage*1.3 end
+	
+	DoDamage(keys.caster, keys.target, keys.Damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+end
+
 function OnMaxVfxStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -352,10 +462,17 @@ function OnMaxStart(keys)
 	
 	-- Create linear projectile
 	Timers:CreateTimer(3.0, function()
+		StartAnimation(caster, {duration=3.5, activity=ACT_DOTA_CAST_ABILITY_3, rate=0.01})
 		if caster:IsAlive() then
-			max_excal.vSpawnOrigin = caster:GetAbsOrigin() 
-			max_excal.vVelocity = caster:GetForwardVector() * keys.Speed
-			local projectile = ProjectileManager:CreateLinearProjectile(max_excal)
+			nBeams2 = 0
+			Timers:CreateTimer(function()
+				if nBeams2 == 10 then return end
+				max_excal.vSpawnOrigin = caster:GetAbsOrigin() 
+				max_excal.vVelocity = caster:GetForwardVector() * keys.Speed
+				local projectile = ProjectileManager:CreateLinearProjectile(max_excal)
+				nBeams2 = nBeams2 + 1
+				return 0.1
+			end)
 			local YellowScreenFx = ParticleManager:CreateParticle("particles/custom/screen_yellow_splash.vpcf", PATTACH_EYES_FOLLOW, caster)
 			ScreenShake(caster:GetOrigin(), 7, 2.0, 2, 10000, 0, true)
 			
@@ -371,45 +488,93 @@ function OnMaxStart(keys)
 			endTime = 3, 
 			callback = function()
 			if caster:IsAlive() then
-			-- Create Particle for projectile
-				local dummy = CreateUnitByName("dummy_unit", caster:GetAbsOrigin() + 300 * casterFacing, false, caster, caster, caster:GetTeamNumber())
-				dummy:FindAbilityByName("dummy_unit_passive"):SetLevel(1)
-				dummy:SetForwardVector(casterFacing)
-				Timers:CreateTimer( function()
-						if IsValidEntity(dummy) then
-							local newLoc = dummy:GetAbsOrigin() + keys.Speed * 0.03 * casterFacing
-							dummy:SetAbsOrigin(GetGroundPosition(newLoc,dummy))
-							-- DebugDrawCircle(newLoc, Vector(255,0,0), 0.5, keys.Width, true, 0.15)
-							return 0.03
-						else
-							return nil
-						end
-					end
-				)
-				
-				local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/max_excalibur/shockwave.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
-					
-				Timers:CreateTimer(1.7, function()
-					ParticleManager:DestroyParticle( excalFxIndex, false )
-					ParticleManager:ReleaseParticleIndex( excalFxIndex )
-					Timers:CreateTimer( 0.5, function()
-							dummy:RemoveSelf()
-							return nil
-						end
-					)
-					return nil
+				nBeams = 0
+				Timers:CreateTimer(function()
+					if nBeams == 50 then return end
+					FireSingleMaxParticle(keys)
+					nBeams = nBeams + 1
+					return 0.02
 				end)
 			end
 		end})
 	-- end
 end
 
+function FireSingleMaxParticle(keys)
+	local caster = keys.caster
+	local casterFacing = caster:GetForwardVector()
+	if caster.AltPart.combo == 1 then
+		local dummy = CreateUnitByName("dummy_unit", caster:GetAbsOrigin() + 700 * casterFacing, false, caster, caster, caster:GetTeamNumber())
+		dummy:FindAbilityByName("dummy_unit_passive"):SetLevel(1)
+		dummy:SetForwardVector(casterFacing)
+		Timers:CreateTimer( function()
+				if IsValidEntity(dummy) then
+					local newLoc = dummy:GetAbsOrigin() + keys.Speed * 0.015 * casterFacing
+					dummy:SetAbsOrigin(GetGroundPosition(newLoc,dummy))
+					-- DebugDrawCircle(newLoc, Vector(255,0,0), 0.5, keys.Width, true, 0.15)
+					return 0.015
+				else
+					return nil
+				end
+			end
+		)
+		
+		local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/max_excalibur/shockwave_2_versiona.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+		--local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/excalibur/shockwave.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+			
+		Timers:CreateTimer(0.36, function()
+			ParticleManager:DestroyParticle( excalFxIndex, false )
+			ParticleManager:ReleaseParticleIndex( excalFxIndex )
+			Timers:CreateTimer( 0.1, function()
+					dummy:RemoveSelf()
+					return nil
+				end
+			)
+			return nil
+		end)
+	else
+		local dummy = CreateUnitByName("dummy_unit", caster:GetAbsOrigin() + 300 * casterFacing, false, caster, caster, caster:GetTeamNumber())
+		dummy:FindAbilityByName("dummy_unit_passive"):SetLevel(1)
+		dummy:SetForwardVector(casterFacing)
+		Timers:CreateTimer( function()
+				if IsValidEntity(dummy) then
+					local newLoc = dummy:GetAbsOrigin() + keys.Speed * 0.015 * casterFacing
+					dummy:SetAbsOrigin(GetGroundPosition(newLoc,dummy))
+					-- DebugDrawCircle(newLoc, Vector(255,0,0), 0.5, keys.Width, true, 0.15)
+					return 0.015
+				else
+					return nil
+				end
+			end
+		)
+		
+		local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/max_excalibur/shockwave_2_versionc.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+		--local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/excalibur/shockwave.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+			
+		Timers:CreateTimer(0.57, function()
+			ParticleManager:DestroyParticle( excalFxIndex, false )
+			ParticleManager:ReleaseParticleIndex( excalFxIndex )
+			Timers:CreateTimer( 0.1, function()
+					dummy:RemoveSelf()
+					return nil
+				end
+			)
+			return nil
+		end)
+	end
+end
+
 function OnMaxHit(keys)
 	local caster = keys.caster
+	local target = keys.target
 	local ply = caster:GetPlayerOwner()
 	if caster.IsExcaliburAcquired == true then keys.Damage = keys.Damage + 2000 end
-
-	DoDamage(keys.caster, keys.target, keys.Damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	if target.IsMaxcaHit ~= true then
+		target.IsMaxcaHit = true
+		Timers:CreateTimer(3, function() target.IsMaxcaHit = false return end)
+		DoDamage(keys.caster, keys.target, keys.Damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	end
+	--DoDamage(keys.caster, keys.target, keys.Damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 end
 
 function OnAvalonStart(keys)

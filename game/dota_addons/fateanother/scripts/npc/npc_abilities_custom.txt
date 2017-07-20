@@ -1395,7 +1395,8 @@
 			"particle"				"particles/custom/saber_excalibur_max_burn.vpcf"
 			"particle"				"particles/custom/screen_yellow_splash.vpcf"
 			"particle"				"particles/custom/saber/max_excalibur/charge.vpcf"
-			"particle"				"particles/custom/saber/max_excalibur/shockwave.vpcf"
+			"particle"				"particles/custom/saber/max_excalibur/shockwave_2_versiona.vpcf"
+			"particle"				"particles/custom/saber/max_excalibur/shockwave_2_versionc.vpcf"
 			"particle"				"particles/custom/saber/excalibur/hit.vpcf"
 		}
 		
@@ -1406,7 +1407,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"150.0"
+		"AbilityCooldown"				"200.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -1429,7 +1430,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"speed"					"1150"
+				"speed"					"7000"
 			}
 			"04"
 			{
@@ -1490,7 +1491,7 @@
 			}
 			"saber_max_excalibur_anim_vfx"
 			{
-				"Duration"		"5"
+				"Duration"		"5.0"
 				"IsHidden"	"1"
 				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_3"						
 				"OnCreated"
@@ -1503,7 +1504,7 @@
 				}
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"1.0"
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"1"
 				}
 			}
 			
@@ -9840,7 +9841,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/gilgamesh_sword_barrage"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
-		"AnimationPlaybackRate" 		"1.0"
+		"AnimationPlaybackRate" 		"3.0"
 
 		"AOERadius"						"%radius"
 		"precache"
@@ -9912,7 +9913,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/gilgamesh_sword_barrage_improved"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
-		"AnimationPlaybackRate" 		"1.0"
+		"AnimationPlaybackRate" 		"3.0"
 
 		"AOERadius"						"%radius"
 		"precache"
@@ -10159,7 +10160,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/gilgamesh_gate_of_babylon"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
-		"AnimationPlaybackRate" 		"2.0"
+		"AnimationPlaybackRate" 		"10.0"
 
 		"precache"
 		{
@@ -13315,6 +13316,94 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow_amount"
 				}
 			}
+		}
+	}
+
+	//=================================================================================================================
+	// Lancelot : Vortigern
+	//=================================================================================================================
+	"lancelot_vortigern"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"3"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/saber_alter_vortigern"
+		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK2"
+		"AnimationPlaybackRate" 		"1"
+		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+			"particle"	"particles/custom/saber_alter/saber_alter_vortigern_line.vpcf"
+		}
+		
+		"AbilityCastPoint"				"0.15"
+		"AbilityCooldown"				"27"
+		"AbilityManaCost"				"300"
+		"AbilityCastRange"				"600"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"470 540 610"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"low_end"				"80"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"high_end"				"120"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"0.3"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+					"ScriptFile"    "saber_alter_ability"
+					"Function"      "OnVortigernStart"
+					"Target"		"POINT"
+					"Radius"		"%radius"
+					"Damage"		"%damage"
+					"StunDuration"	"%stun_duration"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"false"
+			"RunScript"
+			{
+				"ScriptFile"	"saber_alter_ability"
+				"Function"		"OnVortigernHit"
+				"Damage"		"%damage"
+				"StunDuration"	"%stun_duration"
+			}
+		}
+		
+		"Modifiers"
+		{
 		}
 	}
 
@@ -18454,6 +18543,11 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"radius"			"1000"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"mr_bonus"			"100"
 			}	
 		}
 		
@@ -18517,6 +18611,10 @@
 				{
 					"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%mr_bonus"
 				}
 			}
 			"modifier_selfish_debuff_aura"
@@ -20136,15 +20234,15 @@
 		"AnimationPlaybackRate" 		"1.0"
 
 
-		"AbilityChannelTime"			"1.5"		
-		"AbilityCastPoint"				"0.5"
+		"AbilityChannelTime"			"2.0"		
+		"AbilityCastPoint"				"0.05"
 		"AbilityCooldown"				"10 8.5 6 4.5 3"
 		"AbilityManaCost"				"100"
 		
 		"precache"
 		{
 			"particle"			"particles/units/heroes/hero_lion/lion_spell_finger_of_death_fire.vpcf"
-			"particle"			"particles/custom/nero/nero_scorched_earth.vpcf"
+			"particle"			"particles/units/heroes/hero_doom_bringer/doom_scorched_earth.vpcf"
 			"particle"			"particles/custom/archer/archer_overedge_slash.vpcf"
 			"particle"			"particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
 			"particle"			"particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
@@ -20242,7 +20340,7 @@
 				{
 					"AttachEffect"
 					{
-						"EffectName"		"particles/custom/nero/nero_scorched_earth.vpcf"
+						"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_scorched_earth.vpcf"
 						"EffectAttachType"	"follow_origin"
 						"Target"			"CASTER"
 						"ControlPoints"
@@ -20265,6 +20363,15 @@
 					{
 						"ScriptFile"		"nero_ability"
 						"Function"			"OnGBStrike"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"		"modifier_gladiusanus_blauserum"
+	    				"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						}
 					}
 				}
 				"OnDestroy"
@@ -21211,7 +21318,7 @@
 		// Ability stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800"
-		"AbilityCastRangeBuffer"		"0"
+		"AbilityCastRangeBuffer"		"200"
 		"AbilityCastPoint"				"0.15"
 		"AbilityCooldown"				"15"
 		"AbilityManaCost"				"100"
@@ -21764,7 +21871,7 @@
 		// Ability stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"900"
-		"AbilityCastRangeBuffer"		"0"
+		"AbilityCastRangeBuffer"		"300"
 		"AbilityCastPoint"				"0.6"
 		"AbilityCooldown"				"45"
 		"AbilityManaCost"				"800"
@@ -25695,15 +25802,20 @@
 			{
 				"Passive"		"1"
 				"IsHidden"		"1"
-				"ThinkInterval"				"2.0"
+				"ThinkInterval"				"1.0"
 				"OnIntervalThink"
 				{
 					"RunScript"
 					{
 						"ScriptFile"	"jeanne_ability"
-						"Function"		"OnSaintRespawn"
+						"Function"		"OnSaintThink"
 					}
 				}
+			}
+			"modifier_saint_buff"
+			{
+				"Passive"		"1"
+				"Duration"		"1.1"
 			}
 			"modifier_saint_debuff"
 			{
@@ -25713,7 +25825,8 @@
 			"modifier_saint_debuff_attr"
 			{
 				"IsDebuff"		"1"
-				"Duration"		"300"
+				"Duration"		"1.1"
+				"IsHidden"		"1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"		"13"
@@ -25742,7 +25855,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"unjust_vision_duration"			"3"
+				"saint_vision_duration"			"3"
 			}
 		}
 		
@@ -25752,7 +25865,7 @@
 			{
 				"ScriptFile"		"jeanne_ability"
 				"Function"			"OnIDPing"
-				"Duration"			"%unjust_vision_duration"
+				"Duration"			"%saint_vision_duration"
 			}
 		}
 		
@@ -25859,14 +25972,6 @@
 					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_modifier"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_aspd"
 				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"jeanne_ability"
-						"Function"				"OnCharismaBuffEnd"
-					}
-				}
 			}
 			"modifier_jeanne_charisma_agi"
 			{
@@ -25874,15 +25979,6 @@
 				{
 					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_modifier"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_aspd"
-				}
-				
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"jeanne_ability"
-						"Function"				"OnCharismaBuffEnd"
-					}
 				}
 			}
 			"modifier_jeanne_charisma_int"
@@ -25892,14 +25988,29 @@
 					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_modifier"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_aspd"
 				}
-				
-				"OnDestroy"
+			}
+			"modifier_jeanne_charisma_str_flag"
+			{
+				"Properties"
 				{
-					"RunScript"
-					{
-						"ScriptFile"			"jeanne_ability"
-						"Function"				"OnCharismaBuffEnd"
-					}
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%stat_modifier"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_aspd"
+				}
+			}
+			"modifier_jeanne_charisma_agi_flag"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%stat_modifier"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_aspd"
+				}
+			}
+			"modifier_jeanne_charisma_int_flag"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%stat_modifier"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%bonus_aspd"
 				}
 			}
 			
@@ -25958,17 +26069,17 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"		"400 450 500 550 600"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_damage_perkill"		"35"
+				"damage"		"400 475 550 625 700"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"silence_duration"		"0.8 1.0 1.2 1.4 1.6"
+				"silence_duration"		"1.2 1.4 1.6 1.8 2.0" //also disarm duration
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bonus_damage_per_dead"	"10"
 			}
 		}
 		
@@ -25982,7 +26093,6 @@
 				"Radius"			"%radius"
 				"Delay"				"%delay"
 				"Damage"			"%damage"
-				"DamagePerKill"		"%bonus_damage_perkill"
 				"SilenceDuration"	"%silence_duration"
 			}
 		}
@@ -25994,7 +26104,7 @@
 				"EffectName"		"particles/units/heroes/hero_chen/chen_penitence_debuff.vpcf"
 				"EffectAttachType"	"follow_origin"
 				"IsDebuff"			"1"
-				"Duration"			"3.0"
+				"Duration"			"2.7"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-40"
@@ -26371,7 +26481,7 @@
 					}
 				}
 			}	
-			"modifier_luminosite_eternelle_unjust_debuff"
+			"modifier_luminosite_eternelle_saint_debuff"
 			{
 				"Duration"			"%max_cc_duration"
 				"IsDebuff"			"1"
@@ -26415,7 +26525,7 @@
 		"MaxLevel"						"1"
 		"RequiredLevel"					"25"
 		"LevelsBetweenUpgrades"			"1"
-		"AbilityCooldown"				"270"
+		"AbilityCooldown"				"240"
 		"precache"
 		{
 			"particle"				"particles/custom/ruler/la_pucelle/ruler_la_pucelle.vpcf"
@@ -26562,7 +26672,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pr_cooldown_reduction"		"50"
+				"pr_cooldown_reduction"		"65"
 			}		
 		}
 		
@@ -26590,7 +26700,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"16"
 
 		"precache"
 		{
@@ -26602,12 +26712,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_damage"		"13"
-			}			
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"kill_credit"		"3"
-			}	
+			}				
 		}
 		
 		"OnSpellStart"
@@ -26645,7 +26750,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"45"
+				"bonus_damage"			"20"
 			}
 			"02"
 			{
