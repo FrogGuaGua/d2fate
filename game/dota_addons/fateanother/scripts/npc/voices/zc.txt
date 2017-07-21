@@ -1,0 +1,58 @@
+"FATEVoices"
+{
+	"npc_dota_hero_shadow_shaman"
+	{
+		"Spawn"
+		{
+			"01"						"zc_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"zc_move_01"
+			"02"						"zc_move_02"
+			"03"						"zc_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"zc_attack_01"
+			"02"						"zc_hurt_01"	
+			"03"						"zc_hurt_02"	
+		}
+		
+		"Cast"
+		{
+			"01"						"zc_other_02"
+			"02"						"zc_laugh"
+		}
+		
+		"Hurt"
+		{
+			"01"						"zc_hurt_01"
+			"02"						"zc_hurt_02"
+		}
+		
+		"Respawn"
+		{
+			"01"						"zc_respawn_01"
+			"02"						"zc_respawn_02"
+			"03"						"zc_other_01"
+			"04"						"zc_laugh"
+		}
+		
+		"Death"
+		{
+			"01"						"zc_death_01"
+			"02"						"zc_death_02"
+		}
+		
+		"Kill"
+		{
+			"01"						"zc_kill_01"
+			"02"						"zc_kill_02"
+			"03"						"zc_kill_03"
+			"04"						"zc_kill_04"
+		}
+	}
+}

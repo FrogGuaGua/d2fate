@@ -1,0 +1,27 @@
+#base "voices/tamamo.txt"
+#base "voices/caster.txt"
+#base "voices/astolfo.txt"
+#base "voices/archer.txt"
+#base "voices/atalanta.txt"
+#base "voices/avenger.txt"
+#base "voices/berserker.txt"
+#base "voices/fa.txt"
+#base "voices/gawain.txt"
+#base "voices/gilg.txt"
+#base "voices/iskander.txt"
+#base "voices/lancelot.txt"
+#base "voices/lishuwen.txt"
+#base "voices/nero.txt"
+#base "voices/nursery.txt"
+#base "voices/rider.txt"
+#base "voices/ruler.txt"
+#base "voices/saber.txt"
+#base "voices/saberalter.txt"
+#base "voices/ta.txt"
+#base "voices/zc.txt"
+#base "voices/zl.txt"
+
+"FATEVoices"
+{
+
+}

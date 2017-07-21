@@ -1,0 +1,51 @@
+"FATEVoices"
+{
+	"npc_dota_hero_sven"
+	{
+		"Spawn"
+		{
+			"01"						"lancelot_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"lancelot_move_01"
+			"02"						"lancelot_move_02"
+			"03"						"lancelot_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"lancelot_attack_01"
+			"02"						"lancelot_attack_02"
+			"03"						"lancelot_attack_03"
+		}
+		
+		"Cast"
+		{
+			"01"						"lancelot_attack_01"
+			"02"						"lancelot_other_01"
+		}
+		
+		"Hurt"
+		{
+			"01"						"lancelot_hurt_01"
+		}
+		
+		"Respawn"
+		{
+			"01"						"lancelot_other_01"
+			"02"						"lancelot_other_02"
+		}
+		
+		"Death"
+		{
+			"01"						"lancelot_other_01"
+		}
+		
+		"Kill"
+		{
+			"01"						"lancelot_victory"
+		}
+	}
+}

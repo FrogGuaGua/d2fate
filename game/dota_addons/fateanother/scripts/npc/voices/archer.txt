@@ -1,0 +1,58 @@
+"FATEVoices"
+{
+	"npc_dota_hero_ember_spirit"
+	{
+		"Spawn"
+		{
+			"01"						"archer_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"archer_move_01"
+			"02"						"archer_move_02"
+			"03"						"archer_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"archer_attack_01"
+			"02"						"archer_attack_02"
+			"03"						"archer_attack_03"
+			"04"						"archer_attack_04"
+		}
+		
+		"Cast"
+		{
+			"01"						"archer_hurt_01"
+			"02"						"archer_other_04"
+			"03"						"archer_skill_01"
+		}
+		
+		"Hurt"
+		{
+			"01"						"archer_hurt_02"
+		}
+		
+		"Respawn"
+		{
+			"01"						"archer_battle_start_01"
+			"02"						"archer_battle_start_02"
+			"03"						"archer_other_01"
+			"04"						"archer_other_03"
+			"05"						"archer_other_04"
+		}
+		
+		"Death"
+		{
+			"01"						"archer_death_01"
+			"02"						"archer_death_02"
+		}
+		
+		"Kill"
+		{
+			"01"						"archer_kill_01"
+			"02"						"archer_kill_02"
+		}
+	}
+}

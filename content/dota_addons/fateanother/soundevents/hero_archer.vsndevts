@@ -403,3 +403,1027 @@
 		}
 	}
 }
+
+ 
+"archer_attack_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_attack_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_attack_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_attack_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_attack_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_attack_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_battle_start_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_battle_start_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_battle_start_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_battle_start_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_bladeoff"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_bladeoff.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_combo"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_combo.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_death_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_death_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_death_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_death_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_hrunt_hit"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_hrunt_hit.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_hurt_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_hurt_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_hurt_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_hurt_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_kill_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_kill_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_kill_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_kill_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_move_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_move_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_move_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_move_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_move_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_move_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_ninelives"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_ninelives.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_nine_finish"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_nine_finish.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_other_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_other_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_other_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_other_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_other_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_other_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_other_04"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_other_04.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_rho"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_rho.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_skill_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_skill_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_spawn"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_spawn.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_traceon"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_traceon.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_ubw"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_ubw.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_ubw_ambient"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_ubw_ambient.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_ubw_fgo"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_ubw_fgo.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"archer_yuke"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/archer/archer_yuke.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}

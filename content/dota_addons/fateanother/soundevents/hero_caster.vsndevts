@@ -109,3 +109,697 @@
 		}
 	}
 }
+
+ 
+"caster_attack_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_attack_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_attack_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_attack_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_attack_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_attack_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_attack_04"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_attack_04.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_battle_start"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_battle_start.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_death"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_death.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_death01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_death01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_death02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_death02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_kill01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_kill01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_move_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_move_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_move_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_move_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_move_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_move_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_other_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_other_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_other_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_other_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_other_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_other_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_other_05"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_other_05.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_respawn01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_respawn01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_respawn02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_respawn02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_respawn03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_respawn03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_respawn04"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_respawn04.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"caster_spawn"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/caster/caster_spawn.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}

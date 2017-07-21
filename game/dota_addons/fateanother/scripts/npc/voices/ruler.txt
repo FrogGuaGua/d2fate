@@ -1,0 +1,52 @@
+"FATEVoices"
+{
+	"npc_dota_hero_mirana"
+	{
+		"Spawn"
+		{
+			"01"						"ruler_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"ruler_move_01"
+			"02"						"ruler_move_02"
+			"03"						"ruler_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"ruler_attack_01"
+			"02"						"ruler_attack_02"
+			"03"						"ruler_attack_03"
+		}
+		
+		"Cast"
+		{
+			"01"						"ruler_attack_03"
+			"02"						"ruler_other_01"
+		}
+		
+		"Hurt"
+		{
+			"01"						"ruler_hurt"
+		}
+		
+		"Respawn"
+		{
+			"01"						"ruler_battle_start"
+			"02"						"ruler_other_02"
+		}
+		
+		"Death"
+		{
+			"01"						"ruler_hurt"
+		}
+		
+		"Kill"
+		{
+			"01"						"ruler_other_02"
+			"02"						"ruler_other_03"
+		}
+	}
+}

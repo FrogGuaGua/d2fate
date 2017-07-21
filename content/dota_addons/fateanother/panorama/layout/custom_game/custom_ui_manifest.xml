@@ -57,6 +57,12 @@
 		var talentButton = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("AbilitiesAndStatBranch").FindChildTraverse("StatBranch");
 		talentButton.style.visibility = "collapse";
 		
+		var talentButtonOverlay = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("level_stats_frame");
+		talentButtonOverlay.style.visibility = "collapse";
+		
+		var talentStatFrame = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("StatBranchDrawer");
+		talentStatFrame.style.visibility = "collapse";
+		
 		var glyphUI = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("minimap_container").FindChildTraverse("GlyphScanContainer");
 		glyphUI.style.visibility = "collapse";
 		
@@ -154,6 +160,11 @@
 		GameUI.CustomUIConfig().hud = hud;
 	</script>
 
+	
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/fateanother_voice.js" />
+	</scripts>
+	
 	<Panel>
 	    <!-- CustomUIElements go here.  They are not provided currently as valve's parser reads commented lines and attempts to link them in.-->
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud_base.xml" />

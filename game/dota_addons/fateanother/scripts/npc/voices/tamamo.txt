@@ -1,0 +1,61 @@
+"FATEVoices"
+{
+	"npc_dota_hero_enchantress"
+	{
+		"Move"
+		{
+			"01"							"tamamo_move_01"
+			"02"							"tamamo_move_02"
+			"03"							"tamamo_move_03"
+			"04"							"tamamo_move04"
+		}
+		
+		"Attack"
+		{
+			"01"							"tamamo_attack_01"
+			"02"							"tamamo_attack_02"
+			"03"							"tamamo_attack_03"
+			"04"							"tamamo_attack_04"
+		}
+		
+		"Spawn"
+		{
+			"01"							"tamamo_spawn"
+		}
+		
+		"Cast"
+		{
+			"01"							"tamamo_other_01"
+			"02"							"tamamo_other_03"
+			"03"							"tamamo_cast01"
+		}
+		
+		"Hurt"
+		{
+			"01"							"tamamo_hurt"
+		}
+		
+		"Respawn"
+		{
+			"01"							"tamamo_respawn01"
+			"02"							"tamamo_respawn02"
+			"03"							"tamamo_respawn03"
+			"04"							"tamamo_respawn04"
+		}
+		
+		"Death"
+		{
+			"01"							"tamamo_death01"
+			"02"							"tamamo_death02"
+			"03"							"tamamo_death03"
+		}
+		
+		"Kill"
+		{
+			"01"							"tamamo_kill01"
+			"02"							"tamamo_kill02"
+			"03"							"tamamo_other_02"
+			"04"							"tamamo_other_04"
+		}
+	}
+}

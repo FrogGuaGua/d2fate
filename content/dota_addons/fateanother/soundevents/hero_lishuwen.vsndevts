@@ -71,3 +71,467 @@
 		}
 	}
 }
+
+ 
+"lishuwen_attack_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_attack_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_attack_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_attack_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_death_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_death_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_hurt_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_hurt_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_kill"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_kill.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_move_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_move_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_move_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_move_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_move_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_move_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_no_second_strike"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_no_second_strike.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_no_second_strike_shout"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_no_second_strike_shout.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_other_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_other_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_other_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_other_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_other_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_other_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"lishuwen_rds_shout"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/lishuwen/lishuwen_rds_shout.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+

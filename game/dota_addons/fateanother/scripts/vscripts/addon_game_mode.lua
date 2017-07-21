@@ -18,6 +18,7 @@ require('libraries/attachments')
 require('hero_selection')
 require('libraries/servantstats')
 require('libraries/alternateparticle')
+require('unit_voice')
 
 
 _G.IsPickPhase = true
@@ -981,6 +982,7 @@ function FateGameMode:OnHeroInGame(hero)
     -- Initialize stuffs
     hero:SetCustomDeathXP(0)
     hero.bFirstSpawned = true
+	UnitVoice(hero)
     hero.PresenceTable = {}
     hero.bIsDmgPopupDisabled = false
     hero.bIsAlertSoundDisabled = false

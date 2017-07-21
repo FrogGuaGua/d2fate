@@ -1,0 +1,55 @@
+"FATEVoices"
+{
+	"npc_dota_hero_juggernaut"
+	{
+		"Spawn"
+		{
+			"01"						"fa_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"fa_move_01"
+			"02"						"fa_move_02"
+			"03"						"fa_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"fa_attack_01"
+			"02"						"fa_attack_02"
+		}
+		
+		"Cast"
+		{
+			"01"						"fa_other_04"
+		}
+		
+		"Hurt"
+		{
+			"01"						"fa_hurt_01"
+			"02"						"fa_hurt_02"
+		}
+		
+		"Respawn"
+		{
+			"01"						"fa_other_04"
+			"02"						"fa_other_05"
+			"03"						"fa_other_06"
+			"04"						"fa_other_07"
+		}
+		
+		"Death"
+		{
+			"01"						"fa_death_01"
+			"02"						"fa_death_02"
+		}
+		
+		"Kill"
+		{
+			"01"						"fa_kill"
+			"02"						"fa_other_02"
+			"03"						"fa_other_03"
+		}
+	}
+}
