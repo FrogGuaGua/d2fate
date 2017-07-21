@@ -67,7 +67,7 @@ end
 
 -- NOTE i've been very lazy here. The hurt sound will always play for the owner of the unit, even if the unit is unselected (same thing happens for spawn/respawn, but thats not as big a deal). Maybe i'll do it better some other day.
 function UnitVoice:OnHurt()
-	if self.bDisabled or not self.Hurt then return end
+	if self.bDisabled or self.time > GameRules:GetGameTime() or not self.Hurt then return end
 	local hPlayer = self.hUnit:GetPlayerOwner()
 	local i = RandomInt(1, #self.Hurt)
 	local sSound = self.Hurt[i]
