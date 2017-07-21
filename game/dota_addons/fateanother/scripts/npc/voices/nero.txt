@@ -46,6 +46,7 @@
 		{
 			"01"						"nero_kill"
 			"02"						"nero_other_02"
+			"03"						"nero_kill_02"
 		}
 	}
 }
