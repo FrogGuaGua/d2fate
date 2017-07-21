@@ -1,6 +1,6 @@
 "FATEVoices"
 {
-	"npc_dota_hero_queen_of_pain"
+	"npc_dota_hero_queenofpain"
 	{
 		"Spawn"
 		{
