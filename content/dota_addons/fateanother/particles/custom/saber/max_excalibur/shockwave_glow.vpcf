@@ -3,43 +3,31 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 48
-	m_flConstantRadius = 1.000000
-	m_ConstantColor =
-	[
-		240,
-		255,
-		97,
-		255,
-	]
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 240, 255, 97, 255 ]
 	m_nConstantSequenceNumber = 7
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderTrails"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_flOverbrightFactor = 6.000000
-			m_flAddSelfAmount = 2.000000
+			m_flOverbrightFactor = 6.0
+			m_flAddSelfAmount = 2.0
 			m_bSaturateColorPreAlphaBlend = false
-			m_hTexture = resource:"materials/particle/sparks/sparks.vtex"
+			m_hTexture = resource:"materials/particle/particle_modulate_07.vtex"
 			m_bIgnoreDT = true
-			m_flLengthFadeInTime = 0.025000
-			m_flRadiusScale = 0.500000
-			m_flFinalTextureScaleV = -1.000000
-			m_flFinalTextureOffsetV = 1.000000
-			m_vEndTrailTintFactor =
-			[
-				0.000000,
-				0.000000,
-				0.000000,
-				0.000000,
-			]
+			m_flLengthFadeInTime = 0.025
+			m_flRadiusScale = 0.5
+			m_flFinalTextureScaleV = -1.0
+			m_flFinalTextureOffsetV = 1.0
+			m_vEndTrailTintFactor = [ 0.0, 0.0, 0.0, 0.0 ]
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 1.000000
+			m_flFadeOutTime = 1.0
 		},
 		{
 			_class = "C_OP_Decay"
@@ -47,85 +35,58 @@
 		{
 			_class = "C_OP_LerpScalar"
 			m_nFieldOutput = 10
-			m_flOutput = 0.000000
+			m_flOutput = 0.0
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flStartScale = 0.000000
-			m_flBias = 0.750000
+			m_flStartScale = 200.0
+			m_flBias = 0.75
+			m_flEndScale = 200.0
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 720.000000
-			m_flRadiusMax = 1440.000000
+			m_flRadiusMin = 50000.0
+			m_flRadiusMax = 50000.0
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 64
+			m_nAlphaMin = 5
+			m_nAlphaMax = 8
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.150000
-			m_fLifetimeMin = 0.100000
+			m_fLifetimeMax = 0.15
+			m_fLifetimeMin = 0.1
 		},
 		{
 			_class = "C_INIT_CreateFromParentParticles"
-			m_flVelocityScale = -2.000000
+			m_flVelocityScale = -2.0
 		},
 		{
 			_class = "C_INIT_InheritFromParentParticles"
 			m_nFieldOutput = 21
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_AddVectorToVector"
-			m_vecScale =
-			[
-				600.000000,
-				600.000000,
-				600.000000,
-			]
+			m_vecScale = [ 600.0, 600.0, 600.0 ]
 			m_nFieldInput = 21
 			m_nFieldOutput = 2
 		},
 		{
-			_class = "C_INIT_PositionOffset"
-			m_OffsetMin =
-			[
-				-1.000000,
-				-1.000000,
-				-24.000000,
-			]
-			m_OffsetMax =
-			[
-				1.000000,
-				1.000000,
-				-24.000000,
-			]
-		},
-		{
 			_class = "C_INIT_RandomTrailLength"
-			m_flMinLength = 2.000000
-			m_flMaxLength = 2.000000
+			m_flMinLength = 1.0
+			m_flMaxLength = 1.0
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
-			m_vecOutputMax =
-			[
-				30000.000000,
-				30000.000000,
-				1000.000000,
-			]
-			m_vecOutputMin =
-			[
-				-30000.000000,
-				-30000.000000,
-				-1000.000000,
-			]
-			m_flNoiseScaleLoc = 555.000000
-			m_flNoiseScale = 555.000000
+			m_vecOutputMax = [ 50000.0, 50000.0, 50000.0 ]
+			m_vecOutputMin = [ -50000.0, -50000.0, -50000.0 ]
+			m_flNoiseScaleLoc = 555.0
+			m_flNoiseScale = 555.0
 		},
 		{
 			_class = "C_INIT_RemapParticleCountToScalar"
@@ -140,12 +101,32 @@
 			m_bScaleInitialRange = true
 			m_bActiveRange = true
 		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 240, 255, 32, 164 ]
+			m_ColorMax = [ 217, 205, 205, 110 ]
+		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 256.000000
+			m_flEmitRate = 256.0
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

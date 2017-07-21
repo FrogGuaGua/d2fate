@@ -519,7 +519,7 @@ function FireSingleMaxParticle(keys)
 			end
 		)
 		
-		local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/max_excalibur/shockwave_2_versiona.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+		local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/max_excalibur/shockwave", PATTACH_ABSORIGIN_FOLLOW, dummy)
 		--local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/excalibur/shockwave.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
 			
 		Timers:CreateTimer(0.36, function()
@@ -548,7 +548,7 @@ function FireSingleMaxParticle(keys)
 			end
 		)
 		
-		local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/max_excalibur/shockwave_2_versionc.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+		local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/max_excalibur/shockwave.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
 		--local excalFxIndex = ParticleManager:CreateParticle("particles/custom/saber/excalibur/shockwave.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
 			
 		Timers:CreateTimer(0.57, function()
