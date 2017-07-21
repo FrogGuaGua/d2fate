@@ -462,7 +462,7 @@ function OnNineLanded(caster, ability)
 						else
 							DoDamage(caster, v, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 						end
-						giveUnitDataDrivenModifier(caster, v, "stunned", 0.5)
+						giveUnitDataDrivenModifier(caster, v, "stunned", 1.0)
 						if caster:GetName() ~= "npc_dota_hero_ember_spirit" then
 							giveUnitDataDrivenModifier(caster, v, "revoked", 0.5)
 						end
