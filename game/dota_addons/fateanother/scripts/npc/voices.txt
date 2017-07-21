@@ -10,6 +10,7 @@
 #base "voices/gilg.txt"
 #base "voices/iskander.txt"
 #base "voices/lancelot.txt"
+#base "voices/lancer.txt"
 #base "voices/lishuwen.txt"
 #base "voices/nero.txt"
 #base "voices/nursery.txt"
