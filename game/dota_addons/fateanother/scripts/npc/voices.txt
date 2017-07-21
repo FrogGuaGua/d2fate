@@ -1,5 +1,7 @@
 #base "voices/tamamo.txt"
 #base "voices/caster.txt"
+#base "voices/astolfo.txt"
+#base "voices/archer.txt"
 
 "FATEVoices"
 {
