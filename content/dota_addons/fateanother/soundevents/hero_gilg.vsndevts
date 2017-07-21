@@ -108,3 +108,499 @@
 		}
 	}
 }
+
+ 
+"gilg_attack_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_attack_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_enkidu"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_enkidu.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_enuma_elish"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_enuma_elish.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_gob"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_gob.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_hurt_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_hurt_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_laugh"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_laugh.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_move_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_move_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_move_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_move_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_move_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_move_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_np_command"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_np_command.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_other_01"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_other_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_other_02"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_other_02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_other_03"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_other_03.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_other_04"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_other_04.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
+ 
+"gilg_spawn"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"						"sos_reference_stack"
+				"reference_stack"				"dota_update_vo_switch"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"			"sounds/gilg/gilg_spawn.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"					"3.000000"
+					}
+					"pitch"
+					{
+						"value"					"1.000000"
+					}
+				}
+			}
+		}
+	}
+}
