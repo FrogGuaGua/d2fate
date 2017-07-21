@@ -1,0 +1,51 @@
+"FATEVoices"
+{
+	"npc_dota_hero_vengefulspirit"
+	{
+		"Spawn"
+		{
+			"01"						"avenger_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"avenger_move_01"
+			"02"						"avenger_move_02"
+			"03"						"avenger_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"avenger_attack_01"
+			"02"						"avenger_attack_02"
+		}
+		
+		"Cast"
+		{
+			"01"						"avenger_other_04"
+		}
+		
+		"Hurt"
+		{
+			"01"						"avenger_hurt_01"
+		}
+		
+		"Respawn"
+		{
+			"01"						"avenger_other_01"
+			"02"						"avenger_other_02"
+		}
+		
+		"Death"
+		{
+			"01"						"avenger_death"
+		}
+		
+		"Kill"
+		{
+			"01"						"avenger_kill"
+			"02"						"avenger_laugh"
+			"03"						"avenger_other_03"
+		}
+	}
+}

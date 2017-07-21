@@ -1,0 +1,57 @@
+"FATEVoices"
+{
+	"npc_dota_hero_huskar"
+	{
+		"Spawn"
+		{
+			"01"						"zl_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"zl_move_01"
+			"02"						"zl_move_02"
+			"03"						"zl_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"zl_attack_01"
+			"02"						"zl_attack_02"
+			"03"						"zl_attack_03"
+		}
+		
+		"Cast"
+		{
+			"01"						"zl_move_"
+		}
+		
+		"Hurt"
+		{
+			"01"						"zl_hurt_01"
+			"02"						"zl_hurt_02"
+		}
+		
+		"Respawn"
+		{
+			"01"						"zl_battle_begin_01"
+			"02"						"zl_battle_begins_02"
+			"03"						"zl_other_04"
+			"04"						"zl_other_05"
+		}
+		
+		"Death"
+		{
+			"01"						"zl_death_01"
+			"02"						"zl_death_02"
+		}
+		
+		"Kill"
+		{
+			"01"						"zl_kill"
+			"02"						"zl_other_01"
+			"03"						"zl_other_02"
+			"04"						"zl_other_03"
+		}
+	}
+}

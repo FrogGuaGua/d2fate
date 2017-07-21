@@ -1,0 +1,57 @@
+"FATEVoices"
+{
+	"npc_dota_hero_legion_commander"
+	{
+		"Move"
+		{
+			"01"							"saber_move_01"
+			"02"							"saber_move_02"
+			"03"							"saber_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"							"saber_attack_01"
+			"02"							"saber_attack_02"
+			"03"							"saber_attack_03"
+			"04"							"saber_attack_04"
+		}
+		
+		"Spawn"
+		{
+			"01"							"saber_spawn"
+		}
+		
+		"Cast"
+		{
+			"01"							"saber_other_01"
+			"02"							"saber_other_02"
+		}
+		
+		"Hurt"
+		{
+			"01"							"saber_hurt"
+		}
+		
+		"Respawn"
+		{
+			"01"							"saber_entry_diarmuid"
+			"02"							"saber_entry_kojiro"
+			"03"							"saber_entry1"
+			"04"							"saber_entry2"
+			"05"							"saber_entry3"
+			"06"							"saber_entry4"
+		}
+		
+		"Death"
+		{
+			"01"							"saber_hurt"
+		}
+		
+		"Kill"
+		{
+			"01"							"saber_owaridesu"
+			"02"							"saber_victory"
+		}
+	}
+}

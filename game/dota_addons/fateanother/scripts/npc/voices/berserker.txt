@@ -1,0 +1,51 @@
+"FATEVoices"
+{
+	"npc_dota_hero_doom_bringer"
+	{
+		"Spawn"
+		{
+			"01"						"berserker_battle_start"
+		}
+		
+		"Move"
+		{
+			"01"						"berserker_move_01"
+			"02"						"berserker_move_02"
+			"03"						"berserker_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"berserker_roar_01"
+			"02"						"berserker_roar_02"
+		}
+		
+		"Cast"
+		{
+			"01"						"berserker_skill_01"
+		}
+		
+		"Hurt"
+		{
+			"01"						"berserker_roar_03"
+		}
+		
+		"Respawn"
+		{
+			"01"						"berserker_roar_01"
+			"02"						"berserker_roar_02"
+			"03"						"berserker_roar_03"
+		}
+		
+		"Death"
+		{
+			"01"						"berserker_death_01"
+			"02"						"berserker_death_02"
+		}
+		
+		"Kill"
+		{
+			"01"						"berserker_roar_01"
+		}
+	}
+}

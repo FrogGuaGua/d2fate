@@ -1,0 +1,51 @@
+"FATEVoices"
+{
+	"npc_dota_hero_omniknight"
+	{
+		"Spawn"
+		{
+			"01"						"gawain_spawn_temp"
+		}
+		
+		"Move"
+		{
+			"01"						"gawain_move_01"
+			"02"						"gawain_move_02"
+			"03"						"gawain_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"gawain_attack_01"
+		}
+		
+		"Cast"
+		{
+			"01"						"gawain_move_01"
+		}
+		
+		"Hurt"
+		{
+			"01"						"gilg_hurt_01"
+		}
+		
+		"Respawn"
+		{
+			"01"						"gawain_skill_01"
+			"02"						"gawain_kill_02"
+			"03"						"gawain_kill_03"
+		}
+		
+		"Death"
+		{
+			"01"						"gawain_attack_01"
+		}
+		
+		"Kill"
+		{
+			"01"						"gawain_kill_01"
+			"02"						"gawain_kill_02"
+			"03"						"gawain_kill_03"
+		}
+	}
+}
