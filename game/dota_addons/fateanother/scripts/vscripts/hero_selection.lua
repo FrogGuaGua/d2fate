@@ -20,6 +20,7 @@ function HeroSelection:constructor()
     end)
 
     self.Time = 65 
+	if IsInToolsMode() then self.time = 5 end
 
     CustomNetTables:SetTableValue("selection", "all", self.AvailableHeroes)
     CustomNetTables:SetTableValue("selection", "available", self.AvailableHeroes)
