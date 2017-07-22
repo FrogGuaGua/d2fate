@@ -227,7 +227,7 @@ function OnDIZabStart(keys)
 		Ability = keys.ability,
 		EffectName = "particles/custom/ta/zabaniya_projectile.vpcf",
 		vSpawnOrigin = caster,
-		iMoveSpeed = 900
+		iMoveSpeed = 600
 	}
 	ProjectileManager:CreateTrackingProjectile(info) 
 	local particle = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_fiendsgrip_hands_combo.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
