@@ -55,7 +55,7 @@
 
 		
 		var talentButton = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("AbilitiesAndStatBranch").FindChildTraverse("StatBranch");
-		talentButton.style.visibility = "collapse";
+		//talentButton.style.visibility = "collapse";
 		
 		var talentButtonOverlay = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("level_stats_frame");
 		talentButtonOverlay.style.visibility = "collapse";
