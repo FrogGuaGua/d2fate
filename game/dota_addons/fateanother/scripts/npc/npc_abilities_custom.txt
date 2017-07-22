@@ -14443,7 +14443,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"5"
+		"AbilityCooldown"				"10"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -14955,7 +14955,7 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"200"
 		"AbilityCastRangeBuffer"		"100"
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"26"
 		"AbilityManaCost"				"200"
 		
 		"precache"

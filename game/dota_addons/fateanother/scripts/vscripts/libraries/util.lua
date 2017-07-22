@@ -20,6 +20,7 @@ softdispellable = {
     "modifier_heart_of_harmony",
     "modifier_l_rule_breaker",
     "modifier_double_edge",
+    "modifier_murderous_instinct",
     "modifier_double_spearsmanship",
     "modifier_gordius_wheel_speed_boost",
     "nero_gladiusanus_blauserum",
@@ -107,7 +108,7 @@ goesthruB = {"saber_avalon",
             "false_assassin_quickdraw",
             "archer_5th_overedge",
             "avenger_verg_avesta",
-            "lancer_5th_wesen_gae_bolg",
+            "lancer_5th_wesen_gae_bolg"
 }
 
 cleansable = {
@@ -1074,7 +1075,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             dmgtable.damage = dmgtable.damage/#target.linkTable * (1 + 0.1 * #target.linkTable - (#target.linkTable == 1 and 1 or 0) * 0.1)
             --print(damageToAllies, dmgtable.damage, (1 + 0.1 * #target.linkTable - (#target.linkTable == 1 and 1 or 0) * 0.1))
             -- Loop through linked heroes
-            for i=#target.linkTable,1,-1 do
+            for i=1, #target.linkTable do
                 -- do ApplyDamage if it's primary target since the shield processing is already done
                 if target.linkTable[i] == target then
                     --print("Damage dealt to primary target : " .. dmgtable.damage .. " dealt by " .. dmgtable.attacker:GetName())
