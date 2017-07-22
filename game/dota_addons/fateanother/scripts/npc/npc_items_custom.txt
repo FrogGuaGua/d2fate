@@ -425,7 +425,7 @@
 	    	"particle"		"particles/items_fx/healing_flask.vpcf"
 	    }
 
-	    "ItemCost"     "800"
+	    "ItemCost"     "700"
 	    "ItemQuality"  "component"
 	    "ItemKillable" "1" 
 	    "ItemSellable" "1"
@@ -702,7 +702,7 @@
 	    		"Duration"		"10.0"
 	    		"Properties"
 	    		{
-	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"30"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"25"
 	    		}
 	    	}
 	    }
