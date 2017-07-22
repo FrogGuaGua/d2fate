@@ -9025,7 +9025,7 @@
 		"AnimationPlaybackRate" 		"1.0"
 		"precache"
 		{
-			"particle"		"particles/custom/ta/zabaniya_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_base_attack.vpcf"
 			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
 			"particle"		"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
@@ -9093,7 +9093,7 @@
 
 		"precache"
 		{
-			"particle"		"particles/custom/ta/zabaniya_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_base_attack.vpcf"
 			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
 		}
@@ -9436,7 +9436,7 @@
 
 		"precache"
 		{
-			"particle"		"particles/custom/ta/zabaniya_projectile.vpcf"
+			"particle"		"particles/units/heroes/hero_nevermore/nevermore_base_attack.vpcf"
 			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
 			"particle"		"particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf"
 			"particle"		"particles/custom/ta/zabaniya_shadow.vpcf"

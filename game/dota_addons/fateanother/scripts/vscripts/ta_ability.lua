@@ -225,17 +225,17 @@ function OnDIZabStart(keys)
 		Target = target,
 		Source = caster, 
 		Ability = keys.ability,
-		EffectName = "particles/custom/ta/zabaniya_projectile.vpcf",
+		EffectName = "particles/units/heroes/hero_nevermore/nevermore_base_attack.vpcf",
 		vSpawnOrigin = caster,
-		iMoveSpeed = 900
+		iMoveSpeed = 700
 	}
 	ProjectileManager:CreateTrackingProjectile(info) 
-	local particle = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_fiendsgrip_hands_combo.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin()) -- target effect location
 	ParticleManager:SetParticleControl(particle, 2, target:GetAbsOrigin()) -- circle effect location
-	local smokeFx = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+	local smokeFx = ParticleManager:CreateParticle("particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(smokeFx, 0, caster:GetAbsOrigin())
-	local smokeFx2 = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	local smokeFx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(smokeFx2, 0, target:GetAbsOrigin())
 	local smokeFx3 = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf", PATTACH_CUSTOMORIGIN, caster)
 	ParticleManager:SetParticleControl(smokeFx3, 0, caster:GetAbsOrigin())
@@ -338,12 +338,18 @@ end
 
 function OnFirstHitLanded(keys)
 	local hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	hero.bIsAmbushHitOnCooldown = true
 	if IsSpellBlocked(keys.target) then keys.caster:RemoveModifierByName("modifier_thrown") return end -- Linken effect checker
+	if hero.bIsAmbushHitOnCooldown ~= true then
+		DoDamage(keys.caster, keys.target, keys.Damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+	end
+	hero.bIsAmbushHitOnCooldown = true
+	Timers:CreateTimer(1,function()
+		hero.bIsAmbushHitOnCooldown = false
+	end)
 
 	if keys.target:GetName() == "npc_dota_ward_base" then
 		DoDamage(keys.caster, keys.target, 2, DAMAGE_TYPE_PURE, 0, keys.ability, false)
-	else
-		DoDamage(keys.caster, keys.target, keys.Damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
 	end
 	keys.caster:EmitSound("Hero_TemplarAssassin.Meld.Attack")
 	keys.caster:RemoveModifierByName("modifier_thrown")
@@ -431,7 +437,7 @@ function OnZabStart(keys)
 		Target = keys.target,
 		Source = caster, 
 		Ability = keys.ability,
-		EffectName = "particles/custom/ta/zabaniya_projectile.vpcf",
+		EffectName = "particles/units/heroes/hero_nevermore/nevermore_base_attack.vpcf",
 		vSpawnOrigin = caster:GetAbsOrigin(),
 		iMoveSpeed = 950
 	}
@@ -444,12 +450,16 @@ function OnZabStart(keys)
 	Timers:CreateTimer({
 		endTime = 0.033,
 		callback = function()
-		local smokeFx = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		local smokeFx = ParticleManager:CreateParticle("particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 		ParticleManager:SetParticleControl(smokeFx, 0, caster:GetAbsOrigin())
-		local smokeFx2 = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+		local smokeFx2 = ParticleManager:CreateParticle("particles/units/heroes/hero_night_stalker/nightstalker_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControl(smokeFx2, 0, target:GetAbsOrigin())
 		local smokeFx3 = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf", PATTACH_CUSTOMORIGIN, caster)
 		ParticleManager:SetParticleControl(smokeFx3, 0, target:GetAbsOrigin())
+
+		ParticleManager:SetParticleControl(particle, 1, keys.target:GetAbsOrigin()) -- target effect location
+		ParticleManager:SetParticleControl(particle, 2, keys.target:GetAbsOrigin()) -- circle effect location
 
 		-- Destroy particle after delay
 		Timers:CreateTimer( 2.0, function()
@@ -481,7 +491,7 @@ function OnZabHit(keys)
 
 	local shadowFx = ParticleManager:CreateParticle("particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(shadowFx, 0, target:GetAbsOrigin())
-	local smokeFx3 = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_fiendsgrip_hands.vpcf", PATTACH_CUSTOMORIGIN, target)
+	local smokeFx3 = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf", PATTACH_CUSTOMORIGIN, target)
 	ParticleManager:SetParticleControl(smokeFx3, 0, target:GetAbsOrigin())
 
 	-- Destroy particle after delay
