@@ -702,7 +702,7 @@ function FateGameMode:OnPlayerChat(keys)
                 table.insert(rank, index)
             end
             hero.AntiSpamCooldown1 = true
-            Timers:CreateTimer(1, function()
+            Timers:CreateTimer(20, function()
                 hero.AntiSpamCooldown1 = false
             end)
             Say(hero:GetPlayerOwner(), "Average damage done per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
@@ -724,7 +724,7 @@ function FateGameMode:OnPlayerChat(keys)
                 table.insert(rank, index)
             end
             hero.AntiSpamCooldown2 = true
-            Timers:CreateTimer(1, function()
+            Timers:CreateTimer(20, function()
                 hero.AntiSpamCooldown2 = false
             end)
             Say(hero:GetPlayerOwner(), "Average damage taken per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
@@ -746,7 +746,7 @@ function FateGameMode:OnPlayerChat(keys)
                 table.insert(rank, index)
             end
             hero.AntiSpamCooldown3 = true
-            Timers:CreateTimer(1, function()
+            Timers:CreateTimer(20, function()
                 hero.AntiSpamCooldown3 = false
             end)
             Say(hero:GetPlayerOwner(), "Average number of C scrolls used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
