@@ -31,7 +31,7 @@ function OnFissureHit(keys)
 	local target = keys.target
 	local courageAbility = caster:FindAbilityByName("berserker_5th_courage") 
 	if caster:HasModifier("modifier_courage_damage_stack_indicator") then
-		keys.Damage = keys.Damage + courageAbility:GetLevelSpecialValueFor("bonus_damage", courageAbility:GetLevel()-1)
+		keys.Damage = keys.Damage + courageAbility:GetLevelSpecialValueFor("bonus_damage", courageAbility:GetLevel()-1)/2
 		DeductCourageDamageStack(caster)
 	end 
 
@@ -43,7 +43,7 @@ function OnFissureHit(keys)
     local pushTarget = Physics:Unit(target)
     target:PreventDI()
     target:SetPhysicsFriction(0)
-	local vectorC = (caster.FissureTarget - caster.FissureOrigin) --knockback in direction as fissure
+	local vectorC = (caster.FissureTarget - caster.FissureOrigin) + Vector(0,0,100) --knockback in direction as fissure
 	-- get the direction where target will be pushed back to
 	target:SetPhysicsVelocity(vectorC:Normalized() * 1500)
     target:SetNavCollisionType(PHYSICS_NAV_BOUNCE)
@@ -54,7 +54,7 @@ function OnFissureHit(keys)
 		local diff = unitOrigin - initialUnitOrigin
 		local n_diff = diff:Normalized()
 		unit:SetPhysicsVelocity(unit:GetPhysicsVelocity():Length() * n_diff) -- track the movement of target being pushed back
-		if diff:Length() > 400 then -- if pushback distance is over 400, stop it
+		if diff:Length() > caster:FindAbilityByName("berserker_5th_fissure_strike"):GetSpecialValueFor("knockback") then -- if pushback distance is over 400, stop it
 			unit:PreventDI(false)
 			unit:SetPhysicsVelocity(Vector(0,0,0))
 			unit:OnPhysicsFrame(nil)
@@ -152,11 +152,24 @@ function OnRoarStart(keys)
 	masterCombo:StartCooldown(keys.ability:GetCooldown(1))
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_madmans_roar_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
 	
-	-- Remove Berserk modifier and set health to max
-	if caster:HasModifier("modifier_berserk_self_buff") then
+	-- Reset berserk modifier at double healthlock
+	--[[if caster:HasModifier("modifier_berserk_self_buff") then
 		caster:RemoveModifierByName("modifier_berserk_self_buff")
+	end]]
+
+	if caster:HasModifier("modifier_berserk_self_buff") == false then
+	caster:RemoveModifierByName("modifier_berserk_self_buff")
+	local newKeys = keys
+	newKeys.ability = caster:FindAbilityByName("berserker_5th_berserk")
+	newKeys.Duration = newKeys.ability:GetSpecialValueFor("duration")
+	newKeys.Health = newKeys.ability:GetSpecialValueFor("health_constant")
+	OnBerserkStart(newKeys, false)
 	end
-	caster:SetHealth(caster:GetMaxHealth())
+
+	--caster:FindAbilityByName("berserker_5th_berserk"):ApplyDataDrivenModifier(caster, caster, "modifier_berserk_self_buff", {hplock = hplock * 2})		
+	--caster:SetRenderColor(255, 127, 127)
+
+
 
 	local casterloc = caster:GetAbsOrigin()
 	local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 3000
@@ -164,11 +177,11 @@ function OnRoarStart(keys)
 	local finaldmg = 0
 	for k,v in pairs(targets) do
 		local dist = (v:GetAbsOrigin() - casterloc):Length2D() 
-		if dist <= 300 then
+		if dist <= 350 then
 			finaldmg = keys.Damage1
 		        giveUnitDataDrivenModifier(caster, v, "stunned", 3.0)
 			giveUnitDataDrivenModifier(caster, v, "rb_sealdisabled", 3.0)
-		elseif dist > 300 and dist <= 1000 then
+		elseif dist > 350 and dist <= 1000 then
 			finaldmg = keys.Damage2
 			if not IsImmuneToSlow(v) then 
 				ability:ApplyDataDrivenModifier(caster, v, "modifier_madmans_roar_slow_strong", {}) 
@@ -208,7 +221,12 @@ function OnBerserkStart(keys)
 		if berserkCounter > duration then return end
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff_symbol.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
   --   	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin() )
-		caster:SetHealth(math.min(hplock , caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 100)) -- 100 being unit health reduction, refer to ZL KV/lua.
+  		--Combo Roar double health lock
+  		if caster:HasModifier("modifier_madmans_roar_silence") then
+  			caster:SetHealth(math.min(hplock * 2, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 100))
+		else caster:SetHealth(math.min(hplock, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 100))
+			end
+		 -- 100 being unit health reduction, refer to ZL KV/lua.
 		berserkCounter = berserkCounter + 0.033
 		return 0.033
 		end
@@ -238,7 +256,10 @@ function OnBerserkStart(keys)
 	end
 
 	BerCheckCombo(caster, keys.ability)
+	--prevents double sound on combo
+	if caster:HasModifier("modifier_madmans_roar_silence") == false then
 	EmitGlobalSound("Berserker.Roar")
+	end
 
 	-- hi i'm definitely not a hacky replacement for not being able to get status effect particles to work
 	caster:SetRenderColor(255, 127, 127)
@@ -451,7 +472,7 @@ function OnNineLanded(caster, ability)
 				-- do damage to targets
 				local damage = lasthitdmg 
 				if caster:HasModifier("modifier_courage_damage_stack_indicator") then
-					damage = damage + courageDamage
+					damage = damage + courageDamage/2
 					DeductCourageDamageStack(caster)
 				end 
 				local lasthitTargets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, lasthitradius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 1, false)
@@ -500,7 +521,7 @@ function OnNineLanded(caster, ability)
 				-- if its not last hit, do regular hit stuffs
 				local damage = tickdmg -- store original tick damage 
 				if caster:HasModifier("modifier_courage_damage_stack_indicator") then
-					damage = damage + courageDamage
+					damage = damage + courageDamage/2
 					DeductCourageDamageStack(caster)
 				end 
 				local targets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, 1, false)

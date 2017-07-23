@@ -1145,10 +1145,19 @@ end
 
 function ApplyPurge(target)
     for k,v in pairs(softdispellable) do
-        if v == "modifier_share_damage" then
-            RemoveHeroFromLinkTables(target)
+        if v == "modifier_courage_stackable_buff" then
+            local currentStack = target:GetModifierStackCount("modifier_courage_stackable_buff", target:FindAbilityByName("berserker_5th_courage"))
+            if currentStack <= 2 then
+                target:RemoveModifierByName("modifier_courage_stackable_buff")
+            else
+                target:SetModifierStackCount("modifier_courage_stackable_buff", target:FindAbilityByName("berserker_5th_courage"), currentStack-2)
+            end
+        else
+            if v == "modifier_share_damage" then
+                RemoveHeroFromLinkTables(target)
+            end
+            target:RemoveModifierByName(v)
         end
-        target:RemoveModifierByName(v)
     end
 end
 
