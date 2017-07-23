@@ -1,5 +1,7 @@
 // Dota Heroes File
 
+#base "abilities/vlad/vlad_abilities.txt"
+
 "DOTAAbilities"
 {
 	"Version"		"1"

@@ -1,0 +1,69 @@
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	//	Lancer(Extra) - Vlad III
+	//=================================================================================================================
+	"npc_dota_hero_vlad"
+	{
+		"override_hero"			"npc_dota_hero_tidehunter"
+		"DisableWearables" 			"1"
+		"Model"					"models/vlad/vlad.vmdl"
+		//"Model"				"models/development/invisiblebox.vmdl"
+		"ModelScale"			"1.40"
+		"DrawParticlesWhileHidden" "1"
+
+		"AbilityLayout"			"6"
+		"Ability1"				"vlad_rebellious_intent"
+		"Ability2"				"vlad_ceremonial_purge"
+		"Ability3"				"vlad_cursed_lance"
+		"Ability4"				"vlad_transfusion"
+		"Ability5"				"vlad_battle_continuation"
+		"Ability6"				"vlad_kazikli_bey"
+		"Ability7"				"vlad_combo"
+		"Ability8"				"vlad_instant_curse"
+		"Ability9"				"vlad_passive_rending"
+		"Ability10"				"vlad_impale"
+		"Ability13"				"presence_detection_passive"
+		"Ability14"				"attribute_bonus_custom"
+
+		"Combo"					""
+		"AttributeNumber"			"0"
+		"Attribute1"				"vlad_attribute_innocent_monster"
+		"Attribute2"				"vlad_attribute_protection_of_faith"
+		"Attribute3"				"vlad_attribute_improved_impaling"
+		"Attribute4"				"vlad_attribute_instant_curse"
+		"Attribute5"				"vlad_attribute_bloodletter"
+
+
+		"StatusHealth"					"1450"
+		"StatusHealthRegen"				"15"
+		"StatusMana"					"1100"
+		"StatusManaRegen"				"5"
+
+		"ArmorPhysical"					"5"
+		"MagicalResistance"				"5"
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackRange"					"215"
+		"AttackDamageMin"				"40"
+		"AttackDamageMax"				"65"
+		"AttackRate"					"1.52"
+		"AttackAcquisitionRange"		"520"
+		//"AttackAnimationPoint"		"0.3"
+
+
+		"AttributePrimary"				"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"			"0"
+		"AttributeStrengthGain"			"1.5"
+		"AttributeBaseAgility"			"0"
+		"AttributeAgilityGain"			"0.8"
+		"AttributeBaseIntelligence"		"0"
+		"AttributeIntelligenceGain"		"0.7"
+
+		"MovementSpeed"					"325"
+		"MovementTurnRate"				"0.8"
+
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
+	}
+}
