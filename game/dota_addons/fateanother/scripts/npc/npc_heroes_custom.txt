@@ -58,7 +58,7 @@
 		"StatusHealth"					"1300"
 		"StatusHealthRegen"				"8"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"4"
+		"StatusManaRegen"				"3.0"
 		
 		"ArmorPhysical"					"6"
 		"MagicalResistance"				"25"
@@ -128,7 +128,7 @@
 		"StatusHealth"					"1200"
 		"StatusHealthRegen"				"6.5"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"6"
+		"StatusManaRegen"				"5.0"
 		
 		"ArmorPhysical"					"5"
 		"MagicalResistance"				"10"
@@ -192,7 +192,7 @@
 		"StatusHealthRegen"				"20"
 		"StatusMana"					"1000"
 		"StatusManaRegen"				"7"
-		"ArmorPhysical"					"8"
+		"ArmorPhysical"					"6.0"
 		"MagicalResistance"				"20"
 		
 		"AttackCapabilities"			"DOTA_UNIT_CAP_MELEE_ATTACK"
@@ -260,7 +260,7 @@
 		"StatusHealth"					"1200"
 		"StatusHealthRegen"				"8"
 		"StatusMana"					"1100"
-		"StatusManaRegen"				"6.5"
+		"StatusManaRegen"				"5.5"
 		
 		"ArmorPhysical"					"4"
 		"MagicalResistance"				"5"
@@ -323,7 +323,7 @@
 		"StatusHealth"					"1300"
 		"StatusHealthRegen"				"12"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"3.5"
+		"StatusManaRegen"				"2.5"
 		
 		"ArmorPhysical"					"1"
 		"MagicalResistance"				"10"
@@ -387,7 +387,7 @@
 		"StatusHealth"					"1600"
 		"StatusHealthRegen"				"15"
 		"StatusMana"					"1100"
-		"StatusManaRegen"				"3.5"
+		"StatusManaRegen"				"3.0"
 		
 		"ArmorPhysical"					"4"
 		"MagicalResistance"				"10"
@@ -515,7 +515,7 @@
 		"StatusHealth"					"1050"
 		"StatusHealthRegen"				"8"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"4"
+		"StatusManaRegen"				"3.0"
 		
 		"ArmorPhysical"					"2"
 		"MagicalResistance"				"10"
@@ -585,7 +585,7 @@
 		"StatusHealth"					"850"
 		"StatusHealthRegen"				"3"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"9"
+		"StatusManaRegen"				"8.0"
 		
 		"ArmorPhysical"					"1.5"
 		"MagicalResistance"				"20"
@@ -648,7 +648,7 @@
 		"StatusHealth"					"1150"
 		"StatusHealthRegen"				"12"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"2"
+		"StatusManaRegen"				"2.0"
 		
 		"ArmorPhysical"					"4"
 		"MagicalResistance"				"5"
@@ -714,7 +714,7 @@
 		"StatusHealth"					"1400"
 		"StatusHealthRegen"				"10"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"6"
+		"StatusManaRegen"				"6.0"
 		
 		"ArmorPhysical"					"7"
 		"MagicalResistance"				"10"
@@ -780,7 +780,7 @@
 		"StatusHealth"					"1100"
 		"StatusHealthRegen"				"0"
 		"StatusMana"					"1050"
-		"StatusManaRegen"				"7"
+		"StatusManaRegen"				"6.0"
 		
 		"ArmorPhysical"					"1"
 		"MagicalResistance"				"0"
@@ -843,7 +843,7 @@
 		"StatusHealth"					"1150"
 		"StatusHealthRegen"				"9.0"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"2.5"
+		"StatusManaRegen"				"1.5"
 		
 		"ArmorPhysical"					"4"
 		"MagicalResistance"				"15"
@@ -971,7 +971,7 @@
 		"StatusHealth"					"1250"
 		"StatusHealthRegen"				"10"
 		"StatusMana"					"1100"
-		"StatusManaRegen"				"3"
+		"StatusManaRegen"				"2.0"
 		
 		"ArmorPhysical"					"4"
 		"MagicalResistance"				"10"
@@ -1037,7 +1037,7 @@
 		"StatusHealth"					"1200"
 		"StatusHealthRegen"				"9.0"
 		"StatusMana"					"1175"
-		"StatusManaRegen"				"2.5"
+		"StatusManaRegen"				"2.0"
 		
 		"ArmorPhysical"					"6"
 		"MagicalResistance"				"10"
@@ -1101,7 +1101,7 @@
 		"StatusHealth"					"1200"
 		"StatusHealthRegen"				"9.0"
 		"StatusMana"					"1050"
-		"StatusManaRegen"				"3"
+		"StatusManaRegen"				"5.0"
 		
 		"ArmorPhysical"					"6"
 		"MagicalResistance"				"20"
@@ -1159,7 +1159,7 @@
 		"StatusHealth"					"1150"
 		"StatusHealthRegen"				"4.0"
 		"StatusMana"					"1300"
-		"StatusManaRegen"				"5.5"
+		"StatusManaRegen"				"4.5"
 		
 		"ArmorPhysical"					"2"
 		"MagicalResistance"				"20"
@@ -1220,7 +1220,7 @@
 		"StatusHealth"					"1150"
 		"StatusHealthRegen"				"4.0"
 		"StatusMana"					"1100"
-		"StatusManaRegen"				"3"
+		"StatusManaRegen"				"2.0"
 		
 		"ArmorPhysical"					"2"
 		"MagicalResistance"				"5"
@@ -1282,7 +1282,7 @@
 		"StatusHealth"					"1250"
 		"StatusHealthRegen"				"7"
 		"StatusMana"					"1175"
-		"StatusManaRegen"				"5"
+		"StatusManaRegen"				"4.0"
 		
 		"ArmorPhysical"					"5"
 		"MagicalResistance"				"25"
@@ -1344,7 +1344,7 @@
 		"StatusHealth"					"1250"
 		"StatusHealthRegen"				"5"
 		"StatusMana"					"1050"
-		"StatusManaRegen"				"5"
+		"StatusManaRegen"				"4.0"
 		
 		"ArmorPhysical"					"3"
 		"MagicalResistance"				"0"
@@ -1408,7 +1408,7 @@
 		"StatusHealth"					"1050"
 		"StatusHealthRegen"				"5"
 		"StatusMana"					"1200"
-		"StatusManaRegen"				"4"
+		"StatusManaRegen"				"3.0"
 		
 		"ArmorPhysical"					"2"
 		"MagicalResistance"				"15"
@@ -1476,7 +1476,7 @@
 		"StatusHealth"					"1150"
 		"StatusHealthRegen"				"7"
 		"StatusMana"					"1000"
-		"StatusManaRegen"				"5"
+		"StatusManaRegen"				"4.0"
 		
 		"ArmorPhysical"					"3"
 		"MagicalResistance"				"0"
