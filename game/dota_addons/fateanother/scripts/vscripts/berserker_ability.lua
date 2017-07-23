@@ -152,11 +152,13 @@ function OnRoarStart(keys)
 	masterCombo:StartCooldown(keys.ability:GetCooldown(1))
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_madmans_roar_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
 	
-	-- Reset berserk modifier at double healthlock
+	--remove berserk and set health to max
 	--[[if caster:HasModifier("modifier_berserk_self_buff") then
 		caster:RemoveModifierByName("modifier_berserk_self_buff")
-	end]]
+	end
+	caster:SetHealth(caster:GetMaxHealth())]]
 
+	--Reset berserk buff with double health lock
 	if caster:HasModifier("modifier_berserk_self_buff") == false then
 	caster:RemoveModifierByName("modifier_berserk_self_buff")
 	local newKeys = keys
