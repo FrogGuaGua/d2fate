@@ -34,6 +34,7 @@ function modifier_unit_voice:OnOrder(args)
 	local hUnit = args.unit
 	local eOrder = args.order_type
 	local iIssuer = args.issuer_player_index
+	local hAbility = args.ability
 	
 	if not hUnit == self:GetParent() or not hUnit.UnitVoice then return end
 	
@@ -54,11 +55,11 @@ function modifier_unit_voice:OnOrder(args)
 	end
 	
 	if eOrder == 5 then
-		hUnit.UnitVoice:OnCast(iIssuer)
+		if not hAbility:IsItem() then hUnit.UnitVoice:OnCast(iIssuer) end
 	end
 	
 	if eOrder == 6 then
-		hUnit.UnitVoice:OnCast(iIssuer)
+		if not hAbility:IsItem() then hUnit.UnitVoice:OnCast(iIssuer) end
 	end
 end
 
