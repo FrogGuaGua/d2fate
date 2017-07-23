@@ -30397,6 +30397,11 @@
 						"ScriptFile"	"master_ability"
 						"Function"		"OnHeroRespawn"
 					}
+					"RunScript"
+					{
+						"ScriptFile"	"ApplyLostAttributeModifiers"
+						"Function"		"ApplyLostAttributeModifiers"
+					}
 				}
 			}
 			"modifier_damage_collection"
