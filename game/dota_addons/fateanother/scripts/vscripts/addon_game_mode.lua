@@ -787,6 +787,12 @@ function FateGameMode:OnPlayerChat(keys)
             hero.MasterUnit2:SetMana(10)
         end
     end
+	
+    if text == "-ir" then
+        if IsInToolsMode() then
+          ROUND_DURATION = 86400
+        end
+    end
 
     -- Asks team for gold
     if text == "-goldpls" then
