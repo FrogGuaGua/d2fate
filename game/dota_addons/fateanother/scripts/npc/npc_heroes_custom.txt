@@ -464,9 +464,9 @@
 		
 		"AttributePrimary"				"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"			"0"
-		"AttributeStrengthGain"			"1"
+		"AttributeStrengthGain"			"1.0"
 		"AttributeBaseAgility"			"0"
-		"AttributeAgilityGain"			"2"
+		"AttributeAgilityGain"			"2.0"
 		"AttributeBaseIntelligence"		"0"
 		"AttributeIntelligenceGain"		"0"
 		
