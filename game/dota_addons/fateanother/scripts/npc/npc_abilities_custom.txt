@@ -13392,6 +13392,11 @@
 					"Damage"		"%damage"
 					"StunDuration"	"%stun_duration"
 			}
+			"RunScript"
+			{
+				"ScriptFile"		"lancelot_ability"
+				"Function"			"OnKnightUsed"
+			}	
 		}
 
 		"OnProjectileHitUnit"
@@ -13907,22 +13912,27 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"			"400 525 650 775 900"
+				"damage"			"400 500 600 700 800"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"18 21 24 27 30"
+				"bonus_damage"			"12 14 16 18 20"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_allstat"			"8 16 24 32 40"
+				"bonus_allstat"			"4 8 12 16 20"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"500"
 			}
 
 		}
@@ -13935,6 +13945,7 @@
 				"Function"			"OnAronditeStart"
 				"Duration"			"%duration"
 				"Damage"			"%damage"
+				"Radius"			"%radius"
 			}
 			"FireSound"
 			{
@@ -14081,7 +14092,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"11"
+		"AbilityManaCost"				"8"
 
 		"precache"
 		{
