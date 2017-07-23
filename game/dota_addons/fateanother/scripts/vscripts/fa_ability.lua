@@ -487,7 +487,8 @@ function OnWBStart(keys)
 	end
 
 	for k,v in pairs(targets) do
-		if (v:GetName() == "npc_dota_hero_bounty_hunter" and v.IsPFWAcquired) or v:GetUnitName() == "ward_familiar" then 
+		--if (v:GetName() == "npc_dota_hero_bounty_hunter" and v.IsPFWAcquired) or 
+		if v:GetUnitName() == "ward_familiar" then 
 			-- do nothing
 		else
 			giveUnitDataDrivenModifier(caster, v, "drag_pause", 0.5)
