@@ -22,6 +22,7 @@ var heroes = [
 	"npc_dota_hero_queenofpain",
 	"npc_dota_hero_windrunner",
 	"npc_dota_hero_drow_ranger",
+	"npc_dota_hero_tidehunter"
 ]
 
 function OnFatepediaButtonShowTooltip()
