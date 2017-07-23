@@ -141,6 +141,7 @@ function OnHeartDamageTaken(keys)
 		Timers:CreateTimer(function()
 			if counter == keys.AttackCount or not caster:IsAlive() then return end 
 			caster:PerformAttack( target, true, true, true, true, false, false, false )
+			caster:AddNewModifier(caster, caster, "modifier_camera_follow", {duration = 1.0})
 			CreateSlashFx(caster, target:GetAbsOrigin()+RandomVector(500), target:GetAbsOrigin()+RandomVector(500))
 			counter = counter+1
 			return 0.1
