@@ -46,80 +46,63 @@ function OnBaseLeft(trigger)
 	SendErrorMessage(hero:GetPlayerOwnerID(), "#Left_Base")
 end
 
-function OnTrioBase1Entered(trigger)
-	local hero = trigger.activator
+function OnTrioBaseEnter(hero, team)
+	if hero:GetUnitName() == "npc_dota_hero_wisp" then return end
 	hero.IsInBase = true
-	if hero:GetTeam() == DOTA_TEAM_GOODGUYS then
+	if hero:GetTeam() == team then
 		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 999)
 	end
 	SendErrorMessage(hero:GetPlayerOwnerID(), "#Entered_Base")
+end
+
+function OnTrioBaseLeft(hero, team)
+	if not hero then return end
+	hero.IsInBase = false
+	hero:RemoveModifierByName("spawn_invulnerable")
+	if hero:GetTeam() == team then
+		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 3)
+	end
+	SendErrorMessage(hero:GetPlayerOwnerID(), "#Left_Base")
+end
+
+function OnTrioBase1Entered(trigger)
+	local hero = trigger.activator
+	OnTrioBaseEnter(hero, DOTA_TEAM_GOODGUYS)
 end
 
 function OnTrioBase1Left(trigger)
 	local hero = trigger.activator
-	hero.IsInBase = false
-	hero:RemoveModifierByName("spawn_invulnerable")
-	if hero:GetTeam() == DOTA_TEAM_GOODGUYS then
-		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 3)
-	end
-	SendErrorMessage(hero:GetPlayerOwnerID(), "#Left_Base")
+	OnTrioBaseLeft(hero, DOTA_TEAM_GOODGUYS)
 end
 
 function OnTrioBase2Entered(trigger)
 	local hero = trigger.activator
-	hero.IsInBase = true
-	if hero:GetTeam() == DOTA_TEAM_BADGUYS then
-		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 999)
-	end
-	SendErrorMessage(hero:GetPlayerOwnerID(), "#Entered_Base")
+	OnTrioBaseEnter(hero, DOTA_TEAM_BADGUYS)
 end
 
 function OnTrioBase2Left(trigger)
 	local hero = trigger.activator
-	hero.IsInBase = false
-	hero:RemoveModifierByName("spawn_invulnerable")
-	if hero:GetTeam() == DOTA_TEAM_BADGUYS then
-		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 3)
-	end
-	SendErrorMessage(hero:GetPlayerOwnerID(), "#Left_Base")
+	OnTrioBaseLeft(hero, DOTA_TEAM_BADGUYS)
 end
 
 function OnTrioBase3Entered(trigger)
 	local hero = trigger.activator
-	hero.IsInBase = true
-	if hero:GetTeam() == DOTA_TEAM_CUSTOM_1 then
-		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 999)
-	end
-	SendErrorMessage(hero:GetPlayerOwnerID(), "#Entered_Base")
+	OnTrioBaseEnter(hero, DOTA_TEAM_CUSTOM_1)
 end
 
 function OnTrioBase3Left(trigger)
 	local hero = trigger.activator
-	hero.IsInBase = false
-	hero:RemoveModifierByName("spawn_invulnerable")
-	if hero:GetTeam() == DOTA_TEAM_CUSTOM_1 then
-		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 3)
-	end
-	SendErrorMessage(hero:GetPlayerOwnerID(), "#Left_Base")
+	OnTrioBaseLeft(hero, DOTA_TEAM_CUSTOM_1)
 end
 
 function OnTrioBase4Entered(trigger)
 	local hero = trigger.activator
-	hero.IsInBase = true
-	if hero:GetTeam() == DOTA_TEAM_CUSTOM_2 then
-		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 999)
-	end
-	SendErrorMessage(hero:GetPlayerOwnerID(), "#Entered_Base")
+	OnTrioBaseEnter(hero, DOTA_TEAM_CUSTOM_2)
 end
 
 function OnTrioBase4Left(trigger)
 	local hero = trigger.activator
-	hero.IsInBase = false
-	hero:RemoveModifierByName("spawn_invulnerable")
-	if hero:GetTeam() == DOTA_TEAM_CUSTOM_2 then
-		giveUnitDataDrivenModifier(hero, hero, "spawn_invulnerable", 3)
-	end
-	SendErrorMessage(hero:GetPlayerOwnerID(), "#Left_Base")
+	OnTrioBaseLeft(hero, DOTA_TEAM_CUSTOM_2)
 end
 
 function OnFFABaseEntered(trigger)
