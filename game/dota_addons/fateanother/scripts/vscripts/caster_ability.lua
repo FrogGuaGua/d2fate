@@ -191,6 +191,21 @@ end
 	caster : Workshop
 	hero : Caster(5th)
 ]]
+
+function OnTerritoryExplosionCastStart(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local ability = keys.ability
+
+	local fx = ParticleManager:CreateParticle("particles/custom/caster/workshop_explosion.vpcf", PATTACH_CUSTOMORIGIN, caster)
+	ParticleManager:SetParticleControl(fx, 0, caster:GetAbsOrigin())
+
+    Timers:CreateTimer(keys.CastDelay, function()
+		ParticleManager:DestroyParticle( windupFx, false )
+		ParticleManager:ReleaseParticleIndex( windupFx )
+    end)
+end
+
 function OnTerritoryExplosion(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
@@ -198,10 +213,9 @@ function OnTerritoryExplosion(keys)
 
 	giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", 1.0)
 
-	local fx = ParticleManager:CreateParticle("particles/custom/caster/workshop_explosion.vpcf", PATTACH_CUSTOMORIGIN, caster)
-	ParticleManager:SetParticleControl(fx, 0, caster:GetAbsOrigin())
 
-	Timers:CreateTimer(1.0, function()
+
+	Timers:CreateTimer(0.3, function()
 		if caster:IsAlive() then
 			caster:EmitSound("Hero_ObsidianDestroyer.SanityEclipse.Cast")
 			local damage = 300 + caster:GetMana() + hero:GetIntellect() * 8 
@@ -422,7 +436,6 @@ function OnSummonDragon(keys)
 	drag:SetBaseDamageMax(keys.Damage)
 	drag:SetBaseDamageMin(keys.Damage)
 	drag:SetMana(drag:GetMaxMana() + hero:GetIntellect()*keys.ManaRatio)
-	drag:SetMana(drag:GetMaxMana())
 
 	Timers:CreateTimer(0.1, function()
 		-- Bonus properties(give it 0.1 sec delay just in case)
@@ -687,6 +700,15 @@ end
 function OnArcaneWrathStart(keys)
 	local caster = keys.caster
 	local targetPos = keys.target_points[1]
+	--provide vision
+	local truesightdummy = CreateUnitByName("sight_dummy_unit", keys.target_points[1], false, keys.caster, keys.caster, keys.caster:GetTeamNumber())
+	truesightdummy:SetDayTimeVisionRange(keys.Radius)
+	truesightdummy:SetNightTimeVisionRange(keys.Radius)
+	local unseen = truesightdummy:FindAbilityByName("dummy_unit_passive")
+	unseen:SetLevel(1)
+
+	Timers:CreateTimer(keys.StunDuration, function() DummyEnd(truesightdummy) return end)
+
     local targets = FindUnitsInRadius(caster:GetTeam(), targetPos, nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
     for k,v in pairs(targets) do
     	DoDamage(caster, v, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
@@ -1041,8 +1063,11 @@ end
 
 function RemoveSacrificeModifier(keys)
 	local caster = keys.caster
-	keys.caster:RemoveModifierByName("modifier_big_bad_voodoo")
 	keys.caster:RemoveModifierByName("modifier_big_bad_voodoo_channeling")
+	keys.caster:RemoveModifierByName("modifier_big_bad_voodoo_ally")
+	Timers:CreateTimer(1.0, function()
+	keys.caster:RemoveModifierByName("modifier_big_bad_voodoo_damage_bonus")
+	end)
 
 	ParticleManager:DestroyParticle( caster.SacFx, false )
 	ParticleManager:ReleaseParticleIndex( caster.SacFx )
@@ -1069,6 +1094,7 @@ function OnMTStart(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local duration = keys.Duration
+	local manatransferred = keys.Manatransferred
 	local durCount = 0
 	if target == caster then 
 		keys.ability:EndCooldown()
@@ -1083,8 +1109,8 @@ function OnMTStart(keys)
 		if caster.IsManaTransferActive then 
 			local currentMana = caster:GetMana()
 			local targetCurrentMana = target:GetMana()
-			caster:SetMana(currentMana - 30)
-			target:SetMana(targetCurrentMana + 30)
+			caster:SetMana(currentMana - manatransferred)
+			target:SetMana(targetCurrentMana + manatransferred)
 			durCount = durCount + 0.5
 		else return end
 	    return 0.5

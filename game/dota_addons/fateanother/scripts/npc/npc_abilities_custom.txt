@@ -11068,9 +11068,9 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/caster_territory_explosion"
-		"AbilityCastPoint"				"1.0"
+		"AbilityCastPoint"				"0.70"
 		"AbilityCooldown"				"0"
 		"AbilityManaCost"				"100"
 
@@ -11083,6 +11083,20 @@
 
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cast_delay"		"0.7"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"caster_ability"
+				"Function"				"OnTerriroryExplosionCast"
+				"CastDelay"				"%cast_delay"
+			}
 		}
 		
 		"OnSpellStart"
@@ -11441,7 +11455,7 @@
 		"RequiredLevel"					"25"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"winter_wyvern_cold_embrace"
 		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
@@ -12024,7 +12038,7 @@
 		{
 			"ApplyModifier"
 			{
-				"ModifierName"	"modifier_big_bad_voodoo"
+				"ModifierName"	"modifier_big_bad_voodoo_damage_bonus"
 				"Target" 		"CASTER"
 				"Duration"		"%duration"
 				"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
@@ -12036,7 +12050,12 @@
 				"Target" 		"CASTER"
 				"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 			}
-			"RunScript"
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_big_bad_voodoo_ally"
+				"Target" 		"CASTER"
+				"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+			}			"RunScript"
 			{
 				"ScriptFile"	"caster_ability"
 				"Function"		"OnSacrificeStart"
@@ -12076,7 +12095,7 @@
 				"OverrideAnimation"     "ACT_DOTA_ATTACK"
 			}
 
-			"modifier_big_bad_voodoo"
+			"modifier_big_bad_voodoo_damage_bonus"
 			{
 				"EffectName"		"particles/units/heroes/hero_warlock/warlock_shadow_word_buff.vpcf"
 				"EffectAttachType"	"follow_origin"
@@ -12104,7 +12123,10 @@
 				{
 					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"		"100"
 				}
-
+			}
+			"modifier_big_bad_voodoo_ally"
+			{
+				"IsHidden"	"1"
 				"Aura"          	"modifier_big_bad_voodoo_invulnerability"
 				"Aura_Radius"   	"%radius"
 				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -12154,7 +12176,7 @@
 		"AnimationPlaybackRate" 		"1.0"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"600"
-		"AbilityCooldown"				"60 50 40 30 20"
+		"AbilityCooldown"				"30"
 		"AbilityManaCost"				"0"
 		"AbilityChannelTime"			"5.0"	
 
@@ -12168,7 +12190,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_amount"			"30"
+				"mana_amount"			"20 30 40 50 60"
 			}
 			"02"
 			{
@@ -12184,6 +12206,7 @@
 				"ScriptFile"		"caster_ability"
 				"Function"			"OnMTStart"
 				"Duration"			"%duration"
+				"Manatransferred"	"%mana_amount"
 			}
 		}
 		"OnChannelFinish"
@@ -12239,7 +12262,7 @@
 		"AbilityTextureName"			"custom/caster_5th_rule_breaker"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
 		"AnimationPlaybackRate" 		"1.8"
-		"AbilityCastPoint"				"0.7"
+		"AbilityCastPoint"				"0.75"
 		"AbilityCastRange"				"150"
 		"AbilityCastRangeBuffer"		"90"
 		"AbilityCooldown"				"35"
@@ -12258,7 +12281,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"delay"					"0.7"
+				"delay"					"0.75"
 			}
 			"02"
 			{
@@ -13673,7 +13696,7 @@
 		"AbilityTextureName"			"custom/lancelot_rule_breaker"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
 		"AnimationPlaybackRate" 		"1.0"
-		"AbilityCastPoint"				"0.7"
+		"AbilityCastPoint"				"0.75"
 		"AbilityCastRange"				"150"
 		"AbilityCastRangeBuffer"		"90"
 		"AbilityCooldown"				"35"

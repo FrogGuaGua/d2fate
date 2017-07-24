@@ -965,7 +965,9 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
     -- check if target has Rho Aias shield 
     if not IsAbsorbed and target:HasModifier("modifier_rho_aias_shield") then
         local reduction = 0
-        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+        if target:HasModifier("modifier_l_rule_breaker") or target:HasModifier ("modifier_c_rule_breaker") and (dmg_type == DAMAGE_TYPE_PURE or dmg_type == DAMAGE_TYPE_PHYSICAL) then
+            reduction = 1
+        elseif dmg_type == DAMAGE_TYPE_PHYSICAL then
             reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
         elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             reduction = target:GetMagicalArmorValue() 
@@ -986,16 +988,16 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             IsAbsorbed = true
         end
     end
-
     -- Check if target has Avalon up
     if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then
         local incomingDmg = dmg
         local reduction = 0
 
-        if dmg_type == DAMAGE_TYPE_MAGICAL then
+        if target:HasModifier("modifier_l_rule_breaker") or target:HasModifier ("modifier_c_rule_breaker") and (dmg_type == DAMAGE_TYPE_PURE or dmg_type == DAMAGE_TYPE_PHYSICAL) then
+            incomingDmg = incomingDmg * 0
+        elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             incomingDmg = incomingDmg * (1-MR)
-        end 
-        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+        elseif dmg_type == DAMAGE_TYPE_PHYSICAL then
             reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
             incomingDmg = incomingDmg * (1-reduction) 
         end
