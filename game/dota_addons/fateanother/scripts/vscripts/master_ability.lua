@@ -207,6 +207,15 @@ AtalantaAttribute = {
 	"atalanta_phoebus_catastrophe_proxy",
 	attrCount = 4
 }
+VladAttribute = {
+	"vlad_attribute_innocent_monster",
+	"vlad_attribute_protection_of_faith",
+	"vlad_attribute_improved_impaling",
+	"vlad_attribute_instant_curse",
+	"vlad_attribute_bloodletter",
+	"vlad_combo",
+	attrCount = 5
+}
 --[[LiAttribute = {
 	attrCount = 4
 }]]
@@ -542,6 +551,8 @@ function FindAttribute(name)
     	attributes = NRAttribute
     elseif name == "npc_dota_hero_drow_ranger" then
     	attributes = AtalantaAttribute
+		elseif name == "npc_dota_hero_tidehunter" then
+			attributes = VladAttribute
     end
     return attributes
 end 

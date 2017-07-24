@@ -34,6 +34,8 @@ softdispellable = {
     "modifier_jeanne_charisma_agi",
     "modifier_jeanne_charisma_int",
     "modifier_atalanta_last_spurt",
+    "modifier_cursed_lance",
+    "modifier_battle_continuation_heal",
 }
 
 strongdispellable = {
@@ -69,6 +71,9 @@ strongdispellable = {
     "modifier_jeanne_charisma_agi",
     "modifier_jeanne_charisma_int",
     "modifier_atalanta_last_spurt",
+    "modifier_cursed_lance",
+    "modifier_battle_continuation_heal",
+
 
     -- Strong Dispelable
     "modifier_b_scroll",
@@ -188,7 +193,8 @@ slowmodifier = {
     "modifier_down_with_a_touch_slow_3",
     "modifier_la_black_luna_slow",
     "modifier_nursery_rhyme_shapeshift_slow",
-    "modifier_doppelganger_lookaway_slow"
+    "modifier_doppelganger_lookaway_slow",
+    "modifier_ceremonial_purge_slow",
 }
 
 donotlevel = {
@@ -268,6 +274,10 @@ CannotReset = {
     "atalanta_last_spurt",
     "atalanta_phoebus_catastrophe_snipe",
     "caster_5th_sacrifice",
+    "vlad_transfusion",
+    "vlad_impale",
+    "vlad_battle_continuation",
+    "vlad_combo",
 }
 
 femaleservant = {
@@ -994,7 +1004,28 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             IsAbsorbed = true
         end
     end
-
+    -- check if target has Cursed Lance
+    if not IsAbsorbed and target:HasModifier("modifier_cursed_lance") then
+  	    local modifier = target:FindModifierByName("modifier_cursed_lance")
+        local reduction = 0
+        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
+        elseif dmg_type == DAMAGE_TYPE_MAGICAL then
+            reduction = target:GetMagicalArmorValue()
+        end
+        local originalDamage = dmg - modifier.CL_SHIELDLEFT * 1/(1-reduction)
+        modifier.CL_SHIELDLEFT = modifier.CL_SHIELDLEFT - dmg * (1-reduction)
+        if modifier.CL_SHIELDLEFT <= 0 then
+            dmg = originalDamage
+            if not target.InstantCurseAcquired then
+                target:RemoveModifierByName("modifier_cursed_lance")
+            end
+            modifier.CL_SHIELDLEFT = 0
+        else
+            dmg = 0
+            IsAbsorbed = true
+        end
+    end
     -- Check if target has Avalon up
     if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then
         local incomingDmg = dmg
@@ -1629,6 +1660,7 @@ local heroNames = {
     ["npc_dota_hero_queenofpain"] = "Rider of Black(Apocrypha)",
     ["npc_dota_hero_windrunner"] = "Caster(Extra), N.R",
     ["npc_dota_hero_drow_ranger"] = "Archer of Red(Apocrypha)",
+    ["npc_dota_hero_tidehunter"] = "Lancer(Extra)",
 }
 
 
@@ -1670,6 +1702,7 @@ local heroCombos = {
     ["npc_dota_hero_queenofpain"] = "astolfo_hippogriff_ride",
     ["npc_dota_hero_windrunner"] = "nursery_rhyme_story_for_somebodys_sake",
     ["npc_dota_hero_drow_ranger"] = "atalanta_phoebus_catastrophe_barrage",
+    ["npc_dota_hero_tidehunter"] = "vlad_combo",
 }
 
 function GetHeroCombo(hero)
