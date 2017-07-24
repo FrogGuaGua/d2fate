@@ -40,6 +40,7 @@ end
 
 function vlad_kazikli_bey:VFX4_OnTargetImpale(k,target)
 	self.PI2[k] = FxCreator("particles/custom/vlad/vlad_kb_ontarget.vpcf", PATTACH_ABSORIGIN, target, 0, nil)
+  ParticleManager:SetParticleControl(self.PI2[k],4, Vector(3.7, 0, 0))
 	self.PI3[k] = FxCreator("particles/custom/vlad/vlad_impale_bleed.vpcf", PATTACH_ABSORIGIN_FOLLOW, target, 0, nil)
 	ParticleManager:SetParticleControlEnt(self.PI3[k], 1, target, PATTACH_ABSORIGIN_FOLLOW	, nil, target:GetAbsOrigin(), false)
 end

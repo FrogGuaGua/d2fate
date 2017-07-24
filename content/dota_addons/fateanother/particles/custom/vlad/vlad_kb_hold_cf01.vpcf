@@ -2,7 +2,7 @@
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
-	m_nMaxParticles = 512
+	m_nMaxParticles = 256
 	m_ConstantColor = [ 255, 0, 0, 255 ]
 	m_nConstantSequenceNumber = 6
 	m_Renderers = 
@@ -66,8 +66,8 @@
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.001
-			m_fLifetimeMin = 0.001
+			m_fLifetimeMax = 0.1
+			m_fLifetimeMin = 0.1
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -77,12 +77,11 @@
 			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
 			m_LocalCoordinateSystemSpeedMin = [ -500.0, -500.0, -3000.0 ]
 			m_LocalCoordinateSystemSpeedMax = [ 500.0, 500.0, -3000.0 ]
-			m_bUseHighestEndCP = true
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 30.0
-			m_flRadiusMax = 45.0
+			m_flRadiusMin = 20.0
+			m_flRadiusMax = 30.0
 		},
 		{
 			_class = "C_INIT_RandomYawFlip"
@@ -111,7 +110,7 @@
 		{
 			_class = "C_OP_ContinuousEmitter"
 			m_flEmissionDuration = 1.8
-			m_flEmitRate = 500.0
+			m_flEmitRate = 250.0
 		},
 		{
 			_class = "C_OP_InstantaneousEmitter"

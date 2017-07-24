@@ -26,35 +26,7 @@
 	m_Operators = 
 	[
 		{
-			_class = "C_OP_BasicMovement"
-			m_Gravity = [ 0.0, 0.0, -200.0 ]
-			m_flOpStartFadeInTime = 2.15
-			m_bDisableOperator = true
-		},
-		{
 			_class = "C_OP_Decay"
-		},
-		{
-			_class = "C_OP_LerpScalar"
-			m_flEndTime = 0.03
-			m_nFieldOutput = 12
-			m_flOutput = 10.0
-			m_bDisableOperator = true
-		},
-		{
-			_class = "C_OP_InterpolateRadius"
-			m_bDisableOperator = true
-			m_flEndScale = 0.0
-			m_flEndTime = 0.65
-			m_flStartTime = 0.5
-		},
-		{
-			_class = "C_OP_InterpolateRadius"
-			m_bDisableOperator = true
-			m_flBias = 0.65
-			m_flEndTime = 0.025
-			m_flStartScale = 0.0
-			m_flEndScale = 1.5
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
@@ -77,37 +49,22 @@
 			m_fLifetimeMax = 1.6
 		},
 		{
-			_class = "C_INIT_PositionPlaceOnGround"
-			m_flMaxTraceLength = 1024.0
-			m_CollisionGroupName = "DEBRIS"
-			m_flOffset = 4.0
-			m_bSetNormal = true
-			m_bDisableOperator = true
-		},
-		{
-			_class = "C_INIT_NormalOffset"
-			m_OffsetMax = [ 0.3, 0.3, 0.3 ]
-			m_bLocalCoords = true
-			m_OffsetMin = [ -0.3, -0.3, -0.3 ]
-			m_bDisableOperator = true
-			m_nControlPointNumber = 3
-		},
-		{
 			_class = "C_INIT_RandomRotation"
 			m_nFieldOutput = 12
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 4.2
-			m_flRadiusMin = 4.2
+			m_flRadiusMax = 3.2
+			m_flRadiusMin = 3.2
+			m_bDisableOperator = true
 		},
 		{
-			_class = "C_INIT_RemapParticleCountToScalar"
-			m_nInputMax = 64
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 4
+			m_flInputMin = 1.0
+			m_flInputMax = 10.0
 			m_flOutputMin = 1.0
-			m_bScaleInitialRange = true
-			m_flOutputMax = 1.5
-			m_bDisableOperator = true
+			m_flOutputMax = 10.0
 		},
 		{
 			_class = "C_INIT_RandomRotation"
@@ -124,37 +81,9 @@
 			m_vecDistanceBias = [ 0.0, 0.0, 0.0 ]
 		},
 		{
-			_class = "C_INIT_RingWave"
-			m_flParticlesPerOrbit = 100.0
-			m_flInitialRadius = 300.0
-			m_flThickness = 25.0
-			m_flInitialSpeedMin = 20.0
-			m_flInitialSpeedMax = 50.0
-			m_bDisableOperator = true
-		},
-		{
-			_class = "C_INIT_CreateInEpitrochoid"
-			m_flParticleDensity = 32.0
-			m_flOffset = 150.0
-			m_flRadius1 = 50.0
-			m_flRadius2 = 200.0
-			m_bDisableOperator = true
-		},
-		{
 			_class = "C_INIT_PositionOffset"
 			m_OffsetMin = [ 0.0, 0.0, -20.0 ]
 			m_OffsetMax = [ 0.0, 0.0, 20.0 ]
-			m_nControlPointNumber = 3
-		},
-		{
-			_class = "C_INIT_RingWave"
-			m_flParticlesPerOrbit = 32.0
-			m_flInitialRadius = 400.0
-			m_flThickness = 20.0
-			m_flInitialSpeedMin = -3000.0
-			m_flInitialSpeedMax = -3000.0
-			m_bEvenDistribution = true
-			m_bDisableOperator = true
 			m_nControlPointNumber = 3
 		},
 		{
@@ -166,13 +95,6 @@
 	]
 	m_Emitters = 
 	[
-		{
-			_class = "C_OP_ContinuousEmitter"
-			m_flStartTime = 0.05
-			m_flEmitRate = 60.0
-			m_flEmissionDuration = 1.3
-			m_bDisableOperator = true
-		},
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 5

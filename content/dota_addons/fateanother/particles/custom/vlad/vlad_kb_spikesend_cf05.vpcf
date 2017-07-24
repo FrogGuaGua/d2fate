@@ -71,7 +71,6 @@
 			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
 			m_LocalCoordinateSystemSpeedMin = [ -350.0, -350.0, -3000.0 ]
 			m_LocalCoordinateSystemSpeedMax = [ 350.0, 350.0, -3000.0 ]
-			m_bUseHighestEndCP = true
 		},
 		{
 			_class = "C_INIT_RandomRadius"
@@ -108,7 +107,7 @@
 		},
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 128
+			m_nParticlesToEmit = 80
 		},
 	]
 	m_controlPointConfigurations = 

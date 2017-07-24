@@ -8,15 +8,20 @@ function vlad_impale:VFX1_SpikesIndicator(target,radius)
   ParticleManager:SetParticleControlEnt(self.PI1, 3, target, PATTACH_CUSTOMORIGIN_FOLLOW	, nil, target:GetAbsOrigin(),false)
   ParticleManager:SetParticleControl(self.PI1,4,Vector(radius, 0, 0))
 end
-function vlad_impale:VFX2_OnTargetBleed(k,target)
+function vlad_impale:VFX2_OnTargetImpale(k,target)
+  --bleed
   self.PI2[k] = FxCreator("particles/custom/vlad/vlad_impale_bleed.vpcf", PATTACH_ABSORIGIN_FOLLOW, target, 0, nil)
   ParticleManager:SetParticleControlEnt(self.PI2[k], 1, target, PATTACH_ABSORIGIN_FOLLOW	, nil, target:GetAbsOrigin(), false)
+  --ontarget impale
+  self.PI3[k] = FxCreator("particles/custom/vlad/vlad_kb_ontarget.vpcf", PATTACH_ABSORIGIN, target, 0, nil)
+  ParticleManager:SetParticleControl(self.PI3[k],4, Vector(2.7, 0, 0))
 end
+--[[actually on a second thought this particle triggers me so much i would rather reuse R ontarget stuff
 function vlad_impale:VFX3_Spikes(target,radius)
   self.PI3 = FxCreator("particles/custom/vlad/vlad_ip_spikes.vpcf", PATTACH_ABSORIGIN, target, 0, nil)
   ParticleManager:SetParticleControl(self.PI3,4,Vector(radius, 0, 0))
   --ParticleManager:SetParticleControlEnt(self.PI2, 1, target, PATTACH_ABSORIGIN	, nil, target:GetAbsOrigin(), false)
-end
+end--]]
 
 function vlad_impale:OnUpgrade()
 	local caster = self:GetCaster()
@@ -60,12 +65,12 @@ function vlad_impale:OnSpellStart()
   self:VFX1_SpikesIndicator(dummy,radius)
 
   Timers:CreateTimer(0.5, function()
-    dummy:EmitSound("Hero_Leshrac.Split_Earth")
     self.PI2={}
-    self:VFX3_Spikes(dummy,radius)
+    self.PI3={}
+    --self:VFX3_Spikes(dummy,radius)
     local targets = FindUnitsInRadius(caster:GetTeamNumber(), dummy:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
     for k,v in pairs(targets) do
-      self:VFX2_OnTargetBleed(k,v)
+      self:VFX2_OnTargetImpale(k,v)
       DoDamage(caster, v, 1, DAMAGE_TYPE_MAGICAL, 0, self, false)
       caster:AddBleedStack(v, 5,false)
       giveUnitDataDrivenModifier(caster, v, "stunned", stun)
@@ -73,12 +78,14 @@ function vlad_impale:OnSpellStart()
     end
     if #targets ~= 0 then
       dummy:EmitSound("Hero_PhantomAssassin.CoupDeGrace")
+      dummy:EmitSound("Hero_Leshrac.Split_Earth")
     end
   end)
 
   Timers:CreateTimer(3, function()
     FxDestroyer(self.PI1, false)
     FxDestroyer(self.PI2,false)
+    FxDestroyer(self.PI3,false)
     dummy:RemoveSelf()
   end)
 end
