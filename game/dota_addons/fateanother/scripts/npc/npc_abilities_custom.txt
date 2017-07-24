@@ -9807,7 +9807,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"gold_gain"				"10 20"
+				"gold_gain"				"15 30"
 			}
 		}
 		
@@ -10013,7 +10013,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_tooltip"				"10"
+				"damage_tooltip"				"6"
 			}
 		}
 
@@ -10049,7 +10049,7 @@
 			"modifier_enkidu_hold"
 			{
 				"IsDebuff"		"1"
-	            "ThinkInterval"		"0.99"
+	            "ThinkInterval"		"0.49"
 	            "OnIntervalThink"
 	         	{
 	         		"RunScript"
