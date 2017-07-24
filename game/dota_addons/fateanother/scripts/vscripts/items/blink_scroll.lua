@@ -15,7 +15,7 @@ function item_blink_scroll:OnSpellStart()
 	local iStep = 10
 	local iSteps = math.ceil(fDistance / iStep)
 	
-	while GridNav:IsTraversable( vBlinkPos ) ~= true do
+	while GridNav:IsBlocked( vBlinkPos ) or not GridNav:IsTraversable( vBlinkPos )do
 		i = i + 1
 		vBlinkPos = hCaster:GetAbsOrigin() + (vDirection * (fDistance - i * iStep))
 		if i >= iSteps then break end

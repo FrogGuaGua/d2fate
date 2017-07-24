@@ -463,6 +463,22 @@ function HasLeaversInTeam(hero)
     end)
     return leaverCount
 end
+
+function SumTable(table) --sums a freaking table why do I have to write primitive stuff like these
+    local sum = 0
+    for k,v in pairs(table) do
+        sum = sum + v
+    end
+
+    return sum
+end
+
+function MaxNumTable(table) --sorts a table and return first value in the table which is the highest and also its table index
+    for k,curGold in spairs(table, function(t,a,b) return t[b] < t[a] end) do
+        return k, curGold
+    end
+end
+
 function round(num, numDecimalPlaces)
     if numDecimalPlaces and numDecimalPlaces>0 then
         local mult = 10^numDecimalPlaces

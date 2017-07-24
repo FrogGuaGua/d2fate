@@ -1,0 +1,55 @@
+"FATEVoices"
+{
+	"npc_dota_hero_phantom_lancer"
+	{
+		"Spawn"
+		{
+			"01"						"lancer_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"lancer_move_01"
+			"02"						"lancer_move_02"
+			"03"						"lancer_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"lancer_attack_01"
+			"02"						"lancer_attack_02"
+			"03"						"lancer_attack_03"
+			"04"						"lancer_attack_04"
+		}
+		
+		"Cast"
+		{
+			"01"						"lancer_move_02"
+		}
+		
+		"Hurt"
+		{
+			"01"						"lancer_hurt_01"
+		}
+		
+		"Respawn"
+		{
+			"01"						"lancer_entry1"
+			"02"						"lancer_entry2"
+			"03"						"lancer_other_05"
+		}
+		
+		"Death"
+		{
+			"01"						"lancer_death"
+			"02"						"lancer_dead"
+		}
+		
+		"Kill"
+		{
+			"01"						"lancer_victory"
+			"02"						"lancer_other_01"
+			"03"						"lancer_other_02"
+		}
+	}
+}

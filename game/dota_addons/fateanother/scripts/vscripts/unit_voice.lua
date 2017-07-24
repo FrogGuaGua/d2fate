@@ -116,6 +116,7 @@ end
 function DeathVoiceManager:PlayPublicDeath(hUnit, hKiller, sSound, fDuration)
 	if not hUnit.UnitVoice or not hKiller.UnitVoice then return end
 	self.bIsReady = false
+	Timers:CreateTimer(15, function() self.bIsReady = true end)
 	hUnit:EmitSound(sSound)
 	
 	if hKiller.UnitVoice.tVoiceList.Kill then
@@ -127,6 +128,4 @@ function DeathVoiceManager:PlayPublicDeath(hUnit, hKiller, sSound, fDuration)
 			hKiller:EmitSound(sKillSound)
 		end)
 	end
-	
-	Timers:CreateTimer(15, function() self.bIsReady = true end)
 end

@@ -9,6 +9,14 @@ function FindCustomUIRoot(panel)
 	return targetPanel;
 }
 
+function GetHUDRootUI(){
+	var rootUI = $.GetContextPanel();
+	while(rootUI.id != "Hud" && rootUI.GetParent() != null){
+		rootUI = rootUI.GetParent();
+	}
+	return rootUI;
+}
+
 // create an ability button
 function CreateAbilityPanel(panel, unit, abilityIndex, bIsAttribute)
 {

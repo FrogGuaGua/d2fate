@@ -15,13 +15,38 @@ g_GameConfig.bIsConfig2On = false;
 g_GameConfig.bIsConfig3On = false;
 g_GameConfig.bIsConfig4On = false;
 
+function GetTalentButton()
+{
+	var root = GetHUDRootUI();
+	var talentButton = root.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("AbilitiesAndStatBranch").FindChildTraverse("StatBranch");
+	return talentButton;
+}
+
 function OnCustomizeButtonPressed()
 {
     var customizePanel = $("#CustomizationBoard");
+	var customizePanelLabel = $("#CustomizationBoardLabel");
     if (!customizePanel)
         return;
 
     customizePanel.visible = !customizePanel.visible;
+	customizePanelLabel.visible = customizePanel.visible;
+}
+
+function CreateFateTalentButton(){
+	var fateButton = GetTalentButton()
+	
+	fateButton.SetPanelEvent("onmouseover", OnCustomizeButtonShowTooltip);
+	fateButton.SetPanelEvent("onmouseout", OnCustomizeButtonHideTooltip);
+	fateButton.SetPanelEvent("onactivate", OnCustomizeButtonPressed);
+	
+	var statBranchGraphics = fateButton.FindChildTraverse("StatBranchGraphics")
+	statBranchGraphics.style.visibility = "collapse";
+	
+	var statBranchBG = fateButton.FindChildTraverse("StatBranchBG")
+	statBranchBG.style.visibility = "collapse";
+	
+	fateButton.style.backgroundImage = "url(\"file://{images}/misc/customize.png\")";
 }
 
 function RemoveChilds(panel)
@@ -69,27 +94,29 @@ function CreateContextAbilityPanel(panel)
 
 function UpdateStatPanel(data)
 {
-	$("#STRAmount").text = data.STR;
-	$("#AGIAmount").text = data.AGI;
-	$("#INTAmount").text = data.INT;
-	$("#DMGAmount").text = data.DMG;
-	$("#ARMORAmount").text = data.ARMOR;
-	$("#HPREGAmount").text = data.HPREG;
-	$("#MPREGAmount").text = data.MPREG;
-	$("#MSAmount").text = data.MS;
+	$("#STRAmount").text = data.STR + " / 50";
+	$("#AGIAmount").text = data.AGI +  " / 50";
+	$("#INTAmount").text = data.INT +  " / 50";
+	$("#DMGAmount").text = data.DMG +  " / 50";
+	$("#ARMORAmount").text = data.ARMOR +  " / 50";
+	$("#HPREGAmount").text = data.HPREG +  " / 50";
+	$("#MPREGAmount").text = data.MPREG +  " / 50";
+	$("#MSAmount").text = data.MS +  " / 50";
 	$("#CustomizationShardNumber").text = data.ShardAmount;
 }
 
 function OnCustomizeButtonShowTooltip()
 {
-	var attrText = $("#CustomizationOpenButton");
-	$.DispatchEvent('DOTAShowTextTooltip', attrText, "#Fateanother_Customize_Button");
+	var panel = GetTalentButton()
+	panel.style.backgroundImage = "url(\"file://{images}/misc/customize_active.png\")";
+	$.DispatchEvent('DOTAShowTextTooltip', panel, "#Fateanother_Customize_Button");
 }
 
-function OnCustomizeButtonHideTooltip()
+function OnCustomizeButtonHideTooltip(panel)
 {
-	var attrText = $("#CustomizationOpenButton"); 
-	$.DispatchEvent( 'DOTAHideTextTooltip', attrText );
+	var panel = GetTalentButton()
+	panel.style.backgroundImage = "url(\"file://{images}/misc/customize.png\")";
+	$.DispatchEvent( 'DOTAHideTextTooltip', panel );
 }
 
 
@@ -169,4 +196,5 @@ function CreateErrorMessage(msg){
 	GameEvents.Subscribe( "error_message_fired", CreateErrorMessage)
 	GameEvents.Subscribe( "player_chat_lua", PrintToClient );
 	OnCustomizeButtonPressed();
+	CreateFateTalentButton();
 })();

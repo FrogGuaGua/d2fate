@@ -787,6 +787,12 @@ function FateGameMode:OnPlayerChat(keys)
             hero.MasterUnit2:SetMana(10)
         end
     end
+	
+    if text == "-ir" then
+        if IsInToolsMode() then
+          ROUND_DURATION = 86400
+        end
+    end
 
     -- Asks team for gold
     if text == "-goldpls" then
@@ -884,8 +890,8 @@ end
 
 function DistributeGoldV2(hero, cutoff)
     -- get gold amount of teammates
-    -- exclude from table if more than stated amount
-    -- sort them by amount of current gold
+    -- exclude from table if more than 4950
+
     local goldTable = {}
     local plyIDTable = {}
     local playerID = hero:GetPlayerID()
@@ -902,24 +908,40 @@ function DistributeGoldV2(hero, cutoff)
         end
     end)
 
-    -- local sortedTable = spairs(playerTable, function(t,a,b) return t[b] < t[a] end)
-    local residue = 0
-    local goldPerPerson =  math.floor((PlayerResource:GetReliableGold(playerID)-cutoff)/#plyIDTable)
+    -- quite hard to explain
+    -- first attempt the scenario where u give everyone gold such that everyone reaches 4950 gold whereas you still have excess gold above cutoff, this is for the if statement
+    -- else you start looking at the richest guy within the people who has less than 4950 gold. suppose the richest guy is 4400 gold, you will now attempt to give everyone gold such that
+    -- everyone reaches 4400 or more. 
+    -- If this is possible, the excess gold per person (assuming u have given everyone gold such that they reach 4400) can be computed, stored as moreGoldPerPerson. 
+    -- The for loop proceeds to make everyone's gold (4400+moreGoldPerPerson). We then terminate the while loop by setting bRecurse = false
+    -- However if this is still not possible, we kick the highest guy within the table out of plyIDTable, and also the associated 4400 gold within the goldTable. Because he is no longer eligible for gold
+    -- The while loop condition is still satisfied, process repeats again but this time you look at 2nd richest guy among the people with <4950 gold.
 
-    -- eligible players
-    for k,curGold in spairs(goldTable, function(t,a,b) return t[b] < t[a] end) do
-        local eligibleGoldAmt = 4950 - PlayerResource:GetReliableGold(plyIDTable[k])
-        -- only grant eligible amount of gold and save the rest on residue
-        if goldPerPerson + residue> eligibleGoldAmt then
-            residue = residue + goldPerPerson - eligibleGoldAmt --update surplus residue
+    if (4950 * #plyIDTable - SumTable(goldTable)) <= (PlayerResource:GetReliableGold(playerID)-cutoff) then 
+        for k,gold in spairs(goldTable) do
+            local eligibleGoldAmt = 4950 - gold
             GiveGold(playerID, plyIDTable[k], eligibleGoldAmt)
-        else
-            GiveGold(playerID, plyIDTable[k], goldPerPerson+residue)
-            residue = 0 --resets residue to 0
+            CustomGameEventManager:Send_ServerToTeam(hero:GetTeamNumber(), "fate_gold_sent", {goldAmt=tonumber(eligibleGoldAmt), sender=hero:entindex(), recipent=PlayerResource:GetPlayer(tonumber(plyIDTable[k])):GetAssignedHero():entindex()} )
+        end
+    else
+        local bRecurse = true
+        while (bRecurse == true) do
+            local index, highestGold = MaxNumTable(goldTable)
+            if (highestGold * #plyIDTable - SumTable(goldTable)) <= (PlayerResource:GetReliableGold(playerID)-cutoff) then 
+                local moreGoldPerPerson = math.floor(((PlayerResource:GetReliableGold(playerID)-cutoff) - (highestGold * #plyIDTable - SumTable(goldTable)))/#plyIDTable)
+                for k,gold in spairs(goldTable) do
+                    local eligibleGoldAmt = highestGold - gold + moreGoldPerPerson
+                    GiveGold(playerID, plyIDTable[k], eligibleGoldAmt)
+                    CustomGameEventManager:Send_ServerToTeam(hero:GetTeamNumber(), "fate_gold_sent", {goldAmt=tonumber(eligibleGoldAmt), sender=hero:entindex(), recipent=PlayerResource:GetPlayer(tonumber(plyIDTable[k])):GetAssignedHero():entindex()} )
+                end
+                bRecurse = false
+            else
+                table.remove(goldTable,index)
+                table.remove(plyIDTable,index)
+            end
         end
     end
 end
-
 
 -- The overall game state has changed
 function FateGameMode:OnGameRulesStateChange(keys)
