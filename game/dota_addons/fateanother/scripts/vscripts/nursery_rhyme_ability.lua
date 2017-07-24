@@ -554,7 +554,7 @@ function OnGlassGameStart(keys)
 	NRCheckCombo(caster, ability)
 
 	if caster.bIsQGGImproved then
-		instantHeal = instantHeal+150
+		instantHeal = instantHeal + 150 + caster:GetIntellect() * 4 
 		instantHealPct = 20
 	end
 
@@ -567,8 +567,8 @@ function OnGlassGameStart(keys)
 	-- find team units in radius and grant them instant heal
 	local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	for k,v in pairs(targets) do
-		local missingHealth = (v:GetMaxHealth() - v:GetHealth()) * instantHealPct/100
-		local totalHeal = instantHeal + missingHealth
+		--local missingHealth = (v:GetMaxHealth() - v:GetHealth()) * instantHealPct/100
+		local totalHeal = instantHeal
 		v:Heal(totalHeal, caster)
 		if caster.bIsQGGImproved then
 			v:GiveMana(totalHeal/2)

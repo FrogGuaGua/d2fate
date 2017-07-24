@@ -28825,7 +28825,7 @@
 			"particle"		"particles/neutral_fx/roshan_death_aegis_starfall.vpcf"
 		}
 
-		"AbilityCastPoint"				"0.7"
+		"AbilityCastPoint"				"0.3"
 		"AbilityChannelTime"			"%channel_duration"		
 		"AbilityCastRange"				"%radius"
 		"AbilityCooldown"				"20"
@@ -28864,7 +28864,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"heal_over_time_pct"				"3 5 7 9 11"
+				"heal_over_time_pct"				"4 8 12 16 20"
 			}
 			"06"
 			{
@@ -28948,7 +28948,6 @@
 				}
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"		"100"
 				}
 			}
 
