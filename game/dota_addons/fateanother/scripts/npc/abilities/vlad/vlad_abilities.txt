@@ -337,7 +337,7 @@
 		"ScriptFile"					"abilities/vlad/impale"
 		"MaxLevel"						"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityTextureName"			"shadow_demon_disruption"
+		"AbilityTextureName"			"custom/vlad_impale"
 
 		"AbilityCastPoint"				"0.30"
 		"AbilityCooldown"				"30"
@@ -692,7 +692,7 @@
 		"ScriptFile"					"abilities/vlad/attributes"
 		"MaxLevel"						"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName"			"windrunner_powershot"
+		"AbilityTextureName"			"custom/vlad_improved_impaling"
 
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"

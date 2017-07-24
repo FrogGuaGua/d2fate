@@ -92,6 +92,6 @@ function vlad_cursed_lance:GetCastAnimation()
   return ACT_DOTA_CAST_ABILITY_3
 end
 
-function vlad_cursed_lance:GetTexture()
+function vlad_cursed_lance:GetAbilityTextureName()
   return "custom/vlad_cursed_lance"
 end

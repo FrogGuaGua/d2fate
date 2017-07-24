@@ -18,6 +18,6 @@ function vlad_instant_curse:GetCastAnimation()
   return nil
 end
 
-function vlad_instant_curse:GetTexture()
+function vlad_instant_curse:GetAbilityTextureName()
   return "shadow_demon_disruption"
 end

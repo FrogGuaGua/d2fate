@@ -91,7 +91,7 @@ function vlad_transfusion:OnSpellStart()
 	end)
 end
 
-function vlad_transfusion:GetTexture()
+function vlad_transfusion:GetAbilityTextureName()
   return "custom/vlad_transfusion"
 end
 function vlad_transfusion:GetCastAnimation()

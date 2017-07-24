@@ -8,16 +8,19 @@ vlad_attribute_improved_impaling = class({})
 vlad_attribute_instant_curse = class({})
 vlad_attribute_bloodletter = class({})
 
-function vlad_attribute_innocent_monster:GetTexture()
+function vlad_attribute_innocent_monster:GetAbilityTextureName()
   return "custom/vlad_innocent_monster"
 end
-function vlad_attribute_protection_of_faith:GetTexture()
+function vlad_attribute_protection_of_faith:GetAbilityTextureName()
   return "custom/vlad_protection_of_faith"
 end
-function vlad_attribute_instant_curse:GetTexture()
+function vlad_attribute_improved_impaling:GetAbilityTextureName()
+  return "custom/vlad_improved_impaling"
+end
+function vlad_attribute_instant_curse:GetAbilityTextureName()
   return "shadow_demon_disruption"
 end
-function vlad_attribute_bloodletter:GetTexture()
+function vlad_attribute_bloodletter:GetAbilityTextureName()
   return "custom/vlad_transfusion2"
 end
 

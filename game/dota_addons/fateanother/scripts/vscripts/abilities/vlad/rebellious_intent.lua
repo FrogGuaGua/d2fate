@@ -25,6 +25,6 @@ end
 function vlad_rebellious_intent:GetCastAnimation()
   return nil
 end
-function vlad_rebellious_intent:GetTexture()
+function vlad_rebellious_intent:GetAbilityTextureName()
   return "shadow_demon_demonic_purge"
 end

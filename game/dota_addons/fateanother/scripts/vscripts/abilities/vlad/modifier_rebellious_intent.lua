@@ -91,6 +91,9 @@ if IsServer() then
   		new_hp = 1
   	end
     parent:SetHealth(new_hp)
+    if _G.IsPreRound == true then
+      self:Destroy() 
+    end
   end
 
   function modifier_rebellious_intent:OnDestroy()

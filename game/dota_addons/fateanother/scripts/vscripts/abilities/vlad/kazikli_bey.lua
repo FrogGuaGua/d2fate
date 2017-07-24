@@ -175,6 +175,6 @@ function vlad_kazikli_bey:OnSpellStart()
 	end)
 end
 
-function vlad_kazikli_bey:GetTexture()
+function vlad_kazikli_bey:GetAbilityTextureName()
   return "custom/vlad_kazikli_bey"
 end

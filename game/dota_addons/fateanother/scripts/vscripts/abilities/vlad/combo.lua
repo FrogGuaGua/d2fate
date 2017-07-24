@@ -75,3 +75,6 @@ function vlad_combo:OnSpellStart()
 		end)
 	end)
 end
+function vlad_combo:GetAbilityTextureName()
+  return "custom/vlad_combo"
+end

@@ -88,6 +88,6 @@ function vlad_impale:GetCastAnimation()
   return nil
 end
 
-function vlad_impale:GetTexture()
-  return "shadow_demon_disruption"
+function vlad_impale:GetAbilityTextureName()
+  return "custom/vlad_impale"
 end

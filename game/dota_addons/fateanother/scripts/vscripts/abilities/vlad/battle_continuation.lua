@@ -45,6 +45,6 @@ function vlad_battle_continuation:OnSpellStart()
   caster:EmitSound("Hero_LifeStealer.Rage")
 end
 
-function vlad_battle_continuation:GetTexture()
+function vlad_battle_continuation:GetAbilityTextureName()
   return "custom/vlad_battle_continuation"
 end
