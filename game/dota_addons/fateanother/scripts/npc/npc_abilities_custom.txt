@@ -165,10 +165,15 @@
 			}
 			"03"
 			{
+				"var_type"		"FIELD_INTEGER"
+				"crit_multiplier"	"300"
+			}
+			"04"
+			{
 				"var_type"				"FIELD_FLOAT"
 				"spellshield_duration"	"1.0"
 			}
-			"04"
+			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cooldown"				"35"
@@ -241,7 +246,7 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "300"
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_multiplier"
 				}
 				"OnAttackLanded"
 				{
@@ -956,7 +961,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"14"
 
 		"precache"
 		{
@@ -1000,7 +1005,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"11"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -1408,7 +1413,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"200.0"
+		"AbilityCooldown"				"250"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
