@@ -17013,7 +17013,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"6.0"
+				"duration"			"3.0"
 			}
 		}
 
@@ -17205,7 +17205,7 @@
 			}
 			"modifier_gordius_wheel_thunder_slow"
 			{
-				"Duration"		"0.35"
+				"Duration"		"0.25"
 				"IsDebuff"		"1"
 				"Properties"
 				{
@@ -17757,11 +17757,10 @@
 		"MaxLevel"						"5"
 		"RequiredLevel"					"25"
 		"LevelsBetweenUpgrades"			"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"legion_commander_press_the_attack"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
 		"AnimationPlaybackRate" 		"1.5"
-		"AOERadius"						"%radius"
 		"precache"
 		{
 			"particle"			"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
@@ -17770,7 +17769,6 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"3000"
 		"AbilityCastPoint"				"0.1"
 
 		// Time		
@@ -17783,17 +17781,17 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"armor_reduction"			"-3 -6 -9 -12 -15"
+				"pct_armor_reduction"		"-30 -40 -50 -60 -70"
 			}
 			"02"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"duration"		"8"
+				"duration"		"4"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"500"
+				"armor_reduction"			"-3 -6 -9 -12 -15"
 			}
 		}
 
@@ -17803,7 +17801,6 @@
 			{
 			 	"ScriptFile"	"iskander_ability"
 			 	"Function"		"OnBattleHornStart"
-			 	"Radius"		"%radius"
 			 	"Target"		"POINT"
 			}
 		}
@@ -18330,7 +18327,8 @@
 		"precache"
 		{
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-			"particle"				"particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+			"particle"				"particles/custom/iskandar/iskandar_combo_invul.vpcf"
+			"particle"				"particles/custom/iskandar/iskandar_combo_arrow.vpcf"
 		}
 
 		// Time		
@@ -18344,14 +18342,25 @@
 		
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"300"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"aoe"			"200"
+			}
 		}
-		
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
 				"ScriptFile"		"iskander_ability"
 				"Function"			"OnAnnihilateStart"
+				"ArrowDamage"		"%damage"
+				"ArrowAoE"			"%aoe"
 			}
 		}
 
@@ -18370,12 +18379,21 @@
 			}
 			"modifier_annihilate"
 			{		
-                "EffectName" "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+                "EffectName" "particles/custom/iskandar/iskandar_combo_invul.vpcf"
                 "EffectAttachType" "follow_origin"
 				"Duration" 	"12.0"
 				"States"
 				{
 					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_annihilate_mute"
+			{
+				"Duration"		"12.0"
+				"IsDebuff"		"1"
+				"States"
+				{
+					"MODIFIER_STATE_MUTED"    "MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -18449,7 +18467,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"damage"		"200"
+				"damage"		"150"
 			}
 			"02"
 			{
@@ -19523,7 +19541,7 @@
 			    "StartPosition" "attach_origin"
 			    "EndRadius"     "150"
 			    "FixedDistance" "%range"
-			    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_ENEMY"
+			    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
 			    "TargetTypes"   "DOTA_UNIT_TARGET_HERO"
 			    "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
 			    "HasFrontalCone"  "0"
@@ -29781,7 +29799,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"arrows"			"32 39 46 53 60"
+				"arrows"			"30 36 42 48 54"
 			}
 			"05"
 			{
@@ -30270,35 +30288,6 @@
 					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-		  	}
-		}
-	}
-
-	//================================================
-	// phalanx soldier passive
-	//================================================
-	"phalanx_soldier_passive"
-	{
-		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "rubick_empty1"
-		"MaxLevel"                      "1"
-		
-		"Modifiers"
-		{
-			"phalanx_soldier_passive_effect"
-			{
-				"Passive"                        "1"
-				"IsHidden"                        "1"    
-				"States"
-				{
-					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 		  	}
 		}
