@@ -353,6 +353,51 @@
 
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"					"600"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_min"					"1"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_gain"					"0.1"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_max"					"2"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_min"					"150"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_gain"					"5"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_max"					"250"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"					"200"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"					"0.5"
+			}
 		}
 	}
 
