@@ -296,6 +296,9 @@ function OnGBTargetHit(keys)
 	if casterName == "npc_dota_hero_phantom_lancer" then
 		local runeAbil = caster:FindAbilityByName("lancer_5th_rune_of_flame")
 		local healthDamagePct = runeAbil:GetLevelSpecialValueFor("ability_bonus_damage", runeAbil:GetLevel()-1)
+		if caster.IsGaeBolgImproved == true then
+		healthDamagePct = healthDamagePct * 2
+		end
 		keys.Damage = keys.Damage + target:GetHealth()*healthDamagePct/100
 	else
 		StartAnimation(caster, {duration=0.3, activity=ACT_DOTA_CAST_ABILITY_1, rate=3})
@@ -309,7 +312,7 @@ function OnGBTargetHit(keys)
 	end  -- check for HB
 
 	-- if Gae Bolg is improved, do 3 second dot over time
-	if caster.IsGaeBolgImproved == true then 
+	--[[if caster.IsGaeBolgImproved == true then 
 		local dotCount = 0
 		Timers:CreateTimer(function() 
 			if dotCount == 3 then return end
@@ -317,7 +320,7 @@ function OnGBTargetHit(keys)
 			dotCount = dotCount + 1
 			return 1.0 
 		end)
-	end
+	end]]
 
 	--[[
 	-- if Heart Seeker attribute is acquired, check for HB condition every 0.3 seconds
@@ -465,6 +468,9 @@ function OnGBComboHit(keys)
 			        		StartAnimation(caster, {duration=0.3, activity=ACT_DOTA_ATTACK2, rate=2})
 							local runeAbil = caster:FindAbilityByName("lancer_5th_rune_of_flame")
 							local healthDamagePct = runeAbil:GetLevelSpecialValueFor("ability_bonus_damage", runeAbil:GetLevel()-1)
+							if caster.IsGaeBolgImproved == true then
+							healthDamagePct = healthDamagePct * 2
+							end
 
 							giveUnitDataDrivenModifier(caster, target, "can_be_executed", 0.033)
 				    		DoDamage(caster, target, keys.Damage + target:GetHealth() * healthDamagePct/100, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
@@ -560,16 +566,19 @@ function OnGBAOEHit(keys, projectile)
 	if caster.IsGaeBolgImproved == true then damage = damage + 250 end
 	local runeAbil = caster:FindAbilityByName("lancer_5th_rune_of_flame")
 	local healthDamagePct = runeAbil:GetLevelSpecialValueFor("ability_bonus_damage", runeAbil:GetLevel()-1)
+	if caster.IsGaeBolgImproved == true then
+		healthDamagePct = healthDamagePct * 2
+	end
 	
 	local modifierKnockback =
 	{
 		center_x = targetPoint.x,
 		center_y = targetPoint.y,
 		center_z = targetPoint.z,
-		duration = 0.1,
-		knockback_duration = 0.1,
-		knockback_distance = 100,
-		knockback_height = 0,
+		duration = 0.25,
+		knockback_duration = 0.25,
+		knockback_distance = 0,
+		knockback_height = 150,
 	}
 
 	Timers:CreateTimer(0.15, function()
