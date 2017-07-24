@@ -20,6 +20,8 @@
 		{
 			"particle"					"particles/custom/vlad/vlad_ri_active.vpcf"
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+
 		}
 
 		"AbilitySpecial"

@@ -33,7 +33,37 @@
 			}
 		}
 	}
-
+	"models/vlad/vlad.vmdl"
+	{
+		"PortraitLightPosition"		"8.34 -51.72 127.79"
+		"PortraitLightAngles"		"12.96 130.92 0.00"
+		"PortraitLightFOV"		"51"
+		"PortraitLightDistance"		"100"
+		"PortraitLightColor"		"254 210 218"
+		"PortraitShadowColor"		"93 93 93"
+		"PortraitShadowScale"		"4.025000"
+		"PortraitAmbientColor"		"241 165 97"
+		"PortraitAmbientScale"		"5.000000"
+		"PortraitSpecularColor"		"251 74 84"
+		"PortraitBackgroundTexture"		"materials/vgui/hud/heroportraits/portraitbackground_coolinterior.vmat"
+		"PortraitBackgroundColor1"		".9 .1 0"
+		"PortraitBackgroundColor2"		".9 .3 0"
+		"PortraitBackgroundColor3"		".9 .5 1"
+		"PortraitBackgroundColor4"		".9 .3 0"
+		"PortraitLightScale"		"4.100000"
+		"PortraitGroundShadowScale"		"1.500000"
+		"PortraitAmbientDirection"		"-3.070 17.250 4.660"
+		"PortraitAnimationActivity"		"ACT_DOTA_IDLE"
+		"cameras"
+		{
+			"default"
+			{
+				"PortraitPosition"		"231.25 130.63 10.35"
+				"PortraitAngles"		"338.37 209.12 0.00"
+				"PortraitFOV"		"10"
+			}
+		}
+	}	
 	"models/saber/saber.vmdl"
 	{
 		"PortraitLightPosition"		"-33.05 37.77 177.26"
