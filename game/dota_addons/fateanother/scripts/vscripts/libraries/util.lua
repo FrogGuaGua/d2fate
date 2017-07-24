@@ -375,8 +375,7 @@ end
 
 function ApplyAirborne(source, target, duration)
     target:AddNewModifier(source, source, "modifier_stunned", {Duration = duration})
-
-    if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
+    --if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
     --[[local ascendCounter = 0
     Timers:CreateTimer(function()
         if ascendCounter > duration/2 then return end
@@ -392,7 +391,16 @@ function ApplyAirborne(source, target, duration)
         return 0.033
     end)]]
     local knockupSpeed = 1500
+    ApplyAirborneOnly(target, knockupSpeed, duration)
+end
+
+function ApplyAirborneOnly(target, knockupSpeed, duration, Acc)
+    if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
+
     local knockupAcc = knockupSpeed/duration * 2
+    if Acc then
+        knockupAcc = Acc
+    end
 
     Physics:Unit(target)
     target:PreventDI()
@@ -410,7 +418,6 @@ function ApplyAirborne(source, target, duration)
         target:Hibernate(true)
     end)
 end
-
 
 function DummyEnd(dummy)
     dummy:RemoveSelf()
@@ -1729,3 +1736,38 @@ function OnHeroTakeDamage(keys)
     hero.ServStat:takeActualDamage(damageTaken)
 end
 
+function FxDestroyer(PIndex,instant)
+  if PIndex ~= nil and type(PIndex) == "table" then
+    --PrintTable(PIndex)
+    for i,j in pairs(PIndex) do
+      --print("destroy",PIndex[i])
+      ParticleManager:DestroyParticle(PIndex[i], instant)
+      ParticleManager:ReleaseParticleIndex(PIndex[i])
+    end
+    PIndex = nil
+    return PIndex
+  elseif PIndex ~= nil then
+    --print("destroy1",PIndex)
+    ParticleManager:DestroyParticle(PIndex, instant)
+    ParticleManager:ReleaseParticleIndex(PIndex)
+    PIndex = nil
+    return PIndex
+  end
+end
+
+function FxCreator(effectname,pattach,target,cp,attach,amount)
+  if amount ~= nil then
+    local FXIndex = {}
+    for i=amount,1,-1 do
+      FXIndex[i] = ParticleManager:CreateParticle(effectname,pattach,target)
+      ParticleManager:SetParticleControlEnt(FXIndex[i],cp,target,pattach,attach,target:GetAbsOrigin(),false)
+      --print("create            ",FXIndex[i])
+    end
+    return FXIndex
+  else         
+    local FXIndex = ParticleManager:CreateParticle(effectname,pattach,target)
+    ParticleManager:SetParticleControlEnt(FXIndex,cp,target,pattach,attach,target:GetAbsOrigin(),false)
+    --print("create                ", FXIndex)
+    return FXIndex
+  end
+end
