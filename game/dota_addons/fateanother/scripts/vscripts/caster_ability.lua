@@ -626,7 +626,7 @@ function OnFrostbiteStart(keys)
         iMoveSpeed = 1000,
         vSpawnOrigin = caster:GetAbsOrigin(),
         fDistance = 900 - keys.EndRadius, -- We need this to take end radius of projectile into account
-        fStartRadius = 100,
+        fStartRadius = 300,
         fEndRadius = keys.EndRadius,
         Source = caster,
         bHasFrontalCone = true,
