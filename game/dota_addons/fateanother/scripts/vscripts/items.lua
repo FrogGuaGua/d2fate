@@ -113,6 +113,7 @@ end
 
 function OnFFABaseLeft(trigger)
 	local hero = trigger.activator
+	if not hero then return end
 	hero.IsInBase = false
 	SendErrorMessage(hero:GetPlayerOwnerID(), "#Left_Base")
 end
