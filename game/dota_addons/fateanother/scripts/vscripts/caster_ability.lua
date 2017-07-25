@@ -550,10 +550,8 @@ end
 
 function OnTerritoryRecall(keys)
 	local caster = keys.caster
-	local target = keys.target 
-	print(target:GetName())
+	local target = caster:GetOwnerEntity() 
 	if target:GetName() == "npc_dota_hero_crystal_maiden" then
-		print("Casted on caster")
 		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_recall", {}) 
 
 		caster.IsRecallCanceled = false
