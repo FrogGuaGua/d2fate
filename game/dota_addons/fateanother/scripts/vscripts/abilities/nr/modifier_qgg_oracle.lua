@@ -24,8 +24,14 @@ function modifier_qgg_oracle:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-function modifier_qgg_oracle:OnHeal(fAmount)
-	self.fHeal = self.fHeal + fAmount
+function modifier_qgg_oracle:OnHeal(fAmount, fHeal, hSource)
+	local fAddition = fHeal
+	
+	if hSource.GetUnitName then
+		if hSource:GetUnitName() == "npc_dota_hero_windrunner" then fAddition = fAmount
+	end
+	
+	self.fHeal = self.fHeal + fAddition
 end
 
 if IsServer() then
