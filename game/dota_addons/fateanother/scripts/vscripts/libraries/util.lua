@@ -83,7 +83,8 @@ strongdispellable = {
     "modifier_gordius_wheel_mitigation_tier2",
     "modifier_gordius_wheel_mitigation_tier3",
     "tamamo_mantra",
-    "modifier_lishuwen_cosmic_orbit_momentary_resistance"
+    "modifier_lishuwen_cosmic_orbit_momentary_resistance",
+    "modifier_cursed_lance_bp",
 }
 
 revokes = {
@@ -1005,8 +1006,8 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         end
     end
     -- check if target has Cursed Lance
-    if not IsAbsorbed and target:HasModifier("modifier_cursed_lance") then
-  	    local modifier = target:FindModifierByName("modifier_cursed_lance")
+    if not IsAbsorbed and (target:HasModifier("modifier_cursed_lance") or target:HasModifier("modifier_cursed_lance_bp")) then
+  	    local modifier = target:FindModifierByName("modifier_cursed_lance") or target:FindModifierByName("modifier_cursed_lance_bp")
         local reduction = 0
         if dmg_type == DAMAGE_TYPE_PHYSICAL then
             reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())

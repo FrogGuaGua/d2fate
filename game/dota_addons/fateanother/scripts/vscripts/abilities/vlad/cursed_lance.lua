@@ -1,5 +1,6 @@
 vlad_cursed_lance = class({})
 LinkLuaModifier("modifier_cursed_lance", "abilities/vlad/modifier_cursed_lance", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_cursed_lance_bp", "abilities/vlad/modifier_cursed_lance_bp", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_e_used", "abilities/vlad/modifier_e_used", LUA_MODIFIER_MOTION_NONE)
 
 if not IsServer() then
@@ -53,13 +54,24 @@ function vlad_cursed_lance:InstantCurseSwap(caster,duration)
 end
 
 --resyncs shieldleft after lvlup while shield is active, so that dmg doesnt go into negatives
+--bonuses from bloodpower to max_shield and max_dmg are carried over in flat form to new shield values after upgrade while shield is present
+--after upgrade shield_max to shieldleft ratio stays 1-1, while shield_dmg to shieldleft ratio is slightly reduced
 function vlad_cursed_lance:OnUpgrade()
 	if self:GetCaster():HasModifier("modifier_cursed_lance") then
-    local oldmaxshield = self:GetLevelSpecialValueFor("max_shield",self:GetLevel()-2)
-		local newmaxshield = self:GetLevelSpecialValueFor("max_shield",self:GetLevel()-1)
-		local percentage = self.modifier.CL_SHIELDLEFT/oldmaxshield
+    local oldmaxshield = self.modifier.CL_MAX_SHIELD
+    --print("oldmaxshieldreal ", oldmaxshield, "max lvl ", self:GetLevelSpecialValueFor("max_shield",self:GetLevel()-2))
+    local bonus_shield = oldmaxshield - self:GetLevelSpecialValueFor("max_shield",self:GetLevel()-2)
+		local newmaxshield = self:GetLevelSpecialValueFor("max_shield",self:GetLevel()-1) + bonus_shield
+    --print("newmaxshieldreal ", newmaxshield)
+    local percentage = self.modifier.CL_SHIELDLEFT/oldmaxshield
 		self.modifier.CL_SHIELDLEFT = newmaxshield*percentage
-		self.modifier:UpdateModVars()
+
+    local oldmaxdmg = self.modifier.CL_MAX_DMG
+    --print("oldmaxdmgreal ", oldmaxdmg, "max real ", self:GetLevelSpecialValueFor("max_dmg",self:GetLevel()-2))
+    local bonus_dmg = oldmaxdmg - self:GetLevelSpecialValueFor("max_dmg",self:GetLevel()-2)
+    local newmaxdmg = self:GetLevelSpecialValueFor("max_dmg",self:GetLevel()-1) + bonus_dmg
+    --print("newmaxdmgreal ", newmaxdmg)
+    self.modifier:UpdateModVars(newmaxshield,newmaxdmg)
   end
 end
 
@@ -82,7 +94,11 @@ function vlad_cursed_lance:OnSpellStart()
 	   caster:AddNewModifier(caster, self, "modifier_e_used",{duration = 5})
 	end
 
-  self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance",{duration = duration})
+  if caster:HasModifier("modifier_transfusion_bloodpower") and caster.InstantCurseAcquired then
+    self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance_bp",{duration = duration})
+  else
+    self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance",{duration = duration})
+  end
 
 	self:ComboCheck(caster)
 	self:InstantCurseSwap(caster,duration)

@@ -8,9 +8,7 @@ function vlad_instant_curse:OnSpellStart()
   local caster = self:GetCaster()
   if caster.InstantSwapTimer then
   	caster:RemoveModifierByName("modifier_cursed_lance")
-  	Timers:RemoveTimer(caster.InstantSwapTimer)
-    caster.InstantSwapTimer = nil
-    caster:SwapAbilities("vlad_cursed_lance", "vlad_instant_curse", true, false)
+    caster:RemoveModifierByName("modifier_cursed_lance_bp")
   end
 end
 
