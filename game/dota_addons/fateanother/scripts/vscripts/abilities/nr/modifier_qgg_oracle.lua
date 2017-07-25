@@ -5,12 +5,10 @@ function modifier_qgg_oracle:OnCreated()
 	self.fHeal = 0
 	self.hParent = self:GetParent()
 	self.fCurrentRegen = 0
-	self:StartIntervalThink(0.01)
+	self.flag = false
 end
 
 function modifier_qgg_oracle:OnRefresh()
-	self.fCurrentRegen = 0
-	self:StartIntervalThink(0.01)
 end
 
 function modifier_qgg_oracle:DeclareFunctions()
@@ -30,12 +28,13 @@ function modifier_qgg_oracle:GetEffectAttachType()
 end
 
 if IsServer() then
-	function modifier_qgg_oracle:OnIntervalThink()
-		self.fCurrentRegen = self:GetParent():GetHealthRegen()
-	end
-
+	-- Thanks to DoctorGester (http://dg-lab.com/me) for this piece of code.
 	function modifier_qgg_oracle:GetModifierConstantHealthRegen()
-		return 0 - self.fCurrentRegen
+		if self.flag then return 0 end
+		self.flag = true
+		local regen = self:GetParent():GetHealthRegen()
+		self.flag = false
+		return -regen
 	end
 	
 	function modifier_qgg_oracle:OnDestroy()
