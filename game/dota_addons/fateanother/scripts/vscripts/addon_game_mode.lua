@@ -675,6 +675,13 @@ function FateGameMode:OnPlayerChat(keys)
             targetHero:ModifyGold(tonumber(goldAmt), true, 0)
             CustomGameEventManager:Send_ServerToTeam(hero:GetTeamNumber(), "fate_gold_sent", {goldAmt=tonumber(goldAmt), sender=hero:entindex(), recipent=targetHero:entindex()} )
             --GameRules:SendCustomMessage("<font color='#58ACFA'>" .. hero.name .. "</font> sent " .. goldAmt .. " gold to <font color='#58ACFA'>" .. targetHero.name .. "</font>" , hero:GetTeamNumber(), hero:GetPlayerOwnerID())
+        elseif PlayerResource:GetReliableGold(plyID) < tonumber(goldAmt) and plyID ~= tonumber(pID) and PlayerResource:GetTeam(plyID) == PlayerResource:GetTeam(tonumber(pID)) and tonumber(goldAmt) > 0 then
+            -- This elseif condition is for when your gold is below the default 300 or whatever you set, that you send the rest of your gold to teammate.
+            local targetHero = PlayerResource:GetPlayer(tonumber(pID)):GetAssignedHero()
+            hero:ModifyGold(-PlayerResource:GetReliableGold(plyID), true , 0)
+            targetHero:ModifyGold(PlayerResource:GetReliableGold(plyID), true, 0)
+            CustomGameEventManager:Send_ServerToTeam(hero:GetTeamNumber(), "fate_gold_sent", {goldAmt=PlayerResource:GetReliableGold(plyID), sender=hero:entindex(), recipent=targetHero:entindex()} )
+            --GameRules:SendCustomMessage("<font color='#58ACFA'>" .. hero.name .. "</font> sent " .. goldAmt .. " gold to <font color='#58ACFA'>" .. targetHero.name .. "</font>" , hero:GetTeamNumber(), hero:GetPlayerOwnerID())
         end
     end
 
@@ -750,6 +757,50 @@ function FateGameMode:OnPlayerChat(keys)
                 hero.AntiSpamCooldown3 = false
             end)
             Say(hero:GetPlayerOwner(), "Average number of C scrolls used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
+        end
+    end
+
+    if text == "-ward" then
+        if hero.AntiSpamCooldown4 ~= true then
+            local teamHeroes = {}
+            local values = {}
+            local rank = {}
+            LoopOverPlayers(function(ply, plyID, playerHero)
+                if playerHero:GetTeamNumber() == hero:GetTeamNumber() then
+                    table.insert(teamHeroes, FindName(playerHero:GetName()))
+                    table.insert(values, round(playerHero.ServStat.ward/playerHero.ServStat.round,2))
+                end
+            end)
+            for index,value in spairs(values, function(values,a,b) return values[b] < values[a] end) do
+                table.insert(rank, index)
+            end
+            hero.AntiSpamCooldown4 = true
+            Timers:CreateTimer(1, function()
+                hero.AntiSpamCooldown4 = false
+            end)
+            Say(hero:GetPlayerOwner(), "Average number of wards used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
+        end
+    end
+
+    if text == "-bird" then
+        if hero.AntiSpamCooldown5 ~= true then
+            local teamHeroes = {}
+            local values = {}
+            local rank = {}
+            LoopOverPlayers(function(ply, plyID, playerHero)
+                if playerHero:GetTeamNumber() == hero:GetTeamNumber() then
+                    table.insert(teamHeroes, FindName(playerHero:GetName()))
+                    table.insert(values, round(playerHero.ServStat.familiar/playerHero.ServStat.round,2))
+                end
+            end)
+            for index,value in spairs(values, function(values,a,b) return values[b] < values[a] end) do
+                table.insert(rank, index)
+            end
+            hero.AntiSpamCooldown5 = true
+            Timers:CreateTimer(1, function()
+                hero.AntiSpamCooldown5 = false
+            end)
+            Say(hero:GetPlayerOwner(), "Average number of familiars used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
         end
     end
 
@@ -1038,6 +1089,7 @@ function FateGameMode:OnHeroInGame(hero)
 
     -- Initialize Servant Statistics, and related collection stuff
     hero.ServStat = ServantStatistics:initialise(hero)
+    hero.ServStat:roundNumber(self.nCurrentRound) -- to properly initialise the current round number when player picks a hero late. 
     giveUnitDataDrivenModifier(hero, hero, "modifier_damage_collection", {})
     -- END
 
@@ -1153,8 +1205,10 @@ function FateGameMode:OnHeroInGame(hero)
             giveUnitDataDrivenModifier(hero, hero, "round_pause", 10)
         end
     else
+        -- This is timed such that you can start moving when pick screen times out. If you pick a hero late and that game already started, math.max(0,<some negative number>) == 0 thus no pause.
         if _G.CurrentGameState == "FATE_PRE_GAME" then
-            giveUnitDataDrivenModifier(hero, hero, "round_pause", 70)
+            SendChatToPanorama(tostring(math.max(0,73-math.ceil(GameRules:GetGameTime()))))
+            giveUnitDataDrivenModifier(hero, hero, "round_pause", (math.max(0,73-math.ceil(GameRules:GetGameTime()))))
         end
     end
 

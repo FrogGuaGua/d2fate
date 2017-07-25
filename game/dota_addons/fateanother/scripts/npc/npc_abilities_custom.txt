@@ -13392,6 +13392,11 @@
 					"Damage"		"%damage"
 					"StunDuration"	"%stun_duration"
 			}
+			"RunScript"
+			{
+				"ScriptFile"		"lancelot_ability"
+				"Function"			"OnKnightUsed"
+			}
 		}
 
 		"OnProjectileHitUnit"

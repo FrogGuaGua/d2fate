@@ -363,7 +363,7 @@ function OnLECastStart(keys)
 		caster:EmitSound("Ruler.Luminosite")	
 	else
 		EmitGlobalSound("Hero_Chen.HandOfGodHealHero")
-		EmitGlobalSound("Ruler.Luminosite")
+		EmitGlobalSound("Ruler.LuminositeSofter")
 	end
 	Timers:CreateTimer(1.5, function()
 		caster.IsLEWindupSoundAvailable = false

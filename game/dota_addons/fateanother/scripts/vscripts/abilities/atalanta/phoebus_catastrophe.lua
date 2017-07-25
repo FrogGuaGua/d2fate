@@ -7,7 +7,7 @@ function atalanta_phoebus_catastrophe_wrapper(ability)
         if #enemies == 0 then 
             caster:EmitSound("Atalanta.PhoebusCast")  
         else
-            EmitGlobalSound("Atalanta.PhoebusCast")
+            EmitGlobalSound("Atalanta.PhoebusCastSofter")
         end
     
         local casterFX = ParticleManager:CreateParticle("particles/econ/items/monkey_king/arcana/death/mk_spring_arcana_death_ground_impact.vpcf", PATTACH_POINT_FOLLOW, caster)
