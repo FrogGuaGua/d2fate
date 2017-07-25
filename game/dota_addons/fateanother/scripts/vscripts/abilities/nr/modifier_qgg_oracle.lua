@@ -40,7 +40,6 @@ if IsServer() then
 			local hSource = not v.hAbility:IsNull() and v.hAbility or hAbility
 			if fHeal == 0 then
 				DoDamage(v.hAttacker, hParent, fDamage, v.eDamageType, 0, hSource, false)
-				totaldamage = totaldamage + fDamage
 			end
 			
 			if fHeal > 0 then
