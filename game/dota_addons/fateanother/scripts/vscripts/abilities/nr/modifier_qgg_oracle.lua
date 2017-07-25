@@ -25,13 +25,7 @@ function modifier_qgg_oracle:GetEffectAttachType()
 end
 
 function modifier_qgg_oracle:OnHeal(fAmount, fHeal, hSource)
-	local fAddition = fHeal
-	
-	if hSource.GetUnitName then
-		if hSource:GetUnitName() == "npc_dota_hero_windrunner" then fAddition = fAmount end
-	end
-	
-	self.fHeal = self.fHeal + fAddition
+	self.fHeal = self.fHeal + fAmount
 end
 
 if IsServer() then
