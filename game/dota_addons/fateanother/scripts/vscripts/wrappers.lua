@@ -16,7 +16,13 @@ function Wrappers.WrapHero(hHero)
 		local tModifiers = hHero:FindAllModifiers()
 		
 		for k, v in pairs(tModifiers) do
-			if v.OnHeal then v:OnHeal(fAmount, fHeal, hSource) end
+			if v.OnHeal then
+				v:OnHeal(fAmount, fHeal, hSource)
+				
+				if v:GetName() == "modifier_qgg_oracle" then
+					return
+				end
+			end
 		end
 		
 		hHero:Heal(fAmount, hSource)
