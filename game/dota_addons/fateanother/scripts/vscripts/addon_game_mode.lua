@@ -2170,6 +2170,15 @@ function FateGameMode:TakeDamageFilter(filterTable)
         filterTable.damage = filterTable.damage/100 * (100-reduction)
         damage = damage/100 * (100-reduction)
     end
+	
+	-- Functionality for the False Promise part of NR's new ult.
+	if victim:HasModifier("modifier_qgg_oracle") then
+		local hModifier = victim:FindModifierByName("modifier_qgg_oracle")
+		local tInfo = { hAttacker = attacker, fDamage = damage, eDamageType = damageType }
+		tInfo.hAbility = inflictor
+		table.insert(hModifier.tDamageInstances, tInfo)
+		return false
+	end
 
 
     -- if target is affected by Verg and damage is not lethal

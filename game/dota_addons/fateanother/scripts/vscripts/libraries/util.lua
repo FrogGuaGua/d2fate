@@ -821,6 +821,22 @@ function GetPhysicalDamageReduction(armor)
     end]]
 end
 
+-- Does what it says. damage post reduction -> pre reduction
+function CalculateDamagePreReduction(eDamageType, fDamage, hUnit)
+	if eDamageType == DAMAGE_TYPE_PHYSICAL then
+		local fArmor = hUnit:GetPhysicalArmorValue()
+		local multiplier = 1 + 0.06 * fArmor / (1 + 0.06 * math.abs(fArmor))
+		return fDamage * multiplier
+	end
+	
+	if eDamageType == DAMAGE_TYPE_MAGICAL then
+		local fMagicRes = hUnit:GetMagicalArmorValue()
+		return fDamage * (1 + fMagicRes)
+	end
+	
+	return fDamage
+end
+
 
 function ReduceCooldown(ability, reduction)
     local remainingCD = ability:GetCooldownTimeRemaining() 
