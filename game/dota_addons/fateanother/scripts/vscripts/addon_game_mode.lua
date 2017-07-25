@@ -108,10 +108,10 @@ for i=1, MAX_LEVEL do
     BOUNTY_PER_LEVEL_TABLE[i] = 1050 + i * 50
 end
 
-XP_BOUNTY_PER_LEVEL_TABLE[1] = 80
-XP_BOUNTY_PER_LEVEL_TABLE[2] = 120 * 0.85 + 8 + 100
+XP_BOUNTY_PER_LEVEL_TABLE[1] = 100
+XP_BOUNTY_PER_LEVEL_TABLE[2] = 100 * 0.85 + 8 + 120
 for i=3, MAX_LEVEL do
-    XP_BOUNTY_PER_LEVEL_TABLE[i] = XP_BOUNTY_PER_LEVEL_TABLE[i-1]*0.85 + i*4 + 100 -- Bounty XP formula : Previous level XP + Current Level * 4 + 120(constant)
+    XP_BOUNTY_PER_LEVEL_TABLE[i] = XP_BOUNTY_PER_LEVEL_TABLE[i-1]*0.85 + i*4 + 120 -- Bounty XP formula : Previous level XP + Current Level * 4 + 120(constant)
 end
 
 -- Client to Server message data tables
@@ -1707,7 +1707,7 @@ function FateGameMode:OnEntityKilled( keys )
                 CustomGameEventManager:Send_ServerToPlayer( killedUnit:GetPlayerOwner(), "servant_stats_updated", statTable ) -- Send the current stat info to JS
             end
             -- Distribute XP to allies
-            local alliedHeroes = FindUnitsInRadius(killerEntity:GetTeamNumber(), killedUnit:GetAbsOrigin(), nil, 5000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_CLOSEST, false)
+            local alliedHeroes = FindUnitsInRadius(killerEntity:GetTeamNumber(), killedUnit:GetAbsOrigin(), nil, 2500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_CLOSEST, false)
             local realHeroCount = 0
             for i=1, #alliedHeroes do
                 if alliedHeroes[i]:IsHero() and alliedHeroes[i]:GetName() ~= "npc_dota_hero_wisp" then
