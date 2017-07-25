@@ -557,7 +557,7 @@ function OnGlassGameStart(keys)
 	NRCheckCombo(caster, ability)
 
 	if caster.bIsQGGImproved then
-		instantHeal = instantHeal + 150 + caster:GetIntellect() * 4 
+		instantHeal = instantHeal + caster:GetIntellect() * 4 
 		instantHealPct = 20
 	end
 
@@ -565,7 +565,7 @@ function OnGlassGameStart(keys)
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game", {})
 	if caster.bIsQGGImproved then
 		--print("applied aura")
-		ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game_mana_aura", {})
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game_link_aura", {})
 		caster:AddNewModifier(caster, ability, "modifier_qgg_oracle_aura", { Duration = -1 })
 	end
 	-- find team units in radius and grant them instant heal
@@ -574,7 +574,7 @@ function OnGlassGameStart(keys)
 		--local missingHealth = (v:GetMaxHealth() - v:GetHealth()) * instantHealPct/100
 		local totalHeal = instantHeal
 		if caster.bIsQGGImproved then
-			v:GiveMana(totalHeal/2)
+			v:GiveMana(totalHeal)
 		end
 		v:ApplyHeal(totalHeal, caster)
 		local healFx = ParticleManager:CreateParticle( "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", PATTACH_CUSTOMORIGIN, nil );
@@ -598,7 +598,7 @@ function OnGlassGameEnd(keys)
 
 	caster:RemoveModifierByName("modifier_queens_glass_game")
 	if caster.bIsQGGImproved then
-		caster:RemoveModifierByName("modifier_queens_glass_game_mana_aura")
+		caster:RemoveModifierByName("modifier_queens_glass_game_link_aura")
 		caster:RemoveModifierByName("modifier_qgg_oracle_aura")
 	end
 	caster:StopSound("NR.Tick")

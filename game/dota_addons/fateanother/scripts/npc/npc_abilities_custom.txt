@@ -28912,7 +28912,7 @@
 		{
 			"modifier_queens_glass_game"
 			{
-				"IsHidden"				"0"
+				"IsHidden"				"1"
 				"Aura"					"modifier_queens_glass_game_hp_regen"
 				"Aura_Radius"			"%radius"
 				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -28950,19 +28950,19 @@
 				}
 			}
 
-			"modifier_queens_glass_game_mana_aura"
+			"modifier_queens_glass_game_link_aura"
 			{
-				"IsHidden"				"0"
-				"Aura"					"modifier_queens_glass_game_mana_regen"
+				"IsHidden"				"1"
+				"Aura"					"modifier_queens_glass_game_check_link"
 				"Aura_Radius"			"%radius"
 				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"			"DOTA_UNIT_TARGET_ALL"
-				"Aura_ApplyToCaster"	 "0"
 				"Duration"				"%channel_duration"
 			}
 
 			"modifier_queens_glass_game_hp_regen"
 			{
+				"IsHidden"				"0"
 				"OnCreated"
 				{
 					"RunScript"
@@ -28985,11 +28985,11 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%heal_over_time_pct"
 				}
 			}
-			"modifier_queens_glass_game_mana_regen"
-			{
+			"modifier_queens_glass_game_check_link"
+			{	
+				"IsHidden"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"		"%heal_over_time_pct"
 				}
 			}
 		}
@@ -29315,9 +29315,14 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_ratio"			"0.5"
+				"mana_ratio"			"1.0"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"heal_multiplier"		"1.5"
+			}
+			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cdr"			"70"

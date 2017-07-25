@@ -48,7 +48,7 @@ if IsServer() then
 	function modifier_qgg_oracle:OnDestroy()
 		local hParent = self:GetParent()
 		local hAbility = self:GetAbility()
-		local fHeal = self.fHeal * 2
+		local fHeal = self.fHeal * 1.5
 		
 		for k, v in pairs(self.tDamageInstances) do
 			local fDamage = v.fDamage
