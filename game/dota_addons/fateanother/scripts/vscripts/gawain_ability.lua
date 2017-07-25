@@ -36,7 +36,7 @@ function OnIRTickAlly(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
 	local target = keys.target
-	target:Heal(keys.Damage/10, caster)
+	target:ApplyHeal(keys.Damage/10, caster)
 	--target:SetHealth(target:GetHealth() + keys.Damage/5)
 end
 
@@ -224,12 +224,12 @@ function OnGalatineStart(keys)
 			-- Explosion on allies
 			local targets = FindUnitsInRadius(caster:GetTeam(), galatineDummy:GetAbsOrigin(), nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 			for k,v in pairs(targets) do
-				v:Heal(keys.Damage * 33/100, caster)
+				v:ApplyHeal(keys.Damage * 33/100, caster)
 				if caster.IsSunlightAcquired then
 					local healTimer = 1
 					Timers:CreateTimer(1.0, function()
 						if healTimer > 3 then return end
-						v:Heal(keys.Damage * 11/100, caster)
+						v:ApplyHeal(keys.Damage * 11/100, caster)
 						healTimer = healTimer + 1
 						return 1.0
 					end)
@@ -303,7 +303,7 @@ function OnEmbraceStart(keys)
 		local targetActualMR = targetMR + (1-targetMR)*targetMR -- calculates actual MR of target after application of Sun's Embrace
 		--print(targetActualMR)
 		local healAmount = healthDiff * targetActualMR  
-		target:Heal(healAmount, caster)
+		target:ApplyHeal(healAmount, caster)
 
 		if caster.IsSunlightAcquired then
 			keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_suns_embrace_sunlight_bonus",{})

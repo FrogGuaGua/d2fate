@@ -19,6 +19,7 @@ require('hero_selection')
 require('libraries/servantstats')
 require('libraries/alternateparticle')
 require('unit_voice')
+require('wrappers')
 
 
 _G.IsPickPhase = true
@@ -1005,6 +1006,7 @@ function FateGameMode:OnHeroInGame(hero)
     hero:SetCustomDeathXP(0)
     hero.bFirstSpawned = true
 	UnitVoice(hero)
+	Wrappers.WrapHero(hero)
     hero.PresenceTable = {}
     hero.bIsDmgPopupDisabled = false
     hero.bIsAlertSoundDisabled = false

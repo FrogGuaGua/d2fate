@@ -4,11 +4,8 @@ function modifier_qgg_oracle:OnCreated()
 	self.tDamageInstances = {}
 	self.fHeal = 0
 	self.hParent = self:GetParent()
-	self.fCurrentRegen = 0
 	self.flag = false
-end
-
-function modifier_qgg_oracle:OnRefresh()
+	self:StartIntervalThink(0.01)
 end
 
 function modifier_qgg_oracle:DeclareFunctions()
@@ -27,14 +24,25 @@ function modifier_qgg_oracle:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
+function modifier_qgg_oracle:OnHeal(fAmount)
+	self.fHeal = self.fHeal + fAmount
+end
+
 if IsServer() then
 	-- Thanks to DoctorGester (http://dg-lab.com/me) for this piece of code.
 	function modifier_qgg_oracle:GetModifierConstantHealthRegen()
 		if self.flag then return 0 end
 		self.flag = true
 		local regen = self:GetParent():GetHealthRegen()
+		self.fRegen = regen
 		self.flag = false
 		return -regen
+	end
+	
+	function modifier_qgg_oracle:OnIntervalThink()
+		if self.fRegen then
+			self.fHeal = self.fHeal + self.fRegen * 0.01
+		end
 	end
 	
 	function modifier_qgg_oracle:OnDestroy()
@@ -43,7 +51,7 @@ if IsServer() then
 		local fHeal = self.fHeal * 2
 		
 		for k, v in pairs(self.tDamageInstances) do
-			local fDamage = CalculateDamagePreReduction(v.eDamageType, v.fDamage, hParent)
+			local fDamage = v.fDamage
 			
 			local hSource = nil
 			if not v.hAbility then
@@ -53,7 +61,7 @@ if IsServer() then
 			end
 			
 			if fHeal == 0 then
-				DoDamage(v.hAttacker, hParent, fDamage, v.eDamageType, 0, hSource, false)
+				DoDamage(v.hAttacker, hParent, fDamage, v.eDamageType, 1 + 2 + 8, hSource, false)
 			end
 			
 			if fHeal > 0 then
@@ -62,10 +70,10 @@ if IsServer() then
 				if fHeal < 0 then
 					fDamage = math.abs(fHeal)
 					fHeal = 0
-					DoDamage(v.hAttacker, hParent, fDamage, v.eDamageType, 0, hSource, false)
+					DoDamage(v.hAttacker, hParent, fDamage, v.eDamageType, 1 + 2 + 8, hSource, false)
 				end
 			end
 		end
-		hParent:Heal(fHeal, hAbility)
+		hParent:ApplyHeal(fHeal, hAbility)
 	end
 end

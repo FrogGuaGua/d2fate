@@ -576,7 +576,7 @@ function OnGlassGameStart(keys)
 		if caster.bIsQGGImproved then
 			v:GiveMana(totalHeal/2)
 		end
-		v:Heal(totalHeal, caster)
+		v:ApplyHeal(totalHeal, caster)
 		local healFx = ParticleManager:CreateParticle( "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", PATTACH_CUSTOMORIGIN, nil );
 		ParticleManager:SetParticleControl( healFx, 0, v:GetAbsOrigin() + Vector(0,0,50))
 		v:EmitSound("Item.GuardianGreaves.Target")

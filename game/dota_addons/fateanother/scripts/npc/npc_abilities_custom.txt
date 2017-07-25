@@ -9209,16 +9209,17 @@
 				"EffectName"		"Hero_LifeStealer.OpenWounds.Cast"
 				"Target"			"CASTER"
 			}
-			"Heal"
-			{
-				"Target"		"CASTER"
-				"HealAmount"	"%heal_amount"
-			}
+			//"Heal"
+			//{
+			//	"Target"		"CASTER"
+			//	"HealAmount"	"%heal_amount"
+			//}
 			"RunScript"
 			{
 				"ScriptFile"		"ta_ability"
 				"Function"			"OnModStart"
 				"StatIncrease"		"%stat_increase"
+				"HealAmount"		"%heal_amount"
 			}
 		}
 
