@@ -286,7 +286,7 @@ function OnChariotRide(keys)
 	        if caster.IsThundergodAcquired then
 		        local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 150, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 		        for k,v in pairs(targets) do
-		            DoDamage(caster, v, 200, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+		            DoDamage(caster, v, 150, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
 		        end	  
 		        local thunderTargets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 		        local thunderTarget = thunderTargets[math.random(#thunderTargets)]
