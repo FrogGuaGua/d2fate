@@ -24642,7 +24642,7 @@
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"custom/lishuwen_fierce_tiger_strike"
 		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
-		"AnimationPlaybackRate" 		"0.7"
+		"AnimationPlaybackRate" 		"1.0"
 		"precache"
 		{
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
