@@ -109,7 +109,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_dmg"						"100"
+				"mana_cost"						"200"
 			}
 			"04"
 			{
@@ -124,7 +124,7 @@
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"condition_bonus_dmg"			"30"
+				"condition_free_mana"			"35"
 			}
 			"07"
 			{
@@ -596,7 +596,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dmg"							"5"
+				"dmg"							"4"
 			}
 			"02"
 			{
@@ -606,7 +606,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"interval"				"1"
+				"interval"				"2"
 			}
 		}
 	}

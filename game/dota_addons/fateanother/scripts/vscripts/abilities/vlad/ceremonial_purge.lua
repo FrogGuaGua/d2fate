@@ -16,12 +16,25 @@ function vlad_ceremonial_purge:VFX1_Slash(caster)
 	end)
 end
 
+function vlad_ceremonial_purge:GetManaCost(iLevel)
+	local caster = self:GetCaster()
+	local condition_free_mana = self:GetSpecialValueFor("condition_free_mana")
+	if caster.ImprovedImpalingAcquired then
+		local attr_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling")
+		condition_free_mana = attr_ability:GetSpecialValueFor("cp_conditional")
+	end
+  if caster:GetHealthPercent() <= condition_free_mana then
+    return 0
+  else
+    return self:GetSpecialValueFor("mana_cost")
+  end
+end
+
 function vlad_ceremonial_purge:GetDamage(caster)
 	local dmg_inner = self:GetSpecialValueFor("dmg_inner")
 	local dmg_outer = self:GetSpecialValueFor("dmg_outer")
 	local dmg_inner_base = dmg_inner
 	local dmg_outer_base = dmg_outer
-	local condition_bonus_dmg = self:GetSpecialValueFor("condition_bonus_dmg")
 	local bonus_dmg = self:GetSpecialValueFor("bonus_dmg")
 	local bonus_cap = self:GetSpecialValueFor("bonus_cap")
 	local attr_bonus = 0
@@ -34,17 +47,10 @@ function vlad_ceremonial_purge:GetDamage(caster)
 		dmg_inner = dmg_inner + ceremonial_dmg_bonus
 		dmg_inner_base = dmg_inner -- base bonus from attr doesnt count toward bonus dmg cap
 		dmg_outer_base = dmg_outer
-		condition_bonus_dmg = attr_ability:GetSpecialValueFor("cp_conditional")
 		local bleedcounter = caster:GetGlobalBleeds()
 		attr_bonus = bleedcounter * attr_ability:GetSpecialValueFor("cp_bonus_dmg_per_stack")
 		dmg_inner = dmg_inner + attr_bonus
 		dmg_outer = dmg_outer + attr_bonus
-	end
-
-	--improve dmg if health below threshold
-	if caster:GetHealthPercent() <= condition_bonus_dmg then
-		dmg_inner = dmg_inner + bonus_dmg
-		dmg_outer = dmg_outer + bonus_dmg
 	end
 
 	--improve dmg by percentile value based on bloodpower stacks if buff is present and remove the buff
@@ -62,7 +68,7 @@ function vlad_ceremonial_purge:GetDamage(caster)
   	end
 	end
 	--print("after  ",dmg_inner, "   ", dmg_outer)
-	--cap dmg bonus from sources: being under hp%, global bleeds, bloodpower
+	--cap dmg bonus from sources: global bleeds, bloodpower
 	dmg_inner = math.min(dmg_inner, dmg_inner_base + bonus_cap)
 	dmg_outer = math.min(dmg_outer, dmg_outer_base + bonus_cap)
 	--print("aftercap  ",dmg_inner, "   ", dmg_outer)
@@ -78,7 +84,6 @@ function vlad_ceremonial_purge:OnSpellStart()
 	local stun_outer = self:GetSpecialValueFor("stun_outer")
 	local slow_duration = self:GetSpecialValueFor("slow_duration")
 	local dmg_inner, dmg_outer = self:GetDamage(caster)
-
 	local hp_cost = self:GetSpecialValueFor("hp_cost")
 	local hp_max = caster:GetMaxHealth()
 	local hp_current = caster:GetHealth() - (hp_max * hp_cost)
@@ -87,7 +92,7 @@ function vlad_ceremonial_purge:OnSpellStart()
 	else
 		caster:SetHealth(1)
 	end
-print("TEST  ", caster:GetPlayerOwner():GetAssignedHero().HP_PER_STR)
+	
 	StartAnimation(caster, {duration=1, activity=ACT_DOTA_CAST_ABILITY_1, rate=1.5})
 	self:VFX1_Slash(caster)
 
