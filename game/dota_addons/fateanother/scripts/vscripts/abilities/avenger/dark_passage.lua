@@ -34,13 +34,6 @@ function avenger_dark_passage:OnSpellStart()
         sInEffect = hCaster:HasModifier("modifier_true_form") and "particles/custom/avenger/avenger_dark_passage_end_trueform.vpcf" or "particles/custom/avenger/avenger_dark_passage_end.vpcf"
     }
     AbilityBlink(hCaster, vPos, fRange, tParams)
-    hCaster:RemoveGesture(ACT_DOTA_CAST_ABILITY_6)
-end
-
-function avenger_dark_passage:OnAbilityPhaseStart()
-    local hCaster = self:GetCaster()
-    hCaster:StartGesture(ACT_DOTA_CAST_ABILITY_6)
-    return true
 end
 
 function avenger_dark_passage:CastFilterResultLocation( vLocation )
