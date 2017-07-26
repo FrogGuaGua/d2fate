@@ -29,16 +29,20 @@ function Wrappers.WrapUnit(hUnit)
 	end
 	
 	-- Execution
-	function hUnit:Execute(hAbility, hKiller)
+	function hUnit:Execute(hAbility, hKiller, tParams)
+		local tParams = tParams or {}
+		local bExecution = tParams.bExecution or false
 		local tModifiers = hUnit:FindAllModifiers()
 	
 		for k, v in pairs(tModifiers) do
-			if v.OnExecute then
-				v:OnExecute(hAbility, hKiller)
+			if v.OnKill then
+				v:OnKill(hAbility, hKiller)
 			end
 			
-			if v.BlockExecute then
-				if v:BlockExecute() then return end
+			if bExecution then
+				if v.BlockExecute then
+					if v:BlockExecute() then return end
+				end
 			end
 		end
 		

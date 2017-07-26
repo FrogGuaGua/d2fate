@@ -375,7 +375,7 @@ function PlayHeartBreakEffect(ability, killer, target)
 		ParticleManager:DestroyParticle( culling_kill_particle, false )
 		ParticleManager:DestroyParticle( hb, false )
 	end)
-	target:Execute(ability, killer)
+	target:Execute(ability, killer, { bExecution = true })
 end
 
 function PlayNormalGBEffect(target)

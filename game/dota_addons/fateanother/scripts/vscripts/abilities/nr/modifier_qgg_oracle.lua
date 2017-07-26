@@ -28,7 +28,7 @@ function modifier_qgg_oracle:OnHeal(fAmount, fHeal, hSource)
 	self.fHeal = self.fHeal + fAmount
 end
 
-function modifier_qgg_oracle:OnExecute(hAbility, hKiller)
+function modifier_qgg_oracle:OnKill(hAbility, hKiller)
 	self:Destroy()
 end
 
