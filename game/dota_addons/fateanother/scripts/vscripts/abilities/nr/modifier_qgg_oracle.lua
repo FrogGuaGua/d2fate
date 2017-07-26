@@ -28,6 +28,14 @@ function modifier_qgg_oracle:OnHeal(fAmount, fHeal, hSource)
 	self.fHeal = self.fHeal + fAmount
 end
 
+function modifier_qgg_oracle:OnExecute(hAbility, hKiller)
+	self:Destroy()
+end
+
+function modifier_qgg_oracle:DisableHeal()
+	return true
+end
+
 if IsServer() then
 	-- Thanks to DoctorGester (http://dg-lab.com/me) for this piece of code.
 	function modifier_qgg_oracle:GetModifierConstantHealthRegen()

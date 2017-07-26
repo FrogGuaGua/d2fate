@@ -11100,8 +11100,7 @@
 			"RunScript"
 			{
 				"ScriptFile"			"caster_ability"
-				"Function"				"OnTerriroryExplosionCast"
-				"CastDelay"				"%cast_delay"
+				"Function"				"OnTerritoryExplosionCastStart"
 			}
 		}
 		

@@ -1,36 +1,7 @@
 item_blink_scroll = class({})
 
 function item_blink_scroll:OnSpellStart()
-	local hCaster = self:GetCaster()
-	local vCursor = self:GetCursorPosition()
-	local vDifference = vCursor - hCaster:GetAbsOrigin()
-	local fMaxDistance = self:GetSpecialValueFor("distance")
-	
-	local vDirection = vDifference:Normalized()
-	local fDistance = vDifference:Length()
-	if fDistance >= fMaxDistance then fDistance = fMaxDistance end
-	local vBlinkPos = hCaster:GetAbsOrigin() + (vDirection * fDistance)
-	
-	local i = 0
-	local iStep = 10
-	local iSteps = math.ceil(fDistance / iStep)
-	
-	while GridNav:IsBlocked( vBlinkPos ) or not GridNav:IsTraversable( vBlinkPos )do
-		i = i + 1
-		vBlinkPos = hCaster:GetAbsOrigin() + (vDirection * (fDistance - i * iStep))
-		if i >= iSteps then break end
-	end
-	
-	local pcBlinkStart = ParticleManager:CreateParticle("particles/items_fx/blink_dagger_start.vpcf", PATTACH_CUSTOMORIGIN, nil)
-	ParticleManager:SetParticleControl(pcBlinkStart, 0, hCaster:GetAbsOrigin())
-	hCaster:EmitSound("Hero_Antimage.Blink_out")
-	
-	ProjectileManager:ProjectileDodge(hCaster)
-	FindClearSpaceForUnit(hCaster, vBlinkPos, true)
-	
-	local pcBlinkEnd = ParticleManager:CreateParticle("particles/items_fx/blink_dagger_end.vpcf", PATTACH_CUSTOMORIGIN, nil)
-	ParticleManager:SetParticleControl(pcBlinkEnd, 0, hCaster:GetAbsOrigin())
-	hCaster:EmitSound("Hero_Antimage.Blink_in")
+	AbilityBlink(self:GetCaster(), self:GetCursorPosition(), self:GetSpecialValueFor("distance"))
 end
 
 function item_blink_scroll:IsResettable()
@@ -39,7 +10,6 @@ end
 
 function item_blink_scroll:CastFilterResultLocation( vLocation )
 	local hCaster = self:GetCaster()
-	
 	if IsClient() then require('libraries/util') end
 	
 	if IsLocked(hCaster) or hCaster:HasModifier("jump_pause_nosilence") or hCaster:HasModifier("modifier_story_for_someones_sake") then

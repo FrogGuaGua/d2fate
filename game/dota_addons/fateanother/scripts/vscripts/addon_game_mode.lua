@@ -18,6 +18,8 @@ require('libraries/attachments')
 require('hero_selection')
 require('libraries/servantstats')
 require('libraries/alternateparticle')
+
+require('blink')
 require('unit_voice')
 require('wrappers')
 
