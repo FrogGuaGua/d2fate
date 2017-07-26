@@ -911,7 +911,11 @@
 				{
 					"AttachEffect"
 					{
-						"Target"			"CASTER"
+						"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						} 
 						"EffectName"		"particles/custom/saber_avalon_floor.vpcf"
 						"EffectAttachType"	"follow_origin"
 					}
@@ -15379,10 +15383,15 @@
 				{
 					"AttachEffect"
 					{
-						"Target"			"CASTER"
+						"Target"
+ 						{
+ 							"Center"	"CASTER"
+ 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+ 						}   			
 						"EffectName"		"particles/custom/avenger/avenger_verg_avesta.vpcf"
 						"EffectAttachType"	"follow_origin"
 					}
+
 				}
 				
 				"OnTakeDamage"
