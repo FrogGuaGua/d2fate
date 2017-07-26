@@ -895,7 +895,7 @@ function OnAvariceAcquired(keys)
 
 	-- distribute gold
 	local teamTable = {}
-	for i=0, 11 do
+	for i=0, 13 do
 		local player = PlayerResource:GetPlayer(i)
 		if player ~= nil then 
 			hero = PlayerResource:GetPlayer(i):GetAssignedHero()

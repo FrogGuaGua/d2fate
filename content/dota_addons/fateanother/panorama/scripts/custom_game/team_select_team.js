@@ -34,21 +34,99 @@ function OnJoinTeamPressed()
 
 	// Set the team name
 	var teamDetails = Game.GetTeamDetails( teamId );
-	$( "#TeamNameLabel" ).text = $.Localize( teamDetails.team_name );
-	
-	// Get the player list and add player slots so that there are upto team_max_player slots
-	var playerListNode = $.GetContextPanel().FindChildInLayoutFile( "PlayerList" );
-
-	var numPlayerSlots = teamDetails.team_max_players;
-	for ( var i = 0; i < numPlayerSlots; ++i )
+	if ($.Localize( teamDetails.team_name ) === "The Good")
 	{
-		// Add the slot itself
-		var slot = $.CreatePanel( "Panel", playerListNode, "" );
-		slot.AddClass( "player_slot" );
-		slot.SetAttributeInt( "player_slot", i );
-	}
+		$( "#TeamNameLabel" ).text = "Red";
+		
+		// Get the player list and add player slots so that there are upto team_max_player slots
+		var playerListNode = $.GetContextPanel().FindChildInLayoutFile( "PlayerList" );
 
-	if ( GameUI.CustomUIConfig().team_colors )
+		var numPlayerSlots = teamDetails.team_max_players;
+		for ( var i = 0; i < numPlayerSlots; ++i )
+		{
+			// Add the slot itself
+			var slot = $.CreatePanel( "Panel", playerListNode, "" );
+			slot.AddClass( "player_slot" );
+			slot.SetAttributeInt( "player_slot", i );
+		}
+
+		if ( GameUI.CustomUIConfig().team_colors )
+		{
+			var teamColor = GameUI.CustomUIConfig().team_colors[ teamId ];
+			teamColor = teamColor.replace( ";", "" );
+			
+			var teamBackgroundGradient = $( "#TeamBackgroundGradient" );
+			if ( teamBackgroundGradient )
+			{
+				//var gradientText = 'gradient( linear, -800% -1600%, 50% 100%, from( ' + teamColor + ' ), to( #00000088 ) );';
+				var gradientText = 'gradient( linear, -800% -1600%, 50% 100%, from( #9E0606 ), to( #00000088 ) );';
+				teamBackgroundGradient.style.backgroundColor = gradientText;	
+			}
+
+			var teamBackgroundGradientHighlight = $( "#TeamBackgroundGradientHighlight" );
+			if ( teamBackgroundGradientHighlight )
+			{
+				//var gradientText = 'gradient( linear, -800% -1600%, 90% 100%, from( ' + teamColor + ' ), to( #00000088 ) );';
+				var gradientText = 'gradient( linear, -800% -1600%, 90% 100%, from( #9E0606 ), to( #00000088 ) );';
+				teamBackgroundGradientHighlight.style.backgroundColor = gradientText;
+			}
+
+			var teamNameLabel = $( "#TeamNameLabel" );
+			if ( teamNameLabel )
+			{
+				//var colorText = teamColor + ';';
+				var colorText = ' #ff0d0d;';
+				teamNameLabel.style.color = colorText;
+			}		
+		}
+	}
+	else if ($.Localize( teamDetails.team_name ) === "The Bad")
+	{
+		$( "#TeamNameLabel" ).text = "Black";
+		
+		// Get the player list and add player slots so that there are upto team_max_player slots
+		var playerListNode = $.GetContextPanel().FindChildInLayoutFile( "PlayerList" );
+
+		var numPlayerSlots = teamDetails.team_max_players;
+		for ( var i = 0; i < numPlayerSlots; ++i )
+		{
+			// Add the slot itself
+			var slot = $.CreatePanel( "Panel", playerListNode, "" );
+			slot.AddClass( "player_slot" );
+			slot.SetAttributeInt( "player_slot", i );
+		}
+
+		if ( GameUI.CustomUIConfig().team_colors )
+		{
+			var teamColor = GameUI.CustomUIConfig().team_colors[ teamId ];
+			teamColor = teamColor.replace( ";", "" );
+			
+			var teamBackgroundGradient = $( "#TeamBackgroundGradient" );
+			if ( teamBackgroundGradient )
+			{
+				//var gradientText = 'gradient( linear, -800% -1600%, 50% 100%, from( ' + teamColor + ' ), to( #00000088 ) );';
+				var gradientText = 'gradient( linear, -800% -1600%, 50% 100%, from( #000000 ), to( #00000088 ) );';
+				teamBackgroundGradient.style.backgroundColor = gradientText;	
+			}
+
+			var teamBackgroundGradientHighlight = $( "#TeamBackgroundGradientHighlight" );
+			if ( teamBackgroundGradientHighlight )
+			{
+				//var gradientText = 'gradient( linear, -800% -1600%, 90% 100%, from( ' + teamColor + ' ), to( #00000088 ) );';
+				var gradientText = 'gradient( linear, -800% -1600%, 90% 100%, from( #000000 ), to( #00000088 ) );';
+				teamBackgroundGradientHighlight.style.backgroundColor = gradientText;
+			}
+
+			var teamNameLabel = $( "#TeamNameLabel" );
+			if ( teamNameLabel )
+			{
+				//var colorText = teamColor + ';';
+				var colorText = ' #959595;';
+				teamNameLabel.style.color = colorText;
+			}		
+		}
+	}
+	else if ( GameUI.CustomUIConfig().team_colors )
 	{
 		var teamColor = GameUI.CustomUIConfig().team_colors[ teamId ];
 		teamColor = teamColor.replace( ";", "" );
@@ -74,6 +152,5 @@ function OnJoinTeamPressed()
 			teamNameLabel.style.color = colorText;
 		}		
 	}
-	
 
 })();

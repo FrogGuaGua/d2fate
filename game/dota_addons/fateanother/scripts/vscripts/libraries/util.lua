@@ -1164,9 +1164,9 @@ end
 
 -- Check if anyone on this hero's team is still alive. 
 function IsTeamWiped(hero)
-    if not _G.GameMap == "fate_elim_6v6" then return false end
+    if _G.GameMap == "fate_ffa" or _G.GameMap == "fate_trio_rumble_3v3v3v3" then return false end
 
-    for i=0, 11 do
+    for i=0, 13 do
         local player = PlayerResource:GetPlayer(i)
         local playerHero = PlayerResource:GetSelectedHeroEntity(i)
         if playerHero ~= nil then 
@@ -1516,7 +1516,7 @@ function LogDeepPrint(debugInstance, prefix)
 end
 
 function LoopOverHeroes(callback)
-    for i=0, 11 do
+    for i=0, 13 do
         local hero = PlayerResource:GetSelectedHeroEntity(i)
         if hero ~= nil then 
             if callback(hero) then
@@ -1527,7 +1527,7 @@ function LoopOverHeroes(callback)
 end
 
 function LoopOverPlayers(callback)
-    for i=0, 11 do
+    for i=0, 13 do
         local playerID = i
         local player = PlayerResource:GetPlayer(i)
         local playerHero = PlayerResource:GetSelectedHeroEntity(playerID)
