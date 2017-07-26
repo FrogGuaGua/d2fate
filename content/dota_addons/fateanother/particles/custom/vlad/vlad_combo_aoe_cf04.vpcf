@@ -73,8 +73,8 @@
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin = [ 0.0, 0.0, 5.0 ]
-			m_OffsetMax = [ 0.0, 0.0, 5.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 20.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 50.0 ]
 		},
 		{
 			_class = "C_INIT_RemapParticleCountToScalar"
@@ -109,6 +109,11 @@
 			m_flDegreesMin = 90.0
 			m_flDegreesMax = 90.0
 			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 55
+			m_nAlphaMax = 100
 		},
 	]
 	m_Emitters = 
@@ -148,4 +153,13 @@
 		},
 	]
 	m_nMaxParticles = 50
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/custom/vlad/vlad_combo_aoe_cf04_explosion.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/custom/vlad/vlad_combo_aoe_cf04_explosion2.vpcf"
+		},
+	]
 }

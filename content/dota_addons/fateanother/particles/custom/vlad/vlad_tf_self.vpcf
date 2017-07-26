@@ -2,14 +2,14 @@
 {
 	_class = "CParticleSystemDefinition"
 	m_nMaxParticles = 8
-	m_flConstantRadius = 126.0
+	m_flConstantRadius = 100.0
 	m_flConstantLifespan = 0.25
 	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
 			m_bAdditive = true
-			m_hTexture = resource:"materials/particle/magneticring/ring_magnetic.vtex"
+			m_hTexture = resource:"materials/particle/electricity/electricity_20_b.vtex"
 		},
 	]
 	m_Operators = 
@@ -25,6 +25,7 @@
 		},
 		{
 			_class = "C_OP_FadeInSimple"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
@@ -32,13 +33,14 @@
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 1.4
+			m_flEndScale = 2.3
 			m_flBias = 0.25
-			m_flStartScale = 1.1
+			m_flStartScale = 2.0
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 255, 25, 25, 255 ]
+			m_flFadeEndTime = 0.1
+			m_bEaseInOut = false
 		},
 	]
 	m_Initializers = 
@@ -55,6 +57,7 @@
 			_class = "C_INIT_RandomColor"
 			m_ColorMin = [ 147, 55, 32, 255 ]
 			m_ColorMax = [ 255, 0, 0, 255 ]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RandomRotation"
@@ -70,15 +73,11 @@
 	m_Emitters = 
 	[
 		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 4
-		},
-		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 3.0
+			m_flEmitRate = 24.0
 		},
 	]
-	m_ConstantColor = [ 255, 52, 52, 255 ]
+	m_ConstantColor = [ 255, 255, 51, 255 ]
 	m_controlPointConfigurations = 
 	[
 		{
@@ -98,9 +97,6 @@
 	[
 		{
 			m_ChildRef = resource:"particles/custom/vlad/vlad_tf_self_cf01.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/custom/vlad/vlad_tf_self_cf02.vpcf"
 		},
 	]
 }

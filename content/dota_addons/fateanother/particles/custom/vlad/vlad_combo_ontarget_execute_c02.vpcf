@@ -56,8 +56,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 200.0
-			m_flRadiusMin = 150.0
+			m_flRadiusMax = 230.0
+			m_flRadiusMin = 180.0
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -96,12 +96,17 @@
 			m_LocalCoordinateSystemSpeedMin = [ 500.0, 500.0, 500.0 ]
 			m_LocalCoordinateSystemSpeedMax = [ 1000.0, 1000.0, 1000.0 ]
 		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 3.0
+			m_fLifetimeMax = 6.0
+		},
 	]
 	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 7.0
+			m_flEmitRate = 50.0
 		},
 	]
 	m_controlPointConfigurations = 

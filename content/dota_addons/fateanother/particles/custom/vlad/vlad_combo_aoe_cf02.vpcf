@@ -7,8 +7,8 @@
 	[
 		{
 			_class = "C_OP_RenderSprites"
-			m_hTexture = resource:"materials/particle/particle_flares/particle_flare_anim_white.vtex"
-			m_nOrientationType = 2
+			m_hTexture = resource:"materials/particle/particle_flares/particle_flare_006_yellow.vtex"
+			m_nOrientationType = 4
 			m_flOverbrightFactor = 6.0
 		},
 	]
@@ -59,7 +59,7 @@
 			_class = "C_INIT_RingWave"
 			m_flInitialRadius = 200.0
 			m_flInitialSpeedMin = 1500.0
-			m_flInitialSpeedMax = 1725.0
+			m_flInitialSpeedMax = 3000.0
 			m_nControlPointNumber = 1
 		},
 		{
@@ -74,20 +74,14 @@
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin = [ 0.0, 0.0, 16.0 ]
-			m_OffsetMax = [ 0.0, 0.0, 16.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 50.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 150.0 ]
 			m_nControlPointNumber = 1
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 121, 13, 49, 255 ]
-			m_ColorMax = [ 163, 0, 54, 255 ]
-		},
-		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 229, 48, 108, 255 ]
-			m_ColorMax = [ 241, 69, 126, 255 ]
-			m_bDisableOperator = true
+			m_ColorMin = [ 0, 0, 0, 255 ]
+			m_ColorMax = [ 107, 0, 0, 255 ]
 		},
 	]
 	m_Emitters = 

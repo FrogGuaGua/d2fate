@@ -21,5 +21,8 @@
 		{
 			m_ChildRef = resource:"particles/custom/vlad/vlad_combo_ontarget_stun_c01.vpcf"
 		},
+		{
+			m_ChildRef = resource:"particles/custom/vlad/vlad_combo_ontarget_stun_c01_spikes2.vpcf"
+		},
 	]
 }

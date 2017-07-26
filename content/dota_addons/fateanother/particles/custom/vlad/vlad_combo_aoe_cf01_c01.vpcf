@@ -13,7 +13,7 @@
 			m_flOverbrightFactor = 2.0
 			m_flAddSelfAmount = 2.0
 			m_bSaturateColorPreAlphaBlend = false
-			m_hTexture = resource:"materials/particle/sparks/sparks.vtex"
+			m_hTexture = resource:"materials/particle/riki/beam_blinkstrike_jagged.vtex"
 			m_bIgnoreDT = true
 			m_flLengthFadeInTime = 0.2
 			m_flMaxLength = 500.0
@@ -38,7 +38,7 @@
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flBias = 0.95
-			m_flStartScale = 6.0
+			m_flStartScale = 10.0
 			m_flEndScale = 0.0
 			m_flEndTime = 5.0
 		},
