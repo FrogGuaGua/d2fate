@@ -1,11 +1,11 @@
 Wrappers = {}
 
-function Wrappers.WrapHero(hHero)
+function Wrappers.WrapUnit(hUnit)
 	-- Heals
-	function hHero:ApplyHeal(fAmount, hSource, ...)
+	function hUnit:ApplyHeal(fAmount, hSource, ...)
 		local fHeal = fAmount
-		local fMaxHealth = hHero:GetMaxHealth()
-		local fCurrentHealth = hHero:GetHealth()
+		local fMaxHealth = hUnit:GetMaxHealth()
+		local fCurrentHealth = hUnit:GetHealth()
 			
 		if fCurrentHealth == fMaxHealth then
 			fHeal = 0
@@ -13,18 +13,35 @@ function Wrappers.WrapHero(hHero)
 			fHeal = fMaxHealth - fCurrentHealth
 		end
 		
-		local tModifiers = hHero:FindAllModifiers()
+		local tModifiers = hUnit:FindAllModifiers()
 		
 		for k, v in pairs(tModifiers) do
 			if v.OnHeal then
 				v:OnHeal(fAmount, fHeal, hSource)
-				
-				if v:GetName() == "modifier_qgg_oracle" then
-					return
-				end
+			end
+			
+			if v.DisableHeal then
+				if v:DisableHeal() then return end
 			end
 		end
 		
-		hHero:Heal(fAmount, hSource)
+		hUnit:Heal(fAmount, hSource)
+	end
+	
+	-- Execution
+	function hUnit:Execute(hAbility, hKiller)
+		local tModifiers = hUnit:FindAllModifiers()
+	
+		for k, v in pairs(tModifiers) do
+			if v.OnExecute then
+				v:OnExecute(hAbility, hKiller)
+			end
+			
+			if v.BlockExecute then
+				if v:BlockExecute() then return end
+			end
+		end
+		
+		hUnit:Kill(hAbility, hKiller)
 	end
 end

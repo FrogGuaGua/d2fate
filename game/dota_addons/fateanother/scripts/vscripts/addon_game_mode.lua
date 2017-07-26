@@ -972,6 +972,7 @@ end
 function FateGameMode:OnNPCSpawned(keys)
     --print("[BAREBONES] NPC Spawned")
     local hero = EntIndexToHScript(keys.entindex)
+	Wrappers.WrapUnit(hero)
 
     if hero:IsRealHero() and hero.bFirstSpawned == nil then
         local playerID = hero:GetPlayerID()
@@ -1006,7 +1007,6 @@ function FateGameMode:OnHeroInGame(hero)
     hero:SetCustomDeathXP(0)
     hero.bFirstSpawned = true
 	UnitVoice(hero)
-	Wrappers.WrapHero(hero)
     hero.PresenceTable = {}
     hero.bIsDmgPopupDisabled = false
     hero.bIsAlertSoundDisabled = false

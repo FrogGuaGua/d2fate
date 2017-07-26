@@ -139,7 +139,7 @@ end
 function OnTerritoryOwnerDeath(keys)
 	local caster = keys.caster
 	if not caster.Territory:IsNull() and caster.Territory:IsAlive() then
-		caster.Territory:Kill(keys.ability, keys.caster.Territory)
+		caster.Territory:Execute(keys.ability, keys.caster.Territory)
 	end
 end
 
@@ -195,15 +195,10 @@ end
 function OnTerritoryExplosionCastStart(keys)
 	local caster = keys.caster
 	local target = keys.target
-	local ability = keys.ability
 
 	local fx = ParticleManager:CreateParticle("particles/custom/caster/workshop_explosion.vpcf", PATTACH_CUSTOMORIGIN, caster)
 	ParticleManager:SetParticleControl(fx, 0, caster:GetAbsOrigin())
-
-    Timers:CreateTimer(keys.CastDelay, function()
-		ParticleManager:DestroyParticle( windupFx, false )
-		ParticleManager:ReleaseParticleIndex( windupFx )
-    end)
+	ParticleManager:ReleaseParticleIndex( fx )
 end
 
 function OnTerritoryExplosion(keys)
@@ -234,15 +229,8 @@ function OnTerritoryExplosion(keys)
 			local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf", PATTACH_CUSTOMORIGIN, caster)
 			ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin()) -- height of the bolt
 			ParticleManager:SetParticleControl(particle, 1, Vector(1000, 0, 0)) -- height of the bolt
-			-- Destroy particle after delay
-			Timers:CreateTimer( 2.0, function()
-				ParticleManager:DestroyParticle(fx, false)
-				ParticleManager:ReleaseParticleIndex(fx)
-				ParticleManager:DestroyParticle(particle, false)
-				ParticleManager:ReleaseParticleIndex(particle)
-				return nil
-			end)
-			caster:Kill(keys.ability, caster)
+			ParticleManager:ReleaseParticleIndex(particle)
+			caster:Execute(keys.ability, caster)
 		end
 		return
 	end)
