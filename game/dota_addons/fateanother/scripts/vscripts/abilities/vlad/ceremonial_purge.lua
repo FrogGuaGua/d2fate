@@ -36,7 +36,7 @@ function vlad_ceremonial_purge:GetDamage(caster)
 	local dmg_inner_base = dmg_inner
 	local dmg_outer_base = dmg_outer
 	local bonus_dmg = self:GetSpecialValueFor("bonus_dmg")
-	local bonus_cap = self:GetSpecialValueFor("bonus_cap")
+	local bonus_cap = caster.AttrBonusCap
 	local attr_bonus = 0
 
 	--improve dmg by base bonuses and add bonus for total bleeds
@@ -54,7 +54,7 @@ function vlad_ceremonial_purge:GetDamage(caster)
 	end
 
 	--improve dmg by percentile value based on bloodpower stacks if buff is present and remove the buff
-	--print("before  ",dmg_inner, "   ", dmg_outer)
+	print("before  ",dmg_inner, "   ", dmg_outer)
 	if caster.BloodletterAcquired then
     if not caster:HasModifier("modifier_transfusion_self") then
 			caster:ResetImpaleSwapTimer()
@@ -67,7 +67,7 @@ function vlad_ceremonial_purge:GetDamage(caster)
 			caster:RemoveModifierByName("modifier_transfusion_bloodpower")
   	end
 	end
-	--print("after  ",dmg_inner, "   ", dmg_outer)
+	print("after  ",dmg_inner, "   ", dmg_outer)
 	--cap dmg bonus from sources: global bleeds, bloodpower
 	dmg_inner = math.min(dmg_inner, dmg_inner_base + bonus_cap)
 	dmg_outer = math.min(dmg_outer, dmg_outer_base + bonus_cap)
@@ -121,7 +121,7 @@ function vlad_ceremonial_purge:OnSpellStart()
 				DoDamage(caster, v, 1, DAMAGE_TYPE_MAGICAL, 0, self, false)
         v:AddNewModifier(caster,self,"modifier_ceremonial_purge_slow",{duration = slow_duration})
         giveUnitDataDrivenModifier(caster, v, "stunned", stun_outer)
-				caster:AddBleedStack(v,5,false)
+				caster:AddBleedStack(v,false)
 			end
 		end
 	end)

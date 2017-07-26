@@ -122,7 +122,7 @@ function cl_wrapper(modifier)
 
 	function modifier:ApplyAttrBonuses(parent)
 		local parent = self:GetParent()
-		local bonus_cap = self:GetAbility():GetSpecialValueFor("bonus_cap")
+		local bonus_cap = parent.AttrBonusCap 
 		local dmg_base = self.CL_MAX_DMG
 		local shield_base = self.CL_MAX_SHIELD
 		--apply bonus for global bleeds
@@ -133,7 +133,7 @@ function cl_wrapper(modifier)
 			self.CL_MAX_DMG = self.CL_MAX_DMG+(bleedcounter*attribute_ability:GetSpecialValueFor("cl_bonus_dmg_per_stack"))
 			self.CL_MAX_SHIELD = self.CL_MAX_SHIELD+(bleedcounter*attribute_ability:GetSpecialValueFor("cl_bonus_shield_per_stack"))
 		end
-		--print("after instant curse :                  ", self.CL_MAX_SHIELD,"     ", self.CL_MAX_DMG)
+		print("after instant curse :                  ", self.CL_MAX_SHIELD,"     ", self.CL_MAX_DMG)
 		--apply bonus for bloodpower stacks
 		if parent.BloodletterAcquired then
 			if not parent:HasModifier("modifier_transfusion_self") then
@@ -179,7 +179,7 @@ function cl_wrapper(modifier)
 		local ability = self:GetAbility()
 		local aoe = ability:GetSpecialValueFor("aoe")
 		local dmg = ((self.CL_MAX_SHIELD - math.max(self.CL_SHIELDLEFT or 0,0))/self.CL_MAX_SHIELD)*(self.CL_MAX_DMG)
-		if dmg > 0 then
+		if dmg > 0 and parent:IsAlive() then
 			self:VFX2_PreExplosion(parent)
 			Timers:CreateTimer(0.3, function()
 				self:VFX3_Explosion(parent)

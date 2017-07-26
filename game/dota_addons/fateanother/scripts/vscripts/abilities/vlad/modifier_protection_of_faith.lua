@@ -22,11 +22,13 @@ if IsServer() then
     local ability = self:GetAbility()
     if keys.unit == parent
       and parent:IsAlive()
-      and not parent:HasModifier("modifier_protection_of_faith_proc_cd")
+      and parent:FindAbilityByName("vlad_protection_of_faith_cd"):IsCooldownReady()
       and parent:GetHealth() <= ability:GetSpecialValueFor("pof_condition")
     then
+      local cd = ability:GetSpecialValueFor("pof_cd")
+      parent:FindAbilityByName("vlad_protection_of_faith_cd"):StartCooldown(cd)
   		parent:AddNewModifier(parent,ability,"modifier_protection_of_faith_proc",{duration = ability:GetSpecialValueFor("pof_duration")})
-      parent:AddNewModifier(parent,ability,"modifier_protection_of_faith_proc_cd",{duration = ability:GetSpecialValueFor("pof_cd")})
+      parent:AddNewModifier(parent,ability,"modifier_protection_of_faith_proc_cd",{duration = cd} )
       parent:EmitSound("DOTA_Item.BlackKingBar.Activate")
       local PI1 = ParticleManager:CreateParticle("particles/items_fx/black_king_bar_avatar.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
       Timers:CreateTimer(2.25, function()

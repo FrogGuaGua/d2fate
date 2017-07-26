@@ -1,7 +1,6 @@
 vlad_cursed_lance = class({})
 LinkLuaModifier("modifier_cursed_lance", "abilities/vlad/modifier_cursed_lance", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cursed_lance_bp", "abilities/vlad/modifier_cursed_lance_bp", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_e_used", "abilities/vlad/modifier_e_used", LUA_MODIFIER_MOTION_NONE)
 
 if not IsServer() then
   return
@@ -12,7 +11,6 @@ function vlad_cursed_lance:ComboCheck(caster)
     and caster:GetAgility() >= 19.1
     and caster:GetIntellect() >= 19.1
     and caster:HasModifier("modifier_q_used")
-		and caster:HasModifier("modifier_e_used")
     and caster:FindAbilityByName("vlad_combo"):IsCooldownReady()
   then
     local modifier = caster:FindModifierByName("modifier_q_used")
@@ -90,11 +88,7 @@ function vlad_cursed_lance:OnSpellStart()
 		caster:SetHealth(1)
 	end
 
-	if caster:HasModifier( "modifier_q_used" ) then
-	   caster:AddNewModifier(caster, self, "modifier_e_used",{duration = 5})
-	end
-
-  if caster:HasModifier("modifier_transfusion_bloodpower") and caster.InstantCurseAcquired then
+  if caster:HasModifier("modifier_transfusion_bloodpower") and not caster:HasModifier("modifier_transfusion_self") and caster.InstantCurseAcquired then
     self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance_bp",{duration = duration})
   else
     self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance",{duration = duration})

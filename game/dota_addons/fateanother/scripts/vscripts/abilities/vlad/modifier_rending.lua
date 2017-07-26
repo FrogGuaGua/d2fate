@@ -16,7 +16,7 @@ function modifier_rending:OnAttackLanded(keys)
 	local ability = self:GetAbility()
 	local target = keys.target
   if target == caster:GetAttackTarget() and not caster.InnocentMonsterAcquired then
-     ability:AddStack(target,1,true)
+     ability:AddStack(target,true)
   end
 end
 

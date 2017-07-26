@@ -23,6 +23,7 @@
 		"Ability8"				"vlad_instant_curse"
 		"Ability9"				"vlad_passive_rending"
 		"Ability10"				"vlad_impale"
+		"Ability11" 			"vlad_protection_of_faith_cd"
 		"Ability13"				"presence_detection_passive"
 		"Ability14"				"attribute_bonus_custom"
 

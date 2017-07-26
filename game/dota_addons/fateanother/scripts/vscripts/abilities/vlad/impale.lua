@@ -79,7 +79,7 @@ function vlad_impale:OnSpellStart()
     for k,v in pairs(targets) do
       self:VFX2_OnTargetImpale(k,v)
       DoDamage(caster, v, damage, DAMAGE_TYPE_MAGICAL, 0, self, false)
-      caster:AddBleedStack(v, 5,false)
+      caster:AddBleedStack(v, false)
       giveUnitDataDrivenModifier(caster, v, "stunned", stun)
     end
     if #targets ~= 0 then

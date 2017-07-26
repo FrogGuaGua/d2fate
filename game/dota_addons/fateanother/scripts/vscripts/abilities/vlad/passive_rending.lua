@@ -9,12 +9,15 @@ end
 function vlad_passive_rending:OnUpgrade()
 	local caster = self:GetCaster()
   local ability = self
-	if IsServer() and not caster.AddBleedStack then
+	Timers:CreateTimer(5, function()
+ 		caster.AttrBonusCap = caster.MasterUnit2:FindAbilityByName("vlad_attribute_bloodletter"):GetSpecialValueFor("bonus_cap")
+	end)
+	if not caster.AddBleedStack then
 		function caster:AddBleedStack(...)
 			ability:AddStack(...)
 		end
 	end
-	if IsServer() and not caster.GetGlobalBleeds then
+	if not caster.GetGlobalBleeds then
 		function caster:GetGlobalBleeds(...)
 			return ability:BleedSeek(...)
 		end
@@ -35,17 +38,33 @@ function vlad_passive_rending:BleedSeek()
 	return bleedcounter
 end
 
-function vlad_passive_rending:AddStack(target,count,isMelee)
+function vlad_passive_rending:AddStack(target,isMelee,count)
+	--3rd arg is not needed, may be used to override default value
 	if target:IsRealHero() then 
 		local caster = self:GetCaster()
+		local _count
+		if isMelee then
+			_count = self:GetSpecialValueFor("stacks_onhit_melee")
+			if caster:HasModifier("modifier_rebellious_intent") then
+				_count = _count * 2
+				if count then
+					count = count * 2
+				end
+			end
+		else			
+			_count = self:GetSpecialValueFor("stacks_onhit_abilities")
+		end
+			
+		local bleed_duration = self:GetSpecialValueFor("duration")
 	  local modifier = target:FindModifierByName("modifier_bleed")
 	  local currentStack = modifier and modifier:GetStackCount() or 0
-		if isMelee == true and caster:HasModifier("modifier_rebellious_intent") then
-			count = count*2
+	  --target:RemoveModifierByName("modifier_bleed")
+	  if not modifier then 
+			local mod = target:AddNewModifier(caster, self, "modifier_bleed", {duration = bleed_duration})
+		else
+			modifier:SetDuration(bleed_duration, true)
 		end
-	  target:RemoveModifierByName("modifier_bleed")
-	  target:AddNewModifier(caster, self, "modifier_bleed", {duration = self:GetSpecialValueFor("duration")})
-	  target:SetModifierStackCount("modifier_bleed", self, currentStack + count)
+	  target:SetModifierStackCount("modifier_bleed", self, currentStack + (count or _count) )
 	end
 end
 

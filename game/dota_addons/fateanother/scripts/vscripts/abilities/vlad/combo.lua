@@ -1,5 +1,5 @@
 vlad_combo = class({})
---LinkLuaModifier("modifier_battle_continuation", "abilities/vlad/modifier_battle_continuation", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_lord_of_execution_cd", "abilities/vlad/modifier_lord_of_execution_cd", LUA_MODIFIER_MOTION_NONE)
 
 if not IsServer() then
   return
@@ -27,6 +27,8 @@ function vlad_combo:OnSpellStart()
 	local heal = self:GetSpecialValueFor("heal")
 	local penalty = self:GetSpecialValueFor("penalty")
 	local stun = self:GetSpecialValueFor("stun")
+
+  caster:AddNewModifier(caster, self, "modifier_lord_of_execution_cd", {duration = self:GetCooldown(1) } )
 
 	if caster.ComboTimer then
 		Timers:RemoveTimer(caster.ComboTimer)
@@ -65,11 +67,10 @@ function vlad_combo:OnSpellStart()
 				self:VFX3_OnTargetExecute(k,v)
 				v:SetAbsOrigin(GetGroundPosition(v:GetAbsOrigin(),v))
 				DoDamage(caster, v, 100, DAMAGE_TYPE_MAGICAL, 0, self, false)
+				caster:AddBleedStack(v,false)
 			end
 		end)
 		Timers:CreateTimer(3,function()
-			for k,v in pairs(targets) do
-			end
 			FxDestroyer(self.PI2, false)
 			FxDestroyer(self.PI3, false)
 		end)

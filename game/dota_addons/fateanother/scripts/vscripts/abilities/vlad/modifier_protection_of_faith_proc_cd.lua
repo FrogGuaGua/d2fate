@@ -1,7 +1,7 @@
 modifier_protection_of_faith_proc_cd = class({})
 
 function modifier_protection_of_faith_proc_cd:GetAttributes()
-  return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+  return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
 end
 
 function modifier_protection_of_faith_proc_cd:IsHidden()

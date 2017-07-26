@@ -279,6 +279,7 @@ CannotReset = {
     "vlad_impale",
     "vlad_battle_continuation",
     "vlad_combo",
+    "vlad_protection_of_faith_cd",
 }
 
 femaleservant = {

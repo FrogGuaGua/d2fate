@@ -83,10 +83,10 @@ modifierList = {"modifier_max_mana_burst_cooldown","modifier_delusional_illusion
 "modifier_max_enuma_elish_cooldown","modifier_endless_loop_cooldown","modifier_rampant_warrior_cooldown","modifier_nuke_cooldown",
 "modifier_larret_de_mort_cooldown","modifier_annihilate_cooldown","modifier_fiery_finale_cooldown",
 "modifier_polygamist_cooldown","modifier_raging_dragon_strike_cooldown","modifier_la_pucelle_cooldown","modifier_hippogriff_ride_cooldown","modifier_story_for_someones_sake_cooldown",
-"modifier_phoebus_catastrophe_cooldown",
+"modifier_phoebus_catastrophe_cooldown","modifier_lord_of_execution_cd",
 "modifier_strike_air_cooldown","modifier_instinct_cooldown","modifier_battle_continuation_cooldown","modifier_hrunting_cooldown",
 "modifier_overedge_cooldown","modifier_blood_mark_cooldown","modifier_quickdraw_cooldown","modifier_eternal_arms_mastership_cooldown","modifier_mystic_shackle_cooldown",
-"modifier_golden_apple_cooldown"} --last 3 lines are non-combos.
+"modifier_golden_apple_cooldown","modifier_protection_of_faith_proc_cd"} --last 3 lines are non-combos.
 
 function OnDevoteHit(keys)
 	local caster = keys.caster

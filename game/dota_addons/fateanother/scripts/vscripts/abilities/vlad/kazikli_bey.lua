@@ -57,15 +57,15 @@ end
 
 function vlad_kazikli_bey:ApplyAttrExtraDmg(caster,dmg_lastspike,bloodpower)
 	--improve dmg by bonus based on bleeds count present on all heroes
-	--print("ApplyAttrBonusDmg lastspike is: ",dmg_lastspike)
-	local bonus_cap = self:GetSpecialValueFor("bonus_cap")
+	print("ApplyAttrBonusDmg lastspike is: ",dmg_lastspike)
+	local bonus_cap = caster.AttrBonusCap
   local dmg_lastspike_base = dmg_lastspike
 	if caster.ImprovedImpalingAcquired then
 		local attribute_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling")
 		local bleedcounter = caster:GetGlobalBleeds()
 		dmg_lastspike = dmg_lastspike + (bleedcounter * attribute_ability:GetSpecialValueFor("kb_bonus_dmg_per_stack"))
 	end
-  --print("ApplyAttrBonusDmg POST IMPALING lastspike is: ",dmg_lastspike)
+  print("ApplyAttrBonusDmg POST IMPALING lastspike is: ",dmg_lastspike)
 	--improve dmg by percentile value based on bloodpower stacks used
 	if caster.BloodletterAcquired then
 		local attribute_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_bloodletter")
@@ -73,7 +73,7 @@ function vlad_kazikli_bey:ApplyAttrExtraDmg(caster,dmg_lastspike,bloodpower)
 	end
 	--cap bonus dmg from bleeds and bloodpower
 	dmg_lastspike = math.min(dmg_lastspike, dmg_lastspike_base + bonus_cap)
-	--print("ApplyAttrBonusDmg POST BLOODLETTER lastspike is: ",dmg_lastspike)
+	print("ApplyAttrBonusDmg POST BLOODLETTER lastspike is: ",dmg_lastspike)
 	return dmg_lastspike
 end
 
@@ -137,7 +137,7 @@ function vlad_kazikli_bey:OnSpellStart()
 				local lasthitTargets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_lastspike, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 				for k,v in pairs(lasthitTargets) do
 					DoDamage(caster, v, dmg_lastspike, DAMAGE_TYPE_MAGICAL, 0, self, false)
-					caster:AddBleedStack(v, 5,false)
+					caster:AddBleedStack(v, false)
 					giveUnitDataDrivenModifier(caster, v, "stunned", stun)
 					giveUnitDataDrivenModifier(caster, v, "revoked", stun)
 					ApplyAirborneOnly(v, 2000, stun)
@@ -163,7 +163,7 @@ function vlad_kazikli_bey:OnSpellStart()
 				local targets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_spikes, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 				for k,v in pairs(targets) do
           if caster.ImprovedImpalingAcquired and (hitcounter % 2) == 0 then
-            caster:AddBleedStack(v,1,false)
+            caster:AddBleedStack(v,false,1)
           end
 					DoDamage(caster, v, dmg_spikes, DAMAGE_TYPE_MAGICAL, 0, self, false)
 					giveUnitDataDrivenModifier(caster, v, "stunned", stun)

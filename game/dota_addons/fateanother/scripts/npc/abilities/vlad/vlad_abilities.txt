@@ -104,7 +104,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg_inner"						"150 185 220 255 290"
+				"dmg_inner"						"150 190 230 270 310"
 			}
 			"03"
 			{
@@ -139,7 +139,7 @@
 			"09"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg_outer"						"400 465 530 595 660"
+				"dmg_outer"						"440 505 570 635 700"
 			}
 			"10"
 			{
@@ -150,11 +150,6 @@
 			{
 				"var_type"						"FIELD_INTEGER"
 				"slow_duration"						"6"
-			}
-			"12"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_cap"						"500"
 			}
 		}
 	}
@@ -203,27 +198,17 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"percent_accumulated"			"2 1.9 1.84 1.79 1.75"
+				"duration"							"10"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"duration"							"10"
+				"hp_cost"							"0.2"
 			}
 			"05"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"hp_cost"						"0.2"
-			}
-			"06"
-			{
 				"var_type"						"FIELD_INTEGER"
-				"max_shield"						"400 500 600 700 800"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_cap"						"500"
+				"max_shield"						"500 600 700 800 900"
 			}
 		}
 	}
@@ -366,12 +351,12 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_gain"					"0.1"
+				"stun_gain"					"0.075"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"stun_max"					"2"
+				"stun_max"					"2.5"
 			}
 			"05"
 			{
@@ -496,13 +481,13 @@
 			}
 			"03"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"dmg_lastspike"			"400 500 600 700 800"
+				"var_type"						"FIELD_FLOAT"
+				"dmg_lastspike"			"350 437.5 525 612.5 700"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg_spikes"							"40 55 70 85 100"
+				"dmg_spikes"					"35 45 55 65 75" 
 			}
 			"05"
 			{
@@ -518,11 +503,6 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"endcast_pause"					"0.50"
-			}
-			"08"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"bonus_cap"						"500"
 			}
 		}
 	}
@@ -590,12 +570,17 @@
 		"AbilityTextureName"			"windrunner_powershot"
 		"ScriptFile"					"abilities/vlad/passive_rending"
 		"MaxLevel"						"1"
-
+		
+		"precache"
+		{
+			"particle"					"particles/custom/vlad/vlad_im_splash.vpcf"
+		}
+		
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"				"FIELD_FLOAT"
 				"dmg"							"4"
 			}
 			"02"
@@ -608,6 +593,17 @@
 				"var_type"				"FIELD_INTEGER"
 				"interval"				"2"
 			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_onhit_abilities"				"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_onhit_melee"				"1"
+			}
+			
 		}
 	}
 
@@ -625,10 +621,11 @@
 
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"17"
+		"AbilityManaCost"				"18"
 
 		"precache"
 		{
+			"particle"					"particles/custom/vlad/vlad_im_splash.vpcf"
 		}
 
 		"AbilitySpecial"
@@ -656,7 +653,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bonus_as_per_1"					"3.5"
+				"bonus_as_per_1"					"4"
 			}
 			"07"
 			{
@@ -680,7 +677,7 @@
 
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -726,7 +723,30 @@
 			}
 		}
 	}
+	//=======================================
+	// Vlad III: Protection of Faith CD
+	//=======================================
+	"vlad_protection_of_faith_cd"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/protection_of_faith_cd"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/vlad_protection_of_faith"
 
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"0"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+	}
 	//=======================================
 	// Vlad Attribute : Improved Impaling
 	//=======================================
@@ -767,7 +787,7 @@
 			"04"
 			{
 				"var_type"									"FIELD_FLOAT"
-				"kb_bonus_dmg_per_stack"					"6"
+				"kb_bonus_dmg_per_stack"					"7"
 			}
 			"05"
 			{
@@ -782,7 +802,7 @@
 			"07"
 			{
 				"var_type"									"FIELD_INTEGER"
-				"cp_bonus_dmg_per_stack"					"4"
+				"cp_bonus_dmg_per_stack"					"5"
 			}
 		}
 	}
@@ -812,12 +832,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cl_bonus_shield_per_stack"					"7"
+				"cl_bonus_shield_per_stack"					"8"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cl_bonus_dmg_per_stack"					"5"
+				"cl_bonus_dmg_per_stack"					"6"
 			}
 		}
 	}
@@ -836,7 +856,7 @@
 
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{
@@ -863,6 +883,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cp_bonus_dmg_per_stack"					"0.01"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_cap"						"500"
 			}
 		}
 	}
