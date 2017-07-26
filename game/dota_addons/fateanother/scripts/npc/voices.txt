@@ -21,6 +21,8 @@
 #base "voices/ta.txt"
 #base "voices/zc.txt"
 #base "voices/zl.txt"
+#base "voices/vlad.txt"
+
 
 "FATEVoices"
 {

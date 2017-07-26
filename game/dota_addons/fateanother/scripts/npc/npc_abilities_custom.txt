@@ -1,5 +1,7 @@
 // Dota Heroes File
 
+#base "abilities/vlad/vlad_abilities.txt"
+
 "DOTAAbilities"
 {
 	"Version"		"1"
@@ -21777,6 +21779,18 @@
 				"TextureName"	"custom/atalanta_golden_apple"
 				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
 			}
+			"modifier_lord_of_execution_cd"
+			{
+				"IsDebuff"	"1"
+				"TextureName"	"custom/vlad_combo"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_protection_of_faith_proc_cd"
+			{
+				"IsDebuff"	"1"
+				"TextureName"	"custom/vlad_protection_of_faith"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
 		}
 	}
 
@@ -30432,6 +30446,11 @@
 					{
 						"ScriptFile"	"master_ability"
 						"Function"		"OnHeroRespawn"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"ApplyLostAttributeModifiers"
+						"Function"		"ApplyLostAttributeModifiers"
 					}
 				}
 			}

@@ -33,6 +33,8 @@ softdispellable = {
     "modifier_jeanne_charisma_agi",
     "modifier_jeanne_charisma_int",
     "modifier_atalanta_last_spurt",
+    "modifier_cursed_lance",
+    "modifier_battle_continuation_heal",
 }
 
 strongdispellable = {
@@ -68,6 +70,9 @@ strongdispellable = {
     "modifier_jeanne_charisma_agi",
     "modifier_jeanne_charisma_int",
     "modifier_atalanta_last_spurt",
+    "modifier_cursed_lance",
+    "modifier_battle_continuation_heal",
+
 
     -- Strong Dispelable
     "modifier_b_scroll",
@@ -77,7 +82,8 @@ strongdispellable = {
     "modifier_gordius_wheel_mitigation_tier2",
     "modifier_gordius_wheel_mitigation_tier3",
     "tamamo_mantra",
-    "modifier_lishuwen_cosmic_orbit_momentary_resistance"
+    "modifier_lishuwen_cosmic_orbit_momentary_resistance",
+    "modifier_cursed_lance_bp",
 }
 
 revokes = {
@@ -187,7 +193,8 @@ slowmodifier = {
     "modifier_down_with_a_touch_slow_3",
     "modifier_la_black_luna_slow",
     "modifier_nursery_rhyme_shapeshift_slow",
-    "modifier_doppelganger_lookaway_slow"
+    "modifier_doppelganger_lookaway_slow",
+    "modifier_ceremonial_purge_slow",
 }
 
 donotlevel = {
@@ -267,6 +274,11 @@ CannotReset = {
     "atalanta_last_spurt",
     "atalanta_phoebus_catastrophe_snipe",
     "caster_5th_sacrifice",
+    "vlad_transfusion",
+    "vlad_impale",
+    "vlad_battle_continuation",
+    "vlad_combo",
+    "vlad_protection_of_faith_cd",
 }
 
 femaleservant = {
@@ -374,8 +386,7 @@ end
 
 function ApplyAirborne(source, target, duration)
     target:AddNewModifier(source, source, "modifier_stunned", {Duration = duration})
-
-    if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
+    --if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
     --[[local ascendCounter = 0
     Timers:CreateTimer(function()
         if ascendCounter > duration/2 then return end
@@ -391,7 +402,16 @@ function ApplyAirborne(source, target, duration)
         return 0.033
     end)]]
     local knockupSpeed = 1500
+    ApplyAirborneOnly(target, knockupSpeed, duration)
+end
+
+function ApplyAirborneOnly(target, knockupSpeed, duration, Acc)
+    if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
+
     local knockupAcc = knockupSpeed/duration * 2
+    if Acc then
+        knockupAcc = Acc
+    end
 
     Physics:Unit(target)
     target:PreventDI()
@@ -409,7 +429,6 @@ function ApplyAirborne(source, target, duration)
         target:Hibernate(true)
     end)
 end
-
 
 function DummyEnd(dummy)
     dummy:RemoveSelf()
@@ -1020,6 +1039,30 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             IsAbsorbed = true
         end
     end
+  
+    -- check if target has Cursed Lance
+    if not IsAbsorbed and (target:HasModifier("modifier_cursed_lance") or target:HasModifier("modifier_cursed_lance_bp")) then
+  	    local modifier = target:FindModifierByName("modifier_cursed_lance") or target:FindModifierByName("modifier_cursed_lance_bp")
+        local reduction = 0
+        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
+        elseif dmg_type == DAMAGE_TYPE_MAGICAL then
+            reduction = target:GetMagicalArmorValue()
+        end
+        local originalDamage = dmg - modifier.CL_SHIELDLEFT * 1/(1-reduction)
+        modifier.CL_SHIELDLEFT = modifier.CL_SHIELDLEFT - dmg * (1-reduction)
+        if modifier.CL_SHIELDLEFT <= 0 then
+            dmg = originalDamage
+            if not target.InstantCurseAcquired then
+                target:RemoveModifierByName("modifier_cursed_lance")
+            end
+            modifier.CL_SHIELDLEFT = 0
+        else
+            dmg = 0
+            IsAbsorbed = true
+        end
+    end
+
     -- Check if target has Avalon up
     if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then
         local incomingDmg = dmg
@@ -1666,6 +1709,7 @@ local heroNames = {
     ["npc_dota_hero_queenofpain"] = "Rider of Black(Apocrypha)",
     ["npc_dota_hero_windrunner"] = "Caster(Extra), N.R",
     ["npc_dota_hero_drow_ranger"] = "Archer of Red(Apocrypha)",
+    ["npc_dota_hero_tidehunter"] = "Lancer(Extra)",
 }
 
 
@@ -1707,6 +1751,7 @@ local heroCombos = {
     ["npc_dota_hero_queenofpain"] = "astolfo_hippogriff_ride",
     ["npc_dota_hero_windrunner"] = "nursery_rhyme_story_for_somebodys_sake",
     ["npc_dota_hero_drow_ranger"] = "atalanta_phoebus_catastrophe_barrage",
+    ["npc_dota_hero_tidehunter"] = "vlad_combo",
 }
 
 function GetHeroCombo(hero)
@@ -1773,3 +1818,38 @@ function OnHeroTakeDamage(keys)
     hero.ServStat:takeActualDamage(damageTaken)
 end
 
+function FxDestroyer(PIndex,instant)
+  if PIndex ~= nil and type(PIndex) == "table" then
+    --PrintTable(PIndex)
+    for i,j in pairs(PIndex) do
+      --print("destroy",PIndex[i])
+      ParticleManager:DestroyParticle(PIndex[i], instant)
+      ParticleManager:ReleaseParticleIndex(PIndex[i])
+    end
+    PIndex = nil
+    return PIndex
+  elseif PIndex ~= nil then
+    --print("destroy1",PIndex)
+    ParticleManager:DestroyParticle(PIndex, instant)
+    ParticleManager:ReleaseParticleIndex(PIndex)
+    PIndex = nil
+    return PIndex
+  end
+end
+
+function FxCreator(effectname,pattach,target,cp,attach,amount)
+  if amount ~= nil then
+    local FXIndex = {}
+    for i=amount,1,-1 do
+      FXIndex[i] = ParticleManager:CreateParticle(effectname,pattach,target)
+      ParticleManager:SetParticleControlEnt(FXIndex[i],cp,target,pattach,attach,target:GetAbsOrigin(),false)
+      --print("create            ",FXIndex[i])
+    end
+    return FXIndex
+  else         
+    local FXIndex = ParticleManager:CreateParticle(effectname,pattach,target)
+    ParticleManager:SetParticleControlEnt(FXIndex,cp,target,pattach,attach,target:GetAbsOrigin(),false)
+    --print("create                ", FXIndex)
+    return FXIndex
+  end
+end
