@@ -93,7 +93,9 @@ end
 
 function OnDarkPassageRespawn(keys)
 	local caster = keys.caster
+	local ability = keys.ability
 	caster:RemoveModifierByName("modifier_dark_passage")
+	ability:EndCooldown()
 end
 
 function OnMurderStart(keys)
@@ -124,6 +126,7 @@ function OnMurder(keys)
 	elseif target:IsHero() then
 		--print("Avenger killed a hero")
 		manareg = caster:GetMaxMana() * keys.ManaRegenHero / 100
+		caster:RemoveModifierByName("modifier_dark_passage")
 	end
 	caster:SetMana(caster:GetMana() + manareg)
 end
@@ -310,7 +313,7 @@ function OnBloodStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_blood_mark_restriction", {})
+	--ability:ApplyDataDrivenModifier(caster, caster, "modifier_blood_mark_restriction", {})
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_blood_mark_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
 	if IsSpellBlocked(keys.target) then return end
 	local initHealth = caster:GetHealth() 
@@ -343,13 +346,12 @@ function OnTFStart(keys)
 	--local a2 = caster:GetAbilityByIndex(1):GetAbilityName()
     caster:SwapAbilities("avenger_murderous_instinct", "avenger_unlimited_remains", false, true) 
     caster:SetMana(newMana)
+
+    caster:SwapAbilities("avenger_true_form", "avenger_demon_core", false, true)
     if caster.IsBloodMarkAcquired then 
-    	caster:SwapAbilities("avenger_true_form", "avenger_blood_mark", false, true)
-    	caster:SwapAbilities("fate_empty1", "avenger_demon_core", false, true)
-    else
-    	caster:SwapAbilities("fate_empty1", "avenger_true_form", true, true)
-    	caster:SwapAbilities("avenger_true_form", "avenger_demon_core", false, true)
+    	caster:SwapAbilities("fate_empty1", "avenger_blood_mark", false, true)
     end
+
     caster:SwapAbilities("avenger_tawrich_zarich", "avenger_vengeance_mark", false, true) 
     caster.OriginalModel = "models/avenger/trueform/trueform.vmdl"
     caster:SetModel("models/avenger/trueform/trueform.vmdl")
@@ -377,13 +379,13 @@ function OnTFEnd(keys)
     end
     caster:SwapAbilities("fate_empty1", "avenger_demon_core", true, false)]]
 
+    caster:SwapAbilities("avenger_true_form", "avenger_demon_core", true, false) 
+
     if caster.IsBloodMarkAcquired then 
-    	caster:SwapAbilities("avenger_true_form", "avenger_blood_mark", true, false) 
-    	caster:SwapAbilities("fate_empty1", "avenger_demon_core", true, false)
+    	caster:SwapAbilities("fate_empty1", "avenger_blood_mark", true, false)
     else
-    	caster:SwapAbilities("avenger_true_form", "avenger_demon_core", true, false)
-    	caster:SwapAbilities("fate_empty1", "avenger_true_form", true, true)   	
     end
+
     local demoncore = caster:FindAbilityByName("avenger_demon_core")
     if demoncore:GetToggleState() then
     	demoncore:ToggleAbility()

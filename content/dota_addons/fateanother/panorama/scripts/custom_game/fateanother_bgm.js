@@ -40,10 +40,12 @@ function PlayBGM()
     g_GameConfig.curBGMentindex = Game.EmitSound(BGMname);
 
     g_GameConfig.BGMSchedule = $.Schedule(BGMduration, function(){
-        if (!g_GameConfig.bRepeat) {
-            g_GameConfig.nextBGMIndex = Math.floor((Math.random() * 8) + 1);
+        if (g_GameConfig.bIsBGMOn === true){
+            if (!g_GameConfig.bRepeat) {
+                g_GameConfig.nextBGMIndex = Math.floor((Math.random() * 8) + 1);
+            }
+            PlayBGM();
         }
-        PlayBGM();
     });
 }
 

@@ -1,6 +1,6 @@
 "FATEVoices"
 {
-	"npc_dota_hero_vengefulspirit"
+	"npc_dota_hero_phantom_lancer"
 	{
 		"Spawn"
 		{

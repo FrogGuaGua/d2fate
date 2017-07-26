@@ -1,3 +1,6 @@
+LinkLuaModifier("modifier_qgg_oracle", "abilities/nr/modifier_qgg_oracle", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_qgg_oracle_aura", "abilities/nr/modifier_qgg_oracle_aura", LUA_MODIFIER_MOTION_NONE)
+
 CCTable = {
 	"silenced",
 	"stunned",
@@ -554,7 +557,7 @@ function OnGlassGameStart(keys)
 	NRCheckCombo(caster, ability)
 
 	if caster.bIsQGGImproved then
-		instantHeal = instantHeal+150
+		instantHeal = instantHeal + caster:GetIntellect() * 4 
 		instantHealPct = 20
 	end
 
@@ -562,17 +565,18 @@ function OnGlassGameStart(keys)
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game", {})
 	if caster.bIsQGGImproved then
 		--print("applied aura")
-		ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game_mana_aura", {})
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game_link_aura", {})
+		caster:AddNewModifier(caster, ability, "modifier_qgg_oracle_aura", { Duration = -1 })
 	end
 	-- find team units in radius and grant them instant heal
 	local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	for k,v in pairs(targets) do
-		local missingHealth = (v:GetMaxHealth() - v:GetHealth()) * instantHealPct/100
-		local totalHeal = instantHeal + missingHealth
-		v:Heal(totalHeal, caster)
+		--local missingHealth = (v:GetMaxHealth() - v:GetHealth()) * instantHealPct/100
+		local totalHeal = instantHeal
 		if caster.bIsQGGImproved then
-			v:GiveMana(totalHeal/2)
+			v:GiveMana(totalHeal)
 		end
+		v:ApplyHeal(totalHeal, caster)
 		local healFx = ParticleManager:CreateParticle( "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", PATTACH_CUSTOMORIGIN, nil );
 		ParticleManager:SetParticleControl( healFx, 0, v:GetAbsOrigin() + Vector(0,0,50))
 		v:EmitSound("Item.GuardianGreaves.Target")
@@ -594,7 +598,8 @@ function OnGlassGameEnd(keys)
 
 	caster:RemoveModifierByName("modifier_queens_glass_game")
 	if caster.bIsQGGImproved then
-		caster:RemoveModifierByName("modifier_queens_glass_game_mana_aura")
+		caster:RemoveModifierByName("modifier_queens_glass_game_link_aura")
+		caster:RemoveModifierByName("modifier_qgg_oracle_aura")
 	end
 	caster:StopSound("NR.Tick")
 end
@@ -603,6 +608,7 @@ function OnGlassGameThink(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local manaCost = keys.ManaCost * caster:GetMaxMana() / 100
+	
 	--print(manaCost)
 	if  manaCost > caster:GetMana() then 
 		caster:Stop() -- stop channeling

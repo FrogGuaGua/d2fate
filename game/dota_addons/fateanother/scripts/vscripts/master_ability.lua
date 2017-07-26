@@ -378,7 +378,7 @@ function OnSeal3Start(keys)
 
 	local particle = ParticleManager:CreateParticle("particles/items2_fx/urn_of_shadows_heal_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
 	ParticleManager:SetParticleControl(particle, 0, hero:GetAbsOrigin())
-	hero:Heal(hero:GetMaxHealth(), hero)
+	hero:ApplyHeal(hero:GetMaxHealth(), hero)
 
 	if caster.IsFirstSeal == true then
 		keys.ability:EndCooldown()
@@ -906,7 +906,7 @@ function OnAvariceAcquired(keys)
 
 	-- distribute gold
 	local teamTable = {}
-	for i=0, 11 do
+	for i=0, 13 do
 		local player = PlayerResource:GetPlayer(i)
 		if player ~= nil then 
 			hero = PlayerResource:GetPlayer(i):GetAssignedHero()

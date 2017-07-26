@@ -20,7 +20,6 @@ softdispellable = {
     "modifier_heart_of_harmony",
     "modifier_l_rule_breaker",
     "modifier_double_edge",
-    "modifier_murderous_instinct",
     "modifier_double_spearsmanship",
     "modifier_gordius_wheel_speed_boost",
     "nero_gladiusanus_blauserum",
@@ -114,7 +113,7 @@ goesthruB = {"saber_avalon",
             "false_assassin_quickdraw",
             "archer_5th_overedge",
             "avenger_verg_avesta",
-            "lancer_5th_wesen_gae_bolg"
+            "lancer_5th_wesen_gae_bolg",
 }
 
 cleansable = {
@@ -483,6 +482,22 @@ function HasLeaversInTeam(hero)
     end)
     return leaverCount
 end
+
+function SumTable(table) --sums a freaking table why do I have to write primitive stuff like these
+    local sum = 0
+    for k,v in pairs(table) do
+        sum = sum + v
+    end
+
+    return sum
+end
+
+function MaxNumTable(table) --sorts a table and return first value in the table which is the highest and also its table index
+    for k,curGold in spairs(table, function(t,a,b) return t[b] < t[a] end) do
+        return k, curGold
+    end
+end
+
 function round(num, numDecimalPlaces)
     if numDecimalPlaces and numDecimalPlaces>0 then
         local mult = 10^numDecimalPlaces
@@ -825,6 +840,22 @@ function GetPhysicalDamageReduction(armor)
     end]]
 end
 
+-- Does what it says. damage post reduction -> pre reduction
+function CalculateDamagePreReduction(eDamageType, fDamage, hUnit)
+	if eDamageType == DAMAGE_TYPE_PHYSICAL then
+		local fArmor = hUnit:GetPhysicalArmorValue()
+		local multiplier = 1 + 0.06 * fArmor / (1 + 0.06 * math.abs(fArmor))
+		return fDamage * multiplier
+	end
+	
+	if eDamageType == DAMAGE_TYPE_MAGICAL then
+		local fMagicRes = hUnit:GetMagicalArmorValue()
+		return fDamage * (1 + fMagicRes)
+	end
+	
+	return fDamage
+end
+
 
 function ReduceCooldown(ability, reduction)
     local remainingCD = ability:GetCooldownTimeRemaining() 
@@ -985,7 +1016,9 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
     -- check if target has Rho Aias shield 
     if not IsAbsorbed and target:HasModifier("modifier_rho_aias_shield") then
         local reduction = 0
-        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+        if target:HasModifier("modifier_l_rule_breaker") or target:HasModifier ("modifier_c_rule_breaker") and (dmg_type == DAMAGE_TYPE_PURE or dmg_type == DAMAGE_TYPE_PHYSICAL) then
+            reduction = 1
+        elseif dmg_type == DAMAGE_TYPE_PHYSICAL then
             reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
         elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             reduction = target:GetMagicalArmorValue() 
@@ -1006,6 +1039,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             IsAbsorbed = true
         end
     end
+  
     -- check if target has Cursed Lance
     if not IsAbsorbed and (target:HasModifier("modifier_cursed_lance") or target:HasModifier("modifier_cursed_lance_bp")) then
   	    local modifier = target:FindModifierByName("modifier_cursed_lance") or target:FindModifierByName("modifier_cursed_lance_bp")
@@ -1028,15 +1062,17 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             IsAbsorbed = true
         end
     end
+
     -- Check if target has Avalon up
     if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then
         local incomingDmg = dmg
         local reduction = 0
 
-        if dmg_type == DAMAGE_TYPE_MAGICAL then
+        if target:HasModifier("modifier_l_rule_breaker") or target:HasModifier ("modifier_c_rule_breaker") and (dmg_type == DAMAGE_TYPE_PURE or dmg_type == DAMAGE_TYPE_PHYSICAL) then
+            incomingDmg = incomingDmg * 0
+        elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             incomingDmg = incomingDmg * (1-MR)
-        end 
-        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+        elseif dmg_type == DAMAGE_TYPE_PHYSICAL then
             reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
             incomingDmg = incomingDmg * (1-reduction) 
         end
@@ -1100,6 +1136,8 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         if target:HasModifier("modifier_share_damage")
           and not isLoop
           and not (abil:GetName() == "avenger_verg_avesta" and source:GetTeam() == target:GetTeam())
+         --Queens glass game attribute fix
+          and not (target:HasModifier("modifier_queens_glass_game_check_link") and not target:HasModifier("modifier_qgg_oracle"))
           and target.linkTable ~= nil
         then
             -- Calculate the damage to secondary targets separately, in order to prevent MR from being twice as effective on primary target.
@@ -1115,7 +1153,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             dmgtable.damage = dmgtable.damage/#target.linkTable * (1 + 0.1 * #target.linkTable - (#target.linkTable == 1 and 1 or 0) * 0.1)
             --print(damageToAllies, dmgtable.damage, (1 + 0.1 * #target.linkTable - (#target.linkTable == 1 and 1 or 0) * 0.1))
             -- Loop through linked heroes
-            for i=1, #target.linkTable do
+            for i=#target.linkTable,1,-1 do
                 -- do ApplyDamage if it's primary target since the shield processing is already done
                 if target.linkTable[i] == target then
                     --print("Damage dealt to primary target : " .. dmgtable.damage .. " dealt by " .. dmgtable.attacker:GetName())
@@ -1169,9 +1207,9 @@ end
 
 -- Check if anyone on this hero's team is still alive. 
 function IsTeamWiped(hero)
-    if not _G.GameMap == "fate_elim_6v6" then return false end
+    if _G.GameMap == "fate_ffa" or _G.GameMap == "fate_trio_rumble_3v3v3v3" then return false end
 
-    for i=0, 11 do
+    for i=0, 13 do
         local player = PlayerResource:GetPlayer(i)
         local playerHero = PlayerResource:GetSelectedHeroEntity(i)
         if playerHero ~= nil then 
@@ -1186,10 +1224,19 @@ end
 
 function ApplyPurge(target)
     for k,v in pairs(softdispellable) do
-        if v == "modifier_share_damage" then
-            RemoveHeroFromLinkTables(target)
+        if v == "modifier_courage_stackable_buff" then
+            local currentStack = target:GetModifierStackCount("modifier_courage_stackable_buff", target:FindAbilityByName("berserker_5th_courage"))
+            if currentStack <= 2 then
+                target:RemoveModifierByName("modifier_courage_stackable_buff")
+            else
+                target:SetModifierStackCount("modifier_courage_stackable_buff", target:FindAbilityByName("berserker_5th_courage"), currentStack-2)
+            end
+        else
+            if v == "modifier_share_damage" then
+                RemoveHeroFromLinkTables(target)
+            end
+            target:RemoveModifierByName(v)
         end
-        target:RemoveModifierByName(v)
     end
 end
 
@@ -1512,7 +1559,7 @@ function LogDeepPrint(debugInstance, prefix)
 end
 
 function LoopOverHeroes(callback)
-    for i=0, 11 do
+    for i=0, 13 do
         local hero = PlayerResource:GetSelectedHeroEntity(i)
         if hero ~= nil then 
             if callback(hero) then
@@ -1523,7 +1570,7 @@ function LoopOverHeroes(callback)
 end
 
 function LoopOverPlayers(callback)
-    for i=0, 11 do
+    for i=0, 13 do
         local playerID = i
         local player = PlayerResource:GetPlayer(i)
         local playerHero = PlayerResource:GetSelectedHeroEntity(playerID)

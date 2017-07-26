@@ -466,7 +466,9 @@ function OnContractStart(keys)
 			local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 			for k,v in pairs(targets) do
 				DoDamage(caster, v, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-				ApplyAirborne(caster, v, caster.ContractMadnessCost/5)
+				if caster.ContractMadnessCost > 0 then
+					ApplyAirborne(caster, v, caster.ContractMadnessCost/5)
+				end
 			end
 
 			local contractFx3 = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf", PATTACH_CUSTOMORIGIN, visiondummy)
@@ -793,7 +795,7 @@ function OnHorrorTeleport(keys)
 	local hero = PlayerResource:GetSelectedHeroEntity(caster:GetPlayerOwnerID())
 	local targetPoint = keys.target_points[1]
 	local delay = keys.Delay
-	if (targetPoint - hero:GetAbsOrigin()):Length2D() > 500 then 
+	if (targetPoint - hero:GetAbsOrigin()):Length2D() > 1000 then 
 		keys.ability:EndCooldown()
 		SendErrorMessage(caster:GetPlayerOwnerID(), "#Tentacle_Out_Of_Radius")
 		return

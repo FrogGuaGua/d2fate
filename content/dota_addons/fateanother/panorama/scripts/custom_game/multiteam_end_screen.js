@@ -2,18 +2,21 @@
 
 this.g_RadiantScore = 0;
 this.g_DireScore = 0;
+$.Msg("EndScreen Init")
 
 function UpdateRoundScore( data )
 {
-
 	g_RadiantScore = data.radiantScore;
 	g_DireScore = data.direScore;
-	$.Msg(g_RadiantScore + " " + g_DireScore)
 }
 
 (function()
 {
-	GameEvents.Subscribe( "winner_decided", UpdateRoundScore );
+	GameEvents.Subscribe( "winner_decided", UpdateRoundScore ); 
+	// I know shit about game event listeners but from what I think I know, one needs to "suscribe" first, 
+	// and then function will fire when CustomGameEventManager:Send_ServerToAllClients( "winner_decided", winnerEventData ) is fired from lua side. 
+	// In this case the "suscribe" line fires only at the very end of the game, and that is why it doesn't fire UpdateRoundScore... I think. - Prick, 13 July 2017
+
 	if ( ScoreboardUpdater_InitializeScoreboard === null ) { $.Msg( "WARNING: This file requires shared_scoreboard_updater.js to be included." ); }
 
 	var scoreboardConfig =
@@ -51,13 +54,40 @@ function UpdateRoundScore( data )
 	var endScreenVictory = $( "#EndScreenVictory" );
 	if ( endScreenVictory )
 	{
-		endScreenVictory.SetDialogVariable( "winning_team_name", $.Localize( winningTeamDetails.team_name ) );
-
-		if ( GameUI.CustomUIConfig().team_colors )
+		if ($.Localize( winningTeamDetails.team_name) === "The Good")
 		{
-			var teamColor = GameUI.CustomUIConfig().team_colors[ winningTeamId ];
-			teamColor = teamColor.replace( ";", "" );
-			endScreenVictory.style.color = teamColor + ";";
+			endScreenVictory.SetDialogVariable( "winning_team_name", $.Localize( "Red Faction" ) );
+
+			if ( GameUI.CustomUIConfig().team_colors )
+			{
+				//var teamColor = GameUI.CustomUIConfig().team_colors[ winningTeamId ];
+				var teamColor = "#9E0606"
+				teamColor = teamColor.replace( ";", "" );
+				endScreenVictory.style.color = teamColor + ";";
+			}
+		}
+		else if ($.Localize( winningTeamDetails.team_name) === "The Bad")
+		{
+			endScreenVictory.SetDialogVariable( "winning_team_name", $.Localize( "Black Faction" ) );
+
+			if ( GameUI.CustomUIConfig().team_colors )
+			{
+				//var teamColor = GameUI.CustomUIConfig().team_colors[ winningTeamId ];
+				var teamColor = "#4C4C4C"
+				teamColor = teamColor.replace( ";", "" );
+				endScreenVictory.style.color = teamColor + ";";
+			}
+		}
+		else if ( endScreenVictory )
+		{
+			endScreenVictory.SetDialogVariable( "winning_team_name", $.Localize( winningTeamDetails.team_name ) );
+
+			if ( GameUI.CustomUIConfig().team_colors )
+			{
+				var teamColor = GameUI.CustomUIConfig().team_colors[ winningTeamId ];
+				teamColor = teamColor.replace( ";", "" );
+				endScreenVictory.style.color = teamColor + ";";
+			}
 		}
 	}
 
