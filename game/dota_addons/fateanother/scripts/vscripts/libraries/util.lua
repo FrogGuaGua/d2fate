@@ -1093,6 +1093,8 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         if target:HasModifier("modifier_share_damage")
           and not isLoop
           and not (abil:GetName() == "avenger_verg_avesta" and source:GetTeam() == target:GetTeam())
+         --Queens glass game attribute fix
+          and not (target:HasModifier("modifier_queens_glass_game_check_link") and not target:HasModifier("modifier_qgg_oracle"))
           and target.linkTable ~= nil
         then
             -- Calculate the damage to secondary targets separately, in order to prevent MR from being twice as effective on primary target.
