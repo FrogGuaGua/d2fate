@@ -21,5 +21,6 @@ function modifier_dark_passage:OnRespawn(args)
     if hUnit == hParent then
         local hAbility = hParent:FindAbilityByName("avenger_dark_passage") 
         hAbility:EndCooldown()
+        self:Destroy()
     end
 end

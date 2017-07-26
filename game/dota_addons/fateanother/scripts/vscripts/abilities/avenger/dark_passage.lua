@@ -14,19 +14,19 @@ function avenger_dark_passage:OnSpellStart()
         fRange = 1000
     end
 
-	local currentStack = hCaster:GetModifierStackCount("modifier_dark_passage", self)
-	currentHealthCost = fHealthCost * 2 ^ currentStack
-	if currentStack == 0 and hCaster:HasModifier("modifier_dark_passage") then currentStack = 1 end
-	hCaster:RemoveModifierByName("modifier_dark_passage")  
+    local currentStack = hCaster:GetModifierStackCount("modifier_dark_passage", self)
+    currentHealthCost = fHealthCost * 2 ^ currentStack
+    if currentStack == 0 and hCaster:HasModifier("modifier_dark_passage") then currentStack = 1 end
+    hCaster:RemoveModifierByName("modifier_dark_passage")  
     hCaster:AddNewModifier(hCaster, self, "modifier_dark_passage", { Duration = 15 })
-	hCaster:SetModifierStackCount("modifier_dark_passage", self, currentStack + 1)
+    hCaster:SetModifierStackCount("modifier_dark_passage", self, currentStack + 1)
 
-	if hCaster:GetHealth() <= currentHealthCost then
-		hCaster:SetHealth(1)
-		self:StartCooldown(fPenaltyCooldown)
-	else
-		hCaster:SetHealth(hCaster:GetHealth() - currentHealthCost)
-	end
+    if hCaster:GetHealth() <= currentHealthCost then
+        hCaster:SetHealth(1)
+        self:StartCooldown(fPenaltyCooldown)
+    else
+        hCaster:SetHealth(hCaster:GetHealth() - currentHealthCost)
+    end
     
     hCaster:EmitSound("Hero_ShadowDemon.ShadowPoison.Release")
     local tParams = {
@@ -44,9 +44,9 @@ function avenger_dark_passage:OnAbilityPhaseStart()
 end
 
 function avenger_dark_passage:CastFilterResultLocation( vLocation )
-	if IsServer() then return AbilityBlinkCastError(self:GetCaster(), vLocation) end
+    if IsServer() then return AbilityBlinkCastError(self:GetCaster(), vLocation) end
 end
 
 function avenger_dark_passage:GetCustomCastErrorLocation( vLocation )
-	return "#Cannot_Blink"
+    return "#Cannot_Blink"
 end
