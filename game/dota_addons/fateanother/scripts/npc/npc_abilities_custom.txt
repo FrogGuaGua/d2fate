@@ -11219,7 +11219,8 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/caster/territory_dimensional_jump"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"phantom_assassin_phantom_strike"
 		"MaxLevel"						"1"
@@ -11246,16 +11247,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"blink_distance"				"1000"
-			}
-		}
-	    "OnSpellStart"
-	    {
-	    	"RunScript"
-			{
-				"ScriptFile"	"items"
-				"Function"		"Blink"
-				"Target"		"POINT"
+				"distance"				"1000"
 			}
 		}
 	}
@@ -14465,7 +14457,8 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"						"ability_lua"
+        "ScriptFile"                    "abilities/avenger/dark_passage"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"custom/avenger_dark_passage"
 		"MaxLevel"						"1"
@@ -14474,8 +14467,10 @@
 		{
 			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
 			"particle"		"particles/custom/avenger/avenger_dark_passage_start.vpcf"
+			"particle"		"particles/custom/avenger/avenger_dark_passage_start_trueform.vpcf"
 			"particle"		"particles/custom/avenger/avenger_dark_passage_end.vpcf"
-			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			"particle"		"particles/custom/avenger/avenger_dark_passage_end_trueform.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
 		}
 
 		// Casting
@@ -14510,48 +14505,48 @@
 			}
 		}
 		
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-			 	"ScriptFile"	"avenger_ability"
-			 	"Function"		"OnDPStart"
-			 	"Target"		"POINT"
-			 	"Range"			"%range"
-			 	"HealthCost"	"%health_cost"
-			}
-			"FireSound"
-			{
-				"EffectName"	"Hero_ShadowDemon.ShadowPoison.Release"
-				"Target"		"CASTER"
-			}
-			"AttachEffect"
-			{
-				"EffectName"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Target"			"CASTER"
-			}
-		}
+		//"OnSpellStart"
+		//{
+		//	"RunScript"
+		//	{
+		//	 	"ScriptFile"	"avenger_ability"
+		//	 	"Function"		"OnDPStart"
+		//	 	"Target"		"POINT"
+		//	 	"Range"			"%range"
+		//	 	"HealthCost"	"%health_cost"
+		//	}
+		//	"FireSound"
+		//	{
+		//		"EffectName"	"Hero_ShadowDemon.ShadowPoison.Release"
+		//		"Target"		"CASTER"
+		//	}
+		//	"AttachEffect"
+		//	{
+		//		"EffectName"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+		//		"EffectAttachType"	"follow_origin"
+		//		"Target"			"CASTER"
+		//	}
+		//}
 
-		"Modifiers"
-		{
-			"modifier_dark_passage"
-			{
-				"IsHidden"		"0"
-				"IsDebuff"		"1"
-				"Duration"		"15.0"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+		//"Modifiers"
+		//{
+		//	"modifier_dark_passage"
+		//	{
+		//		"IsHidden"		"0"
+		//		"IsDebuff"		"1"
+		//		"Duration"		"15.0"
+		//		"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 
-				"OnRespawn"
-				{
-					 "RunScript"
-					 {
-					 	"ScriptFile"	"avenger_ability"
-					 	"Function"	"OnDarkPassageRespawn"
-					 }
-				}
-			}
-		}
+		//		"OnRespawn"
+		//		{
+		//			 "RunScript"
+		//			 {
+		//			 	"ScriptFile"	"avenger_ability"
+		//			 	"Function"	"OnDarkPassageRespawn"
+		//			 }
+		//		}
+		//	}
+		//}
 	}
 
 	//========================================

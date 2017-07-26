@@ -319,7 +319,6 @@ function OnManaDrainEnd(keys)
 	caster.ManaDrainTarget:StopSound("Hero_Lion.ManaDrain")
 end
 
-
 --[[
 	Author: Dun1007
 	Date: 8.23.2015.
