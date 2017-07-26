@@ -101,6 +101,7 @@ function vlad_kazikli_bey:OnSpellStart()
 	giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", 2.66 + endcast_pause) -- 2.66 is ideal time if there is to be no endcast pause, for current values of activation and interval
 	StartAnimation(caster, {duration=2.5, activity=ACT_DOTA_CAST_ABILITY_4, rate=1.05})
 	self:VFX1_SmallSpikesHold(caster)
+  EmitGlobalSound("Vlad.Laugh")
 
 	Timers:CreateTimer(activation,function()
 		if caster:IsAlive() then

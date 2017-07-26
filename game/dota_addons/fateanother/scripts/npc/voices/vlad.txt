@@ -4,55 +4,66 @@
 	{
 		"Spawn"
 		{
-			"01"						"zc_spawn"
+			"01"						"vlad_spawn"
 		}
 		
 		"Move"
 		{
-			"01"						"zc_move_01"
-			"02"						"zc_move_02"
-			"03"						"zc_move_03"
+			"01"						"vlad_move1"
+			"02"						"vlad_move2"
+			"03"						"vlad_move3"
+			"04"						"vlad_move4"
+			"05" 						"Vlad.Ohoo"
 		}
 		
 		"Attack"
 		{
-			"01"						"zc_attack_01"
-			"02"						"zc_hurt_01"	
-			"03"						"zc_hurt_02"	
+			"01"						"vlad_attack1"
+			"02"						"vlad_attack2"	
+			"03"						"vlad_attack3"	
+			"04"						"vlad_attack4"	
+			"05"						"Vlad.Laugh"
+			"06" 						"Vlad.Ohoo"
 		}
 		
 		"Cast"
 		{
-			"01"						"zc_other_02"
-			"02"						"zc_laugh"
+			"01"						"vlad_cast1"
+			"02"						"vlad_cast2"
+			"03"						"Vlad.Laugh"
+			"04" 						"Vlad.Ohoo"
 		}
 		
 		"Hurt"
 		{
-			"01"						"zc_hurt_01"
-			"02"						"zc_hurt_02"
+			"01"						"vlad_hurt1"
+			"02"						"vlad_hurt2"
+			"03"						"vlad_hurt3"
+			"04"						"vlad_hurt4"
 		}
 		
 		"Respawn"
 		{
-			"01"						"zc_respawn_01"
-			"02"						"zc_respawn_02"
-			"03"						"zc_other_01"
-			"04"						"zc_laugh"
+			"01"						"vlad_respawn1"
+			"02"						"vlad_respawn2"
+			"03"						"vlad_respawn3"
+			"04"						"Vlad.Laugh"
 		}
 		
 		"Death"
 		{
-			"01"						"zc_death_01"
-			"02"						"zc_death_02"
+			"01"						"vlad_die1"
+			"02"						"vlad_die2"
+			"03"						"vlad_die3"
+			"04"						"vlad_die4"
 		}
 		
 		"Kill"
 		{
-			"01"						"zc_kill_01"
-			"02"						"zc_kill_02"
-			"03"						"zc_kill_03"
-			"04"						"zc_kill_04"
+			"01"						"vlad_kill1"
+			"02"						"vlad_kill2"
+			"03"						"vlad_kill3"
+			"04"						"Vlad.Laugh"
 		}
 	}
 }

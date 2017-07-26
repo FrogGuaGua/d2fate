@@ -35,7 +35,6 @@ function vlad_ceremonial_purge:GetDamage(caster)
 	local dmg_outer = self:GetSpecialValueFor("dmg_outer")
 	local dmg_inner_base = dmg_inner
 	local dmg_outer_base = dmg_outer
-	local bonus_dmg = self:GetSpecialValueFor("bonus_dmg")
 	local bonus_cap = caster.AttrBonusCap
 	local attr_bonus = 0
 

@@ -47,11 +47,21 @@ function vlad_combo:OnSpellStart()
 			giveUnitDataDrivenModifier(caster, v, "stunned", stun)
 			self:VFX2_OnTargetAssRavage(k,v)
 			ApplyAirborneOnly(v, 2000, 0.2, 1500)
-			caster:EmitSound("Hero_PhantomAssassin.Attack")
-			Timers:CreateTimer(0.1,function()
-				caster:EmitSound("Hero_NyxAssassin.SpikedCarapace")
+			v:EmitSound("Vlad.FX2")
+      v:EmitSound("Hero_Lycan.Attack")
+
+			Timers:CreateTimer(0.2,function()
+        --v:EmitSound("Hero_PhantomAssassin.Attack")
+				v:EmitSound("Hero_NyxAssassin.SpikedCarapace")
+			end)
+			
+			Timers:CreateTimer(1.6, function()
+				if (k % 2 == 0) or k == 1 then
+					v:EmitSound("Vlad.FX1")			
+				end
 			end)
     end
+
 		Timers:CreateTimer(2.5, function()
 			if #targets ~= 0 then
 				caster:EmitSound("Hero_PhantomAssassin.CoupDeGrace")
