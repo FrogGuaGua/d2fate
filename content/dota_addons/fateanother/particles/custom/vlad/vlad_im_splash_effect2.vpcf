@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 50
-	m_flConstantLifespan = 0.7
+	m_flConstantLifespan = 0.5
 	m_ConstantColor = [ 252, 225, 142, 255 ]
 	m_Renderers = 
 	[
@@ -24,8 +24,9 @@
 		},
 		{
 			_class = "C_OP_RenderTrails"
-			m_flMinLength = 1000.0
+			m_flMinLength = 150.0
 			m_hTexture = resource:"materials/particle/brood_web.vtex"
+			m_flMaxLength = 200.0
 		},
 	]
 	m_Operators = 
@@ -52,11 +53,11 @@
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 0.0
 			m_flBias = 0.7
 		},
 		{
 			_class = "C_OP_PositionLock"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
@@ -72,9 +73,9 @@
 			_class = "C_INIT_RingWave"
 			m_flParticlesPerOrbit = 8.0
 			m_bEvenDistribution = true
-			m_flInitialRadius = 50.0
-			m_flInitialSpeedMin = 750.0
-			m_flInitialSpeedMax = 2250.0
+			m_flInitialRadius = 3.0
+			m_flInitialSpeedMin = 100.0
+			m_flInitialSpeedMax = 150.0
 			m_flYaw = 60.0
 			m_flRoll = 180.0
 		},
@@ -99,6 +100,7 @@
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 100
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -119,7 +121,7 @@
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 150.0
+			m_flEmitRate = 50.0
 			m_flEmissionDuration = 0.5
 		},
 	]

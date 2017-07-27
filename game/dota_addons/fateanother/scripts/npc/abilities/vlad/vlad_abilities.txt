@@ -679,6 +679,7 @@
 		"precache"
 		{
 			"particle"					"particles/custom/vlad/vlad_im_splash.vpcf"
+			"particle"					"particles/custom/vlad/vlad_im_splash_blood.vpcf"
 		}
 
 		"AbilitySpecial"
