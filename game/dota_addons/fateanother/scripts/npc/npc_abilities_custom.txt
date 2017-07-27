@@ -20763,7 +20763,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"slow"					"-80"
+				"slow"					"-50 -55 -60 -65 -70"
 			}
 		}
 
