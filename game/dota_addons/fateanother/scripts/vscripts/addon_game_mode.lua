@@ -644,6 +644,14 @@ function FateGameMode:OnPlayerChat(keys)
         DoRoll(plyID, 100)
     end
 
+    if text == "-voice on" then
+        CustomGameEventManager:Send_ServerToPlayer( ply, "fate_enable_voice", {})
+    end
+
+    if text == "-voice off" then
+        CustomGameEventManager:Send_ServerToPlayer( ply, "fate_disable_voice", {})
+    end
+
     hero.AltPart:Switch(text)
 
     local rollText = string.match(text, "^-roll (%d+)")
