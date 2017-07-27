@@ -43,3 +43,7 @@ end
 function avenger_dark_passage:GetCustomCastErrorLocation( vLocation )
     return "#Cannot_Blink"
 end
+
+function avenger_dark_passage:OnOwnerSpawned()
+    self:EndCooldown()
+end
