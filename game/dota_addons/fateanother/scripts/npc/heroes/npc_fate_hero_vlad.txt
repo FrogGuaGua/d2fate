@@ -42,7 +42,7 @@
 		"StatusManaRegen"				"5"
 
 		"ArmorPhysical"					"5"
-		"MagicalResistance"				"5"
+		"MagicalResistance"				"0"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackRange"					"215"
