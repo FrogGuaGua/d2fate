@@ -77,6 +77,7 @@ end
 
 function vlad_ceremonial_purge:OnSpellStart()
   local caster = self:GetCaster()
+  local delay = self:GetSpecialValueFor("delay")
 	local aoe_inner = self:GetSpecialValueFor("aoe_inner")
 	local aoe_outer = self:GetSpecialValueFor("aoe_outer")
 	local stun_inner = self:GetSpecialValueFor("stun_inner")
@@ -100,7 +101,7 @@ function vlad_ceremonial_purge:OnSpellStart()
 	caster:EmitSound("Hero_Magnataur.ReversePolarity.Anim")
 
   giveUnitDataDrivenModifier(caster, caster, "drag_pause",0.5)
-	Timers:CreateTimer(0.30, function()
+	Timers:CreateTimer(delay, function()
 		local targets_outer = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_outer, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
 		--[[ alternate way to pick which targets are in which aoe if some issues
 		local targets_inner = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_inner, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
