@@ -117,7 +117,7 @@ function vlad_ceremonial_purge:OnSpellStart()
 				DoDamage(caster, v, dmg_inner, DAMAGE_TYPE_MAGICAL, 0, self, false)
         giveUnitDataDrivenModifier(caster, v, "stunned", stun_inner)
 			else
-				DoDamage(caster, v, 1, DAMAGE_TYPE_MAGICAL, 0, self, false)
+				DoDamage(caster, v, dmg_outer, DAMAGE_TYPE_MAGICAL, 0, self, false)
         v:AddNewModifier(caster,self,"modifier_ceremonial_purge_slow",{duration = slow_duration})
         giveUnitDataDrivenModifier(caster, v, "stunned", stun_outer)
 				caster:AddBleedStack(v,false)
