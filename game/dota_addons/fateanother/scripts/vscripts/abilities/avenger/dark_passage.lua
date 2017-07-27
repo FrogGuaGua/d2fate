@@ -30,8 +30,8 @@ function avenger_dark_passage:OnSpellStart()
     
     hCaster:EmitSound("Hero_ShadowDemon.ShadowPoison.Release")
     local tParams = {
-        sOutEffect = hCaster:HasModifier("modifier_true_form") and "particles/custom/avenger/avenger_dark_passage_start_trueform.vpcf" or "particles/custom/avenger/avenger_dark_passage_start.vpcf",
-        sInEffect = hCaster:HasModifier("modifier_true_form") and "particles/custom/avenger/avenger_dark_passage_end_trueform.vpcf" or "particles/custom/avenger/avenger_dark_passage_end.vpcf"
+        sInEffect = hCaster:HasModifier("modifier_true_form") and "particles/custom/avenger/avenger_dark_passage_start_trueform.vpcf" or "particles/custom/avenger/avenger_dark_passage_start.vpcf",
+        sOutEffect = hCaster:HasModifier("modifier_true_form") and "particles/custom/avenger/avenger_dark_passage_end_trueform.vpcf" or "particles/custom/avenger/avenger_dark_passage_end.vpcf"
     }
     AbilityBlink(hCaster, vPos, fRange, tParams)
 end
