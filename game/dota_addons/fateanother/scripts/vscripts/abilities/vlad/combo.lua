@@ -76,7 +76,7 @@ function vlad_combo:OnSpellStart()
 				caster:Heal(heal,caster)
 				self:VFX3_OnTargetExecute(k,v)
 				v:SetAbsOrigin(GetGroundPosition(v:GetAbsOrigin(),v))
-				DoDamage(caster, v, 100, DAMAGE_TYPE_MAGICAL, 0, self, false)
+				DoDamage(caster, v, dmg, DAMAGE_TYPE_MAGICAL, 0, self, false)
 				caster:AddBleedStack(v,false)
 			end
 		end)

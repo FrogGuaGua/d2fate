@@ -1419,7 +1419,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"250"
+		"AbilityCooldown"				"150"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -28842,7 +28842,7 @@
 			"particle"		"particles/neutral_fx/roshan_death_aegis_starfall.vpcf"
 		}
 
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.5"
 		"AbilityChannelTime"			"%channel_duration"		
 		"AbilityCastRange"				"%radius"
 		"AbilityCooldown"				"20"
@@ -29336,11 +29336,6 @@
 				"mana_ratio"			"1.0"
 			}
 			"05"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"heal_multiplier"		"1.5"
-			}
-			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"cdr"			"70"
