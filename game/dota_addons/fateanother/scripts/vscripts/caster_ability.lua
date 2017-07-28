@@ -1079,7 +1079,7 @@ function OnMTStart(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local duration = keys.Duration
-	local manatransferred = keys.Manatransferred
+	local manatransferred = keys.Manatransferred / 2
 	local durCount = 0
 	if target == caster then 
 		keys.ability:EndCooldown()
