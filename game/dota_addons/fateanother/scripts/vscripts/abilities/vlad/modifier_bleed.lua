@@ -48,6 +48,9 @@ if IsServer() then
   end
 
   function modifier_bleed:OnIntervalThink()
+    if _G.IsPreRound == true then
+      self:Destroy()
+    end
     local ability = self:GetAbility()
     local dmg = ability:GetSpecialValueFor("dmg")*self:GetStackCount()
     DoDamage(self:GetCaster(), self:GetParent(), dmg, DAMAGE_TYPE_MAGICAL, 0, ability, false)
