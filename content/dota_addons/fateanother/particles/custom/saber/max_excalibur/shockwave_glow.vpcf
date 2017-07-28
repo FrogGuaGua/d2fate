@@ -28,6 +28,7 @@
 		{
 			_class = "C_OP_FadeOutSimple"
 			m_flFadeOutTime = 1.0
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_Decay"
@@ -53,13 +54,13 @@
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 5
-			m_nAlphaMax = 8
+			m_nAlphaMin = 20
+			m_nAlphaMax = 30
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.15
-			m_fLifetimeMin = 0.1
+			m_fLifetimeMax = 0.06
+			m_fLifetimeMin = 0.06
 		},
 		{
 			_class = "C_INIT_CreateFromParentParticles"
@@ -78,8 +79,8 @@
 		},
 		{
 			_class = "C_INIT_RandomTrailLength"
-			m_flMinLength = 1.0
-			m_flMaxLength = 1.0
+			m_flMinLength = 0.6
+			m_flMaxLength = 0.6
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
@@ -106,12 +107,17 @@
 			m_ColorMin = [ 240, 255, 32, 164 ]
 			m_ColorMax = [ 217, 205, 205, 110 ]
 		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 80.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 270.0 ]
+		},
 	]
 	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 256.0
+			m_flEmitRate = 250.0
 		},
 	]
 	m_controlPointConfigurations = 
