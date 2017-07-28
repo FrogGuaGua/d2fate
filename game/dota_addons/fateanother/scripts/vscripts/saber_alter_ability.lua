@@ -214,7 +214,7 @@ function OnVortigernStart(keys)
 		fDistance = 600,
 		Source = caster,
 		fStartRadius = 75,
-        fEndRadius = 250,
+        fEndRadius = 120,
 		bHasFrontialCone = true,
 		bReplaceExisting = false,
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
