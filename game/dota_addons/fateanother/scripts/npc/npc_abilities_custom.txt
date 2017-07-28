@@ -11810,6 +11810,7 @@
 		"AbilityManaCost"				"200"
 		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
 		"AnimationPlaybackRate" 		"1.0"
+        "IsCastableWhileHidden"         "1"
 
 		"precache"
 		{
@@ -11873,6 +11874,7 @@
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate" 		"2.0"
 		"AOERadius"						"%radius"
+        "IsCastableWhileHidden"         "1"
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_silencer/silencer_curse_aoe.vpcf"
@@ -11944,6 +11946,7 @@
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate" 		"2.0"
 		"AOERadius"						"%radius"
+        "IsCastableWhileHidden"         "1"
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_luna/luna_lucent_beam.vpcf"
@@ -12180,7 +12183,8 @@
 		"AbilityCastRange"				"600"
 		"AbilityCooldown"				"30"
 		"AbilityManaCost"				"0"
-		"AbilityChannelTime"			"5.0"	
+		"AbilityChannelTime"			"5.0"
+        "IsCastableWhileHidden"         "1"
 
 		"precache"
 		{
@@ -12269,6 +12273,7 @@
 		"AbilityCastRangeBuffer"		"90"
 		"AbilityCooldown"				"35"
 		"AbilityManaCost"				"400"
+        "IsCastableWhileHidden"         "1"
 		
 		"precache"
 		{

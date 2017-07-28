@@ -899,7 +899,7 @@ function OnAncientStart(keys)
 	local a6 = caster:GetAbilityByIndex(5)
 	caster:SwapAbilities("caster_5th_wall_of_flame", a1:GetName(), true, false) 
 	caster:SwapAbilities("caster_5th_silence", a2:GetName(), true, false) 
-	caster:SwapAbilities("caster_5th_divine_words", a3:GetName(), true, true) -- true true so caster can open spellbook while casting rulebreak 
+	caster:SwapAbilities("caster_5th_divine_words", a3:GetName(), true, false)
 	caster:SwapAbilities("caster_5th_mana_transfer", a4:GetName(), true, false) 
 	caster:SwapAbilities("caster_5th_close_spellbook", a5:GetName(), true, false) 
 	caster:SwapAbilities("caster_5th_sacrifice", a6:GetName(), true, false) 
