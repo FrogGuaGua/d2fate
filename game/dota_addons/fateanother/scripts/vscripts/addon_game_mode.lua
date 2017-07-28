@@ -2669,6 +2669,7 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
 
     winnerEventData.radiantScore = self.nRadiantScore
     winnerEventData.direScore = self.nDireScore
+    CustomNetTables:SetTableValue("score", "CurrentScore", { nRadiantScore = self.nRadiantScore, nDireScore = self.nDireScore })
     CustomGameEventManager:Send_ServerToAllClients( "winner_decided", winnerEventData ) -- Send the winner to Javascript
     GameRules:SendCustomMessage("#Fate_Round_Gold_Note", 0, 0)
     self:LoopOverPlayers(function(player, playerID, playerHero)
