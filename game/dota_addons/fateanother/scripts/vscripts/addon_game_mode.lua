@@ -358,6 +358,30 @@ function FateGameMode:OnAllPlayersLoaded()
         end
     end
 
+    -- CUSTOM COLOURS
+    badGuyColorIndex = 1
+    goodGuyColorIndex = 1
+    badColorTable = {{164,105,0},{254,134,194},{0,131,33},{101,217,247},{161,180,71},{244,164,96},{176,196,222}}
+    goodColorTable = {{51,117,255},{102,255,191},{255,107,0},{191,0,191},{243,240,11},{255,20,147},{220,20,60}}
+    for i=0, 13 do
+        if PlayerResource:GetPlayer(i) ~= nil then
+            local playerID = i
+            local player = PlayerResource:GetPlayer(i)
+            print(playerID)
+            print(player:GetTeam())
+
+            if player:GetTeam() == 2 then
+                print("GOOD GUY COLOR")
+                PlayerResource:SetCustomPlayerColor(i, goodColorTable[goodGuyColorIndex][1], goodColorTable[goodGuyColorIndex][2], goodColorTable[goodGuyColorIndex][3])
+                goodGuyColorIndex = goodGuyColorIndex + 1
+            else
+                print("BAD GUY COLOR")
+                PlayerResource:SetCustomPlayerColor(i, badColorTable[badGuyColorIndex][1], badColorTable[badGuyColorIndex][2], badColorTable[badGuyColorIndex][3])
+                badGuyColorIndex = badGuyColorIndex + 1
+            end
+        end
+    end
+
     VICTORY_CONDITION = maxkey
     victoryConditionData.victoryCondition = VICTORY_CONDITION
     --VICTORY_CONDITION = 1
@@ -384,6 +408,7 @@ function FateGameMode:OnAllPlayersLoaded()
         end
     })]]
 end
+
 
 
 

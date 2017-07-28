@@ -12955,7 +12955,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"armor_reduction"			"-4 -5 -6 -7 -8"
+				"armor_reduction"			"-2 -3 -4 -5 -6"
 			}
 		}
 		
