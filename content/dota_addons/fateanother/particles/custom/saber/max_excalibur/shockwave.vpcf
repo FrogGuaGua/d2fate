@@ -47,6 +47,7 @@
 		{
 			_class = "C_OP_FadeInSimple"
 			m_flFadeInTime = 1.0
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
@@ -96,6 +97,7 @@
 		},
 		{
 			_class = "C_INIT_NormalAlignToCP"
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_VelocityFromCP"
@@ -124,24 +126,6 @@
 		},
 		{
 			m_ChildRef = resource:"particles/custom/saber/max_excalibur/shockwave_light.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/custom/saber/max_excalibur/shockwave_sparks.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/custom/saber/max_excalibur/shockwave_verttrail.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/custom/saber/max_excalibur/shockwave_cracks_glow.vpcf"
-			m_bDisableChild = true
-		},
-		{
-			m_ChildRef = resource:"particles/custom/saber/max_excalibur/shockwave_cracks_warp.vpcf"
-			m_bDisableChild = true
-		},
-		{
-			m_ChildRef = resource:"particles/custom/saber/max_excalibur/shockwave_pulse_trail.vpcf"
-			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/custom/saber/max_excalibur/shockwave_sparks_b.vpcf"
