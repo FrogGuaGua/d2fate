@@ -1,4 +1,4 @@
-fate_elim_6v6
+fate_elim_7v7
 {
 	material materials/overviews/fate_elim_6v6.vmat
 	pos_x -8192
