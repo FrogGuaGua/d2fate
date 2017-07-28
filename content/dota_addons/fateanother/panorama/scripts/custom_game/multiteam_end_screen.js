@@ -1,8 +1,5 @@
-"use strict";
-
 this.g_RadiantScore = CustomNetTables.GetTableValue("score", "CurrentScore").nRadiantScore;
 this.g_DireScore = CustomNetTables.GetTableValue("score", "CurrentScore").nDireScore;
-$.Msg("EndScreen Init")
 
 (function()
 {
