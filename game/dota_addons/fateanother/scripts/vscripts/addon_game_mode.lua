@@ -800,7 +800,7 @@ function FateGameMode:OnPlayerChat(keys)
 
     if text == "-ward" then
         if hero.AntiSpamCooldown4 ~= true then
-            local teamHeroes = {}hero.ServStat:roundNumber(self.nCurrentRound) -- to properly initialise the current round number when player picks a hero late. ini
+            local teamHeroes = {}
             local values = {}
             local rank = {}
             LoopOverPlayers(function(ply, plyID, playerHero)
