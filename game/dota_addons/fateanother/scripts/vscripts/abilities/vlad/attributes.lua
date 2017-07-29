@@ -5,6 +5,7 @@ LinkLuaModifier("modifier_protection_of_faith", "abilities/vlad/modifier_protect
 LinkLuaModifier("modifier_protection_of_faith_proc", "abilities/vlad/modifier_protection_of_faith_proc", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_protection_of_faith_proc_cd", "abilities/vlad/modifier_protection_of_faith_proc_cd", LUA_MODIFIER_MOTION_NONE)
 vlad_attribute_improved_impaling = class({})
+LinkLuaModifier("modifier_improved_impaling", "abilities/vlad/modifier_improved_impaling", LUA_MODIFIER_MOTION_NONE)
 vlad_attribute_instant_curse = class({})
 vlad_attribute_bloodletter = class({})
 
@@ -43,10 +44,11 @@ end
 WrapAttributes(vlad_attribute_innocent_monster, "InnocentMonsterAcquired", function(ability, hero)
   hero:AddNewModifier(hero, ability, "modifier_innocent_monster", {})
 end)
-
 WrapAttributes(vlad_attribute_protection_of_faith, "ProtectionOfFaithAcquired", function(ability, hero)
   hero:AddNewModifier(hero, ability, "modifier_protection_of_faith", {})
 end)
-WrapAttributes(vlad_attribute_improved_impaling, "ImprovedImpalingAcquired")
+WrapAttributes(vlad_attribute_improved_impaling, "ImprovedImpalingAcquired", function(ability, hero)
+  hero:AddNewModifier(hero, ability, "modifier_improved_impaling", {})
+end)
 WrapAttributes(vlad_attribute_instant_curse, "InstantCurseAcquired")
 WrapAttributes(vlad_attribute_bloodletter, "BloodletterAcquired")

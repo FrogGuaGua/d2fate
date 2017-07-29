@@ -9,7 +9,8 @@ function modifier_rebellious_intent:DeclareFunctions()
     MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
     MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
     MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-    MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS
+    MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+    MODIFIER_EVENT_ON_RESPAWN,
   }
   return funcs
 end
@@ -85,9 +86,6 @@ if IsServer() then
 
   --drains current HP by percentile of max HP while active, after reached max stacks
   function modifier_rebellious_intent:OnIntervalThink()
-    if _G.IsPreRound == true then
-      self:Destroy() 
-    end
     local parent = self:GetParent()
     if parent:IsAlive() then
       local ability = self:GetAbility()
@@ -105,6 +103,9 @@ if IsServer() then
   function modifier_rebellious_intent:OnDestroy()
     self:StartIntervalThink(-1)
     FxDestroyer(self.PI1, false)
+  end
+  function modifier_rebellious_intent:OnRespawn()
+    self:Destroy()
   end
 end
 
