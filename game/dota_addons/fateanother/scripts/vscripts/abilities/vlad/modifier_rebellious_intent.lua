@@ -37,7 +37,7 @@ if IsServer() then
     --gain stacks of stat bonuses every interval tick
     self.current_tick = 0
     Timers:CreateTimer(function()
-      if not self:IsNull() then
+      if not self:IsNull() and parent:IsAlive() then
         if self.current_tick < total_count_of_ticks then
           self:IncrementStackCount()
           parent:CalculateStatBonus()
@@ -55,44 +55,50 @@ if IsServer() then
   function modifier_rebellious_intent:OnStackCountChanged(iStackCount)
     local ability = self:GetAbility()
     local parent = self:GetParent()
-    local current_hp = parent:GetHealth()
-    local max_hp = parent:GetMaxHealth()
-    local str_per_stack = ability:GetSpecialValueFor("str_per_stack")
-    local difference_to_heal = ((current_hp + self.HP_PER_STR_FATE*str_per_stack) / (max_hp + self.HP_PER_STR_FATE*str_per_stack)) * max_hp - current_hp
-    parent:Heal(difference_to_heal,parent)
+    if parent:IsAlive() then
+      local current_hp = parent:GetHealth()
+      local max_hp = parent:GetMaxHealth()
+      local str_per_stack = ability:GetSpecialValueFor("str_per_stack")
+      local difference_to_heal = ((current_hp + self.HP_PER_STR_FATE*str_per_stack) / (max_hp + self.HP_PER_STR_FATE*str_per_stack)) * max_hp - current_hp
+      parent:ApplyHeal(difference_to_heal,parent)
+    end
   end
 
   --remove current hp gained per every STR stack already gained
   function modifier_rebellious_intent:OnRemoved()
     local parent = self:GetParent()
-    local ability = self:GetAbility()
-    local str_per_stack = ability:GetSpecialValueFor("str_per_stack")
-    for i=1, self:GetStackCount(), 1 do
-      local current_hp = parent:GetHealth()
-      local max_hp = parent:GetMaxHealth()
-      local difference_to_subtract = ((current_hp + self.HP_PER_STR_FATE*str_per_stack) / (max_hp + self.HP_PER_STR_FATE*str_per_stack)) * max_hp - current_hp
-      local new_hp = current_hp - difference_to_subtract
-      if new_hp < 1 then
-        new_hp = 1
+    if parent:IsAlive() then 
+      local ability = self:GetAbility()
+      local str_per_stack = ability:GetSpecialValueFor("str_per_stack")
+      for i=1, self:GetStackCount(), 1 do
+        local current_hp = parent:GetHealth()
+        local max_hp = parent:GetMaxHealth()
+        local difference_to_subtract = ((current_hp + self.HP_PER_STR_FATE*str_per_stack) / (max_hp + self.HP_PER_STR_FATE*str_per_stack)) * max_hp - current_hp
+        local new_hp = current_hp - difference_to_subtract
+        if new_hp < 1 then
+          new_hp = 1
+        end
+        parent:SetHealth(new_hp)
       end
-      parent:SetHealth(new_hp)
     end
   end
 
   --drains current HP by percentile of max HP while active, after reached max stacks
   function modifier_rebellious_intent:OnIntervalThink()
-    local parent = self:GetParent()
-    local ability = self:GetAbility()
-    local drain_per_sec = ability:GetSpecialValueFor("drain_per_sec")
-    local drain_interval = ability:GetSpecialValueFor("drain_interval")
-    local new_hp = parent:GetHealth() - (drain_per_sec * parent:GetMaxHealth() * drain_interval)
-
-  	if new_hp < 1 then
-  		new_hp = 1
-  	end
-    parent:SetHealth(new_hp)
     if _G.IsPreRound == true then
       self:Destroy() 
+    end
+    local parent = self:GetParent()
+    if parent:IsAlive() then
+      local ability = self:GetAbility()
+      local drain_per_sec = ability:GetSpecialValueFor("drain_per_sec")
+      local drain_interval = ability:GetSpecialValueFor("drain_interval")
+      local new_hp = parent:GetHealth() - (drain_per_sec * parent:GetMaxHealth() * drain_interval)
+
+    	if new_hp < 1 then
+    		new_hp = 1
+    	end
+      parent:SetHealth(new_hp)
     end
   end
 

@@ -1,4 +1,5 @@
 vlad_kazikli_bey = class({})
+--LinkLuaModifier("modifier_kazikli_bey", "abilities/vlad/modifier_kazikli_bey", LUA_MODIFIER_MOTION_NONE)
 --remember to merge util lua ApplyAirborne and new ApplyAirborneOnly
 
 if not IsServer() then
@@ -6,15 +7,15 @@ if not IsServer() then
 end
 
 function vlad_kazikli_bey:VFX1_SmallSpikesHold(caster)
- 	local PI1 = FxCreator("particles/custom/vlad/vlad_kb_hold.vpcf", PATTACH_ABSORIGIN, caster,0,nil)
-	local PI2 = FxCreator("particles/custom/vlad/vlad_kb_hold_swirl.vpcf",PATTACH_ABSORIGIN,caster,0,nil)
-	ParticleManager:SetParticleControlEnt(PI2, 5, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
-	ParticleManager:SetParticleControlEnt(PI2, 2, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
-	ParticleManager:SetParticleControlEnt(PI2, 7, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
+	self.PI4 = FxCreator("particles/custom/vlad/vlad_kb_hold.vpcf", PATTACH_ABSORIGIN, caster,0,nil)
+	self.PI5 = FxCreator("particles/custom/vlad/vlad_kb_hold_swirl.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster,0,nil)
+	ParticleManager:SetParticleControlEnt(self.PI5, 5, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
+	ParticleManager:SetParticleControlEnt(self.PI5, 2, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
+	ParticleManager:SetParticleControlEnt(self.PI5, 7, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
 
-	Timers:CreateTimer(4, function()
-		FxDestroyer(PI1, false)
-		FxDestroyer(PI2, false)
+	Timers:CreateTimer(2.8, function()
+		FxDestroyer(self.PI4, false)
+		FxDestroyer(self.PI5, false)
   end)
 end
 
@@ -88,6 +89,8 @@ function vlad_kazikli_bey:OnSpellStart()
 	local endcast_pause = self:GetSpecialValueFor("endcast_pause")
 	local hitcounter = 1
   local bloodpower = 0
+  --caster:AddNewModifier(caster,self,"modifier_kazikli_bey",{duration = 4})
+
 
 	--check how many bloodpower stacks vlad has at start of cast and save number
   if not caster:HasModifier("modifier_transfusion_self") then
@@ -151,7 +154,7 @@ function vlad_kazikli_bey:OnSpellStart()
 
         if caster.ImprovedImpalingAcquired then
           local heal_per_target = caster.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling"):GetSpecialValueFor("kb_spike_heal_per_target")
-          caster:Heal(heal_per_target * #lasthitTargets, caster)
+          caster:ApplyHeal(heal_per_target * #lasthitTargets, caster)
         end
 				--remove ontarget VFX
 				Timers:CreateTimer(1.5, function()
@@ -167,12 +170,16 @@ function vlad_kazikli_bey:OnSpellStart()
             caster:AddBleedStack(v,false,1)
           end
 					DoDamage(caster, v, dmg_spikes, DAMAGE_TYPE_MAGICAL, 0, self, false)
-					giveUnitDataDrivenModifier(caster, v, "stunned", stun)
-					giveUnitDataDrivenModifier(caster, v, "revoked", stun)
+					giveUnitDataDrivenModifier(caster, v, "stunned", 0.4)
+					giveUnitDataDrivenModifier(caster, v, "revoked", 0.4)
 				end
 				hitcounter = hitcounter + 1
 				return 0.2
 			end
+		else
+			FxDestroyer(self.PI4, true)
+			FxDestroyer(self.PI5, true)
+			return nil
 		end
 	end)
 end
