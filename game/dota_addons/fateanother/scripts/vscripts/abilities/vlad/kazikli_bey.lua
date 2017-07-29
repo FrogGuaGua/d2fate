@@ -140,12 +140,14 @@ function vlad_kazikli_bey:OnSpellStart()
 
 				local lasthitTargets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_lastspike, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 				for k,v in pairs(lasthitTargets) do
-					DoDamage(caster, v, dmg_lastspike, DAMAGE_TYPE_MAGICAL, 0, self, false)
-					caster:AddBleedStack(v, false)
-					giveUnitDataDrivenModifier(caster, v, "stunned", stun)
-					giveUnitDataDrivenModifier(caster, v, "revoked", stun)
-					ApplyAirborneOnly(v, 2000, stun)
-					self:VFX4_OnTargetImpale(k,v)
+          if v:GetName() ~= "npc_dota_ward_base" then
+            DoDamage(caster, v, dmg_lastspike, DAMAGE_TYPE_MAGICAL, 0, self, false)
+  					caster:AddBleedStack(v, false)
+  					giveUnitDataDrivenModifier(caster, v, "stunned", stun)
+  					giveUnitDataDrivenModifier(caster, v, "revoked", stun)
+  					ApplyAirborneOnly(v, 2000, stun)
+  					self:VFX4_OnTargetImpale(k,v)
+          end
 				end
 
 				if #lasthitTargets ~= 0 then
