@@ -363,8 +363,10 @@ end
 function OnModStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
+	local fHeal = keys.HealAmount
 
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_ta_self_mod", {})
+	caster:ApplyHeal(fHeal, caster)
 
 	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_bane/bane_fiendsgrip_ground_rubble.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
@@ -499,7 +501,7 @@ function OnZabHit(keys)
 		caster.IsShadowStrikeActivated = false
 	end
 
-	caster:Heal(keys.Damage/2, caster)
+	caster:ApplyHeal(keys.Damage/2, caster)
 	local targetLeftoverMana = math.max(target:GetMana()-keys.Damage/2,0)
 	local manaSap = target:GetMana() - targetLeftoverMana
 	caster:SetMana(caster:GetMana()+manaSap)

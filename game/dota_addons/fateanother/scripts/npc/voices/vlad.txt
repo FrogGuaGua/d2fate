@@ -1,0 +1,69 @@
+"FATEVoices"
+{
+	"npc_dota_hero_tidehunter"
+	{
+		"Spawn"
+		{
+			"01"						"vlad_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"vlad_move1"
+			"02"						"vlad_move2"
+			"03"						"vlad_move3"
+			"04"						"vlad_move4"
+			"05" 						"Vlad.Ohoo"
+		}
+		
+		"Attack"
+		{
+			"01"						"vlad_attack1"
+			"02"						"vlad_attack2"	
+			"03"						"vlad_attack3"	
+			"04"						"vlad_attack4"	
+			"05"						"Vlad.Laugh"
+			"06" 						"Vlad.Ohoo"
+		}
+		
+		"Cast"
+		{
+			"01"						"vlad_cast1"
+			"02"						"vlad_cast2"
+			"03"						"Vlad.Laugh"
+			"04" 						"Vlad.Ohoo"
+		}
+		
+		"Hurt"
+		{
+			"01"						"vlad_hurt1"
+			"02"						"vlad_hurt2"
+			"03"						"vlad_hurt3"
+			"04"						"vlad_hurt4"
+		}
+		
+		"Respawn"
+		{
+			"01"						"vlad_respawn1"
+			"02"						"vlad_respawn2"
+			"03"						"vlad_respawn3"
+			"04"						"Vlad.Laugh"
+		}
+		
+		"Death"
+		{
+			"01"						"vlad_die1"
+			"02"						"vlad_die2"
+			"03"						"vlad_die3"
+			"04"						"vlad_die4"
+		}
+		
+		"Kill"
+		{
+			"01"						"vlad_kill1"
+			"02"						"vlad_kill2"
+			"03"						"vlad_kill3"
+			"04"						"Vlad.Laugh"
+		}
+	}
+}

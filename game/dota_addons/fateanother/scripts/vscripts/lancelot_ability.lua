@@ -255,7 +255,7 @@ function KnightInitialize(keys)
         if ability:GetLevel() == 1 then
                 --print("ability lvl 1")
                 caster:AddAbility("lancelot_vortigern")
-                caster:AddAbility("fate_empty1")
+                caster:AddAbility("fate_empty1"):SetHidden(true)
                 caster:AddAbility("fate_empty2")
                 caster:AddAbility("fate_empty3")
                 caster:AddAbility("fate_empty4")
@@ -325,12 +325,11 @@ function OnAronditeStart(keys)
         end)
     end
 
-
-    --[[local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
+    local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
     for k,v in pairs(targets) do
             DoDamage(caster, v, keys.Damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
     end
-    if caster.IsTAAcquired then
+    --[[if caster.IsTAAcquired then
         keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_arondite_crit", {}) 
     end]]
 end

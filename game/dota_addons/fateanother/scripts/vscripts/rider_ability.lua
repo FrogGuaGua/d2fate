@@ -127,7 +127,7 @@ function OnBloodfortStart(keys)
 			if v:GetName() ~= "npc_dota_ward_base" then
 		        DoDamage(caster, v, keys.Damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 		        if not IsImmuneToSlow(v) then ability:ApplyDataDrivenModifier(caster,v, "modifier_bloodfort_slow", {}) end
-		        caster:Heal(keys.AbsorbAmount, caster)
+		        caster:ApplyHeal(keys.AbsorbAmount, caster)
 				if caster.IsSealAcquired then  
 					forcemove.UnitIndex = v:entindex()
 					ExecuteOrderFromTable(forcemove) 

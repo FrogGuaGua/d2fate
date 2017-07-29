@@ -328,7 +328,7 @@ function _ScoreboardUpdater_UpdateTeamPanel( scoreboardConfig, containerPanel, t
 		teamsInfo.max_team_players = teamPlayers.length;
 	}
 
-	if (Game.GetMapInfo().map_display_name == "fate_elim_6v6") { 
+	if (Game.GetMapInfo().map_display_name == "fate_elim_6v6" || Game.GetMapInfo().map_display_name == "fate_elim_7v7") {
 		if (teamId == 2)
 		{
 			_ScoreboardUpdater_SetTextSafe( teamPanel, "TeamScore", g_RadiantScore );
@@ -399,7 +399,7 @@ function compareFunc( a, b ) // GameUI.CustomUIConfig().sort_teams_compare_func;
 {
 	var scoreA;
 	var scoreB;
-	if (Game.GetMapInfo().map_display_name == "fate_elim_6v6") {
+	if (Game.GetMapInfo().map_display_name == "fate_elim_6v6" || Game.GetMapInfo().map_display_name == "fate_elim_7v7") {
 		scoreA = a.team_id == 2 ? g_RadiantScore : g_DireScore;
 		scoreB = b.team_id == 2 ? g_RadiantScore : g_DireScore;
 	} else {

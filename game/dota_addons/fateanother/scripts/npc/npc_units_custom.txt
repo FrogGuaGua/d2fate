@@ -746,7 +746,7 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"2000"		// Base health.
 		"StatusHealthRegen"			"1"		// Health regeneration rate.
-		"StatusMana"				"300"			// Base mana.
+		"StatusMana"				"400"			// Base mana.
 		"StatusManaRegen"			"1"			// Mana regeneration rate.	
 
 		// Vision
@@ -1635,7 +1635,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
-		"MovementSpeed"				"100"
+		"MovementSpeed"				"150"
 		"MovementTurnRate"			"0.7"
 		
 		// Status

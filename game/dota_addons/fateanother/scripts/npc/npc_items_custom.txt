@@ -425,7 +425,7 @@
 	    	"particle"		"particles/items_fx/healing_flask.vpcf"
 	    }
 
-	    "ItemCost"     "800"
+	    "ItemCost"     "700"
 	    "ItemQuality"  "component"
 	    "ItemKillable" "1" 
 	    "ItemSellable" "1"
@@ -681,6 +681,20 @@
 	    {
 	    	"particle"			"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
 	    }
+	    "AbilitySpecial"
+	    {
+	   		"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mspd_bonus"				"25"
+			}
+	   		"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10"
+			}
+		}
+
 
 	    "OnSpellStart"
 	    {
@@ -702,7 +716,7 @@
 	    		"Duration"		"10.0"
 	    		"Properties"
 	    		{
-	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"30"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%mspd_bonus"
 	    		}
 	    	}
 	    }
@@ -2561,7 +2575,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"delay"			"2.0"
+				"delay"			"1.0"
 			}	
 		}
 

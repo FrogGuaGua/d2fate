@@ -20,7 +20,6 @@ softdispellable = {
     "modifier_heart_of_harmony",
     "modifier_l_rule_breaker",
     "modifier_double_edge",
-    "modifier_murderous_instinct",
     "modifier_double_spearsmanship",
     "modifier_gordius_wheel_speed_boost",
     "nero_gladiusanus_blauserum",
@@ -34,6 +33,8 @@ softdispellable = {
     "modifier_jeanne_charisma_agi",
     "modifier_jeanne_charisma_int",
     "modifier_atalanta_last_spurt",
+    "modifier_cursed_lance",
+    "modifier_battle_continuation_heal",
 }
 
 strongdispellable = {
@@ -69,6 +70,9 @@ strongdispellable = {
     "modifier_jeanne_charisma_agi",
     "modifier_jeanne_charisma_int",
     "modifier_atalanta_last_spurt",
+    "modifier_cursed_lance",
+    "modifier_battle_continuation_heal",
+
 
     -- Strong Dispelable
     "modifier_b_scroll",
@@ -78,7 +82,8 @@ strongdispellable = {
     "modifier_gordius_wheel_mitigation_tier2",
     "modifier_gordius_wheel_mitigation_tier3",
     "tamamo_mantra",
-    "modifier_lishuwen_cosmic_orbit_momentary_resistance"
+    "modifier_lishuwen_cosmic_orbit_momentary_resistance",
+    "modifier_cursed_lance_bp",
 }
 
 revokes = {
@@ -108,7 +113,7 @@ goesthruB = {"saber_avalon",
             "false_assassin_quickdraw",
             "archer_5th_overedge",
             "avenger_verg_avesta",
-            "lancer_5th_wesen_gae_bolg"
+            "lancer_5th_wesen_gae_bolg",
 }
 
 cleansable = {
@@ -188,7 +193,8 @@ slowmodifier = {
     "modifier_down_with_a_touch_slow_3",
     "modifier_la_black_luna_slow",
     "modifier_nursery_rhyme_shapeshift_slow",
-    "modifier_doppelganger_lookaway_slow"
+    "modifier_doppelganger_lookaway_slow",
+    "modifier_ceremonial_purge_slow",
 }
 
 donotlevel = {
@@ -268,6 +274,11 @@ CannotReset = {
     "atalanta_last_spurt",
     "atalanta_phoebus_catastrophe_snipe",
     "caster_5th_sacrifice",
+    "vlad_transfusion",
+    "vlad_impale",
+    "vlad_battle_continuation",
+    "vlad_combo",
+    "vlad_protection_of_faith_cd",
 }
 
 femaleservant = {
@@ -375,8 +386,7 @@ end
 
 function ApplyAirborne(source, target, duration)
     target:AddNewModifier(source, source, "modifier_stunned", {Duration = duration})
-
-    if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
+    --if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
     --[[local ascendCounter = 0
     Timers:CreateTimer(function()
         if ascendCounter > duration/2 then return end
@@ -392,7 +402,16 @@ function ApplyAirborne(source, target, duration)
         return 0.033
     end)]]
     local knockupSpeed = 1500
+    ApplyAirborneOnly(target, knockupSpeed, duration)
+end
+
+function ApplyAirborneOnly(target, knockupSpeed, duration, Acc)
+    if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
+
     local knockupAcc = knockupSpeed/duration * 2
+    if Acc then
+        knockupAcc = Acc
+    end
 
     Physics:Unit(target)
     target:PreventDI()
@@ -410,7 +429,6 @@ function ApplyAirborne(source, target, duration)
         target:Hibernate(true)
     end)
 end
-
 
 function DummyEnd(dummy)
     dummy:RemoveSelf()
@@ -822,6 +840,22 @@ function GetPhysicalDamageReduction(armor)
     end]]
 end
 
+-- Does what it says. damage post reduction -> pre reduction
+function CalculateDamagePreReduction(eDamageType, fDamage, hUnit)
+	if eDamageType == DAMAGE_TYPE_PHYSICAL then
+		local fArmor = hUnit:GetPhysicalArmorValue()
+		local multiplier = 1 + 0.06 * fArmor / (1 + 0.06 * math.abs(fArmor))
+		return fDamage * multiplier
+	end
+	
+	if eDamageType == DAMAGE_TYPE_MAGICAL then
+		local fMagicRes = hUnit:GetMagicalArmorValue()
+		return fDamage * (1 + fMagicRes)
+	end
+	
+	return fDamage
+end
+
 
 function ReduceCooldown(ability, reduction)
     local remainingCD = ability:GetCooldownTimeRemaining() 
@@ -982,7 +1016,9 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
     -- check if target has Rho Aias shield 
     if not IsAbsorbed and target:HasModifier("modifier_rho_aias_shield") then
         local reduction = 0
-        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+        if target:HasModifier("modifier_l_rule_breaker") or target:HasModifier ("modifier_c_rule_breaker") and (dmg_type == DAMAGE_TYPE_PURE or dmg_type == DAMAGE_TYPE_PHYSICAL) then
+            reduction = 1
+        elseif dmg_type == DAMAGE_TYPE_PHYSICAL then
             reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
         elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             reduction = target:GetMagicalArmorValue() 
@@ -1003,16 +1039,40 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             IsAbsorbed = true
         end
     end
+  
+    -- check if target has Cursed Lance
+    if not IsAbsorbed and (target:HasModifier("modifier_cursed_lance") or target:HasModifier("modifier_cursed_lance_bp")) then
+  	    local modifier = target:FindModifierByName("modifier_cursed_lance") or target:FindModifierByName("modifier_cursed_lance_bp")
+        local reduction = 0
+        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
+        elseif dmg_type == DAMAGE_TYPE_MAGICAL then
+            reduction = target:GetMagicalArmorValue()
+        end
+        local originalDamage = dmg - modifier.CL_SHIELDLEFT * 1/(1-reduction)
+        modifier.CL_SHIELDLEFT = modifier.CL_SHIELDLEFT - dmg * (1-reduction)
+        if modifier.CL_SHIELDLEFT <= 0 then
+            dmg = originalDamage
+            if not target.InstantCurseAcquired then
+                target:RemoveModifierByName("modifier_cursed_lance")
+            end
+            modifier.CL_SHIELDLEFT = 0
+        else
+            dmg = 0
+            IsAbsorbed = true
+        end
+    end
 
     -- Check if target has Avalon up
     if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then
         local incomingDmg = dmg
         local reduction = 0
 
-        if dmg_type == DAMAGE_TYPE_MAGICAL then
+        if target:HasModifier("modifier_l_rule_breaker") or target:HasModifier ("modifier_c_rule_breaker") and (dmg_type == DAMAGE_TYPE_PURE or dmg_type == DAMAGE_TYPE_PHYSICAL) then
+            incomingDmg = incomingDmg * 0
+        elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             incomingDmg = incomingDmg * (1-MR)
-        end 
-        if dmg_type == DAMAGE_TYPE_PHYSICAL then
+        elseif dmg_type == DAMAGE_TYPE_PHYSICAL then
             reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
             incomingDmg = incomingDmg * (1-reduction) 
         end
@@ -1076,6 +1136,8 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         if target:HasModifier("modifier_share_damage")
           and not isLoop
           and not (abil:GetName() == "avenger_verg_avesta" and source:GetTeam() == target:GetTeam())
+         --Queens glass game attribute fix
+          and not (target:HasModifier("modifier_queens_glass_game_check_link") and not target:HasModifier("modifier_qgg_oracle"))
           and target.linkTable ~= nil
         then
             -- Calculate the damage to secondary targets separately, in order to prevent MR from being twice as effective on primary target.
@@ -1091,7 +1153,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
             dmgtable.damage = dmgtable.damage/#target.linkTable * (1 + 0.1 * #target.linkTable - (#target.linkTable == 1 and 1 or 0) * 0.1)
             --print(damageToAllies, dmgtable.damage, (1 + 0.1 * #target.linkTable - (#target.linkTable == 1 and 1 or 0) * 0.1))
             -- Loop through linked heroes
-            for i=1, #target.linkTable do
+            for i=#target.linkTable,1,-1 do
                 -- do ApplyDamage if it's primary target since the shield processing is already done
                 if target.linkTable[i] == target then
                     --print("Damage dealt to primary target : " .. dmgtable.damage .. " dealt by " .. dmgtable.attacker:GetName())
@@ -1145,9 +1207,9 @@ end
 
 -- Check if anyone on this hero's team is still alive. 
 function IsTeamWiped(hero)
-    if not _G.GameMap == "fate_elim_6v6" then return false end
+    if _G.GameMap == "fate_ffa" or _G.GameMap == "fate_trio_rumble_3v3v3v3" then return false end
 
-    for i=0, 11 do
+    for i=0, 13 do
         local player = PlayerResource:GetPlayer(i)
         local playerHero = PlayerResource:GetSelectedHeroEntity(i)
         if playerHero ~= nil then 
@@ -1162,10 +1224,19 @@ end
 
 function ApplyPurge(target)
     for k,v in pairs(softdispellable) do
-        if v == "modifier_share_damage" then
-            RemoveHeroFromLinkTables(target)
+        if v == "modifier_courage_stackable_buff" then
+            local currentStack = target:GetModifierStackCount("modifier_courage_stackable_buff", target:FindAbilityByName("berserker_5th_courage"))
+            if currentStack <= 2 then
+                target:RemoveModifierByName("modifier_courage_stackable_buff")
+            else
+                target:SetModifierStackCount("modifier_courage_stackable_buff", target:FindAbilityByName("berserker_5th_courage"), currentStack-2)
+            end
+        else
+            if v == "modifier_share_damage" then
+                RemoveHeroFromLinkTables(target)
+            end
+            target:RemoveModifierByName(v)
         end
-        target:RemoveModifierByName(v)
     end
 end
 
@@ -1488,7 +1559,7 @@ function LogDeepPrint(debugInstance, prefix)
 end
 
 function LoopOverHeroes(callback)
-    for i=0, 11 do
+    for i=0, 13 do
         local hero = PlayerResource:GetSelectedHeroEntity(i)
         if hero ~= nil then 
             if callback(hero) then
@@ -1499,7 +1570,7 @@ function LoopOverHeroes(callback)
 end
 
 function LoopOverPlayers(callback)
-    for i=0, 11 do
+    for i=0, 13 do
         local playerID = i
         local player = PlayerResource:GetPlayer(i)
         local playerHero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -1638,6 +1709,7 @@ local heroNames = {
     ["npc_dota_hero_queenofpain"] = "Rider of Black(Apocrypha)",
     ["npc_dota_hero_windrunner"] = "Caster(Extra), N.R",
     ["npc_dota_hero_drow_ranger"] = "Archer of Red(Apocrypha)",
+    ["npc_dota_hero_tidehunter"] = "Lancer(Extra)",
 }
 
 
@@ -1679,6 +1751,7 @@ local heroCombos = {
     ["npc_dota_hero_queenofpain"] = "astolfo_hippogriff_ride",
     ["npc_dota_hero_windrunner"] = "nursery_rhyme_story_for_somebodys_sake",
     ["npc_dota_hero_drow_ranger"] = "atalanta_phoebus_catastrophe_barrage",
+    ["npc_dota_hero_tidehunter"] = "vlad_combo",
 }
 
 function GetHeroCombo(hero)
@@ -1745,3 +1818,38 @@ function OnHeroTakeDamage(keys)
     hero.ServStat:takeActualDamage(damageTaken)
 end
 
+function FxDestroyer(PIndex,instant)
+  if PIndex ~= nil and type(PIndex) == "table" then
+    --PrintTable(PIndex)
+    for i,j in pairs(PIndex) do
+      --print("destroy",PIndex[i])
+      ParticleManager:DestroyParticle(PIndex[i], instant)
+      ParticleManager:ReleaseParticleIndex(PIndex[i])
+    end
+    PIndex = nil
+    return PIndex
+  elseif PIndex ~= nil then
+    --print("destroy1",PIndex)
+    ParticleManager:DestroyParticle(PIndex, instant)
+    ParticleManager:ReleaseParticleIndex(PIndex)
+    PIndex = nil
+    return PIndex
+  end
+end
+
+function FxCreator(effectname,pattach,target,cp,attach,amount)
+  if amount ~= nil then
+    local FXIndex = {}
+    for i=amount,1,-1 do
+      FXIndex[i] = ParticleManager:CreateParticle(effectname,pattach,target)
+      ParticleManager:SetParticleControlEnt(FXIndex[i],cp,target,pattach,attach,target:GetAbsOrigin(),false)
+      --print("create            ",FXIndex[i])
+    end
+    return FXIndex
+  else         
+    local FXIndex = ParticleManager:CreateParticle(effectname,pattach,target)
+    ParticleManager:SetParticleControlEnt(FXIndex,cp,target,pattach,attach,target:GetAbsOrigin(),false)
+    --print("create                ", FXIndex)
+    return FXIndex
+  end
+end

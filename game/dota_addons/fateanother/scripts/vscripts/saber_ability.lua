@@ -670,7 +670,8 @@ function AvalonDash(caster, attacker, counterdamage, ability)
 			DoDamage(caster, v, counterdamage , DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	        v:AddNewModifier(caster, v, "modifier_stunned", {Duration = 0.5})
 	    end
-
+	    
+		caster:AddNewModifier(caster, caster, "modifier_camera_follow", {duration = 1.0})
 
 		-- Particles
 		--local impactFxIndex = ParticleManager:CreateParticle( "particles/custom/saber_avalon_impact.vpcf", PATTACH_ABSORIGIN, caster )

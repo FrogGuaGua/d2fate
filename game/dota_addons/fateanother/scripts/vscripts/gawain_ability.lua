@@ -36,7 +36,7 @@ function OnIRTickAlly(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
 	local target = keys.target
-	target:Heal(keys.Damage/10, caster)
+	target:ApplyHeal(keys.Damage/10, caster)
 	--target:SetHealth(target:GetHealth() + keys.Damage/5)
 end
 
@@ -83,10 +83,10 @@ modifierList = {"modifier_max_mana_burst_cooldown","modifier_delusional_illusion
 "modifier_max_enuma_elish_cooldown","modifier_endless_loop_cooldown","modifier_rampant_warrior_cooldown","modifier_nuke_cooldown",
 "modifier_larret_de_mort_cooldown","modifier_annihilate_cooldown","modifier_fiery_finale_cooldown",
 "modifier_polygamist_cooldown","modifier_raging_dragon_strike_cooldown","modifier_la_pucelle_cooldown","modifier_hippogriff_ride_cooldown","modifier_story_for_someones_sake_cooldown",
-"modifier_phoebus_catastrophe_cooldown",
+"modifier_phoebus_catastrophe_cooldown","modifier_lord_of_execution_cd",
 "modifier_strike_air_cooldown","modifier_instinct_cooldown","modifier_battle_continuation_cooldown","modifier_hrunting_cooldown",
 "modifier_overedge_cooldown","modifier_blood_mark_cooldown","modifier_quickdraw_cooldown","modifier_eternal_arms_mastership_cooldown","modifier_mystic_shackle_cooldown",
-"modifier_golden_apple_cooldown"} --last 3 lines are non-combos.
+"modifier_golden_apple_cooldown","modifier_protection_of_faith_proc_cd"} --last 3 lines are non-combos.
 
 function OnDevoteHit(keys)
 	local caster = keys.caster
@@ -224,12 +224,12 @@ function OnGalatineStart(keys)
 			-- Explosion on allies
 			local targets = FindUnitsInRadius(caster:GetTeam(), galatineDummy:GetAbsOrigin(), nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 			for k,v in pairs(targets) do
-				v:Heal(keys.Damage * 33/100, caster)
+				v:ApplyHeal(keys.Damage * 33/100, caster)
 				if caster.IsSunlightAcquired then
 					local healTimer = 1
 					Timers:CreateTimer(1.0, function()
 						if healTimer > 3 then return end
-						v:Heal(keys.Damage * 11/100, caster)
+						v:ApplyHeal(keys.Damage * 11/100, caster)
 						healTimer = healTimer + 1
 						return 1.0
 					end)
@@ -303,7 +303,7 @@ function OnEmbraceStart(keys)
 		local targetActualMR = targetMR + (1-targetMR)*targetMR -- calculates actual MR of target after application of Sun's Embrace
 		--print(targetActualMR)
 		local healAmount = healthDiff * targetActualMR  
-		target:Heal(healAmount, caster)
+		target:ApplyHeal(healAmount, caster)
 
 		if caster.IsSunlightAcquired then
 			keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_suns_embrace_sunlight_bonus",{})

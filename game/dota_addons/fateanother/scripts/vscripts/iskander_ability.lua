@@ -1,4 +1,5 @@
-
+LinkLuaModifier("modifier_battle_horn_pct_armor_reduction","abilities/iskander/modifier_battle_horn_pct_armor_reduction", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_phalanx_soldier_wall","abilities/iskander/modifier_phalanx_soldier_wall", LUA_MODIFIER_MOTION_NONE)
 
 function OnIskanderCharismaStart(keys)
 	local caster = keys.caster
@@ -62,6 +63,10 @@ end
 
 function OnPhalanxStart(keys)
 	local caster = keys.caster
+	local duration = keys.Duration
+	if caster.IsBeyondTimeAcquired == true then
+		duration = duration + 12
+	end
 	if caster.AOTKSoldierCount == nil then caster.AOTKSoldierCount = 0 end --initialize soldier count if its not made yet
 	local aotkAbility = caster:FindAbilityByName("iskander_army_of_the_king")
     local targetPoint = keys.target_points[1]
@@ -76,10 +81,9 @@ function OnPhalanxStart(keys)
 		Timers:CreateTimer(i*0.1, function()
 			local soldier = CreateUnitByName("iskander_infantry", targetPoint + leftvec * 75 * i, true, nil, nil, caster:GetTeamNumber())
 			soldier:SetOwner(caster)
-		    soldier:AddAbility("phalanx_soldier_passive") 
-		    soldier:FindAbilityByName("phalanx_soldier_passive"):SetLevel(1)
-			soldier:AddNewModifier(caster, nil, "modifier_kill", {duration = keys.Duration})
+			soldier:AddNewModifier(caster, nil, "modifier_kill", {duration = duration})
 			caster.AOTKSoldierCount = caster.AOTKSoldierCount + 1
+			soldier:AddNewModifier(caster, keys.ability, "modifier_phalanx_soldier_wall", {duration = keys.ability:GetSpecialValueFor("duration")})
 			aotkAbility:ApplyDataDrivenModifier(keys.caster, soldier, "modifier_army_of_the_king_infantry_bonus_stat",{})
 			PhalanxPull(caster, soldier, targetPoint, keys.Damage, keys.ability) -- do pullback
 
@@ -103,11 +107,10 @@ function OnPhalanxStart(keys)
 		Timers:CreateTimer(i*0.1, function()
 			local soldier = CreateUnitByName("iskander_infantry", targetPoint + rightvec * 75 * i, true, nil, nil, caster:GetTeamNumber())
 			soldier:SetOwner(caster)
-		    soldier:AddAbility("phalanx_soldier_passive") 
-		    soldier:FindAbilityByName("phalanx_soldier_passive"):SetLevel(1)
-			soldier:AddNewModifier(caster, nil, "modifier_kill", {duration = keys.Duration})
+			soldier:AddNewModifier(caster, nil, "modifier_kill", {duration = duration})
 			caster.AOTKSoldierCount = caster.AOTKSoldierCount + 1
-			aotkAbility:ApplyDataDrivenModifier(keys.caster, soldier, "modifier_army_of_the_king_infantry_bonus_stat",{})
+			soldier:AddNewModifier(caster, keys.ability, "modifier_phalanx_soldier_wall", {duration = keys.ability:GetSpecialValueFor("duration")})
+			aotkAbility:ApplyDataDrivenModifier(caster, soldier, "modifier_army_of_the_king_infantry_bonus_stat",{})
 			PhalanxPull(caster, soldier, targetPoint, keys.Damage, keys.ability) -- do pullback
 
 			--local particle = ParticleManager:CreateParticle("particles/items_fx/aegis_respawn.vpcf", PATTACH_ABSORIGIN_FOLLOW, soldier)
@@ -116,7 +119,8 @@ function OnPhalanxStart(keys)
 			table.insert(caster.PhalanxSoldiers, soldier)
 		end)
 	end
-	--[[
+
+	--[[]
 	for i=1, #caster.PhalanxSoldiers do
 		local targets = FindUnitsInRadius(caster:GetTeam(), caster.PhalanxSoldiers[i]:GetAbsOrigin(), nil, 150
 	        , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
@@ -282,7 +286,7 @@ function OnChariotRide(keys)
 	        if caster.IsThundergodAcquired then
 		        local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 150, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 		        for k,v in pairs(targets) do
-		            DoDamage(caster, v, 200, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+		            DoDamage(caster, v, 150, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
 		        end	  
 		        local thunderTargets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 400, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 		        local thunderTarget = thunderTargets[math.random(#thunderTargets)]
@@ -787,6 +791,10 @@ function EndAOTK(caster)
 			if units[i]:GetName() == "npc_dota_hero_ember_spirit" and units[i]:HasModifier("modifier_ubw_death_checker") then
 				units[i]:RemoveModifierByName("modifier_ubw_death_checker")
 			end
+			if units[i]:HasModifier("modifier_annihilate_mute") then
+				units[i]:RemoveModifierByName("modifier_annihilate_mute")
+			end
+
 	    	local IsUnitGeneratedInAOTK = true
 	    	if aotkTargets ~= nil then
 		    	for j=1, #aotkTargets do
@@ -903,6 +911,11 @@ function OnBattleHornStart(keys)
 	local hero = caster:GetPlayerOwner():GetAssignedHero()
 	local targetPoint = keys.target_points[1]
 	caster:EmitSound("Hero_LegionCommander.PressTheAttack")
+	local marbleCenter = 0
+	local aotkCenter = Vector(500, -4800, 208)
+	local ubwCenter = Vector(5600, -4398, 200)
+	if hero.IsAOTKDominant then marbleCenter = aotkCenter else marbleCenter = ubwCenter end
+
 	for i=1, #hero.AOTKSoldiers do
 		if IsValidEntity(hero.AOTKSoldiers[i]) then
 			if hero.AOTKSoldiers[i]:IsAlive() then
@@ -924,10 +937,10 @@ function OnBattleHornStart(keys)
 			end
 		end
 	end
-	local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, keys.Radius
+	local targets = FindUnitsInRadius(caster:GetTeam(), marbleCenter, nil, 3000
             , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	for k,v in pairs(targets) do
-		keys.ability:ApplyDataDrivenModifier(caster,v, "modifier_battle_horn_armor_reduction", {})
+		v:AddNewModifier(caster, keys.ability, "modifier_battle_horn_pct_armor_reduction", {duration = keys.ability:GetSpecialValueFor("duration")})
     end
     if hero:HasModifier("modifier_annihilate_caster") then
 		for k,v in pairs(targets) do
@@ -1063,8 +1076,12 @@ end
 function OnAnnihilateStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
+	local hero = caster:GetPlayerOwner():GetAssignedHero()
 	-- Set master's combo cooldown
 	local masterCombo = caster.MasterUnit2:FindAbilityByName(keys.ability:GetAbilityName())
+
+	local marbleCenter = 0
+	if hero.IsAOTKDominant then marbleCenter = aotkCenter else marbleCenter = ubwCenter end
 	masterCombo:EndCooldown()
 	masterCombo:StartCooldown(keys.ability:GetCooldown(1))
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_annihilate_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
@@ -1083,6 +1100,57 @@ function OnAnnihilateStart(keys)
 			end
 		end
 	end
+
+	-- Mute
+	local targets = FindUnitsInRadius(caster:GetTeam(), marbleCenter, nil, 2000
+            , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, FIND_ANY_ORDER, false)
+	for k,v in pairs(targets) do
+		if v:GetUnitName() ~= "gille_gigantic_horror" and v:GetUnitName() ~= "caster_5th_territory_improved" and v:GetUnitName() ~= "caster_5th_territory" then
+			keys.ability:ApplyDataDrivenModifier(caster,v, "modifier_annihilate_mute", {})
+		end
+    end
+
+    -- Arrows
+    local tableOfSounds = {"Iskander.ArrowFly1","Iskander.ArrowFly2","Iskander.ArrowLand1","Iskander.ArrowLand3"}
+	local nVolleys = 0
+	local nHit = 0
+	Timers:CreateTimer(3.0, function() -- Empirical testing; 500 arrows fired with each arrow being 200 aoe, each servant will get hit by 6-7 arrows on average.
+		if caster:IsAlive() and caster:GetAbsOrigin().y < -3500 then
+			for i=0,4 do
+				local targetPoint = RandomPointInCircle(marbleCenter, 2000)
+				local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, keys.ArrowAoE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
+				-- DebugDrawCircle(targetPoint, Vector(255,0,0), 0.5, flamePillarRadius, true, 30)
+				for k,v in pairs(targets) do
+					nHit = nHit + 1
+					DoDamage(caster, v, keys.ArrowDamage , DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+				end
+				GenerateArrowParticle(keys,targetPoint,marbleCenter)
+			end
+			nVolleys = nVolleys + 1
+			if nVolleys%3 == 0 and nVolleys <=95 then EmitGlobalSound(tableOfSounds[math.random(4)]) end
+			--print("rawr")
+			if nVolleys == 100 then
+				print(nHit)
+				return
+			else
+				return 0.04
+			end
+		else
+			return
+		end
+	end)
+end
+
+function GenerateArrowParticle(keys, targetPoint, marbleCenter)
+	local caster = keys.caster
+	local arrowFx = ParticleManager:CreateParticle("particles/custom/iskandar/iskandar_combo_arrow.vpcf", PATTACH_CUSTOMORIGIN, caster )
+	ParticleManager:SetParticleControl( arrowFx, 0, targetPoint)
+	ParticleManager:SetParticleControl( arrowFx, 1, RandomPointInCircle(targetPoint + Vector(1000,0,0), 300))
+	
+	Timers:CreateTimer( 0.5, function()
+		ParticleManager:DestroyParticle( arrowFx, true )
+		ParticleManager:ReleaseParticleIndex( arrowFx )
+	end)
 end
 
 function IskanderCheckCombo(caster, ability)

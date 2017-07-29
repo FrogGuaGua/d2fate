@@ -175,7 +175,7 @@ function PotInstantHeal(keys)
 		RefundItem(caster, ability)
 		return
 	end
-	caster:Heal(500, caster)
+	caster:ApplyHeal(500, caster)
 	caster:GiveMana(300)
 
 	local healFx = ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification_g.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -740,7 +740,7 @@ function HealingScroll(keys)
 	for k,v in pairs(targets) do
 		if v:GetName() ~= "npc_dota_ward_base" then
 			ParticleManager:SetParticleControl(healFx, 1, v:GetAbsOrigin()) -- target effect location
-    	    v:Heal(500, caster)
+    	    v:ApplyHeal(500, caster)
        		ability :ApplyDataDrivenModifier(caster, v, "modifier_healing_scroll", {})
        	end
     end

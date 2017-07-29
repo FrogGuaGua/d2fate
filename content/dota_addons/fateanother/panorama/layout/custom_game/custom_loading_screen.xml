@@ -3,14 +3,14 @@
     <include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
   </styles>
   <Panel class="AddonLoadingRoot">
-    <Panel id="CustomBg" >
-      <Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/gaebolg.jpg" />
+    <Panel id="BG" >
+      <Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/splash.png" />
     </Panel>
     <Panel id="TitlePanel">
-      <Label id="AddonTitle" text="Fate/Another v1.22b" style="" />
+      <Label id="AddonTitle" text="FATE/ANOTHER" style="" />
     </Panel>
     <Panel id="Text">
-      <Label id="MoreText" text="Patch Notes: dota2fa.blogspot.com\nDiscord: discord.gg/nSzm6uk\nhttp://steamcommunity.com/groups/dota2fate" style="" />
+      <Label id="MoreText" text="Version 1.23\nPatch Notes: dota2fa.blogspot.com\nDiscord: discord.gg/nSzm6uk\nhttp://steamcommunity.com/groups/dota2fate" style="" />
     </Panel>
   </Panel>
 </root>

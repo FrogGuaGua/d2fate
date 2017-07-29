@@ -207,6 +207,15 @@ AtalantaAttribute = {
 	"atalanta_phoebus_catastrophe_proxy",
 	attrCount = 4
 }
+VladAttribute = {
+	"vlad_attribute_innocent_monster",
+	"vlad_attribute_protection_of_faith",
+	"vlad_attribute_improved_impaling",
+	"vlad_attribute_instant_curse",
+	"vlad_attribute_bloodletter",
+	"vlad_combo",
+	attrCount = 5
+}
 --[[LiAttribute = {
 	attrCount = 4
 }]]
@@ -369,7 +378,7 @@ function OnSeal3Start(keys)
 
 	local particle = ParticleManager:CreateParticle("particles/items2_fx/urn_of_shadows_heal_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
 	ParticleManager:SetParticleControl(particle, 0, hero:GetAbsOrigin())
-	hero:Heal(hero:GetMaxHealth(), hero)
+	hero:ApplyHeal(hero:GetMaxHealth(), hero)
 
 	if caster.IsFirstSeal == true then
 		keys.ability:EndCooldown()
@@ -542,6 +551,8 @@ function FindAttribute(name)
     	attributes = NRAttribute
     elseif name == "npc_dota_hero_drow_ranger" then
     	attributes = AtalantaAttribute
+		elseif name == "npc_dota_hero_tidehunter" then
+			attributes = VladAttribute
     end
     return attributes
 end 
@@ -843,7 +854,7 @@ function OnManaRegenGain(keys)
 		end
 	end 
 	hero.ServStat:addMPregen()
-	hero:SetBaseManaRegen(hero:GetManaRegen()+1.3) --down here attributes.txt is useless, and this line is working.
+	hero:SetBaseManaRegen(hero:GetManaRegen()+1.5) --down here attributes.txt is useless, and this line is working.
 	hero:CalculateStatBonus()
 	-- Set master 1's mana 
 	local master1 = hero.MasterUnit
@@ -895,7 +906,7 @@ function OnAvariceAcquired(keys)
 
 	-- distribute gold
 	local teamTable = {}
-	for i=0, 11 do
+	for i=0, 13 do
 		local player = PlayerResource:GetPlayer(i)
 		if player ~= nil then 
 			hero = PlayerResource:GetPlayer(i):GetAssignedHero()

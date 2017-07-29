@@ -149,6 +149,265 @@
 	}
 }
 
+"Iskander.AnnihilateAlt"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/iskander_annihilate_alt.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"8.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Iskander.ArrowFly1"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/arrow_fly_1.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"3.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Iskander.ArrowFly2"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/arrow_fly_2.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"3.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Iskander.ArrowFly3"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/arrow_fly_3.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"3.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Iskander.ArrowLand1"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/arrow_land_1.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"0.500000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Iskander.ArrowLand2"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/arrow_land_2.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"0.500000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Iskander.ArrowLand3"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/iskander/arrow_land_3.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"0.500000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"81.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
 "Iskander.Aye"
 {
 	"operator_stacks"

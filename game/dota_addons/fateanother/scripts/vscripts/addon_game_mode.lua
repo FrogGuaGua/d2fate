@@ -18,7 +18,10 @@ require('libraries/attachments')
 require('hero_selection')
 require('libraries/servantstats')
 require('libraries/alternateparticle')
+
+require('blink')
 require('unit_voice')
+require('wrappers')
 
 
 _G.IsPickPhase = true
@@ -84,7 +87,7 @@ SPAWN_POSITION_T4_TRIO = Vector(-888,1748,512)
 TRIO_RUMBLE_CENTER = Vector(2436,4132,1000)
 FFA_CENTER = Vector(368,3868,1000)
 mode = nil
-FATE_VERSION = "v1.22a"
+FATE_VERSION = "v1.23"
 roundQuest = nil
 IsGameStarted = false
 
@@ -108,10 +111,10 @@ for i=1, MAX_LEVEL do
     BOUNTY_PER_LEVEL_TABLE[i] = 1050 + i * 50
 end
 
-XP_BOUNTY_PER_LEVEL_TABLE[1] = 80
-XP_BOUNTY_PER_LEVEL_TABLE[2] = 120 * 0.85 + 8 + 100
+XP_BOUNTY_PER_LEVEL_TABLE[1] = 100
+XP_BOUNTY_PER_LEVEL_TABLE[2] = 100 * 0.85 + 8 + 120
 for i=3, MAX_LEVEL do
-    XP_BOUNTY_PER_LEVEL_TABLE[i] = XP_BOUNTY_PER_LEVEL_TABLE[i-1]*0.85 + i*4 + 100 -- Bounty XP formula : Previous level XP + Current Level * 4 + 120(constant)
+    XP_BOUNTY_PER_LEVEL_TABLE[i] = XP_BOUNTY_PER_LEVEL_TABLE[i-1]*0.85 + i*4 + 120 -- Bounty XP formula : Previous level XP + Current Level * 4 + 120(constant)
 end
 
 -- Client to Server message data tables
@@ -188,6 +191,7 @@ gameState = {
 
 gameMaps = {
     "fate_elim_6v6",
+    "fate_elim_7v7",
     "fate_ffa",
     "fate_trio_rumble_3v3v3v3"
 }
@@ -242,6 +246,7 @@ function Precache( context )
     PrecacheResource( "soundfile", "soundevents/hero_astolfo.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/hero_nursery_rhyme.vsndevts", context )
     PrecacheResource( "soundfile", "soundevents/hero_atalanta.vsndevts", context )
+    PrecacheResource( "soundfile", "soundevents/hero_vlad.vsndevts", context )
     PrecacheResource("soundfile", "soundevents/sounds_test.vsndevts", context)
     PrecacheResource( "soundfile", "soundevents/soundevents_conquest.vsndevts", context )
 
@@ -335,7 +340,7 @@ function FateGameMode:OnAllPlayersLoaded()
     local maxval = voteResultTable[1]
     local maxkey = 1
     local votePool = nil
-    if _G.GameMap == "fate_elim_6v6" then
+    if _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
         votePool = voteResults_DM
         maxkey = voteResults_DM[1]
     elseif _G.GameMap == "fate_trio_rumble_3v3v3v3" then
@@ -350,6 +355,30 @@ function FateGameMode:OnAllPlayersLoaded()
         if voteResultTable[i] > maxval then
             maxval = i
             maxkey = votePool[i]
+        end
+    end
+
+    -- CUSTOM COLOURS
+    badGuyColorIndex = 1
+    goodGuyColorIndex = 1
+    badColorTable = {{164,105,0},{254,134,194},{0,131,33},{101,217,247},{161,180,71},{244,164,96},{176,196,222}}
+    goodColorTable = {{51,117,255},{102,255,191},{255,107,0},{191,0,191},{243,240,11},{255,20,147},{220,20,60}}
+    for i=0, 13 do
+        if PlayerResource:GetPlayer(i) ~= nil then
+            local playerID = i
+            local player = PlayerResource:GetPlayer(i)
+            print(playerID)
+            print(player:GetTeam())
+
+            if player:GetTeam() == 2 then
+                print("GOOD GUY COLOR")
+                PlayerResource:SetCustomPlayerColor(i, goodColorTable[goodGuyColorIndex][1], goodColorTable[goodGuyColorIndex][2], goodColorTable[goodGuyColorIndex][3])
+                goodGuyColorIndex = goodGuyColorIndex + 1
+            else
+                print("BAD GUY COLOR")
+                PlayerResource:SetCustomPlayerColor(i, badColorTable[badGuyColorIndex][1], badColorTable[badGuyColorIndex][2], badColorTable[badGuyColorIndex][3])
+                badGuyColorIndex = badGuyColorIndex + 1
+            end
         end
     end
 
@@ -382,6 +411,7 @@ end
 
 
 
+
 --[[
 This function is called once and only once when the game completely begins (about 0:00 on the clock). At this point,
     gold will begin to go up in ticks if configured, creeps will spawn, towers will become damageable etc. This function
@@ -394,7 +424,7 @@ function FateGameMode:OnGameInProgress()
        -- Set a think function for timer
         local CENTER_POSITION = Vector(0,0,0)
         local SHARD_DROP_PERIOD = 0
-        if _G.GameMap == "fate_elim_6v6" then
+        if _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
             self.nCurrentRound = 1
             self:InitializeRound() -- Start the game after forcing a pick for every player
             BLESSING_PERIOD = 600
@@ -471,7 +501,7 @@ function FateGameMode:OnGameInProgress()
     if _G.GameMap == "fate_ffa" then
         dummyLevel = 1
         dummyLoc = FFA_CENTER
-    elseif _G.GameMap == "fate_elim_6v6" then
+    elseif _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
         bIsDummyNeeded = false
     elseif _G.GameMap == "fate_trio_rumble_3v3v3v3" then
         dummyLevel = 2
@@ -639,6 +669,14 @@ function FateGameMode:OnPlayerChat(keys)
         DoRoll(plyID, 100)
     end
 
+    if text == "-voice on" then
+        CustomGameEventManager:Send_ServerToPlayer( ply, "fate_enable_voice", {})
+    end
+
+    if text == "-voice off" then
+        CustomGameEventManager:Send_ServerToPlayer( ply, "fate_disable_voice", {})
+    end
+
     hero.AltPart:Switch(text)
 
     local rollText = string.match(text, "^-roll (%d+)")
@@ -675,6 +713,13 @@ function FateGameMode:OnPlayerChat(keys)
             targetHero:ModifyGold(tonumber(goldAmt), true, 0)
             CustomGameEventManager:Send_ServerToTeam(hero:GetTeamNumber(), "fate_gold_sent", {goldAmt=tonumber(goldAmt), sender=hero:entindex(), recipent=targetHero:entindex()} )
             --GameRules:SendCustomMessage("<font color='#58ACFA'>" .. hero.name .. "</font> sent " .. goldAmt .. " gold to <font color='#58ACFA'>" .. targetHero.name .. "</font>" , hero:GetTeamNumber(), hero:GetPlayerOwnerID())
+        elseif PlayerResource:GetReliableGold(plyID) < tonumber(goldAmt) and plyID ~= tonumber(pID) and PlayerResource:GetTeam(plyID) == PlayerResource:GetTeam(tonumber(pID)) and tonumber(goldAmt) > 0 then
+            -- This elseif condition is for when your gold is below the default 300 or whatever you set, that you send the rest of your gold to teammate.
+            local targetHero = PlayerResource:GetPlayer(tonumber(pID)):GetAssignedHero()
+            hero:ModifyGold(-PlayerResource:GetReliableGold(plyID), true , 0)
+            targetHero:ModifyGold(PlayerResource:GetReliableGold(plyID), true, 0)
+            CustomGameEventManager:Send_ServerToTeam(hero:GetTeamNumber(), "fate_gold_sent", {goldAmt=PlayerResource:GetReliableGold(plyID), sender=hero:entindex(), recipent=targetHero:entindex()} )
+            --GameRules:SendCustomMessage("<font color='#58ACFA'>" .. hero.name .. "</font> sent " .. goldAmt .. " gold to <font color='#58ACFA'>" .. targetHero.name .. "</font>" , hero:GetTeamNumber(), hero:GetPlayerOwnerID())
         end
     end
 
@@ -702,7 +747,7 @@ function FateGameMode:OnPlayerChat(keys)
                 table.insert(rank, index)
             end
             hero.AntiSpamCooldown1 = true
-            Timers:CreateTimer(1, function()
+            Timers:CreateTimer(20, function()
                 hero.AntiSpamCooldown1 = false
             end)
             Say(hero:GetPlayerOwner(), "Average damage done per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
@@ -724,7 +769,7 @@ function FateGameMode:OnPlayerChat(keys)
                 table.insert(rank, index)
             end
             hero.AntiSpamCooldown2 = true
-            Timers:CreateTimer(1, function()
+            Timers:CreateTimer(20, function()
                 hero.AntiSpamCooldown2 = false
             end)
             Say(hero:GetPlayerOwner(), "Average damage taken per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
@@ -746,10 +791,54 @@ function FateGameMode:OnPlayerChat(keys)
                 table.insert(rank, index)
             end
             hero.AntiSpamCooldown3 = true
-            Timers:CreateTimer(1, function()
+            Timers:CreateTimer(20, function()
                 hero.AntiSpamCooldown3 = false
             end)
             Say(hero:GetPlayerOwner(), "Average number of C scrolls used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
+        end
+    end
+
+    if text == "-ward" then
+        if hero.AntiSpamCooldown4 ~= true then
+            local teamHeroes = {}
+            local values = {}
+            local rank = {}
+            LoopOverPlayers(function(ply, plyID, playerHero)
+                if playerHero:GetTeamNumber() == hero:GetTeamNumber() then
+                    table.insert(teamHeroes, FindName(playerHero:GetName()))
+                    table.insert(values, round(playerHero.ServStat.ward/playerHero.ServStat.round,2))
+                end
+            end)
+            for index,value in spairs(values, function(values,a,b) return values[b] < values[a] end) do
+                table.insert(rank, index)
+            end
+            hero.AntiSpamCooldown4 = true
+            Timers:CreateTimer(1, function()
+                hero.AntiSpamCooldown4 = false
+            end)
+            Say(hero:GetPlayerOwner(), "Average number of wards used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
+        end
+    end
+
+    if text == "-bird" then
+        if hero.AntiSpamCooldown5 ~= true then
+            local teamHeroes = {}
+            local values = {}
+            local rank = {}
+            LoopOverPlayers(function(ply, plyID, playerHero)
+                if playerHero:GetTeamNumber() == hero:GetTeamNumber() then
+                    table.insert(teamHeroes, FindName(playerHero:GetName()))
+                    table.insert(values, round(playerHero.ServStat.familiar/playerHero.ServStat.round,2))
+                end
+            end)
+            for index,value in spairs(values, function(values,a,b) return values[b] < values[a] end) do
+                table.insert(rank, index)
+            end
+            hero.AntiSpamCooldown5 = true
+            Timers:CreateTimer(1, function()
+                hero.AntiSpamCooldown5 = false
+            end)
+            Say(hero:GetPlayerOwner(), "Average number of familiars used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
         end
     end
 
@@ -971,6 +1060,7 @@ end
 function FateGameMode:OnNPCSpawned(keys)
     --print("[BAREBONES] NPC Spawned")
     local hero = EntIndexToHScript(keys.entindex)
+	Wrappers.WrapUnit(hero)
 
     if hero:IsRealHero() and hero.bFirstSpawned == nil then
         local playerID = hero:GetPlayerID()
@@ -1038,6 +1128,7 @@ function FateGameMode:OnHeroInGame(hero)
 
     -- Initialize Servant Statistics, and related collection stuff
     hero.ServStat = ServantStatistics:initialise(hero)
+    hero.ServStat:roundNumber(self.nCurrentRound) -- to properly initialise the current round number when player picks a hero late. 
     giveUnitDataDrivenModifier(hero, hero, "modifier_damage_collection", {})
     -- END
 
@@ -1062,7 +1153,7 @@ function FateGameMode:OnHeroInGame(hero)
             end
         end
         --print("Respawn location registered : " .. hero.RespawnPos.x .. " BY " .. hero:GetName() )
-        if _G.GameMap == "fate_elim_6v6" then
+            if _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
             local index
             if team == 2 then
                 index = team2HeroesSpawned
@@ -1146,15 +1237,17 @@ function FateGameMode:OnHeroInGame(hero)
     hero.name = heroName
     GameRules:SendCustomMessage("Servant <font color='#58ACFA'>" .. heroName .. "</font> has been summoned.", 0, 0)
 
-    if _G.GameMap == "fate_elim_6v6" then
+    if _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
         if self.nCurrentRound == 0 then
             giveUnitDataDrivenModifier(hero, hero, "round_pause", 70)
         elseif self.nCurrentRound >= 1 then
             giveUnitDataDrivenModifier(hero, hero, "round_pause", 10)
         end
     else
+        -- This is timed such that you can start moving when pick screen times out. If you pick a hero late and that game already started, math.max(0,<some negative number>) == 0 thus no pause.
         if _G.CurrentGameState == "FATE_PRE_GAME" then
-            giveUnitDataDrivenModifier(hero, hero, "round_pause", 70)
+            SendChatToPanorama(tostring(math.max(0,73-math.ceil(GameRules:GetGameTime()))))
+            giveUnitDataDrivenModifier(hero, hero, "round_pause", (math.max(0,73-math.ceil(GameRules:GetGameTime()))))
         end
     end
 
@@ -1688,7 +1781,7 @@ function FateGameMode:OnEntityKilled( keys )
             -- Add to kill count if victim is Ruler
            -- if killedUnit:GetName() == "npc_dota_hero_mirana" and killedUnit.IsSaintImproved then
                -- --print("killed ruler with attribute. current kills: " .. killerEntity:GetKills() .. ". adding 2 extra kills...")
-           --     if _G.GameMap == "fate_elim_6v6" then
+                --if _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
                  --   killerEntity:IncrementKills(1)
                 --    killerEntity:IncrementKills(1)
               --  end
@@ -1707,7 +1800,7 @@ function FateGameMode:OnEntityKilled( keys )
                 CustomGameEventManager:Send_ServerToPlayer( killedUnit:GetPlayerOwner(), "servant_stats_updated", statTable ) -- Send the current stat info to JS
             end
             -- Distribute XP to allies
-            local alliedHeroes = FindUnitsInRadius(killerEntity:GetTeamNumber(), killedUnit:GetAbsOrigin(), nil, 5000, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_CLOSEST, false)
+            local alliedHeroes = FindUnitsInRadius(killerEntity:GetTeamNumber(), killedUnit:GetAbsOrigin(), nil, 2500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_CLOSEST, false)
             local realHeroCount = 0
             for i=1, #alliedHeroes do
                 if alliedHeroes[i]:IsHero() and alliedHeroes[i]:GetName() ~= "npc_dota_hero_wisp" then
@@ -1796,7 +1889,7 @@ function FateGameMode:OnEntityKilled( keys )
                 GameRules:SetSafeToLeave( true )
                 GameRules:SetGameWinner( killerEntity:GetTeam() )
             end
-        elseif _G.GameMap == "fate_elim_6v6" then
+        elseif _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
             if killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS and killedUnit:IsRealHero() then
                 self.nRadiantDead = self.nRadiantDead + 1
             else
@@ -1950,13 +2043,21 @@ function FateGameMode:InitGameMode()
         GameRules:SetGoldPerTick(0)
         GameRules:SetStartingGold(0)    
 
+    elseif _G.GameMap == "fate_elim_7v7" then
+        GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 7)
+        GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 7)
+        GameRules:SetHeroRespawnEnabled(false)
+        GameRules:SetGoldPerTick(0)
+        GameRules:SetStartingGold(0)    
+
     elseif _G.GameMap == "fate_trio_rumble_3v3v3v3" then
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 3)
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 3)
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 3)
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 3)
         GameRules:SetGoldPerTick(7.5)
-        GameRules:SetStartingGold(0)    
+        GameRules:SetStartingGold(0)  
+
 
     elseif _G.GameMap == "fate_ffa" then
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 1 )
@@ -2170,6 +2271,15 @@ function FateGameMode:TakeDamageFilter(filterTable)
         filterTable.damage = filterTable.damage/100 * (100-reduction)
         damage = damage/100 * (100-reduction)
     end
+	
+	-- Functionality for the False Promise part of NR's new ult.
+	if victim:HasModifier("modifier_qgg_oracle") then
+		local hModifier = victim:FindModifierByName("modifier_qgg_oracle")
+		local tInfo = { hAttacker = attacker, fDamage = damage, eDamageType = damageType }
+		tInfo.hAbility = inflictor
+		table.insert(hModifier.tDamageInstances, tInfo)
+		return false
+	end
 
 
     -- if target is affected by Verg and damage is not lethal
@@ -2613,6 +2723,7 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
 
     winnerEventData.radiantScore = self.nRadiantScore
     winnerEventData.direScore = self.nDireScore
+    CustomNetTables:SetTableValue("score", "CurrentScore", { nRadiantScore = self.nRadiantScore, nDireScore = self.nDireScore })
     CustomGameEventManager:Send_ServerToAllClients( "winner_decided", winnerEventData ) -- Send the winner to Javascript
     GameRules:SendCustomMessage("#Fate_Round_Gold_Note", 0, 0)
     self:LoopOverPlayers(function(player, playerID, playerHero)
@@ -2648,7 +2759,7 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
             end
             hero.ServStat:printconsole()
         end)
-        Say(nil, "Radiant Victory!", false)
+        Say(nil, "Red Faction Victory!", false)
         my_http_post()
         GameRules:SetSafeToLeave( true )
         GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
@@ -2663,7 +2774,7 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
             end
             hero.ServStat:printconsole()
         end)
-        Say(nil, "Dire Victory!", false)
+        Say(nil, "Black Faction Victory!", false)
         my_http_post()
         GameRules:SetSafeToLeave( true )
         GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
@@ -2744,6 +2855,10 @@ function GetRespawnPos(playerHero, currentRound, index)
 
     local row = index % 2
     local column = math.floor(index / 2)
+    if index == 6 then -- for 7th player
+        row = 2
+        column = 1
+    end
     local offset = vRow * row + vColumn * column
 
     local team = playerHero:GetTeam()
@@ -2753,7 +2868,7 @@ function GetRespawnPos(playerHero, currentRound, index)
 end
 
 function FateGameMode:LoopOverPlayers(callback, withDummy)
-    for i=0, 11 do
+    for i=0, 13 do
         local playerID = i
         local player = PlayerResource:GetPlayer(i)
         local playerHero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -2794,7 +2909,7 @@ function FateGameMode:CaptureGameMode()
         mode:SetTopBarTeamValuesOverride ( USE_CUSTOM_TOP_BAR_VALUES )
         self:OnFirstPlayerLoaded()
 
-        if _G.GameMap == "fate_elim_6v6" then
+        if _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
             mode:SetTopBarTeamValuesOverride ( USE_CUSTOM_TOP_BAR_VALUES )
         end
     end
