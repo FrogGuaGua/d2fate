@@ -7,16 +7,11 @@ if not IsServer() then
 end
 
 function vlad_kazikli_bey:VFX1_SmallSpikesHold(caster)
-	self.PI4 = FxCreator("particles/custom/vlad/vlad_kb_hold.vpcf", PATTACH_ABSORIGIN, caster,0,nil)
+	self.PI4 = FxCreator("particles/custom/vlad/vlad_kb_hold.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster,0,nil)
 	self.PI5 = FxCreator("particles/custom/vlad/vlad_kb_hold_swirl.vpcf",PATTACH_ABSORIGIN_FOLLOW,caster,0,nil)
 	ParticleManager:SetParticleControlEnt(self.PI5, 5, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
 	ParticleManager:SetParticleControlEnt(self.PI5, 2, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
 	ParticleManager:SetParticleControlEnt(self.PI5, 7, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false)
-
-	Timers:CreateTimer(2.8, function()
-		FxDestroyer(self.PI4, false)
-		FxDestroyer(self.PI5, false)
-  end)
 end
 
 function vlad_kazikli_bey:VFX2_LastSpikes(caster)
@@ -26,6 +21,9 @@ function vlad_kazikli_bey:VFX2_LastSpikes(caster)
   dummy:SetDayTimeVisionRange(0)
   dummy:SetNightTimeVisionRange(0)
   dummy:SetAbsOrigin(caster:GetAbsOrigin())--]]
+	
+	FxDestroyer(self.PI4, false)--destroy vfx1
+	FxDestroyer(self.PI5, false)
 	local PI1 = FxCreator("particles/custom/vlad/vlad_kb_spikesend.vpcf", PATTACH_ABSORIGIN, dummy,0,nil)
 
 	Timers:CreateTimer(2, function()
@@ -179,8 +177,8 @@ function vlad_kazikli_bey:OnSpellStart()
 				return 0.2
 			end
 		else
-			FxDestroyer(self.PI4, true)
-			FxDestroyer(self.PI5, true)
+			FxDestroyer(self.PI4, false)
+			FxDestroyer(self.PI5, false)
 			return nil
 		end
 	end)
