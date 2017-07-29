@@ -29,14 +29,10 @@ function vlad_combo:OnSpellStart()
 	local stun = self:GetSpecialValueFor("stun")
 	local cd = self:GetCooldown(1)
 
-<<<<<<< HEAD
   caster:AddNewModifier(caster, self, "modifier_lord_of_execution_cd", {duration = cd } )
-=======
-    local hMasterCombo = caster.MasterUnit2:FindAbilityByName(self:GetAbilityName())
-    hMasterCombo:EndCooldown()
-    hMasterCombo:StartCooldown(self:GetCooldownTime())
-  caster:AddNewModifier(caster, self, "modifier_lord_of_execution_cd", {duration = self:GetCooldown(1) } )
->>>>>>> master
+  local hMasterCombo = caster.MasterUnit2:FindAbilityByName(self:GetAbilityName())
+  hMasterCombo:EndCooldown()
+  hMasterCombo:StartCooldown(cd)
 
 	if caster.ComboTimer then
 		Timers:RemoveTimer(caster.ComboTimer)
@@ -44,10 +40,6 @@ function vlad_combo:OnSpellStart()
 		caster:SwapAbilities("vlad_ceremonial_purge", "vlad_combo", true, false)
 	end
 	
-	local masterCombo = caster.MasterUnit2:FindAbilityByName("vlad_combo")
-	masterCombo:EndCooldown()
-	masterCombo:StartCooldown(cd)
-
 	self.PI2 = {}
 	self.PI3 = {}
 	giveUnitDataDrivenModifier(caster, caster, "silenced", penalty)
