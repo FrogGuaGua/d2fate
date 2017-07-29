@@ -1104,7 +1104,7 @@
 		"StatusHealth"					"1200"
 		"StatusHealthRegen"				"9.0"
 		"StatusMana"					"1050"
-		"StatusManaRegen"				"5.0"
+		"StatusManaRegen"				"4.0"
 		
 		"ArmorPhysical"					"6"
 		"MagicalResistance"				"20"

@@ -27,6 +27,8 @@ var buffHasStacks = {
     modifier_calydonian_hunt: true,
     modifier_last_spurt: true,
     modifier_arrows_of_the_big_dipper: true,
+	modifier_transfusion_bloodpower: true,
+	modifier_bleed: true,
 };
 
 var buffCooldown = {
@@ -69,6 +71,8 @@ var buffCooldown = {
     modifier_story_for_someones_sake_cooldown: 450,
     modifier_phoebus_catastrophe_cooldown: 450,
     modifier_golden_apple_cooldown: 450,
+	modifier_lord_of_execution_cd: 180,
+	modifier_protection_of_faith_proc_cd: 60,
 };
 
 var buffProgress = {

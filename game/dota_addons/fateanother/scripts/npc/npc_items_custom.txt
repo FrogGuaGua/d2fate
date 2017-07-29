@@ -681,6 +681,20 @@
 	    {
 	    	"particle"			"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
 	    }
+	    "AbilitySpecial"
+	    {
+	   		"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mspd_bonus"				"25"
+			}
+	   		"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10"
+			}
+		}
+
 
 	    "OnSpellStart"
 	    {
@@ -702,7 +716,7 @@
 	    		"Duration"		"10.0"
 	    		"Properties"
 	    		{
-	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"25"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%mspd_bonus"
 	    		}
 	    	}
 	    }

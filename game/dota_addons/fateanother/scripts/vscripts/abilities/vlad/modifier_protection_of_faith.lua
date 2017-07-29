@@ -39,7 +39,7 @@ if IsServer() then
 end
 
 function modifier_protection_of_faith:IsHidden()
-  return true
+  return false
 end
 
 function modifier_protection_of_faith:IsDebuff()

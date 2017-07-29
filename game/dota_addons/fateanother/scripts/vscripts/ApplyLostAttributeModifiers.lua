@@ -10,7 +10,7 @@ AttributeAbilities = {
        ProtectionOfFaithAcquired = "vlad_attribute_protection_of_faith" 
     }
 }
-
+--this is dead code for now
 
 function ApplyLostAttributeModifiers(keys)
 	local hero = keys.caster	

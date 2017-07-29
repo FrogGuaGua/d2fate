@@ -32,6 +32,20 @@ function OnJoinTeamPressed()
 		teamLogoPanel.BLoadLayout( logo_xml, false, false );
 	}
 
+	var teamDetails = Game.GetTeamDetails( teamId );
+	$( "#TeamNameLabel" ).text = $.Localize( teamDetails.team_name );
+
+	var playerListNode = $.GetContextPanel().FindChildInLayoutFile( "PlayerList" );
+
+	var numPlayerSlots = teamDetails.team_max_players;
+	for ( var i = 0; i < numPlayerSlots; ++i )
+	{
+		// Add the slot itself
+		var slot = $.CreatePanel( "Panel", playerListNode, "" );
+		slot.AddClass( "player_slot" );
+		slot.SetAttributeInt( "player_slot", i );
+	}
+
 	// Set the team name
 	var teamDetails = Game.GetTeamDetails( teamId );
 	if ($.Localize( teamDetails.team_name ) === "The Good")
@@ -39,16 +53,6 @@ function OnJoinTeamPressed()
 		$( "#TeamNameLabel" ).text = "Red";
 		
 		// Get the player list and add player slots so that there are upto team_max_player slots
-		var playerListNode = $.GetContextPanel().FindChildInLayoutFile( "PlayerList" );
-
-		var numPlayerSlots = teamDetails.team_max_players;
-		for ( var i = 0; i < numPlayerSlots; ++i )
-		{
-			// Add the slot itself
-			var slot = $.CreatePanel( "Panel", playerListNode, "" );
-			slot.AddClass( "player_slot" );
-			slot.SetAttributeInt( "player_slot", i );
-		}
 
 		if ( GameUI.CustomUIConfig().team_colors )
 		{
@@ -84,18 +88,6 @@ function OnJoinTeamPressed()
 	{
 		$( "#TeamNameLabel" ).text = "Black";
 		
-		// Get the player list and add player slots so that there are upto team_max_player slots
-		var playerListNode = $.GetContextPanel().FindChildInLayoutFile( "PlayerList" );
-
-		var numPlayerSlots = teamDetails.team_max_players;
-		for ( var i = 0; i < numPlayerSlots; ++i )
-		{
-			// Add the slot itself
-			var slot = $.CreatePanel( "Panel", playerListNode, "" );
-			slot.AddClass( "player_slot" );
-			slot.SetAttributeInt( "player_slot", i );
-		}
-
 		if ( GameUI.CustomUIConfig().team_colors )
 		{
 			var teamColor = GameUI.CustomUIConfig().team_colors[ teamId ];
@@ -152,5 +144,4 @@ function OnJoinTeamPressed()
 			teamNameLabel.style.color = colorText;
 		}		
 	}
-
 })();

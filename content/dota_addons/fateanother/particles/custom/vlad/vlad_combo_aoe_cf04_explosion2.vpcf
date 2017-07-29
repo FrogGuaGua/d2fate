@@ -20,6 +20,7 @@
 			m_flTextureVScrollRate = -374.999969
 			m_nMaxTesselation = 5
 			m_nMinTesselation = 5
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_RenderTrails"

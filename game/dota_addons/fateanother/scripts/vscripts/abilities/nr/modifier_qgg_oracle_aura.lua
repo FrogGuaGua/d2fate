@@ -24,6 +24,11 @@ function modifier_qgg_oracle_aura:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_ALL
 end
 
+function modifier_qgg_oracle_aura:GetAuraEntityReject(hEntity)
+    if hEntity:GetUnitName() == "ward_familiar" then return true end
+    return false
+end
+
 function modifier_qgg_oracle_aura:GetModifierAura()
 	return "modifier_qgg_oracle"
 end

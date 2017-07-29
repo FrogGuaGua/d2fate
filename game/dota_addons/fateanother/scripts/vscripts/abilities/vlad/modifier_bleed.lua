@@ -1,5 +1,12 @@
 modifier_bleed = class({})
 
+function modifier_bleed:DeclareFunctions()
+  local funcs = {
+  MODIFIER_EVENT_ON_RESPAWN
+  }
+  return funcs
+end
+
 if IsServer() then
   function modifier_bleed:OnCreated()
     self.redraw = false
@@ -56,6 +63,9 @@ if IsServer() then
   function modifier_bleed:OnDestroy()
     self:StartIntervalThink(-1)
     self.PI0 = FxDestroyer(self.PI0, true)
+  end
+  function modifier_bleed:OnRespawn()
+    self:Destroy()
   end
 end
 

@@ -179,7 +179,7 @@ function cl_wrapper(modifier)
 		local ability = self:GetAbility()
 		local aoe = ability:GetSpecialValueFor("aoe")
 		local dmg = ((self.CL_MAX_SHIELD - math.max(self.CL_SHIELDLEFT or 0,0))/self.CL_MAX_SHIELD)*(self.CL_MAX_DMG)
-		if dmg > 0 and parent:IsAlive() then
+		if dmg > 0 then
 			self:VFX2_PreExplosion(parent)
 			Timers:CreateTimer(0.3, function()
 				self:VFX3_Explosion(parent)

@@ -7,6 +7,7 @@ end
 function modifier_rending:DeclareFunctions()
   local funcs = {
 	MODIFIER_EVENT_ON_ATTACK_LANDED,
+  MODIFIER_EVENT_ON_RESPAWN
   }
   return funcs
 end
@@ -20,6 +21,20 @@ function modifier_rending:OnAttackLanded(keys)
   end
 end
 
+if IsServer() then
+  function modifier_rending:OnRespawn(keys)   
+    local parent = self:GetParent()
+    if parent.InnocentMonsterAcquired and not parent:HasModifier("modifier_innocent_monster") then
+      parent:AddNewModifier(parent, parent.MasterUnit2:FindAbilityByName("vlad_attribute_innocent_monster"), "modifier_innocent_monster", {})
+    end
+    if parent.ProtectionOfFaithAcquired and not parent:HasModifier("modifier_protection_of_faith") then
+      parent:AddNewModifier(parent, parent.MasterUnit2:FindAbilityByName("vlad_attribute_protection_of_faith"), "modifier_protection_of_faith", {})
+    end
+    if parent.ImprovedImpalingAcquired and not parent:HasModifier("modifier_improved_impaling") then
+      parent:AddNewModifier(parent, parent.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling"), "modifier_improved_impaling", {})
+    end
+  end
+end
 function modifier_rending:IsHidden()
   return true
 end

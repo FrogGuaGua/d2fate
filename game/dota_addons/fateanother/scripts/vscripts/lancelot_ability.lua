@@ -255,7 +255,7 @@ function KnightInitialize(keys)
         if ability:GetLevel() == 1 then
                 --print("ability lvl 1")
                 caster:AddAbility("lancelot_vortigern")
-                caster:AddAbility("fate_empty1")
+                caster:AddAbility("fate_empty1"):SetHidden(true)
                 caster:AddAbility("fate_empty2")
                 caster:AddAbility("fate_empty3")
                 caster:AddAbility("fate_empty4")

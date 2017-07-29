@@ -40,17 +40,17 @@ if IsServer() then
     local splash_aoe = ability:GetSpecialValueFor("splash_aoe")
     local lifesteal = ability:GetSpecialValueFor("lifesteal")
 
-	  if target == parent:GetAttackTarget() then
-      local PI1 = FxCreator("particles/custom/vlad/vlad_im_splash.vpcf",PATTACH_ABSORIGIN,target,0,nil)
+	  if target == parent:GetAttackTarget() and parent:IsAlive() then
+      local PI1 = FxCreator("particles/custom/vlad/vlad_im_splash_blood.vpcf",PATTACH_ABSORIGIN,target,0,nil)
       local targets_splash = FindUnitsInRadius(parent:GetTeamNumber(), target:GetAbsOrigin(), nil, splash_aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	    parent:AddBleedStack(target,true)
-      parent:Heal(damage*lifesteal,parent)
+      parent:ApplyHeal(damage*lifesteal,parent)
       Timers:CreateTimer(1,function()
         FxDestroyer(PI1, false)
       end)
       for k,v in pairs(targets_splash) do
         if v ~= target then
-          parent:Heal(damage_splash*lifesteal,parent)
+          parent:ApplyHeal(damage_splash*lifesteal,parent)
           DoDamage(parent, v, damage_splash, DAMAGE_TYPE_MAGICAL, 0, ability, false)
           parent:AddBleedStack(v,true)
         end

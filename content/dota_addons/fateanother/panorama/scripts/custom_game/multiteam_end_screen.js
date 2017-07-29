@@ -1,22 +1,8 @@
-"use strict";
-
-this.g_RadiantScore = 0;
-this.g_DireScore = 0;
-$.Msg("EndScreen Init")
-
-function UpdateRoundScore( data )
-{
-	g_RadiantScore = data.radiantScore;
-	g_DireScore = data.direScore;
-}
+this.g_RadiantScore = CustomNetTables.GetTableValue("score", "CurrentScore").nRadiantScore;
+this.g_DireScore = CustomNetTables.GetTableValue("score", "CurrentScore").nDireScore;
 
 (function()
 {
-	GameEvents.Subscribe( "winner_decided", UpdateRoundScore ); 
-	// I know shit about game event listeners but from what I think I know, one needs to "suscribe" first, 
-	// and then function will fire when CustomGameEventManager:Send_ServerToAllClients( "winner_decided", winnerEventData ) is fired from lua side. 
-	// In this case the "suscribe" line fires only at the very end of the game, and that is why it doesn't fire UpdateRoundScore... I think. - Prick, 13 July 2017
-
 	if ( ScoreboardUpdater_InitializeScoreboard === null ) { $.Msg( "WARNING: This file requires shared_scoreboard_updater.js to be included." ); }
 
 	var scoreboardConfig =

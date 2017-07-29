@@ -27,14 +27,19 @@ function vlad_combo:OnSpellStart()
 	local heal = self:GetSpecialValueFor("heal")
 	local penalty = self:GetSpecialValueFor("penalty")
 	local stun = self:GetSpecialValueFor("stun")
+	local cd = self:GetCooldown(1)
 
-  caster:AddNewModifier(caster, self, "modifier_lord_of_execution_cd", {duration = self:GetCooldown(1) } )
+  caster:AddNewModifier(caster, self, "modifier_lord_of_execution_cd", {duration = cd } )
 
 	if caster.ComboTimer then
 		Timers:RemoveTimer(caster.ComboTimer)
 		caster.ComboTimer = nil
 		caster:SwapAbilities("vlad_ceremonial_purge", "vlad_combo", true, false)
 	end
+	
+	local masterCombo = caster.MasterUnit2:FindAbilityByName("vlad_combo")
+	masterCombo:EndCooldown()
+	masterCombo:StartCooldown(cd)
 
 	self.PI2 = {}
 	self.PI3 = {}
@@ -73,7 +78,9 @@ function vlad_combo:OnSpellStart()
 			end)
 			FxDestroyer(self.PI1, false)
 			for k,v in pairs(targets) do
-				caster:Heal(heal,caster)
+				if caster:IsAlive() then
+        	caster:ApplyHeal(heal,caster)
+				end
 				self:VFX3_OnTargetExecute(k,v)
 				v:SetAbsOrigin(GetGroundPosition(v:GetAbsOrigin(),v))
 				DoDamage(caster, v, dmg, DAMAGE_TYPE_MAGICAL, 0, self, false)

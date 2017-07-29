@@ -28,7 +28,7 @@
 		"Ability14"				"attribute_bonus_custom"
 
 		"Combo"					""
-		"AttributeNumber"			"0"
+		"AttributeNumber"			"5"
 		"Attribute1"				"vlad_attribute_innocent_monster"
 		"Attribute2"				"vlad_attribute_protection_of_faith"
 		"Attribute3"				"vlad_attribute_improved_impaling"
@@ -42,7 +42,7 @@
 		"StatusManaRegen"				"5"
 
 		"ArmorPhysical"					"5"
-		"MagicalResistance"				"5"
+		"MagicalResistance"				"0"
 
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackRange"					"215"

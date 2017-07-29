@@ -1,7 +1,20 @@
 vlad_ceremonial_purge = class({})
 LinkLuaModifier("modifier_ceremonial_purge_slow", "abilities/vlad/modifier_ceremonial_purge_slow", LUA_MODIFIER_MOTION_NONE)
 
-if not IsServer() then
+function vlad_ceremonial_purge:GetManaCost(iLevel)
+	local caster = self:GetCaster()
+	local condition_free_mana = 35
+	if caster:HasModifier("modifier_improved_impaling") then
+		condition_free_mana = 70
+	end
+  if caster:GetHealthPercent() <= condition_free_mana then
+    return 0
+  else
+    return 200
+  end
+end
+
+if IsClient() then
   return
 end
 
@@ -14,20 +27,6 @@ function vlad_ceremonial_purge:VFX1_Slash(caster)
 	Timers:CreateTimer(4, function()
 	 	FxDestroyer(PI1, false)
 	end)
-end
-
-function vlad_ceremonial_purge:GetManaCost(iLevel)
-	local caster = self:GetCaster()
-	local condition_free_mana = self:GetSpecialValueFor("condition_free_mana")
-	if caster.ImprovedImpalingAcquired then
-		local attr_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling")
-		condition_free_mana = attr_ability:GetSpecialValueFor("cp_conditional")
-	end
-  if caster:GetHealthPercent() <= condition_free_mana then
-    return 0
-  else
-    return self:GetSpecialValueFor("mana_cost")
-  end
 end
 
 function vlad_ceremonial_purge:GetDamage(caster)
@@ -74,9 +73,23 @@ function vlad_ceremonial_purge:GetDamage(caster)
 	return dmg_inner, dmg_outer
 end
 
+--[[function vlad_ceremonial_purge:GetManaCost(iLevel)
+	local caster = self:GetCaster()
+	local condition_free_mana = self:GetSpecialValueFor("condition_free_mana")
+	if caster.ImprovedImpalingAcquired then
+		local attr_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling")
+		condition_free_mana = attr_ability:GetSpecialValueFor("cp_conditional")
+	end
+  if caster:GetHealthPercent() <= condition_free_mana then
+    return 0
+  else
+    return self:GetSpecialValueFor("mana_cost")
+  end
+end--]]
 
 function vlad_ceremonial_purge:OnSpellStart()
   local caster = self:GetCaster()
+  local delay = self:GetSpecialValueFor("delay")
 	local aoe_inner = self:GetSpecialValueFor("aoe_inner")
 	local aoe_outer = self:GetSpecialValueFor("aoe_outer")
 	local stun_inner = self:GetSpecialValueFor("stun_inner")
@@ -100,7 +113,7 @@ function vlad_ceremonial_purge:OnSpellStart()
 	caster:EmitSound("Hero_Magnataur.ReversePolarity.Anim")
 
   giveUnitDataDrivenModifier(caster, caster, "drag_pause",0.5)
-	Timers:CreateTimer(0.30, function()
+	Timers:CreateTimer(delay, function()
 		local targets_outer = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_outer, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
 		--[[ alternate way to pick which targets are in which aoe if some issues
 		local targets_inner = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_inner, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)

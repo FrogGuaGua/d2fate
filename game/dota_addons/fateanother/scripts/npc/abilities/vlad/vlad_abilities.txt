@@ -1,3 +1,6 @@
+//If you change any values, change doubled __TT fields accordingly - used by tooltips only
+
+
 "DOTAAbilities"
 {
 	//=======================================
@@ -33,38 +36,63 @@
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"stacks_total"				"10"
+				"var_type"									"FIELD_FLOAT"
+				"str_per_stack__TT"					"10 15 20 25 30"
 			}
 			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"stacks_interval"				"0.05"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"drain_per_sec"					"0.05"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"drain_interval"					"0.1"
-			}
-			"06"
-			{
-				"var_type"							"FIELD_FLOAT"
-				"self_slow_per_stack"					"-3.5 -3 -2.5 -2 -1.5"
-			}
-			"07"
 			{
 				"var_type"							"FIELD_FLOAT"
 				"armor_per_stack"					"0.8 1 1.2 1.4 1.6"
 			}
-			"08"
+			"04"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"mres_per_stack"					"2 2.375 2.75 3.125 3.5"
+				"armor_per_stack__TT"					"8 10 12 14 16"
+			}
+			"05"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"mres_per_stack"						"2 2.375 2.75 3.125 3.5"
+			}
+			"06"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"mres_per_stack__TT"				"20 23.75 27.5 31.25 35"
+			}
+			"07"
+			{
+				"var_type"									"FIELD_FLOAT"
+				"self_slow_per_stack"					"-3.5 -3 -2.5 -2 -1.5"
+			}
+			"08"
+			{
+				"var_type"											"FIELD_FLOAT"
+				"self_slow_per_stack__TT"					"-35 -30 -25 -20 -15"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stacks_total"				"10"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stacks_interval"				"0.05"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"drain_per_sec"					"0.05"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"drain_per_sec__TT"					"5"
+			}
+			"13"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"drain_interval"					"0.1"
 			}
 		}
 	}
@@ -82,7 +110,7 @@
 
 		"AbilityCastPoint"				"0.1"
 		"AbilityCooldown"				"14"
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"200" //stuff concerning mana cost, conditional and attribute hp% update of this ability is currently hardcoded in lua
 		//"LevelsBetweenUpgrades"				"1"
 
 		"precache"
@@ -98,38 +126,38 @@
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"aoe_inner"						"265"
+				"var_type"						"FIELD_FLOAT"
+				"delay"								"0.3"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"dmg_inner"						"150 190 230 270 310"
+				"var_type"						"FIELD_FLOAT"
+				"delay__TT"								"0.4"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"mana_cost"						"200"
+				"aoe_inner"						"265"
 			}
 			"04"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"stun_inner"					"0.25"
+				"var_type"						"FIELD_INTEGER"
+				"dmg_inner"						"150 190 230 270 310"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"hp_cost"						"0.15"
+				"stun_inner"					"0.25"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"condition_free_mana"			"35"
+				"aoe_outer"						"465"
 			}
 			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"aoe_outer"						"465"
+				"dmg_outer"						"440 505 570 635 700"
 			}
 			"08"
 			{
@@ -138,18 +166,28 @@
 			}
 			"09"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"dmg_outer"						"440 505 570 635 700"
+				"var_type"						"FIELD_FLOAT"
+				"slow_per_stack"								"-10"
 			}
 			"10"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"slow_per_stack"								"-10"
+				"var_type"						"FIELD_INTEGER"
+				"slow_duration"						"6"
 			}
 			"11"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"slow_duration"						"6"
+				"condition_free_mana"			"35"
+			}
+			"12"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hp_cost"						"0.15"
+			}
+			"13"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hp_cost__TT"						"15"
 			}
 		}
 	}
@@ -166,7 +204,7 @@
 		"AbilityTextureName"			"custom/vlad_cursed_lance"
 
 		"AbilityCastPoint"				"0.30"
-		"AbilityCooldown"				"31"
+		"AbilityCooldown"				"25"
 		"AbilityManaCost"				"400"
 		"LevelsBetweenUpgrades"				"1"
 
@@ -188,7 +226,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"aoe"							"500"
+				"max_shield"						"500 600 700 800 900"
 			}
 			"02"
 			{
@@ -197,18 +235,23 @@
 			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"duration"							"10"
+				"var_type"						"FIELD_INTEGER"
+				"aoe"								"500"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"hp_cost"							"0.2"
+				"duration"							"10"
 			}
 			"05"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"max_shield"						"500 600 700 800 900"
+				"var_type"						"FIELD_FLOAT"
+				"hp_cost"							"0.2"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hp_cost__TT"							"20"
 			}
 		}
 	}
@@ -265,15 +308,10 @@
 
 		"AbilitySpecial"
 		{
-			"01"
+			"07"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg"							"50"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"heal"							"50"
+				"duration"						"5"
 			}
 			"03"
 			{
@@ -285,20 +323,25 @@
 				"var_type"						"FIELD_INTEGER"
 				"aoe"									"500"
 			}
-			"05"
+			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"slow_per_stack"							"-3"
+				"dmg"							"50"
 			}
-			"07"
+			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration"						"5"
+				"heal"							"50"
 			}
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg_bonus"						"5"
+				"dmg_bonus"						"10"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow_per_stack"							"-5"
 			}
 			"09"
 			{
@@ -308,7 +351,7 @@
 			"10"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bloodpower_duration"						"15"
+				"bloodpower_duration"						"20"
 			}
 		}
 	}
@@ -345,43 +388,43 @@
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"stun_min"					"1"
+				"var_type"			"FIELD_FLOAT"
+				"delay"					"0.5"
 			}
 			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"stun_gain"					"0.075"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"stun_max"					"2.5"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius_min"					"150"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius_gain"					"5"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"radius_max"					"250"
-			}
-			"08"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"damage"					"200"
 			}
-			"09"
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_min"					"150"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_gain"					"5"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_max"					"250"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_min"					"1"
+			}
+			"08"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"delay"					"0.5"
+				"stun_gain"					"0.075"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_max"					"2.5"
 			}
 		}
 	}
@@ -436,7 +479,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/vlad_kazikli_bey"
 
-		"AbilityCastPoint"				"0.15"
+		"AbilityCastPoint"				"0.25"
 		"AbilityCooldown"				"50"
 		"AbilityManaCost"				"800"
 		//"LevelsBetweenUpgrades"				"1"
@@ -455,54 +498,49 @@
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
-
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
-
-
 		}
 
 		"AbilitySpecial"
-		{
+		{		
 			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"aoe_spikes"							"400"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"aoe_lastspike"						"600"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"dmg_lastspike"			"350 437.5 525 612.5 700"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"dmg_spikes"					"35 45 55 65 75" 
-			}
-			"05"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"stun"							"1.25"
-			}
-			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"activation"					"0.65"
 			}
-			"07"
+			"02"
+			{
+				"var_type"													"FIELD_FLOAT"
+				"total_activation__TT"							"0.9"
+			}
+			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"endcast_pause"					"0.50"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe_spikes"							"400"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg_spikes"					"35 45 55 65 75" 
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe_lastspike"						"600"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"dmg_lastspike"			"350 437.5 525 612.5 700"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun"							"1.25"
 			}
 		}
 	}
@@ -616,16 +654,17 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"abilities/vlad/attributes"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityTextureName"			"custom/vlad_innocent_monster"
 
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"18"
+		"AbilityManaCost"				"16"
 
 		"precache"
 		{
 			"particle"					"particles/custom/vlad/vlad_im_splash.vpcf"
+			"particle"					"particles/custom/vlad/vlad_im_splash_blood.vpcf"
 		}
 
 		"AbilitySpecial"
@@ -633,12 +672,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_mres"					"15.02"
+				"bonus_mres"					"15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bonus_as_per_1"					"4"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"splash_percentage"					"0.75"
+				"var_type"							"FIELD_FLOAT"
+				"bonus_hp_regen_per_1"		"0.6"
 			}
 			"04"
 			{
@@ -648,17 +692,22 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"lifesteal"					"0.5"
+				"splash_percentage"					"0.75"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"bonus_as_per_1"					"4"
+				"var_type"				"FIELD_FLOAT"
+				"splash_percentage__TT"					"75"
 			}
 			"07"
 			{
-				"var_type"							"FIELD_FLOAT"
-				"bonus_hp_regen_per_1"		"0.6"
+				"var_type"				"FIELD_FLOAT"
+				"lifesteal"					"0.5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"lifesteal__TT"					"50"
 			}
 		}
 	}
@@ -672,7 +721,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"abilities/vlad/attributes"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityTextureName"			"custom/vlad_protection_of_faith"
 
 		"AbilityCastPoint"				"0.0"
@@ -719,12 +768,17 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
+				"bc_heal__TT"					"500"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
 				"bc_heal_duration"					"10"
 			}
 		}
 	}
 	//=======================================
-	// Vlad III: Protection of Faith CD
+	// Vlad III: Protection of Faith CD 					//this is actual CD of proc
 	//=======================================
 	"vlad_protection_of_faith_cd"
 	{
@@ -756,7 +810,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"abilities/vlad/attributes"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityTextureName"			"custom/vlad_improved_impaling"
 
 		"AbilityCastPoint"				"0.0"
@@ -816,7 +870,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"abilities/vlad/attributes"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityTextureName"			"shadow_demon_disruption"
 
 		"AbilityCastPoint"				"0.0"
@@ -851,12 +905,12 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"abilities/vlad/attributes"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"AbilityTextureName"			"custom/vlad_transfusion2"
 
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"10"
 
 		"precache"
 		{
@@ -872,19 +926,39 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cl_bonus_dmg_per_stack"					"0.01"
+				"cl_bonus_shield_per_stack__TT"					"2"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"kb_bonus_dmg_per_stack"					"0.01"
+				"cl_bonus_dmg_per_stack"					"0.01"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cp_bonus_dmg_per_stack"					"0.01"
+				"cl_bonus_dmg_per_stack__TT"					"1"
 			}
 			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"kb_bonus_dmg_per_stack"					"0.01"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"kb_bonus_dmg_per_stack__TT"					"1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cp_bonus_dmg_per_stack"					"0.01"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cp_bonus_dmg_per_stack__TT"					"1"
+			}
+			"09"
 			{
 				"var_type"						"FIELD_INTEGER"
 				"bonus_cap"						"500"
