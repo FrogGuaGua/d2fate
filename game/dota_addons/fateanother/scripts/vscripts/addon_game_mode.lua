@@ -813,7 +813,7 @@ function FateGameMode:OnPlayerChat(keys)
                 table.insert(rank, index)
             end
             hero.AntiSpamCooldown4 = true
-            Timers:CreateTimer(1, function()
+            Timers:CreateTimer(20, function()
                 hero.AntiSpamCooldown4 = false
             end)
             Say(hero:GetPlayerOwner(), "Average number of wards used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
@@ -835,7 +835,7 @@ function FateGameMode:OnPlayerChat(keys)
                 table.insert(rank, index)
             end
             hero.AntiSpamCooldown5 = true
-            Timers:CreateTimer(1, function()
+            Timers:CreateTimer(20, function()
                 hero.AntiSpamCooldown5 = false
             end)
             Say(hero:GetPlayerOwner(), "Average number of familiars used per round: ".."Top: "..tostring(teamHeroes[rank[1]])..", "..tostring(values[rank[1]])..". 2nd: "..tostring(teamHeroes[rank[2]])..", "..tostring(values[rank[2]])..". 3rd: "..tostring(teamHeroes[rank[3]])..", "..tostring(values[rank[3]])..".", true) 
