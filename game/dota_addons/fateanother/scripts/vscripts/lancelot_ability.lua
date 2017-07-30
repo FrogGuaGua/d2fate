@@ -306,10 +306,14 @@ function OnAronditeStart(keys)
     local ability = keys.ability
     local ply = caster:GetPlayerOwner()
     local groundcrack = ParticleManager:CreateParticle("particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+    local warp = ParticleManager:CreateParticle("particles/custom/lancelot/lancelot_arondite_aoe_warp.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, caster)
+    ParticleManager:SetParticleControl(warp,0, caster:GetAbsOrigin())
+
     -- Destroy particle after delay
     Timers:CreateTimer( 2.0, function()
         ParticleManager:DestroyParticle( groundcrack, false )
         ParticleManager:ReleaseParticleIndex( groundcrack )
+        FxDestroyer(warp,false)
     end)
     ability:ApplyDataDrivenModifier(caster, caster, "modifier_arondite", {})
 

@@ -1,0 +1,55 @@
+"DOTAAbilities"
+{
+	"item_mana_essence"
+	{
+		"ID"											"1307"
+		"BaseClass"										"item_lua"
+		"ScriptFile"									"items/mana_essence"
+		"AbilityTextureName"							"custom/mana_essence"
+		
+	    "Model"      								 	 "models/props_gameplay/salve_red.vmdl" 
+	    "Effect"      									 "particles/generic_gameplay/dropped_item.vpcf"
+		
+	    "AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ITEM | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	    "AbilityUnitTargetTeam"							"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"							"DOTA_UNIT_TARGET_HERO"
+		
+	    "AbilityCastRange"								"400"
+	    "AbilityCooldown"								"10"
+		
+	    "ItemCost"    									"700"
+	    "ItemKillable" 									"1" 
+	    "ItemSellable"									"1"
+	    "ItemPurchasable"								"1"
+	    "ItemDroppable"									"1"
+	    "ItemShareability"								"ITEM_FULLY_SHAREABLE"
+		
+	    "ItemInitialCharges"							"2"
+	    "ItemStackable"									"0"
+	    "ItemPermanent"									"0"
+		
+		"precache"
+	    {
+	    	"particle"									"particles/items_fx/healing_flask.vpcf"
+	    }
+		
+	    "AbilitySpecial"
+	    {
+	   		"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"health"								"500"
+			}
+	   		"02"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"mana"									"300"
+			}
+	   		"03"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"duration"								"10"
+			}
+	    }
+	}
+}

@@ -1,7 +1,20 @@
 vlad_ceremonial_purge = class({})
 LinkLuaModifier("modifier_ceremonial_purge_slow", "abilities/vlad/modifier_ceremonial_purge_slow", LUA_MODIFIER_MOTION_NONE)
 
-if not IsServer() then
+function vlad_ceremonial_purge:GetManaCost(iLevel)
+	local caster = self:GetCaster()
+	local condition_free_mana = 35
+	if caster:HasModifier("modifier_improved_impaling") then
+		condition_free_mana = 70
+	end
+  if caster:GetHealthPercent() <= condition_free_mana then
+    return 0
+  else
+    return 200
+  end
+end
+
+if IsClient() then
   return
 end
 
@@ -14,20 +27,6 @@ function vlad_ceremonial_purge:VFX1_Slash(caster)
 	Timers:CreateTimer(4, function()
 	 	FxDestroyer(PI1, false)
 	end)
-end
-
-function vlad_ceremonial_purge:GetManaCost(iLevel)
-	local caster = self:GetCaster()
-	local condition_free_mana = self:GetSpecialValueFor("condition_free_mana")
-	if caster.ImprovedImpalingAcquired then
-		local attr_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling")
-		condition_free_mana = attr_ability:GetSpecialValueFor("cp_conditional")
-	end
-  if caster:GetHealthPercent() <= condition_free_mana then
-    return 0
-  else
-    return self:GetSpecialValueFor("mana_cost")
-  end
 end
 
 function vlad_ceremonial_purge:GetDamage(caster)
@@ -74,6 +73,19 @@ function vlad_ceremonial_purge:GetDamage(caster)
 	return dmg_inner, dmg_outer
 end
 
+--[[function vlad_ceremonial_purge:GetManaCost(iLevel)
+	local caster = self:GetCaster()
+	local condition_free_mana = self:GetSpecialValueFor("condition_free_mana")
+	if caster.ImprovedImpalingAcquired then
+		local attr_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling")
+		condition_free_mana = attr_ability:GetSpecialValueFor("cp_conditional")
+	end
+  if caster:GetHealthPercent() <= condition_free_mana then
+    return 0
+  else
+    return self:GetSpecialValueFor("mana_cost")
+  end
+end--]]
 
 function vlad_ceremonial_purge:OnSpellStart()
   local caster = self:GetCaster()
@@ -87,44 +99,47 @@ function vlad_ceremonial_purge:OnSpellStart()
 	local hp_cost = self:GetSpecialValueFor("hp_cost")
 	local hp_max = caster:GetMaxHealth()
 	local hp_current = caster:GetHealth() - (hp_max * hp_cost)
-	if hp_current > 1 then
-		caster:SetHealth(hp_current)
-	else
-		caster:SetHealth(1)
-	end
 	
-	StartAnimation(caster, {duration=1, activity=ACT_DOTA_CAST_ABILITY_1, rate=1.5})
-	self:VFX1_Slash(caster)
-
-  caster:EmitSound("Hero_Axe.CounterHelix_Blood_Chaser")
-	--caster:EmitSound("Hero_Axe.CounterHelix")
-	caster:EmitSound("Hero_Magnataur.ReversePolarity.Anim")
-
-  giveUnitDataDrivenModifier(caster, caster, "drag_pause",0.5)
-	Timers:CreateTimer(delay, function()
-		local targets_outer = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_outer, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
-		--[[ alternate way to pick which targets are in which aoe if some issues
-		local targets_inner = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_inner, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
-		for k,v in pairs(targets_outer) do
-			if targets_inner[k] == v then
-			(...)
-		--]]
-		for k,v in pairs(targets_outer) do
-			local distance = (v:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
-      --print(distance)
-			v:EmitSound("Hero_NyxAssassin.SpikedCarapace")
-
-			if distance < aoe_inner then
-				DoDamage(caster, v, dmg_inner, DAMAGE_TYPE_MAGICAL, 0, self, false)
-        giveUnitDataDrivenModifier(caster, v, "stunned", stun_inner)
-			else
-				DoDamage(caster, v, dmg_outer, DAMAGE_TYPE_MAGICAL, 0, self, false)
-        v:AddNewModifier(caster,self,"modifier_ceremonial_purge_slow",{duration = slow_duration})
-        giveUnitDataDrivenModifier(caster, v, "stunned", stun_outer)
-				caster:AddBleedStack(v,false)
-			end
+	if caster:IsAlive() then
+		if hp_current > 1 then
+			caster:SetHealth(hp_current)
+		else
+			caster:SetHealth(1)
 		end
-	end)
+		
+		StartAnimation(caster, {duration=1, activity=ACT_DOTA_CAST_ABILITY_1, rate=1.5})
+		self:VFX1_Slash(caster)
+
+	  caster:EmitSound("Hero_Axe.CounterHelix_Blood_Chaser")
+		--caster:EmitSound("Hero_Axe.CounterHelix")
+		caster:EmitSound("Hero_Magnataur.ReversePolarity.Anim")
+
+	  giveUnitDataDrivenModifier(caster, caster, "drag_pause",0.5)
+		Timers:CreateTimer(delay, function()
+			local targets_outer = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_outer, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
+			--[[ alternate way to pick which targets are in which aoe if some issues
+			local targets_inner = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_inner, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
+			for k,v in pairs(targets_outer) do
+				if targets_inner[k] == v then
+				(...)
+			--]]
+			for k,v in pairs(targets_outer) do
+				local distance = (v:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
+	      --print(distance)
+				v:EmitSound("Hero_NyxAssassin.SpikedCarapace")
+
+				if distance < aoe_inner then
+					DoDamage(caster, v, dmg_inner, DAMAGE_TYPE_MAGICAL, 0, self, false)
+	        giveUnitDataDrivenModifier(caster, v, "stunned", stun_inner)
+				else
+					DoDamage(caster, v, dmg_outer, DAMAGE_TYPE_MAGICAL, 0, self, false)
+	        v:AddNewModifier(caster,self,"modifier_ceremonial_purge_slow",{duration = slow_duration})
+	        giveUnitDataDrivenModifier(caster, v, "stunned", stun_outer)
+					caster:AddBleedStack(v,false)
+				end
+			end
+		end)
+	end
 end
 
 function vlad_ceremonial_purge:GetCastAnimation()

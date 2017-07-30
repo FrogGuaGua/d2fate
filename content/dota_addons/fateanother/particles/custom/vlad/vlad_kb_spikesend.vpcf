@@ -60,6 +60,9 @@
 		{
 			m_ChildRef = resource:"particles/custom/vlad/vlad_kb_spikesend_cf06.vpcf"
 		},
+		{
+			m_ChildRef = resource:"particles/custom/vlad/vlad_kb_spikesend_cf07.vpcf"
+		},
 	]
 	m_controlPointConfigurations = 
 	[

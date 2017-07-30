@@ -110,7 +110,7 @@
 
 		"AbilityCastPoint"				"0.1"
 		"AbilityCooldown"				"14"
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"200" //stuff concerning mana cost, conditional and attribute hp% update of this ability is currently hardcoded in lua
 		//"LevelsBetweenUpgrades"				"1"
 
 		"precache"
@@ -188,11 +188,6 @@
 			{
 				"var_type"						"FIELD_FLOAT"
 				"hp_cost__TT"						"15"
-			}
-			"14"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"mana_cost"						"200"
 			}
 		}
 	}
@@ -503,16 +498,6 @@
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
-
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
-			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
-
-
 		}
 
 		"AbilitySpecial"

@@ -1,4 +1,5 @@
 #base "items/item_blink_scroll.txt"
+#base "items/item_mana_essence.txt"
 
 "DOTAAbilities"
 {
@@ -407,7 +408,7 @@
 		}
 	}
 
-	"item_mana_essence" 
+	"item_mana_essence_old" 
 	{
 		//		GENERAL
 		//-------------------------------------

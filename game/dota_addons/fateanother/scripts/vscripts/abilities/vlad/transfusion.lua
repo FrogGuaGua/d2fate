@@ -60,35 +60,37 @@ function vlad_transfusion:OnSpellStart()
   self:ImpaleSwap(caster)
 
 	Timers:CreateTimer(function()
-		local targets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
-		FxDestroyer(self.PI1,false)
-		self.PI1 = {}
-		for k,v in pairs(targets) do
-			if v:HasModifier("modifier_bleed") then
-				local modbleed = v:FindModifierByName("modifier_bleed")
-				local count = modbleed:GetStackCount()
-				if count > 0 then
-          caster:Heal(heal, caster)
-          DoDamage(caster, v, dmg, DAMAGE_TYPE_MAGICAL, 0, self, false)
-					modbleed:SetStackCount(count - 1)
-					count = modbleed:GetStackCount()
-          self:AddBloodpowerStack(caster,1)
-          self:VFX1_SuckOnAndLiveLongBitch(caster,k,v)
-				end
-				if count < 1 then
-					v:RemoveModifierByName("modifier_bleed")
-        else
-          v:AddNewModifier(caster, self, "modifier_transfusion_target",{duration = slow_duration})
-				end
-			end
+    if caster:IsAlive() then
+  		local targets = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
+  		FxDestroyer(self.PI1,false)
+  		self.PI1 = {}
+  		for k,v in pairs(targets) do
+  			if v:HasModifier("modifier_bleed") then
+  				local modbleed = v:FindModifierByName("modifier_bleed")
+  				local count = modbleed:GetStackCount()
+  				if count > 0 then
+            caster:ApplyHeal(heal, caster)
+            DoDamage(caster, v, dmg, DAMAGE_TYPE_MAGICAL, 0, self, false)
+  					modbleed:SetStackCount(count - 1)
+  					count = modbleed:GetStackCount()
+            self:AddBloodpowerStack(caster,1)
+            self:VFX1_SuckOnAndLiveLongBitch(caster,k,v)
+  				end
+  				if count < 1 then
+  					v:RemoveModifierByName("modifier_bleed")
+          else
+            v:AddNewModifier(caster, self, "modifier_transfusion_target",{duration = slow_duration})
+  				end
+  			end
+  		end
+  		if caster:HasModifier("modifier_transfusion_self") then
+  			return interval
+  		else
+  			FxDestroyer(self.PI1,false)
+  			return nil
+      end
 		end
-		if caster:HasModifier("modifier_transfusion_self") then
-			return interval
-		else
-			FxDestroyer(self.PI1,false)
-			return nil
-		end
-	end)
+  end)
 end
 
 function vlad_transfusion:GetAbilityTextureName()
