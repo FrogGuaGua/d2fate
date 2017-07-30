@@ -49,7 +49,7 @@ if IsServer() then
         FxDestroyer(PI1, false)
       end)
       for k,v in pairs(targets_splash) do
-        if v ~= target then
+        if v ~= target and v:IsRealHero() then
           parent:ApplyHeal(damage_splash*lifesteal,parent)
           DoDamage(parent, v, damage_splash, DAMAGE_TYPE_MAGICAL, 0, ability, false)
           parent:AddBleedStack(v,true)
