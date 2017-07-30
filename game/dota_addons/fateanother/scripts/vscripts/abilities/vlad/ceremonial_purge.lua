@@ -99,44 +99,47 @@ function vlad_ceremonial_purge:OnSpellStart()
 	local hp_cost = self:GetSpecialValueFor("hp_cost")
 	local hp_max = caster:GetMaxHealth()
 	local hp_current = caster:GetHealth() - (hp_max * hp_cost)
-	if hp_current > 1 then
-		caster:SetHealth(hp_current)
-	else
-		caster:SetHealth(1)
-	end
 	
-	StartAnimation(caster, {duration=1, activity=ACT_DOTA_CAST_ABILITY_1, rate=1.5})
-	self:VFX1_Slash(caster)
-
-  caster:EmitSound("Hero_Axe.CounterHelix_Blood_Chaser")
-	--caster:EmitSound("Hero_Axe.CounterHelix")
-	caster:EmitSound("Hero_Magnataur.ReversePolarity.Anim")
-
-  giveUnitDataDrivenModifier(caster, caster, "drag_pause",0.5)
-	Timers:CreateTimer(delay, function()
-		local targets_outer = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_outer, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
-		--[[ alternate way to pick which targets are in which aoe if some issues
-		local targets_inner = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_inner, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
-		for k,v in pairs(targets_outer) do
-			if targets_inner[k] == v then
-			(...)
-		--]]
-		for k,v in pairs(targets_outer) do
-			local distance = (v:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
-      --print(distance)
-			v:EmitSound("Hero_NyxAssassin.SpikedCarapace")
-
-			if distance < aoe_inner then
-				DoDamage(caster, v, dmg_inner, DAMAGE_TYPE_MAGICAL, 0, self, false)
-        giveUnitDataDrivenModifier(caster, v, "stunned", stun_inner)
-			else
-				DoDamage(caster, v, dmg_outer, DAMAGE_TYPE_MAGICAL, 0, self, false)
-        v:AddNewModifier(caster,self,"modifier_ceremonial_purge_slow",{duration = slow_duration})
-        giveUnitDataDrivenModifier(caster, v, "stunned", stun_outer)
-				caster:AddBleedStack(v,false)
-			end
+	if caster:IsAlive() then
+		if hp_current > 1 then
+			caster:SetHealth(hp_current)
+		else
+			caster:SetHealth(1)
 		end
-	end)
+		
+		StartAnimation(caster, {duration=1, activity=ACT_DOTA_CAST_ABILITY_1, rate=1.5})
+		self:VFX1_Slash(caster)
+
+	  caster:EmitSound("Hero_Axe.CounterHelix_Blood_Chaser")
+		--caster:EmitSound("Hero_Axe.CounterHelix")
+		caster:EmitSound("Hero_Magnataur.ReversePolarity.Anim")
+
+	  giveUnitDataDrivenModifier(caster, caster, "drag_pause",0.5)
+		Timers:CreateTimer(delay, function()
+			local targets_outer = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_outer, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
+			--[[ alternate way to pick which targets are in which aoe if some issues
+			local targets_inner = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, aoe_inner, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
+			for k,v in pairs(targets_outer) do
+				if targets_inner[k] == v then
+				(...)
+			--]]
+			for k,v in pairs(targets_outer) do
+				local distance = (v:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
+	      --print(distance)
+				v:EmitSound("Hero_NyxAssassin.SpikedCarapace")
+
+				if distance < aoe_inner then
+					DoDamage(caster, v, dmg_inner, DAMAGE_TYPE_MAGICAL, 0, self, false)
+	        giveUnitDataDrivenModifier(caster, v, "stunned", stun_inner)
+				else
+					DoDamage(caster, v, dmg_outer, DAMAGE_TYPE_MAGICAL, 0, self, false)
+	        v:AddNewModifier(caster,self,"modifier_ceremonial_purge_slow",{duration = slow_duration})
+	        giveUnitDataDrivenModifier(caster, v, "stunned", stun_outer)
+					caster:AddBleedStack(v,false)
+				end
+			end
+		end)
+	end
 end
 
 function vlad_ceremonial_purge:GetCastAnimation()

@@ -155,7 +155,7 @@ function cl_wrapper(modifier)
 	function modifier:OnTakeDamage(keys)
 		local parent = self:GetParent()
 		local ability = self:GetAbility()
-		if keys.unit == parent and self.CL_SHIELDLEFT ~= 0 then
+		if keys.unit == parent and self.CL_SHIELDLEFT ~= 0 and parent:IsAlive() then
 			local hp_current = parent:GetHealth()
 			local damage = keys.damage
 			self.CL_SHIELDLEFT = self.CL_SHIELDLEFT - damage

@@ -80,22 +80,24 @@ function vlad_cursed_lance:OnSpellStart()
 
 	local hp_current = caster:GetHealth()
 	local hp_max = caster:GetMaxHealth()
-	hp_current = hp_current - (hp_max * hp_cost)
+  hp_current = hp_current - (hp_max * hp_cost)
 
-	if hp_current > 1 then
-		caster:SetHealth(hp_current)
-	else
-		caster:SetHealth(1)
-	end
+  if caster:IsAlive() then
+  	if hp_current > 1 then
+  		caster:SetHealth(hp_current)
+  	else
+  		caster:SetHealth(1)
+  	end 
 
-  if caster:HasModifier("modifier_transfusion_bloodpower") and not caster:HasModifier("modifier_transfusion_self") and caster.InstantCurseAcquired then
-    self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance_bp",{duration = duration})
-  else
-    self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance",{duration = duration})
+    if caster:HasModifier("modifier_transfusion_bloodpower") and not caster:HasModifier("modifier_transfusion_self") and caster.InstantCurseAcquired then
+      self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance_bp",{duration = duration})
+    else
+      self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance",{duration = duration})
+    end
+
+  	self:ComboCheck(caster)
+  	self:InstantCurseSwap(caster,duration)
   end
-
-	self:ComboCheck(caster)
-	self:InstantCurseSwap(caster,duration)
 end
 
 function vlad_cursed_lance:GetCastAnimation()
