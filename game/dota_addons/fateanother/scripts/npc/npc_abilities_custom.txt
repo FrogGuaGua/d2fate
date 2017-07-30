@@ -13921,6 +13921,7 @@
 		"precache"
 		{
 			"particle"		"particles/custom/lancelot/lancelot_arondite.vpcf"
+			"particle"		"particles/custom/lancelot/lancelot_arondite_aoe_warp.vpcf"
 			"particle"		"particles/custom/lancelot/lancelot_arondite_ambient.vpcf"
 			"particle"		"particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
 			"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
