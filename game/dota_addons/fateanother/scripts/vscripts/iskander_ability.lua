@@ -1110,7 +1110,7 @@ function OnAnnihilateStart(keys)
 				keys.ability:ApplyDataDrivenModifier(caster,v, "modifier_annihilate_mute", {})
 			end
    		end
-		local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		local particle = ParticleManager:CreateParticle("particles/custom/iskandar/iskandar_combo_mute.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 		ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
 		ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin()+Vector(3000,0,0))
    	end)
