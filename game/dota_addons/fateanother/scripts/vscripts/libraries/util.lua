@@ -1853,3 +1853,55 @@ function FxCreator(effectname,pattach,target,cp,attach,amount)
     return FXIndex
   end
 end
+
+
+-- Spaghetti and hax as fuck.
+function HotkeyPurchaseItem(iSource, args)
+    local item = args['item']
+    local cost = GetItemCost(item)
+    local entity = EntIndexToHScript(iSource)
+    local id = entity:GetPlayerID()
+    local hero = entity:GetAssignedHero()
+
+    if not hero or hero:GetUnitName() == "npc_dota_hero_wisp" then return end
+
+    local mode = GameRules.AddonTemplate
+    local gold = hero:GetGold()
+    local keys = {
+        PlayerID = id,
+        itemname = item,
+        itemcost = cost,
+    }
+
+    local hItem = nil
+
+    local target = nil
+    for j = 9, 14 do
+        if hero:GetItemInSlot(j) == nil then target = j break end
+    end
+    if not target then return end
+
+    local purchase = function()
+        hItem = hero:AddItemByName(item)
+        hero:SpendGold(cost, 4)
+        mode:OnItemPurchased(keys)
+    end
+
+    if hero.IsInBase and gold >= cost then
+        purchase()
+    elseif gold >= cost * 1.5 then
+        purchase()
+    else
+        return
+    end
+
+    local index = nil
+    for i = 0, 5 do
+        if hero:GetItemInSlot(i) == hItem then index = i break end
+    end
+
+    if index ~= nil and target ~= nil then
+        hero:SwapItems(index, target)
+    end
+end
+CustomGameEventManager:RegisterListener("hotkey_purchase_item", HotkeyPurchaseItem)
