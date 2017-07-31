@@ -122,7 +122,6 @@ function cl_wrapper(modifier)
 
 	function modifier:ApplyAttrBonuses(parent)
 		local parent = self:GetParent()
-		local bonus_cap = parent.AttrBonusCap 
 		local dmg_base = self.CL_MAX_DMG
 		local shield_base = self.CL_MAX_SHIELD
 		--apply bonus for global bleeds
@@ -140,15 +139,24 @@ function cl_wrapper(modifier)
 				parent:ResetImpaleSwapTimer()
 				local modifier = parent:FindModifierByName("modifier_transfusion_bloodpower")
 		 		local bloodpower = modifier and modifier:GetStackCount() or 0
+		 		local bloodpowerduration = modifier and modifier:GetRemainingTime() or 0
 				local attribute_ability = parent.MasterUnit2:FindAbilityByName("vlad_attribute_bloodletter")
-				self.CL_MAX_DMG = self.CL_MAX_DMG+(self.CL_MAX_DMG*bloodpower*attribute_ability:GetSpecialValueFor("cl_bonus_dmg_per_stack"))
-				self.CL_MAX_SHIELD = self.CL_MAX_SHIELD+(self.CL_MAX_SHIELD*bloodpower*attribute_ability:GetSpecialValueFor("cl_bonus_shield_per_stack"))
-				parent:RemoveModifierByName("modifier_transfusion_bloodpower")
+				local bonus_dmg_per_bloodpower = attribute_ability:GetSpecialValueFor("cl_bonus_dmg_per_stack")
+				local bonus_shield_per_bloodpower = attribute_ability:GetSpecialValueFor("cl_bonus_shield_per_stack")
+				local bloodpowercap = attribute_ability:GetSpecialValueFor("bloodpower_cap")
+				self.CL_MAX_DMG = self.CL_MAX_DMG+ math.min(self.CL_MAX_DMG*bloodpower*bonus_dmg_per_bloodpower, self.CL_MAX_DMG*bloodpowercap*bonus_dmg_per_bloodpower)
+				self.CL_MAX_SHIELD = self.CL_MAX_SHIELD+ math.min(self.CL_MAX_SHIELD*bloodpower*bonus_shield_per_bloodpower, self.CL_MAX_SHIELD*bloodpowercap*bonus_shield_per_bloodpower)
+				if bloodpower > 30 then 
+					parent:RemoveModifierByName("modifier_transfusion_bloodpower")
+					parent:AddNewModifier(parent, self, "modifier_transfusion_bloodpower", {duration = bloodpowerduration})
+					parent:SetModifierStackCount("modifier_transfusion_bloodpower", caster, bloodpower - bloodpowercap)
+				else parent:RemoveModifierByName("modifier_transfusion_bloodpower")
+				end
 			end
 		end
 		--cap bonuses
-		self.CL_MAX_DMG = math.min(self.CL_MAX_DMG, dmg_base + bonus_cap)
-		self.CL_MAX_SHIELD = math.min(self.CL_MAX_SHIELD, shield_base + bonus_cap)
+		--self.CL_MAX_DMG = math.min(self.CL_MAX_DMG, dmg_base + bonus_cap)
+		--self.CL_MAX_SHIELD = math.min(self.CL_MAX_SHIELD, shield_base + bonus_cap)
 	end
 
 	--shieldstuff

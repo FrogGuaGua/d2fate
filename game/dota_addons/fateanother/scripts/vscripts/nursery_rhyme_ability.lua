@@ -574,7 +574,7 @@ function OnGlassGameStart(keys)
 		--local missingHealth = (v:GetMaxHealth() - v:GetHealth()) * instantHealPct/100
 		local totalHeal = instantHeal
 		if caster.bIsQGGImproved then
-			v:GiveMana(totalHeal)
+			v:GiveMana(totalHeal / 2)
 		end
 		v:ApplyHeal(totalHeal, caster)
 		local healFx = ParticleManager:CreateParticle( "particles/units/heroes/hero_chen/chen_hand_of_god.vpcf", PATTACH_CUSTOMORIGIN, nil );
