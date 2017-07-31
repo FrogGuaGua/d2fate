@@ -18363,6 +18363,11 @@
 				"var_type"		"FIELD_INTEGER"
 				"aoe"			"200"
 			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"duration"		"6"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -18400,7 +18405,7 @@
 			}
 			"modifier_annihilate_mute"
 			{
-				"Duration"		"12.0"
+				"Duration"		"%duration"
 				"IsDebuff"		"1"
 				"States"
 				{
