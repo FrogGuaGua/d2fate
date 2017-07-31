@@ -1102,13 +1102,18 @@ function OnAnnihilateStart(keys)
 	end
 
 	-- Mute
-	local targets = FindUnitsInRadius(caster:GetTeam(), marbleCenter, nil, 2000
-            , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, FIND_ANY_ORDER, false)
-	for k,v in pairs(targets) do
-		if v:GetUnitName() ~= "gille_gigantic_horror" and v:GetUnitName() ~= "caster_5th_territory_improved" and v:GetUnitName() ~= "caster_5th_territory" then
-			keys.ability:ApplyDataDrivenModifier(caster,v, "modifier_annihilate_mute", {})
-		end
-    end
+	Timers:CreateTimer(1.0, function()
+		local targets = FindUnitsInRadius(caster:GetTeam(), marbleCenter, nil, 2000
+           	 , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, FIND_ANY_ORDER, false)
+		for k,v in pairs(targets) do
+			if v:GetUnitName() ~= "gille_gigantic_horror" and v:GetUnitName() ~= "caster_5th_territory_improved" and v:GetUnitName() ~= "caster_5th_territory" then
+				keys.ability:ApplyDataDrivenModifier(caster,v, "modifier_annihilate_mute", {})
+			end
+   		end
+		local particle = ParticleManager:CreateParticle("particles/custom/iskandar/iskandar_combo_mute.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin()+Vector(3000,0,0))
+   	end)
 
     -- Arrows
     local tableOfSounds = {"Iskander.ArrowFly1","Iskander.ArrowFly2","Iskander.ArrowLand1","Iskander.ArrowLand3"}

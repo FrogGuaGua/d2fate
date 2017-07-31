@@ -34,7 +34,6 @@ function vlad_ceremonial_purge:GetDamage(caster)
 	local dmg_outer = self:GetSpecialValueFor("dmg_outer")
 	local dmg_inner_base = dmg_inner
 	local dmg_outer_base = dmg_outer
-	local bonus_cap = caster.AttrBonusCap
 	local attr_bonus = 0
 
 	--improve dmg by base bonuses and add bonus for total bleeds
@@ -58,17 +57,24 @@ function vlad_ceremonial_purge:GetDamage(caster)
 			caster:ResetImpaleSwapTimer()
 			local modifier = caster:FindModifierByName("modifier_transfusion_bloodpower")
 			local bloodpower = modifier and modifier:GetStackCount() or 0
+			local bloodpowerduration = modifier and modifier:GetRemainingTime() or 0
 			local attribute_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_bloodletter")
 			local bonus_dmg_per_bloodpower = attribute_ability:GetSpecialValueFor("cp_bonus_dmg_per_stack")
-			dmg_inner = dmg_inner + (dmg_inner * bloodpower * bonus_dmg_per_bloodpower)
-			dmg_outer = dmg_outer + (dmg_outer * bloodpower * bonus_dmg_per_bloodpower)
-			caster:RemoveModifierByName("modifier_transfusion_bloodpower")
+			local bloodpowercap = attribute_ability:GetSpecialValueFor("bloodpower_cap")
+			dmg_inner = dmg_inner + math.min(dmg_inner * bloodpower * bonus_dmg_per_bloodpower, dmg_inner * bloodpowercap * bonus_dmg_per_bloodpower)
+			dmg_outer = dmg_outer + math.min(dmg_outer * bloodpower * bonus_dmg_per_bloodpower, dmg_outer * bloodpowercap * bonus_dmg_per_bloodpower)
+			if bloodpower > 30 then 
+				caster:RemoveModifierByName("modifier_transfusion_bloodpower")
+				caster:AddNewModifier(caster, self, "modifier_transfusion_bloodpower", {duration = bloodpowerduration})
+				caster:SetModifierStackCount("modifier_transfusion_bloodpower", caster, bloodpower - bloodpowercap)
+			else caster:RemoveModifierByName("modifier_transfusion_bloodpower")
+			end
   	end
 	end
 	print("after  ",dmg_inner, "   ", dmg_outer)
 	--cap dmg bonus from sources: global bleeds, bloodpower
-	dmg_inner = math.min(dmg_inner, dmg_inner_base + bonus_cap)
-	dmg_outer = math.min(dmg_outer, dmg_outer_base + bonus_cap)
+	--dmg_inner = math.min(dmg_inner, dmg_inner_base + bonus_cap)
+	--dmg_outer = math.min(dmg_outer, dmg_outer_base + bonus_cap)
 	--print("aftercap  ",dmg_inner, "   ", dmg_outer)
 	return dmg_inner, dmg_outer
 end

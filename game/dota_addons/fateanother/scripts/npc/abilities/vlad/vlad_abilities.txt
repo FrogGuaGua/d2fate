@@ -52,12 +52,12 @@
 			"05"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"mres_per_stack"						"2 2.375 2.75 3.125 3.5"
+				"mres_per_stack"						"2 2.25 2.5 2.75 3"
 			}
 			"06"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"mres_per_stack__TT"				"20 23.75 27.5 31.25 35"
+				"mres_per_stack__TT"				"20 22.5 25 27.5 30"
 			}
 			"07"
 			{
@@ -67,7 +67,7 @@
 			"08"
 			{
 				"var_type"											"FIELD_FLOAT"
-				"self_slow_per_stack__TT"					"-35 -30 -25 -20 -15"
+				"self_slow_per_stack__TT"					"-40 -35 -20 -25 -20"
 			}
 			"09"
 			{
@@ -87,7 +87,7 @@
 			"12"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"drain_per_sec__TT"					"5"
+				"drain_per_sec__TT"					"6"
 			}
 			"13"
 			{
@@ -326,12 +326,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg"							"50"
+				"dmg"							"30"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"heal"							"50"
+				"heal"							"30"
 			}
 			"08"
 			{
@@ -479,7 +479,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/vlad_kazikli_bey"
 
-		"AbilityCastPoint"				"0.25"
+		"AbilityCastPoint"				"0.3"
 		"AbilityCooldown"				"50"
 		"AbilityManaCost"				"800"
 		//"LevelsBetweenUpgrades"				"1"
@@ -505,12 +505,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"activation"					"0.65"
+				"activation"					"0.75"
 			}
 			"02"
 			{
 				"var_type"													"FIELD_FLOAT"
-				"total_activation__TT"							"0.9"
+				"total_activation__TT"							"1.05"
 			}
 			"03"
 			{
@@ -920,48 +920,53 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"cl_bonus_shield_per_stack"					"0.02"
+				"var_type"						"FIELD_INTEGER"
+				"transfusionbonus"							"30"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cl_bonus_shield_per_stack__TT"					"2"
+				"cl_bonus_shield_per_stack"					"0.02"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cl_bonus_dmg_per_stack"					"0.01"
+				"cl_bonus_shield_per_stack__TT"					"2"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cl_bonus_dmg_per_stack__TT"					"1"
+				"cl_bonus_dmg_per_stack"					"0.01"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"kb_bonus_dmg_per_stack"					"0.01"
+				"cl_bonus_dmg_per_stack__TT"					"1"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"kb_bonus_dmg_per_stack__TT"					"1"
+				"kb_bonus_dmg_per_stack"					"0.01"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cp_bonus_dmg_per_stack"					"0.01"
+				"kb_bonus_dmg_per_stack__TT"					"1"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cp_bonus_dmg_per_stack__TT"					"1"
+				"cp_bonus_dmg_per_stack"					"0.01"
 			}
 			"09"
 			{
+				"var_type"				"FIELD_FLOAT"
+				"cp_bonus_dmg_per_stack__TT"					"1"
+			}
+			"10"
+			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_cap"						"500"
+				"bloodpower_cap"						"30"
 			}
 		}
 	}

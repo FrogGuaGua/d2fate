@@ -53,6 +53,13 @@ function vlad_transfusion:OnSpellStart()
 	local duration = self:GetSpecialValueFor("duration")
 	local Wlevel = caster:FindAbilityByName("vlad_ceremonial_purge"):GetLevel()
 	local dmg = dmg + (dmg_bonus*Wlevel)
+  local heal = heal +(dmg_bonus*Wlevel)
+
+  if caster.BloodletterAcquired then
+    local transfusionbonus = caster.MasterUnit2:FindAbilityByName("vlad_attribute_bloodletter"):GetSpecialValueFor("transfusionbonus")
+    dmg = dmg + transfusionbonus
+    heal = heal + transfusionbonus
+  end
 
 	caster:AddNewModifier(caster, self, "modifier_transfusion_self",{duration = duration})
 	caster:EmitSound("Hero_OgreMagi.Bloodlust.Target.FP")

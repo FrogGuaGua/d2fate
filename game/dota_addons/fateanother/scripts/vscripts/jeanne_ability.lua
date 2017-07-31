@@ -109,7 +109,7 @@ function OnSaintThink(keys)
     	ability:ApplyDataDrivenModifier(caster, caster, "modifier_saint_buff", {})
     elseif caster:GetTeam() == DOTA_TEAM_GOODGUYS and nRadiantAlive < nDireAlive or caster:GetTeam() == DOTA_TEAM_BADGUYS and nDireAlive < nRadiantAlive then
     	ability:ApplyDataDrivenModifier(caster, caster, "modifier_saint_buff", {})
-    elseif nRadiantAlive == nDireAlive and nDead > 0 and caster.IsSaintImproved then
+    elseif nRadiantAlive == nDireAlive and caster.IsSaintImproved then
     	ability:ApplyDataDrivenModifier(caster, caster, "modifier_saint_buff", {})
     end
 
@@ -121,12 +121,14 @@ function OnSaintThink(keys)
 	        end
 	    end)
     	--charisma
-		local newKeys = keys
-		newKeys.ability = caster:FindAbilityByName("jeanne_charisma")
-		newKeys.target = caster
-		newKeys.Radius = newKeys.ability:GetSpecialValueFor("radius_modifier")
- 		newKeys.Duration = 1.1
-		OnIRStart(newKeys, false)
+    	if nDead > 0 then	
+			local newKeys = keys
+			newKeys.ability = caster:FindAbilityByName("jeanne_charisma")
+			newKeys.target = caster
+			newKeys.Radius = newKeys.ability:GetSpecialValueFor("radius_modifier")
+ 			newKeys.Duration = 1.1
+			OnIRStart(newKeys, false)
+		end
     end
 
 end

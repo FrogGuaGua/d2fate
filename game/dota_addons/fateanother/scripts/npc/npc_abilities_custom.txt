@@ -9622,7 +9622,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"search_radius"			"1600"
+				"search_radius"			"2000"
 			}
 			"02"
 			{
@@ -12838,6 +12838,11 @@
 				"var_type"			"FIELD_INTEGER"
 				"damage_threshold"			"500"
 			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"3.5"
+			}
 		}
 		
 		"Modifiers"
@@ -12859,7 +12864,7 @@
 			}
 	    	"modifier_fairy_magic_immunity"
 	    	{
-	    		"Duration"		"3.5"
+	    		"Duration"		"%duration"
 	    		"OnCreated"
 	    		{
 					"AttachEffect"
@@ -18363,6 +18368,11 @@
 				"var_type"		"FIELD_INTEGER"
 				"aoe"			"200"
 			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"duration"		"6"
+			}
 		}
 		"OnSpellStart"
 		{
@@ -18400,7 +18410,7 @@
 			}
 			"modifier_annihilate_mute"
 			{
-				"Duration"		"12.0"
+				"Duration"		"%duration"
 				"IsDebuff"		"1"
 				"States"
 				{
@@ -28290,7 +28300,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"mana_regen"				"0 3"
+				"mana_regen"				"0 2"
 			}
 		}
 		
@@ -28892,7 +28902,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"upkeep_mana_cost"				"3"
+				"upkeep_mana_cost"				"6"
 			}
 			"07"
 			{
@@ -29285,7 +29295,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"pct_mana_regen"			"3"
+				"pct_mana_regen"			"2"
 			}
 		}
 		
@@ -29339,7 +29349,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_ratio"			"1.0"
+				"mana_ratio"			"0.5"
 			}
 			"05"
 			{
