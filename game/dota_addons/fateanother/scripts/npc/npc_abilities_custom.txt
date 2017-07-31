@@ -12838,6 +12838,11 @@
 				"var_type"			"FIELD_INTEGER"
 				"damage_threshold"			"500"
 			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"3.5"
+			}
 		}
 		
 		"Modifiers"
@@ -12859,7 +12864,7 @@
 			}
 	    	"modifier_fairy_magic_immunity"
 	    	{
-	    		"Duration"		"3.5"
+	    		"Duration"		"%duration"
 	    		"OnCreated"
 	    		{
 					"AttachEffect"
