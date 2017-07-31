@@ -77,10 +77,12 @@ function vlad_cursed_lance:OnSpellStart()
   local caster = self:GetCaster()
   local duration = self:GetSpecialValueFor("duration")
   local hp_cost = self:GetSpecialValueFor("hp_cost")
-
 	local hp_current = caster:GetHealth()
 	local hp_max = caster:GetMaxHealth()
   hp_current = hp_current - (hp_max * hp_cost)
+  local modifier = caster:FindModifierByName("modifier_transfusion_bloodpower")
+  local bloodpower = modifier and modifier:GetStackCount() or 0
+  local bleedcounter = caster:GetGlobalBleeds()
 
   if caster:IsAlive() then
   	if hp_current > 1 then
@@ -89,7 +91,7 @@ function vlad_cursed_lance:OnSpellStart()
   		caster:SetHealth(1)
   	end 
 
-    if caster:HasModifier("modifier_transfusion_bloodpower") and not caster:HasModifier("modifier_transfusion_self") and caster.InstantCurseAcquired then
+    if caster.InstantCurseAcquired and (bleedcounter + bloodpower) > 19 then
       self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance_bp",{duration = duration})
     else
       self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance",{duration = duration})

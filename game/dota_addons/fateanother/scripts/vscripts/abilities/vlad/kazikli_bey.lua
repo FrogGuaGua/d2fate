@@ -57,7 +57,6 @@ end
 function vlad_kazikli_bey:ApplyAttrExtraDmg(caster,dmg_lastspike,bloodpower)
 	--improve dmg by bonus based on bleeds count present on all heroes
 	print("ApplyAttrBonusDmg lastspike is: ",dmg_lastspike)
-	local bonus_cap = caster.AttrBonusCap
   local dmg_lastspike_base = dmg_lastspike
 	if caster.ImprovedImpalingAcquired then
 		local attribute_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_improved_impaling")
@@ -68,10 +67,12 @@ function vlad_kazikli_bey:ApplyAttrExtraDmg(caster,dmg_lastspike,bloodpower)
 	--improve dmg by percentile value based on bloodpower stacks used
 	if caster.BloodletterAcquired then
 		local attribute_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_bloodletter")
-		dmg_lastspike = dmg_lastspike + (dmg_lastspike * bloodpower * attribute_ability:GetSpecialValueFor("kb_bonus_dmg_per_stack"))
+		local bonus_dmg_per_bloodpower = attribute_ability:GetSpecialValueFor("kb_bonus_dmg_per_stack")
+		local bloodpowercap = attribute_ability:GetSpecialValueFor("bloodpower_cap")
+		dmg_lastspike = dmg_lastspike + math.min(dmg_lastspike * bloodpower * bonus_dmg_per_bloodpower, dmg_lastspike * bloodpowercap * bonus_dmg_per_bloodpower)
 	end
 	--cap bonus dmg from bleeds and bloodpower
-	dmg_lastspike = math.min(dmg_lastspike, dmg_lastspike_base + bonus_cap)
+	--dmg_lastspike = math.min(dmg_lastspike, dmg_lastspike_base + bonus_cap)
 	print("ApplyAttrBonusDmg POST BLOODLETTER lastspike is: ",dmg_lastspike)
 	return dmg_lastspike
 end
@@ -94,8 +95,16 @@ function vlad_kazikli_bey:OnSpellStart()
   if not caster:HasModifier("modifier_transfusion_self") then
   	local modifier = caster:FindModifierByName("modifier_transfusion_bloodpower")
    	bloodpower = modifier and modifier:GetStackCount() or 0
+   	local bloodpowerduration = modifier and modifier:GetRemainingTime() or 0
+   	local attribute_ability = caster.MasterUnit2:FindAbilityByName("vlad_attribute_bloodletter")
+   	local bloodpowercap = attribute_ability:GetSpecialValueFor("bloodpower_cap")
     caster:ResetImpaleSwapTimer()
-    caster:RemoveModifierByName("modifier_transfusion_bloodpower")
+	if bloodpower > 30 then 
+		caster:RemoveModifierByName("modifier_transfusion_bloodpower")
+		caster:AddNewModifier(caster, self, "modifier_transfusion_bloodpower", {duration = bloodpowerduration})
+		caster:SetModifierStackCount("modifier_transfusion_bloodpower", caster, bloodpower - bloodpowercap)
+	else caster:RemoveModifierByName("modifier_transfusion_bloodpower")
+	end
   end
 
 	dmg_spikes, dmg_lastspike = self:ApplyAttrBaseBonuses(caster,dmg_spikes,dmg_lastspike)
