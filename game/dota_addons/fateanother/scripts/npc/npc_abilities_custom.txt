@@ -28290,7 +28290,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"mana_regen"				"0 3"
+				"mana_regen"				"0 2"
 			}
 		}
 		
@@ -28892,7 +28892,7 @@
 			"06"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"upkeep_mana_cost"				"3"
+				"upkeep_mana_cost"				"6"
 			}
 			"07"
 			{
@@ -29285,7 +29285,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"pct_mana_regen"			"3"
+				"pct_mana_regen"			"2"
 			}
 		}
 		
@@ -29339,7 +29339,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mana_ratio"			"1.0"
+				"mana_ratio"			"0.5"
 			}
 			"05"
 			{
