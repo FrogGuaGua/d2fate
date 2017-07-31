@@ -9622,7 +9622,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"search_radius"			"1600"
+				"search_radius"			"2000"
 			}
 			"02"
 			{
