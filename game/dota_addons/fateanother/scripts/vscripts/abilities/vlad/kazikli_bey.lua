@@ -2,7 +2,11 @@ vlad_kazikli_bey = class({})
 --LinkLuaModifier("modifier_kazikli_bey", "abilities/vlad/modifier_kazikli_bey", LUA_MODIFIER_MOTION_NONE)
 --remember to merge util lua ApplyAirborne and new ApplyAirborneOnly
 
-if not IsServer() then
+if IsClient() then  
+  function vlad_kazikli_bey:GetCastRange( vLocation, hTarget)
+    return self:GetSpecialValueFor("aoe_spikes")
+  end
+  
   return
 end
 

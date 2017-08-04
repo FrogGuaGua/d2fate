@@ -15,6 +15,10 @@ function vlad_ceremonial_purge:GetManaCost(iLevel)
 end
 
 if IsClient() then
+	function vlad_ceremonial_purge:GetCastRange( vLocation, hTarget)
+		return self:GetSpecialValueFor("aoe_outer")
+	end
+
   return
 end
 

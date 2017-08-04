@@ -2,7 +2,11 @@ vlad_cursed_lance = class({})
 LinkLuaModifier("modifier_cursed_lance", "abilities/vlad/modifier_cursed_lance", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cursed_lance_bp", "abilities/vlad/modifier_cursed_lance_bp", LUA_MODIFIER_MOTION_NONE)
 
-if not IsServer() then
+if IsClient() then  
+  function vlad_cursed_lance:GetCastRange( vLocation, hTarget)
+    return self:GetSpecialValueFor("aoe")
+  end  
+  
   return
 end
 --combo timer ability swap
