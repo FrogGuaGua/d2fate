@@ -1,8 +1,17 @@
 vlad_impale = class({})
 
-if not IsServer() then
-  return
+function vlad_impale:GetAOERadius()
+  local radius_min = self:GetSpecialValueFor("radius_min")
+  local radius_gain = self:GetSpecialValueFor("radius_gain")
+  local radius_max = self:GetSpecialValueFor("radius_max")
+  local bloodpower = tonumber(CustomNetTables:GetTableValue("sync","vlad_bloodpower_count").count)
+  return math.max(radius_min, math.min(radius_min + bloodpower * radius_gain, radius_max))
+end 
+
+if IsClient() then
+  return 
 end
+
 function vlad_impale:VFX1_SpikesIndicator(caster,radius,point)
   self.PI1 = ParticleManager:CreateParticle("particles/custom/vlad/vlad_ip_prespike.vpcf", PATTACH_CUSTOMORIGIN, caster)
   ParticleManager:SetParticleControl(self.PI1,0,point)
@@ -51,13 +60,10 @@ function vlad_impale:OnSpellStart()
   local stun_min = self:GetSpecialValueFor("stun_min")
   local stun_gain = self:GetSpecialValueFor("stun_gain")
   local stun_max = self:GetSpecialValueFor("stun_max")
-  local radius_min = self:GetSpecialValueFor("radius_min")
-  local radius_gain = self:GetSpecialValueFor("radius_gain")
-  local radius_max = self:GetSpecialValueFor("radius_max")
   local damage = self:GetSpecialValueFor("damage")
   local delay = self:GetSpecialValueFor("delay")
   local point = caster:GetCursorPosition()
-  
+    
   caster:RemoveModifierByName("modifier_transfusion_self")
   self:ResetImpaleSwapTimer()
 
@@ -66,7 +72,7 @@ function vlad_impale:OnSpellStart()
   caster:RemoveModifierByName("modifier_transfusion_bloodpower")
 
   local stun = math.max(stun_min, math.min(stun_min + bloodpower * stun_gain, stun_max))
-  local radius = math.max(radius_min, math.min(radius_min + bloodpower * radius_gain, radius_max))
+  local radius = self:GetAOERadius()
   --print(stun, "   ", radius)
     
   self:VFX1_SpikesIndicator(caster,radius,point)

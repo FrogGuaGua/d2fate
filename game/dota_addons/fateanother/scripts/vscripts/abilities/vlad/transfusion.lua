@@ -3,9 +3,14 @@ LinkLuaModifier("modifier_transfusion_target", "abilities/vlad/modifier_transfus
 LinkLuaModifier("modifier_transfusion_self", "abilities/vlad/modifier_transfusion_self", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_transfusion_bloodpower", "abilities/vlad/modifier_transfusion_bloodpower", LUA_MODIFIER_MOTION_NONE)
 
-if not IsServer() then
+if IsClient() then  
+  function vlad_transfusion:GetCastRange( vLocation, hTarget)
+    return self:GetSpecialValueFor("aoe")
+  end  
+  
   return
 end
+
 function vlad_transfusion:VFX1_SuckOnAndLiveLongBitch(caster,k,target)
   self.PI1[k] = FxCreator("particles/custom/vlad/vlad_tf_ontarget_drain.vpcf",PATTACH_CENTER_FOLLOW,target,0,nil)
   ParticleManager:SetParticleControlEnt( self.PI1[k], 2, caster,  PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), false )

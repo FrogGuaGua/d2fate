@@ -23,8 +23,10 @@ if IsServer() then
       parent:EmitSound("Hero_LifeStealer.OpenWounds.Cast")
       local PI1 = FxCreator("particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent, 0, nil)
       Timers:CreateTimer((ability:GetSpecialValueFor("stun_outer"))*2, function() -- start slow fading after double duration of stun
-        self:StartIntervalThink(1)
-        FxDestroyer(PI1, false)
+        if not self:IsNull() then
+          self:StartIntervalThink(1)
+          FxDestroyer(PI1, false)
+        end
       end)
     else
       self:Destroy()

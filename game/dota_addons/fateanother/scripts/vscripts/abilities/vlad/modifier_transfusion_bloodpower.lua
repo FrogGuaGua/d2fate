@@ -18,6 +18,13 @@ if IsServer() then
 end
 --]]
 
+if IsServer() then
+  function modifier_transfusion_bloodpower:OnStackCountChanged( iStackCount)
+    local bloodpower = tostring(self:GetStackCount())
+    CustomNetTables:SetTableValue("sync", "vlad_bloodpower_count", {count = bloodpower})
+  end
+end
+
 function modifier_transfusion_bloodpower:IsHidden()
   return false
 end
