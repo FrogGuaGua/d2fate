@@ -4,7 +4,7 @@ function vlad_impale:GetAOERadius()
   local radius_min = self:GetSpecialValueFor("radius_min")
   local radius_gain = self:GetSpecialValueFor("radius_gain")
   local radius_max = self:GetSpecialValueFor("radius_max")
-  local bloodpower = tonumber(CustomNetTables:GetTableValue("sync","vlad_bloodpower_count").count)
+  local bloodpower = CustomNetTables:GetTableValue("sync","vlad_bloodpower_count").count
   return math.max(radius_min, math.min(radius_min + bloodpower * radius_gain, radius_max))
 end 
 
