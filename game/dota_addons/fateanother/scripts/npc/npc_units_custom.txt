@@ -2166,8 +2166,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"200"		// Range of vision during day light.
-		"VisionNighttimeRange"		"200"		// Range of vision at night time.
+		"VisionDaytimeRange"		"150"		// Range of vision during day light.
+		"VisionNighttimeRange"		"150"		// Range of vision at night time.
 
 		//"HasInventory"				"1"
 	}
@@ -2238,8 +2238,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"200"		// Range of vision during day light.
-		"VisionNighttimeRange"		"200"		// Range of vision at night time.
+		"VisionDaytimeRange"		"150"		// Range of vision during day light.
+		"VisionNighttimeRange"		"150"		// Range of vision at night time.
 
 		// Bots
 		//----------------------------------------------------------------
@@ -2300,8 +2300,8 @@
 		
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"200"		// Range of vision during day light.
-		"VisionNighttimeRange"		"200"		// Range of vision at night time.
+		"VisionDaytimeRange"		"150"		// Range of vision during day light.
+		"VisionNighttimeRange"		"150"		// Range of vision at night time.
 
 		//"HasInventory"				"1"
 	}

@@ -1173,7 +1173,7 @@ function FateGameMode:OnHeroInGame(hero)
     Attributes:ModifyBonuses(hero)
 
     -- Create Command Seal master for hero
-    master = CreateUnitByName("master_1", Vector(4500 + hero:GetPlayerID()*320,-7050,0), true, hero, hero, hero:GetTeamNumber())
+    master = CreateUnitByName("master_1", Vector(4500 + hero:GetPlayerID()*270,-7050,0), true, hero, hero, hero:GetTeamNumber())
     master:SetControllableByPlayer(hero:GetPlayerID(), true)
     master:SetMana(0)
     hero.MasterUnit = master
@@ -1188,7 +1188,7 @@ function FateGameMode:OnHeroInGame(hero)
     MinimapEvent( hero:GetTeamNumber(), hero, master:GetAbsOrigin().x, master:GetAbsOrigin().y + 500, DOTA_MINIMAP_EVENT_HINT_LOCATION, 5 )
 
     -- Create attribute/stat master for hero
-    master2 = CreateUnitByName("master_2", Vector(4500 + hero:GetPlayerID()*320,-7400,0), true, hero, hero, hero:GetTeamNumber())
+    master2 = CreateUnitByName("master_2", Vector(4500 + hero:GetPlayerID()*270,-7400,0), true, hero, hero, hero:GetTeamNumber())
     master2:SetControllableByPlayer(hero:GetPlayerID(), true)
     master2:SetMana(0)
     hero.MasterUnit2 = master2
@@ -1206,7 +1206,7 @@ function FateGameMode:OnHeroInGame(hero)
     hero.MasterStash = masterStash
     LevelAllAbility(masterStash)]]
     -- Create item transfer master for hero
-    master3 = CreateUnitByName("npc_dota_courier", Vector(4500 + hero:GetPlayerID()*320,-7225,0), true, hero, hero, hero:GetTeamNumber())
+    master3 = CreateUnitByName("npc_dota_courier", Vector(4500 + hero:GetPlayerID()*270,-7225,0), true, hero, hero, hero:GetTeamNumber())
     master3:SetControllableByPlayer(hero:GetPlayerID(), true)
 
     master3:RemoveAbility("courier_return_to_base")
@@ -1226,6 +1226,9 @@ function FateGameMode:OnHeroInGame(hero)
     master3:AddAbility("master_item_transfer_6")
     master3:AddAbility("master_passive")
     LevelAllAbility(master3)
+
+    master3:SetDayTimeVisionRange(150)
+    master3:SetNightTimeVisionRange(150)
 
 
     -- Ping master location on minimap
