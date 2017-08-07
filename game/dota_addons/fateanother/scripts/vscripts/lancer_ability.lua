@@ -236,6 +236,9 @@ function Conversion(keys)
 		caster:SetHealth(1)
 	end
 	caster:SetMana(currentMana + healthLost)
+
+    local pcMana = ParticleManager:CreateParticle("particles/items2_fx/shadow_amulet_activate_end_flash.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+    ParticleManager:ReleaseParticleIndex(pcMana)
 end
 
 function OnIncinerateHit(keys)

@@ -539,13 +539,25 @@ function OnTerritoryRecall(keys)
 	local caster = keys.caster
 	local target = caster:GetOwnerEntity() 
 	if target:GetName() == "npc_dota_hero_crystal_maiden" then
-		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_recall", {}) 
+        local pc = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_relocate_channel.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_recall", {})
+        local modifier = target:FindModifierByName("modifier_recall")
+        modifier.Particle = pc
 
 		caster.IsRecallCanceled = false
 		Timers:CreateTimer(3.0, function()  
-		if not caster.IsRecallCanceled and caster:IsAlive() and IsInSameRealm(target:GetAbsOrigin(), caster:GetAbsOrigin()) then 
+		if not caster.IsRecallCanceled and caster:IsAlive() and IsInSameRealm(target:GetAbsOrigin(), caster:GetAbsOrigin()) then
+            local pcTeleportOut = ParticleManager:CreateParticle("particles/custom/caster/caster_recall_out.vpcf", PATTACH_CUSTOMORIGIN, target)
+            ParticleManager:SetParticleControl(pcTeleportOut, 0, target:GetAbsOrigin())
+            ParticleManager:ReleaseParticleIndex(pcTeleportOut)
+
 			target:SetAbsOrigin(caster:GetAbsOrigin())
 			FindClearSpaceForUnit(target, target:GetAbsOrigin(), true)
+
+            ParticleManager:DestroyParticle(pc, false)
+            ParticleManager:ReleaseParticleIndex(pc)
+            local pcTeleportIn = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_relocate_teleport.vpcf", PATTACH_ABSORIGIN, target)
+            ParticleManager:ReleaseParticleIndex(pcTeleportIn)
 		end
 		return end)
 	end
@@ -554,6 +566,11 @@ end
 function OnRecallCanceled(keys)
 	local caster = keys.caster
 	caster.IsRecallCanceled = true
+    local modifier = caster:GetOwnerEntity():FindModifierByName("modifier_recall")
+    local pc = modifier.Particle
+    ParticleManager:DestroyParticle(pc, false)
+    ParticleManager:ReleaseParticleIndex(pc)
+    modifier:Destroy()
 end
 
 function OnTerritoryOrbStart(keys)
@@ -1086,6 +1103,14 @@ function OnMTStart(keys)
 		SendErrorMessage(caster:GetPlayerOwnerID(), "#Cannot_Target_Self")
 		return
 	end
+
+    local pcBeam = ParticleManager:CreateParticle("particles/econ/items/puck/puck_alliance_set/puck_dreamcoil_tether_aproset.vpcf", PATTACH_POINT_FOLLOW, caster)
+    ParticleManager:SetParticleControlEnt(pcBeam, 1, caster, PATTACH_POINT_FOLLOW, "attach_weapon", caster:GetAbsOrigin(), true)
+    ParticleManager:SetParticleControlEnt(pcBeam, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+    -- Laziness...
+    caster.ManaTransferParticle = pcBeam
+    caster:EmitSound("Hero_KeeperOfTheLight.Illuminate.Charge")
+
 	caster.IsManaTransferActive = true
 	Timers:CreateTimer(function()
 		if durCount > duration then return end
@@ -1106,6 +1131,9 @@ end
 function OnMTEnd(keys)
 	local caster = keys.caster
 	caster.IsManaTransferActive = false
+    ParticleManager:DestroyParticle(caster.ManaTransferParticle, false)
+    ParticleManager:ReleaseParticleIndex(caster.ManaTransferParticle)
+    caster:StopSound("Hero_KeeperOfTheLight.Illuminate.Charge")
 end
 
 function OnAncientClosed(keys)

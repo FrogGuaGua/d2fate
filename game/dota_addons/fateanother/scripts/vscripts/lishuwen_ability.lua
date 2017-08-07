@@ -16,6 +16,8 @@ function OnMartialStart(keys)
 			GrantFuriousChainBuff(caster) 
 		end
 	end
+    local pcMark = ParticleManager:CreateParticle("particles/econ/items/axe/axe_cinder/axe_cinder_battle_hunger_start.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+    ParticleManager:ReleaseParticleIndex(pcMark)
 	target:EmitSound("Hero_Nightstalker.Void")
 end
 

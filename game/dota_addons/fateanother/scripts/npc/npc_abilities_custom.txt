@@ -1956,6 +1956,12 @@
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate" 		"1.0"
 		"AbilityCooldown"				"30"
+
+        "precache"
+        {
+            "particle"                  "particles/items2_fx/shadow_amulet_activate_end_flash.vpcf"
+        }
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -4012,6 +4018,8 @@
 		"precache"
 		{
 			"particle"			"particles/custom/rider/rider_breaker_gorgon_debuff.vpcf"
+			"particle"			"particles/custom/rider/rider_breaker_gorgon_mark.vpcf"
+			"particle"			"particles/custom/rider/rider_breaker_gorgon_mark_attr.vpcf"
 			"particle"			"particles/status_fx/status_effect_medusa_stone_gaze.vpcf"
 		}
 		
@@ -11272,6 +11280,9 @@
 		
 		"precache"
 		{
+            "particle"          "particles/custom/caster/caster_recall_out.vpcf"
+            "particle"          "particles/units/heroes/hero_wisp/wisp_relocate_teleport.vpcf"
+            "particle"          "particles/units/heroes/hero_wisp/wisp_relocate_channel.vpcf"
 		}
 
 		"AbilitySpecial"
@@ -12188,7 +12199,7 @@
 
 		"precache"
 		{
-			"particle"		"particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
+			"particle"		"particles/econ/items/puck/puck_alliance_set/puck_dreamcoil_tether_aproset.vpcf"
 		}
 
 		"AbilitySpecial"

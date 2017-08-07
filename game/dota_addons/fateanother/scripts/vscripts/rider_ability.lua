@@ -65,7 +65,17 @@ function OnBGStart(keys)
 	local ply = keys.caster:GetPlayerOwner()
 	local targetPoint = keys.target_points[1]
 
-	caster:EmitSound("Rider.BreakerGorgon") 
+	caster:EmitSound("Rider.BreakerGorgon")
+    local pcGlyph = ParticleManager:CreateParticle("particles/custom/rider/rider_breaker_gorgon_mark.vpcf", PATTACH_CUSTOMORIGIN, caster)
+    ParticleManager:SetParticleControl(pcGlyph, 0, targetPoint) 
+    ParticleManager:ReleaseParticleIndex(pcGlyph)
+
+    if caster.IsSealAcquired then
+        local pcLight = ParticleManager:CreateParticle("particles/custom/rider/rider_breaker_gorgon_mark_attr.vpcf", PATTACH_CUSTOMORIGIN, caster)
+        ParticleManager:SetParticleControl(pcLight, 0, targetPoint) 
+        ParticleManager:ReleaseParticleIndex(pcLight)
+    end
+
 	local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, 200
             , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	for k,v in pairs(targets) do
