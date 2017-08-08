@@ -10,8 +10,8 @@
     <Panel class="AboutRoot">
         <Panel id="AboutMain">
         <Panel id="AboutDeveloper" class="AboutSection">
-            <Label text="Fate/Another v1.23a" class="SectionHeader" />
-            <Label text="#ABOUT_DEV" />
+            <Label text="#ABOUT_DEV" class="SectionHeader" />
+            <Label text="#ABOUT_DEV_BODY" />
         </Panel>
 
         <Panel id="AboutCredits" class="AboutSection">
