@@ -79,6 +79,10 @@
         var minimapUI = UIRoot.FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer").FindChildTraverse("PreMinimapContainer");
         minimapUI.style.visibility = "collapse";
 
+        var pMinimap = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("minimap_container").FindChildTraverse("minimap");
+        pMinimap.style.width = "95%";
+        pMinimap.style.height = "95%";
+
         // Team Composition
         var teamCompUI = UIRoot.FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer").FindChildTraverse("BottomPanels").FindChildTraverse("GridTeamComp");
         teamCompUI.style.visibility = "collapse";

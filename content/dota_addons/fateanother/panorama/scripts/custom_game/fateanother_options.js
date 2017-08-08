@@ -101,11 +101,13 @@ Tab.prototype.Hover = function(){
     pBackground.visible = false;
 
     bOptionsButton.SetPanelEvent("onmouseover", function(){
-        $.DispatchEvent("DOTAShowTextTooltip", bOptionsButton, "Fate options");
+        $.DispatchEvent("DOTAShowTextTooltip", bOptionsButton, "#FA_Options_tooltip");
+        bOptionsButton.style.opacity = "1.0";
     });
 
     bOptionsButton.SetPanelEvent("onmouseout", function(){
         $.DispatchEvent("DOTAHideTextTooltip", bOptionsButton);
+        bOptionsButton.style.opacity = "0.5";
     });
 
     var config = new Tab("Configuration", "file://{resources}/layout/custom_game/fateanother_configuration.xml", true);
