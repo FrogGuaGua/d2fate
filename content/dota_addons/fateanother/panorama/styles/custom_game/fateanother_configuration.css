@@ -1,0 +1,66 @@
+.ConfigRoot
+{
+    width: 100%;
+    height: 100%;
+    margin: 20px 20px 20px 20px;
+    flow-children: down-wrap;
+}
+
+.ConfigSection
+{
+    flow-children: down-wrap;
+    width: 330px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.SectionHeader
+{
+    font-size: 24px;
+    font-weight: thin;
+    color: #939da0;
+    text-transform: uppercase;
+}
+
+#ConfigCameraDist
+{
+    flow-children: down-wrap;
+    height: 150px;
+}
+
+#ConfigCameraValue
+{
+    width: 250px;
+}
+
+#ConfigAudioSection
+{
+    height: 230px;
+}
+
+#FateConfigBGMList
+{
+    margin-top: 32px;
+    width: 250px;
+}
+
+#FateConfigBGMToggle
+{
+    horizontal-align: right;
+}
+
+#ConfigOptionsSection
+{
+    height: 100%;
+}
+
+.ConfigCmdText
+{
+    text-overflow: clip;
+}
+
+.ConfigCmdLabel
+{
+    text-overflow: clip;
+    color: white;
+}
