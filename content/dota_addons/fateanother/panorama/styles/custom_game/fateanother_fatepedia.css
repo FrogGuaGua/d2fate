@@ -2,6 +2,7 @@
 {
     horizontal-align: left;
     vertical-align: bottom;
+    margin-bottom: 27%;
     margin-left: 0%;
     flow-children: down; 
     z-index: 9999;
@@ -43,8 +44,9 @@
 
 #FatepediaBoard
 {
-    width: 1100px;
+    width: 850px;
     height: 600px;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #486186 ), color-stop( 0.5, #21262c ), to( #486186 ) );
     //border-radius: 50px 50px 50px 50px;
     //border:3px solid #DAA520;
     flow-children: down;
@@ -68,18 +70,20 @@
 
 .FatepediaSkillContextText
 {   
+    font-weight: bold;
+    color: white;
     font-size: 25px;
     text-shadow: 2px 2px 2px #000000;
-    font-weight: thin;
-    color: #939da0;
+    color: gradient( linear, 0% 0%, 0% 100%, from( #c88423 ), color-stop( 0.25, #c88423 ), color-stop( 0.5, #fffb84 ), color-stop( 0.75, #c88423 ), to( #9a6717 ) );
 }
 
 #FatepediaHeroName
 {   
     font-weight: bold;
-    color: #c3cacc;
+    color: white;
     font-size: 40px;
     text-shadow: 2px 2px 2px #000000;
+    color: gradient( linear, 0% 0%, 0% 100%, from( #c88423 ), color-stop( 0.25, #c88423 ), color-stop( 0.5, #fffb84 ), color-stop( 0.75, #c88423 ), to( #9a6717 ) );
     horizontal-align: center;
 }
 
@@ -91,18 +95,16 @@
 }
 #FatepediaHeroesPanel
 {
-    width: 950px;
-    height: 230px;
+    width: 800px;
+    height: 295px;
     margin-top: 25px;
-    margin-left: 70px;
-    margin-right: 50px;
+    margin-left: 50px;
     flow-children: right-wrap;
 }
 #FatepediaHeroInfoPanel
 {
-    horizontal-align: center;
     width: 800px;
-    height: 220px;
+    height: 380px;
     margin-top: 25px;
     margin-left: 25px;
     flow-children: right-wrap;

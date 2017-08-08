@@ -1,7 +1,10 @@
 .FateConfigRoot
 {
-    horizontal-align: center;
-    vertical-align: center;
+    horizontal-align: left;
+    vertical-align: bottom;
+    margin-bottom: 24%;
+    margin-left: 0%;
+    flow-children: down; 
     z-index: 9999;
 }
 
@@ -41,10 +44,19 @@
 
 #FateConfigBoard
 {
-    width: 800px;
+    width: 400px;
     height: 700px;
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #486186 ), color-stop( 0.5, #21262c ), to( #486186 ) );
+    //border-radius: 50px 50px 50px 50px;
+    //border:3px solid #DAA520;
+    //flow-children: right;
     horizontal-align: center;
+    //overflow: scroll;
     opacity: 0.9;
+    //background-image: url("file://{images}/custom_game/pepe.jpg");
+    //background-position: center;
+    //background-repeat: no-repeat;
+    //background-size: 100% 100%;
 }
 
 #FateConfigButtonImageText

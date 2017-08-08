@@ -59,6 +59,8 @@ function SetFatepediaHeroButtons()
 
 (function()
 {
+	$("#FatepediaBoard").visible = false;
+	$("#FatepediaHeroInfoPanel").visible = false;
 	//GameEvents.Subscribe( "fatepedia_kv_sent", GetKV);
 	SetFatepediaHeroButtons();
 	//for (i=0; i<6; i++) {
