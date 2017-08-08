@@ -110,10 +110,4 @@
 			]
 		},
 	]
-	m_Children = 
-	[
-		{
-			m_ChildRef = resource:"particles/custom/rider/rider_breaker_gorgon_mark_attr_a.vpcf"
-		},
-	]
 }
