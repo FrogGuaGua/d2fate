@@ -79,6 +79,10 @@
         var minimapUI = UIRoot.FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer").FindChildTraverse("PreMinimapContainer");
         minimapUI.style.visibility = "collapse";
 
+        var pMinimap = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("minimap_container").FindChildTraverse("minimap");
+        pMinimap.style.width = "95%";
+        pMinimap.style.height = "95%";
+
         // Team Composition
         var teamCompUI = UIRoot.FindChildTraverse("PreGame").FindChildTraverse("BottomPanelsContainer").FindChildTraverse("BottomPanels").FindChildTraverse("GridTeamComp");
         teamCompUI.style.visibility = "collapse";
@@ -95,9 +99,9 @@
         var KDAUI = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("quickstats").FindChildTraverse("QuickStatsContainer");
         UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("quickstats").style.width = "400px";
         UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("quickstats").style.marginTop = "0px";
-	//KDAUI.style.visibility = "collapse";
-        KDAUI.style.marginTop = "8px";
-        KDAUI.style.marginLeft = "160px";
+	    KDAUI.style.visibility = "collapse";
+        //KDAUI.style.marginTop = "8px";
+        //KDAUI.style.marginLeft = "160px";
 
         // backpack
         var backpackUI = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("inventory").FindChildTraverse("inventory_items").FindChildTraverse("InventoryContainer").FindChildTraverse("inventory_backpack_list");
@@ -172,8 +176,7 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_customization.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_timer_layout.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_portrait.xml" />
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_fatepedia.xml" />
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_config.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_options.xml" />
 		<!-- <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" /> -->
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_buff_bar.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_combatevent.xml" />

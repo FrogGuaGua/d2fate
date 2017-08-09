@@ -1,6 +1,7 @@
 var g_GameConfig = FindCustomUIRoot($.GetContextPanel());
 var transport = null;
 var bIsMounted = false;
+var CameraDistance = 1600;
 
 function OnFateConfigButtonPressed()
 {
@@ -19,7 +20,7 @@ function OnFateConfigButtonPressed()
 
 function OnCameraDistSubmitted()
 {
-    var panel = $("#FateConfigCameraValue");
+    var panel = $("#ConfigCameraValue");
     var number = parseFloat(panel.text);
     if (number > 1900)
     {
@@ -28,7 +29,6 @@ function OnCameraDistSubmitted()
     GameUI.SetCameraDistance(number);
     panel.text = number.toString();
 }
-
 
 function OnConfig1Toggle()
 {
@@ -153,7 +153,7 @@ function RegisterAllMasterUnits(data) {
 
 (function()
 {
-    $("#FateConfigBoard").visible = false;
+   // $("#FateConfigBoard").visible = false;
     $("#FateConfigBGMList").SetSelected(1);
     //GameEvents.Subscribe( "player_chat", PlayerChat);
     GameEvents.Subscribe( "player_bgm_on", TurnBGMOn);

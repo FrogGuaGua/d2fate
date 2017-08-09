@@ -116,5 +116,22 @@
 		"Fateanother_Master_Health_Tooltip"				"Master's current health, the limit on how many times you can use Command Seal. Casting Command Seal costs 1 health, and may be negated if it would reduce the health to zero.\nHealth is replenished to full every 10 minutes."
 		"Fateanother_Master_Mana_Tooltip"				"Master's current mana, the resource used for customizing Servant or casting Command Seal.\nMana is replenished by 4 on Servant level up, and 10 every 10 minutes."
 
+        "FA_Options_tooltip"                            "Fate settings"
+
+        "ABOUT_DEV"                                     "Fate/Another v1.23a"
+        "ABOUT_DEV_BODY"                                "Currently developed by: Spectrum, zx52, Prick and Quark"
+        "ABOUT_CREDITS"                                 "Credits and acknowledgements"
+
+        "ABOUT_CREDITS_BODY"
+        "Special thanks to Dun1007 and past developers of Fate/Another for making the gamemode.
+\nkriith, Jeekaroose and Bonjwa for the particles.
+\nBMD, Noya, DoctorGester, atr1 and other people of the Dota 2 modding community who lent a helping hand.
+\nChaosRealm and SCV Market for public models.
+\nKingSaber(WC3) for bridge and road models.
+\nDelta and Pyrefly for cinematic.
+\nFilo for servant voice clips ported from other series.
+\nTranslation volunteers: MENTAL OUT|食蜂操祈, Marcellus, Mucya, SasakiSaki, Com, Beato, Amano Jack, AMATERASU, Matka Tvoja.
+\nType-Moon for creating Fate/Stay Night and the franchise."
+
 	}
 }

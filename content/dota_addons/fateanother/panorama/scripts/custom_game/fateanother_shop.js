@@ -15,6 +15,6 @@ for(var i = 0; i < items.length; i++){
 function ConsolePurchase(i){
     return function() {
         GameEvents.SendCustomGameEventToServer("hotkey_purchase_item", {"item" : items[i]});
-        Game.EmitSound(General.Buy);
+        Game.EmitSound("General.Buy");
     }
 }
