@@ -1068,10 +1068,21 @@ end
 function OnBrillianceStart(keys)
 	local caster = keys.caster
 	local hero = caster:GetPlayerOwner():GetAssignedHero()
+	keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_waver_big_bad_voodoo", {})
+	--keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_waver_big_bad_voodoo_channeling", {}) --leaving this line here though commented in case it is actually needed
+	keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_waver_silence_aura", {})
 	if hero:HasModifier("modifier_annihilate_caster") then
 		keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_waver_root_aura", {})
 	end
-end 
+end
+
+function OnBrillianceEnd(keys)
+	local caster = keys.caster
+
+	caster:RemoveModifierByName("modifier_waver_big_bad_voodoo")
+	caster:RemoveModifierByName("modifier_waver_silence_aura") 
+	caster:RemoveModifierByName("modifier_waver_root_aura") 
+end
 
 function OnAnnihilateStart(keys)
 	local caster = keys.caster
