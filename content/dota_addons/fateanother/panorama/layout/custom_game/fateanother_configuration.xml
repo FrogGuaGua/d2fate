@@ -14,8 +14,9 @@
         <Panel id="ConfigCameraSection" class="ConfigSection" hittest="false">
             <Label text="Camera" class="SectionHeader" hittest="false" />
             <Panel id="ConfigCameraDist" hittest="false">
-                <Label text="#FA_Config_Camdist" hittest="false"/>
-                <TextEntry id="ConfigCameraValue" maxchars="4" text="1600" placeholder="" oninputsubmit="OnCameraDistSubmitted()" />
+                <!--<Label text="#FA_Config_Camdist" hittest="false"/>
+                <TextEntry id="ConfigCameraValue" maxchars="4" text="1600" placeholder="" oninputsubmit="OnCameraDistSubmitted()" />-->
+                <DOTASettingsSlider id="ConfigCameraSlider" min="1600" max="1900" onmouseover="OnCamSliderIn()" onmouseout="OnCamSliderOut()" text="#FA_Config_Camdist" />
             </Panel>
         </Panel>
 

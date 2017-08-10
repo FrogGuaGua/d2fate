@@ -1,7 +1,7 @@
 var g_GameConfig = FindCustomUIRoot($.GetContextPanel());
 var transport = null;
 var bIsMounted = false;
-var CameraDistance = 1600;
+var bRenderCamera = false;
 
 function OnFateConfigButtonPressed()
 {
@@ -29,6 +29,35 @@ function OnCameraDistSubmitted()
     GameUI.SetCameraDistance(number);
     panel.text = number.toString();
 }
+
+function RenderCamera(){
+    var oSlider = $("#ConfigCameraSlider");
+    var fMin = 1600;
+    var fMax = 1900;
+    var fDistance = fMin + oSlider.value * (fMax - fMin);
+
+    if (fDistance < fMin){
+        fDistance = fMin;
+    }
+    else if (fDistance > fMax){
+        fDistance = fMax;
+    }
+
+    GameUI.SetCameraDistance(fDistance);
+
+    if(bRenderCamera === true){
+        $.Schedule(0.016, RenderCamera);
+    }
+};
+
+function OnCamSliderIn(){
+    bRenderCamera = true;
+    RenderCamera();
+};
+
+function OnCamSliderOut(){
+    bRenderCamera = false;
+};
 
 function OnConfig1Toggle()
 {
