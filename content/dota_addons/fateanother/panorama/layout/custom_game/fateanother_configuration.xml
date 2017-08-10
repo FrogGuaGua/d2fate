@@ -10,19 +10,19 @@
         <include src="file://{resources}/scripts/custom_game/simple_panel_animation.js" />
         <include src="file://{resources}/scripts/custom_game/fateanother_config_tooltip.js" /> 
     </scripts>
-    <Panel class="ConfigRoot">
-        <Panel id="ConfigCameraSection" class="ConfigSection">
-            <Label text="Camera" class="SectionHeader" />
-            <Panel id="ConfigCameraDist">
-                <Label text="#FA_Config_Camdist"/>
+    <Panel class="ConfigRoot" hittest="false">
+        <Panel id="ConfigCameraSection" class="ConfigSection" hittest="false">
+            <Label text="Camera" class="SectionHeader" hittest="false" />
+            <Panel id="ConfigCameraDist" hittest="false">
+                <Label text="#FA_Config_Camdist" hittest="false"/>
                 <TextEntry id="ConfigCameraValue" maxchars="4" text="1600" placeholder="" oninputsubmit="OnCameraDistSubmitted()" />
             </Panel>
         </Panel>
 
-        <Panel id="ConfigAudioSection" class="ConfigSection">
-            <Label text="Audio" class="SectionHeader"/>
+        <Panel id="ConfigAudioSection" class="ConfigSection" hittest="false">
+            <Label text="Audio" class="SectionHeader" hittest="false"/>
             <Panel>
-                <Label text="Background Music" />
+                <Label text="Background Music" hittest="false" />
                 <ToggleButton id="FateConfigBGMToggle" checked="false" class="FateConfigOpenText" text="#FA_Config_BGM_Repeat" onactivate="OnRepeatToggle()"  />
                 <DropDown id="FateConfigBGMList" oninputsubmit="OnDropDownChanged()">
                     <Label text="#BGM1" id="1" checked="true"/>
@@ -37,8 +37,8 @@
             </Panel>
         </Panel>
 
-        <Panel id="ConfigOptionsSection" class="ConfigSection">
-            <Label text="Options" class="SectionHeader" />
+        <Panel id="ConfigOptionsSection" class="ConfigSection" hittest="false">
+            <Label text="Options" class="SectionHeader" hittest="false" />
                 <Label id="FateConfigToggleText" class="FateConfigOpenText" text="#FA_Config_Gameplay" hittest="false"/>
                 <ToggleButton id="option1" checked="false" class="FateConfigOpenText" text="#FA_Config_Option1" onmouseover="Config1ShowTooltip()" onmouseout="Config1HideTooltip()" onactivate="OnConfig1Toggle()"/>
                 <ToggleButton id="option2" checked="false" class="FateConfigOpenText" text="#FA_Config_Option2" onactivate="OnConfig2Toggle()" />
@@ -47,8 +47,8 @@
                 <ToggleButton id="option5" checked="false" class="FateConfigOpenText" text="#FA_Config_Option5" onactivate="OnConfig5Toggle()" /> 
         </Panel>
 
-        <Panel id="ConfigCmdSection" class="ConfigSection">
-            <Label text="Commands" class="SectionHeader" />
+        <Panel id="ConfigCmdSection" class="ConfigSection" hittest="false">
+            <Label text="Commands" class="SectionHeader" hittest="false" />
             <Label id="FateConfigCmd1" text="-goldpls" class="ConfigCmdLabel" hittest="false"/>
             <Label id="FateConfigCmd1Text" text="#FA_Config_Cmd1" class="ConfigCmdText" hittest="false"/>
             <Label id="FateConfigCmd2" text="\n-bgmon / -bgmoff" class="ConfigCmdLabel" hittest="false"/>

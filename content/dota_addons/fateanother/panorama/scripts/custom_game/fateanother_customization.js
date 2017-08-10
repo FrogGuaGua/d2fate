@@ -46,7 +46,8 @@ function CreateFateTalentButton(){
 	var statBranchBG = fateButton.FindChildTraverse("StatBranchBG")
 	statBranchBG.style.visibility = "collapse";
 	
-	fateButton.style.backgroundImage = "url(\"file://{images}/misc/customize.png\")";
+    fateButton.style.backgroundImage = "url(\"file://{images}/misc/customize.png\")";
+    fateButton.style.transition = "background-image 0.3s ease-in-out 0.0s";
 }
 
 function RemoveChilds(panel)

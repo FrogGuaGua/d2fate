@@ -57,14 +57,7 @@ function OnConfig4Toggle()
 
 function OnConfig5Toggle()
 {
-    var rootUI = $.GetContextPanel().GetParent();
-    $.Msg(rootUI);
-    var portraitUI_1 = rootUI.FindChildTraverse("HeroPortraitPanel");
-    var portraitUI_2 = rootUI.FindChildTraverse("MasterPortraitPanel");
-    var portraitUI_3 = rootUI.FindChildTraverse("MasterStatusPanel");
-    portraitUI_1.visible = !portraitUI_1.visible;
-    portraitUI_2.visible = !portraitUI_2.visible;
-    portraitUI_3.visible = !portraitUI_3.visible;
+
 }
 
 function OnConfig6Toggle() {
