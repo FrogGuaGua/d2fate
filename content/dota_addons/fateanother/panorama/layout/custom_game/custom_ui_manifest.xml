@@ -173,7 +173,6 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_customization.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_timer_layout.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_portrait.xml" />
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_options.xml" />
 		<!-- <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" /> -->
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_buff_bar.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_combatevent.xml" />
@@ -186,8 +185,8 @@
 		<!-- <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/inventory.xml" /> -->
 		<!-- <CustomUIElement type="GameInfo" layoutfile="file://{resources}/layout/custom_game/fateanother_game_info.xml" /> -->
 		<CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/multiteam_hero_select_overlay.xml" />
-                <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_hero_selection.xml" />
-		
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_hero_selection.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_options.xml" />
 	</Panel>
 </root>
 
