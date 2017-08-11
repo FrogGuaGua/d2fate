@@ -36,10 +36,7 @@ function RenderCamera(){
     var fMax = 1900;
     var fDistance = fMin + oSlider.value * (fMax - fMin);
 
-    if (fDistance < fMin){
-        fDistance = fMin;
-    }
-    else if (fDistance > fMax){
+    if (fDistance > fMax){
         fDistance = fMax;
     }
 
