@@ -979,7 +979,9 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         end
         --print("Before reductions", dmg)
         sourceHero.ServStat:doDamageBeforeReduction(dmg)
-        targetHero.ServStat:takeDamageBeforeReduction(dmg)
+        if not targetHero:IsIllusion() then -- band aid for NR's shapeshift.
+	        targetHero.ServStat:takeDamageBeforeReduction(dmg)
+	    end
     end
     -- END
 
