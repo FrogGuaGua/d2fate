@@ -716,9 +716,10 @@ function FateGameMode:OnPlayerChat(keys)
         elseif PlayerResource:GetReliableGold(plyID) < tonumber(goldAmt) and plyID ~= tonumber(pID) and PlayerResource:GetTeam(plyID) == PlayerResource:GetTeam(tonumber(pID)) and tonumber(goldAmt) > 0 then
             -- This elseif condition is for when your gold is below the default 300 or whatever you set, that you send the rest of your gold to teammate.
             local targetHero = PlayerResource:GetPlayer(tonumber(pID)):GetAssignedHero()
-            hero:ModifyGold(-PlayerResource:GetReliableGold(plyID), true , 0)
-            targetHero:ModifyGold(PlayerResource:GetReliableGold(plyID), true, 0)
-            CustomGameEventManager:Send_ServerToTeam(hero:GetTeamNumber(), "fate_gold_sent", {goldAmt=PlayerResource:GetReliableGold(plyID), sender=hero:entindex(), recipent=targetHero:entindex()} )
+            goldAmt = PlayerResource:GetReliableGold(plyID)
+            hero:ModifyGold(-goldAmt, true , 0)
+            targetHero:ModifyGold(goldAmt, true, 0)
+            CustomGameEventManager:Send_ServerToTeam(hero:GetTeamNumber(), "fate_gold_sent", {goldAmt=tonumber(goldAmt), sender=hero:entindex(), recipent=targetHero:entindex()} )
             --GameRules:SendCustomMessage("<font color='#58ACFA'>" .. hero.name .. "</font> sent " .. goldAmt .. " gold to <font color='#58ACFA'>" .. targetHero.name .. "</font>" , hero:GetTeamNumber(), hero:GetPlayerOwnerID())
         end
     end
