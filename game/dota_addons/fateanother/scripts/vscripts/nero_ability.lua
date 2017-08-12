@@ -384,7 +384,12 @@ function OnTheatreStart(keys)
 	local theatreFx2 = ParticleManager:CreateParticle("particles/custom/nero/nero_domus_ring_border.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
 	ParticleManager:SetParticleControl( theatreFx2, 1, Vector(keys.Radius,0,0))
 
-	Timers:CreateTimer( keys.Duration, function()
+	local timeCounter = 0
+	Timers:CreateTimer(0.5, function()
+		if caster:IsAlive() and timeCounter < keys.Duration then
+			timeCounter = timeCounter + 0.5
+			return 0.5
+		end
 		ParticleManager:DestroyParticle( theatreFx2, false )
 		ParticleManager:ReleaseParticleIndex( theatreFx2 )
 	end)	
