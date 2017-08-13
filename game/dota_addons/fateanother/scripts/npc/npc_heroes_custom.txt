@@ -7,22 +7,25 @@
 "DOTAHeroes"
 {
 
-        "npc_dota_hero_dummy"
-        {
-		"override_hero"				"npc_dota_hero_wisp"
-		"DrawParticlesWhileHidden" "1"
-		"DisableWearables" 			"1"
+    "npc_dota_hero_dummy"
+    {
+        "override_hero"                 "npc_dota_hero_wisp"
+        "Model"					    	"models/development/invisiblebox.vmdl"
+        "DrawParticlesWhileHidden"      "1"
+        "DisableWearables"              "1"
 
-		"AbilityLayout"				"1"
-		"Ability1"				"dummy_pause"
-                "Ability2"				""
-                "Ability3"				""
-                "Ability4"				""
-                "Ability5"				""
-                "Ability6"				""
-                "Ability7"				""
-                "Ability8"				""
-                
+        "AbilityLayout"                 "1"
+        "Ability1"                      "dummy_pause"
+        "Ability2"                      ""
+        "Ability3"                      ""
+        "Ability4"                      ""
+        "Ability5"                      ""
+        "Ability6"                      ""
+        "Ability7"                      ""
+        "Ability8"                      ""
+        
+		"VisionDaytimeRange"            "0"
+		"VisionNighttimeRange"          "0"
 	}
 
 	//=================================================================================================================

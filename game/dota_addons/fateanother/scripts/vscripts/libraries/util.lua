@@ -95,7 +95,8 @@ revokes = {
     "revoked",
     "modifier_command_seal_2",
     "modifier_command_seal_3",
-    "modifier_command_seal_4"
+    "modifier_command_seal_4",
+    "round_pause"
 }
 
 locks = {

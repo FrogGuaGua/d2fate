@@ -1242,9 +1242,9 @@ function FateGameMode:OnHeroInGame(hero)
     GameRules:SendCustomMessage("Servant <font color='#58ACFA'>" .. heroName .. "</font> has been summoned.", 0, 0)
 
     if _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
-        if self.nCurrentRound == 0 then
+        if self.nCurrentRound == 0 and _G.CurrentGameState == "FATE_PRE_GAME" then
             giveUnitDataDrivenModifier(hero, hero, "round_pause", 70)
-        elseif self.nCurrentRound >= 1 then
+        else
             giveUnitDataDrivenModifier(hero, hero, "round_pause", 10)
         end
     else
