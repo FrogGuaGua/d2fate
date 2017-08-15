@@ -78,8 +78,8 @@ ROUND_DURATION = 120
 FIRST_BLESSING_PERIOD = 300
 BLESSING_PERIOD = 480
 BLESSING_MANA_REWARD = 15
-SPAWN_POSITION_RADIANT_DM = Vector(-1600, 5820, 320)
-SPAWN_POSITION_DIRE_DM = Vector(2960, -1000, 320)
+SPAWN_POSITION_RADIANT_DM = Vector(-5400, 762, 376)
+SPAWN_POSITION_DIRE_DM = Vector(7200, 4250, 755)
 SPAWN_POSITION_T1_TRIO = Vector(-796,7032,512)
 SPAWN_POSITION_T2_TRIO = Vector(5676,6800,512)
 SPAWN_POSITION_T3_TRIO = Vector(5780,2504,512)
@@ -2848,13 +2848,13 @@ function GetRespawnPos(playerHero, currentRound, index)
     -- [0] [1]
     -- [2] [3]
     -- [4] [x] x is default spawn
-    local radiantOffset = vColumn * -2 + vRow * -1
+    local radiantOffset = vColumn * -1 + vRow * -.5
     local radiantSpawn = SPAWN_POSITION_RADIANT_DM + radiantOffset
 
     -- [0] [1]
     -- [2] [x]
     -- [4] [5] x is default spawn
-    local direOffset = vColumn * -1 + vRow * -1
+    local direOffset = vColumn * 1 + vRow * -.5
     local direSpawn = SPAWN_POSITION_DIRE_DM + direOffset
 
     local row = index % 2
