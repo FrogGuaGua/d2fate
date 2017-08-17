@@ -1,10 +1,11 @@
 gilgamesh_enuma_elish = class({})
+gilgamesh_enuma_elish_activate = class({})
 
 if not IsServer() then
   return
 end
 
-Wrappers.ChargedBeam(gilgamesh_enuma_elish)
+Wrappers.ChargedBeam(gilgamesh_enuma_elish,gilgamesh_enuma_elish_activate)
 
 ---[[------------this function is not needed, merely for testing and adjusting numbers
 function gilgamesh_enuma_elish:GetTestPrints()
@@ -173,4 +174,6 @@ end
 function gilgamesh_enuma_elish:GetAbilityTextureName()
   return "custom/gilgamesh_enuma_elish"
 end
-
+function gilgamesh_enuma_elish_activate:GetAbilityTextureName()
+  return "custom/gilgamesh_enuma_elish"
+end

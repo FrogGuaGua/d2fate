@@ -53,7 +53,28 @@ end
 
 
 --Charged Beam common stuff
-function Wrappers.ChargedBeam(ability)
+function Wrappers.ChargedBeam(ability, ability2)	
+	-- ability_activate part
+	function ability2:CastFilterResult()
+	  local caster = self:GetCaster()	
+	  local beam_ability = caster.beam_ability
+			
+	  if GameRules:GetGameTime()-beam_ability:GetChannelStartTime() < beam_ability:GetSpecialValueFor("activation") then
+	    return UF_FAIL_CUSTOM
+	  end
+	  return UF_SUCCESS
+	end
+	
+	function ability2:GetCustomCastError()
+	  return "Not Charged!"
+	end	
+	function ability2:OnSpellStart()	
+	end	
+	function ability2:GetCastAnimation()
+	  return nil
+	end	
+
+
 	-----Charge calc
 	function ability:__Formula( start_charge, end_charge, total_gain)
 		local bonus_start = self:GetSpecialValueFor(start_charge)
@@ -92,6 +113,7 @@ function Wrappers.ChargedBeam(ability)
 	-----spell stuff
 	function ability:OnSpellStart()
 		local caster = self:GetCaster()
+		caster.beam_ability = self
 		self.cc_timer = 0
 		self.cc_interval = 0.1
 		self.channel_charge = 0
