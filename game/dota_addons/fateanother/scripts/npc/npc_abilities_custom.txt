@@ -10457,7 +10457,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"displacement"		"0"
+				"endcast_pause"		"2.0"
 			}
 
 			// Extra charge variables

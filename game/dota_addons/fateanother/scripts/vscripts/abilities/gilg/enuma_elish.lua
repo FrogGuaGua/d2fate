@@ -101,7 +101,7 @@ end
 
 function gilgamesh_enuma_elish:AfterChannelFin_Success()
   local caster = self:GetCaster()
-  giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", 2)  
+  giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", self:GetSpecialValueFor("endcast_pause"))  
   caster:StopSound("Hero_Dark_Seer.Wall_of_Replica_lp")
   EmitGlobalSound("Gilgamesh.Enuma2") 
   
