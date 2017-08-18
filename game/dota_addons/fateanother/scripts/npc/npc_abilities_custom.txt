@@ -27560,7 +27560,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"900"
+				"damage"				"1000"
 			}
 		}
 
@@ -27663,7 +27663,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"900"
+				"damage"				"1000"
 			}
 
 		}
