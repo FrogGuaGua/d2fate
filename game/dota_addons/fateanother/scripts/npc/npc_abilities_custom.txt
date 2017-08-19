@@ -24540,6 +24540,16 @@
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"8"
 			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"strbonus"			"20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"dmg_ratio"			"1.5"
+			}
 		}
 		
 		"OnSpellStart"
@@ -24548,6 +24558,7 @@
 			{
 				"ScriptFile"		"lishuwen_ability"
 				"Function"			"OnBerserkStart"
+				"Duration"			"%duration"
 			}
 		}
 		
@@ -24702,7 +24713,7 @@
 		// Cast
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.5"
-		"AbilityCooldown"				"22"
+		"AbilityCooldown"				"27 24 21 18 15"
 		"AbilityManaCost"				"200"
 		
 		// Ability Special
@@ -25220,7 +25231,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"open_wound_damage"		"65 80 95 110 125"	
+				"open_wound_damage"		"60 75 90 105 120"	
 			}
 			"06"
 			{
@@ -25666,7 +25677,7 @@
 			"11"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"third_strike_aerial_hit_count"				"7"
+				"third_strike_aerial_hit_count"				"15"
 			}
 			"12"
 			{
@@ -25832,7 +25843,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{
@@ -25847,8 +25858,13 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_bonus"			"100"
+				"var_type"			"FIELD_FLOAT"
+				"strbonus"			"20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"dmg_ratio"			"1.5"
 			}
 		}
 		
