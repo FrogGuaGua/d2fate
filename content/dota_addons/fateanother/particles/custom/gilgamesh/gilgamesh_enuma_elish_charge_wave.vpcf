@@ -46,7 +46,7 @@
 		},
 		{
 			_class = "C_OP_RemapCPtoScalar"
-			m_nCPInput = 1
+			m_nCPInput = 3
 			m_flInputMin = 1.0
 			m_flInputMax = 1000.0
 			m_flOutputMin = 1.0

@@ -78,26 +78,29 @@ end
 function gilgamesh_enuma_elish:AfterThinkChargeIncr()
   local caster = self:GetCaster()
   self:GetTestPrints()
-  
-  if self.channel_charge == 15 then
-    ParticleManager:SetParticleControl(self.PI1, 1, Vector(500,1,1))    
-  elseif self.channel_charge == 20 then
-    ParticleManager:SetParticleControl(self.PI1, 1, Vector(600,1,1))    
-  elseif self.channel_charge == 25 then
+
+  if self.channel_charge == 25 then
     FreezeAnimation(self:GetCaster())
     caster:EmitSound("Hero_Weaver.CrimsonPique.Layer")
-  elseif self.channel_charge == 30 then   
-    ParticleManager:SetParticleControl(self.PI1, 1, Vector(800,1,1))    
+  elseif self.channel_charge == 29 then   
     self:VFX2_Sparkles(caster)
-    ParticleManager:SetParticleControl(self.PI2, 2, Vector(1, 1, 1.25))
-  elseif self.channel_charge == 35 then
-    ParticleManager:SetParticleControl(self.PI1, 1, Vector(900,1,1))    
-    ParticleManager:SetParticleControl(self.PI2, 2, Vector(1, 1, 1.52))
-  elseif self.channel_charge == 40 then
-    ParticleManager:SetParticleControl(self.PI1, 1, Vector(1000,1,1))    
-    ParticleManager:SetParticleControl(self.PI2, 2, Vector(1, 1, 2.25))    
+  end
+  
+  --red aura
+  local intensity = self.channel_charge * 20 + 200
+  ParticleManager:SetParticleControl(self.PI1, 1, Vector(intensity,1,1))    
+
+  --red floor
+  local intensity2 = self.channel_charge * 15 + 130
+  ParticleManager:SetParticleControl(self.PI1, 3, Vector(intensity2,1,1))    
+
+  --sparkles
+  if self.channel_charge > 32 then
+    local intensity = -0.6 + self.channel_charge / 100 * 6
+    ParticleManager:SetParticleControl(self.PI2, 2, Vector(1, 1, intensity))
   end
 end
+
 
 function gilgamesh_enuma_elish:AfterChannelFin_Success()
   local caster = self:GetCaster()

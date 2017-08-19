@@ -72,8 +72,8 @@
 		{
 			_class = "C_INIT_RandomRadius"
 			m_flRadiusRandExponent = 0.2
-			m_flRadiusMin = 32.0
-			m_flRadiusMax = 64.0
+			m_flRadiusMin = 40.0
+			m_flRadiusMax = 70.0
 		},
 		{
 			_class = "C_INIT_RandomYawFlip"
