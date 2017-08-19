@@ -76,35 +76,28 @@ function Wrappers.ChargedBeam(ability, ability2)
 
 
 	-----Charge calc
-	function ability:__Formula( start_charge, end_charge, total_gain)
-		local bonus_start = self:GetSpecialValueFor(start_charge)
+	function ability:__Formula( start_charge, end_charge, total_gain, gain_per_tick)		
 		local bonus_end = self:GetSpecialValueFor(end_charge)
-		local diff = bonus_end - bonus_start
-		local bonus_per_charge = self:GetSpecialValueFor(total_gain) / diff
-		local bonus_end_capped = bonus_end
+		local bonus_start = self:GetSpecialValueFor(start_charge)
+		local bonus_end_capped = math.min(self.channel_charge, bonus_end)
+		local bonus_per_charge 
 
-		if self.channel_charge < bonus_end_capped then
-			bonus_end_capped = self.channel_charge
-		end
-
-		return math.max(bonus_end_capped - bonus_start,0) * bonus_per_charge
-	end
-
-	function ability:ChargeGetPartial(add_start, add_end, total_gain, add_multi)
-		if add_multi then
-			local add_multi = self:GetSpecialValueFor(add_multi)
-			return self:__Formula( add_start, add_end, total_gain) * add_multi
+		if gain_per_tick then
+			bonus_per_charge = gain_per_tick
 		else
-			return self:__Formula(add_start, add_end, total_gain)
+			local diff = bonus_end - bonus_start
+			bonus_per_charge = self:GetSpecialValueFor(total_gain) / diff
 		end
+				
+		return math.max(bonus_end_capped - bonus_start,0) * bonus_per_charge, bonus_per_charge
 	end
 
-	function ability:ChargeGetTotal(stat, start_charge, end_charge, total_gain, add1_start, add1_end, add1_multi)--, add2_start, add2_end, add2_multi, add3_start, add3_end, add3_multi)
-		local bonus_base_total = self:ChargeGetPartial(start_charge, end_charge, total_gain)
+	function ability:ChargeGetTotal(stat, start_charge, end_charge, total_gain, add1_start, add1_end)--, add2_start, add2_end, add3_start, add3_end)
+		local bonus_base_total, bonus_per_charge = self:__Formula(start_charge, end_charge, total_gain)
 		local add_bonus = 0
 		
 		if add1_start then
-			add_bonus = add_bonus + self:ChargeGetPartial(add1_start, add1_end, total_gain, add1_multi)
+			add_bonus = add_bonus + self:__Formula(add1_start, add1_end, total_gain, bonus_per_charge)
 		end
 
 		return self:GetSpecialValueFor(stat) + bonus_base_total + add_bonus
