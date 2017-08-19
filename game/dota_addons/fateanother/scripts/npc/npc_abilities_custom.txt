@@ -21384,7 +21384,7 @@
 		"AbilityCastRange"				"800"
 		"AbilityCastRangeBuffer"		"200"
 		"AbilityCastPoint"				"0.15"
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"10"
 		"AbilityManaCost"				"100"
 		
 		// Ability special
@@ -21494,7 +21494,7 @@
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
 		}
 		
-		"AbilityCooldown"				"13 12 11 10 9"
+		"AbilityCooldown"				"15 14 13 12 11"
 		"AbilityManaCost"				"200"
 		
 		"AbilitySpecial"
