@@ -11,11 +11,11 @@ Wrappers.ChargedBeam(gilgamesh_enuma_elish,gilgamesh_enuma_elish_activate)
 function gilgamesh_enuma_elish:GetTestPrints()
   print("channeling:  "..self.channel_charge.."  channeltime: "..GameRules:GetGameTime()-self:GetChannelStartTime())
   local damage_total = self:GetBeamDamage()
-  local bonus_base_total = self:ChargeGetPartial("damage_charge_start", "damage_charge_end", "damage_total")
-  local damage_bonus_add = self:ChargeGetPartial("add1_charge_start", "add1_charge_end", "damage_total", "add1_multi")
+  local bonus_base_total, bonus_per_charge = self:__Formula("damage_charge_start", "damage_charge_end", "damage_total")
+  local damage_bonus_add = self:__Formula("add1_charge_start", "add1_charge_end", "damage_total", bonus_per_charge)
   print("DMG BONUS ADD:   ",damage_bonus_add,"    base bonus total: ", bonus_base_total, "   dmg total :   ",damage_total)
   local endradius_total = self:GetBeamEndRadius()
-  local bonus_base_total_radius = self:ChargeGetPartial("endradius_charge_start","endradius_charge_end","endradius_total")
+  local bonus_base_total_radius = self:__Formula("endradius_charge_start","endradius_charge_end","endradius_total")
   --print("RADIUSEND BONUS base bonus total: ", bonus_base_total_radius, "   radius total :   ",endradius_total)
 end
 --]]
@@ -167,7 +167,7 @@ function gilgamesh_enuma_elish:GetBeamEndRadius()
 end
 
 function gilgamesh_enuma_elish:GetBeamDamage()
-  return self:ChargeGetTotal("damage","damage_charge_start","damage_charge_end","damage_total", "add1_charge_start", "add1_charge_end", "add1_multi")
+  return self:ChargeGetTotal("damage","damage_charge_start","damage_charge_end","damage_total", "add1_charge_start", "add1_charge_end")
 end
 
 function gilgamesh_enuma_elish:GetCastAnimation()

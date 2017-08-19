@@ -10501,11 +10501,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"add1_charge_end"		"50"
 			}
-			"16"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"add1_multi"		"1.25"
-			}
 		}
 	}
 	//=====================================
