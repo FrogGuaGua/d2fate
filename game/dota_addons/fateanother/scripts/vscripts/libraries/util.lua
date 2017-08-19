@@ -35,6 +35,7 @@ softdispellable = {
     "modifier_atalanta_last_spurt",
     "modifier_cursed_lance",
     "modifier_battle_continuation_heal",
+    "modifier_argos_armor",
 }
 
 strongdispellable = {
@@ -72,6 +73,7 @@ strongdispellable = {
     "modifier_atalanta_last_spurt",
     "modifier_cursed_lance",
     "modifier_battle_continuation_heal",
+    "modifier_argos_armor",
 
 
     -- Strong Dispelable

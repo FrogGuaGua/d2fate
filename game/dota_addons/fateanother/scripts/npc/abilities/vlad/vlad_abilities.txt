@@ -111,7 +111,7 @@
 		"AbilityCastPoint"				"0.1"
 		"AbilityCooldown"				"14"
 		"AbilityManaCost"				"200" //stuff concerning mana cost, conditional and attribute hp% update of this ability is currently hardcoded in lua
-		//"LevelsBetweenUpgrades"				"1"
+		"LevelsBetweenUpgrades"				"1"
 
 		"precache"
 		{
@@ -206,7 +206,7 @@
 		"AbilityCastPoint"				"0.30"
 		"AbilityCooldown"				"25"
 		"AbilityManaCost"				"400"
-		"LevelsBetweenUpgrades"				"1"
+		//"LevelsBetweenUpgrades"				"1"
 
 		"precache"
 		{
@@ -815,7 +815,7 @@
 
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"14"
+		"AbilityManaCost"				"15"
 
 		"precache"
 		{
@@ -910,7 +910,7 @@
 
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{

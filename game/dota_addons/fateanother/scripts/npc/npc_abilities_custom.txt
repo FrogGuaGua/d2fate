@@ -6925,7 +6925,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"16"
+		"AbilityManaCost"				"15"
 
 		"precache"
 		{
@@ -7081,7 +7081,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"15"
+		"AbilityManaCost"				"14"
 
 		"precache"
 		{
@@ -10377,10 +10377,166 @@
 			}
 		}
 	}
+	
 	//=====================================
 	// Gilgamesh : Enuma Elish
 	//=====================================
 	"gilgamesh_enuma_elish"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/gilg/enuma_elish"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_enuma_elish"
+
+		"precache"
+			{
+			"particle"		"particles/custom/gilgamesh/gilgamesh_enuma_elish_charge_wave.vpcf"
+			"particle"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+			"particle"		"particles/custom/gilgamesh/enuma_elish/projectile.vpcf"			
+			"particle"		"particles/custom/gilgamesh/enuma_elish/charging_sparkles.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+			}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1700"
+		"AbilityCastPoint"				"0.2"
+		"AbilityChannelTime"      "5.05"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"47.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+
+		// AbilitySpecial
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"activation"			"2.97"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"					"250"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"end_radius"					"500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"1000 1400 1800 2200 2600"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"endcast_pause"		"2.0"
+			}
+
+			// Extra charge variables
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"endradius_charge_start"		"30"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"endradius_charge_end"		"50"
+			}
+			"10"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"endradius_total"		"250"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_charge_start"		"30"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_charge_end"		"50"
+			}
+			"13"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"damage_total"		"150 175 200 225 250"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"add1_charge_start"		"40"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"add1_charge_end"		"50"
+			}
+			"16"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"add1_multi"		"1.25"
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Enuma Elish ACTIVATE
+	//=====================================
+	"gilgamesh_enuma_elish_activate"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/gilg/enuma_elish"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/gilgamesh_enuma_elish"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+	}	
+	
+	//=====================================
+	// Gilgamesh : Enuma Elish (OLD)
+	//=====================================
+	"gilgamesh_enuma_elish_old"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21384,7 +21540,7 @@
 		"AbilityCastRange"				"800"
 		"AbilityCastRangeBuffer"		"200"
 		"AbilityCastPoint"				"0.15"
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"10"
 		"AbilityManaCost"				"100"
 		
 		// Ability special
@@ -21494,7 +21650,7 @@
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
 		}
 		
-		"AbilityCooldown"				"13 12 11 10 9"
+		"AbilityCooldown"				"15 14 13 12 11"
 		"AbilityManaCost"				"200"
 		
 		"AbilitySpecial"
@@ -24384,6 +24540,16 @@
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"8"
 			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"strbonus"			"20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"dmg_ratio"			"1.5"
+			}
 		}
 		
 		"OnSpellStart"
@@ -24392,6 +24558,7 @@
 			{
 				"ScriptFile"		"lishuwen_ability"
 				"Function"			"OnBerserkStart"
+				"Duration"			"%duration"
 			}
 		}
 		
@@ -24546,7 +24713,7 @@
 		// Cast
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.5"
-		"AbilityCooldown"				"22"
+		"AbilityCooldown"				"27 24 21 18 15"
 		"AbilityManaCost"				"200"
 		
 		// Ability Special
@@ -25064,7 +25231,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"open_wound_damage"		"65 80 95 110 125"	
+				"open_wound_damage"		"60 75 90 105 120"	
 			}
 			"06"
 			{
@@ -25510,7 +25677,7 @@
 			"11"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"third_strike_aerial_hit_count"				"7"
+				"third_strike_aerial_hit_count"				"15"
 			}
 			"12"
 			{
@@ -25676,7 +25843,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{
@@ -25691,8 +25858,13 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_bonus"			"100"
+				"var_type"			"FIELD_FLOAT"
+				"strbonus"			"20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"dmg_ratio"			"1.5"
 			}
 		}
 		
@@ -27560,7 +27732,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"900"
+				"damage"				"1000"
 			}
 		}
 
@@ -27663,7 +27835,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"900"
+				"damage"				"1000"
 			}
 
 		}
@@ -29132,7 +29304,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"13"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{
@@ -29191,7 +29363,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"15"
+		"AbilityManaCost"				"16"
 
 		"precache"
 		{
@@ -29304,7 +29476,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"11"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{

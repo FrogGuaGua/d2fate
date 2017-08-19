@@ -246,9 +246,9 @@ function OnGalatineStart(keys)
 					local distFromCenter = (galatineDummy:GetAbsOrigin() - v:GetAbsOrigin()):Length2D()
 					local multiplier = 0
 					if distFromCenter < 100 then 
-						multiplier = 1.3
+						multiplier = 1.4
 					else
-						multiplier = 1.3 - (distFromCenter-100)/400 * 30/100
+						multiplier = 1.4 - (distFromCenter-100)/400 * 30/100
 					end
 					DoDamage(caster, v, keys.Damage * multiplier , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 				end

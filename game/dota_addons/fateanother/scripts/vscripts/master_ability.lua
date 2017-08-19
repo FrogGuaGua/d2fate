@@ -993,8 +993,8 @@ function OnProsperityAcquired(keys)
 	--[[
 	master:SetMana(master:GetMana()+20)
 	master2:SetMana(master:GetMana())]]
-	master:SetMaxHealth(master:GetMaxHealth()+2) 
-	master:SetHealth(master:GetHealth()+2)
+	master:SetMaxHealth(master:GetMaxHealth()+3) 
+	master:SetHealth(master:GetHealth()+3)
 	master2:SetMaxHealth(master:GetMaxHealth()) 
 	master2:SetHealth(master:GetHealth())
     local statTable = CreateTemporaryStatTable(hero)
