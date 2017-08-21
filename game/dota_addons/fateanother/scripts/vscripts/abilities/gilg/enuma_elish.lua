@@ -71,16 +71,17 @@ function gilgamesh_enuma_elish:AfterOnSpellSt()
   self:VFX1_Red_Aura(caster)
   ParticleManager:SetParticleControl(self.PI1, 1, Vector(300,1,1))    
   caster:EmitSound("Hero_Dark_Seer.Wall_of_Replica_lp")
-  StartAnimation(self:GetCaster(), {duration=10, activity=ACT_DOTA_CAST_ABILITY_6, rate=1.2})
+  StartAnimation(self:GetCaster(), {duration=10, activity=ACT_DOTA_CAST_ABILITY_6, rate=1.7})
 end
 
 function gilgamesh_enuma_elish:AfterThinkChargeIncr()
   local caster = self:GetCaster()
   --self:GetTestPrints()
 
-  if self.channel_charge == 10 then
-    FreezeAnimation(self:GetCaster())
+  if self.channel_charge == 14 then
     caster:EmitSound("Hero_Weaver.CrimsonPique.Layer")
+  elseif self.channel_charge == 15 then   
+    FreezeAnimation(self:GetCaster())
   elseif self.channel_charge == 29 then   
     self:VFX2_Sparkles(caster)
   end
@@ -107,7 +108,7 @@ function gilgamesh_enuma_elish:AfterChannelFin_Success()
   caster:StopSound("Hero_Dark_Seer.Wall_of_Replica_lp")
   EmitGlobalSound("Gilgamesh.Enuma2") 
 
-  Timers:CreateTimer(0.2,function()
+  Timers:CreateTimer(0.3,function()
     self.tBeam = self:LaunchBeam("")    
     self:VFX3_Projectile(caster)
   end)

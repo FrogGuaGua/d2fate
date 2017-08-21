@@ -10460,7 +10460,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"activation"			"1.0"
+				"activation"			"1.5"
 			}
 			"02"
 			{
@@ -10490,7 +10490,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"endcast_pause"		"2.0"
+				"endcast_pause"		"1.5"
 			}
 
 			// Extra charge variables
