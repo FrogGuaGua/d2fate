@@ -174,7 +174,8 @@ function Wrappers.ChargedBeam(ability, ability2)
 			bDeleteOnHit = false,
 			vVelocity = speed*direction, 
 			ExtraData = {
-										--charge = self.channel_charge,
+										charge = self.channel_charge,
+										Speed = speed,
 										damage = damage_total
 									}
 		}  
