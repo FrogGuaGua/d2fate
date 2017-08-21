@@ -10501,6 +10501,17 @@
 				"var_type"				"FIELD_INTEGER"
 				"add1_charge_end"		"50"
 			}
+			// Tool Tip variables
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damagemax"				"1300 1725 2150 2575 3000"
+			}
+			"17"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"endradius_total"		"750"
+			}
 		}
 	}
 	//=====================================

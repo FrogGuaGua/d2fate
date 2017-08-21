@@ -13,7 +13,7 @@ function gilgamesh_enuma_elish:GetTestPrints()
   local damage_total = self:GetBeamDamage()
   local bonus_base_total, bonus_per_charge = self:__Formula("damage_charge_start", "damage_charge_end", "damage_total")
   local damage_bonus_add = self:__Formula("add1_charge_start", "add1_charge_end", "damage_total", bonus_per_charge)
-  print("DMG BONUS ADD:   ",damage_bonus_add,"    base bonus total: ", bonus_base_total, "   dmg total :   ",damage_total)
+ -- print("DMG BONUS ADD:   ",damage_bonus_add,"    base bonus total: ", bonus_base_total, "   dmg total :   ",damage_total)
   local endradius_total = self:GetBeamEndRadius()
   local bonus_base_total_radius = self:__Formula("endradius_charge_start","endradius_charge_end","endradius_total")
   --print("RADIUSEND BONUS base bonus total: ", bonus_base_total_radius, "   radius total :   ",endradius_total)
@@ -79,7 +79,7 @@ function gilgamesh_enuma_elish:AfterThinkChargeIncr()
   local caster = self:GetCaster()
   self:GetTestPrints()
 
-  if self.channel_charge == 25 then
+  if self.channel_charge == 10 then
     FreezeAnimation(self:GetCaster())
     caster:EmitSound("Hero_Weaver.CrimsonPique.Layer")
   elseif self.channel_charge == 29 then   
