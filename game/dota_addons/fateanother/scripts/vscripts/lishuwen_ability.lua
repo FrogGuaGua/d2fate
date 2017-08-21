@@ -623,7 +623,7 @@ function OnDragonStrike3Start(keys)
 
 		local target = nil
 
-		while true do
+        for i=1, 50 do
 			local curIndex = math.random(#targets)
 			if targets[curIndex].nDragonStrikeComboCount < 8 then
 				targets[curIndex].nDragonStrikeComboCount = targets[curIndex].nDragonStrikeComboCount + 1
@@ -639,7 +639,7 @@ function OnDragonStrike3Start(keys)
 		end]]
 		
 		if target ~= nil then
-			print(target:GetName() .. counter)
+			--print(target:GetName() .. counter)
 			DoCompositeDamage(caster, target, keys.Damage, DAMAGE_TYPE_COMPOSITE, 0, keys.ability, false)
 			ApplyMarkOfFatality(caster, target)
 		end
