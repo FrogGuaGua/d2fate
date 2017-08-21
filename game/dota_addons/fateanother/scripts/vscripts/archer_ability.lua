@@ -119,8 +119,9 @@ function KBHit(keys)
 	local ply = caster:GetPlayerOwner()
 	local ability = keys.ability
 	local KBCount = 0
+	local ratio = keys.DamageRatio
 
-	if caster.IsProjectionImproved then keys.DamagePerTick = keys.DamagePerTick + caster:GetIntellect() end
+	if caster.IsOveredgeAcquired then keys.DamagePerTick = keys.DamagePerTick + caster:GetIntellect() * ratio end
 
 	Timers:CreateTimer(function() 
 		if KBCount == 4 then return end
@@ -128,7 +129,7 @@ function KBHit(keys)
 		if caster:FindAbilityByName("archer_5th_overedge"):IsCooldownReady() == false then
 			local overedgeCD = caster:FindAbilityByName("archer_5th_overedge"):GetCooldownTimeRemaining()
 			caster:FindAbilityByName("archer_5th_overedge"):EndCooldown()
-			caster:FindAbilityByName("archer_5th_overedge"):StartCooldown(overedgeCD-1)
+			caster:FindAbilityByName("archer_5th_overedge"):StartCooldown(overedgeCD-2)
 			caster:RemoveModifierByName("modifier_overedge_cooldown")
 			caster:FindAbilityByName("archer_5th_overedge"):ApplyDataDrivenModifier(caster, caster, "modifier_overedge_cooldown", {duration = overedgeCD-1})
 		end
@@ -1254,11 +1255,14 @@ function OnOveredgeStart(keys)
 				ParticleManager:ReleaseParticleIndex( stompParticleIndex )
 			end
 		)
-		
+		local kbratio = keys.KBRatio
+		local basedamage = hero:FindAbilityByName("archer_5th_kanshou_bakuya"):GetLevel() * 150
+		local intratio = keys.IntRatio
+		local damage = basedamage + casterGetIntellect() * 20
         local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetOrigin(), nil, keys.Radius
             , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
-	         DoDamage(caster, v, 700 + 20 * caster:GetIntellect() , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	         DoDamage(caster, v, damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	    end
 	end
 	})
