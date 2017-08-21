@@ -10427,7 +10427,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"activation"			"2.97"
+				"activation"			"1.0"
 			}
 			"02"
 			{
@@ -10437,7 +10437,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"end_radius"					"500"
+				"end_radius"					"250"
 			}
 			"04"
 			{
@@ -10452,7 +10452,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"1000 1400 1800 2200 2600"
+				"damage"				"700 900 1100 1300 1500"
 			}
 			"07"
 			{
@@ -10464,7 +10464,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"endradius_charge_start"		"30"
+				"endradius_charge_start"		"10"
 			}
 			"09"
 			{
@@ -10474,12 +10474,12 @@
 			"10"
 			{				
 				"var_type"				"FIELD_FLOAT"
-				"endradius_total"		"250"
+				"endradius_total"		"500"
 			}
 			"11"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_charge_start"		"30"
+				"damage_charge_start"		"10"
 			}
 			"12"
 			{
@@ -10489,12 +10489,12 @@
 			"13"
 			{				
 				"var_type"				"FIELD_FLOAT"
-				"damage_total"		"150 175 200 225 250"
+				"damage_total"		"400 550 700 850 1000"
 			}
 			"14"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"add1_charge_start"		"40"
+				"add1_charge_start"		"30"
 			}
 			"15"
 			{
