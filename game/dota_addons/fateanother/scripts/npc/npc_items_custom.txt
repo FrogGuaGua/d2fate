@@ -2477,6 +2477,11 @@
 				"var_type"			"FIELD_INTEGER"
 				"attackspeed"			"50"
 			}	
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health"			"500"
+			}	
 		}
 
 	    "OnSpellStart"
@@ -2485,6 +2490,7 @@
 			{
 				"ScriptFile"	"gille_ability"
 				"Function"		"OnIntegrateStart"
+				"Health"		"%health"
 			}
 	    }
 
