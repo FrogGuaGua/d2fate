@@ -1,6 +1,40 @@
 nailUsed = false
 nailTime = 0
 
+function OnMysticEyesStart(keys)
+	local caster = keys.caster
+	StartMysticEyesTimer(keys)
+end
+
+function OnMysticEyesDeath(keys)
+	local caster = keys.caster
+	Timers:RemoveTimer("MysticEyes_passive_timer")
+end
+
+function OnMysticEyesRespawn(keys)
+	local caster = keys.caster
+	StartMysticEyesTimer(keys)
+end
+
+modName = "modifier_rider_5th_mystic_eye_enemy"
+function StartMysticEyesTimer(keys)
+	local caster = keys.caster
+	Timers:CreateTimer('MysticEyes_passive_timer', {
+		endTime = 0,
+		callback = function()
+		local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		for k,v in pairs(targets) do
+			if v ~= caster then 
+				if IsFacingUnit(v, caster, 120) then
+					keys.ability:ApplyDataDrivenModifier(caster,v, modName, {})
+				end
+			end
+			
+	    end
+	    return 0.25
+	end})
+end
+
 function OnMonstrousStrengthProc(keys)
 	DoDamage(keys.caster, keys.target, 400 , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 end

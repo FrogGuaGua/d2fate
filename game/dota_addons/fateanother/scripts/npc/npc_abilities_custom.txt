@@ -3868,33 +3868,61 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range"					"1000"
+				"radius"					"1000"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"speed_modifier"		"-10 -20"
+				"speed_modifier"		"-15 -30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attackspeed_modifier"	"0 -50"
 			}
 		}
 		
 		"Modifiers"
 		{
-			"modifier_mystic_eye"
+			"mystic_eye_passive"
 			{
 				"Passive"		"1"
-				"IsHidden"		"0"
-				"Aura"			"rider_5th_mystic_eye_aura"
-				"Aura_Radius"	"%range"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_ALL"
-			}
-			"rider_5th_mystic_eye_aura"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"rider_ability"
+						"Function"		"OnMysticEyesStart"
+						"Radius"		"%radius"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"rider_ability"
+						"Function"		"OnMysticEyesDeath"
+					}
+				}
+				"OnRespawn"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"rider_ability"
+						"Function"		"OnMysticEyesRespawn"
+						"Radius"		"%radius"
+					}
+				}			
+			}	
+			"modifier_rider_5th_mystic_eye_enemy"
 			{
+				"Duration"			"0.25"
 				"IsDebuff"			"1"
 				"IsHidden"			"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%speed_modifier"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attackspeed_modifier"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_modifier"
 				}
 			}
@@ -4402,7 +4430,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"8"
+		"AbilityManaCost"				"9"
 
 		"precache"
 		{
@@ -4413,7 +4441,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"slow_amount"			"20"
+				"ms_slow"			"30"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"as_slow"			"50"
 			}
 		}
 		
