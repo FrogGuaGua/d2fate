@@ -1171,7 +1171,10 @@ function OnOveredgeStart(keys)
 	local targetPoint = keys.target_points[1]
 	local dist = (caster:GetAbsOrigin() - targetPoint):Length2D() * 10/6
 	local castRange = keys.castRange
-
+	local kbratio = keys.KBRatio
+	local basedamage = caster:FindAbilityByName("archer_5th_kanshou_bakuya"):GetLevel() * 150
+	local intratio = keys.IntRatio
+	local damage = basedamage + caster:GetIntellect() * intratio
 	-- When you exit the ubw on the last moment, dist is going to be a pretty high number, since the targetPoint is on ubw but you are outside it
 	-- If it's, then we can't use it like that. Either cancel Overedge, or use a default one.
 	-- 2000 is a fixedNumber, just to check if dist is not valid. Over 2000 is surely wrong. (Max is close to 900)
@@ -1255,14 +1258,11 @@ function OnOveredgeStart(keys)
 				ParticleManager:ReleaseParticleIndex( stompParticleIndex )
 			end
 		)
-		local kbratio = keys.KBRatio
-		local basedamage = hero:FindAbilityByName("archer_5th_kanshou_bakuya"):GetLevel() * 150
-		local intratio = keys.IntRatio
-		local damage = basedamage + casterGetIntellect() * 20
+
         local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetOrigin(), nil, keys.Radius
             , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
-	         DoDamage(caster, v, damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	         DoDamage(caster, v, damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	    end
 	end
 	})
