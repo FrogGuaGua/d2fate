@@ -4,10 +4,13 @@ ATTR_HEARTSEEKER_COMBO_AD_RATIO = 2
 function OnPFAStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-
+	caster:RemoveModifierByName("modifier_lancer_protection_from_arrows")
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_lancer_protection_from_arrows_active", {duration=3})
 	caster:EmitSound("DOTA_Item.Buckler.Activate")
 	StartAnimation(caster, {duration=1, activity=ACT_DOTA_CAST_ABILITY_1, rate=0.45})
+	Timers:CreateTimer(3.0, function()
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_lancer_protection_from_arrows", {})
+	end)
 
 end
 

@@ -1730,7 +1730,11 @@
 				"EffectName"		"particles/customgames/capturepoints/cp_wind.vpcf"
 				"EffectAttachType"	"follow_origin"
 				
-				"Duration"						"3"
+				"Duration"		"3"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"50"
+				}
 				"ThinkInterval"					"0.1"
 				"OnIntervalThink"
 				{
@@ -2576,7 +2580,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{
@@ -2620,7 +2624,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
