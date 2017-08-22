@@ -3330,12 +3330,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"low_end"				"85"
+				"low_end"				"80"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"high_end"				"125"
+				"high_end"				"120"
 			}
 			"05"
 			{
