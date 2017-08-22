@@ -498,7 +498,7 @@ function OnSGApplyCC(keys)
 
 	ability:ApplyDataDrivenModifier(caster, target, "modifier_subterranean_grasp", {})
 	giveUnitDataDrivenModifier(caster, target, "rooted", keys.Duration)
-	if caster.IsSpiritTheftAcquired then
+	if caster.IsSpiritTheftAcquired and target:HasModifier("modifier_amaterasu_enemy") then
 		giveUnitDataDrivenModifier(caster, target, "revoked", keys.Duration)
 	end
 end
@@ -684,6 +684,7 @@ Apply the aura modifier to caster
 function OnAmaterasuStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability 
+	local SilenceDuration = caster.MasterUnit2:FindAbilityByName("tamamo_attribute_witchcraft"):GetSpecialValueFor("silence_duration")
 	if caster.CurrentAmaterasuDummy ~= nil then
 		if IsValidEntity(caster.CurrentAmaterasuDummy) or not caster.CurrentAmaterasuDummy:IsNull() then
 			caster.CurrentAmaterasuDummy:RemoveModifierByName("modifier_amaterasu_aura")
@@ -706,7 +707,7 @@ function OnAmaterasuStart(keys)
 		local targets = FindUnitsInRadius(caster:GetTeam(), caster.AmaterasuCastLoc, nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 		for k,v in pairs(targets) do
 			if not IsImmuneToSlow(v) then ability:ApplyDataDrivenModifier(caster, v, "modifier_amaterasu_witchcraft_slow", {}) end
-			v:AddNewModifier(caster, caster, "modifier_silence", {Duration = 1.5})
+			v:AddNewModifier(caster, caster, "modifier_silence", {Duration = SilenceDuration})
 		end
 	end
 
@@ -809,12 +810,12 @@ function OnKickStart(keys)
 	end
 
 	if caster.IsEscapeAcquired then
-		if IsRevoked(caster) then
+		--[[if IsRevoked(caster) then
 			FireGameEvent( 'custom_error_show', { player_ID = caster:GetPlayerOwnerID(), _error = "Cannot Be Used(Revoked)" } )
 			keys.ability:EndCooldown()
 			caster:SetMana(caster:GetMana()+keys.ability:GetManaCost(1))
 			return			
-		end
+		end]]
 		lungeDelay = lungeDelay / 2
 		damage = damage / 2
 		expDamageRatio = expDamageRatio / 2

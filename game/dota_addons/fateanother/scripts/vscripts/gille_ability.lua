@@ -721,7 +721,6 @@ function OnIntegrateStart(keys)
 					SendErrorMessage(caster:GetPlayerOwnerID(), "#Cannot_Unmount")
 					return			
 				else
-					print (healthpercent)
 					hero:RemoveModifierByName("modifier_integrate_gille")
 					caster:RemoveModifierByName("modifier_integrate")
 					caster:SetMaxHealth(DeIntMaxhealth)
