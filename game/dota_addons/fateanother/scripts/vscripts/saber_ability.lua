@@ -747,6 +747,8 @@ function StrikeAirPush(keys)
 	--if (target:GetName() == "npc_dota_hero_bounty_hunter" and target.IsPFWAcquired) then return end
 	local totalDamage = 650 + (keys.caster:FindAbilityByName("saber_caliburn"):GetLevel() + keys.caster:FindAbilityByName("saber_invisible_air"):GetLevel()) * 125
 	--if target:GetName() == "npc_dota_hero_juggernaut" then totalDamage = 0 end
+	local WallDamage = keys.WallDamage
+	local WallStun = keys.WallStun
 
 	DoDamage(keys.caster, keys.target, totalDamage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	giveUnitDataDrivenModifier(keys.caster, keys.target, "pause_sealenabled", 0.5)
@@ -779,6 +781,8 @@ function StrikeAirPush(keys)
 		unit:SetBounceMultiplier(0)
 		unit:PreventDI(false)
 		unit:SetPhysicsVelocity(Vector(0,0,0))
+		giveUnitDataDrivenModifier(caster, target, "stunned",  WallStun)
+		DoDamage(keys.caster, unit, WallDamage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	end)
 end
 
