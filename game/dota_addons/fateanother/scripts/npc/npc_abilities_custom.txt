@@ -16364,6 +16364,7 @@
 			{
 				"ScriptFile"		"diarmuid_ability"
 				"Function"			"OnDSStart"
+				"Duration"		"%duration"	
 			}
 			"FireSound"
 			{
@@ -16378,7 +16379,6 @@
 			{
 				"EffectName"		"particles/units/heroes/hero_invoker/invoker_alacrity_buff.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"Duration"		"%duration"	
 
 				"OnAttackLanded"
 				{
@@ -16404,7 +16404,6 @@
 			{
 				"EffectName"		"particles/units/heroes/hero_invoker/invoker_alacrity_buff.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"Duration"		"%duration"	
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -16494,6 +16493,11 @@
 				"var_type"			"FIELD_FLOAT"
 				"crit_damage"			"200.0"
 			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration_penalty"		"4.0"
+			}
 		}
 		
 		"OnSpellStart"
@@ -16502,6 +16506,7 @@
 			{
 				"ScriptFile"		"diarmuid_ability"
 				"Function"			"OnRampantWarriorStart"
+				"Duration"		"%duration"	
 			}
 		}
 
@@ -16516,8 +16521,7 @@
 			"modifier_rampant_warrior"
 			{
 				"EffectName"		"particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Duration"		"%duration"			
+				"EffectAttachType"	"follow_origin"		
 				"OnAttackStart"
 				{
 					"RemoveModifier"
