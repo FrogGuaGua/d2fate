@@ -253,19 +253,19 @@ function OnDeargStart(keys)
 	ApplyStrongDispel(target)
 
 	local damage = 0
-	local maxDamageDist = 100
-	local minDamageDist = 650
-	if caster.IsRoseBloomAcquired then 
+	local maxDamageDist = 500
+	local minDamageDist = 200
+	--[[if caster.IsRoseBloomAcquired then 
 		maxDamageDist = 300
-	end
-	local distDiff = minDamageDist - maxDamageDist
+	end]]
+	local distDiff = maxDamageDist - minDamageDist
 	local damageDiff = keys.MaxDamage - keys.MinDamage
 	local distance = (caster:GetAbsOrigin() - target:GetAbsOrigin()):Length2D() 
-	if distance <= maxDamageDist then 
+	if distance >= maxDamageDist then 
 		damage = keys.MaxDamage
-	elseif maxDamageDist < distance and distance < minDamageDist then
-		damage = keys.MinDamage + damageDiff * (minDamageDist - distance) / distDiff
-	elseif minDamageDist <= distance then
+	elseif maxDamageDist > distance and distance > minDamageDist then
+		damage = keys.MinDamage + damageDiff * (distance - minDamageDist) / distDiff
+	elseif minDamageDist >= distance then
 		damage = keys.MinDamage
 	end
 	DoDamage(caster, target, damage, DAMAGE_TYPE_PURE, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, keys.ability, false)
