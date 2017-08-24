@@ -987,20 +987,21 @@ function OnFirewallStart(keys)
     for k,v in pairs(targets) do
     	if v:GetName() ~= "npc_dota_ward_base" then
 	    	DoDamage(caster, v, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-
-			giveUnitDataDrivenModifier(caster, v, "drag_pause", 0.5)
-			local pushback = Physics:Unit(v)
-			v:PreventDI()
-			v:SetPhysicsFriction(0)
-			v:SetPhysicsVelocity((v:GetAbsOrigin() - casterPos):Normalized() * keys.Pushback * 2)
-			v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
-			v:FollowNavMesh(false)
-			Timers:CreateTimer(0.5, function()  
-				print("kill it")
-				v:PreventDI(false)
-				v:SetPhysicsVelocity(Vector(0,0,0))
-				v:OnPhysicsFrame(nil)
-			return end)
+	    	if not v:HasModifier("modifier_wind_protection_passive") then
+				giveUnitDataDrivenModifier(caster, v, "drag_pause", 0.5)
+				local pushback = Physics:Unit(v)
+				v:PreventDI()
+				v:SetPhysicsFriction(0)
+				v:SetPhysicsVelocity((v:GetAbsOrigin() - casterPos):Normalized() * keys.Pushback * 2)
+				v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
+				v:FollowNavMesh(false)
+				Timers:CreateTimer(0.5, function()  
+					print("kill it")
+					v:PreventDI(false)
+					v:SetPhysicsVelocity(Vector(0,0,0))
+					v:OnPhysicsFrame(nil)
+				return end)
+			end
 		end
 	end
 end

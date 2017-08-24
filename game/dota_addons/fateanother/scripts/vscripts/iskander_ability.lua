@@ -166,36 +166,36 @@ function PhalanxPull(caster, soldier, targetPoint, damage, ability)
 	        , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 	for k,v in pairs(targets) do
 		if v.PhalanxSoldiersHit ~= true and v:GetName() ~= "npc_dota_ward_base" then
-			v.PhalanxSoldiersHit = true
-			Timers:CreateTimer(0.5, function()
-				v.PhalanxSoldiersHit = false
-			end)
-
-			local pullTarget = Physics:Unit(v)
-			local pullVector = (caster:GetAbsOrigin() - targetPoint):Normalized() * 500
-			v:PreventDI()
-			v:SetPhysicsFriction(0)
-			v:SetPhysicsVelocity(Vector(pullVector.x, pullVector.y, 500))
-			v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
-			v:FollowNavMesh(false)
-
-			Timers:CreateTimer({
-				endTime = 0.25,
-				callback = function()
-				v:SetPhysicsVelocity(Vector(pullVector.x, pullVector.y, -500))
-			end
-			})
-
-		  	Timers:CreateTimer(0.5, function()
-				v:PreventDI(false)
-				v:SetPhysicsVelocity(Vector(0,0,0))
-				v:OnPhysicsFrame(nil)
-			end)
-
-		  	giveUnitDataDrivenModifier(caster, v, "drag_pause", 0.5)
 			DoDamage(caster, v, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
-			local forwardVec = v:GetForwardVector()
-			v:SetForwardVector(Vector(forwardVec.x*-1, forwardVec.y, forwardVec.z))
+			v.PhalanxSoldiersHit = true
+				Timers:CreateTimer(0.5, function()
+					v.PhalanxSoldiersHit = false
+				end)
+			if not v:HasModifier("modifier_wind_protection_passive") then
+				local pullTarget = Physics:Unit(v)
+				local pullVector = (caster:GetAbsOrigin() - targetPoint):Normalized() * 500
+				v:PreventDI()
+				v:SetPhysicsFriction(0)
+				v:SetPhysicsVelocity(Vector(pullVector.x, pullVector.y, 500))
+				v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
+				v:FollowNavMesh(false)
+
+				Timers:CreateTimer({
+					endTime = 0.25,
+					callback = function()
+					v:SetPhysicsVelocity(Vector(pullVector.x, pullVector.y, -500))
+				end
+				})
+
+			  	Timers:CreateTimer(0.5, function()
+					v:PreventDI(false)
+					v:SetPhysicsVelocity(Vector(0,0,0))
+					v:OnPhysicsFrame(nil)
+				end)
+				giveUnitDataDrivenModifier(caster, v, "drag_pause", 0.5)
+				local forwardVec = v:GetForwardVector()
+				v:SetForwardVector(Vector(forwardVec.x*-1, forwardVec.y, forwardVec.z))
+			end
 		end
     end
 end

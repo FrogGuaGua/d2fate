@@ -850,7 +850,9 @@ function OnKickStart(keys)
 					return 
 				end 
 				caster:SetAbsOrigin(caster:GetAbsOrigin() + backwards*33)
-				nextTarget:SetAbsOrigin(nextTarget:GetAbsOrigin() + forward*33)
+				if not nextTarget:HasModifier("modifier_wind_protection_passive") then
+					nextTarget:SetAbsOrigin(nextTarget:GetAbsOrigin() + forward*33)
+				end
 				dur = dur + 0.033
 				return 0.033
 			end)

@@ -9555,7 +9555,7 @@
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
 		}
 		
-		"AbilityCastPoint"				"0.95"
+		"AbilityCastPoint"				"1.0"
 		"AbilityCastRange"				"600"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCooldown"				"36"
@@ -9755,7 +9755,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -9858,7 +9858,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"16"
+		"AbilityManaCost"				"15"
 
 		"precache"
 		{

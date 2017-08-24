@@ -491,25 +491,27 @@ function OnWBStart(keys)
 		if v:GetUnitName() == "ward_familiar" then 
 			-- do nothing
 		else
-			giveUnitDataDrivenModifier(caster, v, "drag_pause", 0.5)
 			DoDamage(caster, v, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 			caster:PerformAttack(v, true, true, true, true, false, false, false )
 			local slashIndex = ParticleManager:CreateParticle( "particles/custom/false_assassin/tsubame_gaeshi/tsubame_gaeshi_windup_indicator_flare.vpcf", PATTACH_CUSTOMORIGIN, nil )
 		    ParticleManager:SetParticleControl(slashIndex, 0, v:GetAbsOrigin())
 		    ParticleManager:SetParticleControl(slashIndex, 1, Vector(500,0,150))
 		    ParticleManager:SetParticleControl(slashIndex, 2, Vector(0.2,0,0))
-			local pushback = Physics:Unit(v)
-			v:PreventDI()
-			v:SetPhysicsFriction(0)
-			v:SetPhysicsVelocity((v:GetAbsOrigin() - casterInitOrigin):Normalized() * 300)
-			v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
-			v:FollowNavMesh(false)
-			Timers:CreateTimer(0.5, function()  
-				v:PreventDI(false)
-				v:SetPhysicsVelocity(Vector(0,0,0))
-				v:OnPhysicsFrame(nil)
-				FindClearSpaceForUnit(v, v:GetAbsOrigin(), true)
-			return end)
+		    if not v:HasModifier("modifier_wind_protection_passive") then
+		    	giveUnitDataDrivenModifier(caster, v, "drag_pause", 0.5)
+				local pushback = Physics:Unit(v)
+				v:PreventDI()
+				v:SetPhysicsFriction(0)
+				v:SetPhysicsVelocity((v:GetAbsOrigin() - casterInitOrigin):Normalized() * 300)
+				v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
+				v:FollowNavMesh(false)
+				Timers:CreateTimer(0.5, function()  
+					v:PreventDI(false)
+					v:SetPhysicsVelocity(Vector(0,0,0))
+					v:OnPhysicsFrame(nil)
+					FindClearSpaceForUnit(v, v:GetAbsOrigin(), true)
+				return end)
+			end
 		end
 	end
 

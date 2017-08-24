@@ -242,7 +242,6 @@ function OnRhoStart(keys)
 	local ply = caster:GetPlayerOwner()
 	if caster.IsProjectionImproved then 
 		local knockBackUnits = FindUnitsInRadius(caster:GetTeam(), target:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false )
-	 
 		local modifierKnockback =
 		{
 			center_x = target:GetAbsOrigin().x,
@@ -256,7 +255,9 @@ function OnRhoStart(keys)
 
 		for _,unit in pairs(knockBackUnits) do
 	--		print( "knock back unit: " .. unit:GetName() )
-			unit:AddNewModifier( unit, nil, "modifier_knockback", modifierKnockback );
+		 	if not unit:HasModifier("modifier_wind_protection_passive") then
+				unit:AddNewModifier( unit, nil, "modifier_knockback", modifierKnockback );
+			end
 		end
 	end
 	ability:ApplyDataDrivenModifier(caster, target, "modifier_rho_aias_shield", {})

@@ -388,6 +388,7 @@ function DoCompositeDamage(source, target, dmg, dmg_type, dmg_flag, abil, isLoop
 end
 
 function ApplyAirborne(source, target, duration)
+    if target:HasModifier("modifier_wind_protection_passive") then return end
     target:AddNewModifier(source, source, "modifier_stunned", {Duration = duration})
     --if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
     --[[local ascendCounter = 0
@@ -409,6 +410,7 @@ function ApplyAirborne(source, target, duration)
 end
 
 function ApplyAirborneOnly(target, knockupSpeed, duration, Acc)
+    if target:HasModifier("modifier_wind_protection_passive") then return end
     if target:GetName() == "npc_dota_hero_legion_commander" and target:HasModifier("modifier_avalon") then return end
 
     local knockupAcc = knockupSpeed/duration * 2
