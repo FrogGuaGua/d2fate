@@ -1,3 +1,5 @@
+LinkLuaModifier("modifier_golden_rose_of_mortality", "abilities/diarmuid/modifier_golden_rose_of_mortality", LUA_MODIFIER_MOTION_NONE)
+
 function OnLoveSpotStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -162,7 +164,7 @@ function OnBuidheStart(keys)
 		caster:FindAbilityByName("diarmuid_rampant_warrior"):ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior", {duration = RWDuration - DurationPenalty})
 	end
 
-	if caster.IsRoseBloomAcquired then 
+	if caster.IsGoldenRoseAcquired then 
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_mark_of_mortality", {})
 	end
 
@@ -281,7 +283,7 @@ function OnDeargStart(keys)
 	local damage = 0
 	local maxDamageDist = 500
 	local minDamageDist = 200
-	--[[if caster.IsRoseBloomAcquired then 
+	--[[if caster.IsGoldenRoseAcquired then 
 		maxDamageDist = 300
 	end]]
 	local distDiff = maxDamageDist - minDamageDist
@@ -298,7 +300,7 @@ function OnDeargStart(keys)
 	--print("Gae Dearg dealt " .. damage .. " damage to target")
 	if target:HasModifier("modifier_mark_of_mortality") then
 		local detonateDamage = target:GetMaxHealth() * caster:FindAbilityByName("diarmuid_gae_dearg"):GetSpecialValueFor("mortality_pct")/100
-		DoDamage(caster, target, detonateDamage, DAMAGE_TYPE_PURE, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, keys.ability, false)
+		DoDamage(caster, target, detonateDamage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 		print("Detonate")
 		target:RemoveModifierByName("modifier_mark_of_mortality")
 	end
@@ -421,11 +423,12 @@ function OnMindEyeAcquired(keys)
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
 end
 
-function OnRosebloomAcquired(keys)
+function OnGoldenRoseAcquired(keys)
     local caster = keys.caster
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
-    hero.IsRoseBloomAcquired = true
+    hero.IsGoldenRoseAcquired = true
+    hero:AddNewModifier(hero, ability, "modifier_golden_rose_of_mortality", {})
     -- Set master 1's mana 
     local master = hero.MasterUnit
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))

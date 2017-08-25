@@ -16973,9 +16973,9 @@
 	}
 
 	//=======================================
-	// Diarmuid Attribute : Rosebloom
+	// Diarmuid Attribute : Golden Rose of Mortality
 	//=======================================
-	"diarmuid_attribute_rosebloom"
+	"diarmuid_attribute_golden_rose_of_mortality"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -16997,7 +16997,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"max_damage_dist"			"300"
+				"2nd_attack_damage"			"2"
 			}
 			"02"
 			{
@@ -17011,7 +17011,7 @@
 			"RunScript"
 			{
 				"ScriptFile"	"diarmuid_ability"
-				"Function"		"OnRosebloomAcquired"
+				"Function"		"OnGoldenRoseAcquired"
 			}
 		}
 	}
