@@ -438,8 +438,8 @@ function OnSoulstreamProjectileEnd(keys)
 
 	ParticleManager:DestroyParticle( target.spiritParticle, false )
 	ParticleManager:ReleaseParticleIndex( target.spiritParticle )
-	target:ForceKill(false)
-	--target:RemoveSelf() 
+	--target:ForceKill(false)
+	target:RemoveSelf() 
 end
 --[[
 	local LRvec = Vector(0,0,0)
