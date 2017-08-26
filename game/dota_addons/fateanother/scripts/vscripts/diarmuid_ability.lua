@@ -1,4 +1,6 @@
 LinkLuaModifier("modifier_golden_rose_of_mortality", "abilities/diarmuid/modifier_golden_rose_of_mortality", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_doublespear_buidhe", "abilities/diarmuid/modifier_doublespear_buidhe", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_doublespear_dearg", "abilities/diarmuid/modifier_doublespear_dearg", LUA_MODIFIER_MOTION_NONE)
 
 function OnLoveSpotStart(keys)
 	local caster = keys.caster
@@ -132,6 +134,13 @@ function OnGaeCastStart(keys)
 		caster:EmitSound("ZL.Dearg_Cast")
 		particleName = "particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
 	end
+
+	if (keys.ability == caster:FindAbilityByName("diarmuid_gae_buidhe") and caster:HasModifier("modifier_doublespear_dearg")) or (keys.ability == caster:FindAbilityByName("diarmuid_gae_dearg") and caster:HasModifier("modifier_doublespear_buidhe")) then
+		local CastReduction = caster.MasterUnit2:FindAbilityByName("diarmuid_attribute_double_spear_strike"):GetSpecialValueFor("cast_reduction")
+		local NewCastPoint = keys.CastTime - CastReduction
+		keys.ability:SetOverrideCastPoint(NewCastPoint)
+	end
+
 	local particle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin()) -- target effect location
 	ParticleManager:SetParticleControl(particle, 2, caster:GetAbsOrigin()) -- circle effect location
@@ -175,6 +184,9 @@ function OnBuidheStart(keys)
 	local MR = 0
 	if target:IsHero() then MR = target:GetMagicalArmorValue() end
 	DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	if caster.IsDoubleSpearAcquired then
+		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 0.5})
+	end
 
 	if target:GetHealth() > 0 and target:IsAlive() and caster:IsAlive() then
 
@@ -220,7 +232,15 @@ function OnBuidheStart(keys)
 		ParticleManager:ReleaseParticleIndex( dagon_particle )
 	end)
 
-	if caster.IsDoubleSpearAcquired and caster.IsDoubleSpearReady and caster:FindAbilityByName("diarmuid_gae_dearg"):IsCooldownReady() and caster:GetMana() >= 550 then
+	if caster.IsDoubleSpearAcquired then
+		local Duration = caster.MasterUnit2:FindAbilityByName("diarmuid_attribute_double_spear_strike"):GetSpecialValueFor("duration")
+		caster:AddNewModifier(caster, caster, "modifier_doublespear_buidhe", {duration = Duration})
+		caster:RemoveModifierByName("modifier_doublespear_dearg")
+	end
+
+	ability:SetOverrideCastPoint(keys.CastTime)
+
+	--[[if caster.IsDoubleSpearAcquired and caster.IsDoubleSpearReady and caster:FindAbilityByName("diarmuid_gae_dearg"):IsCooldownReady() and caster:GetMana() >= 550 then
 		--print("Double spear activated")
 		local dearg = caster:FindAbilityByName("diarmuid_gae_dearg")
 		local minDamage = dearg:GetLevelSpecialValueFor("min_damage", dearg:GetLevel()-1)
@@ -243,7 +263,7 @@ function OnBuidheStart(keys)
 			OnDeargStart(keys)
 		end)
 		--caster:CastAbilityOnTarget(target, caster:FindAbilityByName("diarmuid_gae_dearg"), caster:GetPlayerID())
-	end
+	end]]
 end
 
 function OnBuidheOwnerDeath(keys)
@@ -305,6 +325,10 @@ function OnDeargStart(keys)
 		target:RemoveModifierByName("modifier_mark_of_mortality")
 	end
 
+	if caster.IsDoubleSpearAcquired then
+		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 0.5})
+	end
+
 	EmitGlobalSound("ZL.Gae_Dearg")
 	target:EmitSound("Hero_Lion.Impale")
 	keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_diarmuid_gae_dearg_anim", {})
@@ -319,7 +343,15 @@ function OnDeargStart(keys)
 		ParticleManager:ReleaseParticleIndex( dagon_particle )
 	end)
 
-	if caster.IsDoubleSpearAcquired and caster.IsDoubleSpearReady and caster:FindAbilityByName("diarmuid_gae_buidhe"):IsCooldownReady() and caster:GetMana() >= 550 then
+	if caster.IsDoubleSpearAcquired then
+		local Duration = caster.MasterUnit2:FindAbilityByName("diarmuid_attribute_double_spear_strike"):GetSpecialValueFor("duration")
+		caster:AddNewModifier(caster, caster, "modifier_doublespear_dearg", {duration = Duration})
+		caster:RemoveModifierByName("modifier_doublespear_buidhe")
+	end
+
+	keys.ability:SetOverrideCastPoint(keys.CastTime)
+
+	--[[if caster.IsDoubleSpearAcquired and caster.IsDoubleSpearReady and caster:FindAbilityByName("diarmuid_gae_buidhe"):IsCooldownReady() and caster:GetMana() >= 550 then
 		--print("Double spear activated")
 		local buidhe = caster:FindAbilityByName("diarmuid_gae_buidhe")
 		keys.Damage = buidhe:GetLevelSpecialValueFor("damage", buidhe:GetLevel()-1)
@@ -340,7 +372,7 @@ function OnDeargStart(keys)
 			OnBuidheStart(keys)
 		end)
 		--caster:CastAbilityOnTarget(target, caster:FindAbilityByName("diarmuid_gae_dearg"), caster:GetPlayerID())
-	end
+	end]]
 end
 
 function PlayGaeEffect(target)
@@ -439,9 +471,9 @@ function OnDoubleSpearAcquired(keys)
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     hero.IsDoubleSpearAcquired = true
-    hero.IsDoubleSpearReady = true
+    --[[hero.IsDoubleSpearReady = true
     hero:SwapAbilities("fate_empty1", "diarmuid_double_spear_strike", false, true) 
-	hero:FindAbilityByName("diarmuid_double_spear_strike"):ToggleAbility()
+	hero:FindAbilityByName("diarmuid_double_spear_strike"):ToggleAbility()]]
     -- Set master 1's mana 
     local master = hero.MasterUnit
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))

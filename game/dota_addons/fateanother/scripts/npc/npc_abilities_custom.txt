@@ -16661,6 +16661,7 @@
 			{
 				"ScriptFile"	"diarmuid_ability"
 				"Function"		"OnGaeCastStart"
+				"CastTime"		"%cast_time"
 			}
 		}
 		"OnSpellStart"
@@ -16672,6 +16673,7 @@
 			 	"Damage"		"%damage"
 			 	"nStacks"		"%number_stacks"
 			 	"unitReduction"	"%unit_reduction"
+			 	"CastTime"		"%cast_time"
 			 }
 		}
 		"Modifiers"
@@ -16779,7 +16781,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"delay"			"1.0"
+				"delay"			"1.1"
 			}
 			"02"
 			{
@@ -16799,7 +16801,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"cast_time"			"1.0"
+				"cast_time"			"1.1"
 			}
 			"06"
 			{
@@ -16816,6 +16818,7 @@
 				"var_type"			"FIELD_INTEGER"
 				"mortality_pct"		"20"
 			}
+
 		}
 		
 		"OnAbilityPhaseStart"
@@ -16824,6 +16827,7 @@
 			{
 				"ScriptFile"	"diarmuid_ability"
 				"Function"		"OnGaeCastStart"
+				"CastTime"		"%cast_time"
 			}
 		}
 		"OnSpellStart"
@@ -16836,6 +16840,7 @@
 			 	"MaxDamage"		"%max_damage"
 			 	"nStacks"		"%number_stacks"	//for casting dearg with doublespear on
 			 	"unitReduction"	"%unit_reduction"	//for casting dearg with doublespear on
+			 	"CastTime"		"%cast_time"
 			 }
 		}
 		"Modifiers"
@@ -17044,8 +17049,23 @@
 				"var_type"			"FIELD_FLOAT"
 				"cooldown"			"55.0"
 			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cast_reduction"			"0.8"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"5.0"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"			"5.0"
+			}
 		}
-		
+
 		"OnSpellStart"
 		{
 			"RunScript"
