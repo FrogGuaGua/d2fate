@@ -95,7 +95,7 @@ function vlad_cursed_lance:OnSpellStart()
   		caster:SetHealth(1)
   	end 
 
-    if caster.InstantCurseAcquired and (bleedcounter + bloodpower) > 19 then
+    if caster.InstantCurseAcquired and (bleedcounter + bloodpower) > 14 then
       self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance_bp",{duration = duration})
     else
       self.modifier = caster:AddNewModifier(caster, self, "modifier_cursed_lance",{duration = duration})

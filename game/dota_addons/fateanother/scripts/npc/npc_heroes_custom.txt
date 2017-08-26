@@ -217,7 +217,7 @@
 		"AttributeIntelligenceGain"		"1.0"
 		
 		"MovementCapabilities"			"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"					"300"
+		"MovementSpeed"					"290"
 		"MovementTurnRate"				"0.8"
 		
 		"VisionDaytimeRange"			"700"
@@ -641,8 +641,9 @@
 		"Ability7"				"gilgamesh_max_enuma_elish"
 		"Ability8"				"gilgamesh_gate_of_babylon_toggle"
 		"Ability9"				"gilgamesh_sword_barrage_improved"
-		"Ability10"				"presence_detection_passive"
-		"Ability11"				"attribute_bonus_custom"
+    "Ability10"				"gilgamesh_enuma_elish_activate"
+		"Ability11"				"presence_detection_passive"
+		"Ability12"				"attribute_bonus_custom"
 
 		"Combo"						"gilgamesh_max_enuma_elish"
 		"AttributeNumber"			"4"

@@ -707,6 +707,11 @@ end
 function OnIntegrateStart(keys)
 	local caster = keys.caster
 	local hero = caster:GetPlayerOwner():GetAssignedHero()
+	local healthpercent = caster:GetHealthPercent() / 100
+	local IntMaxhealth = caster:GetMaxHealth()+keys.Health
+	local IntCurrenthealth = caster:GetHealth()+keys.Health * healthpercent
+	local DeIntMaxhealth = caster:GetMaxHealth()-keys.Health
+	local DeIntCurrenthealth = caster:GetHealth()-keys.Health * healthpercent
 
 	Timers:CreateTimer(0.5, function()
 		if caster:IsAlive() then
@@ -718,6 +723,9 @@ function OnIntegrateStart(keys)
 				else
 					hero:RemoveModifierByName("modifier_integrate_gille")
 					caster:RemoveModifierByName("modifier_integrate")
+					caster:SetMaxHealth(DeIntMaxhealth)
+					caster:SetBaseMaxHealth(DeIntMaxhealth)
+					caster:SetHealth(DeIntCurrenthealth)
 					hero.IsIntegrated = false
 					caster.AttemptingIntegrate = false
 					SendMountStatus(hero)
@@ -726,6 +734,9 @@ function OnIntegrateStart(keys)
 				hero.IsIntegrated = true
 				keys.ability:ApplyDataDrivenModifier(caster, hero, "modifier_integrate_gille", {})
 				keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_integrate", {})  
+				caster:SetMaxHealth(IntMaxhealth)
+				caster:SetBaseMaxHealth(IntMaxhealth)
+				caster:SetHealth(IntCurrenthealth)
 				caster:EmitSound("ZC.Tentacle1")
 				--caster:EmitSound("ZC.Laugh")
 				SendMountStatus(hero)
@@ -771,6 +782,9 @@ function OnIntegrateDeath(keys)
 	local hero = caster:GetPlayerOwner():GetAssignedHero()
 	hero.IsIntegrated = false
 	hero:RemoveModifierByName("modifier_integrate_gille")
+	caster:SetMaxHealth(DeIntMaxhealth)
+	caster:SetBaseMaxHealth(DeIntMaxhealth)
+	caster:SetHealth(DeIntCurrenthealth)
 	SendMountStatus(hero)
 end
 

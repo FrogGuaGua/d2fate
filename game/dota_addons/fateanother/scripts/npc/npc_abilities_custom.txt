@@ -1100,7 +1100,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{
@@ -1108,6 +1108,16 @@
 
 		"AbilitySpecial"
 		{
+		"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"wall_bonus_damage"		"400"
+			}			
+		"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"wall_stun"		"1.0"
+			}
 		}
 		
 		"OnSpellStart"
@@ -1181,6 +1191,16 @@
 				"var_type"				"FIELD_FLOAT"
 				"cast_time"				"1.75"
 			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"wall_bonus_damage"		"400"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"wall_stun"		"1.0"
+			}
 		}
 		
 		// Data driven
@@ -1204,6 +1224,8 @@
 				"Function"      "StrikeAirPush"
 				"Damage"		"%damage"
 				"Speed"			"%speed"
+				"WallDamage"	"%wall_bonus_damage"
+				"WallStun"		"%wall_stun"
 			}
 			"FireEffect"
 			{
@@ -1730,7 +1752,11 @@
 				"EffectName"		"particles/customgames/capturepoints/cp_wind.vpcf"
 				"EffectAttachType"	"follow_origin"
 				
-				"Duration"						"3"
+				"Duration"		"3"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EVASION_CONSTANT"	"50"
+				}
 				"ThinkInterval"					"0.1"
 				"OnIntervalThink"
 				{
@@ -2576,7 +2602,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{
@@ -2620,7 +2646,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -3326,12 +3352,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"low_end"				"85"
+				"low_end"				"80"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"high_end"				"125"
+				"high_end"				"120"
 			}
 			"05"
 			{
@@ -3864,33 +3890,61 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range"					"1000"
+				"radius"					"1000"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"speed_modifier"		"-10 -20"
+				"speed_modifier"		"-15 -30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"attackspeed_modifier"	"0 -50"
 			}
 		}
 		
 		"Modifiers"
 		{
-			"modifier_mystic_eye"
+			"mystic_eye_passive"
 			{
 				"Passive"		"1"
-				"IsHidden"		"0"
-				"Aura"			"rider_5th_mystic_eye_aura"
-				"Aura_Radius"	"%range"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_ALL"
-			}
-			"rider_5th_mystic_eye_aura"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"rider_ability"
+						"Function"		"OnMysticEyesStart"
+						"Radius"		"%radius"
+					}
+				}
+				"OnDeath"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"rider_ability"
+						"Function"		"OnMysticEyesDeath"
+					}
+				}
+				"OnRespawn"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"rider_ability"
+						"Function"		"OnMysticEyesRespawn"
+						"Radius"		"%radius"
+					}
+				}			
+			}	
+			"modifier_rider_5th_mystic_eye_enemy"
 			{
+				"Duration"			"0.25"
 				"IsDebuff"			"1"
 				"IsHidden"			"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%speed_modifier"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attackspeed_modifier"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%speed_modifier"
 				}
 			}
@@ -4398,7 +4452,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"8"
+		"AbilityManaCost"				"9"
 
 		"precache"
 		{
@@ -4409,7 +4463,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"slow_amount"			"20"
+				"ms_slow"			"30"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"as_slow"			"50"
 			}
 		}
 		
@@ -4669,7 +4728,7 @@
 		}
 		
 		"AbilityCastPoint"				"0.1"
-		"AbilityCastRange"				"500"
+		"AbilityCastRange"				"750"
 		"AbilityCooldown"				"8"
 		"AbilityManaCost"				"100"
 		
@@ -4689,6 +4748,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"ubw_cooldown"				"3.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_ratio"				"1"
 			}
 		}
 		
@@ -4712,6 +4776,7 @@
 				"ScriptFile"	"archer_ability"
 				"Function"		"KBHit"
 				"DamagePerTick"	"%damage_per_tick"
+				"DamageRatio"	"%damage_ratio"
 			}
 		}
 
@@ -5679,6 +5744,16 @@
 				"var_type"			"FIELD_INTEGER"
 				"charge_time"		"20"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"kb_ratio"				"150"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"int_ratio"				"20"
+			}
 		}
 		
 		"OnSpellStart"
@@ -5689,6 +5764,8 @@
 				"Function"			"OnOveredgeStart"
 				"Target"			"POINT"
 				"Radius"			"%radius"
+				"KBRatio"			"%kb_ratio"
+				"IntRatio"			"%int_ratio"
 			}
 		}
 
@@ -6073,7 +6150,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"14"
 
 		"precache"
 		{
@@ -6081,6 +6158,21 @@
 
 		"AbilitySpecial"
 		{
+		"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"kb_ratio"				"150"
+			}
+		"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"int_ratio"				"20"
+			}
+		"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"kb_int_ratio"				"1"
+			}
 		}
 		
 		"OnSpellStart"
@@ -6925,7 +7017,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"16"
+		"AbilityManaCost"				"15"
 
 		"precache"
 		{
@@ -7081,7 +7173,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"15"
+		"AbilityManaCost"				"14"
 
 		"precache"
 		{
@@ -9463,7 +9555,7 @@
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
 		}
 		
-		"AbilityCastPoint"				"0.95"
+		"AbilityCastPoint"				"1.0"
 		"AbilityCastRange"				"600"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCooldown"				"36"
@@ -9663,7 +9755,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -9766,7 +9858,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"16"
+		"AbilityManaCost"				"15"
 
 		"precache"
 		{
@@ -10377,10 +10469,172 @@
 			}
 		}
 	}
+	
 	//=====================================
 	// Gilgamesh : Enuma Elish
 	//=====================================
 	"gilgamesh_enuma_elish"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/gilg/enuma_elish"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/gilgamesh_enuma_elish"
+
+		"precache"
+			{
+			"particle"		"particles/custom/gilgamesh/gilgamesh_enuma_elish_charge_wave.vpcf"
+			"particle"		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf"
+			"particle"		"particles/custom/gilgamesh/enuma_elish/projectile.vpcf"			
+			"particle"		"particles/custom/gilgamesh/enuma_elish/charging_sparkles.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_weaver.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+			}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1700"
+		"AbilityCastPoint"				"0.2"
+		"AbilityChannelTime"      "5.05"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"47.0"
+
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"800"
+
+		// AbilitySpecial
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"activation"			"1.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"					"250"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"end_radius"					"250"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"1700"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1000"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"700 900 1100 1300 1500"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"endcast_pause"		"1.5"
+			}
+
+			// Extra charge variables
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"endradius_charge_start"		"10"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"endradius_charge_end"		"50"
+			}
+			"10"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"endradius_total"		"500"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_charge_start"		"10"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_charge_end"		"50"
+			}
+			"13"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"damage_total"		"400 550 700 850 1000"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"add1_charge_start"		"30"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"add1_charge_end"		"50"
+			}
+			// Tool Tip variables
+			"16"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damagemax"				"1300 1725 2150 2575 3000"
+			}
+			"17"
+			{				
+				"var_type"				"FIELD_FLOAT"
+				"endradiusmax"		"750"
+			}
+		}
+	}
+	//=====================================
+	// Gilgamesh : Enuma Elish ACTIVATE
+	//=====================================
+	"gilgamesh_enuma_elish_activate"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/gilg/enuma_elish"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/gilgamesh_enuma_elish"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+	}	
+	
+	//=====================================
+	// Gilgamesh : Enuma Elish (OLD)
+	//=====================================
+	"gilgamesh_enuma_elish_old"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -16110,6 +16364,7 @@
 			{
 				"ScriptFile"		"diarmuid_ability"
 				"Function"			"OnDSStart"
+				"Duration"		"%duration"	
 			}
 			"FireSound"
 			{
@@ -16124,7 +16379,6 @@
 			{
 				"EffectName"		"particles/units/heroes/hero_invoker/invoker_alacrity_buff.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"Duration"		"%duration"	
 
 				"OnAttackLanded"
 				{
@@ -16150,7 +16404,6 @@
 			{
 				"EffectName"		"particles/units/heroes/hero_invoker/invoker_alacrity_buff.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"Duration"		"%duration"	
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -16240,6 +16493,11 @@
 				"var_type"			"FIELD_FLOAT"
 				"crit_damage"			"200.0"
 			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration_penalty"		"4.0"
+			}
 		}
 		
 		"OnSpellStart"
@@ -16248,6 +16506,7 @@
 			{
 				"ScriptFile"		"diarmuid_ability"
 				"Function"			"OnRampantWarriorStart"
+				"Duration"		"%duration"	
 			}
 		}
 
@@ -16262,8 +16521,7 @@
 			"modifier_rampant_warrior"
 			{
 				"EffectName"		"particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
-				"EffectAttachType"	"follow_origin"
-				"Duration"		"%duration"			
+				"EffectAttachType"	"follow_origin"		
 				"OnAttackStart"
 				{
 					"RemoveModifier"
@@ -16373,24 +16631,29 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"500 600 700 800 900"
+				"damage"			"500 650 800 950 1100"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"number_stacks"		"5 6 7 8 9"
+				"number_stacks"		"10 11 12 13 14"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"unit_reduction"	"100"
+				"unit_reduction"	"50"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"range"				"250"
+				"health_reduction_TT"	"500 550 600 650 700"
 			}
 			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"250"
+			}
+			"07"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"cast_time"			"1.0"
@@ -16403,6 +16666,7 @@
 			{
 				"ScriptFile"	"diarmuid_ability"
 				"Function"		"OnGaeCastStart"
+				"CastTime"		"%cast_time"
 			}
 		}
 		"OnSpellStart"
@@ -16414,6 +16678,7 @@
 			 	"Damage"		"%damage"
 			 	"nStacks"		"%number_stacks"
 			 	"unitReduction"	"%unit_reduction"
+			 	"CastTime"		"%cast_time"
 			 }
 		}
 		"Modifiers"
@@ -16506,7 +16771,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
 		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastPoint"				"1.0"
+		"AbilityCastPoint"				"1.1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -16521,7 +16786,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"delay"			"1.0"
+				"delay"			"1.1"
 			}
 			"02"
 			{
@@ -16541,7 +16806,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"cast_time"			"1.0"
+				"cast_time"			"1.1"
 			}
 			"06"
 			{
@@ -16558,6 +16823,7 @@
 				"var_type"			"FIELD_INTEGER"
 				"mortality_pct"		"20"
 			}
+
 		}
 		
 		"OnAbilityPhaseStart"
@@ -16566,6 +16832,7 @@
 			{
 				"ScriptFile"	"diarmuid_ability"
 				"Function"		"OnGaeCastStart"
+				"CastTime"		"%cast_time"
 			}
 		}
 		"OnSpellStart"
@@ -16578,6 +16845,7 @@
 			 	"MaxDamage"		"%max_damage"
 			 	"nStacks"		"%number_stacks"	//for casting dearg with doublespear on
 			 	"unitReduction"	"%unit_reduction"	//for casting dearg with doublespear on
+			 	"CastTime"		"%cast_time"
 			 }
 		}
 		"Modifiers"
@@ -16715,9 +16983,9 @@
 	}
 
 	//=======================================
-	// Diarmuid Attribute : Rosebloom
+	// Diarmuid Attribute : Golden Rose of Mortality
 	//=======================================
-	"diarmuid_attribute_rosebloom"
+	"diarmuid_attribute_golden_rose_of_mortality"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -16739,7 +17007,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"max_damage_dist"			"300"
+				"2nd_attack_damage"			"2"
 			}
 			"02"
 			{
@@ -16753,10 +17021,45 @@
 			"RunScript"
 			{
 				"ScriptFile"	"diarmuid_ability"
-				"Function"		"OnRosebloomAcquired"
+				"Function"		"OnGoldenRoseAcquired"
 			}
 		}
 	}
+
+	//=======================================
+	// Diarmuid Attribute : Crimson Rose of Exorcism
+	//=======================================
+	"diarmuid_attribute_crimson_rose_of_exorcism"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/diarmuid_attribute_rosebloom"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"diarmuid_ability"
+				"Function"		"OnCrimsonRoseAcquired"
+			}
+		}
+	}
+
 
 
 	//=======================================
@@ -16786,8 +17089,23 @@
 				"var_type"			"FIELD_FLOAT"
 				"cooldown"			"55.0"
 			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cast_reduction"			"0.8"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"5.0"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"			"5.0"
+			}
 		}
-		
+
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -21384,7 +21702,7 @@
 		"AbilityCastRange"				"800"
 		"AbilityCastRangeBuffer"		"200"
 		"AbilityCastPoint"				"0.15"
-		"AbilityCooldown"				"15"
+		"AbilityCooldown"				"10"
 		"AbilityManaCost"				"100"
 		
 		// Ability special
@@ -21494,7 +21812,7 @@
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
 		}
 		
-		"AbilityCooldown"				"13 12 11 10 9"
+		"AbilityCooldown"				"15 14 13 12 11"
 		"AbilityManaCost"				"200"
 		
 		"AbilitySpecial"
@@ -24152,7 +24470,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"silence_duration"			"0.5"
+				"silence_duration"			"1.0"
 			}
 			"02"
 			{
@@ -24384,6 +24702,16 @@
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"8"
 			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"strbonus"			"20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"dmg_ratio"			"1.5"
+			}
 		}
 		
 		"OnSpellStart"
@@ -24392,6 +24720,7 @@
 			{
 				"ScriptFile"		"lishuwen_ability"
 				"Function"			"OnBerserkStart"
+				"Duration"			"%duration"
 			}
 		}
 		
@@ -24546,7 +24875,7 @@
 		// Cast
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.5"
-		"AbilityCooldown"				"22"
+		"AbilityCooldown"				"27 24 21 18 15"
 		"AbilityManaCost"				"200"
 		
 		// Ability Special
@@ -25064,7 +25393,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"open_wound_damage"		"65 80 95 110 125"	
+				"open_wound_damage"		"60 75 90 105 120"	
 			}
 			"06"
 			{
@@ -25510,7 +25839,7 @@
 			"11"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"third_strike_aerial_hit_count"				"7"
+				"third_strike_aerial_hit_count"				"15"
 			}
 			"12"
 			{
@@ -25676,7 +26005,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"10"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{
@@ -25691,8 +26020,13 @@
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_bonus"			"100"
+				"var_type"			"FIELD_FLOAT"
+				"strbonus"			"20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"dmg_ratio"			"1.5"
 			}
 		}
 		
@@ -27560,7 +27894,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"900"
+				"damage"				"1000"
 			}
 		}
 
@@ -27663,7 +27997,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"				"900"
+				"damage"				"1000"
 			}
 
 		}
@@ -29132,7 +29466,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"13"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{
@@ -29191,7 +29525,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"15"
+		"AbilityManaCost"				"16"
 
 		"precache"
 		{
@@ -29304,7 +29638,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"11"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{

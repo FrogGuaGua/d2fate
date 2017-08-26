@@ -762,7 +762,7 @@ function AntiMagic(keys)
 
 end
 
-function FullHeal(keys)
+function Replenish(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	if caster:HasModifier("jump_pause_nosilence")

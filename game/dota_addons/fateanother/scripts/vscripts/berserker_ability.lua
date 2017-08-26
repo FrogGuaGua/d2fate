@@ -39,28 +39,29 @@ function OnFissureHit(keys)
 	if not IsImmuneToSlow(target) then keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_fissure_strike_slow", {}) end
 
 	giveUnitDataDrivenModifier(keys.caster, keys.target, "pause_sealenabled", 0.01)
-
-    local pushTarget = Physics:Unit(target)
-    target:PreventDI()
-    target:SetPhysicsFriction(0)
-	local vectorC = (caster.FissureTarget - caster.FissureOrigin) + Vector(0,0,100) --knockback in direction as fissure
-	-- get the direction where target will be pushed back to
-	target:SetPhysicsVelocity(vectorC:Normalized() * 1500)
-    target:SetNavCollisionType(PHYSICS_NAV_BOUNCE)
-	local initialUnitOrigin = keys.target:GetAbsOrigin()
-	
-	target:OnPhysicsFrame(function(unit) -- pushback distance check
-		local unitOrigin = unit:GetAbsOrigin()
-		local diff = unitOrigin - initialUnitOrigin
-		local n_diff = diff:Normalized()
-		unit:SetPhysicsVelocity(unit:GetPhysicsVelocity():Length() * n_diff) -- track the movement of target being pushed back
-		if diff:Length() > caster:FindAbilityByName("berserker_5th_fissure_strike"):GetSpecialValueFor("knockback") then -- if pushback distance is over 400, stop it
-			unit:PreventDI(false)
-			unit:SetPhysicsVelocity(Vector(0,0,0))
-			unit:OnPhysicsFrame(nil)
-			FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), true)
-		end
-	end)
+	if not target:HasModifier("modifier_wind_protection_passive") then
+	    local pushTarget = Physics:Unit(target)
+	    target:PreventDI()
+	    target:SetPhysicsFriction(0)
+		local vectorC = (caster.FissureTarget - caster.FissureOrigin) + Vector(0,0,100) --knockback in direction as fissure
+		-- get the direction where target will be pushed back to
+		target:SetPhysicsVelocity(vectorC:Normalized() * 1500)
+	    target:SetNavCollisionType(PHYSICS_NAV_BOUNCE)
+		local initialUnitOrigin = keys.target:GetAbsOrigin()
+		
+		target:OnPhysicsFrame(function(unit) -- pushback distance check
+			local unitOrigin = unit:GetAbsOrigin()
+			local diff = unitOrigin - initialUnitOrigin
+			local n_diff = diff:Normalized()
+			unit:SetPhysicsVelocity(unit:GetPhysicsVelocity():Length() * n_diff) -- track the movement of target being pushed back
+			if diff:Length() > caster:FindAbilityByName("berserker_5th_fissure_strike"):GetSpecialValueFor("knockback") then -- if pushback distance is over 400, stop it
+				unit:PreventDI(false)
+				unit:SetPhysicsVelocity(Vector(0,0,0))
+				unit:OnPhysicsFrame(nil)
+				FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), true)
+			end
+		end)
+	end
 	
 	target:OnPreBounce(function(unit, normal) -- stop the pushback when unit hits wall
 		unit:SetBounceMultiplier(0)
@@ -225,8 +226,8 @@ function OnBerserkStart(keys)
   --   	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin() )
   		--Combo Roar double health lock
   		if caster:HasModifier("modifier_madmans_roar_silence") then
-  			caster:SetHealth(math.min(hplock * 2, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 100))
-		else caster:SetHealth(math.min(hplock, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 100))
+  			caster:SetHealth(math.min(hplock * 2, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 50))
+		else caster:SetHealth(math.min(hplock, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 50))
 			end
 		 -- 100 being unit health reduction, refer to ZL KV/lua.
 		berserkCounter = berserkCounter + 0.033
@@ -490,18 +491,20 @@ function OnNineLanded(caster, ability)
 							giveUnitDataDrivenModifier(caster, v, "revoked", 0.5)
 						end
 						-- push enemies back
-						local pushback = Physics:Unit(v)
-						v:PreventDI()
-						v:SetPhysicsFriction(0)
-						v:SetPhysicsVelocity((v:GetAbsOrigin() - casterInitOrigin):Normalized() * 300)
-						v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
-						v:FollowNavMesh(false)
-						Timers:CreateTimer(0.5, function()  
-							v:PreventDI(false)
-							v:SetPhysicsVelocity(Vector(0,0,0))
-							v:OnPhysicsFrame(nil)
-							FindClearSpaceForUnit(v, v:GetAbsOrigin(), true)
-						end)
+						if not v:HasModifier("modifier_wind_protection_passive") then
+							local pushback = Physics:Unit(v)
+							v:PreventDI()
+							v:SetPhysicsFriction(0)
+							v:SetPhysicsVelocity((v:GetAbsOrigin() - casterInitOrigin):Normalized() * 300)
+							v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
+							v:FollowNavMesh(false)
+							Timers:CreateTimer(0.5, function()  
+								v:PreventDI(false)
+								v:SetPhysicsVelocity(Vector(0,0,0))
+								v:OnPhysicsFrame(nil)
+								FindClearSpaceForUnit(v, v:GetAbsOrigin(), true)
+							end)
+						end
 					end
 				end
 

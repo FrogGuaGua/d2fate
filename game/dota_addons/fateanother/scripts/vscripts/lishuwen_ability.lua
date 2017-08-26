@@ -3,6 +3,8 @@ ATTR_NSS_STACK_DAMAGE_PERCENTAGE = 10
 ATTR_AGI_RATIO = 2.0
 ATTR_MANA_REFUND = 200
 
+LinkLuaModifier("modifier_berserk","abilities/lishuwen/modifier_berserk", LUA_MODIFIER_MOTION_NONE)
+
 function OnMartialStart(keys)
 	local caster = keys.caster
 	local target = keys.target
@@ -87,7 +89,7 @@ function OnBerserkStart(keys)
 	if caster.bIsFuriousChainAcquired then
 		GrantFuriousChainBuff(caster) 
 	end
-   	keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_lishuwen_berserk", {})
+   	caster:AddNewModifier(caster, keys.ability, "modifier_berserk", {Duration = keys.Duration})
     HardCleanse(caster)
     caster:EmitSound("DOTA_Item.MaskOfMadness.Activate")
     local dispel = ParticleManager:CreateParticle( "particles/units/heroes/hero_abaddon/abaddon_death_coil_explosion.vpcf", PATTACH_ABSORIGIN, caster )
@@ -321,7 +323,7 @@ function OnNSSStart(keys)
 	caster.ProcDamage = keys.ProcDamage
 	caster.ProcStunDuration = keys.ProcStunDuration
 	target.IsNSSProcReady = true
-	if caster:HasModifier("modifier_lishuwen_berserk") then
+	if caster:HasModifier("modifier_berserk") then
 		keys.ability:EndCooldown()
 		caster:SetMana(caster:GetMana()+keys.ability:GetManaCost(1))
 		SendErrorMessage(caster:GetPlayerOwnerID(), "#Cannot_Be_Cast_Now")
@@ -462,7 +464,7 @@ function OnDragonStrike1Start(keys)
 	ProjectileManager:CreateLinearProjectile(projectile)
 
 	-- Wait 1 frame to receive target info
-	Timers:CreateTimer(0.033, function()
+	Timers:CreateTimer(0.034, function()
 		local startpoint = caster:GetAbsOrigin()
 		local endpoint = nil
 		for k,v in pairs(caster.targetTable) do
@@ -569,6 +571,7 @@ vectorsV2 = {
 function OnDragonStrike3Start(keys)
 	local caster = keys.caster
 	local ability = keys.ability
+	local count = keys.Count
 	GrantCosmicOrbitResist(caster)
 	caster.bIsCurrentDSCycleFinished = true
 	Timers:RemoveTimer('raging_dragon_timer')
@@ -620,7 +623,7 @@ function OnDragonStrike3Start(keys)
 
 		local target = nil
 
-		for i=1, #targets do
+        for i=1, 50 do
 			local curIndex = math.random(#targets)
 			if targets[curIndex].nDragonStrikeComboCount < 8 then
 				targets[curIndex].nDragonStrikeComboCount = targets[curIndex].nDragonStrikeComboCount + 1
@@ -688,7 +691,7 @@ function LishuwenCheckCombo(caster, ability)
     	if ability == caster:FindAbilityByName("lishuwen_cosmic_orbit") and caster:FindAbilityByName("lishuwen_raging_dragon_strike"):IsCooldownReady() and caster:FindAbilityByName("lishuwen_fierce_tiger_strike"):IsCooldownReady() and caster:GetAbilityByIndex(2):GetName() == "lishuwen_fierce_tiger_strike" then
             caster:SwapAbilities("lishuwen_raging_dragon_strike", "lishuwen_fierce_tiger_strike", true, false) 
             Timers:CreateTimer('raging_dragon_timer',{
-                endTime = 4,
+                endTime = 5,
                 callback = function()
                 if not caster.bIsCurrentDSCycleFinished and caster.bIsCurrentDSCycleStarted then
                 	local abil = caster:FindAbilityByName("lishuwen_raging_dragon_strike")

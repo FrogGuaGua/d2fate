@@ -1,6 +1,40 @@
 nailUsed = false
 nailTime = 0
 
+function OnMysticEyesStart(keys)
+	local caster = keys.caster
+	StartMysticEyesTimer(keys)
+end
+
+function OnMysticEyesDeath(keys)
+	local caster = keys.caster
+	Timers:RemoveTimer("MysticEyes_passive_timer")
+end
+
+function OnMysticEyesRespawn(keys)
+	local caster = keys.caster
+	StartMysticEyesTimer(keys)
+end
+
+modName = "modifier_rider_5th_mystic_eye_enemy"
+function StartMysticEyesTimer(keys)
+	local caster = keys.caster
+	Timers:CreateTimer('MysticEyes_passive_timer', {
+		endTime = 0,
+		callback = function()
+		local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		for k,v in pairs(targets) do
+			if v ~= caster then 
+				if IsFacingUnit(v, caster, 120) then
+					keys.ability:ApplyDataDrivenModifier(caster,v, modName, {})
+				end
+			end
+			
+	    end
+	    return 0.25
+	end})
+end
+
 function OnMonstrousStrengthProc(keys)
 	DoDamage(keys.caster, keys.target, 400 , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 end
@@ -26,34 +60,36 @@ function NailPull(keys)
 	for k,v in pairs(targets) do
 		print(v:GetName())
 		if v:GetName() == "npc_dota_ward_base" then goto excludetarget end
-		giveUnitDataDrivenModifier(caster, v, "stunned", 0.033)
-		giveUnitDataDrivenModifier(caster, v, "dragged", 0.5)
 		DoDamage(caster, v, keys.Damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-		
-		local pullTarget = Physics:Unit(v)
-		v:PreventDI()
-		v:SetPhysicsFriction(0)
-		v:SetPhysicsVelocity((caster:GetAbsOrigin() - v:GetAbsOrigin()):Normalized() * 1000)
-		v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
-		v:FollowNavMesh(false)
+		if not v:HasModifier("modifier_wind_protection_passive") then
+			giveUnitDataDrivenModifier(caster, v, "stunned", 0.033)
+			giveUnitDataDrivenModifier(caster, v, "dragged", 0.5)
+			
+			local pullTarget = Physics:Unit(v)
+			v:PreventDI()
+			v:SetPhysicsFriction(0)
+			v:SetPhysicsVelocity((caster:GetAbsOrigin() - v:GetAbsOrigin()):Normalized() * 1000)
+			v:SetNavCollisionType(PHYSICS_NAV_NOTHING)
+			v:FollowNavMesh(false)
 
-		Timers:CreateTimer(0.5, function()
-			v:PreventDI(false)
-			v:SetPhysicsVelocity(Vector(0,0,0))
-			v:OnPhysicsFrame(nil)
-			FindClearSpaceForUnit(v, v:GetAbsOrigin(), true)
-		end)
+			Timers:CreateTimer(0.5, function()
+				v:PreventDI(false)
+				v:SetPhysicsVelocity(Vector(0,0,0))
+				v:OnPhysicsFrame(nil)
+				FindClearSpaceForUnit(v, v:GetAbsOrigin(), true)
+			end)
 
-		v:OnPhysicsFrame(function(unit)
-			local diff = caster:GetAbsOrigin() - unit:GetAbsOrigin()
-			local dir = diff:Normalized()
-			unit:SetPhysicsVelocity(unit:GetPhysicsVelocity():Length() * dir)
-			if diff:Length() < 50 then
-				unit:PreventDI(false)
-				unit:SetPhysicsVelocity(Vector(0,0,0))
-				unit:OnPhysicsFrame(nil)
-			end
-		end)
+			v:OnPhysicsFrame(function(unit)
+				local diff = caster:GetAbsOrigin() - unit:GetAbsOrigin()
+				local dir = diff:Normalized()
+				unit:SetPhysicsVelocity(unit:GetPhysicsVelocity():Length() * dir)
+				if diff:Length() < 50 then
+					unit:PreventDI(false)
+					unit:SetPhysicsVelocity(Vector(0,0,0))
+					unit:OnPhysicsFrame(nil)
+				end
+			end)
+		end
 		::excludetarget::
 	end
 end

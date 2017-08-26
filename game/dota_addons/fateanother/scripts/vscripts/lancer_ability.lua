@@ -4,10 +4,13 @@ ATTR_HEARTSEEKER_COMBO_AD_RATIO = 2
 function OnPFAStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-
+	caster:RemoveModifierByName("modifier_lancer_protection_from_arrows")
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_lancer_protection_from_arrows_active", {duration=3})
 	caster:EmitSound("DOTA_Item.Buckler.Activate")
 	StartAnimation(caster, {duration=1, activity=ACT_DOTA_CAST_ABILITY_1, rate=0.45})
+	Timers:CreateTimer(3.0, function()
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_lancer_protection_from_arrows", {})
+	end)
 
 end
 
@@ -571,8 +574,8 @@ function OnGBAOEHit(keys, projectile)
 	if caster.IsGaeBolgImproved == true then
 		healthDamagePct = healthDamagePct * 2
 	end
-	
-	local modifierKnockback =
+
+	--[[local modifierKnockback =
 	{
 		center_x = targetPoint.x,
 		center_y = targetPoint.y,
@@ -581,15 +584,16 @@ function OnGBAOEHit(keys, projectile)
 		knockback_duration = 0.25,
 		knockback_distance = 0,
 		knockback_height = 150,
-	}
+	}]]
 
 	Timers:CreateTimer(0.15, function()
 		local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, radius
 	            , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
 	        DoDamage(caster, v, damage + v:GetHealth() * healthDamagePct/100, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-	        v:AddNewModifier(caster, v, "modifier_stunned", {Duration = 0.1})
-	        v:AddNewModifier(v, nil, "modifier_knockback", modifierKnockback )
+	        --v:AddNewModifier(caster, v, "modifier_stunned", {Duration = 0.25})
+	        --v:AddNewModifier(v, nil, "modifier_knockback", modifierKnockback )
+	        ApplyAirborne(caster, v, 0.25)
 	    end
 	    projectile:SetAbsOrigin(targetPoint)
 	    local fire = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_rainofchaos_start_breakout_fallback_mid.vpcf", PATTACH_ABSORIGIN, projectile)

@@ -80,8 +80,9 @@ function InvisibleAirPull(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local ply = caster:GetPlayerOwner()
-
-	giveUnitDataDrivenModifier(caster, target, "drag_pause", 1.0)
+	if not target:HasModifier("modifier_wind_protection_passive") then
+		giveUnitDataDrivenModifier(caster, target, "drag_pause", 1.0)
+	end
 	target:RemoveModifierByName("modifier_invisible_air_target")
 	ability:ApplyDataDrivenModifier(caster, target, "modifier_invisible_air_target", {})
 
@@ -93,36 +94,38 @@ function InvisibleAirPull(keys)
 	end
 
 	-- physics stuffs
-    local pullTarget = Physics:Unit(keys.target)
-    local dist = (keys.caster:GetAbsOrigin() - keys.target:GetAbsOrigin()):Length2D() 
-    target:PreventDI()
-    target:SetPhysicsFriction(0)
-    target:SetPhysicsVelocity((keys.caster:GetAbsOrigin() - keys.target:GetAbsOrigin()):Normalized() * dist * 2)
-    target:SetNavCollisionType(PHYSICS_NAV_NOTHING)
-    target:FollowNavMesh(false)
+	if not target:HasModifier("modifier_wind_protection_passive") then
+	    local pullTarget = Physics:Unit(keys.target)
+	    local dist = (keys.caster:GetAbsOrigin() - keys.target:GetAbsOrigin()):Length2D() 
+	    target:PreventDI()
+	    target:SetPhysicsFriction(0)
+	    target:SetPhysicsVelocity((keys.caster:GetAbsOrigin() - keys.target:GetAbsOrigin()):Normalized() * dist * 2)
+	    target:SetNavCollisionType(PHYSICS_NAV_NOTHING)
+	    target:FollowNavMesh(false)
 
-  	Timers:CreateTimer('invispull', {
-		endTime = 1.0,
-		callback = function()
-		target:PreventDI(false)
-		target:SetPhysicsVelocity(Vector(0,0,0))
-		target:OnPhysicsFrame(nil)
+	  	Timers:CreateTimer('invispull', {
+			endTime = 1.0,
+			callback = function()
+			target:PreventDI(false)
+			target:SetPhysicsVelocity(Vector(0,0,0))
+			target:OnPhysicsFrame(nil)
+		end
+		})
+
+		target:OnPhysicsFrame(function(unit)
+		  local diff = caster:GetAbsOrigin() - unit:GetAbsOrigin()
+		  local dir = diff:Normalized()
+		  unit:SetPhysicsVelocity(unit:GetPhysicsVelocity():Length() * dir)
+		  if diff:Length() < 100 then
+		  	target:RemoveModifierByName("drag_pause")
+			target:RemoveModifierByName( "modifier_invisible_air_target" )		-- Addition
+			unit:PreventDI(false)
+			unit:SetPhysicsVelocity(Vector(0,0,0))
+			unit:OnPhysicsFrame(nil)
+	        FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), true)
+		  end
+		end)
 	end
-	})
-
-	target:OnPhysicsFrame(function(unit)
-	  local diff = caster:GetAbsOrigin() - unit:GetAbsOrigin()
-	  local dir = diff:Normalized()
-	  unit:SetPhysicsVelocity(unit:GetPhysicsVelocity():Length() * dir)
-	  if diff:Length() < 100 then
-	  	target:RemoveModifierByName("drag_pause")
-		target:RemoveModifierByName( "modifier_invisible_air_target" )		-- Addition
-		unit:PreventDI(false)
-		unit:SetPhysicsVelocity(Vector(0,0,0))
-		unit:OnPhysicsFrame(nil)
-        FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), true)
-	  end
-	end)
 end
 
 
@@ -747,6 +750,8 @@ function StrikeAirPush(keys)
 	--if (target:GetName() == "npc_dota_hero_bounty_hunter" and target.IsPFWAcquired) then return end
 	local totalDamage = 650 + (keys.caster:FindAbilityByName("saber_caliburn"):GetLevel() + keys.caster:FindAbilityByName("saber_invisible_air"):GetLevel()) * 125
 	--if target:GetName() == "npc_dota_hero_juggernaut" then totalDamage = 0 end
+	local WallDamage = keys.WallDamage
+	local WallStun = keys.WallStun
 
 	DoDamage(keys.caster, keys.target, totalDamage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	giveUnitDataDrivenModifier(keys.caster, keys.target, "pause_sealenabled", 0.5)
@@ -779,6 +784,8 @@ function StrikeAirPush(keys)
 		unit:SetBounceMultiplier(0)
 		unit:PreventDI(false)
 		unit:SetPhysicsVelocity(Vector(0,0,0))
+		giveUnitDataDrivenModifier(caster, target, "stunned",  WallStun)
+		DoDamage(keys.caster, unit, WallDamage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	end)
 end
 

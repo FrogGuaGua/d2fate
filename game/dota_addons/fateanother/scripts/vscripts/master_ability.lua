@@ -111,10 +111,11 @@ AvengerAttribute = {
 DiarmuidAttribute = {
 	"diarmuid_attribute_improve_love_spot",
 	"diarmuid_attribute_minds_eye",
-	"diarmuid_attribute_rosebloom",
+	"diarmuid_attribute_golden_rose_of_mortality",
+	"diarmuid_attribute_crimson_rose_of_exorcism",
 	"diarmuid_attribute_double_spear_strike",
 	"diarmuid_rampant_warrior",
-	attrCount = 4
+	attrCount = 5
 }
 
 IskanderAttribute = {
@@ -993,8 +994,8 @@ function OnProsperityAcquired(keys)
 	--[[
 	master:SetMana(master:GetMana()+20)
 	master2:SetMana(master:GetMana())]]
-	master:SetMaxHealth(master:GetMaxHealth()+2) 
-	master:SetHealth(master:GetHealth()+2)
+	master:SetMaxHealth(master:GetMaxHealth()+3) 
+	master:SetHealth(master:GetHealth()+3)
 	master2:SetMaxHealth(master:GetMaxHealth()) 
 	master2:SetHealth(master:GetHealth())
     local statTable = CreateTemporaryStatTable(hero)

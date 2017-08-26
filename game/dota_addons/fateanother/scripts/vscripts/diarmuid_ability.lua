@@ -1,3 +1,9 @@
+LinkLuaModifier("modifier_golden_rose_of_mortality", "abilities/diarmuid/modifier_golden_rose_of_mortality", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_doublespear_buidhe", "abilities/diarmuid/modifier_doublespear_buidhe", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_doublespear_dearg", "abilities/diarmuid/modifier_doublespear_dearg", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_mark_of_exorcism", "abilities/diarmuid/modifier_mark_of_exorcism", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_charges", "modifiers/modifier_charges", LUA_MODIFIER_MOTION_NONE)
+
 function OnLoveSpotStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -57,6 +63,13 @@ function OnChargeStart(keys)
 	if not IsImmuneToSlow(target) then
 		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_warriors_charge_slow", {})
 	end
+	if caster:HasModifier("modifier_charges") then
+		keys.ability:EndCooldown()
+		local modifier = caster:FindModifierByName("modifier_charges")
+		if modifier:GetStackCount() == 0 then
+			keys.ability:StartCooldown(modifier:GetRemainingTime())
+		end
+	end
 
 	--particle
 	caster:EmitSound("Hero_Huskar.Life_Break")
@@ -72,7 +85,7 @@ function OnDSStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	if caster:HasModifier("modifier_rampant_warrior") then return end--appears stacking W and Combo is possible from sealing, remove if stacking is intended feature
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_double_spearsmanship", {})
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_double_spearsmanship", {duration = keys.Duration})
 end
 
 function OnDSLanded(keys)
@@ -103,9 +116,9 @@ function OnRampantWarriorStart(keys)
 	if caster:HasModifier("modifier_double_spearsmanship") then --appears stacking W and Combo is possible from sealing, remove if stacking is intended feature
 		caster:RemoveModifierByName("modifier_double_spearsmanship")
 	end
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior", {})
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior", {duration = keys.Duration})
 
-	caster:FindAbilityByName("diarmuid_double_spearsmanship"):ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior_combo", {})
+	caster:FindAbilityByName("diarmuid_double_spearsmanship"):ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior_combo", {duration = keys.Duration})
 	local particle = ParticleManager:CreateParticle("particles/items_fx/aegis_respawn.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(particle, 3, caster:GetAbsOrigin())
 	Timers:CreateTimer( 2.0, function()
@@ -130,6 +143,13 @@ function OnGaeCastStart(keys)
 		caster:EmitSound("ZL.Dearg_Cast")
 		particleName = "particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
 	end
+
+	if (keys.ability == caster:FindAbilityByName("diarmuid_gae_buidhe") and caster:HasModifier("modifier_doublespear_dearg")) or (keys.ability == caster:FindAbilityByName("diarmuid_gae_dearg") and caster:HasModifier("modifier_doublespear_buidhe")) then
+		local CastReduction = caster.MasterUnit2:FindAbilityByName("diarmuid_attribute_double_spear_strike"):GetSpecialValueFor("cast_reduction")
+		local NewCastPoint = keys.CastTime - CastReduction
+		keys.ability:SetOverrideCastPoint(NewCastPoint)
+	end
+
 	local particle = ParticleManager:CreateParticle(particleName, PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin()) -- target effect location
 	ParticleManager:SetParticleControl(particle, 2, caster:GetAbsOrigin()) -- circle effect location
@@ -140,40 +160,61 @@ function OnGaeCastStart(keys)
 end
 
 function OnBuidheStart(keys)
+	local ability = keys.ability
 	local caster = keys.caster
 	local target = keys.target
 	local ply = caster:GetPlayerOwner()
 	local nStacks = keys.nStacks
 	local unitReduction = keys.unitReduction
-	local currentStack = target:GetModifierStackCount("modifier_gae_buidhe", keys.ability)
+	local currentStack = target:GetModifierStackCount("modifier_gae_buidhe", ability)
 
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
+	if caster:HasModifier("modifier_rampant_warrior_combo") then
+		ability:EndCooldown()
+		ability:RefundManaCost()
+		local modifier = caster:FindModifierByName("modifier_rampant_warrior_combo")
+		local RWDuration = modifier:GetRemainingTime()
+		local RW = caster:FindAbilityByName("diarmuid_rampant_warrior")
+		local DurationPenalty = RW:GetSpecialValueFor("duration_penalty")
+		caster:RemoveModifierByName("modifier_rampant_warrior_combo")
+		caster:RemoveModifierByName("modifier_rampant_warrior")
+		caster:FindAbilityByName("diarmuid_double_spearsmanship"):ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior_combo", {duration = RWDuration - DurationPenalty})
+		caster:FindAbilityByName("diarmuid_rampant_warrior"):ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior", {duration = RWDuration - DurationPenalty})
+	end
 
-	if caster.IsRoseBloomAcquired then 
-		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_mark_of_mortality", {})
+	if caster.IsGoldenRoseAcquired then 
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_mark_of_mortality", {})
 	end
 
 	if target:GetMaxHealth() < (currentStack + nStacks) * unitReduction then
-		target:Execute(keys.ability, caster)
+		target:Execute(ability, caster)
 	end
 
 	local MR = 0
 	if target:IsHero() then MR = target:GetMagicalArmorValue() end
-	DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	if target:HasModifier("modifier_mark_of_exorcism") then
+		DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_PURE, 0, ability, false)
+		target:RemoveModifierByName("modifier_mark_of_exorcism")
+	else
+		DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	end
+	if caster.IsDoubleSpearAcquired then
+		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 0.5})
+	end
 
 	if target:GetHealth() > 0 and target:IsAlive() and caster:IsAlive() then
 
 		target:RemoveModifierByName("modifier_gae_buidhe") 
-		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_gae_buidhe", {}) 
-		target:SetModifierStackCount("modifier_gae_buidhe", keys.ability, currentStack + nStacks)
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_gae_buidhe", {}) 
+		target:SetModifierStackCount("modifier_gae_buidhe", ability, currentStack + nStacks)
 		if target:IsRealHero() then target:CalculateStatBonus() end
 
 	end
 
-	currentStack = target:GetModifierStackCount("modifier_gae_buidhe", keys.ability) --refresh currentstack after debuff
+	currentStack = target:GetModifierStackCount("modifier_gae_buidhe", ability) --refresh currentstack after debuff
 
   	if target:GetMaxHealth() < currentStack * unitReduction then -- for heroes that modifies maxHp like avenger with E
-		target:Execute(keys.ability, caster)
+		target:Execute(ability, caster)
 	elseif target:GetHealth() > (target:GetMaxHealth() - currentStack * unitReduction) then
 		target:SetHealth(target:GetMaxHealth() - currentStack * unitReduction)
 	end
@@ -183,7 +224,7 @@ function OnBuidheStart(keys)
 		-- local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff_symbol.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
   --   	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin() )
   		if target:GetMaxHealth() < currentStack * unitReduction then -- for heroes that modifies maxHp like avenger with E
-			target:Execute(keys.ability, caster)
+			target:Execute(ability, caster)
 		elseif target:GetHealth() > (target:GetMaxHealth() - currentStack * unitReduction) then
 			target:SetHealth(target:GetMaxHealth() - currentStack * unitReduction)
 		end
@@ -193,7 +234,7 @@ function OnBuidheStart(keys)
 
 	EmitGlobalSound("ZL.Gae_Buidhe")
 	target:EmitSound("Hero_Lion.Impale")
-	keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_diarmuid_gae_buidhe_anim", {})
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_diarmuid_gae_buidhe_anim", {})
 	PlayGaeEffect(target)
 	-- Add dagon particle
 	local dagon_particle = ParticleManager:CreateParticle("particles/custom/diarmuid/diarmuid_gae_buidhe.vpcf",  PATTACH_ABSORIGIN_FOLLOW, keys.caster)
@@ -205,7 +246,15 @@ function OnBuidheStart(keys)
 		ParticleManager:ReleaseParticleIndex( dagon_particle )
 	end)
 
-	if caster.IsDoubleSpearAcquired and caster.IsDoubleSpearReady and caster:FindAbilityByName("diarmuid_gae_dearg"):IsCooldownReady() and caster:GetMana() >= 550 then
+	if caster.IsDoubleSpearAcquired then
+		local Duration = caster.MasterUnit2:FindAbilityByName("diarmuid_attribute_double_spear_strike"):GetSpecialValueFor("duration")
+		caster:AddNewModifier(caster, caster, "modifier_doublespear_buidhe", {duration = Duration})
+		caster:RemoveModifierByName("modifier_doublespear_dearg")
+	end
+
+	ability:SetOverrideCastPoint(keys.CastTime)
+
+	--[[if caster.IsDoubleSpearAcquired and caster.IsDoubleSpearReady and caster:FindAbilityByName("diarmuid_gae_dearg"):IsCooldownReady() and caster:GetMana() >= 550 then
 		--print("Double spear activated")
 		local dearg = caster:FindAbilityByName("diarmuid_gae_dearg")
 		local minDamage = dearg:GetLevelSpecialValueFor("min_damage", dearg:GetLevel()-1)
@@ -228,7 +277,7 @@ function OnBuidheStart(keys)
 			OnDeargStart(keys)
 		end)
 		--caster:CastAbilityOnTarget(target, caster:FindAbilityByName("diarmuid_gae_dearg"), caster:GetPlayerID())
-	end
+	end]]
 end
 
 function OnBuidheOwnerDeath(keys)
@@ -250,31 +299,52 @@ function OnDeargStart(keys)
 	local ply = caster:GetPlayerOwner()
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 
+	if caster:HasModifier("modifier_rampant_warrior_combo") then
+		keys.ability:EndCooldown()
+		keys.ability:RefundManaCost()
+		local modifier = caster:FindModifierByName("modifier_rampant_warrior_combo")
+		local RWDuration = modifier:GetRemainingTime()
+		local RW = caster:FindAbilityByName("diarmuid_rampant_warrior")
+		local DurationPenalty = RW:GetSpecialValueFor("duration_penalty")
+		caster:RemoveModifierByName("modifier_rampant_warrior_combo")
+		caster:RemoveModifierByName("modifier_rampant_warrior")
+		caster:FindAbilityByName("diarmuid_double_spearsmanship"):ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior_combo", {duration = RWDuration - DurationPenalty})
+		caster:FindAbilityByName("diarmuid_rampant_warrior"):ApplyDataDrivenModifier(caster, caster, "modifier_rampant_warrior", {duration = RWDuration - DurationPenalty})
+	end
+
 	ApplyStrongDispel(target)
 
 	local damage = 0
-	local maxDamageDist = 100
-	local minDamageDist = 650
-	if caster.IsRoseBloomAcquired then 
+	local maxDamageDist = 500
+	local minDamageDist = 200
+	--[[if caster.IsGoldenRoseAcquired then 
 		maxDamageDist = 300
-	end
-	local distDiff = minDamageDist - maxDamageDist
+	end]]
+	local distDiff = maxDamageDist - minDamageDist
 	local damageDiff = keys.MaxDamage - keys.MinDamage
 	local distance = (caster:GetAbsOrigin() - target:GetAbsOrigin()):Length2D() 
-	if distance <= maxDamageDist then 
+	if distance >= maxDamageDist then 
 		damage = keys.MaxDamage
-	elseif maxDamageDist < distance and distance < minDamageDist then
-		damage = keys.MinDamage + damageDiff * (minDamageDist - distance) / distDiff
-	elseif minDamageDist <= distance then
+	elseif maxDamageDist > distance and distance > minDamageDist then
+		damage = keys.MinDamage + damageDiff * (distance - minDamageDist) / distDiff
+	elseif minDamageDist >= distance then
 		damage = keys.MinDamage
 	end
 	DoDamage(caster, target, damage, DAMAGE_TYPE_PURE, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, keys.ability, false)
 	--print("Gae Dearg dealt " .. damage .. " damage to target")
 	if target:HasModifier("modifier_mark_of_mortality") then
 		local detonateDamage = target:GetMaxHealth() * caster:FindAbilityByName("diarmuid_gae_dearg"):GetSpecialValueFor("mortality_pct")/100
-		DoDamage(caster, target, detonateDamage, DAMAGE_TYPE_PURE, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, keys.ability, false)
+		DoDamage(caster, target, detonateDamage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 		print("Detonate")
 		target:RemoveModifierByName("modifier_mark_of_mortality")
+	end
+
+	if caster.IsCrimsonRoseAcquired then
+		target:AddNewModifier(caster, target, "modifier_mark_of_exorcism", {duration = 10.0})
+	end
+
+	if caster.IsDoubleSpearAcquired then
+		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 0.5})
 	end
 
 	EmitGlobalSound("ZL.Gae_Dearg")
@@ -291,7 +361,15 @@ function OnDeargStart(keys)
 		ParticleManager:ReleaseParticleIndex( dagon_particle )
 	end)
 
-	if caster.IsDoubleSpearAcquired and caster.IsDoubleSpearReady and caster:FindAbilityByName("diarmuid_gae_buidhe"):IsCooldownReady() and caster:GetMana() >= 550 then
+	if caster.IsDoubleSpearAcquired then
+		local Duration = caster.MasterUnit2:FindAbilityByName("diarmuid_attribute_double_spear_strike"):GetSpecialValueFor("duration")
+		caster:AddNewModifier(caster, caster, "modifier_doublespear_dearg", {duration = Duration})
+		caster:RemoveModifierByName("modifier_doublespear_buidhe")
+	end
+
+	keys.ability:SetOverrideCastPoint(keys.CastTime)
+
+	--[[if caster.IsDoubleSpearAcquired and caster.IsDoubleSpearReady and caster:FindAbilityByName("diarmuid_gae_buidhe"):IsCooldownReady() and caster:GetMana() >= 550 then
 		--print("Double spear activated")
 		local buidhe = caster:FindAbilityByName("diarmuid_gae_buidhe")
 		keys.Damage = buidhe:GetLevelSpecialValueFor("damage", buidhe:GetLevel()-1)
@@ -312,7 +390,7 @@ function OnDeargStart(keys)
 			OnBuidheStart(keys)
 		end)
 		--caster:CastAbilityOnTarget(target, caster:FindAbilityByName("diarmuid_gae_dearg"), caster:GetPlayerID())
-	end
+	end]]
 end
 
 function PlayGaeEffect(target)
@@ -395,11 +473,29 @@ function OnMindEyeAcquired(keys)
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
 end
 
-function OnRosebloomAcquired(keys)
+function OnGoldenRoseAcquired(keys)
     local caster = keys.caster
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
-    hero.IsRoseBloomAcquired = true
+    hero.IsGoldenRoseAcquired = true
+    hero:AddNewModifier(hero, ability, "modifier_golden_rose_of_mortality", {})
+    -- Set master 1's mana 
+    local master = hero.MasterUnit
+    master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
+end
+
+function OnCrimsonRoseAcquired(keys)
+    local caster = keys.caster
+    local ply = caster:GetPlayerOwner()
+    local hero = caster:GetPlayerOwner():GetAssignedHero()
+    hero.IsCrimsonRoseAcquired = true
+    hero:AddNewModifier(hero, hero:FindAbilityByName("diarmuid_warriors_charge"), "modifier_charges",
+    	{
+    		max_count = 2,
+    		start_count = 1,
+    		replenish_time = 9
+    	}
+    )
     -- Set master 1's mana 
     local master = hero.MasterUnit
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
@@ -410,9 +506,9 @@ function OnDoubleSpearAcquired(keys)
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     hero.IsDoubleSpearAcquired = true
-    hero.IsDoubleSpearReady = true
+    --[[hero.IsDoubleSpearReady = true
     hero:SwapAbilities("fate_empty1", "diarmuid_double_spear_strike", false, true) 
-	hero:FindAbilityByName("diarmuid_double_spear_strike"):ToggleAbility()
+	hero:FindAbilityByName("diarmuid_double_spear_strike"):ToggleAbility()]]
     -- Set master 1's mana 
     local master = hero.MasterUnit
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))

@@ -119,8 +119,9 @@ function KBHit(keys)
 	local ply = caster:GetPlayerOwner()
 	local ability = keys.ability
 	local KBCount = 0
+	local ratio = keys.DamageRatio
 
-	if caster.IsProjectionImproved then keys.DamagePerTick = keys.DamagePerTick + caster:GetIntellect() end
+	if caster.IsOveredgeAcquired then keys.DamagePerTick = keys.DamagePerTick + caster:GetIntellect() * ratio end
 
 	Timers:CreateTimer(function() 
 		if KBCount == 4 then return end
@@ -128,7 +129,7 @@ function KBHit(keys)
 		if caster:FindAbilityByName("archer_5th_overedge"):IsCooldownReady() == false then
 			local overedgeCD = caster:FindAbilityByName("archer_5th_overedge"):GetCooldownTimeRemaining()
 			caster:FindAbilityByName("archer_5th_overedge"):EndCooldown()
-			caster:FindAbilityByName("archer_5th_overedge"):StartCooldown(overedgeCD-1)
+			caster:FindAbilityByName("archer_5th_overedge"):StartCooldown(overedgeCD-2)
 			caster:RemoveModifierByName("modifier_overedge_cooldown")
 			caster:FindAbilityByName("archer_5th_overedge"):ApplyDataDrivenModifier(caster, caster, "modifier_overedge_cooldown", {duration = overedgeCD-1})
 		end
@@ -241,7 +242,6 @@ function OnRhoStart(keys)
 	local ply = caster:GetPlayerOwner()
 	if caster.IsProjectionImproved then 
 		local knockBackUnits = FindUnitsInRadius(caster:GetTeam(), target:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false )
-	 
 		local modifierKnockback =
 		{
 			center_x = target:GetAbsOrigin().x,
@@ -255,7 +255,9 @@ function OnRhoStart(keys)
 
 		for _,unit in pairs(knockBackUnits) do
 	--		print( "knock back unit: " .. unit:GetName() )
-			unit:AddNewModifier( unit, nil, "modifier_knockback", modifierKnockback );
+		 	if not unit:HasModifier("modifier_wind_protection_passive") then
+				unit:AddNewModifier( unit, nil, "modifier_knockback", modifierKnockback );
+			end
 		end
 	end
 	ability:ApplyDataDrivenModifier(caster, target, "modifier_rho_aias_shield", {})
@@ -1170,7 +1172,10 @@ function OnOveredgeStart(keys)
 	local targetPoint = keys.target_points[1]
 	local dist = (caster:GetAbsOrigin() - targetPoint):Length2D() * 10/6
 	local castRange = keys.castRange
-
+	local kbratio = keys.KBRatio
+	local basedamage = caster:FindAbilityByName("archer_5th_kanshou_bakuya"):GetLevel() * 150
+	local intratio = keys.IntRatio
+	local damage = basedamage + caster:GetIntellect() * intratio
 	-- When you exit the ubw on the last moment, dist is going to be a pretty high number, since the targetPoint is on ubw but you are outside it
 	-- If it's, then we can't use it like that. Either cancel Overedge, or use a default one.
 	-- 2000 is a fixedNumber, just to check if dist is not valid. Over 2000 is surely wrong. (Max is close to 900)
@@ -1254,11 +1259,11 @@ function OnOveredgeStart(keys)
 				ParticleManager:ReleaseParticleIndex( stompParticleIndex )
 			end
 		)
-		
+
         local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetOrigin(), nil, keys.Radius
             , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
-	         DoDamage(caster, v, 700 + 20 * caster:GetIntellect() , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	         DoDamage(caster, v, damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	    end
 	end
 	})
