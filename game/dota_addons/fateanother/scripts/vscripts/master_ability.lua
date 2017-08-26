@@ -112,9 +112,10 @@ DiarmuidAttribute = {
 	"diarmuid_attribute_improve_love_spot",
 	"diarmuid_attribute_minds_eye",
 	"diarmuid_attribute_golden_rose_of_mortality",
+	"diarmuid_attribute_crimson_rose_of_exorcism",
 	"diarmuid_attribute_double_spear_strike",
 	"diarmuid_rampant_warrior",
-	attrCount = 4
+	attrCount = 5
 }
 
 IskanderAttribute = {

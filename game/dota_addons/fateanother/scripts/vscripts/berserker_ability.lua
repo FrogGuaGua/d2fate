@@ -226,8 +226,8 @@ function OnBerserkStart(keys)
   --   	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin() )
   		--Combo Roar double health lock
   		if caster:HasModifier("modifier_madmans_roar_silence") then
-  			caster:SetHealth(math.min(hplock * 2, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 100))
-		else caster:SetHealth(math.min(hplock, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 100))
+  			caster:SetHealth(math.min(hplock * 2, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 50))
+		else caster:SetHealth(math.min(hplock, caster:GetMaxHealth() - caster:GetModifierStackCount("modifier_gae_buidhe", keys.ability) * 50))
 			end
 		 -- 100 being unit health reduction, refer to ZL KV/lua.
 		berserkCounter = berserkCounter + 0.033

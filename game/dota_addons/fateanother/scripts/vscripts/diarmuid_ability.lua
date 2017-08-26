@@ -1,6 +1,8 @@
 LinkLuaModifier("modifier_golden_rose_of_mortality", "abilities/diarmuid/modifier_golden_rose_of_mortality", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_doublespear_buidhe", "abilities/diarmuid/modifier_doublespear_buidhe", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_doublespear_dearg", "abilities/diarmuid/modifier_doublespear_dearg", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_mark_of_exorcism", "abilities/diarmuid/modifier_mark_of_exorcism", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_charges", "modifiers/modifier_charges", LUA_MODIFIER_MOTION_NONE)
 
 function OnLoveSpotStart(keys)
 	local caster = keys.caster
@@ -60,6 +62,13 @@ function OnChargeStart(keys)
 
 	if not IsImmuneToSlow(target) then
 		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_warriors_charge_slow", {})
+	end
+	if caster:HasModifier("modifier_charges") then
+		keys.ability:EndCooldown()
+		local modifier = caster:FindModifierByName("modifier_charges")
+		if modifier:GetStackCount() == 0 then
+			keys.ability:StartCooldown(modifier:GetRemainingTime())
+		end
 	end
 
 	--particle
@@ -183,7 +192,12 @@ function OnBuidheStart(keys)
 
 	local MR = 0
 	if target:IsHero() then MR = target:GetMagicalArmorValue() end
-	DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	if target:HasModifier("modifier_mark_of_exorcism") then
+		DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_PURE, 0, ability, false)
+		target:RemoveModifierByName("modifier_mark_of_exorcism")
+	else
+		DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	end
 	if caster.IsDoubleSpearAcquired then
 		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 0.5})
 	end
@@ -325,6 +339,10 @@ function OnDeargStart(keys)
 		target:RemoveModifierByName("modifier_mark_of_mortality")
 	end
 
+	if caster.IsCrimsonRoseAcquired then
+		target:AddNewModifier(caster, target, "modifier_mark_of_exorcism", {duration = 10.0})
+	end
+
 	if caster.IsDoubleSpearAcquired then
 		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 0.5})
 	end
@@ -461,6 +479,23 @@ function OnGoldenRoseAcquired(keys)
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     hero.IsGoldenRoseAcquired = true
     hero:AddNewModifier(hero, ability, "modifier_golden_rose_of_mortality", {})
+    -- Set master 1's mana 
+    local master = hero.MasterUnit
+    master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
+end
+
+function OnCrimsonRoseAcquired(keys)
+    local caster = keys.caster
+    local ply = caster:GetPlayerOwner()
+    local hero = caster:GetPlayerOwner():GetAssignedHero()
+    hero.IsCrimsonRoseAcquired = true
+    hero:AddNewModifier(hero, hero:FindAbilityByName("diarmuid_warriors_charge"), "modifier_charges",
+    	{
+    		max_count = 2,
+    		start_count = 1,
+    		replenish_time = 9
+    	}
+    )
     -- Set master 1's mana 
     local master = hero.MasterUnit
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))

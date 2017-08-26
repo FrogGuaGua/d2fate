@@ -17026,6 +17026,41 @@
 		}
 	}
 
+	//=======================================
+	// Diarmuid Attribute : Crimson Rose of Exorcism
+	//=======================================
+	"diarmuid_attribute_crimson_rose_of_exorcism"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/diarmuid_attribute_rosebloom"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"diarmuid_ability"
+				"Function"		"OnCrimsonRoseAcquired"
+			}
+		}
+	}
+
+
 
 	//=======================================
 	// Diarmuid Attribute : Double Spear Strike
