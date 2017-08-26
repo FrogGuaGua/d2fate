@@ -16646,9 +16646,14 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"range"				"250"
+				"health_reduction_TT"	"500 550 600 650 700"
 			}
 			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"				"250"
+			}
+			"07"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"cast_time"			"1.0"
