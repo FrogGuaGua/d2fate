@@ -63,15 +63,15 @@ function OnTerritoryCreated(keys)
 
 	-- Do special handling for attribute
 	Timers:CreateTimer(5, function() --because it takes 5 seconds for territory to be built
-		if hero.IsTerritoryImproved and caster.Territory:IsAlive() then 
+		if hero.IsTerritoryImproved and hero.IsTerritoryPresent and not caster.Territory:IsNull() then 
 			truesightdummy = CreateUnitByName("sight_dummy_unit", caster.Territory:GetAbsOrigin(), false, keys.caster, keys.caster, keys.caster:GetTeamNumber())
 			truesightdummy:AddNewModifier(caster, caster, "modifier_item_ward_true_sight", {true_sight_range = 600}) 
 			local unseen = truesightdummy:FindAbilityByName("dummy_unit_passive")
 			unseen:SetLevel(1)
 			Timers:CreateTimer(function() 
-				if not caster.Territory:IsAlive() then 
+				if not hero.IsTerritoryPresent then -- and not truesightdummy:IsNull() then 
 					truesightdummy:RemoveSelf()
-					return 
+					return
 				else
 					truesightdummy:SetAbsOrigin(caster.Territory:GetAbsOrigin())
 					return 1.0
@@ -80,8 +80,8 @@ function OnTerritoryCreated(keys)
 
 			-- Give out mana regen for nearby allies
 			Timers:CreateTimer(function()
-				if not caster.Territory:IsAlive() then return end
-			    local targets = FindUnitsInRadius(caster:GetTeam(), caster.Territory:GetOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
+				if caster.Territory:IsNull() or not hero.IsTerritoryPresent then return end
+			  local targets = FindUnitsInRadius(caster:GetTeam(), caster.Territory:GetOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 				for k,v in pairs(targets) do
 			        --if v:GetUnitName() ~= "caster_5th_territory" then 
 			         	keys.ability:ApplyDataDrivenModifier(caster, v, "modifier_territory_mana_regen", {Duration = 1.0}) 
