@@ -12,7 +12,6 @@
 	    "AbilityTextureName" "custom/master_transfer_items1"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 
@@ -55,7 +54,6 @@
 	    "AbilityTextureName" "custom/master_transfer_items2"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 
@@ -96,7 +94,6 @@
 	    "AbilityTextureName" "custom/master_transfer_items3"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 
@@ -137,7 +134,6 @@
 	    "AbilityTextureName" "custom/master_transfer_items4"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 
@@ -178,7 +174,6 @@
 	    "AbilityTextureName" "custom/master_transfer_items5"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 
@@ -219,7 +214,6 @@
 	    "AbilityTextureName" "custom/master_transfer_items6"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 
@@ -522,7 +516,6 @@
 	    "AbilityTextureName" "custom/bottle_haste"
 	    "Model"        "models/props_gameplay/salve_red.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "common"
 
 	    "ItemCost"     "1400"
 	    "ItemKillable" "1" 
@@ -583,7 +576,6 @@
 	    "AbilityTextureName" "custom/teleport_scroll"
 	    "Model"        "models/props_gameplay/recipe.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "500"
 	    "ItemKillable" "1" 
@@ -659,7 +651,6 @@
 	    "AbilityTextureName" "custom/gem_of_speed"
 	    "Model"        "models/props_gameplay/crystal_ring01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "300"
 	    "ItemKillable" "1" 
@@ -716,9 +707,13 @@
 				"EffectName"			"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
 				"EffectAttachType"		"follow_origin"	
 	    		"Duration"		"10.0"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"                  "MODIFIER_STATE_VALUE_ENABLED"
+				}
 	    		"Properties"
 	    		{
-	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%mspd_bonus"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"      "%mspd_bonus"
 	    		}
 	    	}
 	    }
@@ -731,7 +726,6 @@
 	    "AbilityTextureName" "custom/scout_familiar"
 	    "Model"        "models/props_gameplay/roquelaire/roquelaire.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "300"
 	    "ItemKillable" "1" 
@@ -803,7 +797,6 @@
 	    "AbilityTextureName" "custom/berserk_scroll"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "600"
 	    "ItemKillable" "1" 
@@ -885,7 +878,6 @@
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"800"
-		"ItemQuality"					"consumable"
 		"ItemStackable"					"0"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemPermanent"					"0"
@@ -943,7 +935,6 @@
 	    "AbilityTextureName" "custom/spirit_link"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "1500"
 	    "ItemKillable" "1" 
@@ -1007,15 +998,6 @@
 	    		"TextureName" "custom/spirit_link"
 	    		"EffectName"	"particles/units/heroes/hero_warlock/warlock_fatal_bonds_icon.vpcf"
 	    		"EffectAttachType"		"follow_overhead"
-	    		"OnTakeDamage"
-	    		{
-				    "RunScript"
-					{
-						"ScriptFile"	"items"
-						"Function"		"OnLinkDamageTaken"
-						"DamageTaken"	"%attack_damage"	
-					}
-	    		}
 
 	    		"OnDestroy"
 	    		{
@@ -1140,7 +1122,6 @@
 	    "AbilityTextureName" "custom/healing_scroll"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "750"
 	    "ItemKillable" "1" 
@@ -1159,6 +1140,7 @@
 
 	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	    "AbilityCooldown"				"60"
+        "AbilityCastRange"				"600"
 	    "precache"
 	    {
 	    	"particle"			"particles/units/heroes/hero_omniknight/omniknight_purification_g.vpcf"
@@ -1285,7 +1267,6 @@
 	    "AbilityTextureName" "custom/c_scroll"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "150"
 	    "ItemKillable" "1" 
@@ -1368,7 +1349,6 @@
 	    "AbilityTextureName" "custom/b_scroll"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "300"
 	    "ItemKillable" "1" 
@@ -1459,7 +1439,6 @@
 	    "AbilityTextureName" "custom/a_scroll"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "600"
 	    "ItemKillable" "1" 
@@ -1559,7 +1538,6 @@
 	    "AbilityTextureName" "custom/s_scroll"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "1200"
 	    "ItemKillable" "1" 
@@ -1686,7 +1664,6 @@
 	    "AbilityTextureName" "custom/ex_scroll"
 	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "2400"
 	    "ItemKillable" "1" 
@@ -2203,7 +2180,6 @@
 	    "AbilityTextureName" "custom/shard_of_anti_magic"
 	    "Model"        "models/props_gameplay/gem01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 
@@ -2279,7 +2255,6 @@
 	    "AbilityTextureName" "custom/shard_of_replenishment"
 	    "Model"        "models/props_gameplay/gem01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
-	    "ItemQuality"  "consumable"
 
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 

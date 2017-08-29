@@ -10,7 +10,6 @@
 	    "Model"        "models/props_gameplay/gem01.vmdl" 
 	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
 
-	    "ItemQuality"  "consumable"
 	    "ItemCost"     "99999"
 	    "ItemKillable" "0" 
 	    "ItemSellable" "0"
