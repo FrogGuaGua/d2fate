@@ -518,7 +518,7 @@ function OnMStrengthHit(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	DoDamage(caster, target, 8*caster:GetMaxHealth()/100 , DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	DoDamage(caster, target, 6*caster:GetMaxHealth()/100 , DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	--[[if not caster:HasModifier("modifier_astolfo_disable_mstrength") then
 		DoDamage(caster, caster, 4*caster:GetHealth()/100 , DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	end]]

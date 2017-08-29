@@ -27486,7 +27486,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"		"80 90 100 110 120"
+				"damage"		"100 120 140 160 180"
 			}	
 			"04"
 			{
@@ -28213,7 +28213,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage_pct"		"8"
+				"damage_pct"		"6"
 			}
 		}
 		
