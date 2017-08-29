@@ -14780,7 +14780,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"penalty_cooldown"		"45"
+				"penalty_cooldown"		"30"
 			}
 		}
 		

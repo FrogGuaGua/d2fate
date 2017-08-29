@@ -46,7 +46,7 @@ function OnDPStart(keys)
 
 	if caster:GetHealth() <= currentHealthCost then
 		caster:SetHealth(1)
-		keys.ability:StartCooldown(45)
+		keys.ability:StartCooldown(30)
 	else
 		caster:SetHealth(caster:GetHealth() - currentHealthCost)
 	end
