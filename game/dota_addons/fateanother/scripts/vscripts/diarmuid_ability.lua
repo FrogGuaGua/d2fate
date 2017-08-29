@@ -47,11 +47,25 @@ end
 function OnChargeStart(keys)
 	local caster = keys.caster
 	local target = keys.target
+
+	if caster:HasModifier("modifier_charges") then
+		keys.ability:EndCooldown()
+		local modifier = caster:FindModifierByName("modifier_charges")
+		local CDBetweenQ = caster.MasterUnit2:FindAbilityByName("diarmuid_attribute_crimson_rose_of_exorcism"):GetSpecialValueFor("cd_between_Q")
+		if modifier:GetStackCount() == 0 then
+			keys.ability:StartCooldown(modifier:GetRemainingTime())
+		else
+			keys.ability:StartCooldown(CDBetweenQ)
+		end
+	end
+
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 
 	local diff = (target:GetAbsOrigin() - caster:GetAbsOrigin() ):Normalized() 
 	caster:SetAbsOrigin(target:GetAbsOrigin() - diff*100) 
 	FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
+
+
 
 	if caster:HasModifier("modifier_double_spearsmanship") then keys.Damage = keys.Damage * 2 end
 	local targets = FindUnitsInRadius(caster:GetTeam(), target:GetOrigin(), nil, keys.Radius , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
@@ -63,13 +77,7 @@ function OnChargeStart(keys)
 	if not IsImmuneToSlow(target) then
 		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_warriors_charge_slow", {})
 	end
-	if caster:HasModifier("modifier_charges") then
-		keys.ability:EndCooldown()
-		local modifier = caster:FindModifierByName("modifier_charges")
-		if modifier:GetStackCount() == 0 then
-			keys.ability:StartCooldown(modifier:GetRemainingTime())
-		end
-	end
+
 
 	--particle
 	caster:EmitSound("Hero_Huskar.Life_Break")

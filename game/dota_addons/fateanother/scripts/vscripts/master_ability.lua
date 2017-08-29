@@ -1,3 +1,4 @@
+LinkLuaModifier("modifier_charges", "modifiers/modifier_charges", LUA_MODIFIER_MOTION_NONE)
 SaberAttribute = {
 	"saber_attribute_improve_excalibur",
 	"saber_attribute_improve_instinct",
@@ -291,6 +292,13 @@ function ResetItems(hero)
 	end
 end
 
+function IncrementCharges(hero)
+	if hero:HasModifier("modifier_charges") then
+		local modifier = hero:FindModifierByName("modifier_charges")
+		modifier:OnIntervalThink()
+	end
+end
+
 function OnSeal2Start(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
@@ -327,6 +335,7 @@ function OnSeal2Start(keys)
 
 	ResetAbilities(hero)
 	ResetItems(hero)
+	IncrementCharges(hero)
 
 	-- Particle
 	hero:EmitSound("DOTA_Item.Refresher.Activate")

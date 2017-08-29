@@ -3651,7 +3651,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -16491,7 +16491,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"crit_damage"			"200.0"
+				"crit_damage"			"175.0"
 			}
 			"03"
 			{
@@ -17048,6 +17048,11 @@
 
 		"AbilitySpecial"
 		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"cd_between_Q"			"0.25"
+			}
 		}
 		
 		"OnSpellStart"
@@ -17097,12 +17102,12 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"5.0"
+				"duration"			"3.0"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"			"5.0"
+				"stun_duration"			"0.5"
 			}
 		}
 
