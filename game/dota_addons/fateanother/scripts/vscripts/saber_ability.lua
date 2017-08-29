@@ -748,7 +748,7 @@ function StrikeAirPush(keys)
 	local target = keys.target
 	local ability = keys.ability
 	--if (target:GetName() == "npc_dota_hero_bounty_hunter" and target.IsPFWAcquired) then return end
-	local totalDamage = 650 + (keys.caster:FindAbilityByName("saber_caliburn"):GetLevel() + keys.caster:FindAbilityByName("saber_invisible_air"):GetLevel()) * 125
+	local totalDamage = 600 + (keys.caster:FindAbilityByName("saber_caliburn"):GetLevel() + keys.caster:FindAbilityByName("saber_invisible_air"):GetLevel()) * 125
 	--if target:GetName() == "npc_dota_hero_juggernaut" then totalDamage = 0 end
 	local WallDamage = keys.WallDamage
 	local WallStun = keys.WallStun
