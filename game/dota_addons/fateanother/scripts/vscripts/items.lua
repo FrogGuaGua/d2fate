@@ -397,17 +397,6 @@ function SpiritLink(keys)
 	end
 end
 
-function OnLinkDamageTaken(keys)
-    LoopOverHeroes(function(hero)
-        if hero:HasModifier("modifier_share_damage") and hero:GetHealth() == 0 then
-            --print("Spirit Link broken on " .. hero:GetName())
-            if IsRevivePossible(hero) then hero:SetHealth(1) end
-            hero:RemoveModifierByName("modifier_share_damage")
-            RemoveHeroFromLinkTables(hero)
-        end
-    end)
-end
-
 function OnLinkDestroyed(keys)
 	local caster = keys.caster
 	local target = keys.target
