@@ -4,7 +4,7 @@
 	m_BoundingBoxMin = [ -12.0, -12.0, -10.0 ]
 	m_BoundingBoxMax = [ 12.0, 12.0, 10.0 ]
 	m_ConstantColor = [ 255, 255, 255, 120 ]
-	m_flConstantRadius = 1.0
+	m_flConstantRadius = 0.7
 	m_flMaxDrawDistance = 2000.0
 	m_nMaxParticles = 4
 	m_bShouldSort = false
@@ -12,7 +12,7 @@
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_fDrag = 0.075
+			m_fDrag = 0.1
 			m_flOpTimeOffsetMax = 1.0
 			m_flOpStrengthMinScale = 0.0
 		},
@@ -49,6 +49,10 @@
 			m_flOpStartFadeInTime = 0.25
 			m_flOpEndFadeInTime = 0.25
 		},
+		{
+			_class = "C_OP_SpinYaw"
+			m_nSpinRateDegrees = 300
+		},
 	]
 	m_Renderers = 
 	[
@@ -58,7 +62,7 @@
 			m_ModelList = 
 			[
 				{
-					m_model = resource:"models/avenger/trueform/trueform.vmdl"
+					m_model = resource:"models/heroes/shadow_demon/shadow_demon.vmdl"
 				},
 			]
 			m_bIgnoreNormal = true
@@ -70,6 +74,8 @@
 			{
 				m_flInputMax = 0.0
 			}
+			m_hOverrideMaterial = resource:"materials/models/items/blood_seeker/bloodseeker_immortal_head/bloodseeker_immortal_head.vmat"
+			m_flAnimationRate = 60.0
 		},
 	]
 	m_Initializers = 
@@ -84,14 +90,24 @@
 		{
 			_class = "C_INIT_CreateWithinSphere"
 			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
-			m_fSpeedMin = 550.0
+			m_fSpeedMin = 1000.0
 			m_fSpeedMax = 1840.0
-			m_LocalCoordinateSystemSpeedMax = [ 100.0, 0.0, 0.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 322.0, -322.0, 0.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ -322.0, 322.0, 100.0 ]
 		},
 		{
 			_class = "C_INIT_RandomTrailLength"
 			m_flMinLength = 0.5
 			m_flMaxLength = 1.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = 150.0
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_INIT_RandomYaw"
+			m_flDegrees = 5.0
 		},
 	]
 	m_Emitters = 

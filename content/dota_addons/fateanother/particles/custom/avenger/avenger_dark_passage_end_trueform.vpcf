@@ -10,9 +10,6 @@
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end_trails.vpcf"
 		},
-		{
-			m_ChildRef = resource:"particles/custom/avenger/avenger_dark_passage_end_afterimages_trueform.vpcf"
-		},
 	]
 	m_Operators = 
 	[

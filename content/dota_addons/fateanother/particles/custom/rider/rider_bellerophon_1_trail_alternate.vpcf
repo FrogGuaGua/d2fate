@@ -16,10 +16,15 @@
 			_class = "C_OP_InterpolateRadius"
 			m_flEndScale = 0.0
 			m_flBias = 0.8
+			m_flStartScale = 0.85
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
 			m_ColorFade = [ 12, 50, 70, 255 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_SetPerChildControlPoint"
 		},
 	]
 	m_Renderers = 
@@ -65,8 +70,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin = [ 160, 249, 255, 255 ]
-			m_ColorMax = [ 160, 249, 255, 255 ]
+			m_ColorMin = [ 81, 145, 255, 255 ]
+			m_ColorMax = [ 121, 102, 248, 255 ]
 			m_nTintBlendMode = "2"
 		},
 	]
@@ -97,6 +102,12 @@
 					m_entityName = "self"
 				},
 			]
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/custom/rider/rider_bellerophon_1_alternate_flurry.vpcf"
 		},
 	]
 }
