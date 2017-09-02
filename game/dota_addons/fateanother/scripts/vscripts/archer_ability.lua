@@ -186,11 +186,7 @@ function OnBPStart(keys)
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 		bDodgeable = true
 	}
-	ProjectileManager:CreateTrackingProjectile(info) 
-	-- give vision for enemy
-	if IsValidEntity(target) then
-		SpawnVisionDummy(target, caster:GetAbsOrigin(), 500, 3, false)
-	end
+	ProjectileManager:CreateTrackingProjectile(info)
 	
 	if keys.target:IsHero() then
 		Say(ply, "Broken Phantasm fired at " .. FindName(keys.target:GetName()) .. ".", true)

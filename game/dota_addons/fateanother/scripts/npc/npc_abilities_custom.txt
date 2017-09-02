@@ -1,5 +1,6 @@
 // Dota Heroes File
 
+#base "abilities/archer5/archer_abilities.txt"
 #base "abilities/vlad/vlad_abilities.txt"
 
 "DOTAAbilities"
@@ -4786,7 +4787,7 @@
 	//=================================================================================================================
 	// Archer : Broken Phantasm
 	//=================================================================================================================
-	"archer_5th_broken_phantasm"
+	"archer_5th_broken_phantasm_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
