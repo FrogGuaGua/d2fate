@@ -31241,6 +31241,19 @@
 		{
 		}	
 	}
+	
+	//=================================================================================================================
+	// Save Item Positions (ItemLocker)
+	//=================================================================================================================
+	"master_item_locker_save"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/master_ability/item_locker_save"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"arc_warden_magnetic_field"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"1"		
+	}
 
 	//=================================================================================================================
 	// Item Transfer

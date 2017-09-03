@@ -2104,6 +2104,7 @@
 		"Ability9"					"master_shard_of_replenishment"
 		"Ability10"					"master_shard_of_prosperity"
 		"Ability11"					"master_passive"
+		"Ability12"					"master_item_locker_save"
 
 		// Armor
 		//----------------------------------------------------------------

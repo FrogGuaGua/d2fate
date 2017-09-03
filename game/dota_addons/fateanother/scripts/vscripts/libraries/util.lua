@@ -638,6 +638,7 @@ function CheckItemCombination(hero)
 
         end
     end
+    ItemLocker(hero,0,5)
 end
 
 function CheckItemCombinationInStash(hero)

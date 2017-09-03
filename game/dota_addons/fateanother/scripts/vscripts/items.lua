@@ -127,15 +127,16 @@ function TransferItem(keys)
 	--PrintTable(stash_item)
 	-- If item is found, remove it from stash and add it to hero
 	if stash_item ~= nil then
-		--[[If hero has empty inventory slot, move item to hero
-		local hero_item = hero:GetItemInSlot(i)
+		---[[If hero has empty inventory slot, move item to hero
+		local hero_item
 		for i=0, 5 do
+			hero_item = hero:GetItemInSlot(i)
 			if hero_item == nil then
-				hero:AddItem(stash_item)
-				caster:RemoveItem(stash_item)
+				break
+			elseif i==5 then 
 				return
 			end
-		end]]
+		end
 		local itemName = stash_item:GetName()
 		local charges = stash_item:GetCurrentCharges()
 		local newItem = CreateItem(itemName, nil, nil)
@@ -145,7 +146,7 @@ function TransferItem(keys)
 
 		hero:AddItem(newItem)
 		CheckItemCombination(hero)
-
+	
 		SaveStashState(hero)
 	else
 		SendErrorMessage(hero:GetPlayerOwnerID(), "#No_Items_Found")
@@ -771,4 +772,137 @@ function Replenish(keys)
    	Timers:CreateTimer(2.0, function()
 		ParticleManager:DestroyParticle(mekFx, false)
 	end)
+end
+
+function ItemLocker(hHero, iStartSlot, iEndSlot)
+	if hHero.bIsInventoryLocked then
+		local tLockedOrder = hHero.tLockedInventoryOrder
+		local tCurrentOrder = {}		
+		local tCommons = {}
+		local tLeftovers = {}
+		local tCharges = {}
+		local iSS = iStartSlot
+		local iES = iEndSlot
+
+		--save current order of items and their charges
+		for i=iSS, iES do
+			if hHero:GetItemInSlot(i) ~= nil then 
+				local hItem = hHero:GetItemInSlot(i)
+				tCurrentOrder[i] = hItem:GetName()
+				tCharges[i] = hItem:GetCurrentCharges()
+			else
+				tCurrentOrder[i] = nil
+				tCharges[i] = nil
+			end
+		end
+		--put common elements of tables: item lock list, currentorder into common exit table 
+		for i=iSS, iES do
+			local bItemFound = false
+			for j=iSS, iES do
+				if tLockedOrder[j] == tCurrentOrder[i] and tLockedOrder[j] ~= nil then
+					tCommons[j] = tCurrentOrder[i]
+					bItemFound = true
+					--if item is found check if player has more than one of same name and throw them into separate table
+					for k=i+1, iES do 
+						if tCurrentOrder[k] == tCurrentOrder[i] then
+							tLeftovers[k] = tCurrentOrder[i]
+						end
+					end
+					break
+				end
+			end
+			--filter items that arent locked into leftovers, along with their original slot number
+			if not bItemFound and tCurrentOrder[i] ~= nil then
+				tLeftovers[i] = tCurrentOrder[i]
+			end
+		end
+																		---[[
+																		print("\n----lockedorder----")
+																		for k,v in pairs(tLockedOrder) do			
+																			print(k,v)
+																		end
+																		print("\n----currentorder----")
+																		for k,v in pairs(tCurrentOrder) do			
+																			print(k,v)
+																		end
+																		print("\n----charges----")
+																		for k,v in pairs(tCharges) do			
+																			print(k,v)
+																		end			
+																		print("\n-----commons-----")
+																		for k,v in pairs(tCommons) do			
+																			print(k,v)
+																		end
+																		print("\n----leftovers----")
+																		for k,v in pairs(tLeftovers) do			
+																			print(k,v)
+																		end
+		--]]place some of leftovers in original slots (if possible) and remove the key
+		for k,v in pairs(tLeftovers) do
+			if tCommons[k] == nil then
+				tCommons[k] = v
+				tLeftovers[k] = nil
+			end
+		end		
+																		---[[
+																		print("\n----commons AFTER----")
+																		for k,v in pairs(tCommons) do			
+																			print(k,v)
+																		end
+																		print("\n---leftovers AFTER---")
+																		for k,v in pairs(tLeftovers) do			
+																			print(k,v)
+																		end											
+		--]]rest of leftovers is placed in first available slots
+		for k,v in pairs(tLeftovers) do
+			for i=iSS, iES do			
+				if tCommons[i] == nil then
+					tCommons[i] = v 
+					break
+				end
+			end
+		end	
+		 --slots that supposed are to be empty have to be filled with dummies for items to go into right slots
+		for i=iSS, iES do
+			if tCommons[i] == nil then
+				tCommons[i] = "item_dummy_item_unusable"
+			end
+		end
+																		---[[
+																		print("\n----COMMONS FINAL----")
+																		for k,v in pairs(tCommons) do			
+																			print(k,v)
+																		end
+		--]]remove all items, its important to do it before adding a single item, because some items autocombine (shards) and in some cases they might get deleted depending on item order
+		for i=iSS, iES do 
+			hHero:RemoveItem(hHero:GetItemInSlot(i))
+		end
+		--recreate inventory
+		for i=iSS, iES do 
+			local iCharges 
+			--find correct ammount of charges based on original order table
+			for j=iSS, iES do
+				if tCommons[i] == "item_dummy_item_unusable" then
+					iCharges = -1
+					break
+				end
+				if tCommons[i] == tCurrentOrder[j] then
+					iCharges = tCharges[j]
+					tCurrentOrder[j] = nil --clear key so that you find next entry on next run in case of having double of an item and they might be diff charges
+					break
+				end
+			end
+			local sName = tCommons[i]
+			local hNewItem = CreateItem(sName, nil, nil)
+			hNewItem:SetCurrentCharges(iCharges)
+			hHero:AddItem(hNewItem)
+		end
+		--clear dummy items
+		for i=iSS, iES do
+			local hItem = hHero:GetItemInSlot(i)
+			if hItem ~= nil and hItem:GetName() == "item_dummy_item_unusable" then
+				hHero:RemoveItem(hItem)
+			end
+		end				
+	end
 end
