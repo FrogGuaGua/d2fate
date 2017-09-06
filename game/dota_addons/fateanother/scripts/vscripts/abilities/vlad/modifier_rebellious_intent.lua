@@ -30,7 +30,7 @@ end
 if IsServer() then
   function modifier_rebellious_intent:OnCreated()
     local parent = self:GetParent()
-    self.HP_PER_STR_FATE = parent:GetPlayerOwner():GetAssignedHero().HP_PER_STR
+    self.HP_PER_STR_FATE = parent.HP_PER_STR
     local ability = self:GetAbility()
     local total_count_of_ticks = ability:GetSpecialValueFor("stacks_total")
     self.PI1 = FxCreator("particles/custom/vlad/vlad_ri_active.vpcf",PATTACH_ABSORIGIN_FOLLOW,parent,0,nil)

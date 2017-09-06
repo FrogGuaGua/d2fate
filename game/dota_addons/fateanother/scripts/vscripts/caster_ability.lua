@@ -1,3 +1,4 @@
+LinkLuaModifier("modifier_workshop_recall", "abilities/caster/modifier_workshop_recall", LUA_MODIFIER_MOTION_NONE)
 territoryAbilHandle = nil -- Ability handle for Create Workshop
 ATTRIBUTE_HG_INT_MULTIPLIER = 0
 
@@ -534,31 +535,11 @@ function OnTerritoryImmobilize(keys)
 end
 
 function OnTerritoryRecall(keys)
-	local caster = keys.caster
-	local target = caster:GetOwnerEntity() 
-	if target:GetName() == "npc_dota_hero_crystal_maiden" then
-        local pc = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_relocate_channel.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_recall", {})
-        local modifier = target:FindModifierByName("modifier_recall")
-        modifier.Particle = pc
+	local hCaster = keys.caster
+	local hTarget = hCaster:GetOwnerEntity()
+    local hAbility = keys.ability
 
-		caster.IsRecallCanceled = false
-		Timers:CreateTimer(3.0, function()  
-		if not caster.IsRecallCanceled and caster:IsAlive() and IsInSameRealm(target:GetAbsOrigin(), caster:GetAbsOrigin()) then
-            local pcTeleportOut = ParticleManager:CreateParticle("particles/custom/caster/caster_recall_out.vpcf", PATTACH_CUSTOMORIGIN, target)
-            ParticleManager:SetParticleControl(pcTeleportOut, 0, target:GetAbsOrigin())
-            ParticleManager:ReleaseParticleIndex(pcTeleportOut)
-
-			target:SetAbsOrigin(caster:GetAbsOrigin())
-			FindClearSpaceForUnit(target, target:GetAbsOrigin(), true)
-
-            ParticleManager:DestroyParticle(pc, false)
-            ParticleManager:ReleaseParticleIndex(pc)
-            local pcTeleportIn = ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_relocate_teleport.vpcf", PATTACH_ABSORIGIN, target)
-            ParticleManager:ReleaseParticleIndex(pcTeleportIn)
-		end
-		return end)
-	end
+    hTarget:AddNewModifier(hCaster, hAbility, "modifier_workshop_recall", { Duration = 3 })
 end
 
 function OnRecallCanceled(keys)
