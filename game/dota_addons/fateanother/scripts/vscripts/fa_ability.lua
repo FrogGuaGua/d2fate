@@ -122,7 +122,8 @@ function OnHeartDamageTaken(keys)
 	if damageTaken > keys.Threshold and caster:GetHealth() ~= 0 and (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length2D() < 3000 and not target:IsInvulnerable() and caster:GetTeam() ~= target:GetTeam() then
 
 		local diff = (target:GetAbsOrigin() - caster:GetAbsOrigin() ):Normalized() 
-		caster:SetAbsOrigin(target:GetAbsOrigin() - diff*100) 
+		local position = target:GetAbsOrigin() - diff*100
+		FindClearSpaceForUnit(caster, position, true)		
 		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = keys.StunDuration})
 		--local multiplier = GetPhysicalDamageReduction(target:GetPhysicalArmorValue()) * caster.ArmorPen / 100
 		--local damage = caster:GetAttackDamage() * keys.Damage/100
