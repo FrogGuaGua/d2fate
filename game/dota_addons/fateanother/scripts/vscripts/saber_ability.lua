@@ -242,11 +242,11 @@ function OnExcaliburStart(keys)
 		end
 	end)
 	
-	local casterFacing = caster:GetForwardVector()
 	-- for i=0,1 do
 		Timers:CreateTimer(keys.Delay - 0.3, function() -- Adjust 2.5 to 3.2 to match the sound
 			if caster:IsAlive() then
 				-- Create Particle for projectile
+				local casterFacing = caster:GetForwardVector()
 				local dummy = CreateUnitByName("dummy_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
 				dummy:FindAbilityByName("dummy_unit_passive"):SetLevel(1)
 				dummy:SetForwardVector(casterFacing)

@@ -396,10 +396,10 @@ function OnDexStart(keys)
 		end
 	end)
 
-	local casterFacing = caster:GetForwardVector()
 	Timers:CreateTimer(2.75, function()
 		if caster:IsAlive() then
 			-- Create Particle for projectile
+			local casterFacing = caster:GetForwardVector()
 			local dummy = CreateUnitByName("dummy_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
 			dummy:FindAbilityByName("dummy_unit_passive"):SetLevel(1)
 			dummy:SetForwardVector(casterFacing)
