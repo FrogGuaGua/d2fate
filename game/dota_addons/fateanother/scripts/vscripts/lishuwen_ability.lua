@@ -163,6 +163,15 @@ function OnTigerStrikeLevelUp(keys)
 	t3:SetLevel(ability:GetLevel())
 end
 
+function TigerStrikeCheckTarget(caster, target, ability)
+	if target ~= caster.tigerStrikeTarget then
+		caster:GiveMana(ability:GetManaCost(-1))
+		ability:EndCooldown()
+		SendErrorMessage(caster:GetPlayerOwnerID(), "#Cannot_Be_Cast_Now")
+		return true
+	end
+	return false
+end
 
 function OnTigerStrike1Start(keys)
 	local caster = keys.caster
@@ -211,6 +220,9 @@ function OnTigerStrike1Start(keys)
     local firstStrikeFx = ParticleManager:CreateParticle("particles/custom/lishuwen/lishuwen_first_hit.vpcf", PATTACH_CUSTOMORIGIN, target)
 	ParticleManager:SetParticleControl( firstStrikeFx, 0, target:GetAbsOrigin())
     --ParticleManager:SetParticleControlOrientation(groundFx, 0, RandomVector(300), Vector(0,1,0), Vector(1,0,0))
+
+	-- HAX
+	caster.tigerStrikeTarget = target
 end
 
 
@@ -218,6 +230,8 @@ function OnTigerStrike2Start(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	
+	if TigerStrikeCheckTarget(caster, target, ability) then return end
 	if IsSpellBlocked(keys.target) then return end
 
 	GrantCosmicOrbitResist(caster)
@@ -226,7 +240,7 @@ function OnTigerStrike2Start(keys)
 	end
 	if caster.bIsFuriousChainAcquired then
 		keys.Damage = keys.Damage + caster:GetAgility() * ATTR_AGI_RATIO
-		GrantFuriousChainBuff(caster) 
+		GrantFuriousChainBuff(caster)
 		if target:HasModifier("modifier_mark_of_fatality") then
 			caster:SetMana(caster:GetMana()+ATTR_MANA_REFUND)
 		end
@@ -252,11 +266,11 @@ function OnTigerStrike2Start(keys)
 	FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_second_strike_turnrate", {})
 	-- switch strike 1 with 2
-	caster:SwapAbilities("lishuwen_fierce_tiger_strike_2", "lishuwen_fierce_tiger_strike_3", false, true) 
+	caster:SwapAbilities("lishuwen_fierce_tiger_strike_2", "lishuwen_fierce_tiger_strike_3", false, true)
 	caster:EmitSound("Hero_EarthShaker.Fissure")
-    local groundFx = ParticleManager:CreateParticle( "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf", PATTACH_ABSORIGIN, target )
-    ParticleManager:SetParticleControl( groundFx, 1, target:GetAbsOrigin())
-    local firstStrikeFx = ParticleManager:CreateParticle("particles/custom/lishuwen/lishuwen_second_hit.vpcf", PATTACH_CUSTOMORIGIN, target)
+	local groundFx = ParticleManager:CreateParticle( "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf", PATTACH_ABSORIGIN, target )
+	ParticleManager:SetParticleControl( groundFx, 1, target:GetAbsOrigin())
+	local firstStrikeFx = ParticleManager:CreateParticle("particles/custom/lishuwen/lishuwen_second_hit.vpcf", PATTACH_CUSTOMORIGIN, target)
 	ParticleManager:SetParticleControl( firstStrikeFx, 0, target:GetAbsOrigin())
 end
 
@@ -264,6 +278,8 @@ function OnTigerStrike3Start(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+
+	if TigerStrikeCheckTarget(caster, target, ability) then return end
 	if IsSpellBlocked(keys.target) then return end
 
 	GrantCosmicOrbitResist(caster)
@@ -275,7 +291,7 @@ function OnTigerStrike3Start(keys)
 	local damage = target:GetMaxHealth()*keys.DamagePercent/100
 	if caster.bIsFuriousChainAcquired then
 		damage = damage + caster:GetAgility() * ATTR_AGI_RATIO
-		GrantFuriousChainBuff(caster) 
+		GrantFuriousChainBuff(caster)
 		if target:HasModifier("modifier_mark_of_fatality") then
 			caster:SetMana(caster:GetMana()+ATTR_MANA_REFUND)
 		end
@@ -285,17 +301,19 @@ function OnTigerStrike3Start(keys)
 	if not IsImmuneToSlow(target) then ability:ApplyDataDrivenModifier(caster, target, "modifier_fierce_tiger_strike_3_slow", {}) end
 	Timers:RemoveTimer('fierce_tiger_timer')
 	-- switch strike 1 with 2
-	caster:SwapAbilities("lishuwen_fierce_tiger_strike_3", "lishuwen_fierce_tiger_strike", false, true) 
+	caster:SwapAbilities("lishuwen_fierce_tiger_strike_3", "lishuwen_fierce_tiger_strike", false, true)
 
 	caster:EmitSound("Hero_EarthShaker.Totem")
-    local groundFx1 = ParticleManager:CreateParticle( "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf", PATTACH_ABSORIGIN, target )
-    ParticleManager:SetParticleControl( groundFx1, 1, target:GetAbsOrigin())
-    local groundFx2 = ParticleManager:CreateParticle( "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf", PATTACH_ABSORIGIN, target )
-    ParticleManager:SetParticleControl( groundFx2, 1, target:GetAbsOrigin())
-    ParticleManager:SetParticleControlOrientation(groundFx1, 0, RandomVector(3), Vector(0,1,0), Vector(1,0,0))
-    ParticleManager:SetParticleControlOrientation(groundFx2, 0, RandomVector(3), Vector(0,1,0), Vector(1,0,0))
-    local firstStrikeFx = ParticleManager:CreateParticle("particles/custom/lishuwen/lishuwen_third_hit.vpcf", PATTACH_CUSTOMORIGIN, target)
+	local groundFx1 = ParticleManager:CreateParticle( "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf", PATTACH_ABSORIGIN, target )
+	ParticleManager:SetParticleControl( groundFx1, 1, target:GetAbsOrigin())
+	local groundFx2 = ParticleManager:CreateParticle( "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf", PATTACH_ABSORIGIN, target )
+	ParticleManager:SetParticleControl( groundFx2, 1, target:GetAbsOrigin())
+	ParticleManager:SetParticleControlOrientation(groundFx1, 0, RandomVector(3), Vector(0,1,0), Vector(1,0,0))
+	ParticleManager:SetParticleControlOrientation(groundFx2, 0, RandomVector(3), Vector(0,1,0), Vector(1,0,0))
+	local firstStrikeFx = ParticleManager:CreateParticle("particles/custom/lishuwen/lishuwen_third_hit.vpcf", PATTACH_CUSTOMORIGIN, target)
 	ParticleManager:SetParticleControl( firstStrikeFx, 0, target:GetAbsOrigin())
+
+	caster.tigerStrikeTarget = nil
 end
 
 function OnNSSCastStart(keys)
