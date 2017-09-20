@@ -515,7 +515,6 @@ function FateGameMode:OnGameInProgress()
         xpGranter:FindAbilityByName("dummy_unit_passive"):SetLevel(1)
         xpGranter:SetAbsOrigin(dummyLoc)
     end
-
 end
 
 -- Cleanup a player when they leave
@@ -2459,7 +2458,7 @@ end
 
 function FateGameMode:InitializeRound()
     -- do first round stuff
-    if self.nCurrentRound == 1 then
+    --if self.nCurrentRound == 1 then
         --[[print("[FateGameMode]First round started, initiating 10 minute timer...")
         IsGameStarted = true
         GameRules:SendCustomMessage("#Fate_Game_Begin", 0, 0)
@@ -2480,14 +2479,14 @@ function FateGameMode:InitializeRound()
 
                 return BLESSING_PERIOD
         end})]]
-    end
+    --end
 
     -- Flag game mode as pre round, and display tip
     _G.IsPreRound = true
     CreateUITimer("Pre-Round", PRE_ROUND_DURATION, "pregame_timer")
     --FireGameEvent('cgm_timer_display', { timerMsg = "Pre-Round", timerSeconds = 16, timerEnd = true, timerPosition = 0})
     --DisplayTip()
-    Say(nil, string.format("Round %d will begin in " .. PRE_ROUND_DURATION .. " seconds.", self.nCurrentRound), false)
+    --Say(nil, string.format("Round %d will begin in " .. PRE_ROUND_DURATION .. " seconds.", self.nCurrentRound), false) -- Valve please
 
 
     local msg = {
