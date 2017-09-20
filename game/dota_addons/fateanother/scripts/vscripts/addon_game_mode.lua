@@ -2486,6 +2486,7 @@ function FateGameMode:InitializeRound()
     CreateUITimer("Pre-Round", PRE_ROUND_DURATION, "pregame_timer")
     --FireGameEvent('cgm_timer_display', { timerMsg = "Pre-Round", timerSeconds = 16, timerEnd = true, timerPosition = 0})
     --DisplayTip()
+    GameRules:SendCustomMessage("Round "..self.nCurrentRound.." will begin in " .. PRE_ROUND_DURATION .. " seconds.", 0, 0)
     --Say(nil, string.format("Round %d will begin in " .. PRE_ROUND_DURATION .. " seconds.", self.nCurrentRound), false) -- Valve please
 
 
@@ -2762,7 +2763,7 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
             end
             hero.ServStat:printconsole()
         end)
-        Say(nil, "Red Faction Victory!", false)
+        GameRules:SendCustomMessage("Red Faction Victory!",0,0)
         my_http_post()
         GameRules:SetSafeToLeave( true )
         GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
@@ -2777,7 +2778,7 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
             end
             hero.ServStat:printconsole()
         end)
-        Say(nil, "Black Faction Victory!", false)
+        GameRules:SendCustomMessage("Black Faction Victory!",0,0)
         my_http_post()
         GameRules:SetSafeToLeave( true )
         GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
