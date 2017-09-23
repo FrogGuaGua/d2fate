@@ -127,7 +127,67 @@
       }
     }
   }
-
+  
+  //=======================================
+  // Atalanta: Traps (spellbook)
+  //=======================================
+  "atalanta_traps"
+  {
+    "BaseClass"						"ability_lua"
+    "ScriptFile"					"abilities/atalanta/traps"
+    "MaxLevel"						"5"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+    "AbilityTextureName"			"custom/atalanta_calydonian_hunt"
+    
+    "AbilityCastPoint"				"0"
+    "AbilityCooldown"				"0"
+    "AbilityManaCost"				"0"
+    "LevelsBetweenUpgrades"				"2"
+  }
+  "atalanta_traps_close"
+  {
+    "BaseClass"						"ability_lua"
+    "ScriptFile"					"abilities/atalanta/traps"
+    "MaxLevel"						"1"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"			"silencer_last_word"
+    
+    "AbilityCastPoint"				"0"
+    "AbilityCooldown"				"0"
+    "AbilityManaCost"				"0"
+  }
+  //=======================================
+  // Atalanta: Sting Shot (traps)
+  //=======================================
+  "atalanta_sting_shot"
+  {
+    "BaseClass"						"ability_lua"
+    "ScriptFile"					"abilities/atalanta/sting_shot"
+    "MaxLevel"						"5"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"			"custom/atalanta_calydonian_hunt"
+    "RequiredLevel"					"25"
+    "LevelsBetweenUpgrades"				"1"    
+    "AbilityCastPoint"				"0"
+    "AbilityCooldown"				"0"
+    "AbilityManaCost"				"0"
+  }
+  //=======================================
+  // Atalanta: Cobweb Shot (traps)
+  //=======================================
+  "atalanta_cobweb_shot"
+  {
+    "BaseClass"						"ability_lua"
+    "ScriptFile"					"abilities/atalanta/cobweb_shot"
+    "MaxLevel"						"5"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"			"custom/atalanta_calydonian_hunt"
+    "RequiredLevel"					"25"
+    "LevelsBetweenUpgrades"				"1"    
+    "AbilityCastPoint"				"0"
+    "AbilityCooldown"				"0"
+    "AbilityManaCost"				"0"
+  }
 
   //=======================================
   // Atalanta: Golden Apple
