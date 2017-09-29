@@ -115,7 +115,7 @@ function atalanta_cobweb_shot:OnSpellStart()
   local fArrowInterval = 0.033
   local fEffectInterval = 0.33
   local fBounceSpeedMod = 1
-  local iMaxBounce = 7 
+  local iMaxBounce = 10 
   local fMaxTravelDist = 2500
   local fWebDuration = 7
   local fSpeed = 2000
@@ -172,6 +172,7 @@ function atalanta_cobweb_shot:OnSpellStart()
           ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce], 3, tBounceLocs[iCurrentBounce+1])
           
         end
+        local PI1 = FxCreator("particles/custom/atalanta/cobweb_arrow_bounce.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow, 3, nil)
         iCurrentBounce = iCurrentBounce + 1
         --fDistTraveled = 0.0
       else

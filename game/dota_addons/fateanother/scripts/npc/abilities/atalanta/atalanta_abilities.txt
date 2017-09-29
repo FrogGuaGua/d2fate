@@ -192,8 +192,7 @@
       "particle" "particles/custom/atalanta/cobweb_arrow.vpcf"
       "particle" "particles/custom/atalanta/cobweb_web.vpcf"
       "particle" "particles/custom/atalanta/cobweb_web_current.vpcf"
-
-
+      "particle" "particles/custom/atalanta/cobweb_arrow_bounce.vpcf"
     }
   }
 
