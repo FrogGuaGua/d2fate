@@ -87,25 +87,12 @@ function atalanta_celestial_arrow:OnSpellStart()
         or "particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
 
     local position = self:GetCursorPosition()
-    local displacement = position - caster:GetOrigin()
-    if math.abs(displacement.x) < 0.05 then
-        displacement.x = 0
-    end
-    if math.abs(displacement.y) < 0.05 then
-        displacement.y = 0
-    end
-    displacement.z = 0
-
-    local facing
-    if displacement == Vector(0, 0, 0) then
-        facing = caster:GetForwardVector()
-    else
-        facing = displacement:Normalized()
-    end
-
+    local origin = caster:GetOrigin()
+    local facing = ForwardVForPointGround(origin,position)
+    
     self:ShootArrow({
         Effect = effect,
-        Origin = caster:GetOrigin(),
+        Origin = origin,
         Speed = 3000,
         Facing = facing,
         AoE = 100,
