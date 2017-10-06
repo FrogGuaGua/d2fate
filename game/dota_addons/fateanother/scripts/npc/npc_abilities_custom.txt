@@ -5437,12 +5437,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 300 400 500 600"
+				"damage"				"200 350 500 650 800"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"trap_duration"			"3.0"
+				"trap_duration"			"2.0"
 			}
 			"03"
 			{
