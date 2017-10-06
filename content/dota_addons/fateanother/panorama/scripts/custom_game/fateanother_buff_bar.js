@@ -82,6 +82,10 @@ var buffProgress = {
     modifier_magic_resistance_ex_shield: "modifier_magic_resistance_ex_progress",
 };
 
+var buffCanBeRemoved = {
+    modifier_rho_aias_shield: true
+};
+
 function AltClickBuffs() {
     var that = this;
 
@@ -110,7 +114,13 @@ AltClickBuffs.prototype.BindOnActivate = function(panels, isDebuff) {
             function() {
                 that.OnActivate(index, isDebuff);
             }
-        )
+        );
+        panel.GetChild(0).SetPanelEvent(
+            "oncontextmenu",
+            function(){
+                that.OnRightClick(index, isDebuff);
+            }
+        );
     });
 }
 
@@ -127,6 +137,24 @@ AltClickBuffs.prototype.GetVisibleBuffs = function(unit, isDebuff) {
         visibleBuffs.push(buff);
     }
     return visibleBuffs;
+}
+
+AltClickBuffs.prototype.OnRightClick = function(index, isDebuff){
+    var unit = Players.GetLocalPlayerPortraitUnit();
+    var buff = this.GetVisibleBuffs(unit, isDebuff)[index];
+    var buffName = Buffs.GetName(unit, buff);
+
+    if(!buff){
+        return;
+    }
+
+    var name = Buffs.GetName(unit, buff);
+    for (var key in buffCanBeRemoved){
+        if (name === key && buffCanBeRemoved[key] === true){
+            GameEvents.SendCustomGameEventToServer("player_remove_buff",{iUnit: unit, sModifier: buffName});
+            return;
+        }
+    }
 }
 
 AltClickBuffs.prototype.OnActivate = function(index, isDebuff) {

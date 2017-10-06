@@ -937,6 +937,15 @@ function OnPlayerAltClick(eventSourceIndex, keys)
 	Say(player, message, not keys.toAll)
 end
 
+function OnPlayerRemoveBuff(iSource, args)
+    local iPlayer = args.PlayerID
+    local hUnit = EntIndexToHScript(args.iUnit)
+
+    if iPlayer == hUnit:GetPlayerOwnerID() then
+        hUnit:RemoveModifierByName(args.sModifier)
+    end
+end
+
 function DistributeGold(hero, cutoff)
     -- get gold amount of teammates
     -- exclude from table if more than stated amount
@@ -2141,6 +2150,7 @@ function FateGameMode:InitGameMode()
     CustomGameEventManager:RegisterListener( "config_option_4_checked", OnConfig4Checked )
     -- CustomGameEventManager:RegisterListener( "player_chat_panorama", OnPlayerChat )
     CustomGameEventManager:RegisterListener( "player_alt_click", OnPlayerAltClick )
+    CustomGameEventManager:RegisterListener("player_remove_buff", OnPlayerRemoveBuff )
     -- LUA modifiers
     LinkLuaModifier("modifier_ms_cap", "modifiers/modifier_ms_cap", LUA_MODIFIER_MOTION_NONE)
 
