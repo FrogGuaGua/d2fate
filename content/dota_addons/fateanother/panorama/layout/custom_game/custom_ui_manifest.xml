@@ -170,6 +170,7 @@
 	<Panel>
 	    <!-- CustomUIElements go here.  They are not provided currently as valve's parser reads commented lines and attempts to link them in.-->
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud_base.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_masterbar.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_customization.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_timer_layout.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/fateanother_portrait.xml" />
