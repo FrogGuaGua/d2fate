@@ -29173,7 +29173,7 @@
 			"particle"		"particles/neutral_fx/roshan_death_aegis_starfall.vpcf"
 		}
 
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.4"
 		"AbilityChannelTime"			"%channel_duration"		
 		"AbilityCastRange"				"%radius"
 		"AbilityCooldown"				"20"

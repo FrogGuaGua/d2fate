@@ -4,8 +4,15 @@
 	m_Operators = 
 	[
 		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 0.2
+		},
+		{
 			_class = "C_OP_BasicMovement"
-			m_Gravity = [ 0.0, 0.0, -15.0 ]
+			m_Gravity = [ 0.0, 0.0, -20.0 ]
+			m_flOpStrengthMinScale = -100.0
+			m_flOpStrengthMaxScale = 0.0
+			m_nOpScaleCP = 3
 		},
 		{
 			_class = "C_OP_PositionLock"
@@ -14,9 +21,6 @@
 			m_flStartTime_max = 0.0
 			m_flEndTime_min = 0.3
 			m_flEndTime_max = 0.3
-		},
-		{
-			_class = "C_OP_Decay"
 		},
 		{
 			_class = "C_OP_RemapSpeedtoCP"
@@ -33,6 +37,17 @@
 		},
 		{
 			_class = "C_OP_SpinUpdate"
+			m_flOpStrengthMinScale = 0.0
+			m_nOpEndCapState = 0
+			m_nOpScaleCP = 3
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_flRotRate = 80.0
+			m_nCP = 1
+			m_flOpStrengthMinScale = 0.0
+			m_flOpStrengthMaxScale = 5.0
+			m_nOpScaleCP = 3
 		},
 	]
 	m_Renderers = 
@@ -67,7 +82,7 @@
 		{
 			_class = "C_INIT_RandomRadius"
 			m_flRadiusMin = 0.9
-			m_flRadiusMax = 2.0
+			m_flRadiusMax = 1.7
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -77,8 +92,8 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 2.0
-			m_fLifetimeMax = 2.0
+			m_fLifetimeMin = 10.0
+			m_fLifetimeMax = 10.0
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -116,4 +131,26 @@
 		},
 	]
 	m_nMaxParticles = 20
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
 }
