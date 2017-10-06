@@ -6666,7 +6666,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_constant"			"800 1050 1300 1550 1800"
+				"health_constant"			"800 1100 1400 1700 2000"
 			}
 			"02"
 			{
