@@ -4937,14 +4937,9 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_absorb"				"600 750 900 1050 1200"
+				"damage_absorb"				"600 800 1000 1200 1400"
 			}
 			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"0 50 100 150 200"
-			}
-			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"			"7"
@@ -4989,14 +4984,6 @@
 				"States"
 				{
 					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_rho_aias_health_bonus"
-			{
-				"Passive"		"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS"		"%bonus_health"
 				}
 			}
 		}
