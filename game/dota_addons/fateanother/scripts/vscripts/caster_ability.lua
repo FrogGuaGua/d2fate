@@ -1454,7 +1454,7 @@ function OnImproveHGAcquired(keys)
 	-- Set master 1's mana 
 	local master = hero.MasterUnit
 	master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
-	ATTRIBUTE_HG_INT_MULTIPLIER = 1
+	ATTRIBUTE_HG_INT_MULTIPLIER = 1.5
 end
 
 function OnDaggerOfTreacheryAcquired(keys)
