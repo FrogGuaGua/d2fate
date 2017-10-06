@@ -23082,7 +23082,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mr_reduction"			"-4"
+				"mr_reduction"			"-3"
 			}
 			"02"
 			{
@@ -23565,7 +23565,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_modifier_enemy"			"150 150 175 200 200"
+				"damage_modifier_enemy"			"125 125 150 175 200"
 			}
 			"03"
 			{
@@ -23968,7 +23968,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"movespeed_modifier"			"8 16 24 32 40"
+				"movespeed_modifier"			"10 15 20 25 30"
 			}		
 			"05"
 			{
@@ -23993,7 +23993,7 @@
 			"09"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"movespeed_modifier_enemy"			"-8 -16 -24 -32 -40"
+				"movespeed_modifier_enemy"			"-10 -15 -20 -25 -30"
 			}
 			"10"
 			{
@@ -24067,7 +24067,7 @@
 				"EffectAttachType"		"follow_origin"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"	"%mana_regen_enemy"
+					//"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"	"%mana_regen_enemy"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_modifier_enemy"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%movespeed_modifier_enemy"
 				}
