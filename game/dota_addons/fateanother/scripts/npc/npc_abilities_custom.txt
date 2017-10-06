@@ -14949,7 +14949,7 @@
 			}
 			"modifier_murderous_instinct_bash_checker"
 			{
-				"Duration"		"4.0"
+				"Duration"		"3.5"
 				"IsDebuff"		"1"
 				"IsHidden"		"0"
 			}
