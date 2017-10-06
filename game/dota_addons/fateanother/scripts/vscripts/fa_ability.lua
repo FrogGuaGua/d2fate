@@ -37,6 +37,8 @@ function OnGKStart(keys)
 		Timers:CreateTimer(5, function() return caster:SwapAbilities("false_assassin_gate_keeper", "false_assassin_quickdraw", true, false)   end)
 	end
 
+	if caster.IsEyeOfSerenityAcquired then caster.IsEyeOfSerenityActive = true end
+
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_gate_keeper_self_buff", {})
 
 	local gkdummy = CreateUnitByName("sight_dummy_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
@@ -49,7 +51,11 @@ function OnGKStart(keys)
 	local eyeCounter = 0
 
 	Timers:CreateTimer(function() 
-		if eyeCounter > 5.0 then DummyEnd(gkdummy) return end
+		if eyeCounter > 5.0 then 
+			caster.IsEyeOfSerenityActive = false
+			DummyEnd(gkdummy) 
+			return 
+		end
 		gkdummy:SetAbsOrigin(caster:GetAbsOrigin()) 
 		eyeCounter = eyeCounter + 0.2
 		return 0.2
@@ -86,11 +92,12 @@ function OnHeartStart(keys)
 
 	if caster.IsVitrificationAcquired then
 		keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_heart_of_harmony_invisible", {})
-	else
+	--[[else
 		-- set global cooldown
+		-- Global cooldown removed as of 1.24c
 		caster:FindAbilityByName("false_assassin_gate_keeper"):StartCooldown(keys.GCD) 
 		caster:FindAbilityByName("false_assassin_windblade"):StartCooldown(keys.GCD) 
-		caster:FindAbilityByName("false_assassin_tsubame_gaeshi"):StartCooldown(keys.GCD) 
+		caster:FindAbilityByName("false_assassin_tsubame_gaeshi"):StartCooldown(keys.GCD) ]]
 	end
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_heart_of_harmony", {})
 	caster:EmitSound("Hero_Abaddon.AphoticShield.Cast")
@@ -117,6 +124,7 @@ function OnHeartDamageTaken(keys)
 	local caster = keys.caster
 	local target = keys.attacker
 	local ability = keys.ability
+	local cdr = keys.Cdr
 	local damageTaken = keys.DamageTaken
 
 	if damageTaken > keys.Threshold and caster:GetHealth() ~= 0 and (caster:GetAbsOrigin()-target:GetAbsOrigin()):Length2D() < 3000 and not target:IsInvulnerable() and caster:GetTeam() ~= target:GetTeam() then
@@ -134,9 +142,9 @@ function OnHeartDamageTaken(keys)
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_heart_of_harmony_resistance_linger", {})
 		caster:AddNewModifier(caster, caster, "modifier_camera_follow", {duration = 1.0})
 		-- cooldown
-		ReduceCooldown(caster:FindAbilityByName("false_assassin_gate_keeper"), 15)
-		ReduceCooldown(caster:FindAbilityByName("false_assassin_windblade"), 15)
-		ReduceCooldown(caster:FindAbilityByName("false_assassin_tsubame_gaeshi"), 15)
+		ReduceCooldown(caster:FindAbilityByName("false_assassin_gate_keeper"), cdr)
+		ReduceCooldown(caster:FindAbilityByName("false_assassin_windblade"), cdr)
+		ReduceCooldown(caster:FindAbilityByName("false_assassin_tsubame_gaeshi"), cdr)
 
 		local counter = 0
 		Timers:CreateTimer(function()
@@ -467,7 +475,12 @@ function OnWBStart(keys)
 
 	if not caster.IsGanryuAcquired then
 		caster:FindAbilityByName("false_assassin_gate_keeper"):StartCooldown(keys.GCD) 
-		caster:FindAbilityByName("false_assassin_heart_of_harmony"):StartCooldown(keys.GCD) 
+
+		-- 1.24 change : Vitrification removes GCD from Heart regardless
+		if not caster.IsVitrificationAcquired then 
+			caster:FindAbilityByName("false_assassin_heart_of_harmony"):StartCooldown(keys.GCD) 
+		end		
+
 		caster:FindAbilityByName("false_assassin_tsubame_gaeshi"):StartCooldown(keys.GCD) 
 	end
 
@@ -565,7 +578,12 @@ function OnTGStart(keys)
 	if caster:GetName() == "npc_dota_hero_juggernaut" then
 		EmitGlobalSound("FA.TG")
 		caster:FindAbilityByName("false_assassin_gate_keeper"):StartCooldown(keys.GCD) 
-		caster:FindAbilityByName("false_assassin_heart_of_harmony"):StartCooldown(keys.GCD) 
+
+		-- 1.24c change Vitrification prevents GCD on Heart
+		if not caster.IsVitrificationAcquired then
+			caster:FindAbilityByName("false_assassin_heart_of_harmony"):StartCooldown(keys.GCD) 
+		end
+
 		caster:FindAbilityByName("false_assassin_windblade"):StartCooldown(keys.GCD) 
 	elseif caster:GetName() == "npc_dota_hero_sven" then
 		Timers:CreateTimer(0.15, function() 

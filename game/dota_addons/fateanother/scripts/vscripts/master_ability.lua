@@ -1015,7 +1015,7 @@ end
 function OnPresenceDetectionThink(keys)
 	local caster = keys.caster
 	local hasSpecialPresenceDetection = false
-	if caster:GetName() == "npc_dota_hero_juggernaut" and caster.IsEyeOfSerenityAcquired then 
+	if caster:GetName() == "npc_dota_hero_juggernaut" and caster.IsEyeOfSerenityAcquired and caster.IsEyeOfSerenityActive then 
 		hasSpecialPresenceDetection = true
 	elseif caster:GetName() == "npc_dota_hero_shadow_shaman" and caster.IsEyeForArtAcquired then
 		hasSpecialPresenceDetection = true

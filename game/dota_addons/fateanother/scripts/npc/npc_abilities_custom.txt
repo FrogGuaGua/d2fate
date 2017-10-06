@@ -3161,30 +3161,31 @@
 			}
 		}
 		
-		"Modifiers"
-		{
-			"modifier_mana_burst_VFX"
-			{
-				"IsHidden"		"1"
-				"IsPurgable"	"0"
-			
-				"Duration"		"1.5"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"			"TARGET"
-						"EffectName"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
-						"EffectAttachType"	"start_at_customorigin"
-						"ControlPoints"
-						{
-							"01"			"%radius 0 0"
-							"02"			"1.0 0 0"
-						}
-					}
-				}
-			}
-		}
+		//Particle is created on lua script side
+		//"Modifiers"
+		//{
+		//	"modifier_mana_burst_VFX"
+		//	{
+		//		"IsHidden"		"1"
+		//		"IsPurgable"	"0"
+		//	
+		//		"Duration"		"1.5"
+		//		"OnCreated"
+		//		{
+		//			"AttachEffect"
+		//			{
+		//				"Target"			"TARGET"
+		//				"EffectName"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+		//				"EffectAttachType"	"start_at_customorigin"
+		//				"ControlPoints"
+		//				{
+		//					"01"			"%radius 0 0"
+		//					"02"			"1.0 0 0"
+		//				}
+		//			}
+		//		}
+		//	}
+		//}
 	}
 
 	//=================================================================================================================
@@ -3363,7 +3364,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.3"
+				"stun_duration"			"0.5"
 			}
 		}
 		
@@ -7689,6 +7690,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"gcd"					"15"
 			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cdr"					"3 6 9 12 15"
+			}
 		}
 		
 		"OnSpellStart"
@@ -7745,7 +7751,8 @@
 						"DamageTaken"		"%attack_damage"
 						"Threshold"			"%threshold"
 						"StunDuration"		"%stun_duration"
-						"AttackCount"			"%attack_count"
+						"AttackCount"		"%attack_count"
+						"Cdr"				"%cdr"
 					}
 				}				
 				"Properties"
@@ -8414,7 +8421,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"16"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -8430,7 +8437,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"vision_cd"		"10.0"
+				"vision_cd"				"10.0"
 			}
 		}
 		
@@ -13665,7 +13672,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.3"
+				"stun_duration"			"0.5"
 			}
 		}
 		
@@ -21695,7 +21702,7 @@
 		"AbilityCastRange"				"800"
 		"AbilityCastRangeBuffer"		"200"
 		"AbilityCastPoint"				"0.15"
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"13"
 		"AbilityManaCost"				"100"
 		
 		// Ability special
