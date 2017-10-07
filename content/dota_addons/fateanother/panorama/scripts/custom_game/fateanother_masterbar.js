@@ -11,7 +11,7 @@ var MasterBar = (function () {
             var abilityName = Abilities.GetAbilityName(ability);
             var str = "cmd_seal";
             if (abilityName.match(str) != null) {
-                var panel = $.CreatePanel("DOTAAbilityPanel", this.panel, "");
+                var panel = $.CreatePanel("DOTAAbilityPanel", this.panel.FindChildTraverse("MasterBarSeals"), "");
                 new SealButton(panel, ability, abilityName, data.shardUnit);
             }
         }
@@ -25,12 +25,8 @@ var SealButton = (function () {
         this.ability = ability;
         this.name = name;
         this.unit = unit;
-        var oldAbilityImage = this.panel.FindChildTraverse("AbilityImage");
-        //abilityImage.SetImage("raw://resource/flash3/images/spellicons/custom/" + this.name + ".png");
-        oldAbilityImage.style.visibility = "collapse";
-        var abilityImage = $.CreatePanel("DOTAAbilityImage", this.panel.FindChildTraverse("AbilityButton"), "");
-        abilityImage.abilityname = this.name;
-        abilityImage.style.margin = "9px";
+        this.panel.overrideentityindex = this.ability;
+        this.panel.FindChildTraverse("HotkeyContainer").style.visibility = "collapse";
         this.panel.SetPanelEvent("onactivate", function () { _this.OnClick(); });
         this.panel.SetPanelEvent("onmouseover", function () { _this.OnHover(true); });
         this.panel.SetPanelEvent("onmouseout", function () { _this.OnHover(false); });

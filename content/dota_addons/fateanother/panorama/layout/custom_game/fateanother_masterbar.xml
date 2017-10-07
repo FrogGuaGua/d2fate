@@ -4,9 +4,10 @@
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/fateanother_masterbar.js" />
-        <include src="file://{resources}/scripts/custom_game/fateanother_ability.js" />
         <include src="file://{resources}/scripts/custom_game/fateanother_util.js" />
     </scripts>
     <Panel class="MasterBar">
+        <Panel id="MasterBarBG"/>
+        <Panel id="MasterBarSeals"/>
     </Panel>
 </root>
