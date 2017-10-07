@@ -26479,7 +26479,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"		"400 475 550 625 700"
+				"damage"		"375 450 525 600 675"
 			}
 			"04"
 			{
@@ -26573,12 +26573,12 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"active_total_damage"			"700 825 950 1075 1200"
+				"active_damage_per_sec"			"350 425 500 575 650"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"active_damage_per_tick"		"70 82.5 95 107.5 120"
+				"active_damage_per_tick"		"70 85 100 115 130"
 			}
 			"06"
 			{
