@@ -20982,6 +20982,116 @@
 				"MaxRange"				"%max_range"
 			}
 		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"nero_ability"
+				"Function"				"OnRIUpgrade"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"false"
+			
+			"RunScript"
+			{
+				"ScriptFile"    "nero_ability"
+				"Function"      "OnRIHit"
+				"Damage"		"%damage"
+				"StunDuration"	"%stun_duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_rosa_ichthys_anim"
+			{
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_1"	
+				"Duration"			"1.0"
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"0.7"
+				}
+			}
+			"modifier_laus_anim"
+			{
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_2"	
+				"Duration"			"1.0"
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"1.0"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Nero : Rosa Ichthys II
+	//=================================================================================================================
+	"nero_rosa_ichthys2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/nero_rosa_ichthys"
+		"AbilityCastAnimation" 			"ACT_DOTA_IDLE"
+		
+		// Ability stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1050"
+		"AbilityCastRangeBuffer"		"0"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"3"
+		"AbilityManaCost"				"0"
+		
+		// Ability special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"400 500 600 700 800"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"max_range"				"1450"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"0.7 0.9 1.1 1.3 1.5"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"						
+		{
+			"particle"			"particles/custom/archer/archer_overedge_slash.vpcf"
+			"particle"			"particles/units/heroes/hero_legion_commander/legion_duel_start_text_burst_flare.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"nero_ability"
+				"Function"				"OnRI2Start"
+				"MaxRange"				"%max_range"
+			}
+		}
 		
 		"OnProjectileHitUnit"
 		{
@@ -21556,6 +21666,52 @@
 			}
 		}
 	}
+	//=======================================
+	// Nero Attribute : Pavillion of Falling Flowers
+	//=======================================
+	"nero_attribute_pavilion"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/nero_rosa_ichthys"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"13"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"extra_perc_dmg"					"10"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reduction"					"0.25"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"nero_ability"
+				"Function"		"OnPavilionAcquired"
+				"bonus"		"%extra_perc_dmg"
+				"reduction"		"%reduction"
+			}
+		}
+	}
+
 
 
 	//=================================================================================================================

@@ -289,7 +289,6 @@ function OnRIStart(keys)
 	end
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_rosa_ichthys_anim", {})
 	caster:EmitSound("Nero.Rosa")
-	giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", 1.25)
 	local slash = 
 	{
 		Ability = keys.ability,
@@ -309,12 +308,18 @@ function OnRIStart(keys)
 		bDeleteOnHit = false,
 		vVelocity = caster:GetForwardVector() * 99999
 	}
-	
-	Timers:CreateTimer(1.25, function()
+	local delay = 1.25
+	if caster.IsPavilionAcquired then 
+		delay = delay - CustomNetTables:GetTableValue("sync","nero_pavilion").delay_reduction
+	end
+	giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", delay)
+
+	Timers:CreateTimer(delay, function()
 		if (caster:GetAbsOrigin().y < -2000 and target:GetAbsOrigin().y > -2000) or (caster:GetAbsOrigin().y > -2000 and target:GetAbsOrigin().y < -2000) then 
 			return 
 		end
 		if caster:IsAlive() then
+			caster.RIStartOrigin = caster:GetAbsOrigin()
 			local diff = target:GetAbsOrigin() - caster:GetAbsOrigin()
 			local dist = 0
 			if diff:Length2D() > keys.MaxRange then 
@@ -332,16 +337,86 @@ function OnRIStart(keys)
 			FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
 
 			caster:MoveToTargetToAttack(target)
+			if caster.IsPavilionAcquired then 
+ 				caster:SwapAbilities("nero_rosa_ichthys","nero_rosa_ichthys2",false,true)
+				caster.Rosa2Timer = Timers:CreateTimer(5,function()
+					caster:SwapAbilities("nero_rosa_ichthys","nero_rosa_ichthys2",true,false)
+					return nil
+				end)
+			end			
 		end
-	end)
-	
+	end)	
 end
 
+function OnRI2Start(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_rosa_ichthys_anim", {})
+	caster:EmitSound("Nero.Rosa")
+	local slash = 
+	{
+		Ability = keys.ability,
+        EffectName = "",
+        iMoveSpeed = 99999,
+        vSpawnOrigin = caster:GetAbsOrigin(),
+        fDistance = 0,
+        fStartRadius = 200,
+        fEndRadius = 200,
+        Source = caster,
+        bHasFrontalCone = true,
+        bReplaceExisting = false,
+        iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+        iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+        iUnitTargetType = DOTA_UNIT_TARGET_ALL,
+        fExpireTime = GameRules:GetGameTime() + 2.0,
+		bDeleteOnHit = false,
+		vVelocity = caster:GetForwardVector() * 99999
+	}
+	local delay = 1.25
+	if caster.IsPavilionAcquired then 
+		delay = delay - CustomNetTables:GetTableValue("sync","nero_pavilion").delay_reduction
+	end
+	giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", delay)
+	if caster.Rosa2Timer then
+		Timers:RemoveTimer(caster.Rosa2Timer)
+		caster:SwapAbilities("nero_rosa_ichthys","nero_rosa_ichthys2",true,false)				
+	end
+	Timers:CreateTimer(delay, function()
+		if caster:IsAlive() then
+			local diff = caster.RIStartOrigin - caster:GetAbsOrigin()
+			local dist = diff:Length2D()
+
+			slash.vSpawnOrigin = caster:GetAbsOrigin()
+			slash.vVelocity = diff:Normalized() * 99999
+			slash.fDistance = dist
+
+			local projectile = ProjectileManager:CreateLinearProjectile(slash)
+			CreateSlashFx(caster, caster:GetAbsOrigin(), caster:GetAbsOrigin() + diff:Normalized() * dist)
+			caster:SetAbsOrigin(caster:GetAbsOrigin() + diff:Normalized() * (dist - 100))
+			FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), true)
+		end
+	end)	
+end
+function OnRIUpgrade(keys)
+	local caster = keys.caster
+	if caster.IsPavilionAcquired then
+		local ability = keys.ability
+		local level = ability:GetLevel()
+		caster:FindAbilityByName("nero_rosa_ichthys2"):SetLevel(level)
+	end
+end
 function OnRIHit(keys)
 	local caster = keys.caster
 	local target = keys.target
-	DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-	target:AddNewModifier(caster, target, "modifier_stunned", {Duration = keys.StunDuration})
+	local dmg = keys.Damage
+	local stun_duration = keys.StunDuration
+	if keys.ability:GetName() == "nero_rosa_ichthys2" then
+		dmg = dmg/2
+		stun_duration = stun_duration/2
+	end
+	DoDamage(caster, target, dmg, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	target:AddNewModifier(caster, target, "modifier_stunned", {Duration = stun_duration})
 	target:EmitSound("Hero_Lion.FingerOfDeath")
 	local slashFx = ParticleManager:CreateParticle("particles/custom/nero/nero_scorched_earth_child_embers_rosa.vpcf", PATTACH_ABSORIGIN, target )
 	ParticleManager:SetParticleControl( slashFx, 0, target:GetAbsOrigin() + Vector(0,0,300))
@@ -364,7 +439,7 @@ function OnTheatreCast(keys)
 		return 
 	end
 	EmitGlobalSound("Nero.Domus")
-	giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", 1.5)
+	giveUnitDataDrivenModifier(caster, caster, "pause_sealenabled", 1.5)
 
 	Timers:CreateTimer(1.5, function()
 		if caster:IsAlive() then
@@ -381,8 +456,8 @@ function OnTheatreStart(keys)
 	caster:EmitSound("Hero_LegionCommander.Duel.Victory")
 
 	--local theatreFx = ParticleManager:CreateParticle("particles/custom/nero/nero_domus_ring_energy.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
-	local theatreFx2 = ParticleManager:CreateParticle("particles/custom/nero/nero_domus_ring_border.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
-	ParticleManager:SetParticleControl( theatreFx2, 1, Vector(keys.Radius,0,0))
+	caster.theatreFx2 = ParticleManager:CreateParticle("particles/custom/nero/nero_domus_ring_border.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
+	ParticleManager:SetParticleControl( caster.theatreFx2, 1, Vector(keys.Radius,0,0))
 
 	local timeCounter = 0
 	Timers:CreateTimer(0.5, function()
@@ -390,8 +465,7 @@ function OnTheatreStart(keys)
 			timeCounter = timeCounter + 0.5
 			return 0.5
 		end
-		ParticleManager:DestroyParticle( theatreFx2, false )
-		ParticleManager:ReleaseParticleIndex( theatreFx2 )
+		FxDestroyer(caster.theatreFx2, false)
 	end)	
 
 	local banners = CreateBannerInCircle(caster, caster:GetAbsOrigin(), keys.Radius)
@@ -602,9 +676,14 @@ function OnLSCStart(keys)
 	Timers:CreateTimer(0.2, function()
 		OnNeroComboEnd(keys)
 		if caster:IsAlive() then
+			local max_hp_damage = 0.20 
+			if caster.IsPavilionAcquired then
+				max_hp_damage = max_hp_damage + CustomNetTables:GetTableValue("sync","nero_pavilion").bonus
+			end
+			print(max_hp_damage)
 			local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 			for k,v in pairs(targets) do
-				DoDamage(caster, v, v:GetMaxHealth() * 0.20 , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+				DoDamage(caster, v, v:GetMaxHealth() * max_hp_damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 				v:AddNewModifier(caster, caster, "modifier_stunned", {Duration = 0.1})
 			end		
 			CreateSlashFx(caster, caster:GetAbsOrigin()+Vector(1200, 1200, 300),caster:GetAbsOrigin()+Vector(-1200, -1200, 300))
@@ -654,6 +733,7 @@ function OnNeroComboEnd(keys)
 	ParticleManager:DestroyParticle( caster.ScreenOverlay, false )
 	ParticleManager:ReleaseParticleIndex( caster.ScreenOverlay )
 	caster:RemoveModifierByName("modifier_aestus_domus_aurea")
+	FxDestroyer(caster.theatreFx2, false)
 end
 
 function NeroTakeDamage(keys)
@@ -669,6 +749,10 @@ function NeroTakeDamage(keys)
 		
 		caster:EmitSound("Hero_SkeletonKing.Reincarnate")
 		--caster:SetHealth(1)
+		if caster:HasModifier("modifier_aestus_domus_aurea") then 
+			caster:RemoveModifierByName("modifier_aestus_domus_aurea")
+			FxDestroyer(caster.theatreFx2, false)
+		end
 		Timers:CreateTimer(function()
 			if healCounter == 3 or not caster:IsAlive() then return end
 			--caster:SetHealth(caster:GetHealth() + caster:GetMaxHealth() * 0.1)
@@ -735,6 +819,20 @@ function OnGloryAcquired(keys)
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     hero.IsGloryAcquired = true
+    -- Set master 1's mana 
+    local master = hero.MasterUnit
+    master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
+end
+
+function OnPavilionAcquired(keys)
+    local caster = keys.caster
+    local ply = caster:GetPlayerOwner()
+    local hero = caster:GetPlayerOwner():GetAssignedHero()
+    hero.IsPavilionAcquired = true
+		local extra_dmg = keys.bonus/100
+		local reduction = keys.reduction 		
+		CustomNetTables:SetTableValue("sync","nero_pavilion", {bonus = extra_dmg, delay_reduction = reduction})
+		hero:AddAbility("nero_rosa_ichthys2"):SetLevel(hero:FindAbilityByName("nero_rosa_ichthys"):GetLevel())
     -- Set master 1's mana 
     local master = hero.MasterUnit
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))

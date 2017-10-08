@@ -1035,11 +1035,12 @@
 		"Ability15"				"attribute_bonus_custom"
 
 		"Combo"						"nero_fiery_finale"
-		"AttributeNumber"			"4"
+		"AttributeNumber"			"5"
 		"Attribute1"				"nero_attribute_pari_tenu_blauserum"
 		"Attribute2"				"nero_attribute_improve_imperial_privilege"
 		"Attribute3"				"nero_attribute_invictus_spiritus"
 		"Attribute4"				"nero_attribute_soverigns_glory"
+    "Attribute5"        "nero_attribute_pavilion"
 
 		"StatusHealth"					"1200"
 		"StatusHealthRegen"				"9.0"
