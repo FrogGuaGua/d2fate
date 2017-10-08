@@ -9294,7 +9294,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"agi_increase"				"1 1.25 1.5 1.75 2"
+				"agi_increase"				"0.5 1 1.5 2 2.5"
 			}
 			"04"
 			{
@@ -9827,6 +9827,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"baseattack_str_reduction"			"0.75"
 			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_bonus"			"300"
+			}
 		}
 		
 		"OnSpellStart"
@@ -9835,6 +9840,7 @@
 			{
 				"ScriptFile"	"ta_ability"
 				"Function"		"OnWeakeningVenomAcquired"
+				"vision"			"%vision_bonus"
 			}
 		}
 	}
