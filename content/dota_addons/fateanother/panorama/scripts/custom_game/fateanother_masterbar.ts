@@ -16,11 +16,25 @@ class MasterBar{
             let ability: abilityID = Entities.GetAbility(data.shardUnit, i)
             let abilityName: string = Abilities.GetAbilityName(ability);
             let str: string = "cmd_seal";
+
             if(abilityName.match(str) != null){
                 let panel = $.CreatePanel("DOTAAbilityPanel", this.panel.FindChildTraverse("MasterBarSeals"), "");
                 new SealButton(panel, ability, abilityName, data.shardUnit);
             }
         }
+        this.Toggle();
+        let button = this.panel.FindChildTraverse("MasterBarButton");
+        button.SetPanelEvent("onmouseactivate", ()=>{this.Toggle()});
+    }
+
+    Toggle(){
+        let b: boolean = this.panel.BHasClass("closed");
+        this.panel.SetHasClass("closed", !b);
+
+        let string: string = b ? "#MasterBar_close" : "#MasterBar_open";
+        string = $.Localize(string).toUpperCase();
+        let label: LabelPanel = <LabelPanel>this.panel.FindChildTraverse("MasterBarButtonLabel");
+        label.text = string;
     }
 }
 

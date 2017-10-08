@@ -2,18 +2,66 @@
 {
     vertical-align: bottom;
     margin-bottom: 288px;
+    transition: transform 0.2s ease-in-out 0.0s;
+}
+
+.MasterBar.closed
+{
+    transform: translateX(-260px);
+}
+
+#MasterBarBacker
+{
+    width: 280px;
+    vertical-align: bottom;
 }
 
 #MasterBarBG
 {
-    width: 100%;
+    width: 260px;
     height: 64px;
     z-index: -10;
     vertical-align: bottom;
-    background-image: url("s2r://panorama/images/hud/reborn/ability_bg_psd.vtex");
+    opacity: 0.9;
+    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326ee ), to( #1c1d20ee ) );
+    box-shadow: #000000ff 0px 0px 8px 0px;
 }
 
 #MasterBarSeals
 {
     flow-children: right;
+}
+
+#MasterBarButton
+{
+    height: 64px;
+    width: 20px;
+    vertical-align: bottom;
+    horizontal-align: right;
+    border-top-right-radius: 16px 16px;
+    border-bottom-right-radius: 16px 16px;
+    background-color: #171719fe;
+    box-shadow: #000000ff 0px 0px 3px 0px;
+    opacity: 0.9;
+    z-index: -2;
+}
+
+#MasterBarButtonLabel
+{
+    vertical-align: bottom;
+    horizontal-align: right;
+    width: 56px;
+    height: 50px;
+    pre-transform-rotate2d: 90deg;
+    transform: rotateZ(90deg);
+    z-index: 1000;
+    font-size: 16;
+    text-transform: uppercase;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    color: #dbdbdb;
+}
+
+#MasterBarButton:hover
+{
+    box-shadow: #444444ff 0px 0px 3px 0px;
 }

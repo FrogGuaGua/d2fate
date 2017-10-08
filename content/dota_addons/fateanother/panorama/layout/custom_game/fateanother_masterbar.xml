@@ -1,13 +1,20 @@
 <root>
     <styles>
         <include src="file://{resources}/styles/custom_game/fateanother_masterbar.css"/>
+        <include src="file://{resources}/styles/custom_game/util.css"/>
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/fateanother_masterbar.js" />
         <include src="file://{resources}/scripts/custom_game/fateanother_util.js" />
     </scripts>
-    <Panel class="MasterBar">
-        <Panel id="MasterBarBG"/>
-        <Panel id="MasterBarSeals"/>
+    <Panel class="MasterBar closed" hittest="false">
+        <Panel id="MasterBar">
+            <Panel id="MasterBarBacker" hittest="false">
+                <Panel id="MasterBarBG" hittest="false" />
+                <Panel id="MasterBarButton"/>
+            </Panel>
+            <Label id="MasterBarButtonLabel" text="Open" hittest="false"/>
+            <Panel id="MasterBarSeals" hittest="false"/>
+        </Panel>
     </Panel>
 </root>

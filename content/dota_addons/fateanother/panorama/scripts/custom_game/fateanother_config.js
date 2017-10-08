@@ -83,7 +83,8 @@ function OnConfig4Toggle()
 
 function OnConfig5Toggle()
 {
-
+    var panel = GetHUDRootUI().FindChildTraverse("MasterStatusPanel");
+    panel.ToggleClass("Hidden");
 }
 
 function OnConfig6Toggle() {
@@ -95,6 +96,11 @@ function OnConfig6Toggle() {
     } else {
         buffBar.Disable();
     }
+}
+
+function OnConfig7Toggle(){
+    var panel = GetHUDRootUI().FindChildTraverse("MasterBar");
+    panel.ToggleClass("Hidden");
 }
 
 function PlayerChat(event)
