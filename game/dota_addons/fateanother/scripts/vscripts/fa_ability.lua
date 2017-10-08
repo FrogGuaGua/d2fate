@@ -42,8 +42,8 @@ function OnGKStart(keys)
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_gate_keeper_self_buff", {})
 
 	local gkdummy = CreateUnitByName("sight_dummy_unit", caster:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
-	gkdummy:SetDayTimeVisionRange(1300)
-	gkdummy:SetNightTimeVisionRange(1100)
+	gkdummy:SetDayTimeVisionRange(caster:GetDayTimeVisionRange()+keys.vision)
+	gkdummy:SetNightTimeVisionRange(caster:GetNightTimeVisionRange()+keys.vision)
 
 	local gkdummypassive = gkdummy:FindAbilityByName("dummy_unit_passive")
 	gkdummypassive:SetLevel(1)

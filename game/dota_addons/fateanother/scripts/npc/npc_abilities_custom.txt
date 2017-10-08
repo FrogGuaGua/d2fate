@@ -7367,7 +7367,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_sight"			"300"
+				"bonus_sight"			"300 330 360 390 420 450"
 			}
 			"05"
 			{
@@ -7382,6 +7382,7 @@
 			{
 				"ScriptFile"		"fa_ability"
 				"Function"			"OnGKStart"
+				"vision"				"%bonus_sight"
 			}
 			"FireSound"
 			{
