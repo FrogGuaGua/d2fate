@@ -21737,7 +21737,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"sun_radius"					"666 999"
+				"sun_radius"					"555 777"
 			}
 			"02"
 			{
