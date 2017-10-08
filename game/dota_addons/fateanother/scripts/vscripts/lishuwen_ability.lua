@@ -1,6 +1,6 @@
 ATTR_NSS_BONUS_DAMAGE = 150
 ATTR_NSS_STACK_DAMAGE_PERCENTAGE = 10
-ATTR_AGI_RATIO = 2.0
+ATTR_AGI_RATIO = 2.5
 ATTR_MANA_REFUND = 200
 
 LinkLuaModifier("modifier_berserk","abilities/lishuwen/modifier_berserk", LUA_MODIFIER_MOTION_NONE)

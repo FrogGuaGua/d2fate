@@ -24691,7 +24691,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"700"                // duplicate key #2
 		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastPoint"				"0.3"
 
 		"AbilitySpecial"
 		{
@@ -26228,7 +26228,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"agi_ratio"				"2.0"
+				"agi_ratio"				"2.5"
 			}
 			"02"
 			{
