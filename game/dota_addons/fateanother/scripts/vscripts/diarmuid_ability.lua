@@ -497,13 +497,19 @@ function OnCrimsonRoseAcquired(keys)
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     hero.IsCrimsonRoseAcquired = true
-    hero:AddNewModifier(hero, hero:FindAbilityByName("diarmuid_warriors_charge"), "modifier_charges",
-    	{
-    		max_count = 2,
-    		start_count = 1,
-    		replenish_time = 9
-    	}
-    )
+		Timers:CreateTimer(function()
+			if hero:IsAlive() then 
+		    hero:AddNewModifier(hero, hero:FindAbilityByName("diarmuid_warriors_charge"), "modifier_charges",
+		    	{
+		    		max_count = 2,
+		    		start_count = 1,
+		    		replenish_time = 9
+		    	}
+		    )
+			else
+				return 1
+			end
+		end)
     -- Set master 1's mana 
     local master = hero.MasterUnit
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
