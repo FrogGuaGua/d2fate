@@ -108,6 +108,8 @@
 		"FA_Config_Cmd2"	"Turns BGM on/off."
 		"FA_Config_Cmd3"	"Increases Master mana/health to 100/1000, \nand sets up Combo requirement stats."
 		"FA_Config_Cmd4"	"Removes pre-round pause status from all Servants."
+		"FA_Config_Cmd5"	"Enables or disables servants' voices."
+
 
 		"Fateanother_Portrait_Tooltip"					"Click to select your Servant."
 		"Fateanother_Master_Tooltip"					"Click to select Master, who can aid your Servant with powerful Command Seals."

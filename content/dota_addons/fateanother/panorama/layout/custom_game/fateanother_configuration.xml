@@ -57,7 +57,9 @@
             <Label id="FateConfigCmd3" text="\n-testsetup" class="ConfigCmdLabel" hittest="false"/>
             <Label id="FateConfigCmd3Text" text="#FA_Config_Cmd3" class="ConfigCmdText" hittest="false"/>     
             <Label id="FateConfigCmd4" text="\n-unpause" class="ConfigCmdLabel" hittest="false"/>
-            <Label id="FateConfigCmd4Text" text="#FA_Config_Cmd4" class="ConfigCmdText" hittest="false"/>     
+            <Label id="FateConfigCmd4Text" text="#FA_Config_Cmd4" class="ConfigCmdText" hittest="false"/>
+            <Label id="FateConfigCmd5" text="\n-voice on / -voice off" class="ConfigCmdLabel" hittest="false"/>
+            <Label id="FateConfigCmd5Text" text="#FA_Config_Cmd5" class="ConfigCmdText" hittest="false"/>  			
         </Panel>
     </Panel>
 </root>

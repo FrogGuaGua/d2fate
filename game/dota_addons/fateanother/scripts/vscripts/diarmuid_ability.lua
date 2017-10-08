@@ -506,6 +506,7 @@ function OnCrimsonRoseAcquired(keys)
 		    		replenish_time = 9
 		    	}
 		    )
+				return nil
 			else
 				return 1
 			end
