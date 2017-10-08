@@ -411,10 +411,6 @@ function OnRIHit(keys)
 	local target = keys.target
 	local dmg = keys.Damage
 	local stun_duration = keys.StunDuration
-	if keys.ability:GetName() == "nero_rosa_ichthys2" then
-		dmg = dmg/2
-		stun_duration = stun_duration/2
-	end
 	DoDamage(caster, target, dmg, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	target:AddNewModifier(caster, target, "modifier_stunned", {Duration = stun_duration})
 	target:EmitSound("Hero_Lion.FingerOfDeath")
@@ -694,7 +690,7 @@ function OnLSCStart(keys)
 		if caster:IsAlive() then
 			local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 			for k,v in pairs(targets) do
-				DoDamage(caster, v, v:GetMaxHealth() * 0.20 , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+				DoDamage(caster, v, v:GetMaxHealth() * max_hp_damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 				v:AddNewModifier(caster, caster, "modifier_stunned", {Duration = 0.1})
 			end		
 			CreateSlashFx(caster, caster:GetAbsOrigin()+Vector(1200, -1200, 300),caster:GetAbsOrigin()+Vector(-1200, 1200, 300))
