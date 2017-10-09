@@ -8,12 +8,12 @@
         <include src="file://{resources}/scripts/custom_game/fateanother_util.js" />
     </scripts>
     <Panel class="MasterBar closed" hittest="false">
-        <Panel id="MasterBar">
+        <Panel id="MasterBar" hittest="false">
             <Panel id="MasterBarBacker" hittest="false">
                 <Panel id="MasterBarBG" hittest="false" />
                 <Panel id="MasterBarButton"/>
             </Panel>
-            <Label id="MasterBarButtonLabel" text="Open" hittest="false"/>
+            <Label id="MasterBarButtonLabel" text="#MasterBar_open" hittest="false"/>
             <Panel id="MasterBarSeals" hittest="false"/>
         </Panel>
     </Panel>
