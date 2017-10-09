@@ -7372,7 +7372,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_sight"			"300 330 360 390 420 450"
+				"bonus_sight"			"300 330 360 390 420"
 			}
 			"05"
 			{
