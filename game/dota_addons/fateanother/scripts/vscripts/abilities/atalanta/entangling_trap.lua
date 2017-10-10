@@ -1,11 +1,12 @@
 atalanta_entangling_trap = class({})
+LinkLuaModifier("modifier_atalanta_trap", "abilities/atalanta/modifier_atalanta_trap", LUA_MODIFIER_MOTION_NONE)
 
 if IsClient() then
   return 
 end
 
 function atalanta_entangling_trap:VFX1_Entangle(hTarget,hDummyCenter,fEntangleDuration)
-  local PI = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
+  local PI = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, hDummyCenter)
   ParticleManager:SetParticleControlEnt(PI, 0, hTarget, PATTACH_ABSORIGIN_FOLLOW, nil, hTarget:GetOrigin(), false)
   ParticleManager:SetParticleControlEnt(PI, 1, hDummyCenter, PATTACH_ABSORIGIN_FOLLOW, nil, hDummyCenter:GetOrigin(), false)
   ParticleManager:SetParticleControl(PI, 2, Vector(fEntangleDuration,0,0))
@@ -56,6 +57,7 @@ function atalanta_entangling_trap:OnSpellStart()
   local hCaster = self:GetCaster()
   local vLocation = self:GetCursorPosition()
   local hTrap = CreateUnitByName("atalanta_trap", vLocation, true, hCaster, hCaster, hCaster:GetTeam())
+  hTrap:AddNewModifier(hCaster,self,"modifier_atalanta_trap",{Duration = -1})
   self:TrapThink(hTrap)
 end
 
@@ -110,6 +112,7 @@ function atalanta_entangling_trap:Activate(hTarget, hTrap)
     self:ActivationPull(tTargets[3],vCenter,fTargetsDistPull)  
     self:EntangleThinkFor3(fCounter,tTargets[1],tTargets[2],tTargets[3],hDummy)  
   end
+  hTrap:RemoveSelf()
 end
 function atalanta_entangling_trap:EntangleThinkFor1(fCounter,hTarget1,hDummy)
   local fEntanglePunishRange = 500
