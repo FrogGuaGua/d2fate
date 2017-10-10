@@ -195,6 +195,28 @@
       "particle" "particles/custom/atalanta/cobweb_arrow_bounce.vpcf"
     }
   }
+  //=======================================
+  // Atalanta: Entangling Trap (traps)
+  //=======================================
+  "atalanta_entangling_trap"
+  {
+    "BaseClass"						"ability_lua"
+    "ScriptFile"					"abilities/atalanta/entangling_trap"
+    "MaxLevel"						"5"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"			"custom/atalanta_calydonian_hunt"
+    "RequiredLevel"					"25"
+    "LevelsBetweenUpgrades"				"1"    
+    "AbilityCastPoint"				"0"
+    "AbilityCooldown"				"0"
+    "AbilityManaCost"				"0"
+    "precache"
+    {
+      "model" "models/props_nature/bush_00.vmdl"
+      "particle" "particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
+    }
+  }
+
 
   //=======================================
   // Atalanta: Golden Apple

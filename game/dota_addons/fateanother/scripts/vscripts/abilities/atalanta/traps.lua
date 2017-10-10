@@ -10,7 +10,7 @@ function atalanta_traps:OnUpgrade()
   local iLevel = self:GetLevel()
   self.sAq = "atalanta_sting_shot"
   self.sAw = "atalanta_cobweb_shot"
-  self.sAe = "fate_empty2"
+  self.sAe = "atalanta_entangling_trap"
   self.sAd = "fate_empty3"
   self.sAf = "atalanta_traps_close"
   self.sAr = "fate_empty4"

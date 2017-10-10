@@ -1,0 +1,233 @@
+atalanta_entangling_trap = class({})
+
+if IsClient() then
+  return 
+end
+
+function atalanta_entangling_trap:VFX1_Entangle(hTarget,hDummyCenter,fEntangleDuration)
+  local PI = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
+  ParticleManager:SetParticleControlEnt(PI, 0, hTarget, PATTACH_ABSORIGIN_FOLLOW, nil, hTarget:GetOrigin(), false)
+  ParticleManager:SetParticleControlEnt(PI, 1, hDummyCenter, PATTACH_ABSORIGIN_FOLLOW, nil, hDummyCenter:GetOrigin(), false)
+  ParticleManager:SetParticleControl(PI, 2, Vector(fEntangleDuration,0,0))
+  return PI
+end
+function atalanta_entangling_trap:DestroyAllVFX(bInstant,PI1,PI2,PI3)
+  FxDestroyer(PI1,bInstant)
+  FxDestroyer(PI2,bInstant)
+  FxDestroyer(PI3,bInstant)
+end
+function atalanta_entangling_trap:CalculateCenterFor2(vTarget1,vTarget2)
+  local fCenterX = (vTarget1.x + vTarget2.x)/2
+  local fCenterY = (vTarget1.y + vTarget2.y)/2
+  local vCenter = GetGroundPosition(Vector(fCenterX, fCenterY, 0),self:GetCaster())
+  return vCenter
+end
+function atalanta_entangling_trap:CalculateCenterFor3(vTarget1,vTarget2,vTarget3)
+  local fCenterX = (vTarget1.x + vTarget2.x + vTarget3.x)/3
+  local fCenterY = (vTarget1.y + vTarget2.y + vTarget3.y)/3
+  local vCenter = GetGroundPosition(Vector(fCenterX, fCenterY, 0),self:GetCaster())
+  return vCenter
+end
+
+function atalanta_entangling_trap:EntanglePunishCheck(vCenter,vPos,fEntanglePunishRange)
+  local fDistToCenter = (vCenter - vPos):Length2D()
+  if fDistToCenter > fEntanglePunishRange then 
+    return true
+  end
+  return false
+end
+
+function atalanta_entangling_trap:EntangleDownscaleCheck(hTarget)
+  if not hTarget:IsAlive() or hTarget:IsMagicImmune() then 
+    return true
+  end
+  return false
+end
+
+function atalanta_entangling_trap:EntanglePunish(hTarget)
+  local hCaster = self:GetCaster()
+  local fStunDuration = 1.5
+  local fDamage = 500
+  giveUnitDataDrivenModifier(hCaster, hTarget, "stunned", fStunDuration)
+  DoDamage(hCaster, hTarget, fDamage, DAMAGE_TYPE_MAGICAL, 0, self, false)
+end
+
+function atalanta_entangling_trap:OnSpellStart()
+  local hCaster = self:GetCaster()
+  local vLocation = self:GetCursorPosition()
+  local hTrap = CreateUnitByName("atalanta_trap", vLocation, true, hCaster, hCaster, hCaster:GetTeam())
+  self:TrapThink(hTrap)
+end
+
+function atalanta_entangling_trap:TrapThink(hTrap)
+  local hCaster = self:GetCaster()
+  local fTriggerRadius = 200
+  local fArmDelay = 2.0
+  
+  Timers:CreateTimer(fArmDelay,function()
+    if hTrap:IsAlive() then
+      local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTrap:GetAbsOrigin(), nil, fTriggerRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
+      for k,v in pairs(tTargets) do
+        if v ~= nil then
+          self:Activate(v, hTrap)
+          return nil
+        end
+      end
+      return 0.1
+    end
+  end)
+end
+function atalanta_entangling_trap:ActivationPull(hTarget,vCenter,fTargetsDistPull)
+  local vPos = hTarget:GetAbsOrigin()
+  local vToCenter = vCenter - vPos
+  local fDistToCenter = vToCenter:Length2D()
+  local fDiff = fDistToCenter - fTargetsDistPull
+  if fDiff > 0 then 
+    FindClearSpaceForUnit(hTarget,vPos + vToCenter:Normalized()*fDiff,true)
+  end
+end
+
+function atalanta_entangling_trap:Activate(hTarget, hTrap)
+  local fEntangleRadius = 1000
+  local hCaster = self:GetCaster()
+  local fCounter = 0.0
+  local fTargetsDistPull = 100
+  local hDummy = SpawnDummy(hCaster)  
+
+  local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fEntangleRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
+  if #tTargets == 1 then 
+    hDummy:SetAbsOrigin(hTrap:GetAbsOrigin())
+    self:EntangleThinkFor1(fCounter,tTargets[1],hDummy)    
+  elseif #tTargets == 2 then 
+    local vCenter = self:CalculateCenterFor2(tTargets[1]:GetAbsOrigin(),tTargets[2]:GetAbsOrigin())
+    self:ActivationPull(tTargets[1],vCenter,fTargetsDistPull)
+    self:ActivationPull(tTargets[2],vCenter,fTargetsDistPull)  
+    self:EntangleThinkFor2(fCounter,tTargets[1],tTargets[2],hDummy)    
+  elseif #tTargets >= 3 then 
+    local vCenter = self:CalculateCenterFor3(tTargets[1]:GetAbsOrigin(),tTargets[2]:GetAbsOrigin(),tTargets[3]:GetAbsOrigin())
+    self:ActivationPull(tTargets[1],vCenter,fTargetsDistPull)
+    self:ActivationPull(tTargets[2],vCenter,fTargetsDistPull)  
+    self:ActivationPull(tTargets[3],vCenter,fTargetsDistPull)  
+    self:EntangleThinkFor3(fCounter,tTargets[1],tTargets[2],tTargets[3],hDummy)  
+  end
+end
+function atalanta_entangling_trap:EntangleThinkFor1(fCounter,hTarget1,hDummy)
+  local fEntanglePunishRange = 500
+  local fEntangleDuration = 15.0
+  local fInterval = 0.033
+  local PI1 = self:VFX1_Entangle(hTarget1,hDummy,fEntangleDuration-fCounter)
+  
+  Timers:CreateTimer(function()
+    fCounter = fCounter + fInterval
+    if fCounter < fEntangleDuration then
+      local vT1Pos = hTarget1:GetAbsOrigin()
+      local bT1Check = self:EntanglePunishCheck(hDummy:GetAbsOrigin(),vT1Pos,fEntanglePunishRange)
+      if bT1Check then
+        self:EntanglePunish(hTarget1)
+        FxDestroyer(PI1, false)
+        return nil
+      end
+      return fInterval     
+    else 
+      FxDestroyer(PI1, false)
+      hDummy:RemoveSelf()
+      return nil
+    end
+  end)
+end
+
+function atalanta_entangling_trap:EntangleThinkFor2(fCounter,hTarget1,hTarget2,hDummy)
+  local fEntanglePunishRange = 500
+  local fEntangleDuration = 15.0
+  local fInterval = 0.033
+  local PI1 = self:VFX1_Entangle(hTarget1,hDummy,fEntangleDuration-fCounter)
+  local PI2 = self:VFX1_Entangle(hTarget2,hDummy,fEntangleDuration-fCounter)
+  
+  Timers:CreateTimer(function()
+    fCounter = fCounter + fInterval
+    if fCounter < fEntangleDuration then
+      local bT1DownscaleCheck = self:EntangleDownscaleCheck(hTarget1)
+      local bT2DownscaleCheck = self:EntangleDownscaleCheck(hTarget2)
+      if bT1DownscaleCheck then
+        self:DestroyAllVFX(true,PI1,PI2)
+        self:EntangleThinkFor1(fCounter,hTarget2,hDummy)
+        return nil
+      end
+      if bT2DownscaleCheck then
+        self:DestroyAllVFX(true,PI1,PI2)
+        self:EntangleThinkFor1(fCounter,hTarget1,hDummy)
+        return nil
+      end  
+      local vT1Pos = hTarget1:GetAbsOrigin()
+      local vT2Pos = hTarget2:GetAbsOrigin()
+      local vCenter = self:CalculateCenterFor2(vT1Pos,vT2Pos)
+      local bT1Check = self:EntanglePunishCheck(vCenter,vT1Pos,fEntanglePunishRange)
+      local bT2Check = self:EntanglePunishCheck(vCenter,vT2Pos,fEntanglePunishRange)
+      if bT1Check or bT2Check then
+        self:EntanglePunish(hTarget1)
+        self:EntanglePunish(hTarget2)
+        self:DestroyAllVFX(false,PI1,PI2)
+        return nil
+      end
+      hDummy:SetAbsOrigin(vCenter) 
+      return fInterval     
+    else 
+      self:DestroyAllVFX(false,PI1,PI2)
+      hDummy:RemoveSelf()
+      return nil
+    end
+  end)
+end
+
+function atalanta_entangling_trap:EntangleThinkFor3(fCounter,hTarget1,hTarget2,hTarget3,hDummy)
+  local fEntanglePunishRange = 500
+  local fEntangleDuration = 15.0
+  local fInterval = 0.033
+  local PI1 = self:VFX1_Entangle(hTarget1,hDummy,fEntangleDuration-fCounter)
+  local PI2 = self:VFX1_Entangle(hTarget2,hDummy,fEntangleDuration-fCounter)
+  local PI3 = self:VFX1_Entangle(hTarget3,hDummy,fEntangleDuration-fCounter)
+  
+  Timers:CreateTimer(function()
+    fCounter = fCounter + fInterval
+    if fCounter < fEntangleDuration then
+      local bT1DownscaleCheck = self:EntangleDownscaleCheck(hTarget1)
+      local bT2DownscaleCheck = self:EntangleDownscaleCheck(hTarget2)
+      local bT3DownscaleCheck = self:EntangleDownscaleCheck(hTarget3)
+      if bT1DownscaleCheck then
+        self:DestroyAllVFX(true,PI1,PI2,PI3)
+        self:EntangleThinkFor2(fCounter,hTarget2,hTarget3,hDummy)
+        return nil
+      end
+      if bT2DownscaleCheck then
+        self:DestroyAllVFX(true,PI1,PI2,PI3)
+        self:EntangleThinkFor2(fCounter,hTarget1,hTarget2,hDummy)
+        return nil
+      end  
+      if bT3DownscaleCheck then
+        self:DestroyAllVFX(true,PI1,PI2,PI3)
+        self:EntangleThinkFor2(fCounter,hTarget1,hTarget2,hDummy)
+        return nil
+      end      
+      local vT1Pos = hTarget1:GetAbsOrigin()
+      local vT2Pos = hTarget2:GetAbsOrigin()
+      local vT3Pos = hTarget3:GetAbsOrigin()
+      local vCenter = self:CalculateCenterFor3(vT1Pos,vT2Pos,vT3Pos)
+      local bT1Check = self:EntanglePunishCheck(vCenter,vT1Pos,fEntanglePunishRange)
+      local bT2Check = self:EntanglePunishCheck(vCenter,vT2Pos,fEntanglePunishRange)
+      local bT3Check = self:EntanglePunishCheck(vCenter,vT3Pos,fEntanglePunishRange)
+      if bT1Check or bT2Check or bT3Check then
+        self:EntanglePunish(hTarget1)
+        self:EntanglePunish(hTarget2)
+        self:EntanglePunish(hTarget3)
+        self:DestroyAllVFX(false,PI1,PI2,PI3)
+        return nil
+      end        
+      hDummy:SetAbsOrigin(vCenter) 
+      return fInterval     
+    else 
+      self:DestroyAllVFX(false,PI1,PI2,PI3)
+      hDummy:RemoveSelf()
+      return nil
+    end
+  end)
+end

@@ -172,7 +172,10 @@ function atalanta_cobweb_shot:OnSpellStart()
           ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce], 3, tBounceLocs[iCurrentBounce+1])
           
         end
-        local PI1 = FxCreator("particles/custom/atalanta/cobweb_arrow_bounce.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow, 3, nil)
+        --local PI1 = FxCreator("particles/custom/atalanta/cobweb_arrow_bounce.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow, 3, nil)
+        local PI1 = ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_arrow_bounce.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow)
+        ParticleManager:SetParticleControl(PI1, 3, vNewPos)
+
         iCurrentBounce = iCurrentBounce + 1
         --fDistTraveled = 0.0
       else
