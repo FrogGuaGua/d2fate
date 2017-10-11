@@ -214,6 +214,7 @@
     {
       "model" "models/props_nature/bush_00.vmdl"
       "particle" "particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
+      "particle" "particles/custom/atalanta/trap_triggered.vpcf"
     }
   }
 
