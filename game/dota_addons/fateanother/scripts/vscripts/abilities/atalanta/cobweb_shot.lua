@@ -1,4 +1,6 @@
 atalanta_cobweb_shot = class({})
+LinkLuaModifier("modifier_cobweb_slow", "abilities/atalanta/modifier_cobweb_slow", LUA_MODIFIER_MOTION_NONE)
+
 
 if IsClient() then
   return 
@@ -111,7 +113,6 @@ function atalanta_cobweb_shot:OnSpellStart()
   local vTarget = self:GetCursorPosition()
   local vOrigin = hCaster:GetAbsOrigin()
   local vFacing = ForwardVForPointGround(vOrigin,vTarget)
-  --hardcoded stuff
   local fArrowInterval = 0.033
   local fEffectInterval = 0.33
   local fBounceSpeedMod = 1
@@ -122,6 +123,10 @@ function atalanta_cobweb_shot:OnSpellStart()
   local iCurrentBounce = 0
   local fWebWidth = 70
   local fDamagePerSec = 100
+  local fWebLockDuration = 1
+  local fWebSlowDuration = 0.4
+  local fWebSlowAmount = -40
+  CustomNetTables:SetTableValue("sync","atalanta_web", {fSlow = fWebSlowAmount})
   local vLastPos = vOrigin  
   local vVelocity = vFacing * fSpeed
   local tBounceLocs = {}
@@ -144,7 +149,6 @@ function atalanta_cobweb_shot:OnSpellStart()
   self.PIArrow = ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_arrow.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow)
   
   self.ThinkerArrow = Timers:CreateTimer(function()
-    --print("ThinkerArrow")
     local fDistTraveled = (vLastBounce - vLastPos):Length2D()    
     if not self.hActiveArrow:IsNull() and iCurrentBounce <= iMaxBounce and fDistTraveled < fMaxTravelDist then
       local vNewPos = GetGroundPosition(vLastPos + vVelocity * fArrowInterval, self.hActiveArrow)
@@ -152,13 +156,6 @@ function atalanta_cobweb_shot:OnSpellStart()
         local vWallN = self:FindWallVector(vVelocity, vNewPos, vLastPos)
         local vNewVelocity = ((-2 * vVelocity:Dot(vWallN) * vWallN) + vVelocity) * fBounceSpeedMod
         vFacing = vNewVelocity / (fSpeed * fBounceSpeedMod)
-        --[[randomize swing, doesnt work properly
-        local fRand = math.random(0.95, 1.05)
-        local fRand2 = math.random(0.95, 1.05)
-        print(vFacing)
-        vFacing.x = vFacing.x * fRand
-        vFacing.y = vFacing.y * fRand2
-        print(vFacing)--]]
         vVelocity = vFacing * fSpeed
 
         self.hActiveArrow:SetForwardVector(vFacing)
@@ -169,15 +166,14 @@ function atalanta_cobweb_shot:OnSpellStart()
           self.PIWebs[iCurrentBounce] = ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_web.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
           --ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce-1], 0, Vector(1,1,1))
           ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce], 2, tBounceLocs[iCurrentBounce])
-          ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce], 3, tBounceLocs[iCurrentBounce+1])
-          
+          ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce], 3, tBounceLocs[iCurrentBounce+1])          
         end
         --local PI1 = FxCreator("particles/custom/atalanta/cobweb_arrow_bounce.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow, 3, nil)
         local PI1 = ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_arrow_bounce.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow)
         ParticleManager:SetParticleControl(PI1, 3, vNewPos)
-
-        iCurrentBounce = iCurrentBounce + 1
+        self.hActiveArrow:EmitSound("Hero_DrowRanger.ProjectileImpact")
         --fDistTraveled = 0.0
+        iCurrentBounce = iCurrentBounce + 1
       else
         self.hActiveArrow:SetAbsOrigin(vNewPos)
         vLastPos = vNewPos
@@ -207,7 +203,6 @@ function atalanta_cobweb_shot:OnSpellStart()
   end)  
   
   self.ThinkerWebEffect = Timers:CreateTimer(function()
-    --print("ThinkerWebEffect")
     if #tBounceLocs > 1 then
       local tAlreadyHitThisTick = {}
       for i = 1, #tBounceLocs-1 do
@@ -229,10 +224,12 @@ function atalanta_cobweb_shot:OnSpellStart()
               end
             end
             table.insert(tAlreadyHitThisTick, v)
-            --add slow
+            v:AddNewModifier(hCaster, self, "modifier_cobweb_slow", { Duration = fWebSlowDuration, fSlow = fWebSlowAmount})
             DoDamage(hCaster, v, fDamagePerSec * fEffectInterval, DAMAGE_TYPE_MAGICAL, 0, self, false)
             if not bWasLocked then
-              --add lock
+              giveUnitDataDrivenModifier(hCaster, v, "locked", fWebLockDuration)
+              giveUnitDataDrivenModifier(hCaster, v, "rooted", fWebLockDuration)
+              table.insert(tAlreadyLockedOnce,v)
             end
           end
         end
