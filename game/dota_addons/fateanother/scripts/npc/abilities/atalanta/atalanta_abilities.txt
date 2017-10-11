@@ -143,6 +143,22 @@
     "AbilityCooldown"				"0"
     "AbilityManaCost"				"0"
     "LevelsBetweenUpgrades"				"2"
+    "precache"
+    {
+      "particle" "particles/custom/atalanta/sting/ring.vpcf"
+      "particle" "particles/generic_gameplay/generic_sleep.vpcf"
+      "particle" "particles/custom/atalanta/sting/shot.vpcf"
+      
+      "particle" "particles/custom/atalanta/cobweb_arrow.vpcf"
+      "particle" "particles/custom/atalanta/cobweb_web.vpcf"
+      "particle" "particles/custom/atalanta/cobweb_web_current.vpcf"
+      "particle" "particles/custom/atalanta/cobweb_arrow_bounce.vpcf"
+      
+      "soundfile"	"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+      "model" "models/props_nature/bush_00.vmdl"
+      "particle" "particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
+      "particle" "particles/custom/atalanta/trap_triggered.vpcf"
+    }
   }
   "atalanta_traps_close"
   {
@@ -168,9 +184,10 @@
     "AbilityTextureName"			"custom/atalanta_calydonian_hunt"
     "RequiredLevel"					"25"
     "LevelsBetweenUpgrades"				"1"    
-    "AbilityCastPoint"				"0"
+    "AbilityCastPoint"				"0.7"
     "AbilityCooldown"				"0"
     "AbilityManaCost"				"0"
+    "AbilityCastRange"				"2500"
   }
   //=======================================
   // Atalanta: Cobweb Shot (traps)
@@ -187,14 +204,6 @@
     "AbilityCastPoint"				"0"
     "AbilityCooldown"				"0"
     "AbilityManaCost"				"0"
-    "precache"
-    {
-      "particle" "particles/custom/atalanta/cobweb_arrow.vpcf"
-      "particle" "particles/custom/atalanta/cobweb_web.vpcf"
-      "particle" "particles/custom/atalanta/cobweb_web_current.vpcf"
-      "particle" "particles/custom/atalanta/cobweb_arrow_bounce.vpcf"
-      "soundfile"	"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
-    }
   }
   //=======================================
   // Atalanta: Entangling Trap (traps)
@@ -211,12 +220,6 @@
     "AbilityCastPoint"				"0"
     "AbilityCooldown"				"0"
     "AbilityManaCost"				"0"
-    "precache"
-    {
-      "model" "models/props_nature/bush_00.vmdl"
-      "particle" "particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
-      "particle" "particles/custom/atalanta/trap_triggered.vpcf"
-    }
   }
 
 

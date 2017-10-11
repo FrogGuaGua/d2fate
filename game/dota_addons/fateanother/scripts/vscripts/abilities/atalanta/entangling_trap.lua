@@ -121,8 +121,10 @@ function atalanta_entangling_trap:Activate(hTarget, hTrap)
   end
   local PI = ParticleManager:CreateParticle("particles/custom/atalanta/trap_triggered.vpcf", PATTACH_ABSORIGIN, hCaster)
   ParticleManager:SetParticleControl(PI, 0, hTrap:GetAbsOrigin())
+  tTargets[1]:EmitSound("Hero_Windrunner.ShackleshotCast")
   hTrap:RemoveSelf()
 end
+
 function atalanta_entangling_trap:EntangleThinkFor1(fCounter,hTarget1,hDummy)
   local fEntanglePunishRange = 400
   local fEntangleDuration = 15.0
