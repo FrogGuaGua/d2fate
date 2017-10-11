@@ -11,7 +11,7 @@ function atalanta_traps:OnUpgrade()
   self.sAq = "atalanta_sting_shot"
   self.sAw = "atalanta_cobweb_shot"
   self.sAe = "atalanta_entangling_trap"
-  self.sAd = "fate_empty3"
+  self.sAd = "atalanta_reload"
   self.sAf = "atalanta_traps_close"
   self.sAr = "fate_empty4"
   if iLevel == 1 then

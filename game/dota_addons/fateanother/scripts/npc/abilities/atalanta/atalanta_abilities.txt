@@ -221,6 +221,31 @@
     "AbilityCooldown"				"0"
     "AbilityManaCost"				"0"
   }
+  //=======================================
+  // Atalanta: Reload (traps)
+  //=======================================
+  "atalanta_reload"
+  {
+    "BaseClass"						"ability_lua"
+    "ScriptFile"					"abilities/atalanta/reload"
+    "MaxLevel"						"5"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityTextureName"			"custom/atalanta_calydonian_hunt"
+    "RequiredLevel"					"25"
+    "LevelsBetweenUpgrades"				"1"    
+    "AbilityCastPoint"				"0"
+    "AbilityCooldown"				"0"
+    "AbilityManaCost"				"0"
+    
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"					"FIELD_FLOAT"
+        "channel_duration"		"3 2.5 2 1.5 1"
+      }
+    }
+  }
 
 
   //=======================================
