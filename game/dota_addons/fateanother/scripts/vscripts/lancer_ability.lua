@@ -290,6 +290,7 @@ end
 
 function OnGBTargetHit(keys)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
+	if keys.caster:GetAbilityByIndex(2):GetAbilityName() == "lancer_5th_wesen_gae_bolg" then return end -- laziest fix of my lyfe
 
 	local caster = keys.caster
 	local casterName = caster:GetName()
