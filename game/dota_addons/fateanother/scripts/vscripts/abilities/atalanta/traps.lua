@@ -15,11 +15,22 @@ function atalanta_traps:OnUpgrade()
   self.sAf = "atalanta_traps_close"
   self.sAr = "fate_empty4"
   if iLevel == 1 then
-    hCaster:AddAbility(self.sAq):SetLevel(iLevel)
-    hCaster:AddAbility(self.sAw):SetLevel(iLevel)
-    hCaster:AddAbility(self.sAe):SetLevel(iLevel)
-    hCaster:AddAbility(self.sAd):SetLevel(iLevel)
-    hCaster:AddAbility(self.sAr):SetLevel(iLevel)
+    local hAf = hCaster:FindAbilityByName(self.sAf)
+    hAf.sAq = self.sAq
+    hAf.sAw = self.sAw
+    hAf.sAe = self.sAe
+    hAf.sAd = self.sAd
+    hAf.sAr = self.sAr
+    hAf.hAq = hCaster:AddAbility(self.sAq)
+    hAf.hAw = hCaster:AddAbility(self.sAw)
+    hAf.hAe = hCaster:AddAbility(self.sAe)
+    hAf.hAd = hCaster:AddAbility(self.sAd)
+    hAf.hAr = hCaster:AddAbility(self.sAr)
+    hAf.hAq:SetLevel(iLevel)
+    hAf.hAw:SetLevel(iLevel)
+    hAf.hAe:SetLevel(iLevel)
+    hAf.hAd:SetLevel(iLevel)
+    hAf.hAr:SetLevel(iLevel)
   else
     hCaster:FindAbilityByName(self.sAq):SetLevel(iLevel)
     hCaster:FindAbilityByName(self.sAw):SetLevel(iLevel)
@@ -28,7 +39,17 @@ function atalanta_traps:OnUpgrade()
     hCaster:FindAbilityByName(self.sAr):SetLevel(iLevel)
   end
 end
-
+function atalanta_traps_close:OnUpgrade()
+  local hCaster = self:GetCaster()
+  local hAbility = self
+  
+  if not hCaster.CloseTraps then
+    function hCaster:CloseTraps(hAbilityUsed,...)
+      hAbility:OnSpellStart(...)
+      hAbility:TriggerGCD(hAbilityUsed)
+    end
+  end
+end
 function atalanta_traps:OnSpellStart()
   local hCaster = self:GetCaster()
   local hAq = hCaster:GetAbilityByIndex(0)
@@ -44,7 +65,6 @@ function atalanta_traps:OnSpellStart()
   hCaster:SwapAbilities(hAf:GetName(), self.sAf, false, true) 
   hCaster:SwapAbilities(hAr:GetName(), self.sAr, false, true) 
 end
-
 function atalanta_traps_close:OnSpellStart()
   local hCaster = self:GetCaster()
   local hAq = hCaster:GetAbilityByIndex(0)
@@ -59,4 +79,20 @@ function atalanta_traps_close:OnSpellStart()
   hCaster:SwapAbilities(hAd:GetName(), "atalanta_crossing_arcadia", false, true) 
   hCaster:SwapAbilities(hAf:GetName(), "atalanta_priestess_of_the_hunt", false, true) 
   hCaster:SwapAbilities(hAr:GetName(), "atalanta_phoebus_catastrophe_barrage", false, true) 
+end
+
+function atalanta_traps_close:TriggerGCD(hAbilityUsed)
+  local fGCD = 10
+  if hAbilityUsed:GetName() == self.sAq then
+    self.hAw:StartCooldown(fGCD)
+    self.hAe:StartCooldown(fGCD)
+  end
+  if hAbilityUsed:GetName() == self.sAw then
+    self.hAq:StartCooldown(fGCD)
+    self.hAe:StartCooldown(fGCD)
+  end
+  if hAbilityUsed:GetName() == self.sAe then
+    self.hAq:StartCooldown(fGCD)
+    self.hAw:StartCooldown(fGCD)
+  end
 end

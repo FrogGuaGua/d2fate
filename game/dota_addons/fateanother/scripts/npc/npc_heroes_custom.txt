@@ -1465,11 +1465,12 @@
 		"Ability3"				"atalanta_traps"
 		"Ability4"				"atalanta_crossing_arcadia"
 		"Ability5"				"atalanta_priestess_of_the_hunt"
-		"Ability6"				"atalanta_phoebus_catastrophe_barrage"
+		"Ability6"				"atalanta_tauropolos_new"
 		"Ability7"				"atalanta_last_spurt"
 		"Ability8"				"atalanta_phoebus_catastrophe_snipe"
 		"Ability9"				"atalanta_golden_apple"
 		"Ability10"				"atalanta_traps_close"
+    "Ability11"				"atalanta_phoebus_catastrophe_barrage"
 		"Ability13"				"presence_detection_passive"
 		"Ability14"				"attribute_bonus_custom"
 

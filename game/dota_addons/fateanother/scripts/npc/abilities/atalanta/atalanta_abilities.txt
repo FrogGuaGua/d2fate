@@ -422,9 +422,25 @@
       }
     }
   }
+  //=======================================
+  // Atalanta: Tauropolos - Bow of Heaven 
+  //=======================================
+  "atalanta_tauropolos_new"
+  {
+    "BaseClass"						"ability_lua"
+    "ScriptFile"					"abilities/atalanta/tauropolos_new"
+    "MaxLevel"						"5"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityTextureName"			"custom/atalanta_tauropolos"
+    
+    "AbilityCastPoint"				"0.6"
+    "AbilityCooldown"				"24"
+    "AbilityManaCost"				"400"
+    "LevelsBetweenUpgrades"			"2"
+  }
 
   //=======================================
-  // Atalanta: Tauropolos - Bow of Heaven (unused)
+  // Atalanta: Tauropolos - Bow of Heaven (old, unused)
   //=======================================
   "atalanta_tauropolos"
   {
@@ -544,7 +560,7 @@
     "ScriptFile"					"abilities/atalanta/phoebus_catastrophe_barrage"
     "MaxLevel"						"5"
     "LevelsBetweenUpgrades"			"2"
-    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     "AbilityTextureName"			"custom/atalanta_phoebus_catastrophe"
     
     "AbilityCastPoint"				"0.8"

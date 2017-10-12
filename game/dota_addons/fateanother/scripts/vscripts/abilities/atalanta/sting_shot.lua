@@ -32,6 +32,8 @@ function atalanta_sting_shot:OnSpellStart()
   self:CreateShockRing(vFacing)
   hCaster:UseArrow(1)
   hCaster:EmitSound("Ability.Powershot.Alt")
+  hCaster:CloseTraps(self)
+
   local tProjectile = {
       EffectName = "particles/custom/atalanta/sting/shot.vpcf",
       Ability = self,

@@ -66,6 +66,7 @@ function atalanta_entangling_trap:OnSpellStart()
   local hTrap = CreateUnitByName("atalanta_trap", vLocation, true, hCaster, hCaster, hCaster:GetTeam())
   hTrap:AddNewModifier(hCaster,self,"modifier_atalanta_trap",{Duration = -1})
   self:TrapThink(hTrap)
+  hCaster:CloseTraps(self)
 end
 
 function atalanta_entangling_trap:TrapThink(hTrap)

@@ -132,7 +132,8 @@ function atalanta_cobweb_shot:OnSpellStart()
   local tBounceLocs = {}
   local tAlreadyLockedOnce = {}
   local vLastBounce = vOrigin 
-  
+  hCaster:CloseTraps(self)
+
   FxDestroyer(self.PIWebs, false)
   if self.ThinkerArrow then Timers:RemoveTimer(self.ThinkerArrow) end
   if self.ThinkerWebDuration then Timers:RemoveTimer(self.ThinkerWebDuration) end
