@@ -57,6 +57,7 @@ function atalanta_entangling_trap:EntanglePunish(hTarget)
   local fStunDuration = 1.5
   local fDamage = 500
   giveUnitDataDrivenModifier(hCaster, hTarget, "stunned", fStunDuration)
+  hTarget:EmitSound("Atalanta.TrapSnap")
   DoDamage(hCaster, hTarget, fDamage, DAMAGE_TYPE_MAGICAL, 0, self, false)
 end
 

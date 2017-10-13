@@ -1,3 +1,183 @@
+"Atalanta.TrapSnap"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/weapons/hero/puck/dream_coil_snap.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"4.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"80.000000"
+					}
+				}
+			}
+		}
+	}
+}
+"Atalanta.RImpact"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/weapons/hero/brewmaster/thunder_clap.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"4.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"80.000000"
+					}
+				}
+			}
+		}
+	}
+}
+"Atalanta.RImpact2"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/items/rod_of_atos.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"4.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"75.000000"
+					}
+				}
+			}
+		}
+	}
+}
+"Atalanta.RLaunch"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/weapons/hero/windrunner/powershot_falcon_bow.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"4.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"40.000000"
+					}
+				}
+			}
+		}
+	}
+}
+"Atalanta.RPull"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/weapons/hero/windrunner/powershot_channel_alt02.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"4.000000"
+					}
+					"pitch"
+					{
+						"value"		"1.000000"
+					}
+					"soundlevel"
+					{
+						"value"		"70.000000"
+					}
+				}
+			}
+		}
+	}
+}
 "Atalanta.PhoebusCast"
 {
 	"operator_stacks"

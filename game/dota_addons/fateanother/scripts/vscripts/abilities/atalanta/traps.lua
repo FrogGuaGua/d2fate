@@ -78,7 +78,7 @@ function atalanta_traps_close:OnSpellStart()
   hCaster:SwapAbilities(hAe:GetName(), "atalanta_traps", false, true) 
   hCaster:SwapAbilities(hAd:GetName(), "atalanta_crossing_arcadia", false, true) 
   hCaster:SwapAbilities(hAf:GetName(), "atalanta_priestess_of_the_hunt", false, true) 
-  hCaster:SwapAbilities(hAr:GetName(), "atalanta_phoebus_catastrophe_barrage", false, true) 
+  hCaster:SwapAbilities(hAr:GetName(), "atalanta_tauropolos_new", false, true) 
 end
 
 function atalanta_traps_close:TriggerGCD(hAbilityUsed)

@@ -20,8 +20,21 @@ function atalanta_sting_shot:CreateShockRing(vFacing)
     ParticleManager:ReleaseParticleIndex(casterFX)
 
     Timers:CreateTimer(3, function()
-        dummy:RemoveSelf()
+      dummy:RemoveSelf()
     end)
+end
+function atalanta_sting_shot:CastFilterResultLocation(location)
+  local caster = self:GetCaster()
+
+  if caster:HasArrow() then
+    return UF_SUCCESS
+  end
+
+  return UF_FAIL_CUSTOM
+end
+
+function atalanta_sting_shot:GetCustomCastErrorLocation(location)
+  return "Not enough arrows..."
 end
 function atalanta_sting_shot:OnSpellStart()
   local hCaster = self:GetCaster()
