@@ -1,6 +1,13 @@
 atalanta_entangling_trap = class({})
 LinkLuaModifier("modifier_atalanta_trap", "abilities/atalanta/modifier_atalanta_trap", LUA_MODIFIER_MOTION_NONE)
 
+function atalanta_entangling_trap:GetCastRange(vLocation,hTarget)
+  return self:GetSpecialValueFor("cast_range")
+end
+function atalanta_entangling_trap:GetAOERadius()
+  return self:GetSpecialValueFor("entangle_radius")
+end
+
 if IsClient() then
   return 
 end
@@ -54,8 +61,8 @@ end
 
 function atalanta_entangling_trap:EntanglePunish(hTarget)
   local hCaster = self:GetCaster()
-  local fStunDuration = 1.5
-  local fDamage = 500
+  local fStunDuration = self:GetSpecialValueFor("stun_duration")
+  local fDamage = self:GetSpecialValueFor("damage")
   giveUnitDataDrivenModifier(hCaster, hTarget, "stunned", fStunDuration)
   hTarget:EmitSound("Atalanta.TrapSnap")
   DoDamage(hCaster, hTarget, fDamage, DAMAGE_TYPE_MAGICAL, 0, self, false)
@@ -72,8 +79,8 @@ end
 
 function atalanta_entangling_trap:TrapThink(hTrap)
   local hCaster = self:GetCaster()
-  local fTriggerRadius = 200
-  local fArmDelay = 2.0
+  local fTriggerRadius = self:GetSpecialValueFor("trigger_radius")
+  local fArmDelay = self:GetSpecialValueFor("arm_delay")
   
   Timers:CreateTimer(fArmDelay,function()
     if hTrap:IsAlive() then
@@ -99,10 +106,10 @@ function atalanta_entangling_trap:ActivationPull(hTarget,vCenter,fTargetsDistPul
 end
 
 function atalanta_entangling_trap:Activate(hTarget, hTrap)
-  local fEntangleRadius = 500
+  local fEntangleRadius = self:GetSpecialValueFor("entangle_radius")
   local hCaster = self:GetCaster()
   local fCounter = 0.0
-  local fTargetsDistPull = 200
+  local fTargetsDistPull = self:GetSpecialValueFor("initial_pull")
   local hDummy = SpawnDummy(hCaster)  
 
   local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fEntangleRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
@@ -128,8 +135,8 @@ function atalanta_entangling_trap:Activate(hTarget, hTrap)
 end
 
 function atalanta_entangling_trap:EntangleThinkFor1(fCounter,hTarget1,hDummy)
-  local fEntanglePunishRange = 400
-  local fEntangleDuration = 15.0
+  local fEntanglePunishRange = self:GetSpecialValueFor("entangle_punish_dist")
+  local fEntangleDuration = self:GetSpecialValueFor("entangle_duration")
   local fInterval = 0.033
   local PI1 = self:VFX1_Entangle(hTarget1,hDummy,fEntangleDuration-fCounter)
   
@@ -153,8 +160,8 @@ function atalanta_entangling_trap:EntangleThinkFor1(fCounter,hTarget1,hDummy)
 end
 
 function atalanta_entangling_trap:EntangleThinkFor2(fCounter,hTarget1,hTarget2,hDummy)
-  local fEntanglePunishRange = 400
-  local fEntangleDuration = 15.0
+  local fEntanglePunishRange = self:GetSpecialValueFor("entangle_punish_dist")
+  local fEntangleDuration = self:GetSpecialValueFor("entangle_duration")
   local fInterval = 0.033
   local PI1 = self:VFX1_Entangle(hTarget1,hDummy,fEntangleDuration-fCounter)
   local PI2 = self:VFX1_Entangle(hTarget2,hDummy,fEntangleDuration-fCounter)
@@ -194,8 +201,8 @@ function atalanta_entangling_trap:EntangleThinkFor2(fCounter,hTarget1,hTarget2,h
 end
 
 function atalanta_entangling_trap:EntangleThinkFor3(fCounter,hTarget1,hTarget2,hTarget3,hDummy)
-  local fEntanglePunishRange = 400
-  local fEntangleDuration = 15.0
+  local fEntanglePunishRange = self:GetSpecialValueFor("entangle_punish_dist")
+  local fEntangleDuration = self:GetSpecialValueFor("entangle_duration")
   local fInterval = 0.033
   local PI1 = self:VFX1_Entangle(hTarget1,hDummy,fEntangleDuration-fCounter)
   local PI2 = self:VFX1_Entangle(hTarget2,hDummy,fEntangleDuration-fCounter)

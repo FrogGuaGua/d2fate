@@ -2,7 +2,7 @@
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
-	m_nMaxParticles = 52
+	m_nMaxParticles = 100
 	m_Renderers = 
 	[
 		{
@@ -42,6 +42,7 @@
 			_class = "C_OP_InterpolateRadius"
 			m_flBias = 0.35
 			m_flEndScale = 0.0
+			m_flStartScale = 1.5
 		},
 		{
 			_class = "C_OP_VectorNoise"
@@ -108,7 +109,6 @@
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 52
 		},
 	]
 	m_ForceGenerators = 

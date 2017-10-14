@@ -38,7 +38,6 @@ function atalanta_reload:OnChannelFinish(bInterrupted)
   end
   hCaster:CapArrows()
   EndAnimation(hCaster)
-  print("lol")
 end
 
 function atalanta_reload:GetCastAnimation()

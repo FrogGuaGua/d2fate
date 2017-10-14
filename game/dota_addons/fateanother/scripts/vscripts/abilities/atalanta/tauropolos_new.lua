@@ -40,12 +40,15 @@ function atalanta_tauropolos_new:OnAbilityPhaseStart()
   local hCaster = self:GetCaster()
   StartAnimation(hCaster, {duration=1.5, activity=ACT_DOTA_CAST_ABILITY_1, rate=0.7})
   hCaster:EmitSound("Atalanta.RPull")
+  self.iPICharging =  ParticleManager:CreateParticle("particles/custom/atalanta/r/r_charging.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
+  ParticleManager:SetParticleControlEnt(self.iPICharging, 3, hCaster, PATTACH_ABSORIGIN_FOLLOW, nil, hCaster:GetAbsOrigin(), false)
   return true
 end
 function atalanta_tauropolos_new:OnAbilityPhaseInterrupted()
   local hCaster = self:GetCaster()
   hCaster:StopSound("Atalanta.RPull")
   EndAnimation(hCaster)
+  FxDestroyer(self.iPICharging,false)
 end
 function atalanta_tauropolos_new:CreateShockRing(vFacing)
   local caster = self:GetCaster()
@@ -75,6 +78,8 @@ function atalanta_tauropolos_new:OnSpellStart()
   self.bArrowHit = false
   --hCaster:UseArrow(2)
   self:CreateShockRing(vFacing)
+  FxDestroyer(self.iPICharging,false)
+
   EmitGlobalSound("Atalanta.RLaunch")
   if hCaster.BowOfHeavenAcquired then
     local fAgiScaling = CustomNetTables:GetTableValue("sync","atalanta_bow_of_heaven").fAgiScaling
@@ -85,7 +90,7 @@ function atalanta_tauropolos_new:OnSpellStart()
     EffectName = "particles/custom/atalanta/r/r_projectile.vpcf",
     Ability = self,
     vSpawnOrigin = vOrigin,
-    vVelocity = vFacing * 3000,
+    vVelocity = vFacing * 2500,
     fDistance = fRange,
     fStartRadius = 125,
     fEndRadius = 125,
@@ -110,7 +115,7 @@ function atalanta_tauropolos_new:Explosion(hTarget,tData)
   local fDamageSplashPercentage = 50/100
   local iMaxStacks = hCaster:FindAbilityByName("atalanta_calydonian_hunt"):GetSpecialValueFor("max_stacks")
   local sParticle = "particles/custom/atalanta/r/r_impact.vpcf"
-  local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)  
+  local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)  
   if hTarget:HasModifier("modifier_calydonian_hunt") then
     fRadius = fRadius * 1.5
     fDamageSplashPercentage = fDamageSplashPercentage * 1.5
@@ -123,7 +128,7 @@ function atalanta_tauropolos_new:Explosion(hTarget,tData)
   local PI = ParticleManager:CreateParticle(sParticle, PATTACH_ABSORIGIN, hTarget)
   for k,v in pairs(tTargets) do
     if v ~= hTarget then
-      DoDamage(hCaster, hTarget, tData.fDamage*fDamageSplashPercentage, DAMAGE_TYPE_MAGICAL, 0, self, false)
+      DoDamage(hCaster, v, tData.fDamage*fDamageSplashPercentage, DAMAGE_TYPE_MAGICAL, 0, self, false)
     end
   end
   if hCaster.BowOfHeavenAcquired and hCaster:FindAbilityByName("atalanta_phoebus_catastrophe_barrage"):IsCooldownReady() then

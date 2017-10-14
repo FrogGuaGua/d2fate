@@ -40,7 +40,7 @@
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 0.75
+			m_flFadeOutTime = 1.5
 		},
 		{
 			_class = "C_OP_ColorInterpolateRandom"
@@ -52,8 +52,8 @@
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.75
-			m_fLifetimeMax = 1.25
+			m_fLifetimeMin = 2.0
+			m_fLifetimeMax = 2.0
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -77,7 +77,7 @@
 		},
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 25
+			m_nParticlesToEmit = 35
 		},
 	]
 	m_controlPointConfigurations = 

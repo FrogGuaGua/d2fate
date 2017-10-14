@@ -1,6 +1,10 @@
 atalanta_sting_shot = class({})
 LinkLuaModifier("modifier_sting_shot", "abilities/atalanta/modifier_sting_shot", LUA_MODIFIER_MOTION_NONE)
 
+function atalanta_sting_shot:GetCastRange(vLocation,hTarget)
+  return self:GetSpecialValueFor("range")
+end
+
 if IsClient() then
   return 
 end
@@ -41,28 +45,28 @@ function atalanta_sting_shot:OnSpellStart()
   local vTarget = self:GetCursorPosition()
   local vOrigin = hCaster:GetAbsOrigin()
   local vFacing = ForwardVForPointGround(vOrigin,vTarget)
-  local fSleepDuration = 5
+  local fSleepDuration = self:GetSpecialValueFor("sleep_duration")
   self:CreateShockRing(vFacing)
   hCaster:UseArrow(1)
   hCaster:EmitSound("Ability.Powershot.Alt")
   hCaster:CloseTraps(self)
 
   local tProjectile = {
-      EffectName = "particles/custom/atalanta/sting/shot.vpcf",
-      Ability = self,
-      vSpawnOrigin = vOrigin,
-      vVelocity = vFacing * 3000,
-      fDistance = 2500,
-      fStartRadius = 100,
-      fEndRadius = 100,
-      Source = hCaster,
-      bHasFrontalCone = false,
-      bReplaceExisting = false,
-      iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-      iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
-      iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-      bProvidesVision = false,
-      ExtraData = {fSleepDuration = fSleepDuration}
+    EffectName = "particles/custom/atalanta/sting/shot.vpcf",
+    Ability = self,
+    vSpawnOrigin = vOrigin,
+    vVelocity = vFacing * 3000,
+    fDistance = self:GetCastRange(),
+    fStartRadius = 100,
+    fEndRadius = 100,
+    Source = hCaster,
+    bHasFrontalCone = false,
+    bReplaceExisting = false,
+    iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+    iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+    iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+    bProvidesVision = false,
+    ExtraData = {fSleepDuration = fSleepDuration}
   }
   self.iProjectile = ProjectileManager:CreateLinearProjectile(tProjectile)
 end

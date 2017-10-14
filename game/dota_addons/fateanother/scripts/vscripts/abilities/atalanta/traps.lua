@@ -1,5 +1,6 @@
 atalanta_traps = class({})
 atalanta_traps_close = class({})
+LinkLuaModifier("modifier_traps_gcd", "abilities/atalanta/modifier_traps_gcd", LUA_MODIFIER_MOTION_NONE)
 
 if IsClient() then
   return 
@@ -16,6 +17,7 @@ function atalanta_traps:OnUpgrade()
   self.sAr = "fate_empty4"
   if iLevel == 1 then
     local hAf = hCaster:FindAbilityByName(self.sAf)
+    hAf.fGCD = self:GetSpecialValueFor("gcd")
     hAf.sAq = self.sAq
     hAf.sAw = self.sAw
     hAf.sAe = self.sAe
@@ -86,7 +88,9 @@ function atalanta_traps_close:OnSpellStart()
 end
 
 function atalanta_traps_close:TriggerGCD(hAbilityUsed)
-  local fGCD = 10
+  local fGCD = self.fGCD
+  local hCaster = self:GetCaster()
+  hCaster:AddNewModifier(hCaster, self, "modifier_traps_gcd", {Duration = fGCD})
   if hAbilityUsed:GetName() == self.sAq then
     self.hAw:StartCooldown(fGCD)
     self.hAe:StartCooldown(fGCD)

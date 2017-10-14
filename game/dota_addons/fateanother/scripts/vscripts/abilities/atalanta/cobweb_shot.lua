@@ -1,6 +1,9 @@
 atalanta_cobweb_shot = class({})
 LinkLuaModifier("modifier_cobweb_slow", "abilities/atalanta/modifier_cobweb_slow", LUA_MODIFIER_MOTION_NONE)
 
+function atalanta_cobweb_shot:GetCastRange(vLocation,hTarget)
+  return self:GetSpecialValueFor("max_range_of_bounce")
+end
 
 if IsClient() then
   return 
@@ -116,16 +119,16 @@ function atalanta_cobweb_shot:OnSpellStart()
   local fArrowInterval = 0.033
   local fEffectInterval = 0.33
   local fBounceSpeedMod = 1
-  local iMaxBounce = 10 
-  local fMaxTravelDist = 2500
-  local fWebDuration = 7
-  local fSpeed = 2000
+  local iMaxBounce = self:GetSpecialValueFor("number_of_webs")
+  local fMaxTravelDist = self:GetSpecialValueFor("max_range_of_bounce")
+  local fWebDuration = self:GetSpecialValueFor("web_duration")
+  local fSpeed = 2250
   local iCurrentBounce = 0
   local fWebWidth = 70
-  local fDamagePerSec = 100
-  local fWebLockDuration = 1
+  local fDamagePerSec = self:GetSpecialValueFor("dps")
+  local fWebLockDuration = self:GetSpecialValueFor("web_lock_duration")
   local fWebSlowDuration = 0.4
-  local fWebSlowAmount = -40
+  local fWebSlowAmount = self:GetSpecialValueFor("web_slow")
   CustomNetTables:SetTableValue("sync","atalanta_web", {fSlow = fWebSlowAmount})
   local vLastPos = vOrigin  
   local vVelocity = vFacing * fSpeed
@@ -133,7 +136,7 @@ function atalanta_cobweb_shot:OnSpellStart()
   local tAlreadyLockedOnce = {}
   local vLastBounce = vOrigin 
   hCaster:CloseTraps(self)
-
+  hCaster:EmitSound("Hero_DrowRanger.FrostArrows")
   FxDestroyer(self.PIWebs, false)
   if self.ThinkerArrow then Timers:RemoveTimer(self.ThinkerArrow) end
   if self.ThinkerWebDuration then Timers:RemoveTimer(self.ThinkerWebDuration) end
