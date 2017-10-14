@@ -206,8 +206,9 @@ AtalantaAttribute = {
 	"atalanta_attribute_hunters_mark",
 	"atalanta_attribute_golden_apple",
 	"atalanta_attribute_crossing_arcadia_plus",
+	"atalanta_attribute_bow_of_heaven",
 	"atalanta_phoebus_catastrophe_proxy",
-	attrCount = 4
+	attrCount = 5
 }
 VladAttribute = {
 	"vlad_attribute_innocent_monster",

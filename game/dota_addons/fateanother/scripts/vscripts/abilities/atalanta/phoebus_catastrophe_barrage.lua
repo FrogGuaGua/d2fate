@@ -7,7 +7,11 @@ require("abilities/atalanta/phoebus_catastrophe")
 atalanta_phoebus_catastrophe_wrapper(atalanta_phoebus_catastrophe_barrage)
 
 function atalanta_phoebus_catastrophe_barrage:GetCastRange(location, target)
-    return self:GetSpecialValueFor("range")
+    if IsClient() then 
+        return self:GetSpecialValueFor("range")
+    else
+        return 10000
+    end
 end
 
 function atalanta_phoebus_catastrophe_barrage:GetAOERadius()
@@ -17,8 +21,18 @@ end
 function atalanta_phoebus_catastrophe_barrage:CastFilterResultLocation(location)
     local caster = self:GetCaster()
 
+
     if IsServer() and not IsInSameRealm(caster:GetOrigin(), location) then
         return UF_FAIL_CUSTOM
+    end
+    
+    if IsServer() and caster.BowOfHeavenAcquired then
+        local fMaxDist = CustomNetTables:GetTableValue("sync","atalanta_bow_of_heaven").fMaxDist
+        local fCastDistFromCenter = (caster.vRImpactLoc - location):Length2D()
+        local fCastDistFromCaster = (caster:GetAbsOrigin() - location):Length2D()
+        if fCastDistFromCenter > fMaxDist and fCastDistFromCaster > self:GetSpecialValueFor("range") then
+            return UF_FAIL_CUSTOM
+        end
     end
 
     if caster:GetArrowCount() < 2 then
@@ -34,7 +48,16 @@ function atalanta_phoebus_catastrophe_barrage:GetCustomCastErrorLocation(locatio
     if IsServer() and not IsInSameRealm(caster:GetOrigin(), location) then
         return "#Cannot_Be_Cast_Now"
     end
-
+    
+    if IsServer() and caster.BowOfHeavenAcquired then
+        local fMaxDist = CustomNetTables:GetTableValue("sync","atalanta_bow_of_heaven").fMaxDist
+        local fCastDistFromCenter = (caster.vRImpactLoc - location):Length2D()
+        local fCastDistFromCaster = (caster:GetAbsOrigin() - location):Length2D()
+        if fCastDistFromCenter > fMaxDist and fCastDistFromCaster > self:GetSpecialValueFor("range") then
+            return "Not within allowed cast zone..."
+        end
+    end
+    
     if caster:GetArrowCount() < 2 then
         return "Not enough arrows..."
     end
@@ -49,7 +72,10 @@ function atalanta_phoebus_catastrophe_barrage:OnSpellStart()
     local arrows = self:GetSpecialValueFor("arrows")
     local fixDuration = 3
     local interval = fixDuration / arrows
-
+    
+    caster:EndBowOfHeaven()
+    Timers:RemoveTimer(caster.BowOfHeavenTimer)
+    
     AddFOWViewer(caster:GetTeamNumber(), position, aoe, 3 + fixDuration, false)
 
     self:ShootAirArrows()

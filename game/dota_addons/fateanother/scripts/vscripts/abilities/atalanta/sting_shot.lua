@@ -6,22 +6,22 @@ if IsClient() then
 end
 
 function atalanta_sting_shot:CreateShockRing(vFacing)
-    local caster = self:GetCaster()
-    local dummy = CreateUnitByName("visible_dummy_unit", caster:GetOrigin(), false, caster, caster, caster:GetTeamNumber())
-    dummy:FindAbilityByName("dummy_visible_unit_passive"):SetLevel(1)
-    dummy:SetDayTimeVisionRange(0)
-    dummy:SetNightTimeVisionRange(0)
-    dummy:SetOrigin(caster:GetOrigin())
+  local caster = self:GetCaster()
+  local dummy = CreateUnitByName("visible_dummy_unit", caster:GetOrigin(), false, caster, caster, caster:GetTeamNumber())
+  dummy:FindAbilityByName("dummy_visible_unit_passive"):SetLevel(1)
+  dummy:SetDayTimeVisionRange(0)
+  dummy:SetNightTimeVisionRange(0)
+  dummy:SetOrigin(caster:GetOrigin())
 
-    dummy:SetForwardVector(vFacing or caster:GetForwardVector())
+  dummy:SetForwardVector(vFacing or caster:GetForwardVector())
 
-    local casterFX = ParticleManager:CreateParticle("particles/custom/atalanta/sting/ring.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
-    ParticleManager:SetParticleControlEnt(casterFX, 1, dummy, PATTACH_ABSORIGIN_FOLLOW, nil, caster:GetOrigin(), false)
-    ParticleManager:ReleaseParticleIndex(casterFX)
+  local casterFX = ParticleManager:CreateParticle("particles/custom/atalanta/sting/ring.vpcf", PATTACH_ABSORIGIN_FOLLOW, dummy)
+  ParticleManager:SetParticleControlEnt(casterFX, 1, dummy, PATTACH_ABSORIGIN_FOLLOW, nil, caster:GetOrigin(), false)
+  ParticleManager:ReleaseParticleIndex(casterFX)
 
-    Timers:CreateTimer(3, function()
-      dummy:RemoveSelf()
-    end)
+  Timers:CreateTimer(3, function()
+    dummy:RemoveSelf()
+  end)
 end
 function atalanta_sting_shot:CastFilterResultLocation(location)
   local caster = self:GetCaster()

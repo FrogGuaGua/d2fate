@@ -1,9 +1,12 @@
 atalanta_attribute_arrows_of_the_big_dipper = class({})
 LinkLuaModifier("modifier_arrows_of_the_big_dipper", "abilities/atalanta/modifier_arrows_of_the_big_dipper", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_bow_of_heaven", "abilities/atalanta/modifier_bow_of_heaven", LUA_MODIFIER_MOTION_NONE)
 
 atalanta_attribute_hunters_mark = class({})
 atalanta_attribute_golden_apple = class({})
 atalanta_attribute_crossing_arcadia_plus = class({})
+atalanta_attribute_bow_of_heaven = class({})
+
 
 function atalanta_attribute_arrows_of_the_big_dipper:GetAbilityTextureName()
     return "custom/atalanta_arrows_of_the_big_dipper"
@@ -20,6 +23,9 @@ end
 function atalanta_attribute_crossing_arcadia_plus:GetAbilityTextureName()
     return "custom/atalanta_crossing_arcadia"
 end
+function atalanta_attribute_bow_of_heaven:GetAbilityTextureName()
+    return "custom/atalanta_phoebus_catastrophe"
+end
 
 
 
@@ -31,8 +37,8 @@ function WrapAttributes(ability, attributeName, callback)
 
         hero[attributeName] = true
 
-	local master = hero.MasterUnit
-	master:SetMana(master:GetMana() - self:GetManaCost(1))
+    	local master = hero.MasterUnit
+    	master:SetMana(master:GetMana() - self:GetManaCost(1))
 
         if callback then
             callback(self, hero)
@@ -42,6 +48,20 @@ end
 
 WrapAttributes(atalanta_attribute_hunters_mark, "HuntersMarkAcquired")
 WrapAttributes(atalanta_attribute_golden_apple, "GoldenAppleAcquired")
+WrapAttributes(atalanta_attribute_bow_of_heaven, "BowOfHeavenAcquired", function(ability,hero)
+    local fExtraRange = ability:GetSpecialValueFor("r_extra_range")
+    local fAgiScaling = ability:GetSpecialValueFor("r_agi_scaling")
+    local fMaxDist = ability:GetSpecialValueFor("phoebus_max_distance_from_r")
+    CustomNetTables:SetTableValue("sync","atalanta_bow_of_heaven", {fExtraRange = fExtraRange, fAgiScaling = fAgiScaling, fMaxDist = fMaxDist})
+    Timers:CreateTimer(function()
+        if not hero:IsAlive() then
+            return 1
+        else
+            hero:AddNewModifier(hero, nil, "modifier_bow_of_heaven", {})
+            return nil
+        end
+    end)
+end)
 
 WrapAttributes(atalanta_attribute_crossing_arcadia_plus, "CrossingArcadiaPlusAcquired", function(ability, hero)
     hero:FindAbilityByName("atalanta_crossing_arcadia"):SetLevel(2)
