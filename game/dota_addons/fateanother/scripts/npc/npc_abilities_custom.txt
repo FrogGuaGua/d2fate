@@ -1,6 +1,7 @@
 // Dota Heroes File
 
 #base "abilities/archer5/archer_abilities.txt"
+#base "abilities/lancelot/lancelot_abilities.txt"
 #base "abilities/vlad/vlad_abilities.txt"
 
 "DOTAAbilities"
@@ -13591,11 +13592,11 @@
 				"AoEDamage"			"%aoe_damage_percent"
 				"Radius"			"%radius"
 			}
-			"RunScript"
-			{
-				"ScriptFile"		"lancelot_ability"
-				"Function"			"OnKnightUsed"
-			}	
+			//"RunScript"
+			//{
+			//	"ScriptFile"		"lancelot_ability"
+			//	"Function"			"OnKnightUsed"
+			//}
 		}
 
 		

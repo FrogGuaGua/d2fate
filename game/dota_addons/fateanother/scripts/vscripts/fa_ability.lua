@@ -473,7 +473,7 @@ function OnWBStart(keys)
 	-- make FA's damage zero 
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_wb_baseattack_reduction", {})
 
-	if not caster.IsGanryuAcquired then
+	if caster:GetName() == "npc_dota_hero_juggernaut" and not caster.IsGanryuAcquired then
 		caster:FindAbilityByName("false_assassin_gate_keeper"):StartCooldown(keys.GCD) 
 
 		-- 1.24 change : Vitrification removes GCD from Heart regardless

@@ -1885,6 +1885,23 @@ function FxCreator(effectname,pattach,target,cp,attach,amount)
 end
 
 
+function WrapAttributes(ability, attributeName, callback)
+    function ability:OnSpellStart()
+        local caster = self:GetCaster()
+        local player = caster:GetPlayerOwner()
+        local hero = caster:GetPlayerOwner():GetAssignedHero()
+
+        hero[attributeName] = true
+
+        local master = hero.MasterUnit
+        master:SetMana(master:GetMana() - self:GetManaCost(1))
+
+        if callback then
+            callback(self, hero)
+        end
+    end
+end
+
 -- Spaghetti and hax as fuck.
 function HotkeyPurchaseItem(iSource, args)
     local item = args['item']
@@ -1935,3 +1952,15 @@ function HotkeyPurchaseItem(iSource, args)
     end
 end
 CustomGameEventManager:RegisterListener("hotkey_purchase_item", HotkeyPurchaseItem)
+
+function UpdateAbilityLayout(hHero, tAbilities)
+    local tAbilities = tAbilities or hHero.AbilityLayout
+    for i = 1, hHero:GetAbilityCount() do
+        if hHero:GetAbilityByIndex(i - 1) == nil then
+        elseif i > #tAbilities then
+            hHero:GetAbilityByIndex(i - 1):SetHidden(true)
+        elseif hHero:GetAbilityByIndex(i - 1):GetAbilityName() ~= tAbilities[i] then
+            hHero:SwapAbilities(hHero:GetAbilityByIndex(i - 1):GetAbilityName(), tAbilities[i], true, true)
+        end
+    end
+end
