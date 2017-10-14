@@ -78,13 +78,34 @@ function UpdateAttributeList(data)
 	var queryUnit = data.masterUnit; //Players.GetLocalPlayerPortraitUnit();
 	var queryUnit2 = data.shardUnit;
 
-	for(i=0; i<5; i++) {
-		CreateAbilityPanel(attributePanel, queryUnit, i, true);
+	for(var i in data.attributes){
+		CreateAbilityPanelByName(attributePanel, queryUnit, data.attributes[i], true);
 	}
-	CreateAbilityPanel(cooldownPanel, queryUnit, 5, true);
-	for(i=6; i<14; i++) {
+
+	CreateAbilityPanelByName(cooldownPanel, queryUnit, data.combo, true);
+
+	var stats = [
+		"master_strength",
+		"master_agility",
+		"master_intelligence",
+		"master_damage",
+		"master_armor",
+		"master_health_regen",
+		"master_mana_regen",
+		"master_movement_speed"
+	]; // lazy fix...
+
+	for(var i = 0; i < stats.length; i++){
+		CreateAbilityPanelByName(statPanel, queryUnit, stats[i], true);
+	}
+
+    /*for(i=0; i<5; i++) {
+        CreateAbilityPanel(attributePanel, queryUnit, i, true);
+    }*/
+
+	/*for(i=6; i<14; i++) {
 		CreateAbilityPanel(statPanel, queryUnit, i, true);
-	}
+	}*/
 
 	for(i=6; i<10; i++) {
 		CreateAbilityPanel(shardPanel, queryUnit2, i, true);
