@@ -69,7 +69,7 @@ function atalanta_phoebus_catastrophe_barrage:OnSpellStart()
     local position = self:GetCursorPosition()
     local origin = caster:GetOrigin()
     local aoe = self:GetAOERadius()
-    local arrows = self:GetSpecialValueFor("arrows")
+    local arrows = math.floor(math.min(self:GetSpecialValueFor("arrows") + (caster:GetAgility()*self:GetSpecialValueFor("arrows_per_agility")), self:GetSpecialValueFor("arrows_cap")))
     local fixDuration = 3
     local interval = fixDuration / arrows
     

@@ -69,12 +69,14 @@ function atalanta_celestial_arrow:CreateShockRing(facing)
     dummy:SetDayTimeVisionRange(0)
     dummy:SetNightTimeVisionRange(0)
     dummy:SetOrigin(caster:GetOrigin())
-
     dummy:SetForwardVector(facing or caster:GetForwardVector())
-
-    local particle = caster:HasModifier("modifier_tauropolos")
-        and "particles/custom/atalanta/atalanta_shock_ring.vpcf"
-        or "particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6_shock_ring.vpcf"
+    
+    local particle = "particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6_shock_ring.vpcf"
+    local hModifier = caster:FindModifierByName("modifier_celestial_arrow_onhit")
+    local iCurrentStack = hModifier and hModifier:GetStackCount() or 0
+    if iCurrentStack > 4 then 
+        particle = "particles/custom/atalanta/atalanta_shock_ring.vpcf"
+    end
 
     local casterFX = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, dummy)
     ParticleManager:SetParticleControlEnt(casterFX, 1, dummy, PATTACH_ABSORIGIN_FOLLOW, nil, caster:GetOrigin(), false)
@@ -87,18 +89,19 @@ end
 
 function atalanta_celestial_arrow:OnSpellStart()
     local hCaster = self:GetCaster()
-
+    local aoe = 100
     local effect = "particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
     local hModifier = hCaster:FindModifierByName("modifier_celestial_arrow_onhit")
     local iCurrentStack = hModifier and hModifier:GetStackCount() or 0
     if iCurrentStack == 10 then 
-        effect = "particles/custom/atalanta/atalanta_arrow.vpcf"
+        aoe = 125
+        effect = "particles/custom/atalanta/atalanta_arrow_10stack.vpcf"
     elseif iCurrentStack > 4 then  
         effect = "particles/custom/atalanta/atalanta_arrow.vpcf"
     end
 
     local position = self:GetCursorPosition()
-    local origin = hCaster:GetOrigin()
+    local origin = hCaster:GetAbsOrigin()
     local facing = ForwardVForPointGround(origin,position)
     
     self:ShootArrow({
@@ -106,7 +109,7 @@ function atalanta_celestial_arrow:OnSpellStart()
         Origin = origin,
         Speed = 3000,
         Facing = facing,
-        AoE = 100,
+        AoE = aoe,
 	Range = self:GetCastRange(),
 	Linear = true
     })

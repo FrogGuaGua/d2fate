@@ -1948,6 +1948,7 @@ end
 
 --atr1's way to fix shooting arrows backward
 function ForwardVForPointGround(vOrigin,vTarget)
+  local hCaster = self:GetCaster()
   local vDisplacement, vFacing = vTarget - vOrigin
   if math.abs(vDisplacement.x) < 0.05 then
     vDisplacement.x = 0

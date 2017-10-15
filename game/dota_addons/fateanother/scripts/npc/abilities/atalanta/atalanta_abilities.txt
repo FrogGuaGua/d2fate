@@ -22,6 +22,7 @@
       "particle"					"particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
       "particle"					"particles/custom/atalanta/atalanta_shock_ring.vpcf"
       "particle"					"particles/custom/atalanta/atalanta_arrow.vpcf"
+      "particle"					"particles/custom/atalanta/atalanta_arrow_10stack.vpcf"
       "soundfile"					"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
     }
 
@@ -750,27 +751,42 @@
       "04"
       {
         "var_type"			"FIELD_INTEGER"
-        "arrows"			"30 36 42 48 54"
+        "arrows"			     "35"
       }
       "05"
       {
-        "var_type"			"FIELD_FLOAT"
-        "delay"				"2.9"
+        "var_type"			"FIELD_INTEGER"
+        "arrows_cap"			   "70"
       }
       "06"
       {
         "var_type"			"FIELD_FLOAT"
-        "cast_point"				"0.8"
+        "arrows_per_agility"			   "0.5"
       }
       "07"
       {
-        "var_type"			"FIELD_INTEGER"
-        "slow"				"50"
+        "var_type"			"FIELD_FLOAT"
+        "delay"				"2.9"
       }
       "08"
       {
         "var_type"			"FIELD_FLOAT"
+        "cast_point"				"0.8"
+      }
+      "09"
+      {
+        "var_type"			"FIELD_INTEGER"
+        "slow"				"50"
+      }
+      "10"
+      {
+        "var_type"			"FIELD_FLOAT"
         "slow_duration"				"0.4"
+      }
+      "11"
+      {
+        "var_type"			"FIELD_FLOAT"
+        "arrows_damage_percentage"				"0.75"
       }
     }
   }
