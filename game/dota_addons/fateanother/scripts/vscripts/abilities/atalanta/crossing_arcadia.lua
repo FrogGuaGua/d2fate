@@ -21,9 +21,14 @@ function atalanta_crossing_arcadia:GetAOERadius()
     local caster = self:GetCaster()
     local aoe = self:GetSpecialValueFor("aoe")
 
-    if IsServer() and caster:HasModifier("modifier_tauropolos") then
+    --[[if IsServer() and caster:HasModifier("modifier_tauropolos") then
         local tauropolos = caster:FindAbilityByName("atalanta_tauropolos")
         aoe = aoe + tauropolos:GetSpecialValueFor("bonus_aoe_per_agi") * caster:GetAgility()
+    end]]
+    if caster:HasModifier("modifier_arrows_of_the_big_dipper") then
+      local fAgility = CustomNetTables:GetTableValue("sync","atalanta_agility").fAgility
+      local tAttributeTable = CustomNetTables:GetTableValue("sync","atalanta_big_dipper")
+      aoe = aoe + (tAttributeTable.fAOEPerAGI * fAgility)
     end
 
     return aoe

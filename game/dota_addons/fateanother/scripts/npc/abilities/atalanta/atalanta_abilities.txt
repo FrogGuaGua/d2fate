@@ -35,7 +35,7 @@
       "02"
       {
         "var_type"				"FIELD_INTEGER"
-        "bonus_arrows"			"0 0 1 1 2"
+        "bonus_arrows"			"0 1 2 3 4"
       }
       "03"
       {
@@ -44,23 +44,23 @@
       }
       "04"
       {
-        "var_type"						"FIELD_INTEGER"
-        "attribute_bonus_range"			"100"
+        "var_type"						"FIELD_FLOAT"
+        "casttime_reduction_per_stack"		"1 1.75 2.5 3.25 4"
       }
       "05"
       {
-        "var_type"						"FIELD_INTEGER"
-        "attribute_vision_radius"		"150"
+        "var_type"						"FIELD_FLOAT"
+        "agility_per_stack"		"1 2 3 4 5"
       }
       "06"
       {
-        "var_type"						"FIELD_INTEGER"
-        "attribute_vision_duration"		"2"
+        "var_type"						"FIELD_FLOAT"
+        "max_stacks"		      "10"
       }
       "07"
       {
-        "var_type"						"FIELD_INTEGER"
-        "attribute_arrows_needed"		"7"
+        "var_type"						"FIELD_FLOAT"
+        "stacks_duration"		      "10"
       }
     }
   }
@@ -365,7 +365,7 @@
     
     "AbilityCastPoint"				"0.3"
     "AbilityCooldown"				"70"
-    "AbilityManaCost"				"200"
+    "AbilityManaCost"				"400"
 
     "precache"
     {
@@ -522,7 +522,7 @@
       "01"
       {
         "var_type"				"FIELD_INTEGER"
-        "arrows"				"5"
+        "arrows"				"6"
       }
     }
   }
@@ -537,9 +537,9 @@
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
     "AbilityTextureName"			"custom/atalanta_tauropolos"
     
-    "AbilityCastPoint"				"1.5"
-    "AbilityCooldown"				"24"
-    "AbilityManaCost"				"400"
+    "AbilityCastPoint"				"1.75"
+    "AbilityCooldown"				"30"
+    "AbilityManaCost"				"600"
     "LevelsBetweenUpgrades"			"2"
     "precache"
     {
@@ -555,7 +555,37 @@
       "01"
       {
         "var_type"			"FIELD_FLOAT"
+        "damage"			     "800 950 1100 1250 1400"
+      }
+      "02"
+      {
+        "var_type"			"FIELD_FLOAT"
         "range"			     "3000"
+      }
+      "03"
+      {
+        "var_type"			"FIELD_FLOAT"
+        "splash_radius"			     "500"
+      }
+      "04"
+      {
+        "var_type"			"FIELD_FLOAT"
+        "splash_percentage"			     "50"
+      }
+      "05"
+      {
+        "var_type"			"FIELD_FLOAT"
+        "slow_percentage"			     "-35"
+      }
+      "06"
+      {
+        "var_type"			             "FIELD_FLOAT"
+        "slow_and_vision_duration"			     "2"
+      }
+      "07"
+      {
+        "var_type"			             "FIELD_FLOAT"
+        "cast_point"			     "1.75"
       }
     }
   }
@@ -679,14 +709,14 @@
   {
     "BaseClass"						"ability_lua"
     "ScriptFile"					"abilities/atalanta/phoebus_catastrophe_barrage"
-    "MaxLevel"						"5"
+    "MaxLevel"						"1"
     "LevelsBetweenUpgrades"			"2"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     "AbilityTextureName"			"custom/atalanta_phoebus_catastrophe"
     
     "AbilityCastPoint"				"0.8"
     "AbilityCooldown"				"36"
-    "AbilityManaCost"				"800"
+    "AbilityManaCost"				"300"
 
     "precache"
     {
@@ -758,7 +788,7 @@
     
     "AbilityCastPoint"				"1"
     "AbilityCooldown"				"140"
-    "AbilityManaCost"				"300"
+    "AbilityManaCost"				"700"
 
     "precache"
     {
@@ -839,6 +869,16 @@
       {
         "var_type"						"FIELD_INTEGER"
         "attribute_arrows_needed"		"7"
+      }
+      "05"
+      {
+        "var_type"						"FIELD_INTEGER"
+        "attribute_range_per_agi"		"3"
+      }
+      "06"
+      {
+        "var_type"						"FIELD_INTEGER"
+        "attribute_aoe_per_agi"		"1"
       }
     }
   }
@@ -982,7 +1022,7 @@
     "ScriptFile"					"abilities/atalanta/attributes"
     "MaxLevel"						"1"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-    "AbilityTextureName"			"custom/atalanta_phoebus_catastrophe"
+    "AbilityTextureName"			"custom/atalanta_bow_of_heaven"
     
     "AbilityCastPoint"				"0.0"
     "AbilityCooldown"				"9999"

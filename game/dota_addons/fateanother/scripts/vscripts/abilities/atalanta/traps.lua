@@ -65,7 +65,11 @@ function atalanta_traps:OnSpellStart()
   hCaster:SwapAbilities(hAe:GetName(), self.sAe, false, true) 
   hCaster:SwapAbilities(hAd:GetName(), self.sAd, false, true) 
   hCaster:SwapAbilities(hAf:GetName(), self.sAf, false, true) 
-  hCaster:SwapAbilities(hAr:GetName(), self.sAr, false, true) 
+  if hCaster.GoldenAppleAcquired then
+    hCaster:SwapAbilities(hAr:GetName(), "atalanta_golden_apple", false, true) 
+  else
+    hCaster:SwapAbilities(hAr:GetName(), self.sAr, false, true) 
+  end
 end
 function atalanta_traps_close:OnSpellStart()
   local hCaster = self:GetCaster()
@@ -76,15 +80,19 @@ function atalanta_traps_close:OnSpellStart()
   local hAf = hCaster:GetAbilityByIndex(4)
   local hAr = hCaster:GetAbilityByIndex(5)
   hCaster:SwapAbilities(hAq:GetName(), "atalanta_celestial_arrow", false, true)
-  hCaster:SwapAbilities(hAw:GetName(), "atalanta_calydonian_hunt", false, true) 
+  if hCaster.ComboTimer then
+    hCaster:SwapAbilities(hAw:GetName(), "atalanta_phoebus_catastrophe_snipe", false, true) 
+  else
+    hCaster:SwapAbilities(hAw:GetName(), "atalanta_calydonian_hunt", false, true) 
+  end
   hCaster:SwapAbilities(hAe:GetName(), "atalanta_traps", false, true) 
-  hCaster:SwapAbilities(hAd:GetName(), "atalanta_crossing_arcadia", false, true) 
-  hCaster:SwapAbilities(hAf:GetName(), "atalanta_priestess_of_the_hunt", false, true) 
+  hCaster:SwapAbilities(hAd:GetName(), "atalanta_crossing_arcadia", false, true)
   if hCaster.bIsBowOfHeavenActive then
     hCaster:SwapAbilities(hAr:GetName(), "atalanta_phoebus_catastrophe_barrage", false, true) 
-  else
-    hCaster:SwapAbilities(hAr:GetName(), "atalanta_tauropolos_new", false, true) 
+  else 
+    hCaster:SwapAbilities(hAf:GetName(), "atalanta_priestess_of_the_hunt", false, true) 
   end
+  hCaster:SwapAbilities(hAr:GetName(), "atalanta_tauropolos_new", false, true) 
 end
 
 function atalanta_traps_close:TriggerGCD(hAbilityUsed)

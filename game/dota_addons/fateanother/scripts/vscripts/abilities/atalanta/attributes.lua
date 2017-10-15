@@ -24,7 +24,7 @@ function atalanta_attribute_crossing_arcadia_plus:GetAbilityTextureName()
     return "custom/atalanta_crossing_arcadia"
 end
 function atalanta_attribute_bow_of_heaven:GetAbilityTextureName()
-    return "custom/atalanta_phoebus_catastrophe"
+    return "custom/atalanta_bow_of_heaven"
 end
 
 
@@ -57,7 +57,7 @@ WrapAttributes(atalanta_attribute_bow_of_heaven, "BowOfHeavenAcquired", function
         if not hero:IsAlive() then
             return 1
         else
-            hero:AddNewModifier(hero, nil, "modifier_bow_of_heaven", {})
+            hero:AddNewModifier(hero, nil, "modifier_bow_of_heaven", {Duration = -1})
             return nil
         end
     end)
@@ -68,6 +68,13 @@ WrapAttributes(atalanta_attribute_crossing_arcadia_plus, "CrossingArcadiaPlusAcq
 end)
 
 WrapAttributes(atalanta_attribute_arrows_of_the_big_dipper, "ArrowsOfTheBigDipperAcquired", function(ability, hero)
+    local fExtraRange = ability:GetSpecialValueFor("attribute_bonus_range")
+    local fVisionRadius = ability:GetSpecialValueFor("attribute_vision_radius")
+    local fVisionDuration = ability:GetSpecialValueFor("attribute_vision_duration")
+    local fArrowsNeeded = ability:GetSpecialValueFor("attribute_arrows_needed")
+    local fRangePerAGI = ability:GetSpecialValueFor("attribute_range_per_agi")
+    local fAOEPerAGI = ability:GetSpecialValueFor("attribute_aoe_per_agi")
+    CustomNetTables:SetTableValue("sync","atalanta_big_dipper", {fExtraRange = fExtraRange, fVisionRadius = fVisionRadius, fVisionDuration = fVisionDuration, fArrowsNeeded = fArrowsNeeded, fRangePerAGI = fRangePerAGI, fAOEPerAGI = fAOEPerAGI})
     hero:AddNewModifier(hero, nil, "modifier_arrows_of_the_big_dipper", {})
 
     function hero:CheckBonusArrow(keys)

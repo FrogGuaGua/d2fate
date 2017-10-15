@@ -14,8 +14,9 @@ end
 function modifier_cobweb_slow:GetModifierMoveSpeedBonus_Percentage()
 	if IsClient() then
 		return CustomNetTables:GetTableValue("sync","atalanta_web").fSlow
+	else
+  	return self.fSlow
 	end
-  return self.fSlow
 end
 
 function modifier_cobweb_slow:IsHidden()

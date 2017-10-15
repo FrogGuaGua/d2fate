@@ -1,11 +1,15 @@
 atalanta_celestial_arrow = class({})
 LinkLuaModifier("modifier_celestial_arrow", "abilities/atalanta/modifier_celestial_arrow", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_celestial_arrow_onhit", "abilities/atalanta/modifier_celestial_arrow_onhit", LUA_MODIFIER_MOTION_NONE)
 
 function atalanta_celestial_arrow:OnUpgrade()
     local caster = self:GetCaster()
-    local ability = self
+    local ability = self    
 
     if IsServer() then
+        --[[local fCastTimeReduction = self:GetSpecialValueFor("casttime_reduction_per_stack")
+        local fAgility = self:GetSpecialValueFor("agility_per_stack")
+        CustomNetTables:SetTableValue("sync","atalanta_q", {fCastTimeReduction = fCastTimeReduction, fAgility = fAgility})]]
         if not caster.ArrowHit then
             function caster:ArrowHit(...)
                 ability:ArrowHit(...)
@@ -30,14 +34,16 @@ function atalanta_celestial_arrow:GetCastRange(location, target)
     local caster = self:GetCaster()
     local range = self:GetSpecialValueFor("range")
     
-    if caster.ArrowsOfTheBigDipperAcquired then
-        range = range + self:GetSpecialValueFor("attribute_bonus_range")
+    if caster:HasModifier("modifier_arrows_of_the_big_dipper") then
+        local fAgility = CustomNetTables:GetTableValue("sync","atalanta_agility").fAgility
+        local tAttributeTable = CustomNetTables:GetTableValue("sync","atalanta_big_dipper")
+        range = range + tAttributeTable.fExtraRange + (fAgility * tAttributeTable.fRangePerAGI)
     end
 
-    if IsServer() and caster:HasModifier("modifier_tauropolos") then
+    --[[if IsServer() and caster:HasModifier("modifier_tauropolos") then
         local tauropolos = caster:FindAbilityByName("atalanta_tauropolos")
         range = range + tauropolos:GetSpecialValueFor("bonus_range_per_agi") * caster:GetAgility()
-    end
+    end]]
 
     return range
 end
@@ -80,14 +86,19 @@ function atalanta_celestial_arrow:CreateShockRing(facing)
 end
 
 function atalanta_celestial_arrow:OnSpellStart()
-    local caster = self:GetCaster()
+    local hCaster = self:GetCaster()
 
-    local effect = caster:HasModifier("modifier_tauropolos")
-        and "particles/custom/atalanta/atalanta_arrow.vpcf"
-        or "particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+    local effect = "particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
+    local hModifier = hCaster:FindModifierByName("modifier_celestial_arrow_onhit")
+    local iCurrentStack = hModifier and hModifier:GetStackCount() or 0
+    if iCurrentStack == 10 then 
+        effect = "particles/custom/atalanta/atalanta_arrow.vpcf"
+    elseif iCurrentStack > 4 then  
+        effect = "particles/custom/atalanta/atalanta_arrow.vpcf"
+    end
 
     local position = self:GetCursorPosition()
-    local origin = caster:GetOrigin()
+    local origin = hCaster:GetOrigin()
     local facing = ForwardVForPointGround(origin,position)
     
     self:ShootArrow({
@@ -105,8 +116,9 @@ function atalanta_celestial_arrow:OnProjectileThink(location)
     local caster = self:GetCaster()
 
     if caster.ArrowsOfTheBigDipperAcquired then
-        local radius = self:GetSpecialValueFor("attribute_vision_radius")
-        local duration = self:GetSpecialValueFor("attribute_vision_duration")
+        local tAttributeTable = CustomNetTables:GetTableValue("sync","atalanta_big_dipper")
+        local radius = tAttributeTable.fVisionRadius
+        local duration = tAttributeTable.fVisionDuration
 
         AddFOWViewer(caster:GetTeamNumber(), location, radius, duration, false)
     end
@@ -116,9 +128,23 @@ function atalanta_celestial_arrow:OnProjectileHit_ExtraData(target, location, da
     if target == nil then
         return
     end
-
-    local caster = self:GetCaster()
-    caster:ArrowHit(target, data["1"])
+    local hCaster = self:GetCaster()
+    if self.bFirstHit == true then  
+        local fOnHitBuffDuration = self:GetSpecialValueFor("stacks_duration")
+        local iMaxStacks = self:GetSpecialValueFor("max_stacks")
+        local hModifier = hCaster:FindModifierByName("modifier_celestial_arrow_onhit")
+        local iCurrentStack = hModifier and hModifier:GetStackCount() or 0
+        if not hModifier then 
+            local fCastTimeReduction = self:GetSpecialValueFor("casttime_reduction_per_stack")
+            local fAgility = self:GetSpecialValueFor("agility_per_stack")
+            hCaster:AddNewModifier(hCaster, self, "modifier_celestial_arrow_onhit", {Duration = fOnHitBuffDuration, fAgility = fAgility, fCastTimeReduction = fCastTimeReduction})
+        else
+            hModifier:SetDuration(fOnHitBuffDuration, true)
+        end
+        hCaster:SetModifierStackCount("modifier_celestial_arrow_onhit", self, math.min(iCurrentStack + 1,iMaxStacks))
+        self.bFirstHit = false
+    end    
+    hCaster:ArrowHit(target, data["1"])
 end
 
 function atalanta_celestial_arrow:ArrowHit(target, slow)
@@ -200,6 +226,7 @@ function atalanta_celestial_arrow:ShootLinearArrow(keys)
         iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
         bProvidesVision = false,
     }
+    self.bFirstHit = true
     ProjectileManager:CreateLinearProjectile(projectileTable)
 end
 

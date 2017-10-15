@@ -1,5 +1,6 @@
 atalanta_tauropolos_new = class({})
 LinkLuaModifier("modifier_bow_proc", "abilities/atalanta/modifier_bow_proc", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_tauropolos_slow", "abilities/atalanta/modifier_tauropolos_slow", LUA_MODIFIER_MOTION_NONE)
 
 function atalanta_tauropolos_new:GetCastRange(vLocation,hTarget)
   local fRange = self:GetSpecialValueFor("range")
@@ -8,6 +9,10 @@ function atalanta_tauropolos_new:GetCastRange(vLocation,hTarget)
     fRange = fRange + CustomNetTables:GetTableValue("sync","atalanta_bow_of_heaven").fExtraRange
   end
   return fRange
+end
+
+function atalanta_tauropolos_new:GetAOERadius()
+  return self:GetSpecialValueFor("splash_radius")
 end
 
 if IsClient() then
@@ -30,15 +35,25 @@ end
 function atalanta_tauropolos_new:OnUpgrade()
   local hCaster = self:GetCaster()
   local hAbility = self
+  local fSlow = self:GetSpecialValueFor("slow_percentage")
+  CustomNetTables:SetTableValue("sync","atalanta_tauropolos", {fSlow = fSlow})
+
   if not hCaster.EndBowOfHeaven then
     function hCaster:EndBowOfHeaven(...)
       hAbility:EndBowOfHeaven(...)      
     end
   end
 end
+function atalanta_tauropolos_new:GetCastAnimation()
+  return ACT_DOTA_CAST_ABILITY_1
+end
+function atalanta_tauropolos_new:GetPlaybackRateOverride()
+  return 0.5
+end
 function atalanta_tauropolos_new:OnAbilityPhaseStart()
+  print(self:GetCastPoint())
   local hCaster = self:GetCaster()
-  StartAnimation(hCaster, {duration=1.5, activity=ACT_DOTA_CAST_ABILITY_1, rate=0.7})
+  --StartAnimation(hCaster, {duration=1.5, activity=ACT_DOTA_CAST_ABILITY_1, rate=0.7})
   hCaster:EmitSound("Atalanta.RPull")
   self.iPICharging =  ParticleManager:CreateParticle("particles/custom/atalanta/r/r_charging.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
   ParticleManager:SetParticleControlEnt(self.iPICharging, 3, hCaster, PATTACH_ABSORIGIN_FOLLOW, nil, hCaster:GetAbsOrigin(), false)
@@ -47,7 +62,7 @@ end
 function atalanta_tauropolos_new:OnAbilityPhaseInterrupted()
   local hCaster = self:GetCaster()
   hCaster:StopSound("Atalanta.RPull")
-  EndAnimation(hCaster)
+  --EndAnimation(hCaster)
   FxDestroyer(self.iPICharging,false)
 end
 function atalanta_tauropolos_new:CreateShockRing(vFacing)
@@ -73,10 +88,10 @@ function atalanta_tauropolos_new:OnSpellStart()
   local vTarget = self:GetCursorPosition()
   local vOrigin = hCaster:GetAbsOrigin()
   local vFacing = ForwardVForPointGround(vOrigin,vTarget)
-  local fDamage = 100
+  local fDamage = self:GetSpecialValueFor("damage")
   local fRange = self:GetCastRange()
   self.bArrowHit = false
-  --hCaster:UseArrow(2)
+  hCaster:UseArrow(2)
   self:CreateShockRing(vFacing)
   FxDestroyer(self.iPICharging,false)
 
@@ -110,9 +125,10 @@ function atalanta_tauropolos_new:OnSpellStart()
 end
 function atalanta_tauropolos_new:Explosion(hTarget,tData)
   local hCaster = self:GetCaster()
-  local fRadius = 500
-  local fVisionDuration = 2
-  local fDamageSplashPercentage = 50/100
+  local fRadius = self:GetSpecialValueFor("splash_radius")
+  local fVisionDuration = self:GetSpecialValueFor("slow_and_vision_duration")
+  local fSlowPercentage = self:GetSpecialValueFor("slow_percentage")
+  local fDamageSplashPercentage = self:GetSpecialValueFor("splash_percentage")/100
   local iMaxStacks = hCaster:FindAbilityByName("atalanta_calydonian_hunt"):GetSpecialValueFor("max_stacks")
   local sParticle = "particles/custom/atalanta/r/r_impact.vpcf"
   local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)  
@@ -127,11 +143,17 @@ function atalanta_tauropolos_new:Explosion(hTarget,tData)
   AddFOWViewer(hCaster:GetTeamNumber(), hTarget:GetAbsOrigin(), fRadius, fVisionDuration, false)
   local PI = ParticleManager:CreateParticle(sParticle, PATTACH_ABSORIGIN, hTarget)
   for k,v in pairs(tTargets) do
+    v:AddNewModifier(hCaster, self, "modifier_tauropolos_slow", { Duration = fVisionDuration, fSlow = fSlowPercentage})
     if v ~= hTarget then
       DoDamage(hCaster, v, tData.fDamage*fDamageSplashPercentage, DAMAGE_TYPE_MAGICAL, 0, self, false)
     end
   end
-  if hCaster.BowOfHeavenAcquired and hCaster:FindAbilityByName("atalanta_phoebus_catastrophe_barrage"):IsCooldownReady() then
+  local hBarrage = hCaster:FindAbilityByName("atalanta_phoebus_catastrophe_barrage")
+  if hCaster.BowOfHeavenAcquired and hBarrage:IsCooldownReady() then
+    if hCaster.bIsBowOfHeavenActive then
+      self:EndBowOfHeaven()
+      Timers:RemoveTimer(hCaster.BowOfHeavenTimer)
+    end
     hCaster.vRImpactLoc = hTarget:GetAbsOrigin()
     hCaster:AddNewModifier(hCaster, self, "modifier_bow_proc", {Duration = 5})
 
@@ -139,19 +161,23 @@ function atalanta_tauropolos_new:Explosion(hTarget,tData)
     hCaster.iPIBowMarker = ParticleManager:CreateParticleForPlayer("particles/custom/atalanta/atalanta_tauropolos_marker.vpcf", PATTACH_WORLDORIGIN, hCaster, hCaster:GetPlayerOwner())
     ParticleManager:SetParticleControl( hCaster.iPIBowMarker, 0, hTarget:GetAbsOrigin())
     ParticleManager:SetParticleControl( hCaster.iPIBowMarker, 1, Vector(fMaxDistFromR,0,0))
-
-    hCaster:SwapAbilities(hCaster:GetAbilityByIndex(5):GetName(),"atalanta_phoebus_catastrophe_barrage",false,true)
+    
+    hCaster:SwapAbilities(hCaster:GetAbilityByIndex(4):GetName(),"atalanta_phoebus_catastrophe_barrage",false,true)
     hCaster.bIsBowOfHeavenActive = true
     hCaster.BowOfHeavenTimer = Timers:CreateTimer(5,function()
-      self:EndBowOfHeaven()
-      return nil
+      if not hCaster:HasModifier("modifier_casting_phoebus") then
+        self:EndBowOfHeaven()
+        return nil
+      else
+        return 0.1
+      end
     end)
   end
 end
 function atalanta_tauropolos_new:EndBowOfHeaven()
   local hCaster = self:GetCaster()
   FxDestroyer(hCaster.iPIBowMarker,false)
-  hCaster:SwapAbilities("atalanta_tauropolos_new","atalanta_phoebus_catastrophe_barrage",true,false)
+  hCaster:SwapAbilities("atalanta_priestess_of_the_hunt","atalanta_phoebus_catastrophe_barrage",true,false)
   hCaster.bIsBowOfHeavenActive = false
 end
 function atalanta_tauropolos_new:OnProjectileHit_ExtraData(hTarget, vLocation, tData)

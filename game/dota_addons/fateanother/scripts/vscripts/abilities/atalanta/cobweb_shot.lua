@@ -136,6 +136,7 @@ function atalanta_cobweb_shot:OnSpellStart()
   local tAlreadyLockedOnce = {}
   local vLastBounce = vOrigin 
   hCaster:CloseTraps(self)
+  hCaster:UseArrow(1)
   hCaster:EmitSound("Hero_DrowRanger.FrostArrows")
   FxDestroyer(self.PIWebs, false)
   if self.ThinkerArrow then Timers:RemoveTimer(self.ThinkerArrow) end
