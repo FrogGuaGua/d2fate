@@ -47,7 +47,7 @@ function atalanta_phoebus_catastrophe_barrage:OnSpellStart()
     local origin = caster:GetOrigin()
     local aoe = self:GetAOERadius()
     local arrows = self:GetSpecialValueFor("arrows")
-    local fixDuration = 4
+    local fixDuration = 3
     local interval = fixDuration / arrows
 
     AddFOWViewer(caster:GetTeamNumber(), position, aoe, 3 + fixDuration, false)
@@ -87,8 +87,7 @@ function atalanta_phoebus_catastrophe_barrage:OnSpellStart()
                     DontUseArrow = true,
                     NoShock = true,
 		    DontCountArrow = true,
-                    Slow = 0.4,
-                    KillWards = false,
+                    Slow = 0.4
                 })
             end)
         end

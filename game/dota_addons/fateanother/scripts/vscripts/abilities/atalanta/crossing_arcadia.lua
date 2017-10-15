@@ -61,16 +61,10 @@ function atalanta_crossing_arcadia:OnProjectileHit_ExtraData(target, location, d
     if not target then
         return
     end
-    
+
     local targets = FindUnitsInRadius(caster:GetTeam(), target:GetOrigin(), nil, data["1"], DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
     for _,v in pairs(targets) do
-        if data["3"] == 1 then
-            caster:ArrowHit(v, data["2"])
-        else
-            if v:GetName() ~= "npc_dota_ward_base" then
-                caster:ArrowHit(v, data["2"])
-            end
-        end
+        caster:ArrowHit(v, data["2"])
     end
 end
 
@@ -127,7 +121,7 @@ function atalanta_crossing_arcadia:ShootAoEArrow(keys)
         bProvidesVision = false,
         iMoveSpeed = velocity:Length(),
         iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
-	ExtraData = {keys.AoE or 0, keys.Slow or 0, keys.KillWards or 0}
+	ExtraData = {keys.AoE or 0, keys.Slow or 0}
     }
     ProjectileManager:CreateTrackingProjectile(projectile)
 
@@ -194,7 +188,6 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
-                KillWards = true,
             })
         end)
 
@@ -209,8 +202,7 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
-                DontUseArrow = true,
-                KillWards = true,
+                DontUseArrow = true
             })
         end)
 
@@ -225,8 +217,7 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
-                DontUseArrow = true,
-                KillWards = true,
+                DontUseArrow = true
             })
         end)
         Timers:CreateTimer(duration, function()
@@ -245,7 +236,6 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
-                KillWards = true,
             })
         end)
         Timers:CreateTimer(duration, function()
