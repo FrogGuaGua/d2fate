@@ -66,10 +66,16 @@ function atalanta_crossing_arcadia:OnProjectileHit_ExtraData(target, location, d
     if not target then
         return
     end
-
+    
     local targets = FindUnitsInRadius(caster:GetTeam(), target:GetOrigin(), nil, data["1"], DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
     for _,v in pairs(targets) do
-        caster:ArrowHit(v, data["2"])
+        if data["3"] == 0 then
+            caster:ArrowHit(v, data["2"],data["3"])
+        else
+            if v:GetName() ~= "npc_dota_ward_base" then
+                caster:ArrowHit(v, data["2"],data["3"])
+            end
+        end
     end
 end
 
@@ -126,7 +132,7 @@ function atalanta_crossing_arcadia:ShootAoEArrow(keys)
         bProvidesVision = false,
         iMoveSpeed = velocity:Length(),
         iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
-	ExtraData = {keys.AoE or 0, keys.Slow or 0}
+	    ExtraData = {keys.AoE or 0, keys.Slow or 0, keys.IsPhoebus or 0}
     }
     ProjectileManager:CreateTrackingProjectile(projectile)
 
@@ -193,6 +199,7 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
+                IsPhoebus = false,
             })
         end)
 
@@ -207,7 +214,8 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
-                DontUseArrow = true
+                DontUseArrow = true,
+                IsPhoebus = false,
             })
         end)
 
@@ -222,7 +230,8 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
-                DontUseArrow = true
+                DontUseArrow = true,
+                IsPhoebus = false,
             })
         end)
         Timers:CreateTimer(duration, function()
@@ -241,6 +250,7 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
+                IsPhoebus = false,
             })
         end)
         Timers:CreateTimer(duration, function()

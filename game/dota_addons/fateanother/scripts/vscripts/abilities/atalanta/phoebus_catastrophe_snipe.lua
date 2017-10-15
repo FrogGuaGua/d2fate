@@ -102,6 +102,7 @@ function atalanta_phoebus_catastrophe_snipe:OnSpellStart()
                     DontUseArrow = true,
                     NoShock = true,
                     DontCountArrow = true,
+                    IsPhoebus = true,
                 })
             end)
         end

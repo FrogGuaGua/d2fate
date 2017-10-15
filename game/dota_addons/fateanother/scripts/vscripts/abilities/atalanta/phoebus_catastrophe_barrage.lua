@@ -54,7 +54,7 @@ function atalanta_phoebus_catastrophe_barrage:GetCustomCastErrorLocation(locatio
         local fCastDistFromCenter = (caster.vRImpactLoc - location):Length2D()
         local fCastDistFromCaster = (caster:GetAbsOrigin() - location):Length2D()
         if fCastDistFromCenter > fMaxDist and fCastDistFromCaster > self:GetSpecialValueFor("range") then
-            return "Not within allowed cast zone..."
+            return "Out of range"
         end
     end
     
@@ -70,7 +70,7 @@ function atalanta_phoebus_catastrophe_barrage:OnSpellStart()
     local origin = caster:GetOrigin()
     local aoe = self:GetAOERadius()
     local arrows = math.floor(math.min(self:GetSpecialValueFor("arrows") + (caster:GetAgility()*self:GetSpecialValueFor("arrows_per_agility")), self:GetSpecialValueFor("arrows_cap")))
-    local fixDuration = 3
+    local fixDuration = 4
     local interval = fixDuration / arrows
     
     caster:EndBowOfHeaven()
@@ -101,9 +101,9 @@ function atalanta_phoebus_catastrophe_barrage:OnSpellStart()
             arrowAoE = arrowAoE + tauropolos:GetSpecialValueFor("bonus_aoe_per_agi") * caster:GetAgility()
         end]]
         if caster:HasModifier("modifier_arrows_of_the_big_dipper") then
-          local fAgility = caster:GetAgility()
-          local tAttributeTable = CustomNetTables:GetTableValue("sync","atalanta_big_dipper")
-          arrowAoE = arrowAoE + (tAttributeTable.fAOEPerAGI * fAgility)
+            local fAgility = caster:GetAgility()
+            local tAttributeTable = CustomNetTables:GetTableValue("sync","atalanta_big_dipper")
+            arrowAoE = arrowAoE + (tAttributeTable.fAOEPerAGI * fAgility)
         end
 
         for i=1,arrows do
@@ -117,8 +117,9 @@ function atalanta_phoebus_catastrophe_barrage:OnSpellStart()
                     Delay = 0.2,
                     DontUseArrow = true,
                     NoShock = true,
-		    DontCountArrow = true,
-                    Slow = 0.4
+		            DontCountArrow = true,
+                    Slow = 0.4,
+                    IsPhoebus = true,
                 })
             end)
         end

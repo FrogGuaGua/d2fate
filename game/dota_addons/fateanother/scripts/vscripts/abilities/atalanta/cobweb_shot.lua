@@ -115,7 +115,7 @@ function atalanta_cobweb_shot:OnSpellStart()
   local hCaster = self:GetCaster()
   local vTarget = self:GetCursorPosition()
   local vOrigin = hCaster:GetAbsOrigin()
-  local vFacing = ForwardVForPointGround(vOrigin,vTarget)
+  local vFacing = ForwardVForPointGround(hCaster,vTarget)
   local fArrowInterval = 0.033
   local fEffectInterval = 0.33
   local fBounceSpeedMod = 1

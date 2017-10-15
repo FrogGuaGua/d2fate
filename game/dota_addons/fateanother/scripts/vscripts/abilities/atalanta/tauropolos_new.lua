@@ -87,7 +87,7 @@ function atalanta_tauropolos_new:OnSpellStart()
   local hCaster = self:GetCaster()
   local vTarget = self:GetCursorPosition()
   local vOrigin = hCaster:GetAbsOrigin()
-  local vFacing = ForwardVForPointGround(vOrigin,vTarget)
+  local vFacing = ForwardVForPointGround(hCaster,vTarget)
   local fDamage = self:GetSpecialValueFor("damage")
   local fRange = self:GetCastRange()
   self.bArrowHit = false

@@ -93,7 +93,7 @@ function atalanta_calydonian_hunt:OnSpellStart()
                 --caster:SwapAbilities("atalanta_last_spurt", "atalanta_phoebus_catastrophe_barrage", false, true)
                 caster:SwapAbilities("atalanta_calydonian_hunt", "atalanta_phoebus_catastrophe_snipe", false, true)
                 caster.ComboTimer = Timers:CreateTimer(timeLeft, function()
-                    if not hCaster:HasModifier("modifier_casting_phoebus") then
+                    if not caster:HasModifier("modifier_casting_phoebus") then
                         caster.ComboTimer = nil
                         --caster:SwapAbilities("atalanta_phoebus_catastrophe_barrage", "atalanta_last_spurt", false, true)
                         caster:SwapAbilities("atalanta_phoebus_catastrophe_snipe", "atalanta_calydonian_hunt", false, true)
@@ -105,7 +105,7 @@ function atalanta_calydonian_hunt:OnSpellStart()
             else
                 Timers:RemoveTimer(caster.ComboTimer)
                 caster.ComboTimer = Timers:CreateTimer(timeLeft, function()
-                    if not hCaster:HasModifier("modifier_casting_phoebus") then
+                    if not caster:HasModifier("modifier_casting_phoebus") then
                         caster.ComboTimer = nil
                         --caster:SwapAbilities("atalanta_phoebus_catastrophe_barrage", "atalanta_last_spurt", false, true)
                         caster:SwapAbilities("atalanta_phoebus_catastrophe_snipe", "atalanta_calydonian_hunt", false, true)

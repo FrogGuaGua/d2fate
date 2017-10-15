@@ -1497,8 +1497,8 @@
 		
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttackRange"					"700"
-		"AttackDamageMin"				"200"
-		"AttackDamageMax"				"200"
+		"AttackDamageMin"				"150"
+		"AttackDamageMax"				"150"
 		"AttackRate"					"7"
 		"AttackAcquisitionRange"		"1000"
 		"AttackAnimationPoint"			"0.3"

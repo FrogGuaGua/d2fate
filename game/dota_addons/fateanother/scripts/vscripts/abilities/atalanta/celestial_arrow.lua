@@ -102,7 +102,7 @@ function atalanta_celestial_arrow:OnSpellStart()
 
     local position = self:GetCursorPosition()
     local origin = hCaster:GetAbsOrigin()
-    local facing = ForwardVForPointGround(origin,position)
+    local facing = ForwardVForPointGround(hCaster,position)
     
     self:ShootArrow({
         Effect = effect,
@@ -110,8 +110,8 @@ function atalanta_celestial_arrow:OnSpellStart()
         Speed = 3000,
         Facing = facing,
         AoE = aoe,
-	Range = self:GetCastRange(),
-	Linear = true
+	    Range = self:GetCastRange(),
+	    Linear = true
     })
 end
 
@@ -150,14 +150,18 @@ function atalanta_celestial_arrow:OnProjectileHit_ExtraData(target, location, da
     hCaster:ArrowHit(target, data["1"])
 end
 
-function atalanta_celestial_arrow:ArrowHit(target, slow)
+function atalanta_celestial_arrow:ArrowHit(target, slow, bIsPhoebus)
     local caster = self:GetCaster()
 
     caster:AddHuntStack(target, 1)
 
     local damage = caster:GetAverageTrueAttackDamage(caster)
+    if bIsPHoebus then
+        damage = damage * 0.75
+    end
+
     if target:HasModifier("modifier_a_scroll") then
-        damage = damage / 2
+        damage = damage * 0.75
     end
 
     local stacks = target:GetModifierStackCount("modifier_calydonian_hunt", caster)
@@ -169,7 +173,7 @@ function atalanta_celestial_arrow:ArrowHit(target, slow)
         local physicalReduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
         huntDamage = huntDamage / (1 - physicalReduction)
     end
-
+    
     DoDamage(caster, target, damage + huntDamage, DAMAGE_TYPE_PHYSICAL, 0, self, false)
 
     if slow and slow > 0 then

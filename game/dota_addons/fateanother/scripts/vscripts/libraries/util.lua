@@ -1964,8 +1964,8 @@ function SpawnDummy(hCaster,vOrigin,vFacing)
 end
 
 --atr1's way to fix shooting arrows backward
-function ForwardVForPointGround(vOrigin,vTarget)
-  local hCaster = self:GetCaster()
+function ForwardVForPointGround(hCaster,vTarget)
+  local vOrigin = hCaster:GetAbsOrigin()
   local vDisplacement, vFacing = vTarget - vOrigin
   if math.abs(vDisplacement.x) < 0.05 then
     vDisplacement.x = 0
