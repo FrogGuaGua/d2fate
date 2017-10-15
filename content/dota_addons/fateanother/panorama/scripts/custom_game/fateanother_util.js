@@ -32,7 +32,7 @@ function CreateAbilityPanelByName(panel, unit, abilityName, bIsAttribute)
 	var abilityPanel = $.CreatePanel("Panel", panel, "");
 	abilityPanel.BLoadLayout("file://{resources}/layout/custom_game/fateanother_ability.xml", false, false );
 	abilityPanel.SetAbility(ability, unit, Game.IsInAbilityLearnMode(), bIsAttribute);
-	var buttonPanel = abilityPanel.FindChildTraverse("AbilityButton")
+	/*var buttonPanel = abilityPanel.FindChildTraverse("AbilityButton")
 	buttonPanel.style["width"] = "45px";
 	buttonPanel.style["height"] = "45px";
 	var hotkeyPanel = abilityPanel.FindChildTraverse("HotkeyText");
@@ -59,5 +59,5 @@ function CreateAbilityPanelByName(panel, unit, abilityName, bIsAttribute)
 	else if (abilityName == "caster_5th_sacrifice")
 	{
 		hotkeyPanel.text = "R";
-	}
+	}*/
 }

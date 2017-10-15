@@ -566,6 +566,9 @@ function OnWeakeningVenomAcquired(keys)
 	hero.IsWeakeningVenomAcquired = true
 	hero:FindAbilityByName("true_assassin_weakening_venom_passive"):SetLevel(1)
 	hero:FindAbilityByName("true_assassin_dirk"):SetLevel(2)
+	hero:SetDayTimeVisionRange(hero:GetDayTimeVisionRange()+keys.vision)
+	hero:SetNightTimeVisionRange(hero:GetNightTimeVisionRange()+keys.vision)
+
 	--hero:SwapAbilities("true_assassin_dirk", "true_assassin_dirk_attr_temp", true, true) 
 	-- Set master 1's mana 
 	local master = hero.MasterUnit

@@ -25,7 +25,7 @@ function modifier_qgg_oracle_aura:GetAuraSearchType()
 end
 
 function modifier_qgg_oracle_aura:GetAuraEntityReject(hEntity)
-    if hEntity:GetUnitName() == "ward_familiar" then return true end
+    if hEntity:GetUnitName() == "ward_familiar" or hEntity == self:GetParent() then return true end
     return false
 end
 

@@ -937,6 +937,25 @@ function OnPlayerAltClick(eventSourceIndex, keys)
 	Say(player, message, not keys.toAll)
 end
 
+function OnPlayerRemoveBuff(iSource, args)
+    local iPlayer = args.PlayerID
+    local hUnit = EntIndexToHScript(args.iUnit)
+
+    if iPlayer == hUnit:GetPlayerOwnerID() then
+        hUnit:RemoveModifierByName(args.sModifier)
+    end
+end
+
+function OnPlayerCastSeal(iSource, args)
+    local iPlayer = args.PlayerID
+    local hUnit = EntIndexToHScript(args.iUnit)
+    local hAbility = EntIndexToHScript(args.iAbility)
+
+    if iPlayer == hUnit:GetPlayerOwnerID() then
+        hUnit:CastAbilityNoTarget(hAbility, iPlayer)
+    end
+end
+
 function DistributeGold(hero, cutoff)
     -- get gold amount of teammates
     -- exclude from table if more than stated amount
@@ -1194,10 +1213,18 @@ function FateGameMode:OnHeroInGame(hero)
     hero.MasterUnit2 = master2
     AddMasterAbility(master2, hero:GetName())
     LevelAllAbility(master2)
+
+    local attributes = FindAttribute(hero:GetName())
+    attributes.attrCount = nil
+    local combo = attributes[#attributes]
+    attributes[#attributes] = nil
+
     local playerData = {
         masterUnit = master2:entindex(),
         shardUnit = master:entindex(),
-        hero = hero:entindex()
+        hero = hero:entindex(),
+        attributes = attributes,
+        combo = combo,
     }
     --[[-- Create personal stash for hero
     masterStash = CreateUnitByName("master_stash", Vector(4500 + hero:GetPlayerID()*350,-7250,0), true, hero, hero, hero:GetTeamNumber())
@@ -1372,9 +1399,17 @@ function FateGameMode:OnPlayerReconnect(keys)
         local ply = PlayerResource:GetPlayer(keys.PlayerID)
         local hero = ply:GetAssignedHero()
 
+        local attributes = FindAttribute(hero:GetName())
+        attributes.attrCount = nil
+        local combo = attributes[#attributes]
+        attributes[#attributes] = nil
+
         local playerData = {
-            masterUnit = hero.MasterUnit2:entindex(),
-            shardUnit = hero.MasterUnit:entindex()
+            masterUnit = master2:entindex(),
+            shardUnit = master:entindex(),
+            hero = hero:entindex(),
+            attributes = attributes,
+            combo = combo,
         }
         CustomGameEventManager:Send_ServerToPlayer(ply, "player_selected_hero", playerData)
         --CustomGameEventManager:Send_ServerToAllClients( "victory_condition_set", victoryConditionData ) -- Send the winner to Javascript
@@ -2141,6 +2176,8 @@ function FateGameMode:InitGameMode()
     CustomGameEventManager:RegisterListener( "config_option_4_checked", OnConfig4Checked )
     -- CustomGameEventManager:RegisterListener( "player_chat_panorama", OnPlayerChat )
     CustomGameEventManager:RegisterListener( "player_alt_click", OnPlayerAltClick )
+    CustomGameEventManager:RegisterListener("player_remove_buff", OnPlayerRemoveBuff )
+    CustomGameEventManager:RegisterListener("player_cast_seal", OnPlayerCastSeal )
     -- LUA modifiers
     LinkLuaModifier("modifier_ms_cap", "modifiers/modifier_ms_cap", LUA_MODIFIER_MOTION_NONE)
 

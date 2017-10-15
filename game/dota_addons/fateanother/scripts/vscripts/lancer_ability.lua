@@ -290,6 +290,7 @@ end
 
 function OnGBTargetHit(keys)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
+	if keys.caster:GetAbilityByIndex(2):GetAbilityName() == "lancer_5th_wesen_gae_bolg" then return end -- laziest fix of my lyfe
 
 	local caster = keys.caster
 	local casterName = caster:GetName()
@@ -569,8 +570,14 @@ function OnGBAOEHit(keys, projectile)
 	local damage = keys.ability:GetSpecialValueFor("damage")
 	local ply = caster:GetPlayerOwner()
 	if caster.IsGaeBolgImproved == true then damage = damage + 250 end
-	local runeAbil = caster:FindAbilityByName("lancer_5th_rune_of_flame")
-	local healthDamagePct = runeAbil:GetLevelSpecialValueFor("ability_bonus_damage", runeAbil:GetLevel()-1)
+	local healthDamagePct = 0
+
+	if caster:GetName() == "npc_dota_hero_phantom_lancer" then
+		local runeAbil = caster:FindAbilityByName("lancer_5th_rune_of_flame")
+		local healthDamagePct = runeAbil:GetLevelSpecialValueFor("ability_bonus_damage", runeAbil:GetLevel()-1)
+	end
+
+
 	if caster.IsGaeBolgImproved == true then
 		healthDamagePct = healthDamagePct * 2
 	end

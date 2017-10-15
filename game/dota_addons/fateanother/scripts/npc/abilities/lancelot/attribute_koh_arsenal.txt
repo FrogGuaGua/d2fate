@@ -1,0 +1,13 @@
+"DOTAAbilities"
+{
+    	"lancelot_attribute_improve_koh_arsenal"
+    	{
+    	    "BaseClass"                                     "ability_lua"
+    	    "ScriptFile"                                    "abilities/lancelot/attribute_koh_arsenal"
+    	    "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+    	    "AbilityTextureName"                            "custom/lancelot_attribute_improve_knight_of_honor"
+
+            "AbilityCooldown"                               "9999"
+    		"AbilityManaCost"                               "12"
+    	}
+}

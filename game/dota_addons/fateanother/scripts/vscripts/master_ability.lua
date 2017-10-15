@@ -95,6 +95,7 @@ LancelotAttribute = {
 	"lancelot_attribute_blessing_of_fairy",
 	"lancelot_attribute_improve_eternal",
 	"lancelot_attribute_improve_knight_of_honor",
+	"lancelot_attribute_improve_koh_arsenal",
 	"lancelot_attribute_eternal_flame",
 	"lancelot_nuke",
 	attrCount = 4
@@ -143,8 +144,9 @@ NeroAttribute = {
 	"nero_attribute_improve_imperial_privilege",
 	"nero_attribute_invictus_spiritus",
 	"nero_attribute_soverigns_glory",
-	"nero_fiery_finale",
-	attrCount = 4
+	"nero_attribute_pavilion",
+	"nero_fiery_finale",	
+	attrCount = 5
 }
 
 GawainAttribute = {
@@ -562,8 +564,8 @@ function FindAttribute(name)
     	attributes = NRAttribute
     elseif name == "npc_dota_hero_drow_ranger" then
     	attributes = AtalantaAttribute
-		elseif name == "npc_dota_hero_tidehunter" then
-			attributes = VladAttribute
+	elseif name == "npc_dota_hero_tidehunter" then
+		attributes = VladAttribute
     end
     return attributes
 end 
@@ -1016,7 +1018,7 @@ end
 function OnPresenceDetectionThink(keys)
 	local caster = keys.caster
 	local hasSpecialPresenceDetection = false
-	if caster:GetName() == "npc_dota_hero_juggernaut" and caster.IsEyeOfSerenityAcquired then 
+	if caster:GetName() == "npc_dota_hero_juggernaut" and caster.IsEyeOfSerenityAcquired and caster.IsEyeOfSerenityActive then 
 		hasSpecialPresenceDetection = true
 	elseif caster:GetName() == "npc_dota_hero_shadow_shaman" and caster.IsEyeForArtAcquired then
 		hasSpecialPresenceDetection = true

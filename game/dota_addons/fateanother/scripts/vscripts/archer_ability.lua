@@ -1050,8 +1050,8 @@ function OnUBWBarrageConfineStart(keys)
 	        v:AddNewModifier(caster, v, "modifier_stunned", {duration = 0.1})
 	        --v:EmitSound("FA.Quickdraw")
 	        if caster.IsProjectionImproved then 
-				giveUnitDataDrivenModifier(caster, v, "rb_sealdisabled", 3.0)
-				giveUnitDataDrivenModifier(caster, v, "locked",3.0)
+				giveUnitDataDrivenModifier(caster, v, "rb_sealdisabled", 2.0)
+				giveUnitDataDrivenModifier(caster, v, "locked",2.0)
 			end
 	    end
 	end)

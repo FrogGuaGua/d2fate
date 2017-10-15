@@ -89,8 +89,8 @@
 		"MovementSpeed"					"315"
 		"MovementTurnRate"				"0.8"
 		
-		"VisionDaytimeRange"			"900"
-		"VisionNighttimeRange"			"900"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 	
 	//=================================================================================================================
@@ -158,8 +158,8 @@
 		"MovementSpeed"					"370"
 		"MovementTurnRate"				"0.8"
 		
-		"VisionDaytimeRange"			"1100"
-		"VisionNighttimeRange"			"1100"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 	
 	//=================================================================================================================
@@ -220,8 +220,8 @@
 		"MovementSpeed"					"290"
 		"MovementTurnRate"				"0.8"
 		
-		"VisionDaytimeRange"			"700"
-		"VisionNighttimeRange"			"700"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 
 	}
 	
@@ -288,8 +288,8 @@
 		"MovementSpeed"					"360"
 		"MovementTurnRate"				"0.8"
 		
-		"VisionDaytimeRange"			"1350"
-		"VisionNighttimeRange"			"1350"
+		"VisionDaytimeRange"			"1200"
+		"VisionNighttimeRange"			"1200"
 
 	}
 	
@@ -351,8 +351,8 @@
 		"MovementSpeed"					"340"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"1000"
-		"VisionNighttimeRange"			"1000"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 
 	}
 	
@@ -479,8 +479,8 @@
 		"MovementSpeed"					"350"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"1000"
-		"VisionNighttimeRange"			"1000"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 
 	}
 	
@@ -547,8 +547,8 @@
 		"MovementSpeed"					"420"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"1200"
-		"VisionNighttimeRange"			"1200"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 
 	}
 	
@@ -613,8 +613,8 @@
 		"MovementSpeed"					"320"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"800"
-		"VisionNighttimeRange"			"800"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 
 	}
 	
@@ -701,14 +701,18 @@
 		"Ability5"				"lancelot_arms_mastership"
 		"Ability6"				"lancelot_arondite"
 		"Ability7"				"lancelot_close_spellbook"
-		"Ability8"				"lancelot_caliburn"
-		"Ability9"				"lancelot_gae_bolg"
-		"Ability10"				"lancelot_nine_lives"
-		"Ability11"				"lancelot_rule_breaker"
-		"Ability12"				"lancelot_tsubame_gaeshi"
-		"Ability13"				"lancelot_nuke"
-		"Ability14"				"presence_detection_passive"
-		"Ability15"				"attribute_bonus_custom"
+		//"Ability8"				"lancelot_caliburn"
+		//"Ability9"				"lancelot_gae_bolg"
+		//"Ability10"				"lancelot_nine_lives"
+		//"Ability11"				"lancelot_rule_breaker"
+		//"Ability12"				"lancelot_tsubame_gaeshi"
+		"Ability8"              "fate_empty1"
+		"Ability9"              "fate_empty2"
+		"Ability10"              "fate_empty3"
+		"Ability11"              "fate_empty4"
+		"Ability12"				"lancelot_nuke"
+		"Ability13"				"presence_detection_passive"
+		"Ability14"				"attribute_bonus_custom"
 
 		"Combo"						"lancelot_nuke"
 		"AttributeNumber"			"4"
@@ -743,8 +747,8 @@
 		"MovementSpeed"					"335"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"850"
-		"VisionNighttimeRange"			"850"
+		"VisionDaytimeRange"			"700"
+		"VisionNighttimeRange"			"700"
 	}
 
 	//=======================================
@@ -809,8 +813,8 @@
 		"MovementSpeed"					"350"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"800"
-		"VisionNighttimeRange"			"800"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 
 	}
 
@@ -933,8 +937,8 @@
 		"MovementSpeed"					"330"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"700"
-		"VisionNighttimeRange"			"700"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 
 	}
 
@@ -1000,8 +1004,8 @@
 		"MovementSpeed"					"320"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"800"
-		"VisionNighttimeRange"			"800"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 
 	//=======================================
@@ -1035,11 +1039,12 @@
 		"Ability15"				"attribute_bonus_custom"
 
 		"Combo"						"nero_fiery_finale"
-		"AttributeNumber"			"4"
+		"AttributeNumber"			"5"
 		"Attribute1"				"nero_attribute_pari_tenu_blauserum"
 		"Attribute2"				"nero_attribute_improve_imperial_privilege"
 		"Attribute3"				"nero_attribute_invictus_spiritus"
 		"Attribute4"				"nero_attribute_soverigns_glory"
+    "Attribute5"        "nero_attribute_pavilion"
 
 		"StatusHealth"					"1200"
 		"StatusHealthRegen"				"9.0"
@@ -1067,8 +1072,8 @@
 		"MovementSpeed"					"350"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"750"
-		"VisionNighttimeRange"			"750"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 
 	//=======================================
@@ -1130,8 +1135,8 @@
 		"MovementSpeed"					"340"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"900"
-		"VisionNighttimeRange"			"900"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 	//=======================================
 	//	Caster(Extra) - Tamamo 
@@ -1193,8 +1198,8 @@
 		"MovementSpeed"					"330"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"1000"
-		"VisionNighttimeRange"			"1000"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 	//=======================================
 	//	Assassin(Extra) - Li Shuwen 
@@ -1252,8 +1257,8 @@
 		"MovementSpeed"					"370"
 		"MovementTurnRate"				"0.8"
 
-		"VisionDaytimeRange"			"800"
-		"VisionNighttimeRange"			"800"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 	//=================================================================================================================
 	//	Ruler - Jeanne d'Arc
@@ -1315,8 +1320,8 @@
 		"MovementSpeed"					"320"
 		"MovementTurnRate"				"0.8"
 		
-		"VisionDaytimeRange"			"800"
-		"VisionNighttimeRange"			"800"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 	//=================================================================================================================
 	//	Black Rider(Apoc.) - Astolfo
@@ -1377,8 +1382,8 @@
 		"MovementSpeed"					"340"
 		"MovementTurnRate"				"0.8"
 		
-		"VisionDaytimeRange"			"750"
-		"VisionNighttimeRange"			"750"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 
 	//=================================================================================================================
@@ -1442,8 +1447,8 @@
 		"MovementSpeed"					"300"
 		"MovementTurnRate"				"0.8"
 		
-		"VisionDaytimeRange"			"800"
-		"VisionNighttimeRange"			"800"
+		"VisionDaytimeRange"			"850"
+		"VisionNighttimeRange"			"850"
 	}
 
 	
@@ -1512,8 +1517,8 @@
 		"MovementSpeed"					"340"
 		"MovementTurnRate"				"0.8"
 		
-		"VisionDaytimeRange"			"1100"
-		"VisionNighttimeRange"			"1100"
+		"VisionDaytimeRange"			"1200"
+		"VisionNighttimeRange"			"1200"
 
 	}
 	

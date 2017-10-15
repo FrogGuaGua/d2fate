@@ -1,0 +1,6 @@
+#base "koh_arsenal.txt"
+#base "snatch_strike.txt"
+#base "windblade.txt"
+#base "gb_thrown.txt"
+#base "gae_dearg.txt"
+#base "attribute_koh_arsenal.txt"

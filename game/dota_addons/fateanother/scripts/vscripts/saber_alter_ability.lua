@@ -141,6 +141,13 @@ function OnMBStart(keys)
 		caster:SetModifierStackCount( "modifier_derange_counter", caster, caster.ManaBlastCount )
 	end
 
+	-- 1.24c particle fix
+	-- Slight fix to make the particle size respect the actual AoE after obtaining SA
+	local mbParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf", PATTACH_CUSTOMORIGIN, nil)
+	ParticleManager:SetParticleControl(mbParticle, 0, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(mbParticle, 1, Vector(keys.Radius, 0, 0))
+	ParticleManager:SetParticleControl(mbParticle, 2, Vector(1.0, 0, 0))
+
 	for k,v in pairs(targets) do
 	    DoDamage(caster, v, keys.Damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	    v:AddNewModifier(caster, v, "modifier_stunned", {Duration = 0.2})
@@ -285,12 +292,17 @@ function OnVortigernHit(keys)
 	local ply = caster:GetPlayerOwner()
 	local damage = keys.Damage
 	local StunDuration = keys.StunDuration
+	local vortSwingDamage = 5
 	--print("Vortigern hit")
-	damage = damage * (80 + vortigernCount * 5)/100
+	
+	-- 1.24c changes
+	-- Flat damage bonus removed but scaling bumped up by 50%
 	if caster.IsFerocityImproved then 
-		damage = damage + 100
-		StunDuration = StunDuration + 0.3
+		vortSwingDamage = 7.5
+		--damage = damage + 100
+		--StunDuration = StunDuration + 0.3
 	end
+	damage = damage * (80 + vortigernCount * vortSwingDamage)/100
 	StunDuration = StunDuration * (80 + vortigernCount * 5)/100
 	if target.IsVortigernHit ~= true then
 		target.IsVortigernHit = true

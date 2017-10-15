@@ -336,7 +336,7 @@
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"dmg_bonus"						"10"
+				"dmg_bonus"						"8"
 			}
 			"05"
 			{

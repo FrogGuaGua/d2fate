@@ -492,11 +492,11 @@ end
 function GenerateArtificialSun(caster, location)
 	local ply = caster:GetPlayerOwner()
 	local IsSunActive = true
-	local radius = 666
+	local radius = 555
 	local artSun = CreateUnitByName("gawain_artificial_sun", location, true, nil, nil, caster:GetTeamNumber())
 	caster:FindAbilityByName("gawain_solar_embodiment"):ApplyDataDrivenModifier(caster, artSun, "modifier_artificial_sun_aura", {})
 	if caster.IsDawnAcquired then
-		radius = 999
+		radius = 777
 		artSun:AddNewModifier(caster, caster, "modifier_item_ward_true_sight", {true_sight_range = 333}) 
 	end
 	artSun:SetDayTimeVisionRange(radius)
@@ -508,7 +508,7 @@ function GenerateArtificialSun(caster, location)
 	if caster.IsDawnAcquired then
 		artSun.IsAttached = true
 
-		local targets = FindUnitsInRadius(caster:GetTeam(), location, nil, 666, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, 0, FIND_CLOSEST, false) 
+		local targets = FindUnitsInRadius(caster:GetTeam(), location, nil, 555, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, 0, FIND_CLOSEST, false) 
 		--print("finding targets")
 		if #targets == 0 then
 			artSun.IsAttached = false

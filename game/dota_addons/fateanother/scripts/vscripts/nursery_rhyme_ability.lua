@@ -566,7 +566,10 @@ function OnGlassGameStart(keys)
 	if caster.bIsQGGImproved then
 		--print("applied aura")
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game_link_aura", {})
-		caster:AddNewModifier(caster, ability, "modifier_qgg_oracle_aura", { Duration = -1 })
+		Timers:CreateTimer(1, function()
+			caster:AddNewModifier(caster, ability, "modifier_qgg_oracle_aura", { Duration = -1 })
+			ParticleManager:SetParticleControl(caster.aoeFx2, 3, Vector(0,0,0))
+		end)
 	end
 	-- find team units in radius and grant them instant heal
 	local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
@@ -625,7 +628,7 @@ function CreateGlassGameEffect(keys)
 	ParticleManager:SetParticleControl( caster.aoeFx, 0, caster:GetAbsOrigin())
 	caster.aoeFx2 = ParticleManager:CreateParticle( "particles/custom/nursery_rhyme/queens_glass_game/queens_glass_game_bookswirl.vpcf", PATTACH_CUSTOMORIGIN, nil );
 	ParticleManager:SetParticleControl( caster.aoeFx2, 1, caster:GetAbsOrigin())
-
+	ParticleManager:SetParticleControl(caster.aoeFx2, 3, Vector(1,1,1)) --allow rotations and gravity
 end
 
 function RemoveGlassGameEffect(keys)
@@ -635,7 +638,7 @@ function RemoveGlassGameEffect(keys)
 	ParticleManager:DestroyParticle( caster.aoeFx, false )
 	ParticleManager:ReleaseParticleIndex( caster.aoeFx )
 	caster.aoeFx = nil
-
+		
 	ParticleManager:DestroyParticle( caster.aoeFx2, false )
 	ParticleManager:ReleaseParticleIndex( caster.aoeFx2 )
 	caster.aoeFx2 = nil

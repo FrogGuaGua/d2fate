@@ -61,6 +61,16 @@ function OnSMGStart(keys)
     local range = ability:GetLevelSpecialValueFor( "range", ability:GetLevel() - 1 )
     local start_radius = ability:GetLevelSpecialValueFor( "start_radius", ability:GetLevel() - 1 )
     local end_radius = ability:GetLevelSpecialValueFor( "end_radius", ability:GetLevel() - 1 )
+
+    -- I'll just jump in here
+    if caster.ArsenalLevel then
+        local sAbil = caster:GetAbilityByIndex(2):GetAbilityName()
+        if sAbil == "lancelot_knight_of_honor" then
+            caster:SwapAbilities("lancelot_knight_of_honor_arsenal", sAbil, true, false)
+        elseif sAbil == "lancelot_knight_of_honor_arsenal" then
+            caster:SwapAbilities("lancelot_knight_of_honor", sAbil, true, false)
+        end
+    end
     
     -- Initialize local variables
     local current_point = caster:GetAbsOrigin()
@@ -159,7 +169,7 @@ function OnKnightStart(keys)
         if caster.KnightLevel ~= nil then NPLevel = NPLevel + caster.KnightLevel end
 
         
-        caster:SwapAbilities("lancelot_close_spellbook", a5:GetName(), true,false) 
+        caster:SwapAbilities("lancelot_close_spellbook", a5:GetName(), true,false)
         if ability:GetLevel() == 1 then
 
                 caster:FindAbilityByName("lancelot_vortigern"):SetLevel(NPLevel) 
@@ -239,10 +249,32 @@ function OnKnightClosed(keys)
 end
 
 function KnightInitialize(keys)
-        local caster = keys.caster
-        local ability = keys.ability
+    local caster = keys.caster
+    local ability = keys.ability
+    local abilityLevel = ability:GetLevel()
+    local other = caster:FindAbilityByName("lancelot_knight_of_honor_arsenal")
 
-        if caster.KnightInitialized ~= true then
+    if other then
+        if abilityLevel ~= other:GetLevel() then
+            other:SetLevel(ability:GetLevel())
+        end
+    end
+
+    local abilities = {
+        "lancelot_vortigern",
+        "lancelot_gae_bolg",
+        "lancelot_nine_lives",
+        "lancelot_rule_breaker",
+        "lancelot_tsubame_gaeshi"
+    }
+
+    for i = 1, abilityLevel do
+        if not caster:HasAbility(abilities[i]) then
+            caster:AddAbility(abilities[i])
+            if i > 1 then caster:RemoveAbility("fate_empty"..tostring(i - 1)) end
+        end
+    end
+        --[[if caster.KnightInitialized ~= true then
                 print("knight initialized")
                 caster:RemoveAbility("lancelot_vortigern") 
                 caster:RemoveAbility("lancelot_gae_bolg") 
@@ -255,6 +287,7 @@ function KnightInitialize(keys)
         if ability:GetLevel() == 1 then
                 --print("ability lvl 1")
                 caster:AddAbility("lancelot_vortigern")
+                if caster.ArsenalAcquired then caster:AddAbility("lancelot_caliburn") end
                 caster:AddAbility("fate_empty1"):SetHidden(true)
                 caster:AddAbility("fate_empty2")
                 caster:AddAbility("fate_empty3")
@@ -281,7 +314,7 @@ function KnightInitialize(keys)
                 --caster:AddAbility("lancelot_nine_lives")
                 --caster:AddAbility("lancelot_rule_breaker")
                 caster:AddAbility("lancelot_tsubame_gaeshi")
-        end
+        end--]]
 end
 
 function OnKnightUsed(keys)
@@ -289,7 +322,7 @@ function OnKnightUsed(keys)
         local ply = caster:GetPlayerOwner()
         local ability = keys.ability
 
-        if caster.KnightLevel == nil then
+        if not caster.KnightLevel and not caster.ArsenalLevel then
                 OnKnightClosed(keys)
                 caster:FindAbilityByName("lancelot_knight_of_honor"):StartCooldown(ability:GetCooldown(ability:GetLevel())) 
         end
@@ -579,6 +612,7 @@ function OnKnightImproved(keys)
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     if hero.KnightLevel == nil then
+            hero.MasterUnit2:FindAbilityByName("lancelot_attribute_improve_koh_arsenal"):StartCooldown(9999)
             hero.KnightLevel = 1
             keys.ability:EndCooldown()
     else

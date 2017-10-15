@@ -1,6 +1,7 @@
 // Dota Heroes File
 
 #base "abilities/archer5/archer_abilities.txt"
+#base "abilities/lancelot/lancelot_abilities.txt"
 #base "abilities/vlad/vlad_abilities.txt"
 #base "abilities/atalanta/atalanta_abilities.txt"
 
@@ -3163,30 +3164,31 @@
 			}
 		}
 		
-		"Modifiers"
-		{
-			"modifier_mana_burst_VFX"
-			{
-				"IsHidden"		"1"
-				"IsPurgable"	"0"
-			
-				"Duration"		"1.5"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"			"TARGET"
-						"EffectName"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
-						"EffectAttachType"	"start_at_customorigin"
-						"ControlPoints"
-						{
-							"01"			"%radius 0 0"
-							"02"			"1.0 0 0"
-						}
-					}
-				}
-			}
-		}
+		//Particle is created on lua script side
+		//"Modifiers"
+		//{
+		//	"modifier_mana_burst_VFX"
+		//	{
+		//		"IsHidden"		"1"
+		//		"IsPurgable"	"0"
+		//	
+		//		"Duration"		"1.5"
+		//		"OnCreated"
+		//		{
+		//			"AttachEffect"
+		//			{
+		//				"Target"			"TARGET"
+		//				"EffectName"		"particles/units/heroes/hero_disruptor/disruptor_static_storm.vpcf"
+		//				"EffectAttachType"	"start_at_customorigin"
+		//				"ControlPoints"
+		//				{
+		//					"01"			"%radius 0 0"
+		//					"02"			"1.0 0 0"
+		//				}
+		//			}
+		//		}
+		//	}
+		//}
 	}
 
 	//=================================================================================================================
@@ -3365,7 +3367,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.3"
+				"stun_duration"			"0.5"
 			}
 		}
 		
@@ -3805,6 +3807,11 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"uf_str_ratio"		"1.5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"new_vort_max_swing__TT"		"140"
 			}
 		}
 		
@@ -4939,14 +4946,9 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_absorb"				"600 750 900 1050 1200"
+				"damage_absorb"				"600 800 1000 1200 1400"
 			}
 			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"0 50 100 150 200"
-			}
-			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"			"7"
@@ -4991,14 +4993,6 @@
 				"States"
 				{
 					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			"modifier_rho_aias_health_bonus"
-			{
-				"Passive"		"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS"		"%bonus_health"
 				}
 			}
 		}
@@ -5452,12 +5446,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"200 300 400 500 600"
+				"damage"				"200 350 500 650 800"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"trap_duration"			"3.0"
+				"trap_duration"			"2.0"
 			}
 			"03"
 			{
@@ -6681,7 +6675,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_constant"			"800 1050 1300 1550 1800"
+				"health_constant"			"800 1100 1400 1700 2000"
 			}
 			"02"
 			{
@@ -7381,7 +7375,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_sight"			"300"
+				"bonus_sight"			"300 330 360 390 420"
 			}
 			"05"
 			{
@@ -7396,6 +7390,7 @@
 			{
 				"ScriptFile"		"fa_ability"
 				"Function"			"OnGKStart"
+				"vision"				"%bonus_sight"
 			}
 			"FireSound"
 			{
@@ -7704,6 +7699,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"gcd"					"15"
 			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cdr"					"3 6 9 12 15"
+			}
 		}
 		
 		"OnSpellStart"
@@ -7760,7 +7760,8 @@
 						"DamageTaken"		"%attack_damage"
 						"Threshold"			"%threshold"
 						"StunDuration"		"%stun_duration"
-						"AttackCount"			"%attack_count"
+						"AttackCount"		"%attack_count"
+						"Cdr"				"%cdr"
 					}
 				}				
 				"Properties"
@@ -8429,7 +8430,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"16"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -8445,7 +8446,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"vision_cd"		"10.0"
+				"vision_cd"				"10.0"
 			}
 		}
 		
@@ -9302,7 +9303,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"agi_increase"				"1 1.25 1.5 1.75 2"
+				"agi_increase"				"0.5 1 1.5 2 2.5"
 			}
 			"04"
 			{
@@ -9835,6 +9836,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"baseattack_str_reduction"			"0.75"
 			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_bonus"			"300"
+			}
 		}
 		
 		"OnSpellStart"
@@ -9843,6 +9849,7 @@
 			{
 				"ScriptFile"	"ta_ability"
 				"Function"		"OnWeakeningVenomAcquired"
+				"vision"			"%vision_bonus"
 			}
 		}
 	}
@@ -10950,7 +10957,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"dmg_ratio"			"0.25"
+				"dmg_ratio"			"0.20"
 			}
 		}
 		
@@ -12983,7 +12990,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"int_ratio"		"1.0"
+				"int_ratio"		"1.5"
 			}
 		}
 		
@@ -13587,11 +13594,11 @@
 				"AoEDamage"			"%aoe_damage_percent"
 				"Radius"			"%radius"
 			}
-			"RunScript"
-			{
-				"ScriptFile"		"lancelot_ability"
-				"Function"			"OnKnightUsed"
-			}	
+			//"RunScript"
+			//{
+			//	"ScriptFile"		"lancelot_ability"
+			//	"Function"			"OnKnightUsed"
+			//}
 		}
 
 		
@@ -13680,7 +13687,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"0.3"
+				"stun_duration"			"0.5"
 			}
 		}
 		
@@ -14951,7 +14958,7 @@
 			}
 			"modifier_murderous_instinct_bash_checker"
 			{
-				"Duration"		"4.0"
+				"Duration"		"3.5"
 				"IsDebuff"		"1"
 				"IsHidden"		"0"
 			}
@@ -17599,7 +17606,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"36"
+		"AbilityCooldown"				"20"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -20990,6 +20997,111 @@
 				"MaxRange"				"%max_range"
 			}
 		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"nero_ability"
+				"Function"				"OnRIUpgrade"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"false"
+			
+			"RunScript"
+			{
+				"ScriptFile"    "nero_ability"
+				"Function"      "OnRIHit"
+				"Damage"		"%damage"
+				"StunDuration"	"%stun_duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_rosa_ichthys_anim"
+			{
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_1"	
+				"Duration"			"1.0"
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"0.7"
+				}
+			}
+			"modifier_laus_anim"
+			{
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_2"	
+				"Duration"			"1.0"
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"1.0"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Nero : Rosa Ichthys II
+	//=================================================================================================================
+	"nero_rosa_ichthys2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"25"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/nero_rosa_ichthys"
+		"AbilityCastAnimation" 			"ACT_DOTA_IDLE"
+		
+		// Ability stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1050"
+		"AbilityCastRangeBuffer"		"0"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"3"
+		"AbilityManaCost"				"0"
+		
+		// Ability special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"200 250 300 350 400"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"0.35 0.45 0.55 0.65 0.75"
+			}
+		}
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"						
+		{
+			"particle"			"particles/custom/archer/archer_overedge_slash.vpcf"
+			"particle"			"particles/units/heroes/hero_legion_commander/legion_duel_start_text_burst_flare.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"nero_ability"
+				"Function"				"OnRI2Start"
+				"MaxRange"				"%max_range"
+			}
+		}
 		
 		"OnProjectileHitUnit"
 		{
@@ -21564,6 +21676,57 @@
 			}
 		}
 	}
+	//=======================================
+	// Nero Attribute : Pavillion of Falling Flowers
+	//=======================================
+	"nero_attribute_pavilion"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/nero_rosa_ichthys"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"13"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"extra_perc_dmg"					"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"new_combo_damage__TT"					"30"
+			}					
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reduction"					"0.25"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"nero_ability"
+				"Function"		"OnPavilionAcquired"
+				"bonus"		"%extra_perc_dmg"
+				"reduction"		"%reduction"
+			}
+		}
+	}
+
 
 
 	//=================================================================================================================
@@ -21589,7 +21752,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"sun_radius"					"666 999"
+				"sun_radius"					"555 777"
 			}
 			"02"
 			{
@@ -21710,7 +21873,7 @@
 		"AbilityCastRange"				"800"
 		"AbilityCastRangeBuffer"		"200"
 		"AbilityCastPoint"				"0.15"
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"13"
 		"AbilityManaCost"				"100"
 		
 		// Ability special
@@ -23090,7 +23253,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mr_reduction"			"-4"
+				"mr_reduction"			"-3"
 			}
 			"02"
 			{
@@ -23573,7 +23736,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_modifier_enemy"			"150 150 175 200 200"
+				"damage_modifier_enemy"			"125 125 150 175 200"
 			}
 			"03"
 			{
@@ -23976,7 +24139,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"movespeed_modifier"			"8 16 24 32 40"
+				"movespeed_modifier"			"10 15 20 25 30"
 			}		
 			"05"
 			{
@@ -24001,7 +24164,7 @@
 			"09"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"movespeed_modifier_enemy"			"-8 -16 -24 -32 -40"
+				"movespeed_modifier_enemy"			"-10 -15 -20 -25 -30"
 			}
 			"10"
 			{
@@ -24075,7 +24238,7 @@
 				"EffectAttachType"		"follow_origin"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"	"%mana_regen_enemy"
+					//"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"	"%mana_regen_enemy"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_modifier_enemy"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%movespeed_modifier_enemy"
 				}
@@ -24536,7 +24699,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"700"                // duplicate key #2
 		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastPoint"				"0.3"
 
 		"AbilitySpecial"
 		{
@@ -26073,7 +26236,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"agi_ratio"				"2.0"
+				"agi_ratio"				"2.5"
 			}
 			"02"
 			{
@@ -26487,7 +26650,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"		"400 475 550 625 700"
+				"damage"		"375 450 525 600 675"
 			}
 			"04"
 			{
@@ -26581,12 +26744,12 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"active_total_damage"			"700 825 950 1075 1200"
+				"active_damage_per_sec"			"350 425 500 575 650"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"active_damage_per_tick"		"70 82.5 95 107.5 120"
+				"active_damage_per_tick"		"70 85 100 115 130"
 			}
 			"06"
 			{
@@ -29181,7 +29344,7 @@
 			"particle"		"particles/neutral_fx/roshan_death_aegis_starfall.vpcf"
 		}
 
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.4"
 		"AbilityChannelTime"			"%channel_duration"		
 		"AbilityCastRange"				"%radius"
 		"AbilityCooldown"				"20"
