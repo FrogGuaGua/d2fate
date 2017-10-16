@@ -14,8 +14,8 @@ end
 
 function atalanta_entangling_trap:VFX1_Entangle(hTarget,hDummyCenter,fEntangleDuration)
   local PI = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, hDummyCenter)
-  ParticleManager:SetParticleControlEnt(PI, 0, hTarget, PATTACH_ABSORIGIN_FOLLOW, nil, hTarget:GetOrigin(), false)
-  ParticleManager:SetParticleControlEnt(PI, 1, hDummyCenter, PATTACH_ABSORIGIN_FOLLOW, nil, hDummyCenter:GetOrigin(), false)
+  ParticleManager:SetParticleControlEnt(PI, 0, hTarget, PATTACH_ABSORIGIN_FOLLOW, nil, hTarget:GetAbsOrigin(), true)
+  ParticleManager:SetParticleControlEnt(PI, 1, hDummyCenter, PATTACH_ABSORIGIN_FOLLOW, nil, hDummyCenter:GetAbsOrigin(), true)
   ParticleManager:SetParticleControl(PI, 2, Vector(fEntangleDuration,0,0))
   return PI
 end
@@ -148,13 +148,12 @@ function atalanta_entangling_trap:EntangleThinkFor1(fCounter,hTarget1,hDummy)
       local bT1Check = self:EntanglePunishCheck(hDummy:GetAbsOrigin(),hTarget1,fEntanglePunishRange)
       if bT1Check then
         self:EntanglePunish(hTarget1)
-        FxDestroyer(PI1, false)
+        self:DestroyAllVFX(false,hDummy,PI1)
         return nil
       end
       return fInterval     
     else 
-      FxDestroyer(PI1, false)
-      hDummy:RemoveSelf()
+      self:DestroyAllVFX(false,hDummy,PI1)
       return nil
     end
   end)
@@ -195,7 +194,6 @@ function atalanta_entangling_trap:EntangleThinkFor2(fCounter,hTarget1,hTarget2,h
       return fInterval     
     else 
       self:DestroyAllVFX(false,hDummy,PI1,PI2)
-      hDummy:RemoveSelf()
       return nil
     end
   end)
