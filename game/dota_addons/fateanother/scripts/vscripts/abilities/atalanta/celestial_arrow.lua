@@ -21,7 +21,11 @@ function atalanta_celestial_arrow:OnUpgrade()
                 ability:ShootArrow(...)
             end
         end
-
+        if not caster.GrantQBuff then
+            function caster:GrantQBuff(...)
+                ability:GrantQBuff(...)
+            end
+        end
         if not caster.ShootLinearArrow then
             function caster:ShootLinearArrow(...)
                 ability:ShootLinearArrow(...)
@@ -126,13 +130,9 @@ function atalanta_celestial_arrow:OnProjectileThink(location)
         AddFOWViewer(caster:GetTeamNumber(), location, radius, duration, false)
     end
 end
-
-function atalanta_celestial_arrow:OnProjectileHit_ExtraData(target, location, data)
-    if target == nil then
-        return
-    end
+function atalanta_celestial_arrow:GrantQBuff(hAbility)
     local hCaster = self:GetCaster()
-    if self.bFirstHit == true then  
+    if hAbility.bFirstHit == true then  
         local fOnHitBuffDuration = self:GetSpecialValueFor("stacks_duration")
         local iMaxStacks = self:GetSpecialValueFor("max_stacks")
         local hModifier = hCaster:FindModifierByName("modifier_celestial_arrow_onhit")
@@ -145,8 +145,16 @@ function atalanta_celestial_arrow:OnProjectileHit_ExtraData(target, location, da
             hModifier:SetDuration(fOnHitBuffDuration, true)
         end
         hCaster:SetModifierStackCount("modifier_celestial_arrow_onhit", self, math.min(iCurrentStack + 1,iMaxStacks))
-        self.bFirstHit = false
-    end    
+        hAbility.bFirstHit = false
+    end
+end   
+ 
+function atalanta_celestial_arrow:OnProjectileHit_ExtraData(target, location, data)
+    if target == nil then
+        return
+    end
+    local hCaster = self:GetCaster()
+    self:GrantQBuff(self)
     hCaster:ArrowHit(target, data["1"])
 end
 
@@ -156,7 +164,7 @@ function atalanta_celestial_arrow:ArrowHit(target, slow, bIsPhoebus)
     caster:AddHuntStack(target, 1)
 
     local damage = caster:GetAverageTrueAttackDamage(caster)
-    if bIsPHoebus then
+    if bIsPhoebus and bIsPhoebus == 1 then
         damage = damage * 0.75
     end
 

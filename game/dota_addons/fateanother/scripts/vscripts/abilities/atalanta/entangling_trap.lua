@@ -84,7 +84,7 @@ function atalanta_entangling_trap:TrapThink(hTrap)
   
   Timers:CreateTimer(fArmDelay,function()
     if hTrap:IsAlive() then
-      local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTrap:GetAbsOrigin(), nil, fTriggerRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
+      local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTrap:GetAbsOrigin(), nil, fTriggerRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
       for k,v in pairs(tTargets) do
         if v ~= nil then
           self:Activate(v, hTrap)
@@ -112,7 +112,7 @@ function atalanta_entangling_trap:Activate(hTarget, hTrap)
   local fTargetsDistPull = self:GetSpecialValueFor("initial_pull")
   local hDummy = SpawnDummy(hCaster)  
 
-  local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fEntangleRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
+  local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fEntangleRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
   if #tTargets == 1 then 
     hDummy:SetAbsOrigin(hTrap:GetAbsOrigin())
     self:EntangleThinkFor1(fCounter,tTargets[1],hDummy)    

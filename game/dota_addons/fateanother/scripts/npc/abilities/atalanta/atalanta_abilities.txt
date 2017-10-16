@@ -46,12 +46,12 @@
       "04"
       {
         "var_type"						"FIELD_FLOAT"
-        "casttime_reduction_per_stack"		"1 1.75 2.5 3.25 4"
+        "agility_per_stack"		"1 2 3 4 5"
       }
       "05"
       {
         "var_type"						"FIELD_FLOAT"
-        "agility_per_stack"		"1 2 3 4 5"
+        "casttime_reduction_per_stack"		"1 1.75 2.5 3.25 4"
       }
       "06"
       {
@@ -202,13 +202,18 @@
       "01"
       {
         "var_type"					"FIELD_FLOAT"
-        "sleep_duration"		"3 3.5 4 4.5 5"
+        "sleep_duration"		"2.5 3 3.5 4 4.5"
       }
       "02"
       {
         "var_type"					"FIELD_FLOAT"
         "range"		"2500"
       }      
+      "03"
+      {
+        "var_type"					"FIELD_FLOAT"
+        "cast_point"		"0.7"
+      }   
     }
   }
   //=======================================
@@ -347,7 +352,7 @@
       "01"
       {
         "var_type"					"FIELD_FLOAT"
-        "channel_duration"		"3 2.5 2 1.5 1"
+        "channel_duration"		"3.1 2.7 2.3 1.9 1.5"
       }
     }
   }
@@ -528,7 +533,7 @@
     }
   }
   //=======================================
-  // Atalanta: Tauropolos - Bow of Heaven 
+  // Atalanta: Tauropolos 
   //=======================================
   "atalanta_tauropolos_new"
   {
@@ -699,6 +704,11 @@
       {
         "var_type"			"FIELD_FLOAT"
         "cast_time"			"1.4"
+      }
+      "08"
+      {
+        "var_type"			"FIELD_FLOAT"
+        "arrows_damage_percentage"				"75"
       }
     }
   }
@@ -1047,7 +1057,7 @@
     
     "AbilityCastPoint"				"0.0"
     "AbilityCooldown"				"9999"
-    "AbilityManaCost"				"13"
+    "AbilityManaCost"				"16"
 
     "precache"
     {

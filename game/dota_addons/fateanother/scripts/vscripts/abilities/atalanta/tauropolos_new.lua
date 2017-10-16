@@ -14,6 +14,9 @@ end
 function atalanta_tauropolos_new:GetAOERadius()
   return self:GetSpecialValueFor("splash_radius")
 end
+function atalanta_tauropolos_new:GetCastPoint()
+  return self:GetSpecialValueFor("cast_point")
+end
 
 if IsClient() then
   return 
@@ -51,7 +54,6 @@ function atalanta_tauropolos_new:GetPlaybackRateOverride()
   return 0.5
 end
 function atalanta_tauropolos_new:OnAbilityPhaseStart()
-  print(self:GetCastPoint())
   local hCaster = self:GetCaster()
   --StartAnimation(hCaster, {duration=1.5, activity=ACT_DOTA_CAST_ABILITY_1, rate=0.7})
   hCaster:EmitSound("Atalanta.RPull")
@@ -190,7 +192,7 @@ function atalanta_tauropolos_new:OnProjectileHit_ExtraData(hTarget, vLocation, t
     self:Explosion(hTarget, tData)
     DoDamage(hCaster, hTarget, tData.fDamage, DAMAGE_TYPE_MAGICAL, 0, self, false)
     hTarget:EmitSound("Atalanta.RImpact")
-    hTarget:EmitSound("Atalanta.RImpact2")
+    EmitGlobalSound("Atalanta.RImpact2")
     Timers:CreateTimer(0.033,function()
       ProjectileManager:DestroyLinearProjectile(self.iProjectile)
     end)

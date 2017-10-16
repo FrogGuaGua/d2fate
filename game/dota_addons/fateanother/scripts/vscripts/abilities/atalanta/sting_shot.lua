@@ -4,6 +4,9 @@ LinkLuaModifier("modifier_sting_shot", "abilities/atalanta/modifier_sting_shot",
 function atalanta_sting_shot:GetCastRange(vLocation,hTarget)
   return self:GetSpecialValueFor("range")
 end
+function atalanta_sting_shot:GetCastPoint()
+  return self:GetSpecialValueFor("cast_point")
+end
 
 if IsClient() then
   return 
@@ -50,6 +53,7 @@ function atalanta_sting_shot:OnSpellStart()
   hCaster:UseArrow(1)
   hCaster:EmitSound("Ability.Powershot.Alt")
   hCaster:CloseTraps(self)
+  self.bArrowHit = false
 
   local tProjectile = {
     EffectName = "particles/custom/atalanta/sting/shot.vpcf",
@@ -76,8 +80,10 @@ function atalanta_sting_shot:OnProjectileHit_ExtraData(hTarget, vLocation, tData
     return
   end
   local hCaster = self:GetCaster()
-  if hTarget:IsRealHero() then
+  if hTarget:IsRealHero() and not self.bArrowHit then
     hTarget:AddNewModifier(hCaster,self,"modifier_sting_shot",{Duration = tData.fSleepDuration})
-    ProjectileManager:DestroyLinearProjectile(self.iProjectile)
+    Timers:CreateTimer(0.033,function()
+      ProjectileManager:DestroyLinearProjectile(self.iProjectile)
+    end)  
   end
 end

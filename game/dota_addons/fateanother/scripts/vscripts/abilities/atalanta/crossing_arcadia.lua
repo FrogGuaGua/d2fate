@@ -66,9 +66,9 @@ function atalanta_crossing_arcadia:OnProjectileHit_ExtraData(target, location, d
     if not target then
         return
     end
-    
     local targets = FindUnitsInRadius(caster:GetTeam(), target:GetOrigin(), nil, data["1"], DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
     for _,v in pairs(targets) do
+        caster:GrantQBuff(self)
         if data["3"] == 0 then
             caster:ArrowHit(v, data["2"],data["3"])
         else
@@ -159,7 +159,7 @@ function atalanta_crossing_arcadia:OnSpellStart()
     local aoe = self:GetAOERadius()
     local effect = "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
     local facing = caster:GetForwardVector() + Vector(0, 0, -2)
-
+    self.bFirstHit = true
     caster:PreventDI()
     caster:SetPhysicsFriction(0)
     caster:SetPhysicsVelocity(-forwardVec * retreatDist * 2 + Vector(0,0,1200))
