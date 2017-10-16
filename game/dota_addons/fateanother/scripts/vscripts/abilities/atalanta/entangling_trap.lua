@@ -19,10 +19,11 @@ function atalanta_entangling_trap:VFX1_Entangle(hTarget,hDummyCenter,fEntangleDu
   ParticleManager:SetParticleControl(PI, 2, Vector(fEntangleDuration,0,0))
   return PI
 end
-function atalanta_entangling_trap:DestroyAllVFX(bInstant,PI1,PI2,PI3)
+function atalanta_entangling_trap:DestroyAllVFX(bInstant,hDummy,PI1,PI2,PI3)
   FxDestroyer(PI1,bInstant)
   FxDestroyer(PI2,bInstant)
   FxDestroyer(PI3,bInstant)
+  hDummy:RemoveSelf()
 end
 function atalanta_entangling_trap:CalculateCenterFor2(hTarget1,hTarget2)
   local vTarget1 = hTarget1:GetAbsOrigin()
@@ -172,12 +173,12 @@ function atalanta_entangling_trap:EntangleThinkFor2(fCounter,hTarget1,hTarget2,h
       local bT1DownscaleCheck = self:EntangleDownscaleCheck(hTarget1)
       local bT2DownscaleCheck = self:EntangleDownscaleCheck(hTarget2)
       if bT1DownscaleCheck then
-        self:DestroyAllVFX(true,PI1,PI2)
+        self:DestroyAllVFX(true,hDummy,PI1,PI2)
         self:EntangleThinkFor1(fCounter,hTarget2,hDummy)
         return nil
       end
       if bT2DownscaleCheck then
-        self:DestroyAllVFX(true,PI1,PI2)
+        self:DestroyAllVFX(true,hDummy,PI1,PI2)
         self:EntangleThinkFor1(fCounter,hTarget1,hDummy)
         return nil
       end  
@@ -187,13 +188,13 @@ function atalanta_entangling_trap:EntangleThinkFor2(fCounter,hTarget1,hTarget2,h
       if bT1Check or bT2Check then
         self:EntanglePunish(hTarget1)
         self:EntanglePunish(hTarget2)
-        self:DestroyAllVFX(false,PI1,PI2)
+        self:DestroyAllVFX(false,hDummy,PI1,PI2)
         return nil
       end
       hDummy:SetAbsOrigin(vCenter) 
       return fInterval     
     else 
-      self:DestroyAllVFX(false,PI1,PI2)
+      self:DestroyAllVFX(false,hDummy,PI1,PI2)
       hDummy:RemoveSelf()
       return nil
     end
@@ -215,17 +216,17 @@ function atalanta_entangling_trap:EntangleThinkFor3(fCounter,hTarget1,hTarget2,h
       local bT2DownscaleCheck = self:EntangleDownscaleCheck(hTarget2)
       local bT3DownscaleCheck = self:EntangleDownscaleCheck(hTarget3)
       if bT1DownscaleCheck then
-        self:DestroyAllVFX(true,PI1,PI2,PI3)
+        self:DestroyAllVFX(true,hDummy,PI1,PI2,PI3)
         self:EntangleThinkFor2(fCounter,hTarget2,hTarget3,hDummy)
         return nil
       end
       if bT2DownscaleCheck then
-        self:DestroyAllVFX(true,PI1,PI2,PI3)
+        self:DestroyAllVFX(true,hDummy,PI1,PI2,PI3)
         self:EntangleThinkFor2(fCounter,hTarget1,hTarget2,hDummy)
         return nil
       end  
       if bT3DownscaleCheck then
-        self:DestroyAllVFX(true,PI1,PI2,PI3)
+        self:DestroyAllVFX(true,hDummy,PI1,PI2,PI3)
         self:EntangleThinkFor2(fCounter,hTarget1,hTarget2,hDummy)
         return nil
       end      
@@ -237,14 +238,13 @@ function atalanta_entangling_trap:EntangleThinkFor3(fCounter,hTarget1,hTarget2,h
         self:EntanglePunish(hTarget1)
         self:EntanglePunish(hTarget2)
         self:EntanglePunish(hTarget3)
-        self:DestroyAllVFX(false,PI1,PI2,PI3)
+        self:DestroyAllVFX(false,hDummy,PI1,PI2,PI3)
         return nil
       end        
       hDummy:SetAbsOrigin(vCenter) 
       return fInterval     
     else 
-      self:DestroyAllVFX(false,PI1,PI2,PI3)
-      hDummy:RemoveSelf()
+      self:DestroyAllVFX(false,hDummy,PI1,PI2,PI3)
       return nil
     end
   end)
