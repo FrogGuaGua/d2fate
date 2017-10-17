@@ -147,6 +147,8 @@ cleansable = {
     "modifier_la_black_luna_slow",
     "modifier_nursery_rhyme_shapeshift_slow",
     "modifier_doppelganger_lookaway_slow",
+    "modifier_cobweb_slow",
+    "modifier_tauropolos_slow",
     -- Other CCs
     "modifier_stunned",
     "modifier_rule_breaker",
@@ -165,6 +167,7 @@ cleansable = {
     "locked",
     "rooted",
     "stunned",
+    "modifier_sting_shot",
 
     -- Debuffs
     "modifier_gust_heaven_indicator_enemy"
@@ -198,6 +201,8 @@ slowmodifier = {
     "modifier_nursery_rhyme_shapeshift_slow",
     "modifier_doppelganger_lookaway_slow",
     "modifier_ceremonial_purge_slow",
+    "modifier_cobweb_slow",
+    "modifier_tauropolos_slow",
 }
 
 donotlevel = {
@@ -282,6 +287,7 @@ CannotReset = {
     "vlad_battle_continuation",
     "vlad_combo",
     "vlad_protection_of_faith_cd",
+    "phoebus_catastrophe_barrage",
 }
 
 femaleservant = {

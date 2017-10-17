@@ -17,5 +17,5 @@ function modifier_bow_proc:RemoveOnDeath()
 end
 
 function modifier_bow_proc:GetTexture()
-    return "custom/atalanta_tauropolos"
+    return "custom/atalanta_bow_of_heaven"
 end

@@ -1,6 +1,7 @@
 atalanta_phoebus_catastrophe_barrage = class({})
 LinkLuaModifier("modifier_phoebus_catastrophe_cooldown", "abilities/atalanta/modifier_phoebus_catastrophe_cooldown", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_barrage_slow", "abilities/atalanta/modifier_barrage_slow", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_barrage_cd", "abilities/atalanta/modifier_barrage_cd", LUA_MODIFIER_MOTION_NONE)
 
 require("abilities/atalanta/phoebus_catastrophe")
 
@@ -75,7 +76,8 @@ function atalanta_phoebus_catastrophe_barrage:OnSpellStart()
     
     caster:EndBowOfHeaven()
     Timers:RemoveTimer(caster.BowOfHeavenTimer)
-    
+    caster:AddNewModifier(caster, self, "modifier_barrage_cd", {Duration = self:GetCooldown(1)})
+
     AddFOWViewer(caster:GetTeamNumber(), position, aoe, 3 + fixDuration, false)
 
     self:ShootAirArrows()

@@ -132,6 +132,9 @@ function atalanta_tauropolos_new:Explosion(hTarget,tData)
   local fSlowPercentage = self:GetSpecialValueFor("slow_percentage")
   local fDamageSplashPercentage = self:GetSpecialValueFor("splash_percentage")/100
   local iMaxStacks = hCaster:FindAbilityByName("atalanta_calydonian_hunt"):GetSpecialValueFor("max_stacks")
+  if hCaster.GoldenAppleAcquired then
+    iMaxStacks = iMaxStacks + 2
+  end
   local sParticle = "particles/custom/atalanta/r/r_impact.vpcf"
   local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)  
   if hTarget:HasModifier("modifier_calydonian_hunt") then
