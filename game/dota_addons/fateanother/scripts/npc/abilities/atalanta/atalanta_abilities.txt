@@ -159,7 +159,9 @@
       "soundfile"	"soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
       "model" "models/props_nature/bush_00.vmdl"
       "particle" "particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf"
-      "particle" "particles/custom/atalanta/trap_triggered.vpcf"      
+      "particle" "particles/custom/atalanta/trap_triggered.vpcf" 
+      "particle"  "particles/custom/atalanta/entangle/pair_tree.vpcf"
+
     }
     "AbilitySpecial"
     {

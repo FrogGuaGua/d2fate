@@ -1,5 +1,7 @@
 atalanta_entangling_trap = class({})
 LinkLuaModifier("modifier_atalanta_trap", "abilities/atalanta/modifier_atalanta_trap", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_entangle", "abilities/atalanta/modifier_entangle", LUA_MODIFIER_MOTION_NONE)
+
 
 function atalanta_entangling_trap:GetCastRange(vLocation,hTarget)
   return self:GetSpecialValueFor("cast_range")
@@ -13,7 +15,7 @@ if IsClient() then
 end
 
 function atalanta_entangling_trap:VFX1_Entangle(hTarget,hDummyCenter,fEntangleDuration)
-  local PI = ParticleManager:CreateParticle("particles/units/heroes/hero_windrunner/windrunner_shackleshot_pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, hDummyCenter)
+  local PI = ParticleManager:CreateParticle("particles/custom/atalanta/entangle/pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, hDummyCenter)
   ParticleManager:SetParticleControlEnt(PI, 0, hTarget, PATTACH_ABSORIGIN_FOLLOW, nil, hTarget:GetAbsOrigin(), true)
   ParticleManager:SetParticleControlEnt(PI, 1, hDummyCenter, PATTACH_ABSORIGIN_FOLLOW, nil, hDummyCenter:GetAbsOrigin(), true)
   ParticleManager:SetParticleControl(PI, 2, Vector(fEntangleDuration,0,0))
@@ -114,6 +116,11 @@ function atalanta_entangling_trap:Activate(hTarget, hTrap)
   local hDummy = SpawnDummy(hCaster)  
 
   local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fEntangleRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
+  for i = 1,3 do 
+    if tTargets[i] ~= nil then
+      tTargets[i]:AddNewModifier(self:GetCaster(),self,"modifier_entangle",{Duration = self:GetSpecialValueFor("entangle_duration")})
+    end
+  end
   if #tTargets == 1 then 
     hDummy:SetAbsOrigin(hTrap:GetAbsOrigin())
     self:EntangleThinkFor1(fCounter,tTargets[1],hDummy)    
