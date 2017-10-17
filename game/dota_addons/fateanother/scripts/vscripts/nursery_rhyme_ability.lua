@@ -566,7 +566,7 @@ function OnGlassGameStart(keys)
 	if caster.bIsQGGImproved then
 		--print("applied aura")
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game_link_aura", {})
-		Timers:CreateTimer(1, function()
+		Timers:CreateTimer(0.6, function()
 			caster:AddNewModifier(caster, ability, "modifier_qgg_oracle_aura", { Duration = -1 })
 			ParticleManager:SetParticleControl(caster.aoeFx2, 3, Vector(0,0,0))
 		end)
