@@ -54,27 +54,28 @@ function archer_5th_broken_phantasm:OnChannelFinish(bInterrupted)
 end
 
 function archer_5th_broken_phantasm:OnProjectileHit_ExtraData(hTarget, vLocation, tData)
+    if hTarget == nil then
+        return 
+    end
     local hCaster = self:GetCaster()
-    local hTarget = self.hTarget
     local fTargetDamage = self:GetSpecialValueFor("target_damage")
     local fSplashDamage = self:GetSpecialValueFor("splash_damage")
     local fRadius = self:GetSpecialValueFor("radius")
     local fStun = self:GetSpecialValueFor("stun_duration")
-
+    
     if IsSpellBlocked(hTarget) then return end
 
     local pcExplosion = ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)
     ParticleManager:SetParticleControl(pcExplosion, 3, hTarget:GetAbsOrigin())
     ParticleManager:ReleaseParticleIndex(pcExplosion)
-
-	hTarget:EmitSound("Misc.Crash")
-	DoDamage(hCaster, hTarget, fTargetDamage, DAMAGE_TYPE_MAGICAL, 0, self, false)
-	if not hTarget:IsMagicImmune() then
-		hTarget:AddNewModifier(hCaster, hTarget, "modifier_stunned", {Duration = fStun})
-	end
-
-	local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
-	for k,v in pairs(tTargets) do
-         DoDamage(hCaster, v, fSplashDamage, DAMAGE_TYPE_MAGICAL, 0, self, false)
+    
+    hTarget:EmitSound("Misc.Crash")
+    DoDamage(hCaster, hTarget, fTargetDamage, DAMAGE_TYPE_MAGICAL, 0, self, false)
+    if not hTarget:IsMagicImmune() then
+        hTarget:AddNewModifier(hCaster, hTarget, "modifier_stunned", {Duration = fStun})
+    end
+    local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
+    for k,v in pairs(tTargets) do
+        DoDamage(hCaster, v, fSplashDamage, DAMAGE_TYPE_MAGICAL, 0, self, false)
     end
 end
