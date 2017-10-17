@@ -196,6 +196,7 @@ end
 
 vortigernCount = 0
 function OnVortigernStart(keys)
+	ArsenalReturnMana(keys.caster)
 	local caster = keys.caster
 	local ability = keys.ability
 	local ply = caster:GetPlayerOwner()

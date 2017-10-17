@@ -60,3 +60,15 @@ function lancelot_knight_of_honor_arsenal:OnSpellStart()
 
     UpdateAbilityLayout(hCaster, t)
 end
+
+function lancelot_knight_of_honor_arsenal:CastFilterResult()
+    if self:GetCaster():HasModifier("modifier_arondite") then
+        return UF_FAIL_CUSTOM
+    end
+
+    return UF_SUCCESS
+end
+
+function lancelot_knight_of_honor_arsenal:GetCustomCastError()
+    return "#Cannot_Be_Cast_Now"
+end

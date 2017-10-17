@@ -20,7 +20,7 @@
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"300"
-		"AbilityDamage"					"400 475 550 625 700"
+		"AbilityDamage"					"400"
 
 		"precache"
 		{
@@ -32,7 +32,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"400 475 550 625 700"
+				"damage"				"400"
 			}
 			"02"
 			{
@@ -42,7 +42,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"global_cooldown"		"30 26 22 18 14"
+				"global_cooldown"		"30"
 			}
 		}
 

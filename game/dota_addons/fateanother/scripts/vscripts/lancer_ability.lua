@@ -289,6 +289,7 @@ end
 
 
 function OnGBTargetHit(keys)
+	ArsenalReturnMana(keys.caster)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	if keys.caster:GetAbilityByIndex(2):GetAbilityName() == "lancer_5th_wesen_gae_bolg" then return end -- laziest fix of my lyfe
 
@@ -498,6 +499,7 @@ function OnGBComboHit(keys)
 end
 
 function OnGBAOEStart(keys)
+	ArsenalReturnMana(keys.caster)
 	local caster = keys.caster
 	local ability = keys.ability
 	local targetPoint = keys.target_points[1]
@@ -511,8 +513,13 @@ function OnGBAOEStart(keys)
 		keys.ability:EndCooldown() 
 		return
 	end
-	
-	EmitGlobalSound("Lancer.GaeBolg")
+
+	if caster:GetName() == "npc_dota_hero_sven" then
+		EmitGlobalSound("Lancelot.Growl_Local")
+	else
+		EmitGlobalSound("Lancer.GaeBolg")
+	end
+
 	giveUnitDataDrivenModifier(caster, caster, "jump_pause", 0.8)
 	Timers:CreateTimer(0.8, function()
 		giveUnitDataDrivenModifier(caster, caster, "jump_pause_postdelay", 0.15)
@@ -520,7 +527,7 @@ function OnGBAOEStart(keys)
 	Timers:CreateTimer(0.95, function()
 		giveUnitDataDrivenModifier(caster, caster, "jump_pause_postlock", 0.2)
 	end)
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_gae_jump_throw_anim", {}) 
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_gae_jump_throw_anim", {})
 
 	Timers:CreateTimer('gb_throw', {
 		endTime = 0.45,

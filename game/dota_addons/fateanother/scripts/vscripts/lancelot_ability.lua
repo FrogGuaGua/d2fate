@@ -2,10 +2,11 @@ function OnEternalStart(keys)
     local caster = keys.caster
     local ability = keys.ability
     local ply = caster:GetPlayerOwner()
-    if caster.IsEternalImproved ~= true then
-        keys.ability:EndCooldown()
-        SendErrorMessage(caster:GetPlayerOwnerID(), "#Attribute_Not_Earned")
-        return
+    if caster.IsEternalImproved then
+        ability:EndCooldown()
+        --SendErrorMessage(caster:GetPlayerOwnerID(), "#Attribute_Not_Earned")
+        --return
+        ability:StartCooldown(ability:GetSpecialValueFor("reduced_cd"))
     end
 
     if IsRevoked(caster) then
@@ -324,8 +325,14 @@ function OnKnightUsed(keys)
 
         if not caster.KnightLevel and not caster.ArsenalLevel then
                 OnKnightClosed(keys)
-                caster:FindAbilityByName("lancelot_knight_of_honor"):StartCooldown(ability:GetCooldown(ability:GetLevel())) 
+                caster:FindAbilityByName("lancelot_knight_of_honor"):StartCooldown(ability:GetCooldown(ability:GetLevel()))
         end
+end
+
+function ArsenalReturnMana(caster)
+    if caster:GetName() == "npc_dota_hero_sven" and caster.ArsenalLevel == 2 then
+        caster:GiveMana(caster:FindAbilityByName("lancelot_knight_of_honor_arsenal"):GetSpecialValueFor("mana_return"))
+    end
 end
 
 function OnAronditeStart(keys)

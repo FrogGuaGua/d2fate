@@ -388,6 +388,7 @@ function SelfModRefresh(keys)
 end
 
 function OnStealStart(keys)
+	ArsenalReturnMana(keys.caster)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner() 

@@ -354,6 +354,7 @@ function OnNineCast(keys)
 end
 
 function OnNineStart(keys)
+	ArsenalReturnMana(keys.caster)
 	local caster = keys.caster
 	local casterName = caster:GetName()
 	local targetPoint = keys.target_points[1]

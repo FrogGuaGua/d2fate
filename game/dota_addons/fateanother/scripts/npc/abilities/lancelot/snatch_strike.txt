@@ -15,7 +15,7 @@
 
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"%range"
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"20"
 		"AbilityManaCost"				"300"
 
 		"precache"
@@ -35,22 +35,22 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_steal"				"-7 -9 -11 -13 -15"
+				"str_steal"				"-7"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"8.0 11.0 14.0 17.0 20.0"
+				"duration"				"8.0"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_gain"				"7 9 11 13 15"
+				"str_gain"				"7"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range"					"200 275 350 425 500"
+				"range"					"200"
 			}
 			"06"
 			{

@@ -155,7 +155,8 @@ function CaliburnExplode( keys )
 	)
 end
 
-function OnCaliburnHit(keys) 
+function OnCaliburnHit(keys)
+	ArsenalReturnMana(keys.caster)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	local caster = keys.caster
 	local target = keys.target

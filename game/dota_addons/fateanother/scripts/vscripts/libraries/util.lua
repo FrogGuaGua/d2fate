@@ -786,7 +786,7 @@ function IsFemaleServant(target)
 end
 
 function IsImmuneToSlow(target)
-    if target:GetName() == "npc_dota_hero_sven" then
+    if target:GetName() == "npc_dota_hero_sven" and target.IsEternalImproved == true then
         EmitSoundWithCooldown("DOTA_Item.LinkensSphere.Activate", target, 1)
         ParticleManager:CreateParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_ABSORIGIN, target)
         return true 

@@ -463,6 +463,7 @@ end
 
 
 function OnWBStart(keys)
+	ArsenalReturnMana(keys.caster)
 	EmitGlobalSound("FA.Windblade" )
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()

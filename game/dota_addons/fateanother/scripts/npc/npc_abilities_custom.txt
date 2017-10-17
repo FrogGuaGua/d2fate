@@ -13064,13 +13064,18 @@
 		"AbilityCooldown"				"45"
 		"precache"
 		{
-			"particle"		"particles/prototype_fx/item_linkens_buff.vpcf"
-			"particle"		"particles/custom/abaddon_death_coil_explosion.vpcf"
+			"particle"		        "particles/prototype_fx/item_linkens_buff.vpcf"
+			"particle"		        "particles/custom/abaddon_death_coil_explosion.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
 		}
 		
 		"AbilitySpecial"
 		{
+		    "01"
+		    {
+		        "var_type"              "FIELD_INTEGER"
+		        "reduced_cd"            "35"
+		    }
 		}
 		
 		"OnSpellStart"
@@ -13485,9 +13490,9 @@
 	"lancelot_caliburn"
 	{
 		"BaseClass"						"ability_datadriven"
-		"MaxLevel"						"3"
-		"RequiredLevel"					"25"
-		"LevelsBetweenUpgrades"			"1"
+		"MaxLevel"						"1"
+		//"RequiredLevel"					"25"
+		//"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
@@ -13528,7 +13533,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"480 580 680"
+				"damage"			"480"
 			}
 			"02"
 			{
@@ -14221,7 +14226,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"			"400 450 500 550 600"
+				"damage"			    "400 500 600 700 800"
 			}
 			"02"
 			{

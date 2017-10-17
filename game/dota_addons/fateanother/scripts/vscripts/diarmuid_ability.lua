@@ -147,8 +147,11 @@ function OnGaeCastStart(keys)
 	if keys.ability == caster:FindAbilityByName("diarmuid_gae_buidhe") then
 		caster:EmitSound("ZL.Buidhe_Cast")
 		particleName = "particles/custom/diarmuid/diarmuid_gae_cast.vpcf"
-	elseif keys.ability == caster:FindAbilityByName("diarmuid_gae_dearg") then 
+	elseif keys.ability == caster:FindAbilityByName("diarmuid_gae_dearg") and caster:GetName() == "npc_dota_hero_huskar" then
 		caster:EmitSound("ZL.Dearg_Cast")
+		particleName = "particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+	elseif caster:GetName() == "npc_dota_hero_sven" then
+		caster:EmitSound("Lancelot.Growl_Local")
 		particleName = "particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
 	end
 
@@ -302,6 +305,7 @@ function OnBuidheBearerDeath(keys)
 end
 
 function OnDeargStart(keys)
+	ArsenalReturnMana(keys.caster)
 	local caster = keys.caster
 	local target = keys.target
 	local ply = caster:GetPlayerOwner()
@@ -355,7 +359,7 @@ function OnDeargStart(keys)
 		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 0.5})
 	end
 
-	EmitGlobalSound("ZL.Gae_Dearg")
+	if caster:GetName() == "npc_dota_hero_huskar" then EmitGlobalSound("ZL.Gae_Dearg") end
 	target:EmitSound("Hero_Lion.Impale")
 	keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_diarmuid_gae_dearg_anim", {})
 	PlayGaeEffect(target)

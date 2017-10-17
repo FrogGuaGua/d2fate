@@ -14,6 +14,15 @@
             "MaxLevel"                                      "5"
             "RequiredLevel"                                 "1"
             "LevelsBetweenUpgrades"                         "2"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"                              "FIELD_INTEGER"
+                    "mana_return"                           "100"
+                }
+            }
     }
 
     "lancelot_knight_of_honor_arsenal_close"

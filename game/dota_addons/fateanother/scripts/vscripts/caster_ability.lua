@@ -1143,6 +1143,7 @@ function OnAncientClosed(keys)
 end
 
 function OnRBStart(keys)
+	ArsenalReturnMana(keys.caster)
 	local caster = keys.caster
 	local target = keys.target
 	local ply = caster:GetPlayerOwner()
