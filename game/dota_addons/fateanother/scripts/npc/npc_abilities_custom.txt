@@ -1,6 +1,7 @@
 // Dota Heroes File
 
 #base "abilities/archer5/archer_abilities.txt"
+#base "abilities/lancer5/lancer5_abilities.txt"
 #base "abilities/lancelot/lancelot_abilities.txt"
 #base "abilities/vlad/vlad_abilities.txt"
 #base "abilities/atalanta/atalanta_abilities.txt"
@@ -1651,7 +1652,7 @@
 			}
 		}
 	}
-	
+
 	//=================================================================================================================
 	// Lancer : Battle Continuation
 	//=================================================================================================================
@@ -2635,7 +2636,36 @@
 			}
 		}
 	}
+	//=======================================
+	// Lancer : Soaring Spear of Barbed Death ATTRIBUTE
+	//=======================================	
+	"lancer_attribute_soaring_spear"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/lancer_5th_soaring_spear"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+	
+		"AbilitySpecial"
+		{
 
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"lancer_ability"
+				"Function"		"OnSoaringAcquired"
+			}
+		}
+	}
 	//=======================================
 	// Lancer : The Heartseeker
 	//=======================================

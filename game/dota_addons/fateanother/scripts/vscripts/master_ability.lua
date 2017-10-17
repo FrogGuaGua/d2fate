@@ -13,8 +13,9 @@ LancerAttribute = {
 	"lancer_attribute_improve_gae_bolg",
 	"lancer_attribute_protection_from_arrows",
 	"lancer_attribute_the_heartseeker",
+	"lancer_attribute_soaring_spear",
 	"lancer_5th_wesen_gae_bolg",
-	attrCount = 4
+	attrCount = 5
 }
 
 SaberAlterAttribute = {

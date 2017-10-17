@@ -288,6 +288,7 @@ CannotReset = {
     "vlad_combo",
     "vlad_protection_of_faith_cd",
     "phoebus_catastrophe_barrage",
+    "lancer_5th_soaring_spear",
 }
 
 femaleservant = {
