@@ -23736,7 +23736,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage_modifier_enemy"			"150 150 175 200 200"
+				"damage_modifier_enemy"			"125 125 150 175 200"
 			}
 			"03"
 			{
@@ -24125,7 +24125,7 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"intelligence"			"0 5 10 15 20"
-			}	
+			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
@@ -24139,7 +24139,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"movespeed_modifier"			"8 16 24 32 40"
+				"movespeed_modifier"			"10 15 20 25 30"
 			}		
 			"05"
 			{
@@ -24185,14 +24185,14 @@
 		}
 		"Modifiers"
 		{
-			"modifier_amaterasu_passive"
-			{
-				"Passive"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%intelligence"
-				}
-			}
+			//"modifier_amaterasu_passive"
+			//{
+			//	"Passive"	"1"
+			//	"Properties"
+			//	{
+			//	"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%intelligence"
+			//	}
+			//}
 			"modifier_amaterasu_aura"
 			{
 				"IsHidden"		"1"
