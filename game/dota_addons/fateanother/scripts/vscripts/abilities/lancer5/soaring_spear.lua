@@ -19,6 +19,9 @@ function lancer_5th_soaring_spear:OnAbilityPhaseStart()
   GBAttachEffect({caster = self:GetCaster(), ability = self})
   return true
 end
+function lancer_5th_soaring_spear:OnUpgrade()
+  self.IsResetable = false
+end
 
 function lancer_5th_soaring_spear:OnSpellStart()
   local hCaster = self:GetCaster()
