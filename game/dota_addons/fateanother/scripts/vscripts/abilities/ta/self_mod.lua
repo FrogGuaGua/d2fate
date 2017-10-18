@@ -1,6 +1,7 @@
 true_assassin_self_modification = class({})
 LinkLuaModifier("modifier_ta_agi", "abilities/ta/modifier_ta_agi", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_self_mod", "abilities/ta/modifier_self_mod", LUA_MODIFIER_MOTION_NONE)
+require('ta_ability')
 
 function true_assassin_self_modification:GetIntrinsicModifierName()
     return "modifier_ta_agi"
@@ -20,4 +21,5 @@ function true_assassin_self_modification:OnSpellStart()
 
     hCaster:ApplyHeal(fHeal, hCaster)
     hCaster:AddNewModifier(hCaster, self, "modifier_self_mod", { Duration = fDuration, heal = fHealOverTime, agi = fAgi })
+    TACheckCombo(hCaster, self)
 end

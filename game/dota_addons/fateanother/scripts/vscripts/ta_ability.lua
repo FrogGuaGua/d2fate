@@ -498,20 +498,18 @@ function OnZabHit(keys)
 	DoDamage(keys.caster, keys.target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 end
 
-AmbushUsed = false
-
 function TACheckCombo(caster, ability)
 	if caster:GetStrength() >= 19.1 and caster:GetAgility() >= 19.1 and caster:GetIntellect() >= 19.1 then
 		if ability == caster:FindAbilityByName("true_assassin_self_modification") then
-			AmbushUsed = true
+			caster.AmbushUsed = true
 			Timers:CreateTimer({
 				endTime = 5,
 				callback = function()
-				AmbushUsed = false
+				caster.AmbushUsed = false
 			end
 			})
 		elseif ability == caster:FindAbilityByName("true_assassin_ambush") and caster:FindAbilityByName("true_assassin_combo"):IsCooldownReady()  then
-			if AmbushUsed == true then 
+			if caster.AmbushUsed == true then
 				caster:SwapAbilities("true_assassin_ambush", "true_assassin_combo", false, true)
 				Timers:CreateTimer({
 					endTime = 8,
