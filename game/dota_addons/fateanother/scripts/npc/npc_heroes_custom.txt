@@ -518,7 +518,7 @@
 		"Attribute3"				"true_assassin_attribute_weakening_venom"
 		"Attribute4"				"true_assassin_attribute_shadow_strike"
 
-		"StatusHealth"					"1050"
+		"StatusHealth"					"1000"
 		"StatusHealthRegen"				"8"
 		"StatusMana"					"1000"
 		"StatusManaRegen"				"3.0"
