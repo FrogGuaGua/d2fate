@@ -99,4 +99,5 @@
 			m_name = "preview"
 		},
 	]
+	m_flCullRadius = -1.0
 }
