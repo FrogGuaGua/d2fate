@@ -14439,7 +14439,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"8"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{
@@ -14528,7 +14528,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"10"
 
 		"precache"
 		{

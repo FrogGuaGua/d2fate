@@ -29,13 +29,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"30"
+				"damage"				"20"
 			}
 
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_steal"				"-7"
+				"str_steal"				"-10"
 			}
 			"03"
 			{
@@ -45,7 +45,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_gain"				"7"
+				"str_gain"				"10"
 			}
 			"05"
 			{
