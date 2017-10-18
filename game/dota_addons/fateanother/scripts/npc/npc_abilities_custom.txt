@@ -14875,7 +14875,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"crit_multiplier"	"160 170 180 190 200"
+				"crit_multiplier"	"180 190 200 210 220"
 			}
 			"02"
 			{
@@ -15473,7 +15473,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage_percentage"			"7 11 14 17 20"
+				"bonus_damage_percentage"			"10 13 16 19 22"
 			}
 			"04"
 			{
