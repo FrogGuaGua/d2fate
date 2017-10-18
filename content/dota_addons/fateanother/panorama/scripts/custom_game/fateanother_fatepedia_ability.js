@@ -61,7 +61,7 @@ var abilities = [
 	["rider_5th_nail_swing", "rider_5th_breaker_gorgon", "rider_5th_bloodfort_andromeda", "fate_empty1", "rider_5th_mystic_eye", "rider_5th_bellerophon"],
 	["caster_5th_argos", "caster_5th_ancient_magic", "caster_5th_rule_breaker", "caster_5th_territory_creation", "caster_5th_item_construction", "caster_5th_hecatic_graea"],
 	["false_assassin_gate_keeper", "false_assassin_heart_of_harmony", "false_assassin_windblade", "false_assassin_minds_eye", "fate_empty1", "false_assassin_tsubame_gaeshi"],
-	["true_assassin_ambush", "true_assassin_self_modification", "true_assassin_snatch_strike", "true_assassin_dirk", "true_assassin_presence_concealment", "true_assassin_zabaniya"],
+	["true_assassin_ambush", "true_assassin_snatch_strike", "true_assassin_self_modification", "true_assassin_dirk", "true_assassin_presence_concealment", "true_assassin_zabaniya"],
 	["berserker_5th_fissure_strike", "berserker_5th_courage", "berserker_5th_berserk", "fate_empty1", "berserker_5th_divinity", "berserker_5th_nine_lives"],
 	["gilgamesh_enkidu", "gilgamesh_gram", "gilgamesh_gate_of_babylon", "gilgamesh_golden_rule", "gilgamesh_sword_barrage", "gilgamesh_enuma_elish"],
 	["avenger_murderous_instinct", "avenger_tawrich_zarich", "avenger_true_form", "fate_empty1", "avenger_dark_passage", "avenger_verg_avesta"],
@@ -76,14 +76,14 @@ var abilities = [
 	["jeanne_charisma", "jeanne_purge_the_unjust", "jeanne_gods_resolution", "jeanne_magic_resistance_ex", "jeanne_saint", "jeanne_luminosite_eternelle"],
 	["astolfo_hippogriff_vanish", "astolfo_down_with_a_touch", "astolfo_la_black_luna", "fate_empty1", "astolfo_casa_di_logistilla", "astolfo_hippogriff_raid"],
 	["nursery_rhyme_white_queens_enigma", "nursery_rhyme_the_plains_of_water", "nursery_rhyme_doppelganger", "nursery_rhyme_shapeshift", "nursery_rhyme_nameless_forest", "nursery_rhyme_queens_glass_game"],
-	["atalanta_celestial_arrow", "atalanta_calydonian_hunt", "atalanta_tauropolos", "atalanta_crossing_arcadia" , "atalanta_priestess_of_the_hunt", "atalanta_phoebus_catastrophe_barrage"],
+	["atalanta_celestial_arrow", "atalanta_calydonian_hunt", "atalanta_traps", "atalanta_crossing_arcadia" , "atalanta_priestess_of_the_hunt", "atalanta_tauropolos_new"],
 	["vlad_rebellious_intent", "vlad_ceremonial_purge", "vlad_cursed_lance", "vlad_transfusion", "vlad_battle_continuation", "vlad_kazikli_bey"],
 ]
 
 var attributes = [
 	["saber_attribute_improve_excalibur", "saber_attribute_improve_instinct", "saber_attribute_strike_air", "saber_attribute_strike_air_upstream"],
 	["saber_alter_attribute_mana_shroud", "saber_alter_attribute_mana_blast","saber_alter_attribute_improve_ferocity","saber_alter_attribute_ultimate_darklight"],
-	["lancer_attribute_improve_battle_continuation", "lancer_attribute_improve_gae_bolg", "lancer_attribute_protection_from_arrows", "lancer_attribute_the_heartseeker"],
+	["lancer_attribute_improve_battle_continuation", "lancer_attribute_improve_gae_bolg", "lancer_attribute_protection_from_arrows", "lancer_attribute_the_heartseeker","lancer_attribute_soaring_spear"],
 	["archer_5th_attribute_eagle_eye","archer_5th_attribute_hrunting","archer_5th_attribute_shroud_of_martin","archer_5th_attribute_improve_projection","archer_5th_attribute_overedge"],
 	["rider_5th_attribute_improve_mystic_eyes", "rider_5th_attribute_riding", "rider_5th_attribute_seal", "rider_5th_attribute_monstrous_strength"],
 	["caster_5th_attribute_improve_territory_creation", "caster_5th_attribute_improve_argos", "caster_5th_attribute_improve_hecatic_graea", "caster_5th_attribute_dagger_of_treachery"],
@@ -93,7 +93,7 @@ var attributes = [
 	["gilgamesh_attribute_improve_golden_rule", "gilgamesh_attribute_power_of_sumer", "gilgamesh_attribute_rain_of_swords", "gilgamesh_attribute_sword_of_creation"],
 	["avenger_attribute_improve_dark_passage", "avenger_attribute_blood_mark", "avenger_attribute_overdrive", "avenger_attribute_demon_incarnate"],
 	["diarmuid_attribute_improve_love_spot", "diarmuid_attribute_minds_eye", "diarmuid_attribute_golden_rose_of_mortality", "diarmuid_attribute_crimson_rose_of_exorcism","diarmuid_attribute_double_spear_strike"],
-	["lancelot_attribute_improve_eternal", "lancelot_attribute_blessing_of_fairy", "lancelot_attribute_improve_knight_of_honor", "lancelot_attribute_eternal_flame"],
+	["lancelot_attribute_improve_eternal", "lancelot_attribute_blessing_of_fairy", "lancelot_attribute_improve_knight_of_honor","lancelot_attribute_improve_koh_arsenal","lancelot_attribute_eternal_flame"],
 	["gille_attribute_eye_for_art", "gille_attribute_improve_black_magic", "gille_attribute_mental_pollution", "gille_attribute_abyssal_connection", "gille_attribute_abyssal_connection_2"],
 	["iskander_attribute_improve_charisma", "iskander_attribute_thundergods_wrath", "iskander_attribute_via_expugnatio", "iskander_attribute_bond_beyond_time"],
 	["nero_attribute_pari_tenu_blauserum", "nero_attribute_improve_imperial_privilege", "nero_attribute_invictus_spiritus", "nero_attribute_soverigns_glory","nero_attribute_pavilion"],
@@ -103,7 +103,7 @@ var attributes = [
 	["jeanne_attribute_identity_discernment", "jeanne_attribute_improve_saint", "jeanne_attribute_punishment", "jeanne_attribute_divine_symbol"],
 	["astolfo_attribute_riding", "astolfo_attribute_monstrous_strength", "astolfo_attribute_independent_action", "astolfo_attribute_sanity"],
 	["nursery_rhyme_attribute_forever_together","nursery_rhyme_attribute_nightmare","nursery_rhyme_attribute_reminiscence","nursery_rhyme_attribute_improve_queens_glass_game"],
-	["atalanta_attribute_arrows_of_the_big_dipper", "atalanta_attribute_hunters_mark", "atalanta_attribute_golden_apple", "atalanta_attribute_crossing_arcadia_plus"],
+	["atalanta_attribute_arrows_of_the_big_dipper", "atalanta_attribute_hunters_mark", "atalanta_attribute_golden_apple", "atalanta_attribute_crossing_arcadia_plus","atalanta_attribute_bow_of_heaven"],
 	["vlad_attribute_innocent_monster", "vlad_attribute_protection_of_faith", "vlad_attribute_improved_impaling", "vlad_attribute_instant_curse", "vlad_attribute_bloodletter"],
 ]
 
