@@ -34,7 +34,7 @@
             "02"
             {
                 "var_type"                              "FIELD_INTEGER"
-                "duration"                              "5"
+                "duration"                              "7"
             }
             "03"
             {
@@ -44,7 +44,7 @@
             "04"
             {
                 "var_type"                              "FIELD_INTEGER"
-                "heal_ot"                               "250 300 350 400 450"
+                "heal_ot"                               "450 500 550 600 650"
             }
         }
     }

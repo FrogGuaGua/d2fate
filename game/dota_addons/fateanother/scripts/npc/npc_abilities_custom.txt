@@ -9457,13 +9457,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"30"
+				"damage"				"20 22 24 26 28"
 			}
 
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_steal"				"-7 -9 -11 -13 -15"
+				"str_steal"				"-12 -14 -16 -18 -20"
 			}
 			"03"
 			{
@@ -9473,7 +9473,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_gain"				"7 9 11 13 15"
+				"str_gain"				"12 14 16 18 20"
 			}
 			"05"
 			{
@@ -9764,6 +9764,11 @@
 				"var_type"				"FIELD_FLOAT"
 				"reveal_duration"			"5.0"
 			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_bonus"			"300"
+			}
 		}
 		
 		"OnSpellStart"
@@ -9772,6 +9777,7 @@
 			{
 				"ScriptFile"	"ta_ability"
 				"Function"		"OnImprovePresenceConcealmentAcquired"
+				"vision"			"%vision_bonus"
 			}
 		}
 	}
@@ -9867,11 +9873,6 @@
 				"var_type"				"FIELD_FLOAT"
 				"baseattack_str_reduction"			"0.75"
 			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"vision_bonus"			"300"
-			}
 		}
 		
 		"OnSpellStart"
@@ -9880,7 +9881,6 @@
 			{
 				"ScriptFile"	"ta_ability"
 				"Function"		"OnWeakeningVenomAcquired"
-				"vision"			"%vision_bonus"
 			}
 		}
 	}

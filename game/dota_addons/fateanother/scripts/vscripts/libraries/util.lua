@@ -9,7 +9,7 @@ softdispellable = {
     "modifier_courage_damage_stack_indicator",
     "modifier_courage_stackable_buff",
     "modifier_berserk_self_buff",
-    "modifier_ta_self_mod",
+    "modifier_self_mod",
     "modifier_berserk_scroll",
     "modifier_share_damage",
     "modifier_a_plus_armor",
@@ -35,7 +35,7 @@ softdispellable = {
     "modifier_atalanta_last_spurt",
     "modifier_cursed_lance",
     "modifier_battle_continuation_heal",
-    "modifier_argos_armor",
+    "modifier_argos_armor",    
 }
 
 strongdispellable = {
