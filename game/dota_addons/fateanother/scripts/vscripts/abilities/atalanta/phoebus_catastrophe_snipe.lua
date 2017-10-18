@@ -78,15 +78,20 @@ function atalanta_phoebus_catastrophe_snipe:OnSpellStart()
 
         local arrowAoE = self:GetSpecialValueFor("arrow_aoe")
 
-        if caster:HasModifier("modifier_tauropolos") then
+        --[[if caster:HasModifier("modifier_tauropolos") then
             local tauropolos = caster:FindAbilityByName("atalanta_tauropolos")
             arrowAoE = arrowAoE + tauropolos:GetSpecialValueFor("bonus_aoe_per_agi") * caster:GetAgility()
+        end]]
+        if caster:HasModifier("modifier_arrows_of_the_big_dipper") then
+            local fAgility = caster:GetAgility()
+            local tAttributeTable = CustomNetTables:GetTableValue("sync","atalanta_big_dipper")
+            arrowAoE = arrowAoE + (tAttributeTable.fAOEPerAGI * fAgility)
         end
 
         for i=1,arrows do
             Timers:CreateTimer(0.1 + 0.1 * i, function()
                 local sameRealm = IsInSameRealm(target:GetOrigin(), position)
-                EmitGlobalSound("Ability.Powershot.Alt")
+                --EmitGlobalSound("Ability.Powershot.Alt")
                 caster:ShootArrow({
                     Origin = sourceLocation+RandomVector(200),
                     Target = sameRealm and target or nil,
@@ -97,6 +102,7 @@ function atalanta_phoebus_catastrophe_snipe:OnSpellStart()
                     DontUseArrow = true,
                     NoShock = true,
                     DontCountArrow = true,
+                    IsPhoebus = true,
                 })
             end)
         end

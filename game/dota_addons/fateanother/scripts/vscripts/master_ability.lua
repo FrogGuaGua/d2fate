@@ -13,8 +13,9 @@ LancerAttribute = {
 	"lancer_attribute_improve_gae_bolg",
 	"lancer_attribute_protection_from_arrows",
 	"lancer_attribute_the_heartseeker",
+	"lancer_attribute_soaring_spear",
 	"lancer_5th_wesen_gae_bolg",
-	attrCount = 4
+	attrCount = 5
 }
 
 SaberAlterAttribute = {
@@ -208,8 +209,9 @@ AtalantaAttribute = {
 	"atalanta_attribute_hunters_mark",
 	"atalanta_attribute_golden_apple",
 	"atalanta_attribute_crossing_arcadia_plus",
+	"atalanta_attribute_bow_of_heaven",
 	"atalanta_phoebus_catastrophe_proxy",
-	attrCount = 4
+	attrCount = 5
 }
 VladAttribute = {
 	"vlad_attribute_innocent_monster",

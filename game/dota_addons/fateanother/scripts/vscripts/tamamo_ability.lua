@@ -750,6 +750,11 @@ end
 function OnAmaterasuApplyAura(keys)
 	local caster = keys.caster
 	local ability = keys.ability
+	local radius = keys.Radius
+	local diff = (caster:GetAbsOrigin() - caster.AmaterasuCastLoc):Length2D()
+	if diff > radius or not caster:IsAlive() then
+		caster.CurrentAmaterasuDummy:RemoveModifierByName("modifier_amaterasu_aura")
+	end	
 
 	local targets = FindUnitsInRadius(caster:GetTeam(), caster.AmaterasuCastLoc, nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 	for k,v in pairs(targets) do

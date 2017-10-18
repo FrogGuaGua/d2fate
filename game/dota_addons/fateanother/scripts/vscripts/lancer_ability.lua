@@ -110,7 +110,11 @@ function RuneMagicUsed(keys)
 	caster:SwapAbilities(a1:GetName(), "lancer_5th_rune_magic", true, true) 
 	caster:SwapAbilities(a2:GetName(), "lancer_5th_relentless_spear", true, true) 
 	caster:SwapAbilities(a3:GetName(), "lancer_5th_gae_bolg", true, true) 
-	caster:SwapAbilities(a4:GetName(), "lancer_5th_battle_continuation", true, true) 
+	if caster.IsSoaringAcquired then
+		caster:SwapAbilities(a4:GetName(), "lancer_5th_soaring_spear", true, true) 
+	else
+		caster:SwapAbilities(a4:GetName(), "lancer_5th_battle_continuation", true, true) 
+	end
 	caster:SwapAbilities(a5:GetName(), "fate_empty1", true, true) 
 	caster:SwapAbilities(a6:GetName(), "lancer_5th_gae_bolg_jump", true, true) 
 	caster:FindAbilityByName("lancer_5th_rune_magic"):StartCooldown(20)
@@ -127,7 +131,11 @@ function RuneMagicClose(keys)
 	caster:SwapAbilities(a1:GetName(), "lancer_5th_rune_magic", false, true) 
 	caster:SwapAbilities(a2:GetName(), "lancer_5th_relentless_spear", false, true) 
 	caster:SwapAbilities(a3:GetName(), "lancer_5th_gae_bolg", false, true) 
-	caster:SwapAbilities(a4:GetName(), "lancer_5th_battle_continuation", false, true) 
+	if caster.IsSoaringAcquired then
+		caster:SwapAbilities(a4:GetName(), "lancer_5th_soaring_spear", false, true) 
+	else
+		caster:SwapAbilities(a4:GetName(), "lancer_5th_battle_continuation", false, true) 
+	end
 	if caster.IsPFAAcquired then
 		caster:SwapAbilities(a5:GetName(), "lancer_5th_protection_from_arrows", false, true) 
 	else
@@ -683,6 +691,18 @@ function OnHeartseekerAcquired(keys)
 	local ply = caster:GetPlayerOwner()
 	local hero = caster:GetPlayerOwner():GetAssignedHero()
 	hero.IsHeartSeekerAcquired = true
+
+	-- Set master 1's mana 
+	local master = hero.MasterUnit
+	master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
+end
+function OnSoaringAcquired(keys)
+	local caster = keys.caster
+	local ply = caster:GetPlayerOwner()
+	local hero = caster:GetPlayerOwner():GetAssignedHero()
+	hero.IsSoaringAcquired = true
+	hero:AddAbility("lancer_5th_soaring_spear"):SetLevel(1)
+	hero:SwapAbilities("lancer_5th_battle_continuation","lancer_5th_soaring_spear",false,true)
 
 	-- Set master 1's mana 
 	local master = hero.MasterUnit

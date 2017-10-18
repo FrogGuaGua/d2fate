@@ -1,7 +1,12 @@
+LinkLuaModifier("modifier_casting_phoebus", "abilities/atalanta/modifier_casting_phoebus", LUA_MODIFIER_MOTION_NONE)
+
 function atalanta_phoebus_catastrophe_wrapper(ability)
     function ability:OnAbilityPhaseStart()
         local caster = self:GetCaster()
+        local ability = self
         --EmitGlobalSound("Atalanta.PhoebusCast")
+        
+        caster:AddNewModifier(caster, ability, "modifier_casting_phoebus", {Duration = ability:GetCastPoint()+0.033})
 
         local enemies = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 3500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, FIND_ANY_ORDER, false)
         if #enemies == 0 then 
@@ -26,6 +31,11 @@ function atalanta_phoebus_catastrophe_wrapper(ability)
         end)
     
         return true
+    end
+    function ability:OnAbilityPhaseInterrupted()
+        local hCaster = self:GetCaster()
+        local hAbility = self
+        hCaster:RemoveModifierByName("modifier_casting_phoebus")
     end
     
     function ability:ShootAirArrows()
@@ -68,6 +78,7 @@ function atalanta_phoebus_catastrophe_wrapper(ability)
     function ability:AfterSpell()
         local caster = self:GetCaster()
         local cooldown = self:GetCooldown(1)
+        caster:RemoveModifierByName("modifier_casting_phoebus")
 
         local snipe = caster:FindAbilityByName("atalanta_phoebus_catastrophe_snipe")
         snipe:EndCooldown()

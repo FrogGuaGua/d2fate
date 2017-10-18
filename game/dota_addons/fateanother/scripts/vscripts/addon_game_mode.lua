@@ -1618,7 +1618,9 @@ local spellBooks = {
     "nero_close_spellbook",
     "tamamo_armed_up",
     "tamamo_close_spellbook",
-    "lancelot_arms_mastership" -- Not a spellbook but it is an empty ability when attribute is NOT taken that can trigger amaterasu heals and mark of mortality.
+    "lancelot_arms_mastership", -- Not a spellbook but it is an empty ability when attribute is NOT taken that can trigger amaterasu heals and mark of mortality.
+    "atalanta_traps",
+    "atalanta_traps_close"
 }
 -- An ability was used by a player
 function FateGameMode:OnAbilityUsed(keys)

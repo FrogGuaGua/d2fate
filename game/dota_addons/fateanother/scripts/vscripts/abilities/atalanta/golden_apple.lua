@@ -20,7 +20,7 @@ function atalanta_golden_apple:OnSpellStart()
     local aoe = self:GetAOERadius()
     local speed = 1500
     local delay = math.max(0.1, (position - origin):Length() / speed)
-
+    caster:CloseTraps(self)
     caster:ShootArrow({
         Position = position,
         AoE = 0,

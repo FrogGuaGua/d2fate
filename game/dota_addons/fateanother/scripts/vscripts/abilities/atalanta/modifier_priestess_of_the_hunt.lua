@@ -73,6 +73,7 @@ function modifier_priestess_of_the_hunt:OnIntervalThink()
     if IsServer() then
         local hero = self:GetParent()
         local nextArrow = hero.NextArrow
+        CustomNetTables:SetTableValue("sync","atalanta_agility", {fAgility = hero:GetAgility()})
 
         if self:GetStackCount() >= self:GetMaxStackCount() then
                 return
@@ -86,7 +87,6 @@ function modifier_priestess_of_the_hunt:OnIntervalThink()
         end
 
         hero.NextArrow = nextArrow
-
         self:UpdateProgress()
     end
 end

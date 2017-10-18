@@ -21,9 +21,14 @@ function atalanta_crossing_arcadia:GetAOERadius()
     local caster = self:GetCaster()
     local aoe = self:GetSpecialValueFor("aoe")
 
-    if IsServer() and caster:HasModifier("modifier_tauropolos") then
+    --[[if IsServer() and caster:HasModifier("modifier_tauropolos") then
         local tauropolos = caster:FindAbilityByName("atalanta_tauropolos")
         aoe = aoe + tauropolos:GetSpecialValueFor("bonus_aoe_per_agi") * caster:GetAgility()
+    end]]
+    if caster:HasModifier("modifier_arrows_of_the_big_dipper") then
+      local fAgility = CustomNetTables:GetTableValue("sync","atalanta_agility").fAgility
+      local tAttributeTable = CustomNetTables:GetTableValue("sync","atalanta_big_dipper")
+      aoe = aoe + (tAttributeTable.fAOEPerAGI * fAgility)
     end
 
     return aoe
@@ -61,10 +66,16 @@ function atalanta_crossing_arcadia:OnProjectileHit_ExtraData(target, location, d
     if not target then
         return
     end
-
     local targets = FindUnitsInRadius(caster:GetTeam(), target:GetOrigin(), nil, data["1"], DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
     for _,v in pairs(targets) do
-        caster:ArrowHit(v, data["2"])
+        caster:GrantQBuff(self)
+        if data["3"] == 0 then
+            caster:ArrowHit(v, data["2"],data["3"])
+        else
+            if v:GetName() ~= "npc_dota_ward_base" then
+                caster:ArrowHit(v, data["2"],data["3"])
+            end
+        end
     end
 end
 
@@ -121,7 +132,7 @@ function atalanta_crossing_arcadia:ShootAoEArrow(keys)
         bProvidesVision = false,
         iMoveSpeed = velocity:Length(),
         iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
-	ExtraData = {keys.AoE or 0, keys.Slow or 0}
+	    ExtraData = {keys.AoE or 0, keys.Slow or 0, keys.IsPhoebus or 0}
     }
     ProjectileManager:CreateTrackingProjectile(projectile)
 
@@ -148,7 +159,7 @@ function atalanta_crossing_arcadia:OnSpellStart()
     local aoe = self:GetAOERadius()
     local effect = "particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
     local facing = caster:GetForwardVector() + Vector(0, 0, -2)
-
+    self.bFirstHit = true
     caster:PreventDI()
     caster:SetPhysicsFriction(0)
     caster:SetPhysicsVelocity(-forwardVec * retreatDist * 2 + Vector(0,0,1200))
@@ -188,6 +199,7 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
+                IsPhoebus = false,
             })
         end)
 
@@ -202,7 +214,8 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
-                DontUseArrow = true
+                DontUseArrow = true,
+                IsPhoebus = false,
             })
         end)
 
@@ -217,7 +230,8 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
-                DontUseArrow = true
+                DontUseArrow = true,
+                IsPhoebus = false,
             })
         end)
         Timers:CreateTimer(duration, function()
@@ -236,6 +250,7 @@ function atalanta_crossing_arcadia:OnSpellStart()
                 Effect = effect,
                 Facing = facing,
                 Stun = 0,
+                IsPhoebus = false,
             })
         end)
         Timers:CreateTimer(duration, function()

@@ -1,8 +1,11 @@
 // Dota Heroes File
 
 #base "abilities/archer5/archer_abilities.txt"
+#base "abilities/lancer5/lancer5_abilities.txt"
 #base "abilities/lancelot/lancelot_abilities.txt"
 #base "abilities/vlad/vlad_abilities.txt"
+#base "abilities/atalanta/atalanta_abilities.txt"
+
 
 "DOTAAbilities"
 {
@@ -1649,7 +1652,7 @@
 			}
 		}
 	}
-	
+
 	//=================================================================================================================
 	// Lancer : Battle Continuation
 	//=================================================================================================================
@@ -2633,7 +2636,36 @@
 			}
 		}
 	}
+	//=======================================
+	// Lancer : Soaring Spear of Barbed Death ATTRIBUTE
+	//=======================================	
+	"lancer_attribute_soaring_spear"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/lancer_5th_soaring_spear"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+	
+		"AbilitySpecial"
+		{
 
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"lancer_ability"
+				"Function"		"OnSoaringAcquired"
+			}
+		}
+	}
 	//=======================================
 	// Lancer : The Heartseeker
 	//=======================================
@@ -13032,7 +13064,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"revoke_duration"		"7.5"
+				"revoke_duration"		"3"
 			}
 			"03"
 			{
@@ -23256,7 +23288,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"mr_reduction"			"-3"
+				"mr_reduction"			"-4"
 			}
 			"02"
 			{
@@ -24128,7 +24160,7 @@
 			{
 				"var_type"			"FIELD_INTEGER"
 				"intelligence"			"0 5 10 15 20"
-			}	
+			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
@@ -24167,7 +24199,7 @@
 			"09"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"movespeed_modifier_enemy"			"-10 -15 -20 -25 -30"
+				"movespeed_modifier_enemy"			"-8 -16 -24 -32 -40"
 			}
 			"10"
 			{
@@ -24188,14 +24220,14 @@
 		}
 		"Modifiers"
 		{
-			"modifier_amaterasu_passive"
-			{
-				"Passive"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%intelligence"
-				}
-			}
+			//"modifier_amaterasu_passive"
+			//{
+			//	"Passive"	"1"
+			//	"Properties"
+			//	{
+			//	"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%intelligence"
+			//	}
+			//}
 			"modifier_amaterasu_aura"
 			{
 				"IsHidden"		"1"
@@ -24241,7 +24273,7 @@
 				"EffectAttachType"		"follow_origin"
 				"Properties"
 				{
-					//"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"	"%mana_regen_enemy"
+					"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"	"%mana_regen_enemy"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_modifier_enemy"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%movespeed_modifier_enemy"
 				}
@@ -29853,722 +29885,6 @@
 			{
 				"ScriptFile"	"nursery_rhyme_ability"
 				"Function"		"OnImproveQGGAcquired"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Celestial Arrow
-	//=======================================
-	"atalanta_celestial_arrow"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/celestial_arrow"
-		"MaxLevel"						"5"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName"			"windrunner_powershot"
-		
-		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"0"
-		"AbilityManaCost"				"10"
-		"LevelsBetweenUpgrades"				"1"
-
-		"precache"
-		{
-			"particle"					"particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6_shock_ring.vpcf"
-			"particle"					"particles/units/heroes/hero_windrunner/windrunner_spell_powershot.vpcf"
-			"particle"					"particles/custom/atalanta/atalanta_shock_ring.vpcf"
-			"particle"					"particles/custom/atalanta/atalanta_arrow.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"900 975 1050 1125 1200"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_arrows"			"0 0 1 1 2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"10 20 30 40 50"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_bonus_range"			"100"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_vision_radius"		"150"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_vision_duration"		"2"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_arrows_needed"		"7"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Calydonian Hunt
-	//=======================================
-	"atalanta_calydonian_hunt"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/calydonian_hunt"
-		"MaxLevel"						"5"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/atalanta_calydonian_hunt"
-		
-		"AbilityCastPoint"				"0.25"
-		"AbilityCooldown"				"16"
-		"AbilityManaCost"				"200"
-		"LevelsBetweenUpgrades"				"1"
-
-		"precache"
-		{
-			"particle"					"particles/econ/items/enchantress/enchantress_lodestar/ench_lodestar_death.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_naga_siren.vsndevts"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"max_stacks"			"1 2 3 4 5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"debuff_duration"		"3 3.5 4 4.5 5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"root_duration"			"1.4 1.8 2.2 2.6 3.0"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"damage_per_stack"			"7"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_stack_bonus"			"2"
-			}
-			"07"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"attribute_bonus_duration"		"2"
-			}
-
-			"08"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"detonate_stack"				"160"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Golden Apple
-	//=======================================
-	"atalanta_golden_apple"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/golden_apple"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName"			"custom/atalanta_golden_apple"
-		
-		"AbilityCastPoint"				"0.3"
-		"AbilityCooldown"				"70"
-		"AbilityManaCost"				"200"
-
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_enchantress/enchantress_natures_attendants_lvl4.vpcf"
-			"particle"					"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_teleport_model_glow.vpcf"
-			"particle"					"particles/units/heroes/hero_furion/furion_base_attack.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"1000"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"lure_duration"				"3"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"aoe"						"300"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"swap_duration"				"6"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Crossing Arcadia
-	//=======================================
-	"atalanta_crossing_arcadia"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/crossing_arcadia"
-		"MaxLevel"						"2"
-		"LevelsBetweenUpgrades"			"25"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityTextureName"			"custom/atalanta_crossing_arcadia"
-		
-		"AbilityCastPoint"				"0.15"
-		"AbilityCooldown"				"8"
-		"AbilityManaCost"				"200"
-
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"range"				"700 1000"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"jump_time"			"0.15"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"aoe"				"200"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"0"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"leapback_range"	"500"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"jump_duration"		"0.5"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Last Spurt
-	//=======================================
-	"atalanta_last_spurt"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/last_spurt"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName"			"custom/atalanta_last_spurt"
-
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"25"
-		"AbilityManaCost"				"0"
-		
-		"precache"
-		{
-			"particle"					"particles/units/heroes/hero_windrunner/windrunner_windrun.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"base_ms"					"20"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"ms_per_unit"				"10"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"7"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"aoe"						"700"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Priestess of the Hunt
-	//=======================================
-	"atalanta_priestess_of_the_hunt"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/priestess_of_the_hunt"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/atalanta_priestess_of_the_hunt"
-		
-		"precache"
-		{
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"arrows"				"5"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Tauropolos - Bow of Heaven
-	//=======================================
-	"atalanta_tauropolos"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/tauropolos"
-		"MaxLevel"						"5"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/atalanta_tauropolos"
-		
-		"AbilityCastPoint"				"0.6"
-		"AbilityCooldown"				"24"
-		"AbilityManaCost"				"400"
-		"LevelsBetweenUpgrades"			"2"
-
-		"precache"
-		{
-			"particle"					"particles/econ/items/legion/legion_fallen/legion_fallen_press.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"duration"			"7"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_arrows"		"3 4 5 6 7"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_time_reduction"		"12 19 26 33 40"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_range_per_agi"		"5"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_aoe_per_agi"		"1"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"attribute_swap_duration"				"6"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Phoebus Catastrophe Proxy
-	//=======================================
-	"atalanta_phoebus_catastrophe_proxy"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/phoebus_catastrophe_proxy"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityTextureName"			"custom/atalanta_phoebus_catastrophe"
-		
-		"AbilityCastPoint"				"1.4"
-		"AbilityCooldown"				"140"
-		"AbilityManaCost"				"300"
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"range"				"3000"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"aoe"				"600"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"arrow_aoe"			"200"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"barrage_arrows"	"60"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"snipe_arrows"		"11"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"delay"				"2.4"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"cast_time"			"1.4"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Phoebus Catastrophe: Barrage
-	//=======================================
-	"atalanta_phoebus_catastrophe_barrage"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/phoebus_catastrophe_barrage"
-		"MaxLevel"						"5"
-		"LevelsBetweenUpgrades"			"2"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityTextureName"			"custom/atalanta_phoebus_catastrophe"
-		
-		"AbilityCastPoint"				"0.8"
-		"AbilityCooldown"				"36"
-		"AbilityManaCost"				"800"
-
-		"precache"
-		{
-			"particle"					"particles/econ/items/enchantress/enchantress_virgas/ench_impetus_virgas.vpcf"
-			"particle"					"particles/econ/items/monkey_king/arcana/death/mk_spring_arcana_death_ground_impact.vpcf"
-			"particle"					"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_land_force_impact_rings_gold.vpcf"
-			"particle"					"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_land_force_impact_d_gold.vpcf"
-			"particle"					"particles/custom/screen_green_splash.vpcf"
-			"particle"					"particles/custom/atalanta/atalanta_barrage_marker.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"range"				"2500"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"aoe"				"650"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"arrow_aoe"			"280"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"arrows"			"30 36 42 48 54"
-			}
-			"05"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"delay"				"2.9"
-			}
-			"06"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"cast_point"				"0.8"
-			}
-			"07"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"slow"				"50"
-			}
-			"08"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"slow_duration"				"0.4"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta: Phoebus Catastrophe: Snipe
-	//=======================================
-	"atalanta_phoebus_catastrophe_snipe"
-	{
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/phoebus_catastrophe_snipe"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName"			"custom/atalanta_phoebus_catastrophe"
-		
-		"AbilityCastPoint"				"1"
-		"AbilityCooldown"				"140"
-		"AbilityManaCost"				"300"
-
-		"precache"
-		{
-			"particle"					"particles/econ/items/enchantress/enchantress_virgas/ench_impetus_virgas.vpcf"
-			"particle"					"particles/econ/items/monkey_king/arcana/death/mk_spring_arcana_death_ground_impact.vpcf"
-			"particle"					"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_land_force_impact_rings_gold.vpcf"
-			"particle"					"particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_land_force_impact_d_gold.vpcf"
-			"particle"					"particles/custom/archer/archer_broken_phantasm/archer_broken_phantasm_crosshead.vpcf"
-			"particle"					"particles/custom/screen_green_splash.vpcf"
-			"particle"					"particles/custom/atalanta/atalanta_crosshair.vpcf"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"range"				"3000"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"arrow_aoe"			"200"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"arrows"			"11"
-			}
-			"04"
-			{
-				"var_type"			"FIELD_FLOAT"
-				"delay"				"2.4"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta Attribute : Arrows of the Big Dipper
-	//=======================================
-	"atalanta_attribute_arrows_of_the_big_dipper"
-	{
-		// General		//------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/attributes"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityTextureName"			"custom/atalanta_arrows_of_the_big_dipper"
-		
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
-
-		"precache"
-		{
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_bonus_range"			"100"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_vision_radius"			"150"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_vision_duration"			"2"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_arrows_needed"		"7"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta Attribute : Hunter's Mark
-	//=======================================
-	"atalanta_attribute_hunters_mark"
-	{
-		// General		//------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/attributes"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityTextureName"			"custom/atalanta_hunters_mark"
-		
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"19"
-
-		"precache"
-		{
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"detonate_stack"				"160"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta Attribute : Golden Apple
-	//=======================================
-	"atalanta_attribute_golden_apple"
-	{
-		// General		//------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/attributes"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityTextureName"			"custom/atalanta_golden_apple"
-		
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"15"
-
-		"precache"
-		{
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"range"						"700"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"lure_duration"				"1.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"aoe"						"300"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"attribute_swap_duration"	"6"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"attribute_stack_bonus"			"2"
-			}
-			"06"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"attribute_bonus_duration"		"2"
-			}
-		}
-	}
-
-	//=======================================
-	// Atalanta Attribute : Crossing Arcadia Plus
-	//=======================================
-	"atalanta_attribute_crossing_arcadia_plus"
-	{
-		// General		//------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/atalanta/attributes"
-		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityTextureName"			"custom/atalanta_crossing_arcadia"
-		
-		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"13"
-
-		"precache"
-		{
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"extra_arrows"					"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"base_ms"					"20"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"7"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_range"					"300"
 			}
 		}
 	}

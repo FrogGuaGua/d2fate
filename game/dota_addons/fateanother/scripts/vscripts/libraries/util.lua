@@ -147,6 +147,8 @@ cleansable = {
     "modifier_la_black_luna_slow",
     "modifier_nursery_rhyme_shapeshift_slow",
     "modifier_doppelganger_lookaway_slow",
+    "modifier_cobweb_slow",
+    "modifier_tauropolos_slow",
     -- Other CCs
     "modifier_stunned",
     "modifier_rule_breaker",
@@ -165,6 +167,7 @@ cleansable = {
     "locked",
     "rooted",
     "stunned",
+    "modifier_sting_shot",
 
     -- Debuffs
     "modifier_gust_heaven_indicator_enemy"
@@ -198,6 +201,8 @@ slowmodifier = {
     "modifier_nursery_rhyme_shapeshift_slow",
     "modifier_doppelganger_lookaway_slow",
     "modifier_ceremonial_purge_slow",
+    "modifier_cobweb_slow",
+    "modifier_tauropolos_slow",
 }
 
 donotlevel = {
@@ -282,6 +287,8 @@ CannotReset = {
     "vlad_battle_continuation",
     "vlad_combo",
     "vlad_protection_of_faith_cd",
+    "phoebus_catastrophe_barrage",
+    "lancer_5th_soaring_spear",
 }
 
 femaleservant = {
@@ -1952,6 +1959,35 @@ function HotkeyPurchaseItem(iSource, args)
     end
 end
 CustomGameEventManager:RegisterListener("hotkey_purchase_item", HotkeyPurchaseItem)
+
+function SpawnDummy(hCaster,vOrigin,vFacing)
+  local hDummy = CreateUnitByName("visible_dummy_unit", vOrigin or hCaster:GetAbsOrigin(), false, hCaster, hCaster, hCaster:GetTeamNumber())
+  hDummy:FindAbilityByName("dummy_visible_unit_passive"):SetLevel(1)
+  hDummy:SetDayTimeVisionRange(0)
+  hDummy:SetNightTimeVisionRange(0)
+  hDummy:SetAbsOrigin(vOrigin or hCaster:GetAbsOrigin())
+  hDummy:SetForwardVector(vFacing or hCaster:GetForwardVector())
+  return hDummy
+end
+
+--atr1's way to fix shooting arrows backward
+function ForwardVForPointGround(hCaster,vTarget)
+  local vOrigin = hCaster:GetAbsOrigin()
+  local vDisplacement, vFacing = vTarget - vOrigin
+  if math.abs(vDisplacement.x) < 0.05 then
+    vDisplacement.x = 0
+  end
+  if math.abs(vDisplacement.y) < 0.05 then
+    vDisplacement.y = 0
+  end
+  vDisplacement.z = 0
+  if vDisplacement == Vector(0, 0, 0) then
+    vFacing = hCaster:GetForwardVector()
+  else
+    vFacing = vDisplacement:Normalized()
+  end  
+  return vFacing
+end
 
 function UpdateAbilityLayout(hHero, tAbilities)
     local tAbilities = tAbilities or hHero.AbilityLayout
