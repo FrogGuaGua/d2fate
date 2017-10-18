@@ -2,6 +2,7 @@
 
 #base "abilities/archer5/archer_abilities.txt"
 #base "abilities/lancer5/lancer5_abilities.txt"
+#base "abilities/ta/ta_abilities.txt"
 #base "abilities/lancelot/lancelot_abilities.txt"
 #base "abilities/vlad/vlad_abilities.txt"
 #base "abilities/atalanta/atalanta_abilities.txt"
@@ -9293,7 +9294,7 @@
 	//========================================
 	// True Assassin : Self Modification
 	//========================================
-	"true_assassin_self_modification"
+	"true_assassin_self_modification_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
@@ -9431,7 +9432,7 @@
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
 		"RequiredLevel"					"1"
-		"LevelsBetweenUpgrades"			"2"
+		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
@@ -9443,7 +9444,7 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"%range"
 		"AbilityCooldown"				"25"
-		"AbilityManaCost"				"400"
+		"AbilityManaCost"				"200"
 		
 		"precache"
 		{

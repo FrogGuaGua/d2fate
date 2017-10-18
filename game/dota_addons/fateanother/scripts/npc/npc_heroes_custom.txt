@@ -498,8 +498,8 @@
 		"DrawParticlesWhileHidden" "1"
 
 		"Ability1"				"true_assassin_ambush"
-		"Ability2"				"true_assassin_self_modification"
-		"Ability3"				"true_assassin_snatch_strike"
+		"Ability2"				"true_assassin_snatch_strike"
+		"Ability3"				"true_assassin_self_modification"
 		"Ability4"				"true_assassin_dirk"
 		"Ability5"				"true_assassin_presence_concealment"
 		"Ability6"				"true_assassin_zabaniya"

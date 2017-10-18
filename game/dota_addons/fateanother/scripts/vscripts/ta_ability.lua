@@ -443,32 +443,20 @@ function OnZabStart(keys)
 	if (caster:HasModifier("modifier_ambush") or not caster.bIsVisibleToEnemy) then caster.IsShadowStrikeActivated = true end
 	--if caster:HasModifier("modifier_ambush") then caster.IsShadowStrikeActivated = true end
 
-	ProjectileManager:CreateTrackingProjectile(info) 
-	Timers:CreateTimer({
-		endTime = 0.033,
-		callback = function()
-		local smokeFx = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		ParticleManager:SetParticleControl(smokeFx, 0, caster:GetAbsOrigin())
-		local smokeFx2 = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-		ParticleManager:SetParticleControl(smokeFx2, 0, target:GetAbsOrigin())
-		local smokeFx3 = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf", PATTACH_CUSTOMORIGIN, caster)
-		ParticleManager:SetParticleControl(smokeFx3, 0, target:GetAbsOrigin())
+	ProjectileManager:CreateTrackingProjectile(info)
+	local smokeFx = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+	ParticleManager:SetParticleControl(smokeFx, 0, caster:GetAbsOrigin())
+	local smokeFx2 = ParticleManager:CreateParticle("particles/custom/ta/zabaniya_ulti_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl(smokeFx2, 0, target:GetAbsOrigin())
+	local smokeFx3 = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_loadout.vpcf", PATTACH_CUSTOMORIGIN, caster)
+	ParticleManager:SetParticleControl(smokeFx3, 0, target:GetAbsOrigin())
 
-		-- Destroy particle after delay
-		Timers:CreateTimer( 2.0, function()
-				ParticleManager:DestroyParticle( particle, false )
-				ParticleManager:ReleaseParticleIndex( particle )
-				ParticleManager:DestroyParticle( smokeFx, false )
-				ParticleManager:ReleaseParticleIndex( smokeFx )
-				ParticleManager:DestroyParticle( smokeFx2, false )
-				ParticleManager:ReleaseParticleIndex( smokeFx2 )
-				return nil
-		end)
+	ParticleManager:ReleaseParticleIndex( smokeFx )
+	ParticleManager:ReleaseParticleIndex( smokeFx2 )
+	ParticleManager:ReleaseParticleIndex( smokeFx3 )
 
-		EmitGlobalSound("TA.Zabaniya") 
-		target:EmitSound("TA.Darkness") 
-	end
-	})
+	EmitGlobalSound("TA.Zabaniya")
+	target:EmitSound("TA.Darkness")
 end
 
 function OnZabHit(keys)
