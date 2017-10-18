@@ -9443,7 +9443,7 @@
 		
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"%range"
-		"AbilityCooldown"				"25"
+		"AbilityCooldown"				"18"
 		"AbilityManaCost"				"200"
 		
 		"precache"
