@@ -211,7 +211,7 @@ function OnTerritoryExplosion(keys)
 
 
 
-	Timers:CreateTimer(0.3, function()
+	Timers:CreateTimer(1, function()
 		if caster:IsAlive() then
 			caster:EmitSound("Hero_ObsidianDestroyer.SanityEclipse.Cast")
 			local damage = 300 + caster:GetMana() + hero:GetIntellect() * 8 

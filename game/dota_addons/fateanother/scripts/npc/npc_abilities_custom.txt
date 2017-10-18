@@ -11352,7 +11352,7 @@
 		"MaxLevel"						"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/caster_territory_explosion"
-		"AbilityCastPoint"				"0.70"
+		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"0"
 		"AbilityManaCost"				"100"
 
@@ -11368,7 +11368,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"cast_delay"		"0.7"
+				"cast_delay"		"1"
 			}
 		}
 		"OnAbilityPhaseStart"
