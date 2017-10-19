@@ -74,9 +74,12 @@ end
 function atalanta_entangling_trap:OnSpellStart()
   local hCaster = self:GetCaster()
   local vLocation = self:GetCursorPosition()
-  local hTrap = CreateUnitByName("atalanta_trap", vLocation, true, hCaster, hCaster, hCaster:GetTeam())
-  hTrap:AddNewModifier(hCaster,self,"modifier_atalanta_trap",{Duration = -1})
-  self:TrapThink(hTrap)
+  if self.hTrap ~= nil then
+    self.hTrap:RemoveSelf()
+  end  
+  self.hTrap = CreateUnitByName("atalanta_trap", vLocation, true, hCaster, hCaster, hCaster:GetTeam())
+  self.hTrap:AddNewModifier(hCaster,self,"modifier_atalanta_trap",{Duration = -1})
+  self:TrapThink(self.hTrap)
   hCaster:CloseTraps(self)
 end
 
@@ -86,7 +89,7 @@ function atalanta_entangling_trap:TrapThink(hTrap)
   local fArmDelay = self:GetSpecialValueFor("arm_delay")
   
   Timers:CreateTimer(fArmDelay,function()
-    if hTrap:IsAlive() then
+    if not hTrap:IsNull() and hTrap:IsAlive() then
       local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTrap:GetAbsOrigin(), nil, fTriggerRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)  
       for k,v in pairs(tTargets) do
         if v ~= nil then
@@ -95,6 +98,8 @@ function atalanta_entangling_trap:TrapThink(hTrap)
         end
       end
       return 0.1
+    else
+      return nil
     end
   end)
 end
@@ -140,6 +145,7 @@ function atalanta_entangling_trap:Activate(hTarget, hTrap)
   ParticleManager:SetParticleControl(PI, 0, hTrap:GetAbsOrigin())
   tTargets[1]:EmitSound("Hero_Windrunner.ShackleshotCast")
   hTrap:RemoveSelf()
+  self.hTrap = nil
 end
 
 function atalanta_entangling_trap:EntangleThinkFor1(fCounter,hTarget1,hDummy)
