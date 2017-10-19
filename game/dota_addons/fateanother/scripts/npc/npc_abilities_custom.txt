@@ -2427,6 +2427,7 @@
 			"particle"		"particles/units/heroes/hero_warlock/warlock_rainofchaos_start_breakout_fallback_mid.vpcf"
 			"particle"		"particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp_cracks.vpcf"
 			"particle"		"particles/custom/lancer/lancer_gae_bolg_hit.vpcf"
+			"particle" 		"particles/custom/lancer/soaring/spear.vpcf"
 		}
 		
 		// Casting
