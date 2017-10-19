@@ -274,7 +274,7 @@ end
 
 function ResetAbilities(hero)
 	-- Reset all resetable abilities
-	for i=0, 15 do 
+	for i=0, 23 do 
 		local ability = hero:GetAbilityByIndex(i)
 		if ability ~= nil then
 			if ability.IsResetable ~= false then

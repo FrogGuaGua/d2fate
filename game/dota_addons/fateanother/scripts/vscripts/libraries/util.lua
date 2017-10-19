@@ -574,7 +574,7 @@ function PlayBGM(player)
 end
 
 function LevelAllAbility(hero)
-    for i=0, 14 do
+    for i=0, 23 do
         local ability = hero:GetAbilityByIndex(i)
         if ability == nil then return end
         local level0 = false -- whether ability should be kept level 0 or not
