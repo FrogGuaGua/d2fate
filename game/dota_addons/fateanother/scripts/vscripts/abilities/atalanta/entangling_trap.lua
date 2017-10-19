@@ -75,7 +75,7 @@ end
 function atalanta_entangling_trap:OnSpellStart()
   local hCaster = self:GetCaster()
   local vLocation = self:GetCursorPosition()
-  if self.hTrap ~= nil then
+  if self.hTrap ~= nil and not self.hTrap:IsNull() then
     self.hTrap:RemoveSelf()
   end  
   self.hTrap = CreateUnitByName("atalanta_trap", vLocation, true, hCaster, hCaster, hCaster:GetTeam())
