@@ -15,7 +15,8 @@ if IsClient() then
 end
 
 function atalanta_entangling_trap:VFX1_Entangle(hTarget,hDummyCenter,fEntangleDuration)
-  local PI = ParticleManager:CreateParticle("particles/custom/atalanta/entangle/pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, hDummyCenter)
+  --local PI = ParticleManager:CreateParticle("particles/custom/atalanta/entangle/pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, hDummyCenter)
+  local PI = ParticleManager:CreateParticle("particles/custom/atalanta/entangle_better/pair_tree.vpcf", PATTACH_ABSORIGIN_FOLLOW, _G.ParticleDummy)
   ParticleManager:SetParticleControlEnt(PI, 0, hTarget, PATTACH_ABSORIGIN_FOLLOW, nil, hTarget:GetAbsOrigin(), true)
   ParticleManager:SetParticleControlEnt(PI, 1, hDummyCenter, PATTACH_ABSORIGIN_FOLLOW, nil, hDummyCenter:GetAbsOrigin(), true)
   ParticleManager:SetParticleControl(PI, 2, Vector(fEntangleDuration,0,0))
