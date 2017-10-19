@@ -168,7 +168,7 @@ function atalanta_cobweb_shot:OnSpellStart()
         vLastBounce = vLastPos
 
         if iCurrentBounce > 0 then 
-          self.PIWebs[iCurrentBounce] = ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_web.vpcf", PATTACH_ABSORIGIN_FOLLOW, hCaster)
+          self.PIWebs[iCurrentBounce] = ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_web.vpcf", PATTACH_ABSORIGIN_FOLLOW, _G.ParticleDummy)
           --ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce-1], 0, Vector(1,1,1))
           ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce], 2, tBounceLocs[iCurrentBounce])
           ParticleManager:SetParticleControl(self.PIWebs[iCurrentBounce], 3, tBounceLocs[iCurrentBounce+1])          
@@ -185,7 +185,7 @@ function atalanta_cobweb_shot:OnSpellStart()
         --fDistTraveled = fDistTraveled + (vVelocity * fArrowInterval):Length()
         if iCurrentBounce > 0 then 
           FxDestroyer(self.PICurrentStrand, false)
-          self.PICurrentStrand =  ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_web_current.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow)
+          self.PICurrentStrand =  ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_web_current.vpcf", PATTACH_ABSORIGIN_FOLLOW, _G.ParticleDummy)
           --ParticleManager:SetParticleControl(self.PICurrentStrand, 0, Vector(1,1,1))
           ParticleManager:SetParticleControl(self.PICurrentStrand, 2, tBounceLocs[iCurrentBounce])
           ParticleManager:SetParticleControl(self.PICurrentStrand, 3, vLastPos)--]]

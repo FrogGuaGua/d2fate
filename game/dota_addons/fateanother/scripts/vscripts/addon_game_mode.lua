@@ -358,7 +358,15 @@ function FateGameMode:OnAllPlayersLoaded()
             maxkey = votePool[i]
         end
     end
-
+    
+    --add global particle dummy in master's territory along with vision for both teams
+    local particleDummyOrigin = Vector(6250,-7200, 200)
+    local particleDummy = CreateUnitByName("visible_dummy_unit", particleDummyOrigin, true, nil, nil, 4)
+    particleDummy:FindAbilityByName("dummy_visible_unit_passive"):SetLevel(1)
+    AddFOWViewer(2, particleDummyOrigin, 2200, 99999, false) -- duration -1 doesnt work lols
+    AddFOWViewer(3, particleDummyOrigin, 2200, 99999, false)
+    _G.ParticleDummy = particleDummy
+    
     -- CUSTOM COLOURS
     badGuyColorIndex = 1
     goodGuyColorIndex = 1
@@ -508,6 +516,7 @@ function FateGameMode:OnGameInProgress()
         dummyLevel = 2
         dummyLoc = TRIO_RUMBLE_CENTER
     end
+    
 
     if bIsDummyNeeded then
         local xpGranter = CreateUnitByName("dummy_unit", Vector(0, 0, 1000), true, nil, nil, DOTA_TEAM_NEUTRALS)
