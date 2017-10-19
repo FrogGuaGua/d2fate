@@ -351,6 +351,8 @@ end
 function OnRI2Start(keys)
 	local caster = keys.caster
 	local ability = keys.ability
+	local diffN = (caster.RIStartOrigin - caster:GetAbsOrigin()):Normalized()
+	caster:SetForwardVector(diffN)
 
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_rosa_ichthys_anim", {})
 	caster:EmitSound("Nero.Rosa")
