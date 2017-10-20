@@ -567,8 +567,10 @@ function OnGlassGameStart(keys)
 		--print("applied aura")
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_queens_glass_game_link_aura", {})
 		Timers:CreateTimer(0.6, function()
-			caster:AddNewModifier(caster, ability, "modifier_qgg_oracle_aura", { Duration = -1 })
-			ParticleManager:SetParticleControl(caster.aoeFx2, 3, Vector(0,0,0))
+			if caster:IsChanneling() then
+				caster:AddNewModifier(caster, ability, "modifier_qgg_oracle_aura", { Duration = -1 })
+				ParticleManager:SetParticleControl(caster.aoeFx2, 3, Vector(0,0,0))
+			end
 		end)
 	end
 	-- find team units in radius and grant them instant heal
