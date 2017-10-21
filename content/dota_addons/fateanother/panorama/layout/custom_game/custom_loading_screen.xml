@@ -1,9 +1,19 @@
 <root>
+  <scripts>
+    <include src="file://{resources}/scripts/custom_game/custom_loading_screen.js"/>
+  </scripts>
   <styles>
     <include src="file://{resources}/styles/custom_game/custom_loading_screen.css" />
+    <include src="file://{resources}/styles/custom_game/util.css" />
   </styles>
-  <Panel class="AddonLoadingRoot">
-    <Panel id="BG" >
+  <Panel class="LoadingScreen" hittest="false">
+    <Panel id="Background" hittest="false">
+      <Image id="BackgroundLogo" src="file://{images}/custom_game/loading_screen/logo.png" hittest="false"/>
+    </Panel>
+    <Panel id="Tip" hittest="false">
+      <Label id="TipLabel" hittest="false"/>
+    </Panel>
+    <!--<Panel id="BG" >
       <Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/diarmuid.png" />
     </Panel>
     <Panel id="TitlePanel">
@@ -11,6 +21,6 @@
     </Panel>
     <Panel id="Text">
       <Label id="MoreText" text="Version 1.24\nPatch Notes: dota2fa.blogspot.com\nDiscord: discord.gg/nSzm6uk\nhttp://steamcommunity.com/groups/dota2fate" style="" />
-    </Panel>
+    </Panel>-->
   </Panel>
 </root>

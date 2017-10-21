@@ -1081,14 +1081,17 @@ function OnPresenceDetectionThink(keys)
 					FAEyeAttribute(caster, enemy)
 				end
 				-- Process Eye for Art attribute
-				if caster:GetName() == "npc_dota_hero_shadow_shaman" and caster.IsEyeForArtAcquired == true then
-					local choice = math.random(1,3)
-					if choice == 1 then
-						Say(caster:GetPlayerOwner(), FindName(enemy:GetName()) .. ", dare to enter the demon's lair on your own?", true) 
-					elseif choice == 2 then
-						Say(caster:GetPlayerOwner(), "This presence...none other than " .. FindName(enemy:GetName()) .. "!", true) 
-					elseif choice == 3 then
-						Say(caster:GetPlayerOwner(), "Come forth, " .. FindName(enemy:GetName()) .. "...The fresh terror awaits you!", true) 
+				local hPlayer = caster:GetPlayerOwner()
+				if IsValidEntity(hPlayer) and not hPlayer:IsNull() then
+					if caster:GetName() == "npc_dota_hero_shadow_shaman" and caster.IsEyeForArtAcquired == true then
+						local choice = math.random(1,3)
+						if choice == 1 then
+							Say(hPlayer, FindName(enemy:GetName()) .. ", dare to enter the demon's lair on your own?", true)
+						elseif choice == 2 then
+							Say(hPlayer, "This presence...none other than " .. FindName(enemy:GetName()) .. "!", true)
+						elseif choice == 3 then
+							Say(hPlayer, "Come forth, " .. FindName(enemy:GetName()) .. "...The fresh terror awaits you!", true)
+						end
 					end
 				end
 			end

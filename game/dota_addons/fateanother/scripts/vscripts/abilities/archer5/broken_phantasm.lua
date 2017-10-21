@@ -15,10 +15,12 @@ function archer_5th_broken_phantasm:OnSpellStart()
 
     self.pcMarker = ParticleManager:CreateParticleForTeam("particles/custom/archer/archer_broken_phantasm/archer_broken_phantasm_crosshead.vpcf", PATTACH_OVERHEAD_FOLLOW, hTarget, hCaster:GetTeamNumber())
     ParticleManager:SetParticleControl(self.pcMarker, 0, hTarget:GetAbsOrigin() + Vector(0,0,100)) 
-    ParticleManager:SetParticleControl(self.pcMarker, 1, hTarget:GetAbsOrigin() + Vector(0,0,100)) 
+    ParticleManager:SetParticleControl(self.pcMarker, 1, hTarget:GetAbsOrigin() + Vector(0,0,100))
 
-    if hTarget:IsHero() then
-        Say(hPlayer, "Broken Phantasm targets " .. FindName(hTarget:GetName()) .. ".", true)
+    if IsValidEntity(hPlayer) and not hPlayer:IsNull() then
+        if hTarget:IsHero()then
+            Say(hPlayer, "Broken Phantasm targets " .. FindName(hTarget:GetName()) .. ".", true)
+        end
     end
 end
 

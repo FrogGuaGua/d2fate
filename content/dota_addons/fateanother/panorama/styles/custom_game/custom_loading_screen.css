@@ -1,20 +1,42 @@
-@define TotalLength: 30s;
-@define TimingFunc: linear;
-@define IterationCount: 1;
-@define AnimationDelay: 0s;
-
-.AddonLoadingRoot
+.LoadingScreen
 {
-    width: 200%;
-    height: 200%;
-    background-color: black;
-    overflow: clip;
+  width: 100%;
+  height: 100%;
 }
 
-#TitlePanel
+#Background
 {
-    width: 100%;
-    height: 100px;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+
+  transition-property: saturation, blur;
+  transition-delay: 0.0s;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-out;
+
+  blur: gaussian(0.0);
+  saturation: 1.0;
+}
+
+#Background.Loaded
+{
+  blur: gaussian(4.0);
+  saturation: 0.4;
+}
+
+#BackgroundLogo
+{
+  horizontal-align: left;
+  vertical-align: bottom;
+  margin-bottom: 270px;
+  margin-left: 30px;
+}
+
+#Tip
+{
+  width: 100%;
+  height: 100px;
   horizontal-align: left;
   vertical-align: bottom;
   margin-bottom: 240px;
@@ -22,77 +44,12 @@
   background-color: #000000ee;
 }
 
-#AddonTitle
+#TipLabel
 {
   margin-bottom: 0px;
-  margin-left: 80px;
+  margin-left: 40px;
   vertical-align: center;
-  font-size: 72px;
+  font-size: 24px;
   color: #cccccc;
   text-shadow: 5px 5px 5px #000000, -5px -5px -5px #cccccc;
-  letter-spacing: 20px;
-}
-
-#Text
-{
-  horizontal-align: left;
-  vertical-align: bottom;
-  margin-bottom: 100px;
-  margin-left: 100px;
-  flow-children: right;
-}
-
-
-#MoreText
-{
-  margin-bottom: -15px;
-  vertical-align: center;
-  font-size: 30px;
-  color: #cccccc;
-  text-shadow: 2px 2px 4px 3.0 #000000;
-}
-
-
-.SeqImg
-{
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: 100% 100%;
-}
-
-#CustomBg
-{
-
-  margin-left: 110px;
-    overflow: clip;
-  pre-transform-scale2d: 1.3;
-  animation-name: gamemode_anim;
-  animation-delay: AnimationDelay;
-  animation-duration: TotalLength;
-  animation-timing-function: TimingFunc;
-  animation-iteration-count: IterationCount;
-}
-
-#BG
-{
-}
-
-#gamemode
-{
-  margin-left: 0px;
-  margin-bottom: 0px;
-}
-
-@keyframes 'gamemode_anim'
-{
-  0%
-  {
-    transform: translateX( 0px ) translateY( 0px );
-    pre-transform-scale2d: .8;
-  }
-
-  100%
-  {
-    transform: translateX( 0px ) translateY( 0px );
-  }
 }
