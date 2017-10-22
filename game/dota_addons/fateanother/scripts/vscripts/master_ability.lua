@@ -565,8 +565,8 @@ function FindAttribute(name)
     	attributes = NRAttribute
     elseif name == "npc_dota_hero_drow_ranger" then
     	attributes = AtalantaAttribute
-	elseif name == "npc_dota_hero_tidehunter" then
-		attributes = VladAttribute
+		elseif name == "npc_dota_hero_tidehunter" then
+			attributes = VladAttribute
     end
     return attributes
 end 

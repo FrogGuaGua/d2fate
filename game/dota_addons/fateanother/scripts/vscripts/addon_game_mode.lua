@@ -1230,18 +1230,10 @@ function FateGameMode:OnHeroInGame(hero)
     hero.MasterUnit2 = master2
     AddMasterAbility(master2, hero:GetName())
     LevelAllAbility(master2)
-
-    local attributes = FindAttribute(hero:GetName())
-    attributes.attrCount = nil
-    local combo = attributes[#attributes]
-    attributes[#attributes] = nil
-
     local playerData = {
         masterUnit = master2:entindex(),
         shardUnit = master:entindex(),
-        hero = hero:entindex(),
-        attributes = attributes,
-        combo = combo,
+        hero = hero:entindex()
     }
     --[[-- Create personal stash for hero
     masterStash = CreateUnitByName("master_stash", Vector(4500 + hero:GetPlayerID()*350,-7250,0), true, hero, hero, hero:GetTeamNumber())
@@ -1416,17 +1408,9 @@ function FateGameMode:OnPlayerReconnect(keys)
         local ply = PlayerResource:GetPlayer(keys.PlayerID)
         local hero = ply:GetAssignedHero()
 
-        local attributes = FindAttribute(hero:GetName())
-        attributes.attrCount = nil
-        local combo = attributes[#attributes]
-        attributes[#attributes] = nil
-
         local playerData = {
-            masterUnit = master2:entindex(),
-            shardUnit = master:entindex(),
-            hero = hero:entindex(),
-            attributes = attributes,
-            combo = combo,
+            masterUnit = hero.MasterUnit2:entindex(),
+            shardUnit = hero.MasterUnit:entindex()
         }
         CustomGameEventManager:Send_ServerToPlayer(ply, "player_selected_hero", playerData)
         --CustomGameEventManager:Send_ServerToAllClients( "victory_condition_set", victoryConditionData ) -- Send the winner to Javascript
