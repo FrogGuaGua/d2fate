@@ -32,9 +32,11 @@ function archer_5th_broken_phantasm:OnChannelFinish(bInterrupted)
     ParticleManager:DestroyParticle(self.pcMarker, false)
     ParticleManager:ReleaseParticleIndex(self.pcMarker)
 
-    if bInterrupted or not hCaster:CanEntityBeSeenByMyTeam(hTarget) or hCaster:GetRangeToUnit(hTarget) > 4500 or hCaster:GetMana() < self:GetManaCost(-1) or not IsInSameRealm(hCaster:GetAbsOrigin(), hTarget:GetAbsOrigin()) then 
-        Say(hPlayer, "Broken Phantasm failed.", true)
-        return
+    if IsValidEntity(hPlayer) and not hPlayer:IsNull() then
+        if bInterrupted or not hCaster:CanEntityBeSeenByMyTeam(hTarget) or hCaster:GetRangeToUnit(hTarget) > 4500 or hCaster:GetMana() < self:GetManaCost(-1) or not IsInSameRealm(hCaster:GetAbsOrigin(), hTarget:GetAbsOrigin()) then 
+            Say(hPlayer, "Broken Phantasm failed.", true)
+            return
+        end
     end
 
     self:StartCooldown(self:GetCooldown(self:GetLevel()))
