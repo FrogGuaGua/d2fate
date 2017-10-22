@@ -357,14 +357,21 @@ function FateGameMode:OnAllPlayersLoaded()
             maxval = i
             maxkey = votePool[i]
         end
-    end
+    end  
     
+    
+    local particleDummyOrigin
+    if _G.GameMap == "fate_elim_6v6" or _G.GameMap == "fate_elim_7v7" then
+        particleDummyOrigin = Vector(-7900,-8000, 200)--Vector(6250,-7200, 200)
+    elseif _G.GameMap == "fate_trio_rumble_3v3v3v3" or "fate_ffa" then
+        particleDummyOrigin = Vector(6250,-7200, 200)
+    end    
     --add global particle dummy in master's territory along with vision for both teams
-    local particleDummyOrigin = Vector(6250,-7200, 200)
+
     local particleDummy = CreateUnitByName("visible_dummy_unit", particleDummyOrigin, true, nil, nil, 4)
     particleDummy:FindAbilityByName("dummy_visible_unit_passive"):SetLevel(1)
-    AddFOWViewer(2, particleDummyOrigin, 2200, 99999, false) -- duration -1 doesnt work lols
-    AddFOWViewer(3, particleDummyOrigin, 2200, 99999, false)
+    AddFOWViewer(2, particleDummyOrigin, 500, 99999, false) -- duration -1 doesnt work lols
+    AddFOWViewer(3, particleDummyOrigin, 500, 99999, false)
     _G.ParticleDummy = particleDummy
     
     -- CUSTOM COLOURS
