@@ -10,7 +10,7 @@
     "MaxLevel"						"5"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
     "AbilityTextureName"			"windrunner_powershot"
-    
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
     "AbilityCastPoint"				"0.3"
     "AbilityCooldown"				"0"
     "AbilityManaCost"				"10"
@@ -137,7 +137,7 @@
     "BaseClass"						"ability_lua"
     "ScriptFile"					"abilities/atalanta/traps"
     "MaxLevel"						"5"
-    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_TOGGLE" 
     
     "AbilityCastPoint"				"0"
     "AbilityCooldown"				"0"
@@ -229,6 +229,7 @@
     "ScriptFile"					"abilities/atalanta/cobweb_shot"
     "MaxLevel"						"5"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
     "AbilityTextureName"			"custom/atalanta_cobweb_shot"
     "AbilityCastAnimation" 			"ACT_DOTA_ATTACK"
     "RequiredLevel"					"25"
@@ -279,6 +280,7 @@
     "ScriptFile"					"abilities/atalanta/entangling_trap"
     "MaxLevel"						"5"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
     "AbilityTextureName"			"enchantress_untouchable"
     "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
     "RequiredLevel"					"25"
@@ -426,7 +428,7 @@
     "LevelsBetweenUpgrades"			"25"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
     "AbilityTextureName"			"custom/atalanta_crossing_arcadia"
-    
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
     "AbilityCastPoint"				"0.15"
     "AbilityCooldown"				"8"
     "AbilityManaCost"				"200"
@@ -551,7 +553,7 @@
     "MaxLevel"						"5"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
     "AbilityTextureName"			"custom/atalanta_tauropolos"
-    
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
     "AbilityCastPoint"				"1.75"
     "AbilityCooldown"				"30"
     "AbilityManaCost"				"600"
@@ -733,7 +735,7 @@
     "LevelsBetweenUpgrades"			"2"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     "AbilityTextureName"			"custom/atalanta_phoebus_catastrophe"
-    
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
     "AbilityCastPoint"				"0.8"
     "AbilityCooldown"				"36"
     "AbilityManaCost"				"300"
@@ -820,7 +822,7 @@
     "MaxLevel"						"1"
     "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     "AbilityTextureName"			"custom/atalanta_phoebus_catastrophe"
-    
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
     "AbilityCastPoint"				"1"
     "AbilityCooldown"				"140"
     "AbilityManaCost"				"700"
