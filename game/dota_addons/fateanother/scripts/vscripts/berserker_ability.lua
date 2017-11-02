@@ -614,7 +614,7 @@ function OnGodHandDeath(keys)
 			caster.GodHandStock = caster.GodHandStock - 1
 			GameRules:SendCustomMessage("<font color='#FF0000'>----------!!!!!</font> Remaining God Hand stock : " .. caster.GodHandStock , 0, 0)
 			caster:SetRespawnPosition(dummy:GetAbsOrigin())
-			caster:RespawnHero(false,false,false)
+			caster:RespawnHero(false,false)
 			caster:RemoveModifierByName("modifier_god_hand_stock")
 			if caster.GodHandStock > 0 then
 				keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_god_hand_stock", {})

@@ -2871,7 +2871,7 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
                     respawnPos = GetRespawnPos(playerHero, self.nCurrentRound, index)
                 end
                 playerHero:SetRespawnPosition(respawnPos)
-                playerHero:RespawnHero(false, false, false)
+                playerHero:RespawnHero(false, false)
                 ProjectileManager:ProjectileDodge(playerHero)
             end, true)
             self:InitializeRound()

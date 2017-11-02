@@ -868,7 +868,7 @@ function OnManaRegenGain(keys)
 		end
 	end 
 	hero.ServStat:addMPregen()
-	hero:SetBaseManaRegen(hero:GetManaRegen()+1.5) --down here attributes.txt is useless, and this line is working.
+	hero:SetBaseManaRegen(hero:GetBaseManaRegen()+1.5) --down here attributes.txt is useless, and this line is working.
 	hero:CalculateStatBonus()
 	-- Set master 1's mana 
 	local master1 = hero.MasterUnit
