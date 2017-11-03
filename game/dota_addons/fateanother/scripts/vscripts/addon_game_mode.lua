@@ -2005,7 +2005,8 @@ function OnServantCustomizeActivated(Index, keys)
     local caster = EntIndexToHScript(keys.unitEntIndex)
     local ability = EntIndexToHScript(keys.abilEntIndex)
     local hero = caster:GetPlayerOwner():GetAssignedHero()
-    if ability:GetBehavior() ~= 6293508 then
+    local behav_string = tostring(ability:GetBehavior())
+    if behav_string ~= "6293508" then
         return
     end
     if ability:GetManaCost(1) > caster:GetMana() then
