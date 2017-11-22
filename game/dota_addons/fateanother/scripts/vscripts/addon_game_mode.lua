@@ -2497,6 +2497,13 @@ function FateGameMode:ExecuteOrderFilter(filterTable)
     return true
 end
 
+function FateGameMode:ItemAddedFilter(args)
+    local item = EntIndexToHScript(args.item_entindex_const)
+    if item:GetName() == "item_tpscroll" then return false end
+
+    return true
+end
+
 function FateGameMode:InitializeRound()
     -- do first round stuff
     --if self.nCurrentRound == 1 then
@@ -2948,6 +2955,7 @@ function FateGameMode:CaptureGameMode()
         mode:SetAnnouncerDisabled( true )
         mode:SetLoseGoldOnDeath( false )
         mode:SetExecuteOrderFilter( Dynamic_Wrap( FateGameMode, "ExecuteOrderFilter" ), FateGameMode )
+        mode:SetItemAddedToInventoryFilter(Dynamic_Wrap(FateGameMode, "ItemAddedFilter"), FateGameMode)
         mode:SetModifyGoldFilter(Dynamic_Wrap(FateGameMode, "ModifyGoldFilter"), FateGameMode)
         mode:SetDamageFilter(Dynamic_Wrap(FateGameMode, "TakeDamageFilter"), FateGameMode)
         mode:SetModifyExperienceFilter(Dynamic_Wrap(FateGameMode, "ModifyExperienceFilter"), FateGameMode)
