@@ -9,6 +9,7 @@
         <include src="file://{resources}/scripts/sounds.js" />
     </scripts>
     <Panel class="CustomizationBoardRoot" hittest="false">
+		<Panel id="CustomizeServant" hittest="false">
 		<!--<Image src="file://{images}/misc/customize.png"/>-->
 		<Panel id="CustomizationBoardLabel" hittest="false">
 			<Label id="CustomizeBoardLabelText" text="#Fateanother_Customize" hittest="false"/>
@@ -68,7 +69,7 @@
 				</Panel>
 			</Panel>
 	    </Panel>
-	    <DOTAHeroMovie id="DailyHeroMovie" class="HeroMovie" src="file://{resources}/videos/heroes/npc_dota_hero_legion_commander.webm" controls="none" repeat="true" autoplay="onload" />
+		</Panel>
         <!--<Button id="CustomizationOpenButton" onactivate="OnCustomizeButtonPressed()" onmouseover="OnCustomizeButtonShowTooltip()" onmouseout="OnCustomizeButtonHideTooltip()" hittest="true">
             <Image id="CustomizationOpenButtonImage" src="file://{images}/misc/gold_arrow.png" hittest="false"/>
             <Label id="CustomizationOpenButtonText" class="CustomizationText" text="#Fateanother_Customize" hittest="false"/>

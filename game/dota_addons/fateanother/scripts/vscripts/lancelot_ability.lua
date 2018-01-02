@@ -619,7 +619,8 @@ function OnKnightImproved(keys)
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     if hero.KnightLevel == nil then
-            hero.MasterUnit2:FindAbilityByName("lancelot_attribute_improve_koh_arsenal"):StartCooldown(9999)
+            local arsenal = hero.MasterUnit2:FindAbilityByName("lancelot_attribute_improve_koh_arsenal")
+            if arsenal then arsenal:StartCooldown(9999) end
             hero.KnightLevel = 1
             keys.ability:EndCooldown()
     else
