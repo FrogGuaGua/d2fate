@@ -440,7 +440,7 @@ function OnTheatreCast(keys)
 	giveUnitDataDrivenModifier(caster, caster, "pause_sealenabled", 1.5)
 
 	Timers:CreateTimer(1.5, function()
-		if caster:IsAlive() then
+		if caster:IsAlive() and not caster:HasModifier("modifier_invictus_spiritus") then
 			OnTheatreStart(keys)
 			keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_aestus_domus_aurea",{})
 		end
