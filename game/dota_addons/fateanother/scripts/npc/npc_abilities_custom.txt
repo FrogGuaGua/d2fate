@@ -6,6 +6,7 @@
 #base "abilities/lancelot/lancelot_abilities.txt"
 #base "abilities/vlad/vlad_abilities.txt"
 #base "abilities/atalanta/atalanta_abilities.txt"
+#base "abilities/mordred/abilities.txt"
 
 
 "DOTAAbilities"

@@ -32,6 +32,7 @@
                  <Image src="file://{images}/custom_game/selection/npc_dota_hero_chen.png"/>
                  <Image src="file://{images}/custom_game/selection/npc_dota_hero_drow_ranger.png"/>
 				 <Image src="file://{images}/custom_game/selection/npc_dota_hero_tidehunter.png"/>
+				 <Image src="file://{images}/custom_game/selection/npc_dota_hero_phantom_assassin.png"/>
 
                  <Image src="file://{images}/custom_game/selection/random.png"/>
 
@@ -59,6 +60,7 @@
                  <Image src="file://{images}/custom_game/portrait/npc_dota_hero_chen.png"/>
                  <Image src="file://{images}/custom_game/portrait/npc_dota_hero_drow_ranger.png"/>
 				 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_tidehunter.png"/>
+				 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_phantom_assassin.png"/>
          </Panel>
          <Panel id="container" class="container">
              <Panel class="pickStatus">

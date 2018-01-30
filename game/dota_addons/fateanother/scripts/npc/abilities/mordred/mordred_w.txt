@@ -1,0 +1,47 @@
+"DOTAAbilities"
+{
+    "mordred_w"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/mordred/mordred_w"
+        "AbilityTextureName"                            "centaur_stampede"
+        
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+        
+        "AbilityCastRange"                              "300 350 400 450 500"
+        "AbilityCooldown"                               "20"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "dashes"                            "1 1 2 2 3"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "movespeed"                         "5 10 15 20 25"
+            }
+            "03"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "ms_reduction"                      "75 60 45 30 15"
+            }
+            "04"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "manacost"                          "10"
+            }
+            "05"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "range"                             "300 350 400 450 500"
+            }
+        }
+    }
+}

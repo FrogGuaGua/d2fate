@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+    "mordred_e"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/mordred/mordred_e"
+        "AbilityTextureName"                            "ursa_enrage"
+        
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+        
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "2"
+        
+        "AbilityCastRange"                              "0"
+        "AbilityCastRangeBuffer"                        "0"
+        "AbilityCastPoint"                              "0"
+        "AbilityCooldown"                               "30"
+        "AbilityManaCost"                               "0"
+        
+        "AbilitySpecial"
+        {
+        }
+    }
+}

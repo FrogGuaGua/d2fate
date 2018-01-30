@@ -2000,3 +2000,9 @@ function UpdateAbilityLayout(hHero, tAbilities)
         end
     end
 end
+
+fmath = {}
+
+function fmath.QuadBezier(t, p1, p2, p3)
+    return ((1 - t)^2 * p1) + (2 * (1 - t) * t * p2) + t^2 * p3
+end

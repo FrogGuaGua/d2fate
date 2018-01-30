@@ -222,6 +222,15 @@ VladAttribute = {
 	"vlad_combo",
 	attrCount = 5
 }
+MordredAttribute = {
+	"atalanta_attribute_arrows_of_the_big_dipper",
+	"atalanta_attribute_hunters_mark",
+	"atalanta_attribute_golden_apple",
+	"atalanta_attribute_crossing_arcadia_plus",
+	"atalanta_attribute_bow_of_heaven",
+	"atalanta_phoebus_catastrophe_proxy",
+	attrCount = 5
+}
 --[[LiAttribute = {
 	attrCount = 4
 }]]
@@ -565,8 +574,10 @@ function FindAttribute(name)
     	attributes = NRAttribute
     elseif name == "npc_dota_hero_drow_ranger" then
     	attributes = AtalantaAttribute
-		elseif name == "npc_dota_hero_tidehunter" then
-			attributes = VladAttribute
+	elseif name == "npc_dota_hero_tidehunter" then
+		attributes = VladAttribute
+	elseif name == "npc_dota_hero_phantom_assassin" then
+		attributes = MordredAttribute
     end
     return attributes
 end 

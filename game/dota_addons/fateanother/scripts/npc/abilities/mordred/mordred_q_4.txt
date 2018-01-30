@@ -1,0 +1,46 @@
+"DOTAAbilities"
+{
+    "mordred_q_4"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/mordred/mordred_q"
+        "AbilityTextureName"                            "chaos_knight_reality_rift"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_YES"
+
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCastRange"                              "1000"
+        "AbilityCastPoint"                              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "range"                             "1000"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "travel_time"                             "0.4"
+            }
+            "03"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "damage"                            "100 200 300 400 500"
+            }
+            "04"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "delay"                             "1.0"
+            }
+        }
+    }
+}

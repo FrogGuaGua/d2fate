@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+    "mordred_r"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/mordred/mordred_r"
+        "AbilityTextureName"                            "chaos_knight_chaos_bolt"
+        
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+        
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "2"
+        
+        "AbilityCastRange"                              "0"
+        "AbilityCastRangeBuffer"                        "0"
+        "AbilityCastPoint"                              "0"
+        "AbilityCooldown"                               "40"
+        "AbilityManaCost"                               "0"
+        
+        "AbilitySpecial"
+        {
+        }
+    }
+}
