@@ -987,6 +987,8 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
     local MR = target:GetMagicalArmorValue() 
     dmg_flag = bit.bor(dmg_flag, DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION)
 
+    if target:GetName() == "npc_dota_ward_base" then return end
+
     -- Records skill damage PRE-REDUCTION. For the rest, refer to OnHeroTakeDamage() below.
     if isLoop == false then
         if not source:IsHero() then --Account for neutral attacker
