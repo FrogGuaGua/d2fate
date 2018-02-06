@@ -28,7 +28,7 @@ end
 
 function UnitVoice:PlayRandomClientSound(iIssuer, tSounds, fMin, fMax)
 	if self.bDisabled or self.time > GameRules:GetGameTime() then return end
-	
+
 	local hPlayer = PlayerResource:GetPlayer(iIssuer)
 	local i = RandomInt(1, #tSounds)
 	local sSound = tSounds[i]

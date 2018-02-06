@@ -21,7 +21,7 @@ require('libraries/servantstats')
 require('libraries/alternateparticle')
 
 require('blink')
-require('unit_voice')
+--require('unit_voice')
 require('wrappers')
 
 
@@ -1130,7 +1130,7 @@ function FateGameMode:OnHeroInGame(hero)
     -- Initialize stuffs
     hero:SetCustomDeathXP(0)
     hero.bFirstSpawned = true
-	UnitVoice(hero)
+	--UnitVoice(hero)
     hero.PresenceTable = {}
     hero.bIsDmgPopupDisabled = false
     hero.bIsAlertSoundDisabled = false
@@ -2309,6 +2309,7 @@ function FateGameMode:TakeDamageFilter(filterTable)
     if filterTable.entindex_inflictor_const then
         inflictor = EntIndexToHScript(filterTable.entindex_inflictor_const) -- the skill name
     end
+    ---@type CDOTA_BaseNPC
     local victim = EntIndexToHScript(filterTable.entindex_victim_const)
 
     --[[if victim:IsHero() and victim.assistTable then

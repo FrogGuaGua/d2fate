@@ -1,6 +1,8 @@
 gilgamesh_enuma_elish = class({})
 gilgamesh_enuma_elish_activate = class({})
 
+LinkLuaModifier("modifier_gilg_enuma_hit", "abilities/gilg/enuma_elish", LUA_MODIFIER_MOTION_NONE)
+
 if not IsServer() then
   return
 end
@@ -128,7 +130,9 @@ function gilgamesh_enuma_elish:OnProjectileHit_ExtraData(hTarget,vLocation,table
   if hTarget ~= nil then
     local caster = self:GetCaster()
     local damage = table.damage
+    if hTarget:HasModifier("modifier_gilg_enuma_hit") then return end
     if hTarget:GetUnitName() == "gille_gigantic_horror" then damage = damage * 1.3 end
+    hTarget:AddNewModifier(caster, self, "modifier_gilg_enuma_hit", {duration=1}) -- Band aid fix ahoy!
     DoDamage(caster, hTarget, damage, DAMAGE_TYPE_MAGICAL, 0, self, false)
     local PIOnTarget = FxCreator("particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_illuminate_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget,0,nil)
   end
@@ -178,3 +182,7 @@ end
 function gilgamesh_enuma_elish_activate:GetAbilityTextureName()
   return "custom/gilgamesh_enuma_elish"
 end
+
+---@class modifier_gilg_enuma_hit : CDOTA_Modifier_Lua
+modifier_gilg_enuma_hit = class({})
+modifier_gilg_enuma_hit.IsHidden = function() return true end

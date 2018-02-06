@@ -30504,6 +30504,10 @@
 						"Function"      "WardOnTakeDamage"
 					}
 				}
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
 			}
 		}
 	}
