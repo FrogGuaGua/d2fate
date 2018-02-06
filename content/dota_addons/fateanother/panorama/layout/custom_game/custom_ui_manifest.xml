@@ -163,7 +163,6 @@
 
 	
 	<scripts>
-		<include src="file://{resources}/scripts/custom_game/fateanother_voice.js" />
 		<include src="file://{resources}/scripts/custom_game/fateanother_shop.js" />
 	</scripts>
 	

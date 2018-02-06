@@ -2,6 +2,9 @@ gilgamesh_enuma_elish = class({})
 gilgamesh_enuma_elish_activate = class({})
 
 LinkLuaModifier("modifier_gilg_enuma_hit", "abilities/gilg/enuma_elish", LUA_MODIFIER_MOTION_NONE)
+---@class modifier_gilg_enuma_hit : CDOTA_Modifier_Lua
+modifier_gilg_enuma_hit = class({})
+modifier_gilg_enuma_hit.IsHidden = function() return true end
 
 if not IsServer() then
   return
@@ -182,7 +185,3 @@ end
 function gilgamesh_enuma_elish_activate:GetAbilityTextureName()
   return "custom/gilgamesh_enuma_elish"
 end
-
----@class modifier_gilg_enuma_hit : CDOTA_Modifier_Lua
-modifier_gilg_enuma_hit = class({})
-modifier_gilg_enuma_hit.IsHidden = function() return true end

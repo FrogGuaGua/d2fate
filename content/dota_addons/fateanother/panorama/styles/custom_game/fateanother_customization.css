@@ -9,6 +9,7 @@
 	margin-bottom: 240px;
 	vertical-align: bottom;
 	horizontal-align: center;
+    flow-children: down;
 }
 
 /*.AspectRatio16x10 .CustomizationBoardRoot
