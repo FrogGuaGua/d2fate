@@ -6,7 +6,7 @@
         "ScriptFile"                                    "abilities/mordred/mordred_d"
         "AbilityTextureName"                            "lina_fiery_soul"
 
-        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
         "AbilityUnitDamageType"                         "DAMAGE_TYPE_PHYSICAL"
@@ -16,14 +16,35 @@
         "RequiredLevel"                                 "1"
         "LevelsBetweenUpgrades"                         "1"
 
-        "AbilityCastRange"                              "0"
+        "AbilityCastRange"                              "500"
         "AbilityCastRangeBuffer"                        "0"
         "AbilityCastPoint"                              "0"
         "AbilityCooldown"                               "45"
         "AbilityManaCost"                               "0"
+        "AbilityChannelTime"                            "4"
 
         "AbilitySpecial"
         {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "regen"                             "1"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "regen_bonus"                       "2"
+            }
+            "03"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "active_regen"                      "25"
+            }
+            "04"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "radius"                            "500"
+            }
         }
     }
 }

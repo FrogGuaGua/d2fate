@@ -20,8 +20,8 @@
 
         "StatusHealth"                                      "1400"
         "StatusHealthRegen"                                 "10"
-        "StatusMana"                                        "1000"
-        "StatusManaRegen"                                   "5"
+        "StatusMana"                                        "5000"
+        "StatusManaRegen"                                   "999"
 
         "ArmorPhysical"                                     "8"
         "MagicalResistance"                                 "15"

@@ -13,6 +13,7 @@
         "LevelsBetweenUpgrades"                         "1"
         
         "AbilityCastRange"                              "300 350 400 450 500"
+        "AbilityManaCost"                               "10"
         "AbilityCooldown"                               "20"
         
         "AbilitySpecial"
@@ -25,22 +26,27 @@
             "02"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "movespeed"                         "5 10 15 20 25"
+                "range"                             "300 350 400 450 500"
             }
             "03"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "ms_reduction"                      "75 60 45 30 15"
+                "movespeed"                         "5 10 15 20 25"
             }
             "04"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "manacost"                          "10"
+                "ms_reduction"                      "75 60 45 30 15"
             }
             "05"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "range"                             "300 350 400 450 500"
+                "manacost"                          "10"
+            }
+            "06"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "time_to_dash"                      "5"
             }
         }
     }

@@ -10,26 +10,27 @@
         "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
         "AbilityUnitDamageType"                         "DAMAGE_TYPE_PHYSICAL"
-        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_YES"
 
         "MaxLevel"                                      "5"
         "RequiredLevel"                                 "1"
         "LevelsBetweenUpgrades"                         "1"
 
         "AbilityCastRange"                              "500"
-        "AbilityCooldown"                               "10"
+        "AbilityManaCost"                               "5"
+        "AbilityCooldown"                               "20"
 
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "moves"                             "2 2 3 3 4"
+                "damage"                            "200 300 400 500 600"
             }
             "02"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "damage"                            "200 300 400 500 600"
+                "moves"                             "2 2 3 3 4"
             }
             "03"
             {

@@ -21,7 +21,7 @@ if IsServer() then
             self:Destroy()
         else
             self:DecrementStackCount()
-            self:SetDuration(5, true)
+            self:SetDuration(ability:GetSpecialValueFor("time_to_dash"), true)
             ability:EndCooldown()
         end
     end

@@ -23,6 +23,17 @@ function mordred_w:OnUpgrade()
     end
 end
 
+if IsServer() then
+    function mordred_w:CastFilterResult()
+        if self:GetCaster():FindModifierByName("modifier_mordred_d"):GetMana() < self:GetManaCost(-1) then return UF_FAIL_CUSTOM end
+        return UF_SUCCESS
+    end
+
+    function mordred_w:GetCustomCastError()
+        return "#dota_hud_error_not_enough_mana"
+    end
+end
+
 ---@class modifier_mordred_w_dash : CDOTA_Modifier_Lua
 modifier_mordred_w_dash = class({})
 
@@ -58,14 +69,14 @@ if IsServer() then
         ParticleManager:DestroyParticle(self.pcf, false)
         ParticleManager:ReleaseParticleIndex(self.pcf)
     end
+end
 
-    function modifier_mordred_w_dash:CheckState()
-        return {
-            [MODIFIER_STATE_STUNNED] = IsServer()
-        }
-    end
+function modifier_mordred_w_dash:CheckState()
+    return {
+        [MODIFIER_STATE_STUNNED] = IsServer()
+    }
+end
 
-    function modifier_mordred_w_dash:IsHidden()
-        return true
-    end
+function modifier_mordred_w_dash:IsHidden()
+    return true
 end

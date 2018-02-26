@@ -1,3 +1,15 @@
+local Wrapper = function(ability)
+    function ability:OnUpgrade()
+        local caster = self:GetCaster()
+        local name = self:GetAbilityName()
+        local level = self:GetLevel()
+        for i = 1, 4 do
+            local current = caster:FindAbilityByName("mordred_q_"..tostring(i))
+            if current:GetAbilityName() ~=  name and current:GetLevel() ~= level then current:SetLevel(level) end
+        end
+    end
+end
+
 ---@class mordred_q_1 : CDOTA_Ability_Lua
 mordred_q_1 = class({})
 
@@ -187,10 +199,12 @@ function mordred_q_3:OnSpellStart()
     local to = self:GetCursorPosition()
     local airTime = self:GetSpecialValueFor("air_time")
     local between = (to - caster:GetAbsOrigin())
-    local speed = between:Length() / airTime
+    local distance = between:Length2D()
     local normal = between:Normalized()
 
-    caster:AddNewModifier(caster, self, "modifier_mordred_q_leap", {duration = airTime, xDirection = normal.x, yDirection = normal.y, speed = speed})
+    caster:AddNewModifier(caster, self, "modifier_mordred_q_leap", {duration = airTime, xDirection = normal.x, yDirection = normal.y, distance = distance})
+    caster:SwapAbilities("mordred_q_3", "mordred_q_4", false, true)
+    caster:AddNewModifier(caster, self, "modifier_mordred_q", {duration = 5})
 end
 
 function mordred_q_3:GetAOERadius()
@@ -198,9 +212,8 @@ function mordred_q_3:GetAOERadius()
 end
 
 function mordred_q_3:CastFilterResultLocation(vLocation)
-    if IsServer() then
-        if not GridNav:IsTraversable(vLocation) or GridNav:IsBlocked(vLocation) then return UF_FAIL_CUSTOM end
-    end
+    if not IsServer() then return UF_SUCCESS end
+    if not GridNav:IsTraversable(vLocation) or GridNav:IsBlocked(vLocation) then return UF_FAIL_CUSTOM end
 
     return UF_SUCCESS
 end
@@ -215,7 +228,7 @@ modifier_mordred_q_leap = class({})
 if IsServer() then
     function modifier_mordred_q_leap:OnCreated(args)
         local parent = self:GetParent()
-        local speed = args.speed
+        local speed = args.distance / args.duration
         local height = 400
 
         local dust = ParticleManager:CreateParticle("particles/dev/library/base_dust_hit.vpcf", PATTACH_ABSORIGIN, parent)
@@ -254,7 +267,7 @@ if IsServer() then
 
     function modifier_mordred_q_leap:CheckState()
         return {
-            [MODIFIER_STATE_STUNNED] = IsServer()
+            [MODIFIER_STATE_STUNNED] = true
         }
     end
 end
@@ -275,23 +288,35 @@ function mordred_q_4:OnSpellStart()
     local maxDistance = self:GetSpecialValueFor("range")
     local distance = between:Length2D()
     local direction = between:Normalized()
-    local maxTravelTime = self:GetSpecialValueFor("travel_time")
-    local travelTime = maxTravelTime * (distance/maxDistance)
+    local maxSwordTravelTime = self:GetSpecialValueFor("sword_travel_time")
 
     local args = {
-        duration = travelTime,
+        duration = maxSwordTravelTime * (distance/maxDistance),
         xDirection = direction.x,
         yDirection = direction.y,
-        maxTravelTime = maxTravelTime,
+        maxTravelTime = maxSwordTravelTime,
         maxDistance = maxDistance,
     }
 
+    caster:SetForwardVector(Vector(direction.x, direction.y, 0))
     caster:AddNewModifier(caster, self, "modifier_mordred_q_throw", args)
+
+    local maxTravelTime = self:GetSpecialValueFor("travel_time")
+    local delay = self:GetSpecialValueFor("delay")
+    args.duration = delay + maxTravelTime * (distance/maxDistance)
+    args.maxTravelTime = maxTravelTime
+    args.delay = delay
+    args.x, args.y, args.z = to.x, to.y, to.z
+    caster:AddNewModifier(caster, self, "modifier_mordred_q_skewer", args)
+    caster:SwapAbilities("mordred_q_4", "mordred_q_1", false, true)
 end
 
 function mordred_q_4:CastFilterResultLocation(vLocation)
+    if not IsServer() then return UF_SUCCESS end
+
     local caster = self:GetCaster()
-    if (vLocation - caster:GetAbsOrigin()):Length2D() < 200 then return UF_FAIL_CUSTOM end
+    if (vLocation - caster:GetAbsOrigin()):Length2D() < 200 or not GridNav:IsTraversable(vLocation) or GridNav:IsBlocked(vLocation) then return UF_FAIL_CUSTOM end
+
     return UF_SUCCESS
 end
 
@@ -311,7 +336,8 @@ if IsServer() then
         self.direction = Vector(args.xDirection, args.yDirection, 0)
         self.next = parent:GetAbsOrigin() + self.direction * self.speed * FrameTime()
 
-        self.pcf = ParticleManager:CreateParticle("particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_ranged.vpcf", PATTACH_ABSORIGIN, parent)
+        self.pcf = ParticleManager:CreateParticle("particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_ranged.vpcf", PATTACH_WORLDORIGIN, nil)
+        ParticleManager:SetParticleControl(self.pcf, 0, parent:GetAbsOrigin())
         ParticleManager:SetParticleControlForward(self.pcf, 3, self.direction)
         ParticleManager:SetParticleControl(self.pcf, 1, self.direction * self.speed)
 
@@ -334,6 +360,7 @@ if IsServer() then
     function modifier_mordred_q_throw:OnDestroy()
         ParticleManager:DestroyParticle(self.pcf, false)
         ParticleManager:ReleaseParticleIndex(self.pcf)
+        self:GetParent():FindModifierByName("modifier_mordred_q_skewer"):CreateSword()
     end
 end
 
@@ -345,3 +372,62 @@ modifier_mordred_q_throw_hurt.IsHidden = function(obj) return true end
 
 ---@class modifier_mordred_q_skewer : CDOTA_Modifier_Lua
 modifier_mordred_q_skewer = class({})
+
+if IsServer() then
+    function modifier_mordred_q_skewer:OnCreated(args)
+        self.start = false
+        self.direction = Vector(args.xDirection, args.yDirection, 0)
+        self.speed = args.maxDistance/args.maxTravelTime
+        self.endPos = Vector(args.x, args.y, args.z)
+
+        self:StartIntervalThink(args.delay)
+    end
+
+    function modifier_mordred_q_skewer:CreateSword()
+        self.pcf = ParticleManager:CreateParticle("particles/units/heroes/hero_kunkka/kunkka_ghostship_marker_b.vpcf", PATTACH_WORLDORIGIN, nil)
+        ParticleManager:SetParticleControl(self.pcf, 0, self.endPos)
+    end
+
+    function modifier_mordred_q_skewer:OnIntervalThink()
+        if not self.start then
+            self.start = true
+            self:StartIntervalThink(FrameTime())
+        end
+
+        local parent = self:GetParent()
+        local pos = parent:GetAbsOrigin()
+        local to = pos + self.direction * self.speed * FrameTime()
+
+        local search = pos + self.direction
+        local targets = FindUnitsInLine(parent:GetTeam(), pos, search, nil, 100, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0)
+        for k, v in pairs(targets) do
+            v:SetAbsOrigin(GetGroundPosition(v:GetAbsOrigin() + self.direction * self.speed * FrameTime(), v))
+        end
+
+        parent:SetAbsOrigin(GetGroundPosition(to, parent))
+    end
+
+    function modifier_mordred_q_skewer:OnDestroy()
+        local parent = self:GetParent()
+        if self.pcf then
+            ParticleManager:DestroyParticle(self.pcf, false)
+            ParticleManager:ReleaseParticleIndex(self.pcf)
+        end
+
+        --Maybe do something else instead of resolving npc positions, as this can mess up other forced movements? (e.g. hecatic graea)
+        ResolveNPCPositions(parent:GetAbsOrigin(), 100)
+    end
+
+    function modifier_mordred_q_skewer:CheckState()
+        return {
+            [MODIFIER_STATE_STUNNED] = true
+        }
+    end
+end
+
+modifier_mordred_q_skewer.IsHidden = function(obj) return true end
+
+Wrapper(mordred_q_1)
+Wrapper(mordred_q_2)
+Wrapper(mordred_q_3)
+Wrapper(mordred_q_4)

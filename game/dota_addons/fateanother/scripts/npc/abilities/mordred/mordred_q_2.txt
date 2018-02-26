@@ -21,7 +21,7 @@
         "AbilityCastRangeBuffer"                        "1300"
         "AbilityCastPoint"                              "0.3"
         "AbilityCooldown"                               "0"
-        "AbilityManaCost"                               "0"
+        "AbilityManaCost"                               "5"
         
         "AbilitySpecial"
         {

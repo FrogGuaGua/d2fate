@@ -19,6 +19,7 @@
         
         "AbilityCastRange"                              "700"
         "AbilityCastPoint"                              "0.2"
+        "AbilityManaCost"                               "5"
         
         "AbilitySpecial"
         {
@@ -34,7 +35,7 @@
             }
             "03"
             {
-                "var_type"                          "FIELD_INTEGER"
+                "var_type"                          "FIELD_FLOAT"
                 "air_time"                          "0.5"
             }
             "04"
