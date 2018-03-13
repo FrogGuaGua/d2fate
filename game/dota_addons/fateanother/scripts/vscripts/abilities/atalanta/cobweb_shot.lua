@@ -122,6 +122,7 @@ function atalanta_cobweb_shot:OnSpellStart()
   local iMaxBounce = self:GetSpecialValueFor("number_of_webs")
   local fMaxTravelDist = self:GetSpecialValueFor("max_range_of_bounce")
   local fWebDuration = self:GetSpecialValueFor("web_duration")
+  local fWebDurationAfterTrigger = self:GetSpecialValueFor("web_duration_after_trigger")
   local fSpeed = 2250
   local iCurrentBounce = 0
   local fWebWidth = 70
@@ -141,6 +142,7 @@ function atalanta_cobweb_shot:OnSpellStart()
   FxDestroyer(self.PIWebs, false)
   if self.ThinkerArrow then Timers:RemoveTimer(self.ThinkerArrow) end
   if self.ThinkerWebDuration then Timers:RemoveTimer(self.ThinkerWebDuration) end
+  if self.ThinkerWebDurationTriggered then Timers:RemoveTimer(self.ThinkerWebDurationTriggered) end
   if self.ThinkerWebEffect then Timers:RemoveTimer(self.ThinkerWebEffect) end
   if self.hActiveArrow then
     FxDestroyer(self.PICurrentStrand, false)
@@ -149,6 +151,7 @@ function atalanta_cobweb_shot:OnSpellStart()
     self.hActiveArrow = nil
   end  
 
+  self.NotTriggered = true
   self.PIWebs = {}
   self.hActiveArrow = SpawnDummy(hCaster,vOrigin,vFacing)  
   self.PIArrow = ParticleManager:CreateParticle("particles/custom/atalanta/cobweb_arrow.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hActiveArrow)
@@ -213,6 +216,20 @@ function atalanta_cobweb_shot:OnSpellStart()
       for i = 1, #tBounceLocs-1 do
         local tTargets = FindUnitsInLine(hCaster:GetTeamNumber(),tBounceLocs[i],tBounceLocs[i+1],hCaster,fWebWidth, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0)
         for k,v in pairs(tTargets) do
+          if self.NotTriggered then
+            self.ThinkerWebDurationTriggered = Timers:CreateTimer(fWebDurationAfterTrigger,function()
+              Timers:RemoveTimer(self.ThinkerArrow)
+              FxDestroyer(self.PICurrentStrand, false)
+              FxDestroyer(self.PIArrow, false)
+              self.hActiveArrow:RemoveSelf()
+              self.hActiveArrow = nil
+              Timers:RemoveTimer(self.ThinkerWebEffect)
+              FxDestroyer(self.PIWebs, false)
+              return nil
+            end)
+            self.NotTriggered = false 
+          end
+
           local bAlreadyHit = false
           for l,b in pairs(tAlreadyHitThisTick) do
             if v == b then

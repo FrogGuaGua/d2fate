@@ -269,6 +269,11 @@
         "var_type"					"FIELD_FLOAT"
         "web_lock_duration"		"1"
       }
+      "07"
+      {
+        "var_type"					"FIELD_FLOAT"
+        "web_duration_after_trigger"		"3"
+      }
     }
   }
   //=======================================
