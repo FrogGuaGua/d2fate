@@ -10544,7 +10544,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1700"
 		"AbilityCastPoint"				"0.2"
-		"AbilityChannelTime"      "5.05"
+		"AbilityChannelTime"      "4.55"
 
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
@@ -10604,7 +10604,7 @@
 			"09"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"endradius_charge_end"		"50"
+				"endradius_charge_end"		"45"
 			}
 			"10"
 			{				
@@ -10619,28 +10619,28 @@
 			"12"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_charge_end"		"50"
+				"damage_charge_end"		"45"
 			}
 			"13"
 			{				
 				"var_type"				"FIELD_FLOAT"
-				"damage_total"		"400 550 700 850 1000"
+				"damage_total"		"385 510 635 760 885"
 			}
 			"14"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"add1_charge_start"		"30"
+				"add1_charge_start"		"25"
 			}
 			"15"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"add1_charge_end"		"50"
+				"add1_charge_end"		"45"
 			}
 			// Tool Tip variables
 			"16"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damagemax"				"1300 1725 2150 2575 3000"
+				"damagemax"				"1300 1700 2100 2500 2900"
 			}
 			"17"
 			{				
