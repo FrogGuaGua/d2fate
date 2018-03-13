@@ -8,13 +8,13 @@ if IsServer() then
 
     function modifier_self_mod:DeclareFunctions()
         local funcs = {
-            MODIFIER_PROPERTY_STATS_AGILITY_BONUS
+            MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE
         }
 
         return funcs
     end
 
-    function modifier_self_mod:GetModifierBonusStats_Agility()
+    function modifier_self_mod:GetModifierBaseAttack_BonusDamage()
         return self.fAgi
     end
 

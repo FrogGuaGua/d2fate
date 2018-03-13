@@ -8854,7 +8854,7 @@
 				}			
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"-12"
+					//"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"-12"
 				}
 			}
 			"modifier_dirk_poison_empowered_slow"
@@ -9704,7 +9704,7 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_reduction"
+					//"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_reduction"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_slow"
 				}
 			}
@@ -9837,7 +9837,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"8"
 
 		"precache"
 		{
@@ -9848,7 +9848,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"agi_ratio"			"2.25"
+				"agi_ratio"			"5"
 			}
 			"02"
 			{
