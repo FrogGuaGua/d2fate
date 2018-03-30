@@ -2703,7 +2703,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"wesen_gae_bolg_ad_ratio"			"2"
+				"wesen_gae_bolg_ad_ratio"			"3"
 			}
 		}
 		
@@ -5798,14 +5798,9 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"kb_ratio"				"150"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"int_ratio"				"13"
 			}
-			"03"
+			"04"
 			{
 			    "var_type"              "FIELD_INTEGER"
 			    "base_damage"           "800"
@@ -17197,7 +17192,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"cast_reduction"			"0.8"
+				"cast_reduction"			"0.7"
 			}
 			"03"
 			{
@@ -27454,7 +27449,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"20"
+				"bonus_cc_duration"		"1"
 			}
 			"02"
 			{
@@ -27508,8 +27503,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_reduction"		"10"
-			}	
+				"bonus_mres"	    	"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_armor"	    	"10"
+			}
 		}
 		
 		"OnSpellStart"

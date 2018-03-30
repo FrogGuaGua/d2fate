@@ -1,5 +1,5 @@
 ATTR_HEARTSEEKER_AD_RATIO = 2
-ATTR_HEARTSEEKER_COMBO_AD_RATIO = 4
+ATTR_HEARTSEEKER_COMBO_AD_RATIO = 3
 
 function OnPFAStart(keys)
 	local caster = keys.caster

@@ -132,7 +132,7 @@ function KBHit(keys)
 			caster:FindAbilityByName("archer_5th_overedge"):EndCooldown()
 			caster:FindAbilityByName("archer_5th_overedge"):StartCooldown(overedgeCD-3)
 			caster:RemoveModifierByName("modifier_overedge_cooldown")
-			caster:FindAbilityByName("archer_5th_overedge"):ApplyDataDrivenModifier(caster, caster, "modifier_overedge_cooldown", {duration = overedgeCD-1})
+			caster:FindAbilityByName("archer_5th_overedge"):ApplyDataDrivenModifier(caster, caster, "modifier_overedge_cooldown", {duration = overedgeCD-3})
 		end
 		local KBHitFx = ParticleManager:CreateParticle("particles/econ/courier/courier_mechjaw/mechjaw_death_sparks.vpcf", PATTACH_CUSTOMORIGIN, caster)
 		ParticleManager:SetParticleControl(KBHitFx, 0, target:GetAbsOrigin()) 

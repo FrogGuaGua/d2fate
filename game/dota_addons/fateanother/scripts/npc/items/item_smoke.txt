@@ -21,9 +21,9 @@
         "ItemSellable"                                  "1"
         "ItemPurchasable"                               "1"
 
-        "ItemStockMax"                                  "3"
-        "ItemStockTime"                                 "60"
-        "ItemStockInitial"                              "3"
+        "ItemStockMax"                                  "2"
+        "ItemStockTime"                                 "80"
+        "ItemStockInitial"                              "2"
 
         "ItemShareability"                              "ITEM_FULLY_SHAREABLE_STACKING"
 

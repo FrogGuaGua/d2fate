@@ -13,6 +13,7 @@ end
 
 ---@class modifier_jeanne_la_pucelle : CDOTA_Modifier_Lua
 modifier_jeanne_la_pucelle = class({})
+modifier_jeanne_la_pucelle.IsHidden = function(self) return true end
 
 if IsServer() then
     function modifier_jeanne_la_pucelle:DeclareFunctions()
@@ -45,6 +46,7 @@ end
 
 ---@class modifier_jeanne_la_pucelle_phase1_aura : CDOTA_Modifier_Lua
 modifier_jeanne_la_pucelle_phase1_aura = class({})
+modifier_jeanne_la_pucelle_phase1_aura.IsHidden = function(self) return true end
 
 function modifier_jeanne_la_pucelle_phase1_aura:GetEffectName()
     return "particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf"
@@ -122,6 +124,7 @@ end
 
 ---@class modifier_jeanne_la_pucelle_phase2 : CDOTA_Modifier_Lua
 modifier_jeanne_la_pucelle_phase2 = class({})
+modifier_jeanne_la_pucelle_phase2.IsHidden = function(self) return true end
 
 function modifier_jeanne_la_pucelle_phase2:GetEffectName()
     return "particles/econ/events/ti6/radiance_owner_ti6.vpcf"
@@ -187,6 +190,7 @@ end
 
 ---@class modifier_jeanne_la_pucelle_fire_damage : CDOTA_Modifier_Lua
 modifier_jeanne_la_pucelle_fire_damage = class({})
+modifier_jeanne_la_pucelle_fire_damage.IsHidden = function(self) return true end
 
 if IsServer() then
     function modifier_jeanne_la_pucelle_fire_damage:OnCreated(args)

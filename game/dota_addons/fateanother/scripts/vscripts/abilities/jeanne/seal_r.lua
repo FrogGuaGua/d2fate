@@ -14,6 +14,7 @@ end
 
 ---@class modifier_jeanne_force : CDOTA_Modifier_Lua
 modifier_jeanne_force = class({})
+modifier_jeanne_force.IsHidden = function(self) return true end
 
 function modifier_jeanne_force:GetEffectName()
     return "particles/items_fx/force_staff.vpcf"
