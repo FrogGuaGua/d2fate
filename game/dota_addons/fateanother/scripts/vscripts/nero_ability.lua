@@ -281,6 +281,7 @@ function OnRIStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
 	
 	if caster.IsFieryFinaleActivated then 
@@ -742,6 +743,7 @@ function NeroTakeDamage(keys)
 
 
 	if caster:GetHealth() == 0 and IsRevivePossible(caster) and caster.IsISAcquired and not caster:HasModifier("modifier_invictus_spiritus_cooldown") and not IsRevoked(caster) then
+		ApplyPurge(caster)
 		caster:SetHealth(caster:GetMaxHealth()*0.33)
 		keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_invictus_spiritus",{})
 		

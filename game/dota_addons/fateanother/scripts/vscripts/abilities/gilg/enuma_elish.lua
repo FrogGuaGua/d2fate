@@ -113,7 +113,7 @@ function gilgamesh_enuma_elish:AfterChannelFin_Success()
   caster:StopSound("Hero_Dark_Seer.Wall_of_Replica_lp")
   EmitGlobalSound("Gilgamesh.Enuma2") 
 
-  Timers:CreateTimer(0.8,function()
+  Timers:CreateTimer(0.5,function()
     self.tBeam = self:LaunchBeam("")    
     self:VFX3_Projectile(caster)
   end)

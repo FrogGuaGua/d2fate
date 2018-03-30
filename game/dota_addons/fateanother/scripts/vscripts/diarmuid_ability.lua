@@ -59,6 +59,7 @@ function OnChargeStart(keys)
 		end
 	end
 
+	target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 
 	local diff = (target:GetAbsOrigin() - caster:GetAbsOrigin() ):Normalized() 
@@ -179,6 +180,7 @@ function OnBuidheStart(keys)
 	local unitReduction = keys.unitReduction
 	local currentStack = target:GetModifierStackCount("modifier_gae_buidhe", ability)
 
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	if caster:HasModifier("modifier_rampant_warrior_combo") then
 		ability:EndCooldown()
@@ -309,6 +311,7 @@ function OnDeargStart(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ply = caster:GetPlayerOwner()
+	target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 
 	if caster:HasModifier("modifier_rampant_warrior_combo") then

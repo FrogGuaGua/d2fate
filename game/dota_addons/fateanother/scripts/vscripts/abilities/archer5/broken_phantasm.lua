@@ -29,8 +29,10 @@ function archer_5th_broken_phantasm:OnChannelFinish(bInterrupted)
     local hTarget = self:GetCursorTarget()
     local hPlayer = hCaster:GetPlayerOwner()
 
-    ParticleManager:DestroyParticle(self.pcMarker, false)
-    ParticleManager:ReleaseParticleIndex(self.pcMarker)
+    if self.pcMarker then
+        ParticleManager:DestroyParticle(self.pcMarker, false)
+        ParticleManager:ReleaseParticleIndex(self.pcMarker)
+    end
 
     if IsValidEntity(hPlayer) and not hPlayer:IsNull() then
         if bInterrupted or not hCaster:CanEntityBeSeenByMyTeam(hTarget) or hCaster:GetRangeToUnit(hTarget) > 4500 or hCaster:GetMana() < self:GetManaCost(-1) or not IsInSameRealm(hCaster:GetAbsOrigin(), hTarget:GetAbsOrigin()) then 
@@ -66,7 +68,8 @@ function archer_5th_broken_phantasm:OnProjectileHit_ExtraData(hTarget, vLocation
     local fSplashDamage = self:GetSpecialValueFor("splash_damage")
     local fRadius = self:GetSpecialValueFor("radius")
     local fStun = self:GetSpecialValueFor("stun_duration")
-    
+
+    hTarget:TriggerSpellReflect(self)
     if IsSpellBlocked(hTarget) then return end
 
     local pcExplosion = ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget)

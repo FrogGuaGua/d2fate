@@ -167,6 +167,7 @@ function OnNamelessStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(target) or target:IsMagicImmune() then return end -- Linken effect checker
 	caster.NamelessTarget = target
 	ApplyPurge(target)
@@ -326,6 +327,7 @@ function OnPlainStart(keys)
 	local target = keys.target
 	local bounceCount = keys.MaxBounce
 
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 
 	if caster.bIsNightmareAcquired then 
@@ -423,6 +425,7 @@ function OnCloneStart(keys)
 	local duration = keys.Duration
 	local cloneHealth = target:GetMaxHealth() * keys.Health/100 
 
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 
 	-- check for existing clone 

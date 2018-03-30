@@ -484,8 +484,11 @@ function OnSGStart(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
-	TamamoCheckCombo(caster, keys.ability)
+	if caster:GetUnitName() == "npc_dota_hero_enchantress" then
+		TamamoCheckCombo(caster, keys.ability)
+	end
 	ability:ApplyDataDrivenModifier(caster, target, "modifier_subterranean_grasp_delay", {})
 	SpawnAttachedVisionDummy(caster, target, 300, 3, false)
 	target:EmitSound("Hero_Visage.GraveChill.Cast")
@@ -526,6 +529,7 @@ function OnMantraStart(keys)
 	local orbAmount = keys.OrbAmount
 	local modifierName = 0
 	if caster:GetTeam() ~= target:GetTeam() then
+		target:TriggerSpellReflect(ability)
 		if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	end
 	

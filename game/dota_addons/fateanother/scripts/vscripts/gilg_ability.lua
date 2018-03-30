@@ -155,6 +155,7 @@ function OnGramStart(keys)
 end
 
 function OnGramHit(keys)
+	keys.target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	local caster = keys.caster
 	local target = keys.target
@@ -257,7 +258,7 @@ function OnGOBThink(keys)
 		unit:RemoveModifierByName("modifier_gob_thinker")
 		return
 	end
-	if caster.IsSumerAcquired and unit == caster.LatestGOB then
+	if caster.IsSumerAcquired and unit == caster.LatestGOB and toggleAbil:GetToggleState() then
 		origin = caster:GetAbsOrigin()
 		frontward = caster:GetForwardVector()
 		caster.LatestGOB:SetAbsOrigin(caster:GetAbsOrigin() - caster:GetForwardVector() * 150)
@@ -266,7 +267,7 @@ function OnGOBThink(keys)
 		--ParticleManager:SetParticleControlOrientation(caster.LatestGOBParticle, 0, Vector(1,0,0), Vector(0.5,1,0.5), Vector(1,0.5,0.5))
 	end
 
-	if caster:IsAlive() and (not caster.IsSumerAcquired or (caster.IsSumerAcquired and toggleAbil:GetToggleState())) then
+	if caster:IsAlive() then
 		local projectile = unit.GOBProjectile
 		local leftvec = Vector(-frontward.y, frontward.x, 0)
 		local rightvec = Vector(frontward.y, -frontward.x, 0)
@@ -292,7 +293,7 @@ function OnGOBHit(keys)
 	local caster = keys.caster
 	local damage = keys.Damage
 	if caster.IsSumerAcquired then
-		damage = damage + caster:GetAttackDamage()*0.20
+		damage = damage + caster:GetAttackDamage()*0.30
 	end
 	--if target:GetUnitName() == "gille_gigantic_horror" then damage = damage*2.5 end
 	DoDamage(keys.caster, keys.target, damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)

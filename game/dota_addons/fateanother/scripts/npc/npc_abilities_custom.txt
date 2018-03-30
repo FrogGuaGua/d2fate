@@ -6,7 +6,11 @@
 #base "abilities/lancelot/lancelot_abilities.txt"
 #base "abilities/vlad/vlad_abilities.txt"
 #base "abilities/atalanta/atalanta_abilities.txt"
+#base "abilities/iskander/iskander_abilities.txt"
 #base "abilities/mordred/abilities.txt"
+#base "abilities/saber/abilities.txt"
+#base "abilities/saber_alter/abilities.txt"
+#base "abilities/jeanne/abilities.txt"
 
 
 "DOTAAbilities"
@@ -580,7 +584,7 @@
 	//=================================================================================================================
 	// Saber : Excalibur
 	//=================================================================================================================
-	"saber_excalibur"
+	"saber_excalibur_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -2219,7 +2223,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"350"
 		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastPoint"				"1.0"
+		"AbilityCastPoint"				"0.9"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -2238,7 +2242,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"delay"				"1.0"
+				"delay"				"0.9"
 			}
 			"02"
 			{
@@ -3438,7 +3442,7 @@
 	//=================================================================================================================
 	// Saber Alter : Excalibur
 	//=================================================================================================================
-	"saber_alter_excalibur"
+	"saber_alter_excalibur_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -4836,7 +4840,7 @@
 		"MaxLevel"						"5"
 		"RequiredLevel"					"1"
 		"LevelsBetweenUpgrades"			"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
@@ -4986,6 +4990,11 @@
 				"var_type"				"FIELD_INTEGER"
 				"duration"			"7"
 			}
+			"03"
+			{
+			    "var_type"                          "FIELD_INTEGER"
+			    "bonus_health"                      "0 50 100 150 200"
+			}
 		}
 		
 		"OnSpellStart"
@@ -5027,6 +5036,18 @@
 				{
 					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
+			}
+
+			"modifier_rho_aias_bonus"
+			{
+			    "Passive"                               "1"
+			    "IsDebuff"                              "0"
+			    "IsHidden"                              "1"
+
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_HEALTH_BONUS"    "%bonus_health"
+			    }
 			}
 		}
 	}
@@ -5752,7 +5773,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.80"
+		"AbilityCastPoint"				"0.3"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -5782,7 +5803,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"int_ratio"				"20"
+				"int_ratio"				"13"
+			}
+			"03"
+			{
+			    "var_type"              "FIELD_INTEGER"
+			    "base_damage"           "800"
 			}
 		}
 		
@@ -5837,7 +5863,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
@@ -6033,7 +6059,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"13"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{
@@ -6082,7 +6108,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"18"
 
 		"precache"
 		{
@@ -6180,7 +6206,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"14"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{
@@ -6231,7 +6257,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_reduction"			"15 30"
+				"damage_reduction"			"15 60"
 			}
 			"02"
 			{
@@ -6449,7 +6475,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_debuff"			"-5"
+				"str_debuff"			"-6"
 			}
 			"07"
 			{
@@ -7063,7 +7089,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage_block"				"30"
+				"damage_block"				"60"
 			}
 			"03"
 			{
@@ -7632,7 +7658,36 @@
 			    {
 				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
 				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
-			    }			
+			    }
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "fa_ability"
+                        "Function"          "OnPCEnd"
+                    }
+                }
+
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "fa_ability"
+                        "Function"          "OnPCStart"
+                    }
+                }
+
+                "ThinkInterval"	            "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "fa_ability"
+                        "Function"          "OnPCThink"
+                    }
+                }
+
 				"OnAbilityExecuted"
 				{
 					"RunScript"
@@ -7715,7 +7770,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"bonus_mr"				"-30 -40 -50 -60 -70"
+				"bonus_mr"				"-50"
 			}
 			"04"
 			{
@@ -8430,7 +8485,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"18"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -8463,7 +8518,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"13"
+		"AbilityManaCost"				"17"
 
 		"precache"
 		{
@@ -8508,7 +8563,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"13"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{
@@ -8552,7 +8607,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"11"
+		"AbilityManaCost"				"13"
 
 		"precache"
 		{
@@ -8854,7 +8909,6 @@
 				}			
 				"Properties"
 				{
-					//"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"-12"
 				}
 			}
 			"modifier_dirk_poison_empowered_slow"
@@ -8980,7 +9034,6 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%poison_slow"
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"-5"
 				}
 			}
 		}
@@ -9848,7 +9901,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"agi_ratio"			"5"
+				"agi_ratio"			    "5"
 			}
 			"02"
 			{
@@ -9858,7 +9911,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"str_reduction_dirk"			"12"
+				"str_reduction_dirk"			"0"
 			}
 			"04"
 			{
@@ -10624,7 +10677,7 @@
 			"13"
 			{				
 				"var_type"				"FIELD_FLOAT"
-				"damage_total"		"385 510 635 760 885"
+				"damage_total"		"400 550 700 850 1000"
 			}
 			"14"
 			{
@@ -11290,7 +11343,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"lion_mana_drain"
@@ -12730,7 +12783,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"1000"
+				"radius"			"900"
 			}
 			"04"
 			{
@@ -13023,7 +13076,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"int_ratio"		"1.5"
+				"int_ratio"		"2.5"
 			}
 		}
 		
@@ -13278,7 +13331,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"armor_reduction"			"-2 -3 -4 -5 -6"
+				"armor_reduction"   "-6 -9 -12 -15 -18"
 			}
 		}
 		
@@ -13329,7 +13382,6 @@
 			"modifier_smg_armor_reduction"
 			{
 				"Duration"		"%duration"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"IsDebuff"		"1"
 				"Properties"
 				{
@@ -15399,7 +15451,7 @@
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"custom/avenger_blood_mark"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
@@ -17880,6 +17932,11 @@
 			}
 			"modifier_army_of_the_king_death_checker"
 			{
+			    "States"
+			    {
+			        "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+			    }
+
 				"OnCreated"
 				{
 					"AttachEffect"
@@ -18952,7 +19009,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/gille_spellbook_of_prelati"
 		"MaxLevel"						"1"
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"25"
 		"AbilityCastPoint"				"0.3"
 		"precache"
 		{
@@ -19478,13 +19535,18 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"radius"			"300"
+				"var_type"          "FIELD_INTEGER"
+				"radius"            "300"
 			}			
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"400 450 500 550 600"
+				"var_type"          "FIELD_INTEGER"
+				"damage"            "400 450 500 550 600"
+			}
+			"03"
+			{
+			    "var_type"          "FIELD_INTEGER"
+			    "max_corpses"       "1 1 2 2 3"
 			}
 		}
 		
@@ -19876,11 +19938,12 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"custom/zc_tentacle_hook"
 		"AbilityCastAnimation" 			"ACT_DOTA_ATTACK2"
+		"AoERadius"                     "200"
 		"AnimationPlaybackRate" 		"2.0"
 		"AbilityCastRange"				"%range"
 		"AbilityCastPoint"				"0.3"
@@ -19894,7 +19957,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"range"			"1000"
+				"range"			    "1000"
 			}			
 		}
 		"OnSpellStart"
@@ -19905,32 +19968,32 @@
 			 	"Function"		"OnTentacleHookStart"   
 			 	"Target"		"POINT"        	
             }		
-			"LinearProjectile"
-			{
-				"Target"      	"POINT"
-			    "EffectName"  	""
-			    "MoveSpeed"   	"1800"
-			    "StartRadius"   "150"
-			    "StartPosition" "attach_origin"
-			    "EndRadius"     "150"
-			    "FixedDistance" "%range"
-			    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
-			    "TargetTypes"   "DOTA_UNIT_TARGET_HERO"
-			    "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
-			    "HasFrontalCone"  "0"
-			    "ProvidesVision" "0"
-			}
+		//	"LinearProjectile"
+		//	{
+		//		"Target"      	"POINT"
+		//	    "EffectName"  	""
+		//	    "MoveSpeed"   	"1800"
+		//	    "StartRadius"   "150"
+		//	    "StartPosition" "attach_origin"
+		//	    "EndRadius"     "150"
+		//	    "FixedDistance" "%range"
+		//	    "TargetTeams"   "DOTA_UNIT_TARGET_TEAM_BOTH"
+		//	    "TargetTypes"   "DOTA_UNIT_TARGET_HERO"
+		//	    "TargetFlags"   "DOTA_UNIT_TARGET_FLAG_NONE"
+		//	    "HasFrontalCone"  "0"
+		//	    "ProvidesVision" "0"
+		//	}
 		}
 		
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"			"true"
-            "RunScript"
-            {
- 			 	"ScriptFile"	"gille_ability"
-			 	"Function"		"OnTentacleHookHit"           	
-            }
-		}
+	//	"OnProjectileHitUnit"
+	//	{
+	//		"DeleteOnHit"			"true"
+    //        "RunScript"
+    //        {
+ 	//		 	"ScriptFile"	"gille_ability"
+	//		 	"Function"		"OnTentacleHookHit"
+    //        }
+	//	}
 	}
 
 
@@ -20024,7 +20087,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"29.0"
+		"AbilityCooldown"				"10.0"
 
 		
 		"AbilitySpecial"
@@ -24172,7 +24235,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"mana_regen"			"4 5 6 7 8"
+				"mana_regen"			"2 2 3 3 4"
 			}
 			"04"
 			{
@@ -24679,7 +24742,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"silence_duration"			"1.0"
+				"silence_duration"			"1.5"
 			}
 			"02"
 			{
@@ -26396,7 +26459,7 @@
 	//=================================================================================================================
 	// Jeanne d'Arc: Saint
 	//=================================================================================================================
-	"jeanne_saint"
+	"jeanne_saint_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -26555,13 +26618,18 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius_modifier"				"300 350 400 450 500"
+				"radius_modifier"	"300 350 400 450 500"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"duration"			"7"
 			}
+		    "05"
+		    {
+		        "var_type"                          "FIELD_INTEGER"
+		        "saint_bonus_radius"                "500"
+		    }
 		}
 		
 		// Data driven
@@ -26697,8 +26765,13 @@
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_damage_per_dead"	"10"
+			    "var_type"                          "FIELD_INTEGER"
+			    "saint_dmg_pct"                     "25"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"saint_bonus_cc"	"1.0"
 			}
 		}
 		
@@ -26946,27 +27019,37 @@
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage_reduction"			"-20 -25 -30 -35 -40"
+				"mres_bonus"		"20 25 30 35 40"
 			}
 			"05"
+			{
+			    "var_type"          "FIELD_INTEGER"
+			    "armor_bonus"       "10 20 30 40 50"
+			}
+			"06"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"flag_health"			"8 11 14 17 20"
 			}
-			"06"
+			"07"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"flag_duration"		"7"
 			}
-			"07"
+			"08"
 			{
 				"var_type"			"FIELD_FLOAT"
 				"damage_amp"		"30"
 			}
-			"08"
+			"09"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage_reduction_improved"	"-30 -35 -40 -45 -50"
+				"mres_bonus_imp"	"30 35 40 45 50"
+			}
+			"10"
+			{
+			    "var_type"          "FIELD_INTEGER"
+			    "armor_bonus_imp"   "20 30 40 50 60"
 			}
 		}
 		
@@ -27041,7 +27124,8 @@
 				"EffectAttachType"	"follow_origin"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduction"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%mres_bonus"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "%armor_bonus"
 				}
 				"OnTakeDamage"
 				{
@@ -27088,7 +27172,8 @@
 				"EffectAttachType"	"follow_origin"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduction_improved"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%mres_bonus_imp"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "%armor_bonus_imp"
 				}
 				"OnTakeDamage"
 				{
@@ -27136,7 +27221,7 @@
 	//=================================================================================================================
 	// Jeanne d'Arc: La Pucelle
 	//=================================================================================================================
-	"jeanne_combo_la_pucelle"
+	"jeanne_combo_la_pucelle_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
@@ -27308,7 +27393,7 @@
 	//=======================================
 	// Jeanne Attribute : Improve Saint
 	//=======================================
-	"jeanne_attribute_improve_saint"
+	"jeanne_attribute_improve_saint_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -27358,7 +27443,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"15"
+		"AbilityManaCost"				"12"
 
 		"precache"
 		{
@@ -27800,7 +27885,7 @@
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
 		"AbilityTextureName"			"custom/astolfo_la_black_luna"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
@@ -29368,7 +29453,7 @@
 		"MaxLevel"						"5"
 		"RequiredLevel"					"1"
 		"LevelsBetweenUpgrades"			"2"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityTextureName"			"custom/nursery_rhyme_queens_glass_game"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"

@@ -69,6 +69,7 @@ end
 
 function InvisibleAirPull(keys)
 	local target = keys.target
+	target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(target) -- Linken's
 		or target:IsMagicImmune() -- Magic immunity
 		--or target:GetName() == "npc_dota_hero_bounty_hunter" and target.IsPFWAcquired -- Protection from Wind
@@ -146,7 +147,7 @@ function CaliburnExplode( keys )
 	-- Create particle
 	local slashFxIndex = ParticleManager:CreateParticle( slashParticleName, PATTACH_ABSORIGIN, target )
 	local explodeFxIndex = ParticleManager:CreateParticle( explodeParticleName, PATTACH_ABSORIGIN, target )
-	
+
 	Timers:CreateTimer( 3.0, function()
 			ParticleManager:DestroyParticle( slashFxIndex, false )
 			ParticleManager:DestroyParticle( explodeFxIndex, false )
@@ -157,6 +158,7 @@ end
 
 function OnCaliburnHit(keys)
 	ArsenalReturnMana(keys.caster)
+	keys.target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	local caster = keys.caster
 	local target = keys.target

@@ -566,11 +566,11 @@ function OnAOTKStart(keys)
 
 	-- Swap abilities
 	caster:SwapAbilities("iskander_army_of_the_king", "fate_empty3", false, true)
-	caster:SwapAbilities("fate_empty1", "iskander_summon_hephaestion", false, true) 
+	caster:SwapAbilities("iskander_charisma", "iskander_summon_hephaestion", false, true)
 	if caster.IsBeyondTimeAcquired then
-		caster:SwapAbilities("iskander_charisma", "iskander_summon_waver", false, true) 
+		caster:SwapAbilities("iskander_drift_toggle", "iskander_summon_waver", false, true)
 	else 
-		caster:SwapAbilities("iskander_charisma", "fate_empty4", false, true) 
+		caster:SwapAbilities("iskander_drift_toggle", "fate_empty4", false, true)
 	end
 
 	-- Find eligible targets
@@ -745,8 +745,8 @@ function EndAOTK(caster)
 	print("AOTK ended")
 	-- Revert abilities
 	caster:SwapAbilities("iskander_army_of_the_king", "fate_empty3", true, false)
-	caster:SwapAbilities("fate_empty1", "iskander_summon_hephaestion", true, false) 
-	caster:SwapAbilities("iskander_charisma", caster:GetAbilityByIndex(3):GetName(), true, false) 
+	caster:SwapAbilities("iskander_charisma", "iskander_summon_hephaestion", true, false)
+	caster:SwapAbilities("iskander_drift_toggle", caster:GetAbilityByIndex(3):GetName(), true, false)
 	CreateUITimer("Army of the King", 0, "aotk_timer")
 	--UTIL_RemoveImmediate(aotkQuest)
 	caster.IsAOTKActive = false

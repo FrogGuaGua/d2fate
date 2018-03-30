@@ -1,8 +1,11 @@
 Wrappers = {}
 
+---@param hUnit CDOTA_BaseNPC
 function Wrappers.WrapUnit(hUnit)
+	hUnit.attributeQueue = hUnit.attributeQueue or {}
+
 	-- Heals
-	function hUnit:ApplyHeal(fAmount, hSource, ...)
+	function hUnit:ApplyHeal(fAmount, hSource)
 		local fHeal = fAmount
 		local fMaxHealth = hUnit:GetMaxHealth()
 		local fCurrentHealth = hUnit:GetHealth()
@@ -47,6 +50,18 @@ function Wrappers.WrapUnit(hUnit)
 		end
 		
 		hUnit:Kill(hAbility, hKiller)
+	end
+
+	function hUnit:AddAttributeModifier(caster, source, modifier, kv)
+		if hUnit:IsAlive() then
+			hUnit:AddNewModifier(caster, source, modifier, kv)
+		else
+			table.insert(hUnit.attributeQueue, {caster = caster, source = source, modifier = modifier, kv = kv})
+		end
+	end
+
+	function hUnit:GetLostAttributes()
+		return hUnit.attributeQueue
 	end
 end
 

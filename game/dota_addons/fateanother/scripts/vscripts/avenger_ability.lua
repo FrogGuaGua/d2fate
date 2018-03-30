@@ -126,7 +126,10 @@ function OnMurder(keys)
 	elseif target:IsHero() then
 		--print("Avenger killed a hero")
 		manareg = caster:GetMaxMana() * keys.ManaRegenHero / 100
-		caster:RemoveModifierByName("modifier_dark_passage")
+		if caster.IsDPImproved then
+			caster:RemoveModifierByName("modifier_dark_passage")
+			caster:FindAbilityByName("avenger_dark_passage"):EndCooldown()
+		end
 	end
 	caster:SetMana(caster:GetMana() + manareg)
 end
@@ -259,6 +262,7 @@ function OnTZStart(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local TZCount = 0
+	target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end
 	if not IsImmuneToSlow(keys.target) then keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_tawrich_slow", {}) end
 	Timers:CreateTimer(0.033, function() 
@@ -281,7 +285,8 @@ end
 
 function OnTZLevelUp(keys)
 	local caster = keys.caster
-	caster:FindAbilityByName("avenger_vengeance_mark"):SetLevel(keys.ability:GetLevel())
+	local ability = caster:FindAbilityByName("avenger_vengeance_mark")
+	if ability then ability:SetLevel(keys.ability:GetLevel()) end
 end
 
 function OnVengeanceStart(keys)
@@ -294,6 +299,7 @@ function OnVengeanceStart(keys)
 		keys.ability:EndCooldown()
 		return
 	end
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
 	keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_vengeance_mark", {})
 	DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
@@ -315,6 +321,7 @@ function OnBloodStart(keys)
 	local target = keys.target
 	--ability:ApplyDataDrivenModifier(caster, caster, "modifier_blood_mark_restriction", {})
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_blood_mark_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
 	local initHealth = caster:GetHealth() 
 	local initTargetHealth = target:GetHealth()

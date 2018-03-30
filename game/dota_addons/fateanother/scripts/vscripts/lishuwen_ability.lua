@@ -154,6 +154,7 @@ end
 function OnTigerStrikeLevelUp(keys)
 	local caster = keys.caster
 	local ability = keys.ability
+	if caster:GetName() ~= "npc_dota_hero_bloodseeker" then return end
 
 	local t2 = caster:FindAbilityByName("lishuwen_fierce_tiger_strike_2")
 	t2:SetLevel(ability:GetLevel())
@@ -177,9 +178,12 @@ function OnTigerStrike1Start(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
 
-	GrantCosmicOrbitResist(caster)
+	if caster:GetUnitName() == "npc_dota_hero_bloodseeker" then
+		GrantCosmicOrbitResist(caster)
+	end
 	if caster.bIsMartialArtsImproved then
 		ApplyMarkOfFatality(caster, target)
 	end
@@ -230,11 +234,14 @@ function OnTigerStrike2Start(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	
+
+	target:TriggerSpellReflect(ability)
 	if TigerStrikeCheckTarget(caster, target, ability) then return end
 	if IsSpellBlocked(keys.target) then return end
 
-	GrantCosmicOrbitResist(caster)
+	if caster:GetUnitName() == "npc_dota_hero_bloodseeker" then
+		GrantCosmicOrbitResist(caster)
+	end
 	if caster.bIsMartialArtsImproved then
 		ApplyMarkOfFatality(caster, target)
 	end
@@ -279,10 +286,13 @@ function OnTigerStrike3Start(keys)
 	local target = keys.target
 	local ability = keys.ability
 
+	target:TriggerSpellReflect(ability)
 	if TigerStrikeCheckTarget(caster, target, ability) then return end
 	if IsSpellBlocked(keys.target) then return end
 
-	GrantCosmicOrbitResist(caster)
+	if caster:GetUnitName() == "npc_dota_hero_bloodseeker" then
+		GrantCosmicOrbitResist(caster)
+	end
 	if caster.bIsMartialArtsImproved then
 		ApplyMarkOfFatality(caster, target)
 	end

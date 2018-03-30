@@ -1,28 +1,28 @@
 modifier_self_mod = class({})
+
+function modifier_self_mod:OnCreated(args)
+    if IsServer() then self.fHeal = args.heal / args.Duration end
+    self.fAgi = args.agi
+    self:StartIntervalThink(1.0)
+end
+
 if IsServer() then
-    function modifier_self_mod:OnCreated(args)
-        self.fHeal = args.heal / args.Duration
-        self.fAgi = args.agi
-        self:StartIntervalThink(1.0)
-    end
-
-    function modifier_self_mod:DeclareFunctions()
-        local funcs = {
-            MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE
-        }
-
-        return funcs
-    end
-
-    function modifier_self_mod:GetModifierBaseAttack_BonusDamage()
-        return self.fAgi
-    end
-
-
     function modifier_self_mod:OnIntervalThink()
         local hParent = self:GetParent()
         hParent:ApplyHeal(self.fHeal, hParent)
     end
+end
+
+function modifier_self_mod:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE
+    }
+
+    return funcs
+end
+
+function modifier_self_mod:GetModifierBaseAttack_BonusDamage()
+    return self.fAgi
 end
 
 function modifier_self_mod:GetEffectName()

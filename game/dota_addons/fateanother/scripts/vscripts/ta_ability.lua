@@ -34,6 +34,7 @@ end
 function OnDirkHit(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
+	keys.target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 
 	if caster.IsWeakeningVenomAcquired then
@@ -294,7 +295,7 @@ function OnAmbushStart(keys)
 			team = DOTA_TEAM_GOODGUYS
 		end]]
 		--local units = FindUnitsInRadius(enemyTeamNumber, caster:GetAbsOrigin(), nil, 2500, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
-		local units = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 1600, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
+		local units = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 2500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_CLOSEST, false)
 		for i=1, #units do
 			print(units[i]:GetUnitName())
 			if units[i]:GetUnitName() == "ward_familiar" then
@@ -337,11 +338,11 @@ function OnFirstHitStart(keys)
 end
 
 function OnFirstHitLanded(keys)
-	local hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	local hero = keys.caster
 	if IsSpellBlocked(keys.target) then keys.caster:RemoveModifierByName("modifier_thrown") return end -- Linken effect checker
 
-	if keys.target:GetName() == "npc_dota_ward_base" then
-		DoDamage(keys.caster, keys.target, 2, DAMAGE_TYPE_PURE, 0, keys.ability, false)
+	if keys.target:GetName() == "npc_dota_ward_base" and hero.IsPCImproved then
+		DoDamage(keys.caster, keys.target, 6, DAMAGE_TYPE_PURE, 0, keys.ability, false)
 	else
 		DoDamage(keys.caster, keys.target, keys.Damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
 	end
@@ -389,6 +390,7 @@ end
 
 function OnStealStart(keys)
 	ArsenalReturnMana(keys.caster)
+	keys.target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner() 
@@ -460,6 +462,7 @@ function OnZabStart(keys)
 end
 
 function OnZabHit(keys)
+	keys.target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()

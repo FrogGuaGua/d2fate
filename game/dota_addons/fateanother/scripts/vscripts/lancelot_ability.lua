@@ -320,6 +320,7 @@ end
 
 function OnKnightUsed(keys)
         local caster = keys.caster
+        if caster:GetName() ~= "npc_dota_hero_sven" then return end
         local ply = caster:GetPlayerOwner()
         local ability = keys.ability
 

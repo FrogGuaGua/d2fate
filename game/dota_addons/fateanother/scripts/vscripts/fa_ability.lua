@@ -187,6 +187,43 @@ function OnInvisibilityBroken(keys)
 	caster:RemoveModifierByName("modifier_heart_of_harmony_invisible")
 end
 
+function OnPCStart(keys)
+    if keys.caster.IsEyeOfSerenityAcquired then keys.caster.IsEyeOfSerenityActive = true end
+    keys.ability.cdtimer = 0
+end
+
+function OnPCEnd(keys)
+    local caster = keys.caster
+    local cdr = keys.ability.cdtimer * 2
+    caster.IsEyeOfSerenityActive = false
+
+    local abilities = {
+        "false_assassin_gate_keeper",
+        "false_assassin_quickdraw",
+        "false_assassin_heart_of_harmony",
+        "false_assassin_windblade",
+        "false_assassin_tsubame_gaeshi"
+    }
+
+    for i, v in ipairs(abilities) do
+        ---@type CDOTA_Ability_DataDriven
+        local ability = caster:FindAbilityByName(v)
+        local cd = ability:GetCooldownTimeRemaining()
+        if cd > 0 then
+            cd = cd - cdr
+            cd = vlua.select(cd < 0, 0, cd)
+            ability:EndCooldown()
+            ability:StartCooldown(cd)
+        end
+    end
+end
+
+function OnPCThink(keys)
+    local caster = keys.caster
+    local ability = keys.ability
+    ability.cdtimer = ability.cdtimer + 1
+end
+
 function OnPCDeactivate(keys)
 	local caster = keys.caster
 	caster:RemoveModifierByName("modifier_fa_invis")
@@ -211,9 +248,11 @@ function OnTMStart(keys)
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_tsubame_mai", {})
 	-- Set master's combo cooldown
 	local masterCombo = caster.MasterUnit2:FindAbilityByName(keys.ability:GetAbilityName())
-	masterCombo:EndCooldown()
-	masterCombo:StartCooldown(keys.ability:GetCooldown(1))
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_tsubame_mai_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
+	if masterCombo then
+		masterCombo:EndCooldown()
+		masterCombo:StartCooldown(keys.ability:GetCooldown(1))
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_tsubame_mai_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
+	end
 	
 end
 
@@ -274,6 +313,7 @@ function OnTMLanded(keys)
 		if caster:IsAlive() then
 			keys.IsCounter = true
 			keys.Locator = dummy
+			keys.ability = tgabil
 			OnTGStart(keys)
 		end
 	end)
@@ -572,6 +612,7 @@ function OnTGStart(keys)
 	local target = keys.target
 	local ability = keys.ability
 
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	EmitGlobalSound("FA.Chop")
 

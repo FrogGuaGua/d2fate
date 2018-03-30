@@ -37,7 +37,9 @@ function lancer_5th_soaring_spear:OnSpellStart()
       bIsAttack = false,
       flExpireTime = GameRules:GetGameTime() + 10,
   }
-  EmitGlobalSound("Lancer.GaeBolg")
+  if hCaster:GetUnitName() == "npc_dota_hero_phantom_lancer" then
+    EmitGlobalSound("Lancer.GaeBolg")
+  end
   giveUnitDataDrivenModifier(hCaster, hCaster, "jump_pause", 0.8)
   Timers:CreateTimer(0.8, function()
     giveUnitDataDrivenModifier(hCaster, hCaster, "jump_pause_postdelay", 0.15)
@@ -67,14 +69,19 @@ function lancer_5th_soaring_spear:OnSpellStart()
 end
 function lancer_5th_soaring_spear:GetTotalDamage()
   local hCaster = self:GetCaster()
-  local iRLvl = hCaster:FindAbilityByName("lancer_5th_gae_bolg_jump"):GetLevel()
-  local iELvl = hCaster:FindAbilityByName("lancer_5th_gae_bolg"):GetLevel()
-  local fBonusFromR = self:GetSpecialValueFor("damage_bonus_from_r") * iRLvl
-  local fBonusFromE = self:GetSpecialValueFor("damage_bonus_from_e") * iELvl
-  local fDamage = self:GetSpecialValueFor("damage_base") + fBonusFromE + fBonusFromR
-  
-  local hRuneAbility = hCaster:FindAbilityByName("lancer_5th_rune_of_flame")
-  local fRuneHPDamagePct = hRuneAbility:GetLevelSpecialValueFor("ability_bonus_damage", hRuneAbility:GetLevel()-1)/100
+  local fDamage = self:GetSpecialValueFor("damage_base")
+  local fRuneHPDamagePct = 0
+  if hCaster:GetUnitName() == "npc_dota_hero_phantom_lancer" then
+    local iRLvl = hCaster:FindAbilityByName("lancer_5th_gae_bolg_jump"):GetLevel()
+    local iELvl = hCaster:FindAbilityByName("lancer_5th_gae_bolg"):GetLevel()
+    local fBonusFromR = self:GetSpecialValueFor("damage_bonus_from_r") * iRLvl
+    local fBonusFromE = self:GetSpecialValueFor("damage_bonus_from_e") * iELvl
+    fDamage = fDamage + fBonusFromE + fBonusFromR
+    local hRuneAbility = hCaster:FindAbilityByName("lancer_5th_rune_of_flame")
+    fRuneHPDamagePct = hRuneAbility:GetLevelSpecialValueFor("ability_bonus_damage", hRuneAbility:GetLevel()-1)/100
+  end
+
+
   if hCaster.IsGaeBolgImproved then
     fRuneHPDamagePct = fRuneHPDamagePct * 2
   end
@@ -85,6 +92,7 @@ function lancer_5th_soaring_spear:OnProjectileHit_ExtraData(hTarget, vLocation, 
   if hTarget == nil then
     return
   end
+  hTarget:TriggerSpellReflect(self)
   local hCaster = self:GetCaster()
   local fDamage,fRuneHPDamagePct = self:GetTotalDamage()
   local fRadius = self:GetSpecialValueFor("radius")

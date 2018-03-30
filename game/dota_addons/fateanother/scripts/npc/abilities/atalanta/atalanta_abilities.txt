@@ -262,7 +262,7 @@
       "05"
       {
         "var_type"					"FIELD_FLOAT"
-        "web_slow"		"-40"
+        "web_slow"		"-25"
       }
       "06"
       {

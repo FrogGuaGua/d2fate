@@ -102,6 +102,7 @@ revokes = {
 }
 
 locks = {
+    "modifier_sex_scroll_root",
     "modifier_purge",
     "locked",
     "dragged",
@@ -289,6 +290,7 @@ CannotReset = {
     "vlad_protection_of_faith_cd",
     "phoebus_catastrophe_barrage",
     "lancer_5th_soaring_spear",
+    "jeanne_seal_spellbook",
 }
 
 femaleservant = {
@@ -1989,7 +1991,7 @@ function ForwardVForPointGround(hCaster,vTarget)
   return vFacing
 end
 
-function UpdateAbilityLayout(hHero, tAbilities)
+function UpdateAbilityLayout(hHero, tAbilities) -- old
     local tAbilities = tAbilities or hHero.AbilityLayout
     for i = 1, hHero:GetAbilityCount() do
         if hHero:GetAbilityByIndex(i - 1) == nil then
@@ -1998,6 +2000,18 @@ function UpdateAbilityLayout(hHero, tAbilities)
         elseif hHero:GetAbilityByIndex(i - 1):GetAbilityName() ~= tAbilities[i] then
             hHero:SwapAbilities(hHero:GetAbilityByIndex(i - 1):GetAbilityName(), tAbilities[i], true, true)
         end
+    end
+end
+
+---@param unit CDOTA_BaseNPC
+---@param abilities table
+---@param bAddSpells boolean
+function UpdateSpellLayout(unit, abilities, bAddSpells)
+    for i, v in ipairs(abilities) do
+        if bAddSpells then
+            unit:AddAbility(v):SetLevel(1)
+        end
+        unit:SwapAbilities(v, unit:GetAbilityByIndex(i-1):GetAbilityName(), true, false)
     end
 end
 

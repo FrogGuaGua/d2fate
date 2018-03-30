@@ -10,8 +10,10 @@ function OnIRStart(keys)
 		return
 	end
 
-	GawainCheckCombo(caster, keys.ability)
-	GenerateArtificialSun(caster, target:GetAbsOrigin())
+	if caster:GetUnitName() == "npc_dota_hero_omniknight" then
+		GawainCheckCombo(caster, keys.ability)
+		GenerateArtificialSun(caster, target:GetAbsOrigin())
+	end
 
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
 		target:EmitSound("Hero_Omniknight.Purification")
@@ -20,6 +22,7 @@ function OnIRStart(keys)
 			keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_invigorating_ray_armor_buff", {})
 		end
 	else
+		target:TriggerSpellReflect(keys.ability)
 		if IsSpellBlocked(keys.target) then return end
 		target:EmitSound("Hero_Omniknight.Purification")
 		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_invigorating_ray_enemy", {})
@@ -292,7 +295,9 @@ function OnEmbraceStart(keys)
 	local ply = caster:GetPlayerOwner()
 	local target = keys.target
 
-	GenerateArtificialSun(caster, target:GetAbsOrigin())
+	if caster:GetUnitName() == "npc_dota_hero_omniknight" then
+		GenerateArtificialSun(caster, target:GetAbsOrigin())
+	end
 
 	if target:GetTeamNumber() == caster:GetTeamNumber() then
 		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_suns_embrace_ally",{})
@@ -311,6 +316,7 @@ function OnEmbraceStart(keys)
 	else
 		-- process enemy effect
 		--DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+		target:TriggerSpellReflect(keys.ability)
 		if IsSpellBlocked(keys.target) then return end
 		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_suns_embrace_enemy",{})
 		if caster.IsEclipseAcquired then

@@ -4,7 +4,7 @@
     {
         "BaseClass"                                 "ability_lua"
         "ScriptFile"                                "abilities/archer5/broken_phantasm"
-        "AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
+        "AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET"
         "AbilityTextureName"                        "custom/archer_5th_broken_phantasm"
 
         "MaxLevel"                                  "5"

@@ -30,5 +30,4 @@
 	"npc_dota_hero_wisp"				"1"	
 	"npc_dota_hero_drow_ranger"			"1"
 	"npc_dota_hero_tidehunter"			"1"
-    "npc_dota_hero_phantom_assassin"    "1"
 }

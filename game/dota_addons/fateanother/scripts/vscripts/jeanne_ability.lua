@@ -170,6 +170,9 @@ function OnIRStart(keys, fromFlag)
 	local ability = keys.ability
 	local radius = keys.Radius
 	local duration = keys.Duration
+	if caster:HasModifier("modifier_improve_saint") then
+		radius = radius + (1 - caster:FindModifierByName("modifier_jeanne_saint"):GetSaintPct()) * ability:GetSpecialValueFor("saint_bonus_radius")
+	end
 	fromFlag = fromFlag or nil
 	local primaryStat = target:GetPrimaryAttribute()
 	if fromFlag == true then
@@ -254,7 +257,7 @@ function OnPurgeStart(keys)
 	EmitSoundOnLocationWithCaster(targetPoint, "Hero_Chen.PenitenceImpact", caster)	
 
 	Timers:CreateTimer(delay, function()
-		if caster:HasModifier("modifier_saint_buff") then
+		--[[if caster:HasModifier("modifier_saint_buff") then
 			local nDeadTeam = CountDeadTeammates(caster:GetTeam()==DOTA_TEAM_GOODGUYS)
 			baseDamage = (1 + 0.1 * nDeadTeam) * keys.Damage
 
@@ -263,16 +266,25 @@ function OnPurgeStart(keys)
 			end
 		end
 
-		print(baseDamage)
+		print(baseDamage)]]
+		local damage = baseDamage
+		local ccDuration = silenceDuration
+		local pct = 1 - caster:FindModifierByName("modifier_jeanne_saint"):GetSaintPct()
+		if caster:HasModifier("modifier_improve_saint") then
+			damage = damage + baseDamage * (ability:GetSpecialValueFor("saint_dmg_pct")/100) * pct
+			if caster.IsPunishmentAcquired then
+				ccDuration = ccDuration + ability:GetSpecialValueFor("saint_bonus_cc") * pct
+			end
+		end
 
 		local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
 
-	        DoDamage(caster, v, baseDamage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
-	        giveUnitDataDrivenModifier(caster, v, "silenced", silenceDuration)
-	        giveUnitDataDrivenModifier(caster, v, "disarmed", silenceDuration)
-	        if caster.IsPunishmentAcquired and caster:HasModifier("modifier_saint_buff") then
-	        	giveUnitDataDrivenModifier(caster, v, "revoked", silenceDuration)
+	        DoDamage(caster, v, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	        giveUnitDataDrivenModifier(caster, v, "silenced", ccDuration)
+	        giveUnitDataDrivenModifier(caster, v, "disarmed", ccDuration)
+	        if caster.IsPunishmentAcquired and pct >= 0.99 then
+	        	giveUnitDataDrivenModifier(caster, v, "revoked", ccDuration)
 	        end
 	    end
 
@@ -339,7 +351,7 @@ function OnGodResolutionStart(keys)
 		end
 		local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
-			if caster:HasModifier("modifier_saint_buff") then
+			if caster:HasModifier("modifier_improve_saint") then
 				 giveUnitDataDrivenModifier(caster, v, "stunned", 0.1)
 			end
 	        DoDamage(caster, v, tickDamage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
@@ -457,6 +469,9 @@ function OnLEStart(keys)
 		else
 			ability:ApplyDataDrivenModifier(caster, flag, "modifier_luminosite_eternelle_flag_aura", {})
 		end
+		if caster:HasModifier("modifier_improve_saint") then
+			flag:AddNewModifier(caster, ability, "modifier_luminosite_eternelle_debuff_aura", {}) -- new saint aura
+		end
 
 		if caster.IsDivineSymbolAcquired then
 			local targets = FindUnitsInRadius(caster:GetTeam(), flag:GetAbsOrigin(), nil, range, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
@@ -472,6 +487,7 @@ function OnLEStart(keys)
 
 		-- wow control points are an adventure
 		local sacredZoneFx = ParticleManager:CreateParticle("particles/custom/ruler/luminosite_eternelle/sacred_zone.vpcf", PATTACH_CUSTOMORIGIN, nil)
+		projectileDestination = GetGroundPosition(projectileDestination, nil)
 		ParticleManager:SetParticleControl(sacredZoneFx, 0, projectileDestination)
 		ParticleManager:SetParticleControl(sacredZoneFx, 1, Vector(1,1,range))
 		ParticleManager:SetParticleControl(sacredZoneFx, 14, Vector(range,range,0))

@@ -183,8 +183,9 @@ JeanneAttribute = {
 	"jeanne_attribute_improve_saint",
 	"jeanne_attribute_punishment",
 	"jeanne_attribute_divine_symbol",
+	"jeanne_attribute_gods_resolution",
 	"jeanne_combo_la_pucelle",
-	attrCount = 4
+	attrCount = 5
 }
 
 AstolfoAttribute = {
@@ -346,14 +347,15 @@ function OnSeal2Start(keys)
 	-- pay health cost
 	caster:SetHealth(caster:GetHealth()-1) 
 
-	ResetAbilities(hero)
-	ResetItems(hero)
-	IncrementCharges(hero)
+	local unit = vlua.select(hero.IsIntegrated, hero.GiganticHorror, hero)
+	ResetAbilities(unit)
+	ResetItems(unit)
+	IncrementCharges(unit)
 
 	-- Particle
-	hero:EmitSound("DOTA_Item.Refresher.Activate")
-	local particle = ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
-	ParticleManager:SetParticleControl(particle, 0, hero:GetAbsOrigin())
+	unit:EmitSound("DOTA_Item.Refresher.Activate")
+	local particle = ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+	ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
 
 
 	-- Set cooldown
@@ -376,6 +378,7 @@ function OnSeal3Start(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
 	local hero = ply:GetAssignedHero()
+	local unit = vlua.select(hero.IsIntegrated, hero.GiganticHorror, hero)
 
 	if caster:GetHealth() == 1 then
 		caster:SetMana(caster:GetMana()+1) 
@@ -384,14 +387,14 @@ function OnSeal3Start(keys)
 		return 
 	end
 
-	if not hero:IsAlive() or IsRevoked(hero) or hero:GetHealth() == hero:GetMaxHealth() then
+	if not hero:IsAlive() or IsRevoked(hero) or unit:GetHealth() == unit:GetMaxHealth() then
 		caster:SetMana(caster:GetMana()+1) 
 		keys.ability:EndCooldown() 
 		SendErrorMessage(caster:GetPlayerOwnerID(), "#Revoked_Error")
 		return
 	end
 
-	hero:EmitSound("DOTA_Item.UrnOfShadows.Activate")
+	unit:EmitSound("DOTA_Item.UrnOfShadows.Activate")
 	hero.ServStat:useESeal()
 	-- Set master 2's mana 
 	local master2 = hero.MasterUnit2
@@ -399,9 +402,9 @@ function OnSeal3Start(keys)
 	-- Set master's health
 	caster:SetHealth(caster:GetHealth()-1) 
 
-	local particle = ParticleManager:CreateParticle("particles/items2_fx/urn_of_shadows_heal_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
-	ParticleManager:SetParticleControl(particle, 0, hero:GetAbsOrigin())
-	hero:ApplyHeal(hero:GetMaxHealth(), hero)
+	local particle = ParticleManager:CreateParticle("particles/items2_fx/urn_of_shadows_heal_c.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+	ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
+	unit:ApplyHeal(unit:GetMaxHealth(), unit)
 
 	if caster.IsFirstSeal == true then
 		keys.ability:EndCooldown()
@@ -418,6 +421,7 @@ function OnSeal4Start(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
 	local hero = ply:GetAssignedHero()
+	local unit = vlua.select(hero.IsIntegrated, hero.GiganticHorror, hero) -- not really needed, as neither gille nor gigantic horror has mana
 
 	if caster:GetHealth() == 1 then
 		caster:SetMana(caster:GetMana()+1) 
@@ -426,7 +430,7 @@ function OnSeal4Start(keys)
 		return 
 	end
 
-	if not hero:IsAlive() or IsRevoked(hero) or hero:GetMana() == hero:GetMaxMana() then
+	if not hero:IsAlive() or IsRevoked(hero) or unit:GetMana() == unit:GetMaxMana() then
 		caster:SetMana(caster:GetMana()+1) 
 		keys.ability:EndCooldown() 
 		SendErrorMessage(caster:GetPlayerOwnerID(), "#Revoked_Error")
@@ -440,12 +444,12 @@ function OnSeal4Start(keys)
 	caster:SetHealth(caster:GetHealth()-1) 
 
 	-- Particle
-	hero:EmitSound("Hero_KeeperOfTheLight.ChakraMagic.Target")
-	local particle = ParticleManager:CreateParticle("particles/items_fx/arcane_boots.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
-	ParticleManager:SetParticleControl(particle, 0, hero:GetAbsOrigin())
+	unit:EmitSound("Hero_KeeperOfTheLight.ChakraMagic.Target")
+	local particle = ParticleManager:CreateParticle("particles/items_fx/arcane_boots.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+	ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
 
 
-	hero:SetMana(hero:GetMaxMana()) 
+	unit:SetMana(unit:GetMaxMana())
 
 
 	if caster.IsFirstSeal == true then
@@ -801,8 +805,8 @@ function OnDamageGain(keys)
 		primaryStat = hero:GetIntellect()
 	end
 
-	hero:SetBaseDamageMax(hero:GetBaseDamageMax() - math.floor(primaryStat) + 3)
-	hero:SetBaseDamageMin(hero:GetBaseDamageMin() - math.floor(primaryStat) + 3)
+	hero:SetBaseDamageMax(hero:GetBaseDamageMax() - math.floor(primaryStat) + 5)
+	hero:SetBaseDamageMin(hero:GetBaseDamageMin() - math.floor(primaryStat) + 5)
 	hero:CalculateStatBonus()
 
 	--[[local minDmg = hero:GetBaseDamageMin() - primaryStat
@@ -831,7 +835,7 @@ function OnArmorGain(keys)
 		end
 	end 
 	hero.ServStat:addArmor()
-	hero:SetPhysicalArmorBaseValue(hero:GetPhysicalArmorBaseValue()+1.75) --actually this line is useless, appears to be dependent on scripts/npc/attributes.txt but I am too lazy to understand why
+	hero:SetPhysicalArmorBaseValue(hero:GetPhysicalArmorBaseValue()+3) --actually this line is useless, appears to be dependent on scripts/npc/attributes.txt but I am too lazy to understand why
 	hero:CalculateStatBonus()
 	-- Set master 1's mana 
 	local master1 = hero.MasterUnit
@@ -855,7 +859,7 @@ function OnHPRegenGain(keys)
 		end
 	end 
 	hero.ServStat:addHPregen()
-	hero:SetBaseHealthRegen(hero:GetBaseHealthRegen()+2.5) --down here attributes.txt is useless, and this line is working.
+	hero:SetBaseHealthRegen(hero:GetBaseHealthRegen()+3) --down here attributes.txt is useless, and this line is working.
 	hero:CalculateStatBonus()
 	-- Set master 1's mana 
 	local master1 = hero.MasterUnit
@@ -903,7 +907,7 @@ function OnMovementSpeedGain(keys)
 		end
 	end 
 	hero.ServStat:addMS()
-	hero:SetBaseMoveSpeed(hero:GetBaseMoveSpeed()+5) 
+	hero:SetBaseMoveSpeed(hero:GetBaseMoveSpeed()+7)
 	hero:CalculateStatBonus()
 	-- Set master 1's mana 
 	local master1 = hero.MasterUnit
@@ -1003,7 +1007,7 @@ function OnProsperityAcquired(keys)
 	local master = hero.MasterUnit 
 	local master2 = hero.MasterUnit2
 
-	for i=1,4 do
+	for i=1,5 do
 		local level = hero:GetLevel()
 		if level ~= 24 then
 			hero:AddExperience(_G.XP_PER_LEVEL_TABLE[level], false, false)
@@ -1084,7 +1088,7 @@ function OnPresenceDetectionThink(keys)
 					CustomGameEventManager:Send_ServerToPlayer(caster:GetPlayerOwner(), "emit_presence_sound", {sound="Misc.BorrowedTime"})
 				end
 				-- Process Eye of Serenity attribute
-				if caster:GetName() == "npc_dota_hero_juggernaut" and caster.IsEyeOfSerenityAcquired == true and enemy.IsSerenityOnCooldown ~= true then
+				if caster:GetName() == "npc_dota_hero_juggernaut" and caster.IsEyeOfSerenityAcquired == true and caster.IsEyeOfSerenityActive and enemy.IsSerenityOnCooldown ~= true then
 					enemy.IsSerenityOnCooldown = true
 					Timers:CreateTimer(10.0, function() 
 						enemy.IsSerenityOnCooldown = false

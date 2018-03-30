@@ -397,7 +397,7 @@
 		"StatusManaRegen"				"3.0"
 		
 		"ArmorPhysical"					"4"
-		"MagicalResistance"				"10"
+		"MagicalResistance"				"15"
 		
 		"AttackCapabilities"			"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackRange"					"200"
@@ -519,19 +519,19 @@
 		"Attribute3"				"true_assassin_attribute_weakening_venom"
 		"Attribute4"				"true_assassin_attribute_shadow_strike"
 
-		"StatusHealth"					"1000"
+		"StatusHealth"					"850"
 		"StatusHealthRegen"				"8"
 		"StatusMana"					"1000"
 		"StatusManaRegen"				"3.0"
 		
-		"ArmorPhysical"					"2"
+		"ArmorPhysical"					"3"
 		"MagicalResistance"				"10"
 		
 		"AttackCapabilities"			"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackRange"					"700"
 		"AttackDamageMin"				"46"
 		"AttackDamageMax"				"60"
-		"AttackRate"					"0.9"
+		"AttackRate"					"0.7"
 		"AttackAnimationPoint"			"0.3"
 		"AttackAcquisitionRange"		"800"
 		"ProjectileModel"				"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
@@ -539,11 +539,11 @@
 
 		"AttributePrimary"				"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"			"0"
-		"AttributeStrengthGain"			"0.8"
+		"AttributeStrengthGain"			"0.5"
 		"AttributeBaseAgility"			"0"
-		"AttributeAgilityGain"			"1.8"
+		"AttributeAgilityGain"			"2.0"
 		"AttributeBaseIntelligence"		"0"
-		"AttributeIntelligenceGain"		"0.4"
+		"AttributeIntelligenceGain"		"0.5"
 		
 		"MovementSpeed"					"420"
 		"MovementTurnRate"				"0.8"
@@ -960,8 +960,8 @@
 		"Ability1"				"iskander_forward"
 		"Ability2"				"iskander_phalanx"
 		"Ability3"				"iskander_gordius_wheel"
-		"Ability4"				"iskander_charisma"
-		"Ability5"				"fate_empty1"
+		"Ability4"				"iskander_drift_toggle"
+		"Ability5"				"iskander_charisma"
 		"Ability6"				"iskander_army_of_the_king"
 		"Ability7"				"iskander_annihilate"
 		"Ability8"				"iskander_via_expugnatio"

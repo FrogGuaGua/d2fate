@@ -1,0 +1,68 @@
+"DOTAAbilities"
+{
+    "jeanne_combo_la_pucelle"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/jeanne/la_pucelle"
+        "AbilityTextureName"                            "custom/jeanne_la_pucelle"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCooldown"                               "160"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "health_threshold_pct"              "10"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "phase1_duration"                   "2.0"
+            }
+            "03"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "phase1_radius"                     "900"
+            }
+            "04"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "phase1_dps"                        "350"
+            }
+            "05"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "phase1_slow"                       "40"
+            }
+            "06"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "phase2_duration"                   "6.0"
+            }
+            "07"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "phase2_fire_dps"                   "8"
+            }
+            "08"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "phase2_as_bonus"                   "200"
+            }
+            "09"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "phas2_ms_bonus"                    "100"
+            }
+        }
+    }
+}

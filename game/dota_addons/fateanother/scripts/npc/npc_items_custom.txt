@@ -1,6 +1,7 @@
 #base "items/item_blink_scroll.txt"
 #base "items/item_mana_essence.txt"
 #base "items/item_shard_of_replenishment.txt"
+#base "items/item_smoke.txt"
 
 "DOTAAbilities"
 {
@@ -873,7 +874,7 @@
 
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"800"
+		"ItemCost"						"600"
 		"ItemStackable"					"0"
 		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 		"ItemPermanent"					"0"
@@ -2343,7 +2344,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"500 750 1000 1250 1500"
+				"damage"			"700 800 900 1000 1100"
 			}
 			"03"
 			{

@@ -1,34 +1,27 @@
-modifier_sex_scroll_root = class({})
+---@class modifier_sex_scroll_root_delay : CDOTA_Modifier_Lua
+modifier_sex_scroll_root_delay = class({})
 
-LinkLuaModifier("modifier_sex_scroll_slow","items/modifiers/modifier_sex_scroll_slow.lua", LUA_MODIFIER_MOTION_NONE)
-
-function modifier_sex_scroll_root:OnCreated(args)
-    local hTarget = self:GetParent()
-
-    self.rootDur = args.duration
-    self.state = {
-        [MODIFIER_STATE_ROOTED] = true,
-    } 
-
-    self:StartIntervalThink(0.1)
-end
-
-function modifier_sex_scroll_root:OnRefresh()
-    self:OnCreated()
-end
-
-function modifier_sex_scroll_root:OnDestroy()
-    if self:GetParent():GetName() == "npc_dota_hero_sven" then
-        self:GetParent():EmitSound("DOTA_Item.LinkensSphere.Activate")
-        ParticleManager:CreateParticle("particles/items_fx/immunity_sphere.vpcf", PATTACH_ABSORIGIN, self:GetParent())   
-    else
-        self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_sex_scroll_slow", {duration = 3.0})        
+if IsServer() then
+    function modifier_sex_scroll_root_delay:OnDestroy()
+        local ability = self:GetAbility()
+        self:GetParent():AddNewModifier(self:GetCaster(), ability, "modifier_sex_scroll_root", {duration = ability:GetSpecialValueFor("lock_duration")})
     end
 end
 
------------------------------------------------------------------------------------
+modifier_sex_scroll_root_delay.IsHidden = function() return true end
+
+---@class modifier_sex_scroll_root : CDOTA_Modifier_Lua
+modifier_sex_scroll_root = class({})
+
+function modifier_sex_scroll_root:OnRefresh(args)
+    self:IncrementStackCount()
+    local duration = self:GetRemainingTime() + (self:GetAbility():GetSpecialValueFor("lock_duration") - (0.3 * self:GetStackCount()))
+    duration = vlua.select(duration < 0.1, 0.1, duration)
+    self:SetDuration(duration ,true)
+end
+
 function modifier_sex_scroll_root:GetEffectName()
-    return "particles/items_fx/diffusal_slow.vpcf"
+    return "particles/generic_gameplay/generic_purge.vpcf"
 end
 
 function modifier_sex_scroll_root:GetEffectAttachType()
@@ -36,27 +29,11 @@ function modifier_sex_scroll_root:GetEffectAttachType()
 end
 
 function modifier_sex_scroll_root:CheckState()   
-    return self.state
-end
-
-function modifier_sex_scroll_root:GetAttributes() 
-    return MODIFIER_ATTRIBUTE_NONE
-end
-
-function modifier_sex_scroll_root:IsPurgable()
-    return false
+    return {
+        [MODIFIER_STATE_ROOTED] = true
+    }
 end
 
 function modifier_sex_scroll_root:IsDebuff()
     return true
 end
-
-
-function modifier_sex_scroll_root:RemoveOnDeath()
-    return true
-end
-
-function modifier_sex_scroll_root:GetTexture()
-    return "custom/s_scroll"
-end
------------------------------------------------------------------------------------

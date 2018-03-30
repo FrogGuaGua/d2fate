@@ -122,14 +122,15 @@ function KBHit(keys)
 	local ratio = keys.DamageRatio
 
 	if caster.IsOveredgeAcquired then keys.DamagePerTick = keys.DamagePerTick + caster:GetIntellect() * ratio end
+	target:TriggerSpellReflect(ability)
 
 	Timers:CreateTimer(function() 
 		if KBCount == 4 then return end
 		DoDamage(keys.caster, keys.target, keys.DamagePerTick , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-		if caster:FindAbilityByName("archer_5th_overedge"):IsCooldownReady() == false then
+		if caster:FindAbilityByName("archer_5th_overedge") and caster:FindAbilityByName("archer_5th_overedge"):IsCooldownReady() == false then
 			local overedgeCD = caster:FindAbilityByName("archer_5th_overedge"):GetCooldownTimeRemaining()
 			caster:FindAbilityByName("archer_5th_overedge"):EndCooldown()
-			caster:FindAbilityByName("archer_5th_overedge"):StartCooldown(overedgeCD-2)
+			caster:FindAbilityByName("archer_5th_overedge"):StartCooldown(overedgeCD-3)
 			caster:RemoveModifierByName("modifier_overedge_cooldown")
 			caster:FindAbilityByName("archer_5th_overedge"):ApplyDataDrivenModifier(caster, caster, "modifier_overedge_cooldown", {duration = overedgeCD-1})
 		end
@@ -225,7 +226,7 @@ function OnBPHit(keys)
 	end)
 
 	if not target:IsMagicImmune() then
-		target:AddNewModifier(caster, target, "modifier_stunned", {Duration = keys.StunDuration})
+		--target:AddNewModifier(caster, target, "modifier_stunned", {Duration = keys.StunDuration})
 	end
 end
 
@@ -834,7 +835,7 @@ function OnUBWBarrageStart(keys)
 	local radius = keys.Radius
 	local ply = caster:GetPlayerOwner()
 	if caster.IsProjectionImproved then 
-		keys.Damage = keys.Damage + (caster:GetStrength() + caster:GetIntellect())*2
+		keys.Damage = keys.Damage + caster:GetIntellect()
 	end	
 
 	local barrageCount = 0
@@ -1091,19 +1092,25 @@ function OnHruntStart(keys)
 	local ability = keys.ability
 	local target = keys.target
 	local ply = caster:GetPlayerOwner()
-	ParticleManager:DestroyParticle(caster.hruntingCrosshead, true)
-	if not caster:CanEntityBeSeenByMyTeam(target) or not IsInSameRealm(caster:GetAbsOrigin(), target:GetAbsOrigin()) then 
+	if caster.hruntingCrosshead then
+		ParticleManager:DestroyParticle(caster.hruntingCrosshead, true)
+	end
+	if not caster:CanEntityBeSeenByMyTeam(target) or not IsInSameRealm(caster:GetAbsOrigin(), target:GetAbsOrigin()) then
 		Say(ply, "Hrunting failed.", true)
-		return 
+		return
 	end
 	ability:StartCooldown(ability:GetCooldown(1))
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_hrunting_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
-	caster.HruntDamage =  250 + caster:FindAbilityByName("archer_5th_broken_phantasm"):GetLevel() * 100  + caster:GetMana()
-	caster:SetMana(0) 
-	
+	if caster:GetUnitName() == "npc_dota_hero_ember_spirit" then
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_hrunting_cooldown", {duration = ability:GetCooldown(ability:GetLevel())})
+		caster.HruntDamage =  250 + caster:FindAbilityByName("archer_5th_broken_phantasm"):GetLevel() * 100  + caster:GetMana()
+	else
+		caster.HruntDamage = 250 + caster:GetMana()
+	end
+	caster:SetMana(0)
+
 	local info = {
 		Target = keys.target,
-		Source = keys.caster, 
+		Source = keys.caster,
 		Ability = keys.ability,
 		EffectName = "particles/custom/archer/archer_hrunting_orb.vpcf",
 		vSpawnOrigin = caster:GetAbsOrigin(),
@@ -1112,7 +1119,7 @@ function OnHruntStart(keys)
 		bDodgeable = true
 	}
 
-	ProjectileManager:CreateTrackingProjectile(info) 
+	ProjectileManager:CreateTrackingProjectile(info)
 	-- give vision for enemy
 	if IsValidEntity(target) then
 		SpawnVisionDummy(target, caster:GetAbsOrigin(), 500, 3, false)
@@ -1135,6 +1142,7 @@ function OnHruntInterrupted(keys)
 end
 
 function OnHruntHit(keys)
+	keys.target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	keys.target:EmitSound("Archer.HruntHit")
 	-- Create Particle
@@ -1155,7 +1163,10 @@ function OnHruntHit(keys)
 	local targets = FindUnitsInRadius(caster:GetTeam(), keys.target:GetAbsOrigin(), nil, 1000
             , DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_CLOSEST, false)
 	for k,v in pairs(targets) do
-		if v ~= keys.target then DoDamage(keys.caster, v, keys.caster.HruntDamage/2, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false) end
+		if v ~= keys.target then
+			DoDamage(keys.caster, v, keys.caster.HruntDamage/2, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+			keys.caster:GiveMana(keys.caster.HruntDamage/2)
+		end
 	end
 	if not keys.target:IsMagicImmune() then
 		keys.target:AddNewModifier(caster, keys.target, "modifier_stunned", {Duration = 2.0})
@@ -1169,7 +1180,7 @@ function OnOveredgeStart(keys)
 	local dist = (caster:GetAbsOrigin() - targetPoint):Length2D() * 10/6
 	local castRange = keys.castRange
 	local kbratio = keys.KBRatio
-	local basedamage = caster:FindAbilityByName("archer_5th_kanshou_bakuya"):GetLevel() * 150
+	local basedamage = 800
 	local intratio = keys.IntRatio
 	local damage = basedamage + caster:GetIntellect() * intratio
 	-- When you exit the ubw on the last moment, dist is going to be a pretty high number, since the targetPoint is on ubw but you are outside it
@@ -1324,13 +1335,17 @@ function OnImproveProjectionAcquired(keys)
 	local hero = caster:GetPlayerOwner():GetAssignedHero()
 	local ability = keys.ability
 	
-	if hero.IsProjectionImproved then
+	--[[if hero.IsProjectionImproved then
 		hero.IsProjection2Improved = true
 		ability:StartCooldown(9999)
 	else
 		hero.IsProjectionImproved = true
 		ability:EndCooldown()
-	end
+	end]]
+
+	hero.IsProjectionImproved = true
+	hero.IsProjection2Improved = true
+	ability:StartCooldown(9999)
 	
 
 	--caster:AddAbility("archer_5th_attribute_improve_projection_level2")

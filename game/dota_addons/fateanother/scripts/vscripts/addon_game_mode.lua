@@ -1098,6 +1098,14 @@ function FateGameMode:OnNPCSpawned(keys)
     local hero = EntIndexToHScript(keys.entindex)
 	Wrappers.WrapUnit(hero)
 
+    -- Apply attributes that were bought while dead
+    for k, v in pairs(hero:GetLostAttributes()) do
+        if not hero:HasModifier(v.modifier) then
+            hero:AddNewModifier(v.caster, v.source, v.modifier, v.kv)
+            hero:GetLostAttributes()[k] = nil
+        end
+    end
+
     if hero:IsRealHero() and hero.bFirstSpawned == nil then
         local playerID = hero:GetPlayerID()
         if playerID ~= nil and playerID ~= -1 then
@@ -1164,7 +1172,7 @@ function FateGameMode:OnHeroInGame(hero)
 
     -- Initialize Servant Statistics, and related collection stuff
     hero.ServStat = ServantStatistics:initialise(hero)
-    hero.ServStat:roundNumber(self.nCurrentRound) -- to properly initialise the current round number when player picks a hero late. 
+    hero.ServStat:roundNumber(self.nCurrentRound) -- to properly initialise the current round number when player picks a hero late.
     giveUnitDataDrivenModifier(hero, hero, "modifier_damage_collection", {})
     -- END
 
@@ -1326,7 +1334,7 @@ function FateGameMode:OnHeroInGame(hero)
 
     -- Set music off
     SendToServerConsole("dota_music_battle_enable 0")
-    SendToConsole("dota_music_battle_enable 0")  
+    SendToConsole("dota_music_battle_enable 0")
     local player = PlayerResource:GetPlayer(hero:GetPlayerID())
     player:SetMusicStatus(DOTA_MUSIC_STATUS_NONE, 100000)
 end
@@ -1541,7 +1549,7 @@ function FateGameMode:OnItemPurchased( keys )
             else
                 local itemsWithSameName = Entities:FindAllByName(itemName)
                 local droppedItem
-                local purchasedTime = -9999 
+                local purchasedTime = -9999
                 for i = 1,#itemsWithSameName do
                     local item = itemsWithSameName[i]
                     if item:GetPurchaser() == hero and item:GetPurchaseTime() > purchasedTime then
@@ -2083,14 +2091,14 @@ function FateGameMode:InitGameMode()
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 6)
         GameRules:SetHeroRespawnEnabled(false)
         GameRules:SetGoldPerTick(0)
-        GameRules:SetStartingGold(0)    
+        GameRules:SetStartingGold(0)
 
     elseif _G.GameMap == "fate_elim_7v7" then
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 7)
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 7)
         GameRules:SetHeroRespawnEnabled(false)
         GameRules:SetGoldPerTick(0)
-        GameRules:SetStartingGold(0)    
+        GameRules:SetStartingGold(0)
 
     elseif _G.GameMap == "fate_trio_rumble_3v3v3v3" then
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 3)
@@ -2098,7 +2106,7 @@ function FateGameMode:InitGameMode()
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 3)
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 3)
         GameRules:SetGoldPerTick(7.5)
-        GameRules:SetStartingGold(0)  
+        GameRules:SetStartingGold(0)
 
 
     elseif _G.GameMap == "fate_ffa" then
@@ -2113,7 +2121,7 @@ function FateGameMode:InitGameMode()
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_7, 1 )
         GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_8, 1 )
         GameRules:SetGoldPerTick(7.5)
-        GameRules:SetStartingGold(0)    
+        GameRules:SetStartingGold(0)
     end
     -- Set game rules
     GameRules:SetUseUniversalShopMode(true)
@@ -2192,6 +2200,7 @@ function FateGameMode:InitGameMode()
     CustomGameEventManager:RegisterListener("player_cast_seal", OnPlayerCastSeal )
     -- LUA modifiers
     LinkLuaModifier("modifier_ms_cap", "modifiers/modifier_ms_cap", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_beam_thinker", "modifiers/modifier_beam_thinker", LUA_MODIFIER_MOTION_NONE)
 
 
     -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
@@ -2324,7 +2333,7 @@ function FateGameMode:TakeDamageFilter(filterTable)
         filterTable.damage = filterTable.damage/100 * (100-reduction)
         damage = damage/100 * (100-reduction)
     end
-	
+
 	-- Functionality for the False Promise part of NR's new ult.
 	if victim:HasModifier("modifier_qgg_oracle") then
 		local hModifier = victim:FindModifierByName("modifier_qgg_oracle")
@@ -2491,7 +2500,7 @@ function FateGameMode:ExecuteOrderFilter(filterTable)
         if ability:GetName() == "astolfo_hippogriff_raid" then
             local location = Vector(xPos, yPos, zPos)
             local origin = caster:GetAbsOrigin()
-            
+
             if (location - origin):Length2D() <= ability:GetCastRange() then
                 local facing = caster:GetForwardVector()
                 local offset = origin + facing * 10
@@ -2570,7 +2579,7 @@ function FateGameMode:InitializeRound()
 
         ResetAbilities(hero)
         ResetItems(hero)
-        
+
         hero:RemoveModifierByName("round_pause")
         giveUnitDataDrivenModifier(hero, hero, "round_pause", PRE_ROUND_DURATION) -- Pause all heroes
         hero:SetGold(0, false)
@@ -2803,12 +2812,12 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
     mode:SetTopBarTeamValue ( DOTA_TEAM_BADGUYS, self.nDireScore )
     mode:SetTopBarTeamValue ( DOTA_TEAM_GOODGUYS, self.nRadiantScore )
     self.nCurrentRound = self.nCurrentRound + 1
-    
+
     self:LoopOverPlayers(function(player, playerID, playerHero)
         local hero = playerHero
         hero.ServStat:EndOfRound(self.nRadiantScore,self.nDireScore)
     end)
-    
+
     -- check for win condition
     if self.nRadiantScore == VICTORY_CONDITION then
         self:LoopOverPlayers(function(player, playerID, playerHero)
@@ -3026,11 +3035,11 @@ function my_http_post()
     LoopOverPlayers(function(player, playerID, playerHero)
         local hero = playerHero
         local playerData = {GetSystemDate(), GetSystemTime(), GetMapName(), math.ceil(GameRules:GetGameTime()), hero.ServStat.playerName, hero.ServStat.steamId, hero.ServStat.heroName, hero.ServStat.lvl,
-        hero.ServStat.round, hero.ServStat.radiantWin, hero.ServStat.direWin, hero.ServStat.winGame, hero.ServStat.kill, hero.ServStat.death, 
+        hero.ServStat.round, hero.ServStat.radiantWin, hero.ServStat.direWin, hero.ServStat.winGame, hero.ServStat.kill, hero.ServStat.death,
         hero.ServStat.assist, hero.ServStat.tkill, hero.ServStat.itemValue + hero.ServStat.goldWasted, hero.ServStat.itemValue, hero.ServStat.goldWasted,
         hero.ServStat.damageDealt, hero.ServStat.damageDealtBR, hero.ServStat.damageTaken, hero.ServStat.damageTakenBR, hero.ServStat.qseal, hero.ServStat.wseal,
         hero.ServStat.eseal, hero.ServStat.rseal, hero.ServStat.cScroll, hero.ServStat.bScroll, hero.ServStat.aScroll, hero.ServStat.sScroll, hero.ServStat.exScroll,
-        hero.ServStat.ward, hero.ServStat.familiar, hero.ServStat.link, hero.ServStat.str, hero.ServStat.agi, hero.ServStat.int, hero.ServStat.atk, hero.ServStat.armor, 
+        hero.ServStat.ward, hero.ServStat.familiar, hero.ServStat.link, hero.ServStat.str, hero.ServStat.agi, hero.ServStat.int, hero.ServStat.atk, hero.ServStat.armor,
         hero.ServStat.hpregen, hero.ServStat.mpregen, hero.ServStat.ms, hero.ServStat.shard1, hero.ServStat.shard2, hero.ServStat.shard3, hero.ServStat.shard4}
         table.insert(matchData, playerData)
     end)

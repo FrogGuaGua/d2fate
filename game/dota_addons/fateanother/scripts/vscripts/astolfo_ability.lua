@@ -55,6 +55,7 @@ end
 
 function OnVanishHit(keys)
 	local target = keys.target
+	target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(target)
 		or target:IsMagicImmune()
 	then
@@ -73,10 +74,10 @@ function OnVanishDebuffStart(keys)
 	local target = keys.target
 	local ability = keys.ability
 
-	if target:GetName() == "npc_dota_hero_queenofpain" then
+	--[[if target:GetName() == "npc_dota_hero_queenofpain" then
 		local prop = Attachments:GetCurrentAttachment(target, "attach_sword")
 		prop:RemoveSelf()
-	end
+	end]]
 	target:AddEffects(EF_NODRAW)
 	--target:SetModel("models/development/invisiblebox.vmdl")
 	--target:SetOriginalModel("models/development/invisiblebox.vmdl")
@@ -95,9 +96,9 @@ function OnVanishDebuffEnd(keys)
 		giveUnitDataDrivenModifier(caster, target, "stunned", 0.5)
 	end
 
-	if target:GetName() == "npc_dota_hero_queenofpain" then
+	--[[if target:GetName() == "npc_dota_hero_queenofpain" then
 		Attachments:AttachProp(target, "attach_sword", "models/astolfo/astolfo_sword.vmdl")
-	end
+	end]]
 end
 
 function OnDownStart(keys)

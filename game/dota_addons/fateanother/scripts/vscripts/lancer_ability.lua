@@ -1,5 +1,5 @@
 ATTR_HEARTSEEKER_AD_RATIO = 2
-ATTR_HEARTSEEKER_COMBO_AD_RATIO = 2
+ATTR_HEARTSEEKER_COMBO_AD_RATIO = 4
 
 function OnPFAStart(keys)
 	local caster = keys.caster
@@ -298,6 +298,7 @@ end
 
 function OnGBTargetHit(keys)
 	ArsenalReturnMana(keys.caster)
+	keys.target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	if keys.caster:GetAbilityByIndex(2):GetAbilityName() == "lancer_5th_wesen_gae_bolg" then return end -- laziest fix of my lyfe
 
@@ -427,7 +428,7 @@ function OnGBComboHit(keys)
 	if caster.IsHeartSeekerAcquired == true then HBThreshold = HBThreshold + caster:GetAttackDamage()*ATTR_HEARTSEEKER_COMBO_AD_RATIO end
 
 	giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", 3.0)
-	giveUnitDataDrivenModifier(caster, target, "silenced", silenceDuration)
+	--giveUnitDataDrivenModifier(caster, target, "silenced", silenceDuration)
 	StartAnimation(caster, {duration=1.2, activity=ACT_DOTA_CAST_ABILITY_1, rate=0.5})
 	Timers:CreateTimer(1.6, function()
 		StartAnimation(caster, {duration=3, activity=ACT_DOTA_RUN, rate=3})

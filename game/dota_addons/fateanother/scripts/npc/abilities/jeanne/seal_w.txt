@@ -1,0 +1,34 @@
+"DOTAAbilities"
+{
+    "jeanne_seal_w"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/jeanne/seal_w"
+        "AbilityTextureName"                            "custom/cmd_seal_2"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCastRange"                              "800"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "buff_duration"                     "3.0"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "debuff_duration"                   "3.0"
+            }
+        }
+    }
+}

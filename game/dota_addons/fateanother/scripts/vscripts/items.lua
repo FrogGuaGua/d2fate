@@ -293,7 +293,7 @@ function WardOnTakeDamage(keys)
 		local dmgtable = {
 	        attacker = keys.attacker,
 	        victim = keys.unit,
-	        damage = 2,
+	        damage = 3,
 	        damage_type = DAMAGE_TYPE_PURE,
 	    }
 	    print(dmgtable.attacker:GetName(), dmgtable.victim:GetName(), dmgtable.damage)
@@ -568,6 +568,9 @@ function CScrollHit(keys)
 	local caster = keys.caster
 	local target = keys.target
 
+	-- Slightly hacky, override the GetCaster() function so the spell reflection can work.
+	keys.ability.GetCaster = function(this) return caster:GetPlayerOwner():GetAssignedHero() end
+	target:TriggerSpellReflect(keys.ability)
 	if IsSpellBlocked(keys.target) then return end
 	DoDamage(keys.caster:GetPlayerOwner():GetAssignedHero(), keys.target, 100, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	keys.target:EmitSound("Hero_EmberSpirit.FireRemnant.Explode")
@@ -616,6 +619,8 @@ function AScroll(keys)
 	caster:EmitSound("Hero_Oracle.FatesEdict.Cast")
 end
 
+LinkLuaModifier("modifier_sex_scroll_root_delay","items/modifiers/modifier_sex_scroll_root", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_sex_scroll_root","items/modifiers/modifier_sex_scroll_root", LUA_MODIFIER_MOTION_NONE)
 
 function SScroll(keys)
 	local caster = keys.caster
@@ -627,12 +632,16 @@ function SScroll(keys)
 	end
 	local target = keys.target
 	hero.ServStat:useS()
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
 
 	DoDamage(caster, target, 400, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	ApplyPurge(target)
 
-	ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {})
+
+	--ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {})
+	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
+	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.2})
 	if not IsImmuneToSlow(target) then
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
@@ -663,6 +672,7 @@ function EXScroll(keys)
 	end
 	hero.ServStat:useEX()
 	local target = keys.target
+	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
 	local lightning = {
 		attacker = caster,
@@ -675,7 +685,9 @@ function EXScroll(keys)
 	DoDamage(caster, target, 600, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	ApplyPurge(target)
 
-	ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {})
+	--ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {})
+	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
+	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.2})
 	if not IsImmuneToSlow(target) then
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
@@ -730,7 +742,7 @@ function HealingScroll(keys)
 		if v:GetName() ~= "npc_dota_ward_base" then
 			ParticleManager:SetParticleControl(healFx, 1, v:GetAbsOrigin()) -- target effect location
     	    v:ApplyHeal(500, caster)
-       		ability :ApplyDataDrivenModifier(caster, v, "modifier_healing_scroll", {})
+       		ability:ApplyDataDrivenModifier(caster, v, "modifier_healing_scroll", {})
        	end
     end
 

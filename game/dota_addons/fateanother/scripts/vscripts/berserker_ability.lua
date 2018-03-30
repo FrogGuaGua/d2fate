@@ -323,7 +323,7 @@ function OnBerserkProc(keys)
 		local targets = FindUnitsInRadius(caster:GetTeam(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 		for k,v in pairs(targets) do
 	        DoDamage(caster, v, 50, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
-	        v:AddNewModifier(caster, v, "modifier_stunned", {Duration = 0.5})
+	        v:AddNewModifier(caster, v, "modifier_stunned", {Duration = 1})
 		end
 		caster.IsRageBashOnCooldown = true
 		target:EmitSound("Hero_Centaur.HoofStomp")

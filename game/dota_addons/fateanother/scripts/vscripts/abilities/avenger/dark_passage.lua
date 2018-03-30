@@ -15,7 +15,7 @@ function avenger_dark_passage:OnSpellStart()
     end
 
     local currentStack = hCaster:GetModifierStackCount("modifier_dark_passage", self)
-    currentHealthCost = fHealthCost * 2 ^ currentStack
+    local currentHealthCost = fHealthCost * 2 ^ currentStack
     if currentStack == 0 and hCaster:HasModifier("modifier_dark_passage") then currentStack = 1 end
     hCaster:RemoveModifierByName("modifier_dark_passage")  
     hCaster:AddNewModifier(hCaster, self, "modifier_dark_passage", { Duration = 15 })

@@ -1146,16 +1146,16 @@ function OnRBStart(keys)
 	ArsenalReturnMana(keys.caster)
 	local caster = keys.caster
 	local target = keys.target
+	target:TriggerSpellReflect(keys.ability)
 	local ply = caster:GetPlayerOwner()
 	if IsSpellBlocked(keys.target) then return end -- Linken effect checker
 	ApplyStrongDispel(target)
 	if caster:GetName() == "npc_dota_hero_crystal_maiden" then
-		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_c_rule_breaker", {}) 
-	else
-		keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_l_rule_breaker", {}) 
+		CasterCheckCombo(keys.caster,keys.ability)
 	end
-	EmitGlobalSound("Caster.RuleBreaker") 
-	CasterCheckCombo(keys.caster,keys.ability)
+	keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_c_rule_breaker", {})
+	keys.ability:ApplyDataDrivenModifier(caster, target, "modifier_l_rule_breaker", {})
+	EmitGlobalSound("Caster.RuleBreaker")
 
 	
 	if caster.IsRBImproved then
@@ -1166,7 +1166,6 @@ function OnRBStart(keys)
 	end
 
 	keys.target:AddNewModifier(caster, target, "modifier_stunned", {Duration = keys.StunDuration})
-
 end
 
 function OnRBSealStolen(keys)
@@ -1455,7 +1454,7 @@ function OnImproveHGAcquired(keys)
 	-- Set master 1's mana 
 	local master = hero.MasterUnit
 	master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
-	ATTRIBUTE_HG_INT_MULTIPLIER = 1.5
+	ATTRIBUTE_HG_INT_MULTIPLIER = 2.5
 end
 
 function OnDaggerOfTreacheryAcquired(keys)
