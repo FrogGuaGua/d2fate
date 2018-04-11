@@ -9896,7 +9896,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"agi_ratio"			    "5"
+				"agi_ratio"			    "3"
 			}
 			"02"
 			{

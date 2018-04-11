@@ -49,7 +49,7 @@ function OnDirkHit(keys)
 	end 
 
 	if caster.IsWeakeningVenomAcquired then
-		DoDamage(keys.caster, keys.target, keys.Damage + caster:GetAgility() * 5, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+		DoDamage(keys.caster, keys.target, keys.Damage + caster:GetAgility() * 3, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
 	else
 		DoDamage(keys.caster, keys.target, keys.Damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
 	end
