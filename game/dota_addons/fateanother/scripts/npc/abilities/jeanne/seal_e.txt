@@ -4,7 +4,7 @@
     {
         "BaseClass"                                     "ability_lua"
         "ScriptFile"                                    "abilities/jeanne/seal_e"
-        "AbilityTextureName"                            "custom/cmd_seal_3"
+        "AbilityTextureName"                            "antimage_spell_shield"
 
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_BOTH"

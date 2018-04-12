@@ -9,8 +9,10 @@ function jeanne_seal_w:OnSpellStart()
 
     if target:IsOpposingTeam(caster:GetTeam()) then
         target:AddNewModifier(caster, self, "modifier_jeanne_vitality_debuff", {duration = self:GetSpecialValueFor("debuff_duration")})
+        target:EmitSound("DOTA_Item.UrnOfShadows.Activate")
     else
         target:AddNewModifier(caster, self, "modifier_jeanne_vitality", {duration = self:GetSpecialValueFor("buff_duration")})
+        target:EmitSound("ruler_vitality_buff")
     end
 
     local spellbook = caster:FindAbilityByName("jeanne_seal_spellbook")

@@ -14,9 +14,11 @@ function jeanne_seal_q:OnSpellStart()
         }
         target:AddNewModifier(caster, self, "modifier_jeanne_assertion_taunt", kv)
         pcf = ParticleManager:CreateParticle("particles/units/heroes/hero_chen/chen_holy_persuasion.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+        EmitSoundOn("Hero_Chen.TestOfFaith.Target", target)
     else
         HardCleanse(target)
         pcf = ParticleManager:CreateParticle("particles/units/heroes/hero_chen/chen_holy_persuasion_sparks.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+        EmitSoundOn("DOTA_Item.IronTalon.Activate", target)
     end
     ParticleManager:ReleaseParticleIndex(pcf)
 
@@ -27,6 +29,10 @@ end
 
 ---@class modifier_jeanne_assertion_taunt : CDOTA_Modifier_Lua
 modifier_jeanne_assertion_taunt = class({})
+
+function modifier_jeanne_assertion_taunt:GetHeroEffectName()
+    return "particles/units/heroes/hero_axe/axe_beserkers_call_hero_effect.vpcf"
+end
 
 if IsServer() then
     function modifier_jeanne_assertion_taunt:OnCreated(args)

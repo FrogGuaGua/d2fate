@@ -6,12 +6,15 @@ function jeanne_attribute_improve_saint:OnSpellStart()
     local caster = self:GetCaster()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     hero:AddAttributeModifier(hero, self, "modifier_improve_saint", {})
+
+    local master = hero.MasterUnit
+    master:SetMana(master:GetMana() - self:GetManaCost(self:GetLevel()))
 end
 
 
 ---@class modifier_improve_saint : CDOTA_Modifier_Lua
 modifier_improve_saint = {}
-modifier_improve_saint.IsHidden = function(self) return false end
+modifier_improve_saint.IsHidden = function(self) return true end
 modifier_improve_saint.RemoveOnDeath = function(self) return false end
 
 function modifier_improve_saint:GetAttributes()

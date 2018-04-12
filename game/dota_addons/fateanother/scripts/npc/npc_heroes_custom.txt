@@ -1297,8 +1297,8 @@
 		"StatusMana"					"1175"
 		"StatusManaRegen"				"4.0"
 		
-		"ArmorPhysical"					"5"
-		"MagicalResistance"				"25"
+		"ArmorPhysical"					"3"
+		"MagicalResistance"				"10"
 		
 		"AttackCapabilities"			"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"				"57"

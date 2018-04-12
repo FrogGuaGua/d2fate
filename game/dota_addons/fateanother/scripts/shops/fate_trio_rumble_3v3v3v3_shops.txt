@@ -10,6 +10,7 @@
 		"item"		"item_gem_of_speed"
 		"item"		"item_spirit_link"
 		"item"		"item_healing_scroll"
+		"item"      "item_smoke"
 		"item"		"item_teleport_scroll"
 	}
 }

@@ -9,4 +9,7 @@ function jeanne_attribute_gods_resolution:OnSpellStart()
         hero:AddAbility("jeanne_seal_spellbook"):SetLevel(1)
         hero:UnHideAbilityToSlot("jeanne_seal_spellbook", "jeanne_magic_resistance_ex")
     end
+
+    local master = hero.MasterUnit
+    master:SetMana(master:GetMana() - self:GetManaCost(self:GetLevel()))
 end

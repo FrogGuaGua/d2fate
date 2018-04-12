@@ -7132,7 +7132,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"bash_duration"				"0.6"
+				"bash_duration"				"1"
 			}
 			"03"
 			{
@@ -9807,7 +9807,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"search_radius"			"2000"
+				"search_radius"			"2500"
 			}
 			"02"
 			{
@@ -11038,7 +11038,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"dmg_ratio"			"0.20"
+				"dmg_ratio"			"0.3"
 			}
 		}
 		
@@ -26751,7 +26751,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"		"375 450 525 600 675"
+				"damage"		"300 350 400 450 500"
 			}
 			"04"
 			{
@@ -26850,7 +26850,7 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"active_damage_per_sec"			"350 425 500 575 650"
+				"active_damage_per_sec"			"250 300 350 400 450"
 			}
 			"05"
 			{

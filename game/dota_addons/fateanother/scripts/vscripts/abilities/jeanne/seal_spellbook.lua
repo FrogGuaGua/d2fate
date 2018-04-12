@@ -14,7 +14,8 @@ function jeanne_seal_spellbook:OnToggle()
         "jeanne_seal_e",
         "fate_empty1",
         "jeanne_seal_spellbook_close",
-        "jeanne_seal_r"
+        "jeanne_seal_r",
+        "attribute_bonus_custom"
     }
 
     for k, v in pairs(seals) do
@@ -48,9 +49,11 @@ function jeanne_seal_spellbook_close:OnToggle()
         "jeanne_gods_resolution",
         "jeanne_seal_spellbook",
         "jeanne_magic_resistance_ex",
-        "jeanne_luminosite_eternelle"
+        "jeanne_luminosite_eternelle",
+        "attribute_bonus_custom"
     }
 
     if caster.bIsIDAcquired then abilities[5] = "jeanne_identity_discernment" end
     UpdateAbilityLayout(caster, abilities, false)
+    caster:FindAbilityByName("attribute_bonus_custom"):SetHidden(false)
 end

@@ -16,6 +16,11 @@
 
         "AbilityCooldown"                               "160"
 
+        precache
+        {
+            "particle"                                  "particles/custom/ruler/la_pucelle/flames.vpcf"
+        }
+
         "AbilitySpecial"
         {
             "01"
@@ -36,7 +41,7 @@
             "04"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "phase1_dps"                        "350"
+                "phase1_dps"                        "200"
             }
             "05"
             {

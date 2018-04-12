@@ -22,23 +22,31 @@ if IsServer() then
 
     function modifier_jeanne_la_pucelle:OnTakeDamage(args)
         local parent = self:GetParent()
-        if not args.unit == self:GetParent() then return end
+        if args.unit == self:GetParent() then
+            local ability = self:GetAbility()
+            local threshold = ability:GetSpecialValueFor("health_threshold_pct")/100
 
-        local ability = self:GetAbility()
-        local threshold = ability:GetSpecialValueFor("health_threshold_pct")/100
+            if parent:GetHealth() < parent:GetMaxHealth() * threshold and parent:GetStrength() >= 19.1 and parent:GetAgility() >= 19.1 and parent:GetIntellect() >= 19.1 and ability:IsCooldownReady() and IsRevivePossible(parent) then
+                parent:SetHealth(1)
+                ability:StartCooldown(ability:GetCooldown(-1))
+                parent:AddNewModifier(parent, ability, "modifier_jeanne_la_pucelle_phase1_aura", {duration = ability:GetSpecialValueFor("phase1_duration")})
+                parent:EmitSound("ruler_attack_02")
+                EmitGlobalSound("ruler_la_pucelle_explode")
+                parent:EmitSound("ruler_la_pucelle_loop")
+                parent:EmitSound("Hero_DoomBringer.ScorchedEarthAura")
 
-        if parent:GetHealth() < parent:GetMaxHealth() * threshold and parent:GetStrength() >= 19.1 and parent:GetAgility() >= 19.1 and parent:GetIntellect() >= 19.1 and ability:IsCooldownReady() and IsRevivePossible(parent) then
-            parent:SetHealth(1)
-            ability:StartCooldown(ability:GetCooldown(-1))
-            parent:AddNewModifier(parent, ability, "modifier_jeanne_la_pucelle_phase1_aura", {duration = ability:GetSpecialValueFor("phase1_duration")})
-            EmitGlobalSound("Hero_Phoenix.SuperNova.Explode")
-            parent:EmitSound("Hero_Phoenix.SunRay.Loop")
-            parent:EmitSound("Hero_DoomBringer.ScorchedEarthAura")
+                local masterCombo = parent.MasterUnit2:FindAbilityByName(ability:GetAbilityName())
+                if masterCombo then
+                    masterCombo:EndCooldown()
+                    masterCombo:StartCooldown(ability:GetCooldown(-1))
+                end
 
-            local masterCombo = parent.MasterUnit2:FindAbilityByName(ability:GetAbilityName())
-            if masterCombo then
-                masterCombo:EndCooldown()
-                masterCombo:StartCooldown(ability:GetCooldown(-1))
+                if not parent:IsAlive() then
+                    local pos = parent:GetAbsOrigin()
+                    parent:RespawnUnit()
+                    FindClearSpaceForUnit(parent, pos, true)
+                    parent:SetHealth(1)
+                end
             end
         end
     end
@@ -49,7 +57,7 @@ modifier_jeanne_la_pucelle_phase1_aura = class({})
 modifier_jeanne_la_pucelle_phase1_aura.IsHidden = function(self) return true end
 
 function modifier_jeanne_la_pucelle_phase1_aura:GetEffectName()
-    return "particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf"
+    return "particles/custom/ruler/la_pucelle/flames.vpcf"
 end
 
 function modifier_jeanne_la_pucelle_phase1_aura:CheckState()
@@ -59,6 +67,14 @@ function modifier_jeanne_la_pucelle_phase1_aura:CheckState()
         [MODIFIER_STATE_UNSELECTABLE] = true,
         [MODIFIER_STATE_NO_HEALTH_BAR] = true
     }
+end
+
+function modifier_jeanne_la_pucelle_phase1_aura:DeclareFunctions()
+    return { MODIFIER_PROPERTY_OVERRIDE_ANIMATION }
+end
+
+function modifier_jeanne_la_pucelle_phase1_aura:GetOverrideAnimation()
+    return ACT_DOTA_CAST_ABILITY_3
 end
 
 if IsServer() then
@@ -151,7 +167,7 @@ if IsServer() then
     function modifier_jeanne_la_pucelle_phase2:OnDestroy()
         local parent = self:GetParent()
         parent:StopSound("Hero_DoomBringer.ScorchedEarthAura")
-        parent:StopSound("Hero_Phoenix.SunRay.Loop")
+        parent:StopSound("ruler_la_pucelle_loop")
         ResetAbilities(parent)
         ResetItems(parent)
         parent:SetHealth(parent:GetMaxHealth())

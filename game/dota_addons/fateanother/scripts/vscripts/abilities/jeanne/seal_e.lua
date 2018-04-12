@@ -9,7 +9,7 @@ function jeanne_seal_e:OnSpellStart()
 
     if target:IsOpposingTeam(caster:GetTeam()) then
         target:AddNewModifier(caster, self, "modifier_jeanne_reflect_enemy", {duration = self:GetSpecialValueFor("debuff_duration")})
-        target:EmitSound("Hero_Slardar.Amplify_Damage")
+        target:EmitSound("ruler_amplify_damage")
     else
         target:AddNewModifier(caster, self, "modifier_jeanne_reflect_ally", {duration = self:GetSpecialValueFor("reflect_duration")})
         target:EmitSound("Item.LotusOrb.Target")

@@ -4,7 +4,7 @@
     {
         "BaseClass"                                     "ability_lua"
         "ScriptFile"                                    "abilities/jeanne/seal_q"
-        "AbilityTextureName"                            "custom/cmd_seal_1"
+        "AbilityTextureName"                            "chen_penitence"
 
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_BOTH"

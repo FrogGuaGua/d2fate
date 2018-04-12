@@ -4,7 +4,7 @@
     {
         "BaseClass"                                     "ability_lua"
         "ScriptFile"                                    "abilities/jeanne/seal_w"
-        "AbilityTextureName"                            "custom/cmd_seal_2"
+        "AbilityTextureName"                            "chen_test_of_faith_teleport"
 
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_BOTH"
