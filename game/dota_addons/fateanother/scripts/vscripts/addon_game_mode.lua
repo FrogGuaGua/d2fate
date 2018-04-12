@@ -1561,7 +1561,7 @@ function FateGameMode:OnItemPurchased( keys )
                 if droppedItem == nil then
                     print("Unexpected: Item was nil - " .. itemName)
                 else
-                    droppedItem:GetContainer():RemoveSelf()
+                    --droppedItem:GetContainer():RemoveSelf()
                     droppedItem:RemoveSelf()
                 end
             end
