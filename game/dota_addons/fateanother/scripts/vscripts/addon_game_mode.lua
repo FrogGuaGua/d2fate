@@ -1261,6 +1261,8 @@ function FateGameMode:OnHeroInGame(hero)
     master3:RemoveAbility("courier_burst")
     master3:RemoveAbility("courier_morph")
     master3:RemoveAbility("courier_take_stash_and_transfer_items")
+    master3:RemoveAbility("courier_shield")
+    master3:RemoveAbility("courier_transfer_items_to_other_player")
 
     master3:AddAbility("master_item_transfer_1")
     master3:AddAbility("master_item_transfer_2")
