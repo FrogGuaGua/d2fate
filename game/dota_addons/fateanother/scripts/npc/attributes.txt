@@ -12,8 +12,8 @@
 
     //Fate values
     "DMG_PER_STAT"			"3"
-    "ARMOR_PER_STAT"		"3.0"
-    "HPREG_PER_STAT"		"3.0"
+    "ARMOR_PER_STAT"		"2.0"
+    "HPREG_PER_STAT"		"2.0"
     "MPREG_PER_STAT"		"1.5"
     "MS_PER_STAT"			"7"
 }

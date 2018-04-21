@@ -805,8 +805,8 @@ function OnDamageGain(keys)
 		primaryStat = hero:GetIntellect()
 	end
 
-	hero:SetBaseDamageMax(hero:GetBaseDamageMax() - math.floor(primaryStat) + 5)
-	hero:SetBaseDamageMin(hero:GetBaseDamageMin() - math.floor(primaryStat) + 5)
+	hero:SetBaseDamageMax(hero:GetBaseDamageMax() - math.floor(primaryStat) + 3)
+	hero:SetBaseDamageMin(hero:GetBaseDamageMin() - math.floor(primaryStat) + 3)
 	hero:CalculateStatBonus()
 
 	--[[local minDmg = hero:GetBaseDamageMin() - primaryStat
@@ -835,7 +835,7 @@ function OnArmorGain(keys)
 		end
 	end 
 	hero.ServStat:addArmor()
-	hero:SetPhysicalArmorBaseValue(hero:GetPhysicalArmorBaseValue()+3) --actually this line is useless, appears to be dependent on scripts/npc/attributes.txt but I am too lazy to understand why
+	hero:SetPhysicalArmorBaseValue(hero:GetPhysicalArmorBaseValue()+2) --actually this line is useless, appears to be dependent on scripts/npc/attributes.txt but I am too lazy to understand why
 	hero:CalculateStatBonus()
 	-- Set master 1's mana 
 	local master1 = hero.MasterUnit
@@ -859,7 +859,7 @@ function OnHPRegenGain(keys)
 		end
 	end 
 	hero.ServStat:addHPregen()
-	hero:SetBaseHealthRegen(hero:GetBaseHealthRegen()+3) --down here attributes.txt is useless, and this line is working.
+	hero:SetBaseHealthRegen(hero:GetBaseHealthRegen()+2) --down here attributes.txt is useless, and this line is working.
 	hero:CalculateStatBonus()
 	-- Set master 1's mana 
 	local master1 = hero.MasterUnit

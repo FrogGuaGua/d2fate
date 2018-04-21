@@ -12,11 +12,11 @@ function Attributes:Init()
     local v = LoadKeyValues("scripts/npc/attributes.txt")
 
     -- Default Dota Values
-    local DEFAULT_HP_PER_STR = 20
+    local DEFAULT_HP_PER_STR = 18
     local DEFAULT_HP_REGEN_PER_STR = 0.06
-    local DEFAULT_MANA_PER_INT = 11
+    local DEFAULT_MANA_PER_INT = 12
     local DEFAULT_MANA_REGEN_PER_INT = 0.04
-    local DEFAULT_ARMOR_PER_AGI = 0.14
+    local DEFAULT_ARMOR_PER_AGI = 0.16
     local DEFAULT_ATKSPD_PER_AGI = 1
     Attributes.hp_per_str_fate = v.HP_PER_STR
     Attributes.hp_adjustment = v.HP_PER_STR - DEFAULT_HP_PER_STR

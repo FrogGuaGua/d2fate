@@ -1727,8 +1727,8 @@ function FateGameMode:OnPlayerLevelUp(keys)
         hero:SetAbilityPoints(hero:GetAbilityPoints()+1)
     end
 
-    hero.MasterUnit:SetMana(hero.MasterUnit:GetMana() + 3)
-    hero.MasterUnit2:SetMana(hero.MasterUnit2:GetMana() + 3)
+    hero.MasterUnit:SetMana(hero.MasterUnit:GetMana() + 4)
+    hero.MasterUnit2:SetMana(hero.MasterUnit2:GetMana() + 4)
     --Notifications:Top(player, "<font color='#58ACFA'>" .. FindName(hero:GetName()) .. "</font> has gained a level. Master has received <font color='#58ACFA'>3 mana.</font>", 5, nil, {color="rgb(255,255,255)", ["font-size"]="20px"})
 
     Notifications:Top(player, {text= "<font color='#58ACFA'>" .. FindName(hero:GetName()) .. "</font> has gained a level. Master has received <font color='#58ACFA'>3 mana.</font>", duration=5, style={color="rgb(255,255,255)", ["font-size"]="20px"}, continue=true})

@@ -531,7 +531,7 @@
 		"AttackRange"					"700"
 		"AttackDamageMin"				"46"
 		"AttackDamageMax"				"60"
-		"AttackRate"					"1.4"
+		"AttackRate"					"1.1"
 		"AttackAnimationPoint"			"0.3"
 		"AttackAcquisitionRange"		"800"
 		"ProjectileModel"				"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"

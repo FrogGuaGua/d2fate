@@ -650,7 +650,7 @@ function OnReincarnationDamageTaken(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local damageTaken = keys.DamageTaken
-	local damageThreshold = 20000
+	local damageThreshold = 30000
 
 	if damageTaken > 100 then
 		GainReincarnationRegenStack(caster, ability)
