@@ -639,9 +639,9 @@ function SScroll(keys)
 	ApplyPurge(target)
 
 
-	--ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {})
-	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
-	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.2})
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {})
+	--local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
+	--target:AddNewModifier(caster, ability, rootModifier, {duration = 0.2})
 	if not IsImmuneToSlow(target) then
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
@@ -685,9 +685,9 @@ function EXScroll(keys)
 	DoDamage(caster, target, 600, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	ApplyPurge(target)
 
-	--ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {})
-	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
-	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.2})
+	ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {})
+	--local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
+	--target:AddNewModifier(caster, ability, rootModifier, {duration = 0.2})
 	if not IsImmuneToSlow(target) then
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
