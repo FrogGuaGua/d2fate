@@ -221,7 +221,10 @@ function atalanta_cobweb_shot:OnSpellStart()
               Timers:RemoveTimer(self.ThinkerArrow)
               FxDestroyer(self.PICurrentStrand, false)
               FxDestroyer(self.PIArrow, false)
-              if self.hActiveArrow then self.hActiveArrow:RemoveSelf() end
+              if self.hActiveArrow then 
+                self.hActiveArrow:RemoveSelf()
+                self.hActiveArrow = nil              
+              end
               Timers:RemoveTimer(self.ThinkerWebEffect)
               FxDestroyer(self.PIWebs, false)
               return nil
