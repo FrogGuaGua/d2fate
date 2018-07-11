@@ -25,12 +25,15 @@ end
 
 if IsServer() then
     function mordred_w:CastFilterResult()
-        if self:GetCaster():FindModifierByName("modifier_mordred_d"):GetMana() < self:GetManaCost(-1) then return UF_FAIL_CUSTOM end
+        local caster = self:GetCaster()
+        if caster:FindModifierByName("modifier_mordred_d"):GetMana() < self:GetManaCost(-1) then return UF_FAIL_CUSTOM end
+        if caster:HasModifier("modifier_mordred_w_dash") then return UF_FAIL_CUSTOM end
         return UF_SUCCESS
     end
 
     function mordred_w:GetCustomCastError()
-        return "#dota_hud_error_not_enough_mana"
+        if self:GetCaster():FindModifierByName("modifier_mordred_d"):GetMana() < self:GetManaCost(-1) then return  "#dota_hud_error_not_enough_mana" end
+        return "#dota_hud_error"
     end
 end
 
@@ -73,7 +76,7 @@ end
 
 function modifier_mordred_w_dash:CheckState()
     return {
-        [MODIFIER_STATE_STUNNED] = IsServer()
+        [MODIFIER_STATE_ROOTED] = IsServer()
     }
 end
 

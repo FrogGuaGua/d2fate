@@ -20,7 +20,7 @@ if IsServer() then
                                           false)
         if not enemies[1] then regen = regen + ability:GetSpecialValueFor("regen_bonus") end
         if ability:IsChanneling() then regen = regen + ability:GetSpecialValueFor("active_regen") end
-
+        --CustomNetTables:SetTableValue("sync", self.regenKey, {regen = regen});
         self:ModifyMana(self:GetMana() + regen * FrameTime())
     end
 end

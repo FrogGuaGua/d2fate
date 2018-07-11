@@ -6,6 +6,8 @@ LinkLuaModifier("modifier_mordred_r_slash", "abilities/mordred/mordred_r", LUA_M
 
 function mordred_r:OnSpellStart()
     self.drained = 0
+    self.pcf = ParticleManager:CreateParticle("particles/custom/mordred/sword_a.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+    ParticleManager:SetParticleControl(self.pcf, 1, self:GetCaster():GetRightVector() * 10)
 end
 
 function mordred_r:OnChannelThink(tick)
@@ -36,7 +38,8 @@ function mordred_r:OnChannelFinish(interrupted)
     caster:AddNewModifier(caster, self, "modifier_mordred_r_dash", {
         duration = duration,
         damage = damage,
-        speed = speed
+        speed = speed,
+        particle = self.pcf
     })
 end
 
@@ -45,9 +48,11 @@ modifier_mordred_r_dash = class({})
 
 if IsServer() then
     function modifier_mordred_r_dash:OnCreated(args)
+        self.pcf = args.particle
         self.damage = args.damage
         self.direction = self:GetParent():GetForwardVector() * args.speed
         self:StartIntervalThink(FrameTime())
+
     end
 
     function modifier_mordred_r_dash:OnIntervalThink()
@@ -57,13 +62,14 @@ if IsServer() then
 
         local attackPos = newPos + parent:GetRightVector() * self:GetAbility():GetSpecialValueFor("side_range")
         local targets = FindUnitsInLine(parent:GetTeam(), newPos, attackPos, nil, 100, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0)
-
         DebugDrawLine(newPos, attackPos, 255, 0, 0, false, 1)
     end
 
     function modifier_mordred_r_dash:OnDestroy()
         local parent = self:GetParent()
         parent:AddNewModifier(parent, self:GetAbility(), "modifier_mordred_r_slash", {duration = 0.3})
+        ParticleManager:DestroyParticle(self.pcf, false)
+        ParticleManager:ReleaseParticleIndex(self.pcf)
     end
 
     function modifier_mordred_r_dash:CheckState()
@@ -78,20 +84,21 @@ modifier_mordred_r_slash = class({})
 
 if IsServer() then
     function modifier_mordred_r_slash:OnCreated(args)
+        local parent = self:GetParent()
         self.turnRate = (180 * FrameTime()) / 0.3
         self.turn = 0
-        self.angles = self:GetParent():GetAngles()
+        self.angles = parent:GetAngles()
+        self.position = parent:GetAbsOrigin()
+        self.rightVector = parent:GetRightVector()
         self.range = self:GetAbility():GetSpecialValueFor("side_range")
         self:StartIntervalThink(FrameTime())
     end
 
     function modifier_mordred_r_slash:OnIntervalThink()
-        local parent = self:GetParent()
         self.turn = self.turn + self.turnRate
-        local pos = parent:GetAbsOrigin()
         local angles = QAngle(self.angles.x, self.turn, self.angles.z)
-        local endPos = pos + RotatePosition(Vector(0,0,1), angles, parent:GetRightVector()) * self.range
+        local endPos = self.position + RotatePosition(Vector(0,0,1), angles, self.rightVector) * self.range
 
-        DebugDrawLine(pos, endPos, 255, 0, 0, false, 1)
+        DebugDrawLine(self.position, endPos, 255, 0, 0, false, 1)
     end
 end

@@ -6,7 +6,9 @@ modifier_custom_mana = class({})
 if IsServer() then
     function modifier_custom_mana:OnCreated(args)
         local parent = self:GetParent()
-        self.tableKey = tostring(self:GetParent():GetEntityIndex()).."_mana"
+        local key = tostring(parent:GetEntityIndex())
+        self.tableKey = key.."_mana"
+        self.regenKey = key.."_regen"
         self.maxMana = 100
         self.mana = 100
         self:UpdateMana()
@@ -62,9 +64,9 @@ if IsServer() then
         self:UpdateMana()
     end
 
-    function modifier_custom_mana:OnManaSeal()
+    --[[function modifier_custom_mana:OnManaSeal()
         self.mana = self.maxMana
-    end
+    end]]
 
     function modifier_custom_mana:DeclareFunctions()
         return {
