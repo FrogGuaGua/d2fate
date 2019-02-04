@@ -1,0 +1,51 @@
+"DOTAHeroes"
+{
+    "npc_fate_hero_mordred"
+    {
+        "override_hero"                                     "npc_dota_hero_phantom_assassin"
+        "DisableWearables"                                  "0"
+
+        "AbilityLayout"                                     "6"
+        "Ability1"                                          "mordred_q_1"
+        "Ability2"                                          "mordred_w"
+        "Ability3"                                          "mordred_e"
+        "Ability4"                                          "mordred_d"
+        "Ability5"                                          "fate_empty1"
+        "Ability6"                                          "mordred_r"
+        "Ability7"                                          "presence_detection_passive"
+        "Ability8"                                          "attribute_bonus_custom"
+        "Ability9"                                          "mordred_q_2"
+        "Ability10"                                         "mordred_q_3"
+        "Ability11"                                         "mordred_q_4"
+
+        "StatusHealth"                                      "1400"
+        "StatusHealthRegen"                                 "10"
+        "StatusMana"                                        "1000"
+        "StatusManaRegen"                                   "5"
+
+        "ArmorPhysical"                                     "8"
+        "MagicalResistance"                                 "15"
+
+        "AttackCapabilities"                                "DOTA_UNIT_CAP_MELEE_ATTACK"
+        "AttackDamageMin"                                   "60"
+        "AttackDamageMax"                                   "70"
+        "AttackRate"                                        "1.3"
+        "AttackAcquisitionRange"                            "250"
+        "AttackRange"                                       "150"
+
+        "AttributePrimary"                                  "DOTA_ATTRIBUTE_STRENGTH"
+        "AttributeBaseStrength"                             "0"
+        "AttributeStrengthGain"                             "1.4"
+        "AttributeBaseAgility"                              "0"
+        "AttributeAgilityGain"                              "0.4"
+        "AttributeBaseIntelligence"                         "0"
+        "AttributeIntelligenceGain"                         "0.4"
+
+        "MovementCapabilities"                              "DOTA_UNIT_CAP_MOVE_GROUND"
+        "MovementSpeed"                                     "320"
+        "MovementTurnRate"                                  "1.8"
+
+        "VisionDaytimeRange"                                "1200"
+        "VisionNighttimeRange"                              "1200"
+    }
+}

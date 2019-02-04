@@ -1,0 +1,44 @@
+"DOTAAbilities"
+{
+	"item_blink_scroll"
+	{
+		"ID"											"1300"
+		"BaseClass"										"item_lua"
+		"ScriptFile"									"items/blink_scroll"
+		"AbilityTextureName"							"custom/blink_scroll"
+		
+	    "Model"    									    "models/props_gameplay/tpscroll01.vmdl" 
+	    "Effect"      									"particles/generic_gameplay/dropped_item.vpcf"
+		
+		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_POINT"
+		
+		"AbilityCastRange"								"0"
+		"AbilityCastPoint"								"0"
+		"AbilityCooldown"								"20.0"
+		"AbilityManaCost"								"0"
+		
+		"ItemKillable"									"0"
+		"ItemSellable"									"0"
+		"ItemPurchasable"								"0"
+		"ItemDroppable"									"0"
+		"ItemPermanent"									"1"
+		
+		"ItemShareability"								"ITEM_NOT_SHAREABLE"
+		
+		"precache"
+		{
+			"particle"									"particles/items_fx/blink_dagger_start.vpcf"
+			"particle"									"particles/items_fx/blink_dagger_end.vpcf"
+			"soundfile"									"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"distance"								"1000"
+			}
+		}
+	}
+}

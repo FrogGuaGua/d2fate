@@ -1,0 +1,973 @@
+//If you change any values, change doubled __TT fields accordingly - used by tooltips only
+
+
+"DOTAAbilities"
+{
+	//=======================================
+	// Vlad III: Rebellious Intent
+	//=======================================
+	"vlad_rebellious_intent"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/rebellious_intent"
+		"MaxLevel"						"5"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE	| DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName"			"shadow_demon_demonic_purge"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"7"
+		"AbilityManaCost"				"100"
+		"LevelsBetweenUpgrades"			"1"
+
+		"precache"
+		{
+			"particle"					"particles/custom/vlad/vlad_ri_active.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
+
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"str_per_stack"					"1 1.5 2 2.5 3"
+			}
+			"02"
+			{
+				"var_type"									"FIELD_FLOAT"
+				"str_per_stack__TT"					"10 15 20 25 30"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"armor_per_stack"					"0.8 1 1.2 1.4 1.6"
+			}
+			"04"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"armor_per_stack__TT"					"8 10 12 14 16"
+			}
+			"05"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"mres_per_stack"						"2 2.25 2.5 2.75 3"
+			}
+			"06"
+			{
+				"var_type"								"FIELD_FLOAT"
+				"mres_per_stack__TT"				"20 22.5 25 27.5 30"
+			}
+			"07"
+			{
+				"var_type"									"FIELD_FLOAT"
+				"self_slow_per_stack"					"-4 -3.5 -3 -2.5 -2"
+			}
+			"08"
+			{
+				"var_type"											"FIELD_FLOAT"
+				"self_slow_per_stack__TT"					"-40 -35 -30 -25 -20"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stacks_total"				"10"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stacks_interval"				"0.05"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"drain_per_sec"					"0.05"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"drain_per_sec__TT"					"6"
+			}
+			"13"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"drain_interval"					"0.1"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad III: Ceremonial Purge
+	//=======================================
+	"vlad_ceremonial_purge"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/ceremonial_purge"
+		"MaxLevel"						"5"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/vlad_ceremonial_purge"
+
+		"AbilityCastPoint"				"0.1"
+		"AbilityCooldown"				"14"
+		"AbilityManaCost"				"200" //stuff concerning mana cost, conditional and attribute hp% update of this ability is currently hardcoded in lua
+		"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+			"particle"					"particles/custom/vlad/vlad_cp_spin.vpcf"
+			"particle" 					"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay"								"0.3"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay__TT"								"0.4"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe_inner"						"265"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg_inner"						"150 190 230 270 310"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_inner"					"0.25"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe_outer"						"465"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg_outer"						"440 505 570 635 700"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun_outer"					"0.75"
+			}
+			"09"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slow_per_stack"								"-10"
+			}
+			"10"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow_duration"						"6"
+			}
+			"11"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"condition_free_mana"			"35"
+			}
+			"12"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hp_cost"						"0.15"
+			}
+			"13"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hp_cost__TT"						"15"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad III: Cursed Lance
+	//=======================================
+	"vlad_cursed_lance"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/cursed_lance"
+		"MaxLevel"						"5"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/vlad_cursed_lance"
+
+		"AbilityCastPoint"				"0.30"
+		"AbilityCooldown"				"25"
+		"AbilityManaCost"				"400"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+			"particle" 			"particles/custom/vlad/vlad_cl_popup.vpcf"
+			"particle" 			"particles/custom/vlad/vlad_cl_indicator.vpcf"
+			"particle" 			"particles/custom/vlad/vlad_cl_shield.vpcf"
+			"particle" 			"particles/custom/vlad/vlad_cl_shield2.vpcf"
+			"particle" 			"particles/custom/vlad/vlad_cl_explosion.vpcf"
+			"particle" 			"particles/custom/vlad/vlad_cl_preexplosion.vpcf"
+			"particle" 			"particles/custom/vlad/vlad_cl_expiring.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_shield"						"500 600 700 800 900"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_dmg"						"800 950 1100 1250 1400"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe"								"500"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"							"10"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hp_cost"							"0.2"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"hp_cost__TT"							"20"
+			}
+		}
+	}
+
+
+	//=======================================
+	// Vlad III: Instant Curse
+	//=======================================
+	"vlad_instant_curse"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/instant_curse"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"shadow_demon_disruption"
+
+		"AbilityCastPoint"				"0.10"
+		"AbilityCooldown"				"1"
+		"AbilityManaCost"				"0"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	//=======================================
+	// Vlad III: Transfusion
+	//=======================================
+	"vlad_transfusion"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/transfusion"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/vlad_transfusion"
+
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+		"particle" 					"particles/custom/vlad/vlad_tf_ontarget_drain.vpcf"
+		"particle" 					"particles/custom/vlad/vlad_tf_self.vpcf"
+		"particle"					"particles/custom/vlad/vlad_tf_bloodpower.vpcf"
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"interval"						"0.25"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe"									"500"
+			}
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg"							"30"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"heal"							"15"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg_bonus"						"5"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow_per_stack"							"-5"
+			}
+			"09"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow_duration"						"1"
+			}
+			"10"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bloodpower_duration"						"20"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad III: Impale
+	//=======================================
+	"vlad_impale"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/impale"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/vlad_impale"
+
+		"AbilityCastPoint"				"0.30"
+		"AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+		"particle"					"particles/custom/vlad/vlad_ip_prespike.vpcf"
+		"particle"					"particles/custom/vlad/vlad_ip_spikes.vpcf"
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"range"					"600"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"delay"					"0.5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"					"200"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_min"					"150"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_gain"					"5"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius_max"					"250"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_min"					"1"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_gain"					"0.075"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"stun_max"					"2.5"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad III: Battle Continuation
+	//=======================================
+	"vlad_battle_continuation"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/battle_continuation"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/vlad_battle_continuation"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"120"
+		"AbilityManaCost"				"0"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+			"particle"					"particles/custom/vlad/vlad_bc_cast.vpcf"
+			"particle"					"particles/custom/vlad/vlad_bc_buff.vpcf"
+			"particle"					"particles/custom/vlad/vlad_bc_heal.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"hp_condition"					"15"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"1.5"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad III: The Fortress of Impalement
+	//=======================================
+
+	"vlad_kazikli_bey"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/kazikli_bey"
+		"MaxLevel"						"5"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/vlad_kazikli_bey"
+
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"50"
+		"AbilityManaCost"				"800"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+			"particle" 			     	"particles/custom/vlad/vlad_kb_hold.vpcf"
+			"particle" 			     	"particles/custom/vlad/vlad_kb_spikesend.vpcf"
+			"particle" 			     	"particles/custom/vlad/vlad_kb_ontarget.vpcf"
+			"particle" 			     	"particles/custom/vlad/vlad_impale_bleed.vpcf"
+			"particle" 						"particles/custom/vlad/vlad_kb_ontarget_prespike.vpcf"
+			"particle" 						"particles/custom/vlad/vlad_kb_hold_swirl.vpcf"
+
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{		
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"activation"					"0.75"
+			}
+			"02"
+			{
+				"var_type"													"FIELD_FLOAT"
+				"total_activation__TT"							"1.05"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"endcast_pause"					"0.50"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe_spikes"							"400"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg_spikes"					"35 45 55 65 75" 
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe_lastspike"						"600"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"dmg_lastspike"			"350 437.5 525 612.5 700"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stun"							"1.25"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad III: Lord of Execution (Combo)
+	//=======================================
+	"vlad_combo"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/combo"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/vlad_combo"
+
+		"AbilityCastPoint"				"0.30"
+		"AbilityCooldown"				"180"
+		"AbilityManaCost"				"200"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+			"particle"					"particles/custom/vlad/vlad_combo_aoe.vpcf"
+			"particle"					"particles/custom/vlad/vlad_combo_ontarget_stun.vpcf"
+			"particle"					"particles/custom/vlad/vlad_combo_ontarget_execute.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aoe"							"800"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"dmg"							"1000"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"heal"						   	"500"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"stun"							"3"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"penalty"						"3"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad III: Passive Rending
+	//=======================================
+	"vlad_passive_rending"
+	{
+		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"windrunner_powershot"
+		"ScriptFile"					"abilities/vlad/passive_rending"
+		"MaxLevel"						"1"
+		
+		"precache"
+		{
+			"particle"					"particles/custom/vlad/vlad_im_splash.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"dmg"							"4"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"20"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"interval"				"2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_onhit_abilities"				"5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stacks_onhit_melee"				"1"
+			}
+			
+		}
+	}
+
+	//=======================================
+	// Vlad Attribute : Innocent Monster
+	//=======================================
+	"vlad_attribute_innocent_monster"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/attributes"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/vlad_innocent_monster"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"16"
+
+		"precache"
+		{
+			"particle"					"particles/custom/vlad/vlad_im_splash.vpcf"
+			"particle"					"particles/custom/vlad/vlad_im_splash_blood.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_mres"					"15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"bonus_as_per_1"					"4"
+			}
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"bonus_hp_regen_per_1"		"0.4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"splash_aoe"					"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"splash_percentage"					"0.75"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"splash_percentage__TT"					"75"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"lifesteal"					"0.5"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"lifesteal__TT"					"50"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad Attribute : Protection of Faith
+	//=======================================
+	"vlad_attribute_protection_of_faith"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/attributes"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/vlad_protection_of_faith"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"13"
+
+		"precache"
+		{
+			"particle" "particles/items_fx/black_king_bar_avatar.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_ms"					"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pof_duration"					"2"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pof_condition"					"500"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pof_cd"					"60"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bc_hp_condition"	"25"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bc_heal"					"50"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bc_heal__TT"					"500"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bc_heal_duration"					"10"
+			}
+		}
+	}
+	//=======================================
+	// Vlad III: Protection of Faith CD 					//this is actual CD of proc
+	//=======================================
+	"vlad_protection_of_faith_cd"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/protection_of_faith_cd"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityTextureName"			"custom/vlad_protection_of_faith"
+
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"0"
+		//"LevelsBetweenUpgrades"				"1"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+	}
+	//=======================================
+	// Vlad Attribute : Improved Impaling
+	//=======================================
+	"vlad_attribute_improved_impaling"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/attributes"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/vlad_improved_impaling"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"15"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"kb_bonus_spikes_dmg"					"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"kb_bonus_lastspike_dmg"					"100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"kb_spike_heal_per_target"					"100"
+			}
+			"04"
+			{
+				"var_type"									"FIELD_FLOAT"
+				"kb_bonus_dmg_per_stack"					"7"
+			}
+			"05"
+			{
+				"var_type"									"FIELD_INTEGER"
+				"cp_dmg_bonus"					"100"
+			}
+			"06"
+			{
+				"var_type"									"FIELD_INTEGER"
+				"cp_conditional"					"70"
+			}
+			"07"
+			{
+				"var_type"									"FIELD_INTEGER"
+				"cp_bonus_dmg_per_stack"					"5"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad Attribute : Instant Curse
+	//=======================================
+	"vlad_attribute_instant_curse"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/attributes"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"shadow_demon_disruption"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"10"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cl_bonus_shield_per_stack"					"8"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cl_bonus_dmg_per_stack"					"6"
+			}
+		}
+	}
+
+	//=======================================
+	// Vlad Attribute : Bloodletter
+	//=======================================
+	"vlad_attribute_bloodletter"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/vlad/attributes"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/vlad_transfusion2"
+
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"11"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"transfusionbonus"							"30"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cl_bonus_shield_per_stack"					"0.02"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cl_bonus_shield_per_stack__TT"					"2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cl_bonus_dmg_per_stack"					"0.01"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cl_bonus_dmg_per_stack__TT"					"1"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"kb_bonus_dmg_per_stack"					"0.01"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"kb_bonus_dmg_per_stack__TT"					"1"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cp_bonus_dmg_per_stack"					"0.01"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cp_bonus_dmg_per_stack__TT"					"1"
+			}
+			"10"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bloodpower_cap"						"30"
+			}
+		}
+	}
+}

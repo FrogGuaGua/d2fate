@@ -1,0 +1,42 @@
+//=================================================================================================================
+// LvBu : Flayer
+//=================================================================================================================
+
+"DOTAAbilities"
+{   
+    "lvbu_flayer"
+    {
+        "BaseClass"                                 "ability_lua"
+        "ScriptFile"                                "abilities/lvbu/lvbu_flayer"
+        "AbilityBehavior"			                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                        "custom/lvbu_flayer"
+        "MaxLevel"                                  "1"
+        "RequiredLevel"                             "1"
+        "LevelsBetweenUpgrades"                     "1"
+        
+
+    "precache"
+    {
+      
+    }
+    
+	"AbilitySpecial"
+	{
+      "01"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "ar_reduce"	            "2"
+      }
+      "02"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "mr_reduce"		        "1"
+      }
+       "03"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "duration"		        "3.0"
+      }
+	 }
+    }
+}

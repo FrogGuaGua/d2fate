@@ -1,0 +1,47 @@
+"DOTAAbilities"
+{
+    "mordred_q_3"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/mordred/mordred_q"
+        "AbilityTextureName"                            "queenofpain_blink"
+        
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitTargetFlags"                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+        
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+        
+        "AbilityCastRange"                              "700"
+        "AbilityCastPoint"                              "0.2"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "damage"                            "100 200 300 400 500"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "stun"                              "0.7"
+            }
+            "03"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "air_time"                          "0.5"
+            }
+            "04"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "radius"                            "300"
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+"DOTAAbilities"
+{
+    "jeanne_seal_r"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/jeanne/seal_r"
+        "AbilityTextureName"                            "chen_test_of_faith"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCastRange"                              "600"
+
+        "precache"
+        {
+            "soundfile"                                 "soundevents/game_sounds_items.vsndevts"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "push_range"                        "600"
+            }
+        }
+    }
+}

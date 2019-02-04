@@ -1,0 +1,38 @@
+"DOTAAbilities"
+{
+    "tamamo_throw_charm"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/tamamo/charms"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_BOTH"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                            "custom/tamamo_throw_charm"
+        "AbilityCastAnimation"                          "ACT_DOTA_CAST_ABILITY_2"
+        "AnimationPlaybackRate"                         "2.0"
+        "AbilityCastPoint"                              "0.2"
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCastRange"                              "1500"
+        "AbilityCastPoint"                              "0.3"
+        "AbilityManaCost"                               "100"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "radius"                                "200"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "damage"                                "100 125 150 175 200"
+            }
+        }
+    }
+}

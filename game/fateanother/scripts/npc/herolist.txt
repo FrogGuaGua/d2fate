@@ -1,0 +1,35 @@
+//
+// <key>	<value>
+// Hero		currently on/off, will be # of instances (-1 = infinite)
+//
+
+"CustomHeroList"
+{
+	"npc_dota_hero_legion_commander"	"1"		
+	"npc_dota_hero_spectre"				"1"		
+	"npc_dota_hero_phantom_lancer"		"1"		
+	"npc_dota_hero_ember_spirit"		"1"		
+	"npc_dota_hero_templar_assassin"	"1"		
+	"npc_dota_hero_crystal_maiden"		"1"		
+	"npc_dota_hero_juggernaut"			"1"		
+	"npc_dota_hero_bounty_hunter"		"1"		
+	"npc_dota_hero_doom_bringer"		"1"		
+	"npc_dota_hero_skywrath_mage"		"1"		
+	"npc_dota_hero_vengefulspirit"		"1"		
+	"npc_dota_hero_huskar"				"1"		
+	"npc_dota_hero_sven"				"1"		
+	"npc_dota_hero_shadow_shaman"		"1"		
+	"npc_dota_hero_chen"				"1"		
+	"npc_dota_hero_lina"				"1"		
+	"npc_dota_hero_omniknight"			"1"		
+	"npc_dota_hero_enchantress"			"1"		
+	"npc_dota_hero_bloodseeker"			"1"		
+	"npc_dota_hero_mirana"				"1"		
+	"npc_dota_hero_queenofpain"			"1"	
+	"npc_dota_hero_windrunner"			"1"
+	"npc_dota_hero_wisp"				"1"	
+	"npc_dota_hero_drow_ranger"			"1"
+	"npc_dota_hero_tidehunter"			"1"
+	"npc_dota_hero_storm_spirit"        "1"
+	"npc_dota_hero_axe"                 "1"
+}

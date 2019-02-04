@@ -1,0 +1,67 @@
+"DOTAAbilities"
+{
+	"item_shard_of_replenishment"
+	{
+	    "ID"           "1308"
+	    "BaseClass"    "item_lua"
+	    "Scriptfile"	"items/shard_of_replenishment"
+	    "AbilityTextureName" "custom/shard_of_replenishment"
+
+	    "Model"        "models/props_gameplay/gem01.vmdl" 
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+
+	    "ItemCost"     "99999"
+	    "ItemKillable" "0" 
+	    "ItemSellable" "0"
+	    "ItemPurchasable" "0"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_FULLY_SHAREABLE_STACKING"
+
+
+	    "SideShop"     "1" 
+	    "SecretShop"   "0"
+
+	    "ItemInitialCharges" "5"
+	    "ItemStackable" "1"
+	    "ItemPermanent" "0"
+	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+
+
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"				"5"
+	    //"AbilityCastRange"				"1000"
+	    "precache"
+	    {
+	    	"particle"		"particles/units/heroes/hero_lich/lich_frost_armor.vpcf"
+	    	"particle"		"particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
+	    }
+	    "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hpregen"					"3000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"manaregen"					"1500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"healduration"					"2.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armorbonus"					"50"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armorduration"					"10.0"
+			}
+		}
+	}
+}

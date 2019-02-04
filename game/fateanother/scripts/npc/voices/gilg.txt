@@ -1,0 +1,53 @@
+"FATEVoices"
+{
+	"npc_dota_hero_skywrath_mage"
+	{
+		"Spawn"
+		{
+			"01"						"gilg_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"gilg_move_01"
+			"02"						"gilg_move_02"
+			"03"						"gilg_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"gilg_attack_01"
+		}
+		
+		"Cast"
+		{
+			"01"						"gilg_move_01"
+			"02"						"gilg_move_03"
+		}
+		
+		"Hurt"
+		{
+			"01"						"gilg_hurt_01"
+		}
+		
+		"Respawn"
+		{
+			"01"						"gilg_other_01"
+			"02"						"gilg_other_02"
+			"03"						"gilg_other_03"
+			"04"						"gilg_other_04"
+		}
+		
+		"Death"
+		{
+			"01"						"gilg_hurt_01"
+		}
+		
+		"Kill"
+		{
+			"01"						"gilg_laugh"
+			"02"						"gilg_other_04"
+			"03"						"gilg_np_command"
+		}
+	}
+}

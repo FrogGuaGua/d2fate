@@ -1,0 +1,205 @@
+.CustomizationBoardRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#CustomizeServant
+{
+	margin-bottom: 240px;
+	vertical-align: bottom;
+	horizontal-align: center;
+    flow-children: down;
+}
+
+/*.AspectRatio16x10 .CustomizationBoardRoot
+{
+    horizontal-align: left;
+    vertical-align: bottom;
+    margin-bottom: 24%;
+    margin-left: 0%;
+    flow-children: down;
+}
+
+.AspectRatio16x9 .CustomizationBoardRoot
+{
+    horizontal-align: left;
+    vertical-align: bottom;
+    margin-bottom: 24%;
+    margin-left: 0%;
+    flow-children: down;
+}
+
+.AspectRatio4x3 .CustomizationBoardRoot
+{
+    horizontal-align: left;
+    vertical-align: bottom;
+    margin-bottom: 24%;
+    margin-left: 0%;
+    flow-children: down;
+}*/
+
+#CustomizationOpenButton
+{
+    margin-left: 0%;
+    width: 300px;
+    height: 50px;
+    brightness: 1.5;
+}
+
+#CustomizationBoardLabel
+{
+	margin-left: 4px;
+	width: 225px;
+	height: 30px;
+	background-color: #171719fe;
+	
+	border-top-left-radius: 24px 24px;
+	border-top-right-radius: 24px 24px;
+	box-shadow: #000000ff 0px 0px 3px 0px;
+}
+
+#CustomizeBoardLabelText
+{
+	horizontal-align: center;
+	vertical-align: center;
+	padding-top: 3px;
+	color: #dbdbdb;
+	font-size: 19px;
+	text-align: center;
+}
+
+#CustomizationBoard
+{
+    width: 700px;
+    height: 200px;
+    //background-image: url("file://{images}/custom_game/customization_background.png");
+	background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326ee ), to( #1c1d20ee ) );
+	box-shadow: #000000ff 0px 0px 8px 0px;
+    //border-radius: 50px 50px 50px 50px;
+    //border:3px solid #DAA520;
+    //box-shadow: fill #fffb84 1px 3px 2px 2px; // outer, filled
+    overflow: scroll;
+    opacity: 0.95;
+
+}
+
+.CustomizationText
+{
+    font-weight: bold;
+    color: #AAAAAA;
+    font-size: 16px;
+    text-shadow: 2px 2px 2px #000000;
+    //color: gradient( linear, 0% 0%, 0% 100%, from( #c88423 ), color-stop( 0.25, #c88423 ), color-stop( 0.5, #fffb84 ), color-stop( 0.75, #c88423 ), to( #9a6717 ) );
+}
+
+#CustomizationOpenButtonText
+{
+    vertical-align: middle;
+    transition-property: opacity;
+    transition-duration: 0.12s;
+    transition-timing-function: ease-in-out;
+    background-color: gradient( linear, 0% 0%, 100% 0%, from( #FFD700 ), color-stop( .5, #7f6b00 ), to( #0000 ) );
+}
+
+#CustomizationTopContainer
+{
+	flow-children: right;
+	margin-left: 20px;
+    margin-top: 10px;
+}
+
+#CustomizationBottomContainer
+{
+	flow-children: right;
+	margin-left: 20px;
+    margin-top: 100px;
+}
+
+#CustomizationAttributeText
+{
+
+}
+
+#CustomizationAttributePanel
+{
+}
+
+#CustomizationAttributeLayout
+{
+	margin-top: 16px;
+	flow-children: right;
+}
+
+#CustomizationStatPanel
+{
+	margin-left: 45px;
+}
+
+#CustomizationStatLayout
+{
+	margin-top: 16px;
+	flow-children: right;
+}
+
+.StatDisplayText
+{
+	width: 100%;
+	margin-left: 0px;
+	padding-left: 0px;
+    font-weight: bold;
+    //color: gradient( linear, 0% 0%, 0% 100%, from( #45d28b ), color-stop( 0.3, #ddf53d ), to( #45d28b ) );
+	color: #57b7ff;
+    font-size: 14px;
+    vertical-align: middle;
+	text-align: center;
+}
+
+.StatAmountContainer
+{
+	width: 64px;
+	height: 24px;
+	margin-right: 2px;
+}
+
+#CustomizationStatAmountLayout
+{
+	margin-left: 0px;
+	margin-top: 72px;
+	flow-children: right-wrap;
+}
+
+#CustomizationCooldownPanel
+{
+    margin-top: 280px;
+    margin-left: 20px;
+    flow-children: right;
+}
+
+#CustomizationCooldownLayout
+{
+	margin-top: 16px;
+	flow-children: right;
+}
+
+#CustomizationShardPanel
+{
+    margin-left: 70px;
+}
+
+#CustomizationShardTextLayout
+{
+    flow-children: right;
+}
+
+#CustomizationShardNumber
+{
+    margin-left: 40px;
+	color: #ffe856;
+}
+
+#CustomizationShardLayout
+{
+    margin-top: 16px;
+    flow-children: right;
+}

@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "false_assassin_minds_eye"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/fa/minds_eye"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"                            "custom/false_assassin_minds_eye"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_YES"
+
+        "MaxLevel"                                      "2"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCooldown"                               "1 0.5"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "damage"                                "100 170"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "agi_ratio"                             "0.7 1.2"
+            }
+            "01"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "agi_ratio_revoked"                     "1.0 2.0"
+            }
+        }
+    }
+}

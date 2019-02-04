@@ -1,0 +1,39 @@
+"CustomEvents"
+{
+    "custom_error_show"
+    {
+        "player_ID"		"short"
+        "_error"		"string"
+    }
+    "stat_collection_part"
+    {
+        "data"          "string"
+    }
+    "stat_collection_send"
+    {
+    }
+    "xgui_show_rpg_dialog"
+    {
+        "playerID"     "short"
+    }
+    "cgm_timer_display"
+    {
+        "timerMsg"      "string"
+        "timerSeconds"  "string"
+        "timerEnd"      "bool"
+        "timerPosition" "byte"
+    }
+    "cgm_timer_pause"
+    {
+        "timePaused"      "bool"
+    }
+    "send_hero_ent"
+    {
+        "player_ID"     "short"
+        "_ent"      "short"
+    }
+    "show_fatepedia_main_panel"
+    {
+        "player_ID"     "short"
+    }
+}

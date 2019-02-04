@@ -1,0 +1,23 @@
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/fateanother_about.css" />
+    </styles>
+    <scripts>
+    </scripts>
+    <!--<snippets>-->
+    <!--</snippets>-->
+    <Panel class="AboutRoot" hittest="false">
+        <Panel id="AboutMain" hittest="false">
+            <Panel id="AboutDeveloper" class="AboutSection" hittest="false">
+                <Label text="#ABOUT_DEV" class="SectionHeader" hittest="false" />
+                <Label text="#ABOUT_DEV_BODY" hittest="false" />
+            </Panel>
+
+            <Panel id="AboutCredits" class="AboutSection" hittest="false">
+                <Label text="#ABOUT_CREDITS" class="SectionHeader" hittest="false" />
+                <Label text="#ABOUT_CREDITS_BODY" hittest="false" />
+            </Panel>
+        </Panel>
+    </Panel>
+</root>

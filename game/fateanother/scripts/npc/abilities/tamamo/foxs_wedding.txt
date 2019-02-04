@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+    "tamamo_foxs_wedding"
+    {
+        "BaseClass"                                 "ability_lua"
+        "ScriptFile"                                "abilities/tamamo/wedding"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityTextureName"                            "custom/tamamo_wedding"
+        "AbilityCastAnimation"                          "ACT_DOTA_CAST_ABILITY_1"
+
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCastRange"                              "600"
+        "AbilityCastPoint"                              "0.3"
+        "AbilityCooldown"                               "45 40 35 30 25"
+        "AbilityManaCost"                               "200"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "radius"                                "250"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "duration"                              "2.0 3.0 4.0 5.0 6.0"
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+    "jeanne_seal_q"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/jeanne/seal_q"
+        "AbilityTextureName"                            "chen_penitence"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCastRange"                              "600"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "taunt_duration"                    "2.0"
+            }
+        }
+    }
+}

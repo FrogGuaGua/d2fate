@@ -1,0 +1,20 @@
+"DOTAAbilities"
+{
+    "jeanne_attribute_gods_resolution"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/jeanne/attribute_gods_resolution"
+        "AbilityTextureName"                            "custom/jeanne_purge_the_unjust"
+        
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+        
+        "MaxLevel"                                      "1"
+
+        "AbilityCooldown"                               "9999"
+        "AbilityManaCost"                               "16"
+        
+        "AbilitySpecial"
+        {
+        }
+    }
+}

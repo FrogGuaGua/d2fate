@@ -1,0 +1,136 @@
+"DOTAAbilities"
+{
+	"lancelot_snatch_strike"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/true_assassin_snatch_strike"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"%range"
+		"AbilityCooldown"				"20"
+		"AbilityManaCost"				"300"
+
+		"precache"
+		{
+			"particle"				"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_night_stalker.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"20"
+			}
+
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"str_steal"				"-10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"str_gain"				"10"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range"					"200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"visionDuration"		"5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"set_vision"			"250"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"ta_ability"
+				"Function"		"OnStealAbilityStart"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"		"Hero_Nightstalker.Void"
+				"Target"			"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"ta_ability"
+				"Function"			"OnStealStart"
+				"Damage"			"%damage"
+				"StealPercentage"	"%str_steal"
+				"Duration"			"%duration"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_steal_str_reduction"
+			{
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_void.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"IsDebuff"		"1"
+				"Duration"		"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_steal"
+				}
+			}
+			"modifier_steal_str_increase"
+			{
+				"Duration"		"%duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_gain"
+				}
+			}
+			"modifier_steal_vision"
+			{
+				"IsDebuff"		"1"
+				"Duration"		"%visionDuration"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"ta_ability"
+						"Function"		"ReduceVision"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"ta_ability"
+						"Function"		"RevertVision"
+					}
+				}
+			}
+		}
+	}
+}

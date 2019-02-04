@@ -1,0 +1,57 @@
+"FATEVoices"
+{
+	"npc_dota_hero_bounty_hunter"
+	{
+		"Spawn"
+		{
+			"01"						"ta_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"ta_move_01"
+			"02"						"ta_move_02"
+			"03"						"ta_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"ta_attack_02"
+			"02"						"ta_attack_03"
+		}
+		
+		"Cast"
+		{
+			"01"						"ta_attack_02"
+		}
+		
+		"Hurt"
+		{
+			"01"						"ta_hurt_01"
+			"02"						"ta_hurt_02"
+		}
+		
+		"Respawn"
+		{
+			"01"						"ta_battle_start_01"
+			"02"						"ta_battle_start_02"
+			"03"						"ta_other_03"
+			"04"						"ta_other_04"
+			"05"						"ta_other_05"
+		}
+		
+		"Death"
+		{
+			"01"						"ta_death_01"
+			"02"						"ta_death_02"
+		}
+		
+		"Kill"
+		{
+			"01"						"ta_kill"
+			"02"						"ta_level"
+			"03"						"ta_other_01"
+			"04"						"ta_other_02"
+		}
+	}
+}

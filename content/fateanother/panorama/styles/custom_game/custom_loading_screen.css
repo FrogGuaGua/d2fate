@@ -1,0 +1,55 @@
+.LoadingScreen
+{
+  width: 100%;
+  height: 100%;
+}
+
+#Background
+{
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+
+  transition-property: saturation, blur;
+  transition-delay: 0.0s;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-out;
+
+  blur: gaussian(0.0);
+  saturation: 1.0;
+}
+
+#Background.Loaded
+{
+  blur: gaussian(4.0);
+  saturation: 0.4;
+}
+
+#BackgroundLogo
+{
+  horizontal-align: left;
+  vertical-align: bottom;
+  margin-bottom: 270px;
+  margin-left: 30px;
+}
+
+#Tip
+{
+  width: 100%;
+  height: 100px;
+  horizontal-align: left;
+  vertical-align: bottom;
+  margin-bottom: 240px;
+  flow-children: right;
+  background-color: #000000ee;
+}
+
+#TipLabel
+{
+  margin-bottom: 0px;
+  margin-left: 40px;
+  vertical-align: center;
+  font-size: 24px;
+  color: #cccccc;
+  text-shadow: 5px 5px 5px #000000, -5px -5px -5px #cccccc;
+}

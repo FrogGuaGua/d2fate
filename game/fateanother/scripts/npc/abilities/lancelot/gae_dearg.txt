@@ -1,0 +1,122 @@
+"DOTAAbilities"
+{
+    	"lancelot_gae_dearg"
+    	{
+    		// General
+    		//-------------------------------------------------------------------------------------------------------------
+    		"BaseClass"						"ability_datadriven"
+    		"MaxLevel"						"1"
+    		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+    		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+    		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+    		"AbilityTextureName"			"custom/diarmuid_gae_dearg"
+    		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+    		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+    		"AnimationPlaybackRate" 		"1.0"
+
+    		"precache"
+    		{
+    			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
+    			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
+    			"particle"		"particles/items_fx/dagon.vpcf"
+    			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+    		}
+
+    		// Casting
+    		//-------------------------------------------------------------------------------------------------------------
+    		"AbilityCastRange"				"500"
+    		"AbilityCastRangeBuffer"		"250"
+    		"AbilityCastPoint"				"1.1"
+
+    		// Time
+    		//-------------------------------------------------------------------------------------------------------------
+    		"AbilityCooldown"				"40.0"
+
+    		// Cost
+    		//-------------------------------------------------------------------------------------------------------------
+    		"AbilityManaCost"				"450"
+
+    		"AbilitySpecial"
+    		{
+    			"01"
+    			{
+    				"var_type"		"FIELD_FLOAT"
+    				"delay"			"1.1"
+    			}
+    			"02"
+    			{
+    				"var_type"			"FIELD_INTEGER"
+    				"min_damage"			"500"
+    			}
+    			"03"
+    			{
+    				"var_type"			"FIELD_INTEGER"
+    				"max_damage"			"650"
+    			}
+    			"04"
+    			{
+    				"var_type"			"FIELD_INTEGER"
+    				"range"				"500"
+    			}
+    			"05"
+    			{
+    				"var_type"			"FIELD_FLOAT"
+    				"cast_time"			"1.1"
+    			}
+    			"06"
+    			{
+    				"var_type"			"FIELD_INTEGER"
+    				"number_stacks"		"5"
+    			}
+    			"07"
+    			{
+    				"var_type"			"FIELD_INTEGER"
+    				"unit_reduction"	"100"
+    			}
+    			"08"
+    			{
+    				"var_type"			"FIELD_INTEGER"
+    				"mortality_pct"		"20"
+    			}
+
+    		}
+
+    		"OnAbilityPhaseStart"
+    		{
+    			"RunScript"
+    			{
+    				"ScriptFile"	"diarmuid_ability"
+    				"Function"		"OnGaeCastStart"
+    				"CastTime"		"%cast_time"
+    			}
+    		}
+    		"OnSpellStart"
+    		{
+    			 "RunScript"
+    			 {
+    			 	"ScriptFile"	"diarmuid_ability"
+    			 	"Function"		"OnDeargStart"
+    			 	"MinDamage"		"%min_damage"
+    			 	"MaxDamage"		"%max_damage"
+    			 	"nStacks"		"%number_stacks"	//for casting dearg with doublespear on
+    			 	"unitReduction"	"%unit_reduction"	//for casting dearg with doublespear on
+    			 	"CastTime"		"%cast_time"
+    			 }
+    		}
+    		"Modifiers"
+    		{
+    			"modifier_diarmuid_gae_dearg_anim"
+    			{
+    				"IsHidden"			"1"
+    				"Duration"			"1.0"
+    				"OverrideAnimation"		"ACT_DOTA_CAST_ABILITY_3_END"
+    				"Properties"
+    				{
+    					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"2.0"
+    				}
+    			}
+    		}
+    	}
+}

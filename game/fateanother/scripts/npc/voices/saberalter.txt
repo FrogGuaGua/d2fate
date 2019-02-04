@@ -1,0 +1,54 @@
+"FATEVoices"
+{
+	"npc_dota_hero_spectre"
+	{
+		"Spawn"
+		{
+			"01"						"saber_alter_spawn"
+		}
+		
+		"Move"
+		{
+			"01"						"saber_alter_move_01"
+			"02"						"saber_alter_move_02"
+			"03"						"saber_alter_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"saber_alter_attack_01"
+			"02"						"saber_alter_attack_02"
+			"03"						"saber_alter_attack_03"
+		}
+		
+		"Cast"
+		{
+			"01"						"saber_alter_attack_03"
+		}
+		
+		"Hurt"
+		{
+			"01"						"saber_alter_hurt"
+		}
+		
+		"Respawn"
+		{
+			"01"						"saber_alter_battle_begin"
+			"02"						"saber_alter_other_03"
+			"03"						"saber_alter_other_04"
+			"04"						"saber_alter_other_05"
+		}
+		
+		"Death"
+		{
+			"01"						"saber_alter_hurt"
+		}
+		
+		"Kill"
+		{
+			"01"						"saber_alter_other_01"
+			"02"						"saber_alter_other_02"
+			"03"						"saber_alter_other_04"
+		}
+	}
+}

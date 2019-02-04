@@ -1,0 +1,79 @@
+//=================================================================================================================
+// LvBu : EndLess Red Hare
+//=================================================================================================================
+
+"DOTAAbilities"
+{   
+    "lvbu_endless_red_hare"
+    {
+        "BaseClass"                                 "ability_datadriven"
+        "AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                        "custom/lvbu_endless_red_hare"
+        "AbilityCooldown"				            "20"
+        "MaxLevel"                                  "2"
+        "RequiredLevel"                             "1"
+        "LevelsBetweenUpgrades"                     "25"
+
+
+    "precache"
+    {
+      
+    }
+    
+	"AbilitySpecial"
+	{
+      "01"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "healthlost"	        "-66"
+      }
+      "02"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "duration"		        "3 4"
+      }
+	}
+    "Modifiers"
+    {
+        "modifier_endless_red_hare"
+        {
+            "IsDebuff"			"0"
+            "Passive"			"1"
+            "OnTakeDamage"
+            {   
+               "RunScript"
+					{
+						"ScriptFile"    "abilities/lvbu/lvbu_endless_red_hare"
+						"Function"      "OnEndlessRedHareDeath"
+					}
+            }
+        }
+       "modifier_endless_red_hare_debuff"
+       {
+           "IsDebuff"         "1"
+           "Duration"         "%duration"
+           "ThinkInterval"		"0.1"
+           "Properties"
+			{
+				"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"%healthlost"
+			}
+            "OnIntervalThink"
+	         	{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/lvbu/lvbu_endless_red_hare"
+					 	"Function"		"OnEndlessRedHareThink"
+					}
+				}
+       }
+       "modifier_endless_red_hare_start"
+       {
+           "Duration"         "0.5"
+           "Properties"
+			{
+				"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	   "99"	
+			}
+       }
+    }
+    }
+}

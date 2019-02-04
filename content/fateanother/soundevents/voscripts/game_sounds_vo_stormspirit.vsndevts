@@ -1,0 +1,2336 @@
+"stormspirit_ss_spawn_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_spawn_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_spawn_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_spawn_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_spawn_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_spawn_06"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_spawn_07"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_spawn_08"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_spawn_09"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jack_summom.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth2.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth2.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_06"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth2.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_07"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_08"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_death_09"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackdealth3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_kill_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackkill1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"2.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_kill_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackkill1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"2.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_kill_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackkill1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"2.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_kill_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother4.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"2.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_kill_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother4.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"2.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_kill_06"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother4.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"2.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_laugh_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_laugh_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_laugh_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_laugh_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_laugh_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_laugh_06"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_level_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother5.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_level_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother5.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_level_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother5.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_level_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_level_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackother1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove00.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove00.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove00.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove00.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove00.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_06"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove00.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_07"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove00.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_08"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove02.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_09"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove02.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_10"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove02.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_11"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove02.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_12"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove02.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_13"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove02.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_move_14"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove02.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"1.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_pain_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackhurt.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_pain_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackhurt.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_pain_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackhurt.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_pain_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackhurt.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_pain_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackhurt.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_pain_06"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackhurt.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_pain_07"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackhurt.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_respawn_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove2.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_respawn_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove2.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_respawn_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove2.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_respawn_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove2.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_respawn_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_respawn_06"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_respawn_07"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove3.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_01"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_02"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_03"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_04"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_05"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_06"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_07"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_08"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_09"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}
+"stormspirit_ss_attack_10"
+{
+"operator_stacks"
+{
+	"update_stack"
+	{
+		"reference_operator"
+		{
+			"operator"		"sos_reference_stack"
+			"reference_stack"		"dota_update_vo_switch"
+			"operator_variables"
+			{
+				"vsnd_files"
+				{
+					"value"
+					{
+						"value0"		"sounds/jack/jackmove1.vsnd"
+					}
+				}
+				"volume"
+				{
+					"value"		"3.000000"
+				}
+				"pitch"
+				{
+					"value"		"1.000000"
+				}
+			}
+		}
+	}
+}
+}

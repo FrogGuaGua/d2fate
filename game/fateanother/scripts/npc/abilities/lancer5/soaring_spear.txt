@@ -1,0 +1,75 @@
+//=================================================================================================================
+// Lancer : Soaring Spear of Barbed Death
+//=================================================================================================================
+
+"DOTAAbilities"
+{   
+    "lancer_5th_soaring_spear"
+    {
+        "BaseClass"                                 "ability_lua"
+        "ScriptFile"                                "abilities/lancer5/soaring_spear"
+        "AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"                        "custom/lancer_5th_soaring_spear"
+
+        "MaxLevel"                                  "1"
+        "RequiredLevel"                             "1"
+        "LevelsBetweenUpgrades"                     "1"
+
+        "AbilityUnitTargetTeam"                     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                     "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                     "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastAnimation"                      "ACT_DOTA_CAST_ABILITY_1"
+        "AnimationPlaybackRate" 		                "0.5"
+        "AbilityCastPoint"                          "0.6"
+        "AbilityManaCost"                           "400"
+        "AbilityCooldown"                           "60"
+        "AbilityCastRange"                          "950"
+        "AbilityCastRangeBuffer"                    "2000"
+        "AOERadius"                                 "400"
+        "IsCastableWhileHidden"			"1"
+
+    "precache"
+    {
+      "particle" "particles/custom/lancer/soaring/spear.vpcf"
+    }
+    
+		"AbilitySpecial"
+		{
+      "01"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "cast_delay"			"0.6"
+      }
+      "02"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "radius"			"400"
+      }
+      "03"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "range"			"950"
+      }
+      "03"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "damage_base"			"550"
+      }
+      "04"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "damage_bonus_from_e"			"50"
+      }
+      "05"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "damage_bonus_from_r"			"100"
+      }
+      "06"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "stun_duration"			"1"
+      }
+		}
+  }
+}

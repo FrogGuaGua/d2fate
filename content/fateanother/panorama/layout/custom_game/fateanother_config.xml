@@ -1,0 +1,58 @@
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/fateanother_config.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/fateanother_util.js" /> 
+        <include src="file://{resources}/scripts/custom_game/fateanother_config.js" /> 
+        <include src="file://{resources}/scripts/custom_game/fateanother_bgm.js" /> 
+        <include src="file://{resources}/scripts/custom_game/simple_panel_animation.js" />
+        <include src="file://{resources}/scripts/custom_game/fateanother_config_tooltip.js" /> 
+    </scripts>
+    <Panel class="FateConfigRoot" hittest="false">
+
+        <Panel id="FateConfigBoard" hittest="false" >
+            <Panel id="FateConfigMainPanel" class="bordertest" hittest="false">
+                <Panel id="FateConfigCameraPanel" class="bordertest" hittest="false">
+                    <Label id="FateConfigCameraText" class="FateConfigOpenText" text="#FA_Config_Camdist" hittest="false"/>
+                    <TextEntry id="FateConfigCameraValue" maxchars="4" text="1600" placeholder="" oninputsubmit="OnCameraDistSubmitted()" />
+                </Panel>
+                <Panel id="FateConfigBGMPanel" class="bordertest" hittest="false">
+                    <Label id="FateConfigBGMText" class="FateConfigOpenText" text="BGM" hittest="false"/>
+                    <ToggleButton id="FateConfigBGMToggle" checked="false" class="FateConfigOpenText" text="#FA_Config_BGM_Repeat" onactivate="OnRepeatToggle()"  />
+                    <DropDown id="FateConfigBGMList" oninputsubmit="OnDropDownChanged()">
+                        <Label text="#BGM1" id="1" checked="true"/>
+                        <Label text="#BGM2" id="2"/>
+                        <Label text="#BGM3" id="3"/>
+                        <Label text="#BGM4" id="4"/>
+                        <Label text="#BGM5" id="5"/>
+                        <Label text="#BGM6" id="6"/>
+                        <Label text="#BGM7" id="7"/>
+                        <Label text="#BGM8" id="8"/>
+                    </DropDown>
+                </Panel>
+                <Panel id="FateConfigTogglePannel" class="bordertest" hittest="false">
+                    <Label id="FateConfigToggleText" class="FateConfigOpenText" text="#FA_Config_Gameplay" hittest="false"/>
+                    <ToggleButton id="option1" checked="false" class="FateConfigOpenText" text="#FA_Config_Option1" onmouseover="Config1ShowTooltip()" onmouseout="Config1HideTooltip()" onactivate="OnConfig1Toggle()"/>
+                    <ToggleButton id="option2" checked="false" class="FateConfigOpenText" text="#FA_Config_Option2" onactivate="OnConfig2Toggle()" />
+                    <ToggleButton id="option3" checked="false" class="FateConfigOpenText" text="#FA_Config_Option3" onmouseover="Config3ShowTooltip()" onmouseout="Config3HideTooltip()" onactivate="OnConfig3Toggle()"/>
+                    <ToggleButton id="option4" checked="false" class="FateConfigOpenText" text="#FA_Config_Option4" onactivate="OnConfig4Toggle()" />
+                    <ToggleButton id="option5" checked="false" class="FateConfigOpenText" text="#FA_Config_Option5" onactivate="OnConfig5Toggle()" /> 
+                </Panel>
+                <Panel id="FateConfigCmdPanel" class="bordertest" hittest="false">
+                    <Label id="FateConfigCmdText" class="FateConfigOpenText" text="Commands" hittest="false"/>
+                    <Label id="FateConfigCmd1" text="-goldpls" hittest="false"/>
+                    <Label id="FateConfigCmd1Text" text="#FA_Config_Cmd1" hittest="false"/>
+                    <Label id="FateConfigCmd2" text="-bgmon/-bgmoff" hittest="false"/>
+                    <Label id="FateConfigCmd2Text" text="#FA_Config_Cmd2" hittest="false"/>         
+                    <Label id="FateConfigCmd3" text="-testsetup (cheat mode only)" hittest="false"/>
+                    <Label id="FateConfigCmd3Text" text="#FA_Config_Cmd3" hittest="false"/>     
+                    <Label id="FateConfigCmd4" text="-unpause (cheat mode only)" hittest="false"/>
+                    <Label id="FateConfigCmd4Text" text="#FA_Config_Cmd4" hittest="false"/>               
+                </Panel>
+            </Panel>
+
+        </Panel>
+    </Panel>
+</root>

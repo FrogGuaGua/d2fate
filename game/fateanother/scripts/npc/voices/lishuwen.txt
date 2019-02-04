@@ -1,0 +1,49 @@
+"FATEVoices"
+{
+	"npc_dota_hero_bloodseeker"
+	{
+		"Spawn"
+		{
+			"01"						"lishuwen_other_02"
+		}
+		
+		"Move"
+		{
+			"01"						"lishuwen_move_01"
+			"02"						"lishuwen_move_02"
+			"03"						"lishuwen_move_03"
+		}
+		
+		"Attack"
+		{
+			"01"						"lishuwen_attack_01"
+			"02"						"lishuwen_attack_02"
+		}
+		
+		"Cast"
+		{
+			"01"						"lishuwen_attack_02"
+		}
+		
+		"Hurt"
+		{
+			"01"						"lishuwen_hurt_01"
+		}
+		
+		"Respawn"
+		{
+			"01"						"lishuwen_other_01"
+			"02"						"lishuwen_other_02"
+		}
+		
+		"Death"
+		{
+			"01"						"lishuwen_death_01"
+		}
+		
+		"Kill"
+		{
+			"01"						"lishuwen_other_03"
+		}
+	}
+}

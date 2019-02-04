@@ -1,0 +1,53 @@
+"DOTAAbilities"
+{
+    "jeanne_seal_e"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/jeanne/seal_e"
+        "AbilityTextureName"                            "antimage_spell_shield"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCastRange"                              "900"
+
+        "precache"
+        {
+            "particle"                                  "particles/items3_fx/lotus_orb_shield.vpcf"
+            "particle"                                  "particles/items3_fx/lotus_orb_reflect.vpcf"
+            "particle"                                  "particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+            "soundfile"                                 "soundevents/game_sounds_items.vsndevts"
+            "soundfile"                                 "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "mres_reduction_pct"                "30"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "armor_reduction"                   "15"
+            }
+            "03"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "debuff_duration"                   "4"
+            }
+            "04"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "reflect_duration"                  "4"
+            }
+        }
+    }
+}

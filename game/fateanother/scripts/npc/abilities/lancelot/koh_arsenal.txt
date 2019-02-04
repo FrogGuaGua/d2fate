@@ -1,0 +1,41 @@
+"DOTAAbilities"
+{
+    "lancelot_knight_of_honor_arsenal"
+    {
+    	    "BaseClass"                                     "ability_lua"
+    	    "ScriptFile"                                    "abilities/lancelot/koh_arsenal"
+    	    "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    	    "AbilityTextureName"                            "custom/lancelot_attribute_improve_knight_of_honor"
+
+            "AbilityCastPoint"                              "0.0"
+            "AbilityCooldown"                               "0"
+            "AbilityManaCost"                               "0"
+
+            "MaxLevel"                                      "5"
+            "RequiredLevel"                                 "1"
+            "LevelsBetweenUpgrades"                         "2"
+
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"                              "FIELD_INTEGER"
+                    "mana_return"                           "100"
+                }
+            }
+    }
+
+    "lancelot_knight_of_honor_arsenal_close"
+    {
+    	    "BaseClass"                                     "ability_lua"
+    	    "ScriptFile"                                    "abilities/lancelot/koh_arsenal_close"
+    	    "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    	    "AbilityTextureName"                            "silencer_last_word"
+
+            "AbilityCastPoint"                              "0.0"
+            "AbilityCooldown"                               "0"
+            "AbilityManaCost"                               "0"
+
+            "MaxLevel"                                      "1"
+    }
+}

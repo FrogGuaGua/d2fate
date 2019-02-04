@@ -1,0 +1,52 @@
+"DOTAAbilities"
+{
+    "tamamo_amaterasu"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/tamamo/amaterasu"
+        "AbilityTextureName"                            "custom/tamamo_amaterasu"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_BOTH"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "2"
+
+        "AbilityCastPoint"                              "0.4"
+        "AbilityCastRange"                              "800"
+        "AbilityCooldown"                               "49"
+        "AbilityManaCost"                               "800"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "mana_regen_pct"                        "1 2 3 4 5"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "mana_drain_pct"                        "3 4 5 6 7"
+            }
+            "03"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "duration"                              "6 7 8 9 10"
+            }
+            "04"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "radius"                                "800"
+            }
+            "05"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "passive_int"                           "0 3 6 9 12"
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+"DOTAAbilities"
+{
+    "mordred_q_1"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/mordred/mordred_q"
+        "AbilityTextureName"                            "bounty_hunter_jinada"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCastRange"                              "500"
+        "AbilityCooldown"                               "10"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "moves"                             "2 2 3 3 4"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "damage"                            "200 300 400 500 600"
+            }
+            "03"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "range"                             "500"
+            }
+            "04"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "start_radius"                      "80"
+            }
+            "05"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "end_radius"                        "200"
+            }
+            "06"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "ad_scaling"                        "0.5"
+            }
+        }
+    }
+}

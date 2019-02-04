@@ -1,0 +1,43 @@
+//=================================================================================================================
+// LvBu : Prick Poke
+//=================================================================================================================
+
+"DOTAAbilities"
+{   
+    "lvbu_prick_poke"
+    {
+        "BaseClass"                                 "ability_lua"
+        "ScriptFile"                                "abilities/lvbu/prick_poke"
+        "AbilityBehavior"                           "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"			            "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+        "AbilityTextureName"                        "custom/lvbu/lvbu_prick_poke"
+        "AbilityCooldown"				                    "17"
+        "MaxLevel"                                  "5"
+        "RequiredLevel"                             "1"
+        "LevelsBetweenUpgrades"                     "1"
+        "AOERadius"						            "125"
+		"AbilityCastRange"				            "400"
+		"AbilityCastRangeBuffer"	            	"600"
+		"AbilityCastPoint"				            "0.75"
+        "AbilityManaCost"				            "100"
+
+        "precache"
+       {
+      
+       }
+    
+	   "AbilitySpecial"
+	   {
+        "01"
+        {
+          "var_type"				"FIELD_FLOAT"
+          "basedamage"	        "200 250 300 350 400"
+        }
+        "02"
+        {
+         "var_type"				"FIELD_FLOAT"
+         "ratio"		            "1.5"
+        }
+	}
+  }
+}

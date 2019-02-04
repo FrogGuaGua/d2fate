@@ -1,0 +1,47 @@
+"DOTAAbilities"
+{
+    "tamamo_armed_up"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/tamamo/armed_up"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_BOTH"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                            "custom/tamamo_armed_up"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "stack_explode_count"                   "6"
+            }
+        }
+    }
+
+    "tamamo_armed_up_close"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/tamamo/armed_up"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_BOTH"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                            "silencer_last_word"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilitySpecial"
+        {
+        }
+    }
+}

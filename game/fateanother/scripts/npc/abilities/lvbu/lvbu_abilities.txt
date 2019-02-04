@@ -1,0 +1,6 @@
+#base "trouble_times_hero.txt"
+#base "endless_red_hare.txt"
+#base "prick_poke.txt"
+#base "flayer.txt"
+#base "god_force_shot.txt"
+#base "god_force_flurry.txt"

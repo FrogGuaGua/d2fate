@@ -1,0 +1,8 @@
+#base "mordred_q_1.txt"
+#base "mordred_q_2.txt"
+#base "mordred_q_3.txt"
+#base "mordred_q_4.txt"
+#base "mordred_w.txt"
+#base "mordred_e.txt"
+#base "mordred_d.txt"
+#base "mordred_r.txt"

@@ -1,0 +1,39 @@
+//=================================================================================================================
+// LvBu : Trouble Times Hero
+//=================================================================================================================
+
+"DOTAAbilities"
+{   
+    "lvbu_trouble_times_hero"
+    {
+        "BaseClass"                                 "ability_lua"
+        "ScriptFile"                                "abilities/lvbu/lvbu_trouble_times_hero"
+        "AbilityTextureName"                        "custom/lvbu_trouble_times_hero"
+        
+        "AbilityBehavior"			                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "MaxLevel"                                  "2"
+        "RequiredLevel"                             "1"
+        "LevelsBetweenUpgrades"                     "25"
+
+    
+      	"AbilitySpecial"
+	      {
+          "01"
+          {
+           "var_type"				"FIELD_FLOAT"
+           "dmg_reduce_perhero"	"2"
+          }
+          "02"
+          {
+          "var_type"				"FIELD_FLOAT"
+          "dmg_bonus_perhero"		"2"
+          }
+          "03"
+          {
+           "var_type"				"FIELD_FLOAT"
+           "trouble_times_hero"	"50"
+          }
+      	}
+  }
+}

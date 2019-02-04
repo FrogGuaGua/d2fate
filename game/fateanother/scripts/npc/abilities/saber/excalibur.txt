@@ -1,0 +1,51 @@
+"DOTAAbilities"
+{
+    "saber_excalibur"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/saber/excalibur"
+        "AbilityTextureName"                            "custom/saber_excalibur"
+        
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_NO"
+
+        "AbilityCastAnimation"                          "ACT_DOTA_CAST_ABILITY_3"
+        "AnimationPlaybackRate"                         "1.1"
+
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "2"
+        
+        "AbilityCastRange"                              "2000"
+        "AbilityCastPoint"                              "0.2"
+        "AbilityCooldown"                               "37"
+        "AbilityManaCost"                               "400"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "damage"                            "700 900 1100 1300 1500"
+            }
+            "02"
+            {
+                "var_type"                          "FIELD_FLOAT"
+                "cast_delay"                        "2.4"
+            }
+            "03"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "width"                             "600"
+            }
+            "04"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "length"                            "2000"
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+"DOTAAbilities"
+{
+    "iskander_drift_toggle"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/iskander/drift"
+        "AbilityTextureName"                            "earthshaker_aftershock"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+    }
+}

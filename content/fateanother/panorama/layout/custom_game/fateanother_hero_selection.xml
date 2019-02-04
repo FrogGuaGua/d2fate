@@ -1,0 +1,82 @@
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/fateanother_hero_selection.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/fateanother_hero_selection.js" />
+    </scripts>
+    <Panel class="HeroSelection" hittest="false">
+         <Panel class="Hidden">
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_bounty_hunter.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_huskar.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_omniknight.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_crystal_maiden.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_phantom_lancer.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_legion_commander.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_windrunner.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_vengefulspirit.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_mirana.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_skywrath_mage.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_bloodseeker.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_enchantress.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_sven.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_doom_bringer.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_templar_assassin.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_queenofpain.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_juggernaut.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_shadow_shaman.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_ember_spirit.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_spectre.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_lina.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_chen.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_drow_ranger.png"/>
+				 <Image src="file://{images}/custom_game/selection/npc_dota_hero_tidehunter.png"/>
+				 <Image src="file://{images}/custom_game/selection/npc_dota_hero_phantom_assassin.png"/>
+                 <Image src="file://{images}/custom_game/selection/npc_dota_hero_storm_spirit.png"/>
+                 
+
+                 <Image src="file://{images}/custom_game/selection/random.png"/>
+
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_bounty_hunter.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_huskar.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_omniknight.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_crystal_maiden.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_phantom_lancer.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_legion_commander.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_windrunner.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_vengefulspirit.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_mirana.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_skywrath_mage.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_bloodseeker.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_enchantress.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_sven.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_doom_bringer.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_templar_assassin.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_queenofpain.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_juggernaut.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_shadow_shaman.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_ember_spirit.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_spectre.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_lina.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_chen.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_drow_ranger.png"/>
+				 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_tidehunter.png"/>
+				 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_phantom_assassin.png"/>
+                 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_storm_spirit.png"/>
+
+
+         </Panel>
+         <Panel id="container" class="container">
+             <Panel class="pickStatus">
+                 <Label id="status" class="statusLabel"></Label>
+                 <Panel id="timePanel" class="timePanel">
+                     <Label id="time" class="timeLabel"></Label>
+                     <Image class="timeRing" src="file://{images}/status_icons/timer_ring.psd"/>
+                 </Panel>
+             </Panel>
+             <Panel id="heroes" class="heroes">
+             </Panel>
+         </Panel>
+    </Panel>
+</root>

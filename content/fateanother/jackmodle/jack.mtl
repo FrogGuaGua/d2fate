@@ -1,0 +1,135 @@
+newmtl m0
+map_Kd hair.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m1
+map_Kd head.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m2
+map_Kd sirome.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0.14 0.14 0.14
+Ns 0
+d 1
+
+newmtl m3
+map_Kd eyes.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m4
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m5
+map_Kd rhombus.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m6
+map_Kd body.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m7
+map_Kd body2.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m8
+map_Kd clothes.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m9
+map_Kd belt.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m10
+map_Kd knife.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m11
+map_Kd sheath.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m12
+map_Kd bag.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m13
+map_Kd glove.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m14
+map_Kd Ç´Ç∏1.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m15
+map_Kd Ç´Ç∏2.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+
+newmtl m16
+map_Kd è∆ÇÍ.png
+Ka 0.5 0.5 0.5
+Kd 1 1 1
+Ks 0 0 0
+Ns 0
+d 1
+

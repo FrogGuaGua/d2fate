@@ -1,0 +1,971 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	m_meshList = 
+	{
+		m_meshList = 
+		[
+			{
+				m_meshName = "lvbu"
+				m_meshFile = "models/lvbu/lvbu.fbx"
+				m_materialSearchPath = ""
+				m_bSkinParentedObjects = true
+				m_bLegacySkinParentedTransforms = false
+				m_bExpensiveTangents = false
+				m_bHighPrecisionTexCoords = false
+				m_bPerVertexCurvature = false
+				m_bBentNormals = false
+				m_bIgnoreCloth = false
+				m_bGetSkinningFromLod0 = false
+				m_bPreferHighDensityTrianglesInUvDensityCalculation = false
+				m_pMorphInfo = null
+			},
+			{
+				m_meshName = "flayer"
+				m_meshFile = "models/lvbu/flayer.fbx"
+				m_materialSearchPath = ""
+				m_bSkinParentedObjects = true
+				m_bLegacySkinParentedTransforms = false
+				m_bExpensiveTangents = false
+				m_bHighPrecisionTexCoords = false
+				m_bPerVertexCurvature = false
+				m_bBentNormals = false
+				m_bIgnoreCloth = false
+				m_bGetSkinningFromLod0 = false
+				m_bPreferHighDensityTrianglesInUvDensityCalculation = false
+				m_pMorphInfo = null
+			},
+		]
+	}
+	m_clothProxyMeshList = 
+	{
+		_class = "CVClothProxyMeshList"
+		m_flClothEnableThreshold = 0.05
+		m_bCreateStaticBone = false
+		m_nMaxBonesPerVertex = 4
+		m_bRemoveUnusedBonesEnabled = false
+		m_bDriveMeshesWithBacksolvedJointsOnly = true
+		m_flMatchProxiesToMeshes = 1.0
+		m_flFallbackEnvelope = 1.0
+		m_nReservedInt = 0
+		m_bSoftSkinAnimation = false
+		m_bReservedBool2 = false
+		m_bReservedBool3 = false
+		m_bReservedBool4 = false
+		m_clothProxyMeshList = [  ]
+	}
+	m_physicsMeshList = 
+	{
+		m_meshList = [  ]
+	}
+	m_pModelInfo = null
+	m_pBoneFlagList = 
+	{
+		m_pObject = null
+	}
+	m_pHitBoxSetLists = 
+	[
+		{
+			m_pObject = 
+			{
+				m_HitBoxSets = 
+				[
+					{
+						m_name = "default"
+						m_HitBoxes = 
+						[
+							{
+								m_name = "Hips"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Hips"
+								m_vMinBounds = [ -0.584385, -0.663563, -0.35929 ]
+								m_vMaxBounds = [ 0.584385, 0.250127, 0.295983 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Spine0"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Spine0"
+								m_vMinBounds = [ -0.238659, -0.051963, -0.184444 ]
+								m_vMaxBounds = [ 0.238659, 0.393037, 0.245875 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Spine1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Spine1"
+								m_vMinBounds = [ -0.226015, -0.049836, -0.158221 ]
+								m_vMaxBounds = [ 0.226015, 0.227064, 0.252144 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Spine2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Spine2"
+								m_vMinBounds = [ -1.396662, -0.543533, -0.788774 ]
+								m_vMaxBounds = [ 1.396662, 1.313856, 0.825786 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Neck"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Neck"
+								m_vMinBounds = [ -0.037603, 0.025302, 0.096932 ]
+								m_vMaxBounds = [ 0.037551, 0.051232, 0.120766 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftShoulder"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftShoulder"
+								m_vMinBounds = [ -0.015963, -0.211983, -0.136629 ]
+								m_vMaxBounds = [ 0.235897, 0.100267, 0.169719 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightShoulder"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightShoulder"
+								m_vMinBounds = [ -0.235897, -0.21198, -0.136629 ]
+								m_vMaxBounds = [ 0.015963, 0.10027, 0.169719 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Head"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Head"
+								m_vMinBounds = [ -0.138238, -0.066381, -0.098558 ]
+								m_vMaxBounds = [ 0.138188, 0.445859, 0.185995 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftArm"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftArm"
+								m_vMinBounds = [ -0.031468, -0.154894, -0.158054 ]
+								m_vMaxBounds = [ 0.539305, 0.150947, 0.147997 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightArm"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightArm"
+								m_vMinBounds = [ -0.539302, -0.154892, -0.158054 ]
+								m_vMaxBounds = [ 0.03147, 0.150949, 0.147997 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Waist"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Waist"
+								m_vMinBounds = [ -0.267778, -0.341697, -0.221751 ]
+								m_vMaxBounds = [ 0.267778, 0.041843, 0.205821 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hair_l_a_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hair_l_a_BLP"
+								m_vMinBounds = [ 0.002688, 0.017971, -0.211261 ]
+								m_vMaxBounds = [ 0.289001, 0.26185, -0.020536 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hair_r_a_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hair_r_a_BLP"
+								m_vMinBounds = [ -0.289052, 0.017968, -0.211262 ]
+								m_vMaxBounds = [ -0.002739, 0.261847, -0.020537 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftForeArm"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftForeArm"
+								m_vMinBounds = [ -0.038528, -0.154909, -0.158054 ]
+								m_vMaxBounds = [ 0.332612, 0.150931, 0.147997 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightForeArm"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightForeArm"
+								m_vMinBounds = [ -0.33261, -0.154912, -0.158054 ]
+								m_vMaxBounds = [ 0.03853, 0.150929, 0.147997 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftUpLeg"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftUpLeg"
+								m_vMinBounds = [ -0.13772, -0.561893, -0.35929 ]
+								m_vMaxBounds = [ 0.466085, 0.144862, 0.295983 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightUpLeg"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightUpLeg"
+								m_vMinBounds = [ -0.466085, -0.561893, -0.35929 ]
+								m_vMaxBounds = [ 0.13772, 0.144862, 0.295983 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hair_l_b_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hair_l_b_BLP"
+								m_vMinBounds = [ -0.14062, -0.366686, -0.224852 ]
+								m_vMaxBounds = [ 0.540886, 0.059884, 0.095178 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hair_r_b_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hair_r_b_BLP"
+								m_vMinBounds = [ -0.540938, -0.36669, -0.224852 ]
+								m_vMaxBounds = [ 0.140568, 0.05988, 0.095178 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftHand"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftHand"
+								m_vMinBounds = [ -0.140102, -0.073361, -0.075648 ]
+								m_vMaxBounds = [ 0.137774, 0.059379, 0.101795 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightHand"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightHand"
+								m_vMinBounds = [ -0.137772, -0.073361, -0.075648 ]
+								m_vMaxBounds = [ 0.140104, 0.059378, 0.101795 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftLeg"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftLeg"
+								m_vMinBounds = [ -0.875014, -0.655174, -1.221445 ]
+								m_vMaxBounds = [ 1.333116, 0.061696, 0.544394 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightLeg"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightLeg"
+								m_vMinBounds = [ -1.470776, -0.694514, -1.137948 ]
+								m_vMaxBounds = [ 0.965368, 0.065406, 0.50718 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_Jow"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_Jow"
+								m_vMinBounds = [ -0.074943, -0.101008, -0.006516 ]
+								m_vMaxBounds = [ 0.074944, 0.021252, 0.086503 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hair_l_c_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hair_l_c_BLP"
+								m_vMinBounds = [ -0.214551, -1.452769, -0.093674 ]
+								m_vMaxBounds = [ 0.28864, 0.151989, 0.079364 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hair_r_c_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hair_r_c_BLP"
+								m_vMinBounds = [ -0.288691, -1.452768, -0.093674 ]
+								m_vMaxBounds = [ 0.2145, 0.15199, 0.079364 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftFinger2_1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftFinger2_1"
+								m_vMinBounds = [ -0.021385, -0.040034, -0.034325 ]
+								m_vMaxBounds = [ 0.046267, 0.031368, 0.043784 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftFinger3_1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftFinger3_1"
+								m_vMinBounds = [ -0.013004, -0.038503, -0.054254 ]
+								m_vMaxBounds = [ 0.044502, 0.031368, 0.020562 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightFinger2_1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightFinger2_1"
+								m_vMinBounds = [ -0.046261, -0.040036, -0.034325 ]
+								m_vMaxBounds = [ 0.02139, 0.031366, 0.043784 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightFinger3_1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightFinger3_1"
+								m_vMinBounds = [ -0.044497, -0.038506, -0.054254 ]
+								m_vMaxBounds = [ 0.013009, 0.031366, 0.020562 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "rope_a_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "rope_a_BLP"
+								m_vMinBounds = [ -0.095872, -0.266014, -0.01218 ]
+								m_vMaxBounds = [ 0.095872, 0.032236, 0.043551 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftFoot"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftFoot"
+								m_vMinBounds = [ -0.049603, -0.151179, -0.096802 ]
+								m_vMaxBounds = [ 0.105253, -0.009789, 0.230908 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightFoot"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightFoot"
+								m_vMinBounds = [ -0.105253, -0.151179, -0.096802 ]
+								m_vMaxBounds = [ 0.049603, -0.009789, 0.230908 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "skirt_f_a_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "skirt_f_a_BLP"
+								m_vMinBounds = [ -0.185134, -0.53337, -0.025386 ]
+								m_vMaxBounds = [ 0.185134, 0.003966, 0.029661 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_lip_D"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_lip_D"
+								m_vMinBounds = [ -0.022677, -0.008686, -0.018596 ]
+								m_vMaxBounds = [ 0.022627, 0.008274, -0.004437 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_lip_DL_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_lip_DL_RE"
+								m_vMinBounds = [ -0.005509, -0.012755, -0.060742 ]
+								m_vMaxBounds = [ 0.009502, 0.006635, -0.002256 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_lip_DR_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_lip_DR_RE"
+								m_vMinBounds = [ -0.009497, -0.012755, -0.060742 ]
+								m_vMaxBounds = [ 0.005515, 0.006635, -0.002256 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_eye_Left_A"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_eye_Left_A"
+								m_vMinBounds = [ -0.017292, -0.008443, -0.027494 ]
+								m_vMaxBounds = [ 0.017045, 0.006397, 0.00463 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_mayu_L1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_mayu_L1"
+								m_vMinBounds = [ -0.025476, -0.010874, -0.031351 ]
+								m_vMaxBounds = [ 0.034728, 0.027827, -0.006178 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_mayu_L2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_mayu_L2"
+								m_vMinBounds = [ -0.035361, -0.017953, -0.060151 ]
+								m_vMaxBounds = [ 0.02383, 0.019457, 0.008936 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_eye_Left_D"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_eye_Left_D"
+								m_vMinBounds = [ -0.01902, -0.009291, -0.024121 ]
+								m_vMaxBounds = [ 0.010472, 0.010439, -0.000784 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_lip_U"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_lip_U"
+								m_vMinBounds = [ -0.028609, -0.007621, -0.028973 ]
+								m_vMaxBounds = [ 0.029163, 0.011179, -0.006428 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_lip_L"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_lip_L"
+								m_vMinBounds = [ -0.017826, -0.007832, -0.031694 ]
+								m_vMaxBounds = [ 0.014802, 0.023378, 0.011271 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hair_l_d_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hair_l_d_BLP"
+								m_vMinBounds = [ -0.322259, -0.831141, -0.001673 ]
+								m_vMaxBounds = [ -0.00281, 0.589755, 0.130137 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_eye_Right_A"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_eye_Right_A"
+								m_vMinBounds = [ -0.017095, -0.00844, -0.027494 ]
+								m_vMaxBounds = [ 0.017266, 0.00518, 0.00463 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_mayu_R1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_mayu_R1"
+								m_vMinBounds = [ -0.034778, -0.01127, -0.031351 ]
+								m_vMaxBounds = [ 0.016824, 0.02775, -0.006554 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_mayu_R2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_mayu_R2"
+								m_vMinBounds = [ -0.023881, -0.01896, -0.060151 ]
+								m_vMaxBounds = [ 0.036812, 0.01938, 0.008899 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_lip_R"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_lip_R"
+								m_vMinBounds = [ -0.014852, -0.007835, -0.031694 ]
+								m_vMaxBounds = [ 0.017776, 0.023375, 0.011271 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P2_Left_eye"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P2_Left_eye"
+								m_vMinBounds = [ -0.012928, -0.017096, 0.013717 ]
+								m_vMaxBounds = [ 0.020222, 0.014494, 0.021224 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P2_Right_eye"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P2_Right_eye"
+								m_vMinBounds = [ -0.020146, -0.0171, 0.013717 ]
+								m_vMaxBounds = [ 0.013005, 0.01449, 0.021224 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_eye_Right_D"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_eye_Right_D"
+								m_vMinBounds = [ -0.010522, -0.00929, -0.024121 ]
+								m_vMaxBounds = [ 0.01897, 0.01044, -0.000784 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_L_hoho_A_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_L_hoho_A_RE"
+								m_vMinBounds = [ -0.019919, -0.042912, -0.04089 ]
+								m_vMaxBounds = [ 0.022493, 0.032798, 0.013776 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_L_hoho_B_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_L_hoho_B_RE"
+								m_vMinBounds = [ -0.029508, -0.027841, -0.046934 ]
+								m_vMaxBounds = [ 0.026915, 0.071789, 0.038488 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_R_hoho_A_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_R_hoho_A_RE"
+								m_vMinBounds = [ -0.022544, -0.042912, -0.04089 ]
+								m_vMaxBounds = [ 0.019869, 0.032798, 0.013776 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_R_hoho_B_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_R_hoho_B_RE"
+								m_vMinBounds = [ -0.026966, -0.027841, -0.046934 ]
+								m_vMaxBounds = [ 0.029458, 0.071789, 0.038488 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_hana_C_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_hana_C_RE"
+								m_vMinBounds = [ -0.02961, -0.011171, -0.03727 ]
+								m_vMaxBounds = [ 0.029559, 0.055469, -0.004005 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_hana_L_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_hana_L_RE"
+								m_vMinBounds = [ -0.015026, -0.041141, -0.018613 ]
+								m_vMaxBounds = [ 0.032049, 0.012459, 0.018028 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P3_hana_R_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P3_hana_R_RE"
+								m_vMinBounds = [ -0.0321, -0.041141, -0.018614 ]
+								m_vMaxBounds = [ 0.00623, 0.012459, 0.018028 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_ha_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_ha_RE"
+								m_vMinBounds = [ -0.029894, -0.011911, -0.028557 ]
+								m_vMaxBounds = [ 0.029844, 0.013439, 0.010888 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_mayu_R0_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_mayu_R0_RE"
+								m_vMinBounds = [ -0.017457, -0.005211, -0.010329 ]
+								m_vMaxBounds = [ -0.000625, 0.017329, -0.001818 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_lip_UL_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_lip_UL_RE"
+								m_vMinBounds = [ -0.005444, -0.008813, -0.020613 ]
+								m_vMaxBounds = [ 0.017744, 0.009547, -0.000803 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_lip_UR_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_lip_UR_RE"
+								m_vMinBounds = [ -0.01779, -0.008961, -0.020971 ]
+								m_vMaxBounds = [ 0.005398, 0.009399, -0.001161 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "P1_mayu_L0_RE"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "P1_mayu_L0_RE"
+								m_vMinBounds = [ 0.000564, -0.004811, -0.010345 ]
+								m_vMaxBounds = [ 0.017376, 0.017939, -0.001781 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "hair_r_d_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "hair_r_d_BLP"
+								m_vMinBounds = [ 0.002759, -0.831146, -0.001673 ]
+								m_vMaxBounds = [ 0.322208, 0.58975, 0.130137 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftFinger1_1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftFinger1_1"
+								m_vMinBounds = [ -0.049443, -0.04488, -0.043853 ]
+								m_vMaxBounds = [ 0.096659, 0.038719, 0.053749 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftFinger2_2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftFinger2_2"
+								m_vMinBounds = [ -0.010278, -0.057389, -0.034325 ]
+								m_vMaxBounds = [ 0.103583, 0.025649, 0.040326 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftFinger3_2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftFinger3_2"
+								m_vMinBounds = [ -0.038491, -0.054007, -0.0487 ]
+								m_vMaxBounds = [ 0.098699, 0.026013, 0.020562 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Left_guard"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Left_guard"
+								m_vMinBounds = [ -0.31169, 0.00758, -0.110557 ]
+								m_vMaxBounds = [ 0.009922, 0.196668, 0.056419 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Lshoulder"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Lshoulder"
+								m_vMinBounds = [ -0.176492, -0.421389, -0.131229 ]
+								m_vMaxBounds = [ 0.453674, 0.224051, 0.160718 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightFinger1_1"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightFinger1_1"
+								m_vMinBounds = [ -0.096662, -0.044878, -0.043853 ]
+								m_vMaxBounds = [ 0.049441, 0.038721, 0.053749 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightFinger2_2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightFinger2_2"
+								m_vMinBounds = [ -0.103583, -0.057393, -0.034325 ]
+								m_vMaxBounds = [ 0.010278, 0.025645, 0.040326 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightFinger3_2"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightFinger3_2"
+								m_vMinBounds = [ -0.098698, -0.054011, -0.0487 ]
+								m_vMaxBounds = [ 0.038492, 0.026009, 0.020562 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Right_guard"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Right_guard"
+								m_vMinBounds = [ -0.00992, 0.007575, -0.110557 ]
+								m_vMaxBounds = [ 0.311692, 0.196663, 0.056419 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "Rshoulder"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "Rshoulder"
+								m_vMinBounds = [ -0.453674, -0.42139, -0.131229 ]
+								m_vMaxBounds = [ 0.176492, 0.22405, 0.160718 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "rope_l_b_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "rope_l_b_BLP"
+								m_vMinBounds = [ -0.024501, -0.269423, -0.009467 ]
+								m_vMaxBounds = [ 0.02257, 0.026912, 0.030544 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "rope_r_b_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "rope_r_b_BLP"
+								m_vMinBounds = [ -0.02257, -0.269426, -0.009467 ]
+								m_vMaxBounds = [ 0.024501, 0.026909, 0.030544 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "LeftToe"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "LeftToe"
+								m_vMinBounds = [ -0.052718, -0.045215, -0.070853 ]
+								m_vMaxBounds = [ 0.102138, 0.061823, 0.100728 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "RightToe"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "RightToe"
+								m_vMinBounds = [ -0.102772, -0.045215, -0.070854 ]
+								m_vMaxBounds = [ 0.052084, 0.061823, 0.100727 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+							{
+								m_name = "skirt_f_b_BLP"
+								m_sSurfaceProperty = ""
+								m_nGroupId = 0
+								m_sBoneName = "skirt_f_b_BLP"
+								m_vMinBounds = [ -0.185134, -0.41119, -0.046882 ]
+								m_vMaxBounds = [ 0.185134, 0.214034, 0.008165 ]
+								m_bTranslationOnly = false
+								m_cRenderColor = [ 0, 0, 0, 0 ]
+							},
+						]
+					},
+				]
+				m_AutoCreateSetName = ""
+			}
+		},
+	]
+	m_pAttachmentLists = [  ]
+	m_pAnimGroup = 
+	{
+		m_pObject = 
+		{
+			m_Name = ""
+			m_pReferenceSkeleton = 
+			{
+				m_pObject = null
+			}
+			m_pBoneFlagList = 
+			{
+				m_pObject = null
+			}
+			m_pSeqGroup = 
+			{
+				m_pObject = null
+			}
+			m_pAnimGroups = [  ]
+			m_Vanim = [  ]
+			m_sScripts = [  ]
+			m_folderNames = [  ]
+			m_sCompileScripts = [  ]
+		}
+	}
+	m_pMaterialGroupList = 
+	{
+		m_pObject = null
+	}
+	m_pMeshGroupList = 
+	{
+		m_pObject = null
+	}
+	m_pLodGroupList = 
+	{
+		m_pObject = null
+	}
+	m_pPropBreakableList = 
+	{
+		m_pObject = null
+	}
+	m_pPropDataList = 
+	{
+		m_pObject = null
+	}
+	m_pConstraintLists = [  ]
+	m_collision = ""
+	m_softbody = ""
+	m_sMDLFilename = ""
+	m_sOffsetHitboxSets = [  ]
+	m_vHitboxSetOffset = [ 0.0, 0.0, 0.0 ]
+	m_scriptFiles = [  ]
+	m_pMaterialRemapList = 
+	{
+		m_vMaterialRemapList = 
+		[
+			{
+				m_sSearchMaterial = "sv1100_body_a__cgl_cgl.vmat"
+				m_sReplaceMaterial = "materials/lvbu/lvbu_body_a.vmat"
+			},
+			{
+				m_sSearchMaterial = "sv1100_body_a_1_cgl_cgl.vmat"
+				m_sReplaceMaterial = "materials/lvbu/lvbu_body_a.vmat"
+			},
+			{
+				m_sSearchMaterial = "sv1100_body_a_2_cgl_cgl.vmat"
+				m_sReplaceMaterial = "materials/lvbu/lvbu_body_a.vmat"
+			},
+			{
+				m_sSearchMaterial = "sv1100_skin_a__cgl_cgl.vmat"
+				m_sReplaceMaterial = "materials/lvbu/lvbu_head.vmat"
+			},
+			{
+				m_sSearchMaterial = "sv1100_hair_a__cgl_cgl.vmat"
+				m_sReplaceMaterial = "materials/lvbu/lvbu_hair.vmat"
+			},
+			{
+				m_sSearchMaterial = "sv11_wp000_a_1_cgl.vmat"
+				m_sReplaceMaterial = "models/lvbu/flayer.vmat"
+			},
+		]
+	}
+	m_flFbxScale = 1.0
+	m_flQCScale = 1.0
+	m_vOrigin = [ 0.0, 0.0, 0.0 ]
+	m_pPsfList = null
+	m_keyValueText = ""
+	m_bStaticProp = false
+	m_bEnableClothProcessing = true
+	m_flClothEnableThreshold = 0.05
+	m_nMaxClothVertsPerMesh = 2048
+	m_bBuildClothBoneHierarchy = false
+	m_nNavType = "AUTH_NAV_MESH"
+	m_bMakeUniqueVMeshes = false
+	m_bMakeImplicitBindPoseSequence = false
+	m_bAdjustSkeletonFromBoneFlags = false
+	m_bHiddenAssetFlag = false
+	m_pAnimGroups = [  ]
+}

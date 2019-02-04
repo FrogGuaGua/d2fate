@@ -1,0 +1,5 @@
+#base "throw_charm.txt"
+#base "foxs_wedding.txt"
+#base "armed_up.txt"
+#base "charms.txt"
+#base "amaterasu.txt"

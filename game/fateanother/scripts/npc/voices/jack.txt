@@ -1,0 +1,55 @@
+"FATEVoices"
+{
+	"npc_dota_hero_storm_spirit"
+	{
+		"Spawn"
+		{
+			"01"						"Jack.Summon"
+		}
+		
+		"Move"
+		{
+			"01"						"jack_move_01"
+			"02"						"jack_move_02"
+		}
+		
+		"Attack"
+		{
+			"01"						"jack_attack_01"
+			"02"						"jack_attack_02"
+			"03"						"jack_attack_03"
+		}
+		
+		"Cast"
+		{
+			"01"						"jack_cast"
+		}
+		
+		"Hurt"
+		{
+			"01"						"jack_hurt_01"
+		}
+		
+		"Respawn"
+		{
+			"01"						"jack_other_01"
+			"02"						"jack_other_02"
+			"03"						"jack_other_03"
+			"04"						"jack_other_04"
+			"05"						"jack_other_05"
+		}
+		
+		"Death"
+		{
+			"01"						"jack_death_01"
+			"02"						"jack_death_02"
+			"03"						"jack_death_03"
+		}
+		
+		"Kill"
+		{
+			"01"						"jack_kill_01"
+			"02"						"jack_kill_02"
+		}
+	}
+}
