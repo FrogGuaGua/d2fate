@@ -16,7 +16,7 @@
         "RequiredLevel"                                 "25"
         "LevelsBetweenUpgrades"                         "1"
 
-        "AbilityCooldown"                               "1 0.5"
+        "AbilityCooldown"                               "0.7 0.3"
 
         "AbilitySpecial"
         {
@@ -28,12 +28,12 @@
             "02"
             {
                 "var_type"                              "FIELD_FLOAT"
-                "agi_ratio"                             "0.7 1.2"
+                "agi_ratio"                             "0.5 0.75"
             }
             "01"
             {
                 "var_type"                              "FIELD_FLOAT"
-                "agi_ratio_revoked"                     "1.0 2.0"
+                "agi_ratio_revoked"                     "0.75 1.0"
             }
         }
     }

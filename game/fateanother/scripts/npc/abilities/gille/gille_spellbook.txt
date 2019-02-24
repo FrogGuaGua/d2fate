@@ -1,0 +1,74 @@
+//=================================================================================================================
+// Gille : Spellbook
+//=================================================================================================================
+
+"DOTAAbilities"
+{   
+    "gille_spellbook"
+    {
+		    "BaseClass"						"ability_datadriven"
+		    "MaxLevel"						"5"
+	    	"RequiredLevel"					"1"
+		    "LevelsBetweenUpgrades"			"1"
+		    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		    "AbilityTextureName"			"custom/gille_spellbook"
+		    "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		    "AnimationPlaybackRate"			"1.0"
+	    	"AbilityCastPoint"				"0"
+            "precache"
+           {
+           }
+    
+        	"AbilitySpecial"
+	     {
+	     }
+
+     	"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gille/gille_spellbook"
+				"Function"		"OnSpellbookOpen"
+			}
+		}
+        "OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gille/gille_spellbook"
+				"Function"		"OnSpellbookUpgrade"
+			}
+		}
+
+    }
+
+    "gille_spellbook_close"
+    {
+		    "BaseClass"						"ability_datadriven"
+		    "MaxLevel"						"1"
+	    	"RequiredLevel"					"1"
+		    "LevelsBetweenUpgrades"			"1"
+		    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		    "AbilityTextureName"			"silencer_last_word"
+		    "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		    "AnimationPlaybackRate"			"1.0"
+	    	"AbilityCastPoint"				"0"
+            "precache"
+           {
+           }
+    
+        	"AbilitySpecial"
+	     {
+	     }
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gille/gille_spellbook"
+				"Function"		"OnSpellbookClose"
+			}
+		}
+    }
+
+}

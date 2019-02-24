@@ -1,0 +1,3 @@
+#base "gille_spellbook_of_prelati_pain.txt"
+#base "gille_spellbook_of_prelati_blind.txt"
+#base "gille_spellbook.txt"

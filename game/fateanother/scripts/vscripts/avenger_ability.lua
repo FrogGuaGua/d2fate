@@ -274,12 +274,10 @@ function OnTZStart(keys)
 			ParticleManager:ReleaseParticleIndex( particle )
 		end)
 		DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-		if caster.IsOverdriveAcquired and TZCount <= 2 then
-			local i = RandomInt(0,1)
-			if caster:HasModifier("modifier_murderous_instinct") and i == 1 then
-				local r = keys.ability:GetLevel() * 0.3 + 0.2
-				DoDamage(caster, target, caster:GetAttackDamage() * r, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
-				target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 1.0})
+		if caster.IsOverdriveAcquired then
+			local i = math.random(0,1)
+			if i == 1 then
+				print(i)
 				caster:PerformAttack( target, true, true, true, true, false, false, true )
 			end		
 		end

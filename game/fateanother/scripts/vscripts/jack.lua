@@ -1,5 +1,10 @@
+
+
 function OnMissThink(caster)
     ProjectileManager:ProjectileDodge(caster)
+    Timers:CreateTimer(0.2,function()
+        ProjectileManager:ProjectileDodge(caster)
+    end)
 end
 
 function JackCheckCombo(caster)
@@ -17,9 +22,11 @@ function JackCheckCombo(caster)
 end
 
 function AddMairaCurseCount(keys)
-    local currentStack = keys.target:GetModifierStackCount("modifier_curse_maria", keys.ability)
+    local target = keys.target
+    local currentStack = target:GetModifierStackCount("modifier_curse_maria", keys.ability)
     if keys.target:HasModifier("modifier_curse_maria") then 
         keys.target:SetModifierStackCount("modifier_curse_maria", keys.ability, currentStack + 1)
+        ParticleManager:SetParticleControl( target.cursefx, 1, Vector( 0, currentStack + 1, 0 ) )
     end	
 end
 
@@ -31,11 +38,13 @@ function OnBackstabAttackLanded(keys)
         DoDamage(keys.caster, target,caster:GetAttackDamage() * keys.Radio, DAMAGE_TYPE_PURE, 0, keys.ability, false)
         giveUnitDataDrivenModifier(caster,target, "stunned", 0.1)
         giveUnitDataDrivenModifier(caster,target, "silenced", keys.Duration)
-        ability:ApplyDataDrivenModifier(caster,caster, "modifier_backstab_aspd", {Duration = 2.0})
+        ability:ApplyDataDrivenModifier(caster,caster, "modifier_backstab_aspd", {})
         if caster.IsUshiroAcquired == true then
-            ability:ApplyDataDrivenModifier(caster,caster, "modifier_backstab_cooldown", {Duration = 2.0})
+            ability:ApplyDataDrivenModifier(caster,caster, "modifier_backstab_cooldown", {duration = 1.0})
+            ability:StartCooldown(1.0)
         else
-            ability:ApplyDataDrivenModifier(caster,caster, "modifier_backstab_cooldown", {Duration = 10.0})
+            ability:ApplyDataDrivenModifier(caster,caster, "modifier_backstab_cooldown", {duration = 5.0})
+            ability:StartCooldown(5.0)
         end
         AddMairaCurseCount(keys)    
         target:EmitSound("Jack.BackHit")
@@ -375,7 +384,7 @@ function OnWaspStingStart(keys)
         damage = damage + 50
     end
     if diff <= 325 then
-        if target:GetMaxHealth() * 0.3 > target:GetHealth()  then
+        if target:GetMaxHealth() * 0.35 > target:GetHealth()  then
             damage = damage * 2
         end
         target:EmitSound("Jack.W")
@@ -391,17 +400,23 @@ function OnWaspStingStart(keys)
         AddMairaCurseCount(keys)
         if caster:HasModifier("jack_maria_the_ripper_start") then
             caster:RemoveModifierByName("jack_maria_the_ripper_start")
+            target.cursefx =  ParticleManager:CreateParticle( "particles/custom/jack/maria_the_ripper_curse.vpcf", PATTACH_CUSTOMORIGIN, target )
+            ParticleManager:SetParticleControlEnt( target.cursefx, 0, target, PATTACH_POINT_FOLLOW, "attach_origin", caster:GetAbsOrigin(), true )
+            ParticleManager:SetParticleControl( target.cursefx, 1, Vector( 0, 1, 0 ) )
             caster.cursetarget = target
             keys.ability:ApplyDataDrivenModifier( caster, target, "modifier_curse_maria_tigger", {})
             keys.ability:ApplyDataDrivenModifier( caster, target, "modifier_curse_maria", {})
             caster:FindAbilityByName("jack_wasp_sting"):EndCooldown()
-            caster:FindAbilityByName("jack_wasp_sting"):StartCooldown(0.5)
+            caster:FindAbilityByName("jack_wasp_sting"):StartCooldown(0.3)
             target:SetModifierStackCount("modifier_curse_maria", keys.ability, 1)
             caster.oncurseeffect = true
             caster:SwapAbilities("jack_maria_the_ripper", "jack_maria_curse_tigger", false, true) 
             Timers:CreateTimer('jack_maria_curse',{
                 endTime = 7.05,
                 callback = function()
+                    ParticleManager:DestroyParticle( target.cursefx, true )
+                    ParticleManager:ReleaseParticleIndex( target.cursefx )
+                    target.cursefx = nil
                     local currentAbil = caster:GetAbilityByIndex(6)
                     if currentAbil:GetAbilityName() ~= "jack_maria_the_ripper" or caster.oncurseeffect then
                         caster:SwapAbilities("jack_maria_curse_tigger", "jack_maria_the_ripper", false, true) 
@@ -470,13 +485,14 @@ function OnWaspStingHit(keys)
     if caster.IsMurderAcquired then
         damage = damage + 100
     end
+    --local ability = keys.ability
     if caster.IsUshiroAcquired == true then
         DoDamage(caster,target, caster:GetAttackDamage(), DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
     end
     damage = damage + ((target:GetMaxHealth() - target:GetHealth())*0.16)
     DoDamage(caster,target, damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
     if caster.IsFemaleSlayerAcquired and IsFemaleServant(target) then
-        DoDamage(caster, target, damage*0.2, DAMAGE_TYPE_PURE, 0, ability, false)
+        DoDamage(caster, target, (damage+caster:GetAttackDamage()) *0.2, DAMAGE_TYPE_PURE, 0, keys.ability, false)
     end
     local Fx1 = ParticleManager:CreateParticle( "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_blood_b.vpcf", PATTACH_ABSORIGIN_FOLLOW, target )
     ParticleManager:SetParticleControl( Fx1, 1, target:GetAbsOrigin() + Vector(0, 0, 100) )
@@ -497,13 +513,16 @@ function OnWaspStingHit(keys)
         --caster:FindAbilityByName("jack_wasp_sting"):EndCooldown()
         target:SetModifierStackCount("modifier_curse_maria", keys.ability, 1)
         caster:EmitSound("Jack.MariaTheRipperStart")
+        target.cursefx =  ParticleManager:CreateParticle( "particles/custom/jack/maria_the_ripper_curse.vpcf", PATTACH_CUSTOMORIGIN, target )
+		ParticleManager:SetParticleControlEnt( target.cursefx, 0, target, PATTACH_POINT_FOLLOW, "attach_origin", caster:GetAbsOrigin() , true )
+        ParticleManager:SetParticleControl( target.cursefx, 1, Vector( 0, 1, 0 ) )
         if caster.stingtarget ~= nil then caster.stingtarget = nil end
         caster.stingtarget = target
 
         caster:SwapAbilities("jack_wasp_sting", "jack_shadow_strike", false, true) 
         caster.isstingchainend = true
         Timers:CreateTimer('jack_sting_chain',{
-            endTime = 1 ,
+            endTime = 3 ,
             callback = function()
                 local currentAbil = caster:GetAbilityByIndex(2)
                 if currentAbil:GetAbilityName() ~= "jack_wasp_sting" or caster.issnakechainend then
@@ -517,6 +536,9 @@ function OnWaspStingHit(keys)
         Timers:CreateTimer('jack_maria_curse',{
             endTime = 7.05,
             callback = function()
+                ParticleManager:DestroyParticle( target.cursefx, true )
+                ParticleManager:ReleaseParticleIndex( target.cursefx )
+                target.cursefx = nil
                 local currentAbil = caster:GetAbilityByIndex(6)
                 if currentAbil:GetAbilityName() ~= "jack_maria_the_ripper" or caster.oncurseeffect then
                     caster:SwapAbilities("jack_maria_curse_tigger", "jack_maria_the_ripper", false, true) 
@@ -544,6 +566,7 @@ function OnShadowStrikeStart(keys)
     if distance <= 3000 and target:IsAlive() then
         caster:SetAbsOrigin(targetabs - target:GetForwardVector():Normalized()*100)
         DoDamage(caster,target, keys.damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+        caster:PerformAttack( target, true, true, true, true, false, false, true )
         target:AddNewModifier(caster, caster, "modifier_stunned", {Duration = keys.mini_stun})
         local Fx1 = ParticleManager:CreateParticle( "particles/units/heroes/hero_grimstroke/grimstroke_cast_ink_swell.vpcf", PATTACH_CUSTOMORIGIN, target )
         ParticleManager:SetParticleControl( Fx1, 0, target:GetAbsOrigin() )
@@ -573,7 +596,7 @@ function GetBwteenPoint(startpoint,endpoint,distance)
 end
 
 
-function OnBatGrabStart(keys)
+function OnBatGrabStart(keys)               -- unuse
     local target = keys.target              --discard
     local caster = keys.caster
     local jack   = Physics:Unit(caster)
@@ -667,55 +690,49 @@ function OnBatFallenStart(keys)
     local bodyFxIndex = ParticleManager:CreateParticle("particles/econ/events/fall_major_2015/teleport_end_fallmjr_2015_lvl2_black_b.vpcf",PATTACH_CUSTOMORIGIN_FOLLOW, caster )
     ParticleManager:SetParticleControl(bodyFxIndex, 3, caster:GetAbsOrigin()+Vector(0,0,400))
     Timers:CreateTimer(0.7,function()
-        keys.ability:ApplyDataDrivenModifier(caster,caster,"jack_bat_fallen",{Duration = 3.5})
+        
         giveUnitDataDrivenModifier(caster, caster, "jump_pause", 0.7)
         --caster:Cancel()
         StartAnimation(caster, {duration=0.7, activity=ACT_DOTA_CAST_ABILITY_3, rate=0.7})
     end)
     Timers:CreateTimer(1.4,function()
-        local origin = caster:GetAbsOrigin()
-        local targets = FindUnitsInRadius(caster:GetTeam(), origin, nil,keys.ratio, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
-        local count = 0
-        print(targets)
-        for k,v in pairs(targets) do
-            DoDamage(caster, v, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
-            if caster.IsFemaleSlayerAcquired and IsFemaleServant(v) then
-                DoDamage(caster, v, damage*0.2, DAMAGE_TYPE_PURE, 0, ability, false)
-            end
-            count = count + 1
-            v:AddNewModifier(caster, caster, "modifier_stunned", {Duration = keys.mini_stun})
-        end
-        if count == 1 then
-            DoDamage(caster, targets[1], damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
-            if caster.IsFemaleSlayerAcquired and IsFemaleServant(targets[1]) then
-                DoDamage(caster, targets[1], damage*0.2, DAMAGE_TYPE_PURE, 0, ability, false)
-            end
-        end
-        if caster.IsInformationErasureAcquired then
-            OnMissThink(caster)
-        end
-        local radius = keys.ratio
-        local circleFxIndex = ParticleManager:CreateParticle( "particles/econ/items/legion/legion_overwhelming_odds_ti7/legion_commander_odds_ti7_ground_pillar_black.vpcf", PATTACH_CUSTOMORIGIN, caster )
-        ParticleManager:SetParticleControl( circleFxIndex, 0, caster:GetAbsOrigin() )
-        ParticleManager:SetParticleControl( circleFxIndex, 1, Vector( radius, radius, radius ) )
-        ParticleManager:SetParticleControl( circleFxIndex, 2, Vector( 8, 0, 0 ) )
-        ParticleManager:SetParticleControl( circleFxIndex, 3, Vector( 100, 255, 255 ) )
-        caster:EmitSound("Jack.BatFallen")
         ParticleManager:DestroyParticle( bodyFxIndex, false )
         ParticleManager:ReleaseParticleIndex( bodyFxIndex )
-    end)
-    Timers:CreateTimer(2.0,function()
-
-        ParticleManager:DestroyParticle( circleFxIndex, false )
-        ParticleManager:ReleaseParticleIndex( circleFxIndex )
+        if caster:IsAlive() then         
+            keys.ability:ApplyDataDrivenModifier(caster,caster,"jack_bat_fallen",{Duration = 3.0})    
+            local origin = caster:GetAbsOrigin()
+            local targets = FindUnitsInRadius(caster:GetTeam(), origin, nil,keys.ratio, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
+            local count = 0
+        --print(targets)
+            for k,v in pairs(targets) do
+                DoDamage(caster, v, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+                if caster.IsFemaleSlayerAcquired and IsFemaleServant(v) then
+                      DoDamage(caster, v, damage*0.2, DAMAGE_TYPE_PURE, 0, ability, false)
+                end
+                count = count + 1
+                v:AddNewModifier(caster, caster, "modifier_stunned", {Duration = keys.mini_stun})
+            end
+            if count == 1 then
+                DoDamage(caster, targets[1], damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+                if caster.IsFemaleSlayerAcquired and IsFemaleServant(targets[1]) then
+                      DoDamage(caster, targets[1], damage*0.2, DAMAGE_TYPE_PURE, 0, ability, false)
+                end
+            end
+            if caster.IsInformationErasureAcquired then
+               OnMissThink(caster)
+            end
+            local radius = keys.ratio
+            local circleFxIndex = ParticleManager:CreateParticle( "particles/econ/items/legion/legion_overwhelming_odds_ti7/legion_commander_odds_ti7_ground_pillar_black.vpcf", PATTACH_CUSTOMORIGIN, caster )
+            ParticleManager:SetParticleControl( circleFxIndex, 0, caster:GetAbsOrigin() )
+            caster:EmitSound("Jack.BatFallen")
+         end
     end)
 end
 
 function MRSound(keys)
     local caster = keys.caster
     local soundindex = RandomInt(1,4)
-    if soundindex == 3 then caster:EmitSound("Jack.MariaTheRipperCast2") 
-    elseif soundindex == 4 then caster:EmitSound("Jack.MariaTheRipperCast3") 
+    if soundindex == 3 or soundindex == 4 then caster:EmitSound("Jack.MariaTheRipperCast2") 
     else 
         caster:EmitSound("Jack.MariaTheRipperCast1") 
     end
@@ -725,29 +742,31 @@ function OnMariaTheRipperStart(keys)
     local caster = keys.caster
     local ability = keys.ability
     local damage = keys.damage
-    ability:ApplyDataDrivenModifier(caster,caster,"jack_maria_the_ripper_start",{Duration = 6.7})
+    giveUnitDataDrivenModifier(caster, caster, "modifier_silence", 0.7)
     if caster.IsInformationErasureAcquired then
         ability:ApplyDataDrivenModifier(caster,caster,"modifier_curse_maria_casting",{Duration = 6.7})
     end
-    giveUnitDataDrivenModifier(caster, caster, "modifier_silence", 0.7)
+    Timers:CreateTimer(0.7,function()
+        ability:ApplyDataDrivenModifier(caster,caster,"jack_maria_the_ripper_start",{Duration = 6.0})
+    end)
     if caster.IsMurderAcquired then
         caster:FindAbilityByName("jack_wasp_sting"):EndCooldown()
     end 
     caster.cursedamage=damage
-    local skillq = caster:GetAbilityByIndex(0):GetName()
-    if skillq == "jack_snake_step" then
-        caster:SwapAbilities("jack_snake_step", "jack_snake_raid", false, true) 
-        caster.issnakechainend = true
-        Timers:CreateTimer('jack_snake_chain',{
-        endTime = 3 ,
-        callback = function()
-            local currentAbil = caster:GetAbilityByIndex(1)
-            if currentAbil:GetAbilityName() ~= "jack_snake_step" or caster.issnakechainend then
-                caster:SwapAbilities("jack_snake_raid", "jack_snake_step", false, true) 
-                caster.issnakechainend = false
-            end
-        end})
-    end
+    --local skillq = caster:GetAbilityByIndex(0):GetName()
+    --if skillq == "jack_snake_step" then
+        --caster:SwapAbilities("jack_snake_step", "jack_snake_raid", false, true) 
+        --caster.issnakechainend = true
+        --Timers:CreateTimer('jack_snake_chain',{
+        --endTime = 3 ,
+        --callback = function()
+            --local currentAbil = caster:GetAbilityByIndex(1)
+            --if currentAbil:GetAbilityName() ~= "jack_snake_step" or caster.issnakechainend then
+               -- caster:SwapAbilities("jack_snake_raid", "jack_snake_step", false, true) 
+               -- caster.issnakechainend = false
+            --end
+        --end})
+    --end
 end
 
 function OnCurseTick(keys)
@@ -765,7 +784,7 @@ function OnCurseTrigger(keys)
     local target = keys.target
     local ability = keys.ability
     local currentStack = keys.target:GetModifierStackCount("modifier_curse_maria", keys.ability)
-    print(currentStack)
+    --print(currentStack)
     local basedmg = caster.cursedamage
     local currectdmg = basedmg
     for i=0,currentStack do
@@ -824,33 +843,76 @@ end
 
 function OnCurseTargetDeath(keys)
     local caster = keys.caster
-    local caster = keys.caster
     local target = caster.cursetarget
-    local trueability = caster:FindAbilityByName("jack_maria_curse_tigger")
-    local SwapAbilitie = caster:GetAbilityByIndex(6)
-    if trueability == SwapAbilitie then
-       caster:SwapAbilities("jack_maria_curse_tigger", "jack_maria_the_ripper", false, true)
-       Timers:RemoveTimer('jack_maria_curse')
+    if target:HasModifier("modifier_curse_maria") then
        target:RemoveModifierByName("modifier_curse_maria_tigger")
        target:RemoveModifierByName("modifier_curse_maria")
+       local currentAbil = caster:GetAbilityByIndex(6)
+       if currentAbil:GetAbilityName() ~= "jack_maria_the_ripper"  then
+           caster:SwapAbilities("jack_maria_curse_tigger", "jack_maria_the_ripper", false, true) 
+           caster.oncurseeffect = nil
+       end
+       Timers:RemoveTimer('jack_maria_curse')
        caster.oncurseeffect = nil
        caster.cursetarget = nil
        caster:EmitSound("Jack.CurseTrigger")
+       if target.cursefx ~= nil then
+       ParticleManager:DestroyParticle( target.cursefx, true )
+       ParticleManager:ReleaseParticleIndex( target.cursefx )
+       target.cursefx = nil
+       end
     end
 end
 
+function OnCurseTargetDestory(keys)
+    local caster = keys.caster
+    local target = caster.cursetarget
+    print("im run")
+    local currentAbil = caster:GetAbilityByIndex(6)
+    if currentAbil:GetAbilityName() ~= "jack_maria_the_ripper"  then
+        caster:SwapAbilities("jack_maria_curse_tigger", "jack_maria_the_ripper", false, true) 
+        caster.oncurseeffect = nil
+     end
+       Timers:RemoveTimer('jack_maria_curse')
+       caster.oncurseeffect = nil
+       caster.cursetarget = nil
+       caster:EmitSound("Jack.CurseTrigger")
+       if target.cursefx ~= nil then
+       ParticleManager:DestroyParticle( target.cursefx, true )
+       ParticleManager:ReleaseParticleIndex( target.cursefx )
+       target.cursefx = nil
+       end
+end
 
 function OnMariaCurseTigger(keys)
     local caster = keys.caster
-    local target = caster.cursetarget
-    if trueability == SwapAbilitie then
-        caster:SwapAbilities("jack_maria_curse_tigger", "jack_maria_the_ripper", false, true)
-        Timers:RemoveTimer('jack_maria_curse')
+    local target=caster.cursetarget
+    if target:HasModifier("modifier_curse_maria")  then
         target:RemoveModifierByName("modifier_curse_maria_tigger")
         target:RemoveModifierByName("modifier_curse_maria")
+    end
+end
+
+function OnMariaCurseTiggerOld(keys)
+    local caster = keys.caster
+    local target = caster.cursetarget
+    if target:HasModifier("modifier_curse_maria")  then
+        target:RemoveModifierByName("modifier_curse_maria_tigger")
+        target:RemoveModifierByName("modifier_curse_maria")
+        local currentAbil = caster:GetAbilityByIndex(6)
+        if currentAbil:GetAbilityName() ~= "jack_maria_the_ripper"  then
+            caster:SwapAbilities("jack_maria_curse_tigger", "jack_maria_the_ripper", false, true) 
+            caster.oncurseeffect = nil
+        end
+        Timers:RemoveTimer('jack_maria_curse')
         caster.oncurseeffect = nil
         caster.cursetarget = nil
         caster:EmitSound("Jack.CurseTrigger")
+        if target.cursefx ~= nil then
+        ParticleManager:DestroyParticle( target.cursefx, true )
+        ParticleManager:ReleaseParticleIndex( target.cursefx )
+        target.cursefx = nil
+        end
      end
 end
 

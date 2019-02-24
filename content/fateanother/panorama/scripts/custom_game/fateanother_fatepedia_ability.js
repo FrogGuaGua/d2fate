@@ -22,7 +22,8 @@ var heroes = [
 	"npc_dota_hero_queenofpain",
 	"npc_dota_hero_windrunner",
 	"npc_dota_hero_drow_ranger",
-	"npc_dota_hero_tidehunter"
+	"npc_dota_hero_tidehunter",
+	"npc_dota_hero_storm_spirit",
 ]
 
 var names = [
@@ -49,7 +50,8 @@ var names = [
 	"Rider of Black(Apocrypha)",
 	"Caster(Extra), N.R",
 	"Archer of Red(Apocrypha)",
-	"Lancer(Extra)"
+	"Lancer(Extra)",
+	"Jack the Ripper",
 ]
 
 
@@ -78,6 +80,7 @@ var abilities = [
 	["nursery_rhyme_white_queens_enigma", "nursery_rhyme_the_plains_of_water", "nursery_rhyme_doppelganger", "nursery_rhyme_shapeshift", "nursery_rhyme_nameless_forest", "nursery_rhyme_queens_glass_game"],
 	["atalanta_celestial_arrow", "atalanta_calydonian_hunt", "atalanta_traps", "atalanta_crossing_arcadia" , "atalanta_priestess_of_the_hunt", "atalanta_tauropolos_new"],
 	["vlad_rebellious_intent", "vlad_ceremonial_purge", "vlad_cursed_lance", "vlad_transfusion", "vlad_battle_continuation", "vlad_kazikli_bey"],
+	["jack_snake_raid","jack_wasp_sting","jack_bat_fallen","jack_backstab","jack_surgery","jack_maria_the_ripper","jack_shadow_strike"],
 ]
 
 var attributes = [
@@ -105,6 +108,7 @@ var attributes = [
 	["nursery_rhyme_attribute_forever_together","nursery_rhyme_attribute_nightmare","nursery_rhyme_attribute_reminiscence","nursery_rhyme_attribute_improve_queens_glass_game"],
 	["atalanta_attribute_arrows_of_the_big_dipper", "atalanta_attribute_hunters_mark", "atalanta_attribute_golden_apple", "atalanta_attribute_crossing_arcadia_plus","atalanta_attribute_bow_of_heaven"],
 	["vlad_attribute_innocent_monster", "vlad_attribute_protection_of_faith", "vlad_attribute_improved_impaling", "vlad_attribute_instant_curse", "vlad_attribute_bloodletter"],
+	["jack_attribute_information_erasure","jack_attribute_female_slayer","jack_attribute_ushiro","jack_attribute_murder"],
 ]
 
 var comboes = [
@@ -132,6 +136,7 @@ var comboes = [
 	"nursery_rhyme_story_for_somebodys_sake",
 	"atalanta_phoebus_catastrophe_proxy",
 	"vlad_combo",
+	"jack_the_mist"
 ]
 
 var guidelinks = [

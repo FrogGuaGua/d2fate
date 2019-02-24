@@ -2449,12 +2449,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"movespeed"			"150"
+				"movespeed"			"175"
 			}	
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"attackspeed"			"50"
+				"attackspeed"			"100"
 			}	
 			"03"
 			{
@@ -2552,7 +2552,7 @@
 	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
 
 	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-	    "AbilityCooldown"		"90"
+	    "AbilityCooldown"		"10"
 	    "precache"
 	    {
 	    }

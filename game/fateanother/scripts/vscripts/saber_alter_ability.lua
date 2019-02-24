@@ -16,7 +16,7 @@ function OnDerangeStart(keys)
 		local maximum_charges = keys.ability:GetLevelSpecialValueFor( "maximum_charges", keys.ability:GetLevel() - 1 )
 		
 		-- Check the amount of next charge
-		local next_charge = RandomInt(1, 3)
+		local next_charge = RandomInt(1, 7)
 
 		-- Check if the charges will become over capacity
 		if not caster.ManaBlastCount then caster.ManaBlastCount = 0 end	-- This might be because I was debugging it to double check nil value
@@ -69,7 +69,7 @@ function OnUFStart(keys)
 	local bonusDamage = 0
 
 	if caster.IsFerocityImproved then
-		bonusDamage = caster:GetStrength()*1.5 + caster:GetIntellect()*1.5
+		bonusDamage = caster:GetStrength()*1.0 + caster:GetIntellect()*1.5
 	end
 	DSCheckCombo(caster, keys.ability)
 	Timers:CreateTimer(function()
@@ -108,7 +108,7 @@ function OnMBStart(keys)
 
 	if caster.IsManaShroudImproved == true then 
 		keys.Radius = keys.Radius + 200 
-		keys.Damage = keys.Damage + 3*caster:GetIntellect()
+		keys.Damage = keys.Damage + 5 * caster:GetIntellect()
 	end
 	caster:EmitSound("Saber_Alter.ManaBurst") 
 	local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, keys.Radius

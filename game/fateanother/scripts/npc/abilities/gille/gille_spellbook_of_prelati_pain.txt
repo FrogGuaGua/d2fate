@@ -1,0 +1,121 @@
+//=================================================================================================================
+// Gille : Spellbook of Prelati Pain
+//=================================================================================================================
+
+"DOTAAbilities"
+{   
+    "gille_spellbook_of_prelati_pain"
+    {
+		    "BaseClass"						"ability_datadriven"
+		    "MaxLevel"						"5"
+	    	"RequiredLevel"					"25"
+		    "LevelsBetweenUpgrades"			"1"
+		    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN |  DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+	    	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		    "AbilityTextureName"			"custom/gille_spellbook_of_prelati_pain"
+		    "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		    "AnimationPlaybackRate"			"1.0"
+            "AbilityCastRange"				"800"
+	     	"AbilityCastRangeBuffer"		"100"
+	    	"AbilityCastPoint"				"0.2"
+	    	"AbilityCooldown"				"5.0 5.0 5.0 5.0 5.0"
+	    	"AbilityManaCost"				"30"
+        
+
+            "precache"
+           {
+                "particle"                 "particles/econ/items/rubick/rubick_arcana/rbck_arc_venomancer_poison_nova_b.vpcf"
+                "particle"                 "particles/econ/items/viper/viper_immortal_tail_ti8/viper_immortal_ti8_nethertoxin_debuff_steam.vpcf"
+                
+           }
+    
+        	"AbilitySpecial"
+	  {
+      "01"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "damage_TT"	            "400 500 600 700 800"
+      }
+      "02"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "damage_per_hit"		        "20 25 30 35 40"
+      }
+       "03"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "duration"		        "10.0"
+      }
+       "04"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "interval"		        "0.5"
+      }
+       "04"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "contagion_aoe"		        "350"
+      }
+      "05"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "corpse_boom"		        "200 250 300 350 400"
+      }
+      "06"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "corpse_boom_ratio"		        "500"
+      }
+      "07"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "intratio"		        "4"
+      }
+	 }
+
+     	"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/gille/gille_spellbook_of_prelati_pain"
+				"Function"		"OnPainStart"
+                "contagion"     "%contagion_aoe"
+			}
+		}
+
+        "Modifiers"
+      {
+        "modifier_gille_spellbook_of_prelati_pain"
+        {
+            "IsDebuff"			"1" 
+            "EffectName"		"particles/econ/items/viper/viper_immortal_tail_ti8/viper_immortal_ti8_nethertoxin_debuff_steam.vpcf"
+			"EffectAttachType"	"follow_origin" 
+            "ThinkInterval"		"%interval"
+            "Duration"		    "%duration"
+            "Attributes"	  "MODIFIER_ATTRIBUTE_MULTIPLE"
+            "OnIntervalThink"
+	        {
+				"RunScript"
+				{
+					"ScriptFile"	"abilities/gille/gille_spellbook_of_prelati_pain"
+					"Function"		"OnPainThink"
+                    "damage"        "%damage_per_hit"
+				}
+			}
+            "OnDeath"
+	        {
+				"RunScript"
+				{
+					"ScriptFile"	"abilities/gille/gille_spellbook_of_prelati_pain"
+					"Function"		"OnPainDeath"
+                    "corpsedamage"  "%corpse_boom"
+                    "ratio"         "%corpse_boom_ratio"
+                    "intratio"      "%intratio"
+				}
+			}            
+        }
+
+       }
+      }
+    }

@@ -101,14 +101,14 @@ function CreateContextAbilityPanel(panel)
 
 function UpdateStatPanel(data)
 {
-	$("#STRAmount").text = data.STR + " / 50";
-	$("#AGIAmount").text = data.AGI +  " / 50";
-	$("#INTAmount").text = data.INT +  " / 50";
-	$("#DMGAmount").text = data.DMG +  " / 50";
-	$("#ARMORAmount").text = data.ARMOR +  " / 50";
-	$("#HPREGAmount").text = data.HPREG +  " / 50";
-	$("#MPREGAmount").text = data.MPREG +  " / 50";
-	$("#MSAmount").text = data.MS +  " / 50";
+	$("#STRAmount").text = (data.STR || 0 ) + " / 50";
+	$("#AGIAmount").text = (data.AGI || 0 ) +  " / 50";
+	$("#INTAmount").text = (data.INT || 0 ) +  " / 50";
+	$("#DMGAmount").text = (data.DMG || 0 )+  " / 50";
+	$("#ARMORAmount").text = (data.ARMOR || 0 ) +  " / 50";
+	$("#HPREGAmount").text = (data.HPREG || 0 ) +  " / 50";
+	$("#MPREGAmount").text = (data.MPREG || 0 ) +  " / 50";
+	$("#MSAmount").text = (data.MS || 0 ) +  " / 50";
 	$("#CustomizationShardNumber").text = data.ShardAmount;
 }
 

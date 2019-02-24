@@ -278,6 +278,7 @@ function OnRAStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_aspd_increase", {duration = ability:GetCooldown(ability:GetLevel())})
+	EmitAnnouncerSoundForPlayer("Lancer.RelentlessSpear",caster:GetPlayerID())
 	LancerCheckCombo(caster, ability)
 end
 
@@ -328,13 +329,15 @@ function OnGBTargetHit(keys)
 	DoDamage(caster, target, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 	target:AddNewModifier(caster, target, "modifier_stunned", {Duration = 1.0})
 	if target:GetHealth() < keys.HBThreshold then
-		if caster:HasModifier("modifier_aspd_increase") and caster:FindAbilityByName("lancer_5th_wesen_gae_bolg") and caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):IsCooldownReady() == false then
-			local combocd=caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):GetCooldownTimeRemaining()
-			caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):EndCooldown()
-			caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):StartCooldown(combocd-15)
-			caster:RemoveModifierByName("modifier_wesen_gae_bolg_cooldown")
-			caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):ApplyDataDrivenModifier(caster, caster, "modifier_wesen_gae_bolg_cooldown", {duration = combocd-3})
-		end
+		local reduce = caster:FindAbilityByName("lancer_5th_relentless_spear"):GetSpecialValueFor("reducecdfrome")
+		local combocd=caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):GetCooldownTimeRemaining()
+		caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):EndCooldown()
+		caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):StartCooldown(combocd-reduce)
+		caster:RemoveModifierByName("modifier_wesen_gae_bolg_cooldown")
+		caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):ApplyDataDrivenModifier(caster, caster, "modifier_wesen_gae_bolg_cooldown", {duration = combocd-reduce})
+		local masterCombo = caster.MasterUnit2:FindAbilityByName("lancer_5th_wesen_gae_bolg")
+		masterCombo:EndCooldown()
+		masterCombo:StartCooldown(combocd-reduce)
 		PlayHeartBreakEffect(ability, caster, target)
 	end  -- check for HB
 
@@ -627,13 +630,15 @@ function OnGBAOEHit(keys, projectile)
 	        --v:AddNewModifier(caster, v, "modifier_stunned", {Duration = 0.25})
 	        --v:AddNewModifier(v, nil, "modifier_knockback", modifierKnockback )
 			ApplyAirborne(caster, v, 0.25)
-			if caster:HasModifier("modifier_aspd_increase") and caster:FindAbilityByName("lancer_5th_wesen_gae_bolg") and caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):IsCooldownReady() == false then
-				local combocd=caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):GetCooldownTimeRemaining()
-				caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):EndCooldown()
-				caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):StartCooldown(combocd-3)
-				caster:RemoveModifierByName("modifier_wesen_gae_bolg_cooldown")
-				caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):ApplyDataDrivenModifier(caster, caster, "modifier_wesen_gae_bolg_cooldown", {duration = combocd-3})
-			end
+			local reduce = caster:FindAbilityByName("lancer_5th_relentless_spear"):GetSpecialValueFor("reducecdfromr")
+			local combocd=caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):GetCooldownTimeRemaining()
+			caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):EndCooldown()
+			caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):StartCooldown(combocd-reduce)
+			caster:RemoveModifierByName("modifier_wesen_gae_bolg_cooldown")
+			caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):ApplyDataDrivenModifier(caster, caster, "modifier_wesen_gae_bolg_cooldown", {duration = combocd-reduce})
+			local masterCombo = caster.MasterUnit2:FindAbilityByName("lancer_5th_wesen_gae_bolg")
+			masterCombo:EndCooldown()
+			masterCombo:StartCooldown(combocd-reduce)
 		end
 	    projectile:SetAbsOrigin(targetPoint)
 	    local fire = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_rainofchaos_start_breakout_fallback_mid.vpcf", PATTACH_ABSORIGIN, projectile)

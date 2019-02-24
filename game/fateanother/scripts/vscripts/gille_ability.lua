@@ -8,7 +8,7 @@ function OnMadnessStart(keys)
 	if not caster:HasModifier("modifier_madness_progress") then
 		caster:FindAbilityByName("gille_spellbook_of_prelati"):ApplyDataDrivenModifier(caster, caster, "modifier_madness_progress", {})
 	end
-	caster:SetModifierStackCount("modifier_madness_stack", caster, 0) 
+	caster:SetModifierStackCount("modifier_madness_stack", caster,0) 
 	caster.MadnessProgress = 0
 	AdjustMadnessStack(caster, 1)
 	UpdateMadnessProgress(caster)
@@ -18,30 +18,27 @@ function OnMadnessThink(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
 
-	local progress = 0.05 * 0.05
-	local maxMadness = 10
+	local progress = ( 5 + caster:GetIntellect() * 0.35 + (caster:FindModifierByName("modifier_attr_manaregen"):GetStackCount() * 1.5) or 0 ) *0.05
+	local maxMadness = 200
 	if caster.IsMentalPolluted then
-		progress = progress * 2
-		maxMadness = maxMadness + 5
+		progress = progress + 0.25
+		maxMadness = maxMadness + 100
 	end
 
 	if caster:GetModifierStackCount("modifier_madness_stack", caster) >= maxMadness then
 		caster.MadnessProgress = 0
+		AdjustMadnessStack(caster, caster.MadnessProgress)
 	else
-		caster.MadnessProgress = caster.MadnessProgress + progress
-		if caster.MadnessProgress > 1 then
-			caster.MadnessProgress = caster.MadnessProgress - 1
-			AdjustMadnessStack(caster, 1)
-		end
+		caster.MadnessProgress = progress
+		AdjustMadnessStack(caster, caster.MadnessProgress)
 	end
-
 	UpdateMadnessProgress(caster)
 end
 
 function AdjustMadnessStack(caster, adjustValue)
 	local ply = caster:GetPlayerOwner()
-	local maxMadness = 10
-	if caster.IsMentalPolluted then maxMadness = 15 end
+	local maxMadness = 200
+	if caster.IsMentalPolluted then maxMadness = 300 end
 	caster.MadnessStackCount = caster.MadnessStackCount + adjustValue
 
 
@@ -55,6 +52,7 @@ function AdjustMadnessStack(caster, adjustValue)
 	caster:RemoveModifierByName("modifier_madness_stack")
 	caster:FindAbilityByName("gille_spellbook_of_prelati"):ApplyDataDrivenModifier(caster, caster, "modifier_madness_stack", {})
 	caster:SetModifierStackCount("modifier_madness_stack", caster, caster.MadnessStackCount) 
+	caster:SetMana(caster.MadnessStackCount)
 end
 
 function UpdateMadnessProgress(caster)
@@ -78,13 +76,11 @@ function OnSelfishStart(keys)
 			return 0.2
 		end)
 	end]]
-	local duration = caster.MadnessStackCount / 5
+	local duration = 3
 	keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_selfish_debuff_aura", {duration = duration})
 	keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_selfish_self_invul", {duration = duration})
 	caster:EmitSound("Hero_Warlock.ShadowWord")
-	if not caster.IsMentalPolluted then
-		AdjustMadnessStack(caster, -15)
-	end
+	AdjustMadnessStack(caster, -75)
 	Timers:CreateTimer(duration, function() caster:StopSound("Hero_Warlock.ShadowWord") end)
 end
 
@@ -109,9 +105,9 @@ function OnThrowCorpseStart(keys)
 	
 	if caster.IsMentalPolluted then
 		keys.ability:EndCooldown()
-		keys.ability:StartCooldown(2)
+		keys.ability:StartCooldown(0.1)
 	end
-	AdjustMadnessStack(caster, -2)
+	AdjustMadnessStack(caster, -10)
 
 	local corpse = CreateUnitByName("gille_corpse", targetPoint, true, nil, nil, caster:GetTeamNumber())
 	corpse:EmitSound("Hero_Nevermore.Shadowraze")
@@ -122,7 +118,6 @@ function OnThrowCorpseStart(keys)
 		ParticleManager:ReleaseParticleIndex( particle )
 	end)
 	corpse:ForceKill(true)
-
 end
 
 function OnSummonDemonStart(keys)
@@ -180,9 +175,9 @@ function OnTormentStart(keys)
 	local targetPoint = keys.target_points[1]
 	local duration = keys.StunDuration
 
-	local madnessCost = math.floor(caster.MadnessStackCount / 2)
-	if madnessCost ~= 0 then AdjustMadnessStack(caster, -madnessCost) end
-	caster.TormentMadnessCost = madnessCost
+	local ManaCost = 40
+	AdjustMadnessStack(caster, -ManaCost)
+	
 
     local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	for k,v in pairs(targets) do
@@ -202,6 +197,13 @@ function OnTormentStart(keys)
 	EmitSoundOnLocationWithCaster(targetPoint, "ZC.Torment", caster)	
 end
 
+function OnOceanicThink(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local damage = keys.Damage
+	DoDamage(caster, target, 4, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+end
+
 function OnTormentThink(keys)
 	local caster = keys.caster
 	local target = keys.target
@@ -213,7 +215,7 @@ function OnGilleComboThink(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local damage = target:GetMaxHealth()*keys.DPS/100
-	DoDamage(caster, target, damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	DoDamage(caster, target, damage, DAMAGE_TYPE_PURE, 0, keys.ability, false)
 	--print("dealing damage")
 end
 
@@ -230,7 +232,7 @@ function OnTormentEnd(keys)
 	local victim = keys.target
 	local multiplier = 10
 	if caster.IsBlackMagicImproved then multiplier = 15 end
-	local damage = victim.AccumulatedDamage/100 * caster.TormentMadnessCost * multiplier
+	local damage = victim.AccumulatedDamage/100 * 3 * multiplier
 	print(damage)
 	DoDamage(caster, victim, damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 end
@@ -251,11 +253,8 @@ function OnECStart(keys)
 	end]]
 
 	-- store the madness cost
-	local madnessCost = math.floor(caster.MadnessStackCount / 2)
-	if madnessCost ~= 0 then AdjustMadnessStack(caster, -madnessCost) end
-	caster.ECMadnessCost = madnessCost
-
 	-- do initial explosion
+	AdjustMadnessStack(caster, -40)
 	ECExplode(keys, targetPoint, false)
 
 	-- find corpse generated by Caster and explode them
@@ -283,7 +282,7 @@ function ECExplode(keys, origin, bIsCorpse)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
 	local damage = keys.Damage
-	if bIsCorpse then damage = 100 + damage/4 end
+	if bIsCorpse then damage = damage/4 end
 
     local targets = FindUnitsInRadius(caster:GetTeam(), origin, nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	for k,v in pairs(targets) do
@@ -324,7 +323,7 @@ function OnECDemonExplode(keys) --Now Tentacles explode too.
 	local demon = keys.target
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
-	local damage = keys.Damage/100 * 12 * caster.ECMadnessCost
+	local damage = keys.Damage/100 * 25
 	local targets = FindUnitsInRadius(caster:GetTeam(), demon:GetAbsOrigin(), nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	print(damage)
 
@@ -390,9 +389,7 @@ function OnContractStart(keys)
 	giveUnitDataDrivenModifier(caster, caster, "pause_sealdisabled", 1.0)
 	--GilleCheckCombo(caster, keys.ability)
 
-	local madnessCost = math.floor(caster.MadnessStackCount / 2)
-	if madnessCost ~= 0 then AdjustMadnessStack(caster, -madnessCost) end
-	caster.ContractMadnessCost = madnessCost
+	AdjustMadnessStack(caster, -140)
 
     local visiondummy = CreateUnitByName("sight_dummy_unit", targetPoint, false, keys.caster, keys.caster, keys.caster:GetTeamNumber())
     visiondummy:SetDayTimeVisionRange(1000)
@@ -432,8 +429,8 @@ function OnContractStart(keys)
 	Timers:CreateTimer(3.0, function()
 		if caster:IsAlive() then
 			if IsValidEntity(caster.GiganticHorror) and caster.GiganticHorror:IsAlive() then
-				caster.GiganticHorror:SetAbsOrigin(targetPoint) 
-			else
+				caster.GiganticHorror:ForceKill(true)
+			end
 				-- Summon Gigantic Horror
 				local tentacle = CreateUnitByName("gille_gigantic_horror", targetPoint, true, nil, nil, caster:GetTeamNumber())
 				if caster.IsAbyssalConnection2Acquired then
@@ -476,14 +473,11 @@ function OnContractStart(keys)
                     transport = tentacle:entindex()
                 }
                 CustomGameEventManager:Send_ServerToPlayer( caster:GetPlayerOwner(), "player_summoned_transport", playerData )
-			end
 			-- Damage enemies
 			local targets = FindUnitsInRadius(caster:GetTeam(), targetPoint, nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 			for k,v in pairs(targets) do
 				DoDamage(caster, v, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-				if caster.ContractMadnessCost > 0 then
-					ApplyAirborne(caster, v, caster.ContractMadnessCost/5)
-				end
+				ApplyAirborne(caster, v, 0.3)
 			end
 
 			local contractFx3 = ParticleManager:CreateParticle("particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf", PATTACH_CUSTOMORIGIN, visiondummy)
@@ -866,12 +860,12 @@ function OnGilleComboStart(keys)
 		return 
 	end
 
-	caster:FindAbilityByName("gille_larret_de_mort"):StartCooldown(150)
+	caster:FindAbilityByName("gille_larret_de_mort"):StartCooldown(210)
 	-- Set master's combo cooldown
 	local masterCombo = caster.MasterUnit2:FindAbilityByName("gille_larret_de_mort")
 	masterCombo:EndCooldown()
-	masterCombo:StartCooldown(150)
-	ability:ApplyDataDrivenModifier(caster, caster, "modifier_larret_de_mort_cooldown", {duration = 150})
+	masterCombo:StartCooldown(210)
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_larret_de_mort_cooldown", {duration = 210})
 
 	-- knockup enemies
 	local targets = FindUnitsInRadius(caster:GetTeam(), tentacle:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
@@ -905,9 +899,10 @@ function OnGilleComboStart(keys)
 	end)
 
 	Timers:CreateTimer(1, function()
+        local currentdamage = keys.Damage/100 * tentacle:GetHealth()
 		local targets = FindUnitsInRadius(caster:GetTeam(), tentacle:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets) do
-			DoDamage(caster, v, v:GetMaxHealth() * keys.Damage/100, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+			DoDamage(caster, v, currentdamage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 			ability:ApplyDataDrivenModifier(caster, v, "modifier_gille_combo", {})
 			v:EmitSound("hero_bloodseeker.rupture")
 		end
@@ -978,7 +973,8 @@ function OnMentalPollutionAcquired(keys)
     local hero = caster:GetPlayerOwner():GetAssignedHero()
     hero.IsMentalPolluted = true
        -- Set master 1's mana 
-    local master = hero.MasterUnit
+	local master = hero.MasterUnit
+	hero:FindAbilityByName("gille_spellbook_of_prelati"):SetLevel(2)
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
 end
 

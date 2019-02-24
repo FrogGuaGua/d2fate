@@ -1512,6 +1512,7 @@ function FateGameMode:OnItemPurchased( keys )
     print(itemCost)
 
     local hero = PlayerResource:GetPlayer(plyID):GetAssignedHero()
+    if not hero:IsAlive() then CheckItemCombination(hero) end
     CheckItemCombinationInStash(hero)
 
     local isPriceIncreased = true

@@ -897,7 +897,7 @@
 
 		"AbilityLayout"			"6"
 		"Ability1"				"gille_summon_demon"
-		"Ability2"				"gille_torment"
+		"Ability2"				"gille_spellbook"
 		"Ability3"				"gille_exquisite_cadaver"
 		"Ability4"				"gille_spellbook_of_prelati"
 		"Ability5"				"gille_throw_corpse"
@@ -905,6 +905,10 @@
 		"Ability7"				"gille_larret_de_mort"
 		"Ability8"				"presence_detection_passive"
 		"Ability9"				"attribute_bonus_custom"
+		"Ability10"				"gille_spellbook_of_prelati_pain"
+		"Ability11"				"gille_spellbook_of_prelati_blind"
+		"Ability12"				"gille_torment"
+		"Ability13"				"gille_spellbook_close"
 
 		"Combo"						"gille_larret_de_mort"
 		"AttributeNumber"			"5"
@@ -916,8 +920,8 @@
 
 		"StatusHealth"					"1000"
 		"StatusHealthRegen"				"1"
-		"StatusMana"					"100"
-		"StatusManaRegen"				"0"
+		"StatusMana"					"200"
+		"StatusManaRegen"				"5"
 		
 		"ArmorPhysical"					"1.5"
 		"MagicalResistance"				"10"

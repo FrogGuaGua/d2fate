@@ -108,7 +108,7 @@
       "04"
       {
         "var_type"					"FIELD_FLOAT"
-        "damage_per_stack"			"13"
+        "damage_per_stack"			"28"
       }
       "06"
       {

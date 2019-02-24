@@ -165,7 +165,7 @@ modifierList = {"modifier_max_mana_burst_cooldown","modifier_delusional_illusion
 "modifier_larret_de_mort_cooldown","modifier_annihilate_cooldown","modifier_fiery_finale_cooldown",
 "modifier_polygamist_cooldown","modifier_raging_dragon_strike_cooldown","modifier_la_pucelle_cooldown","modifier_hippogriff_ride_cooldown","modifier_story_for_someones_sake_cooldown",
 "modifier_phoebus_catastrophe_cooldown","modifier_lord_of_execution_cd",
-"modifier_strike_air_cooldown","modifier_instinct_cooldown","modifier_battle_continuation_cooldown","modifier_hrunting_cooldown",
+"modifier_strike_air_cooldown","modifier_instinct_cooldown","modifier_battle_continuation_cooldown","modifier_hrunting_cooldown","jack_the_mist_cd",
 "modifier_overedge_cooldown","modifier_blood_mark_cooldown","modifier_quickdraw_cooldown","modifier_eternal_arms_mastership_cooldown","modifier_mystic_shackle_cooldown",
 "modifier_golden_apple_cooldown","modifier_protection_of_faith_proc_cd"} --last 3 lines are non-combos.
 
@@ -348,11 +348,11 @@ function OnGalatineStart(keys)
 					DoDamage(caster, v, keys.Damage + 300 , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 					local fxDummy = CreateUnitByName("dummy_unit", galatineDummy:GetAbsOrigin(), false, caster, caster, caster:GetTeamNumber())
 					fxDummy:FindAbilityByName("dummy_unit_passive"):SetLevel(1)
-					local LavaFxf = ParticleManager:CreateParticle("particles/dire_fx/dire_lava_gloops_child_13sec.vpcf", PATTACH_ABSORIGIN_FOLLOW, fxDummy )
-			        ParticleManager:SetParticleControl( LavaFxf, 1, fxDummy:GetAbsOrigin())		
+					--local LavaFxf = ParticleManager:CreateParticle("particles/dire_fx/dire_lava_gloops_child_13sec.vpcf", PATTACH_ABSORIGIN_FOLLOW, fxDummy )
+			        --ParticleManager:SetParticleControl( LavaFxf, 1, fxDummy:GetAbsOrigin())		
 					--local LavaFx = ParticleManager:CreateParticle("particles/neutral_fx/black_dragon_fireball_lava_a.vpcf", PATTACH_ABSORIGIN_FOLLOW, fxDummy )
 					--ParticleManager:SetParticleControl( LavaFx, 1, fxDummy:GetAbsOrigin())
-					ParticleManager:SetParticleControl( LavaFxf,0,Vector(400, 400, 0))	
+					--ParticleManager:SetParticleControl( LavaFxf,0,Vector(400, 400, 0))	
 					--ParticleManager:SetParticleControl( LavaFx,0,Vector(400, 400, 0))	
 					local firecount = 0
 					local pooltargets = FindUnitsInRadius(caster:GetTeam(), galatineDummy:GetAbsOrigin(), nil, 500, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
@@ -368,8 +368,8 @@ function OnGalatineStart(keys)
 					Timers:CreateTimer(6.0,function()
 						--ParticleManager:DestroyParticle(LavaFx,false)
 						--ParticleManager:ReleaseParticleIndex( LavaFx )
-						ParticleManager:DestroyParticle(LavaFxf,false)
-						ParticleManager:ReleaseParticleIndex( LavaFxf )
+						--ParticleManager:DestroyParticle(LavaFxf,false)
+						--ParticleManager:ReleaseParticleIndex( LavaFxf )
 						fxDummy:RemoveSelf()
 					end)
 				end

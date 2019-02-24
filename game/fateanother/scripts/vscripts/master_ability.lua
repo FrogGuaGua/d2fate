@@ -1094,6 +1094,8 @@ function OnPresenceDetectionThink(keys)
 			and not (enemy:GetName() == "npc_dota_hero_bounty_hunter" and enemy.IsPCImproved and (enemy:HasModifier("modifier_ta_invis") or enemy:HasModifier("modifier_ambush")))
 			-- Filter EA from ping
 			and not (enemy:GetName() == "npc_dota_hero_bloodseeker" and enemy:HasModifier("modifier_lishuwen_concealment"))
+			--Jack
+			and not (enemy:GetName() == "npc_dota_hero_storm_spirit" and enemy:HasModifier("modifier_information_erasure"))
 		then
 
 			if enemy.IsPresenceDetected == true or enemy.IsPresenceDetected == nil then

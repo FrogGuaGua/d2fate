@@ -100,9 +100,7 @@ function lancer_5th_soaring_spear:OnProjectileHit_ExtraData(hTarget, vLocation, 
 
   PlayNormalGBEffect(hTarget)
   hTarget:EmitSound("Hero_Lion.Impale")
-  if hCaster:HasModifier("modifier_aspd_increase") then
-		fDamage = fDamage + hcaster:GetAttackDamage() * 2
-	end
+	fDamage = fDamage + hCaster:GetAttackDamage() * hCaster:FindAbilityByName("lancer_5th_relentless_spear"):GetSpecialValueFor("bonusdratio")*0.01
   local tTargets = FindUnitsInRadius(hCaster:GetTeam(), hTarget:GetAbsOrigin(), nil, fRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
   for k,v in pairs(tTargets) do
      DoDamage(hCaster, v, fDamage + v:GetHealth()*fRuneHPDamagePct, DAMAGE_TYPE_MAGICAL, 0, self, false)

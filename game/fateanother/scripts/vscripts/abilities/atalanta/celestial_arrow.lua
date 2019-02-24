@@ -160,22 +160,22 @@ end
 
 function atalanta_celestial_arrow:ArrowHit(target, slow, bIsPhoebus)
     local caster = self:GetCaster()
-
+    if target:HasModifier("modifier_lancer_protection_from_arrows_active") then return end
     caster:AddHuntStack(target, 1)
 
     local damage = caster:GetAverageTrueAttackDamage(caster)
     if bIsPhoebus and bIsPhoebus == 1 then
-        damage = damage * 0.75
+        damage = damage * 0.4
     end
 
-    if target:HasModifier("modifier_a_scroll") then
-        damage = damage * 0.75
-    end
+    --if target:HasModifier("modifier_a_scroll") then
+        --damage = damage * 0.75
+   -- end
 
     local stacks = target:GetModifierStackCount("modifier_calydonian_hunt", caster)
     local ability = caster:FindAbilityByName("atalanta_calydonian_hunt")
     local damagePercent = ability:GetSpecialValueFor("damage_per_stack")
-    local huntDamage = damage * damagePercent * stacks / 100
+    local huntDamage = damagePercent * stacks 
 
     if caster.HuntersMarkAcquired then
         local physicalReduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())

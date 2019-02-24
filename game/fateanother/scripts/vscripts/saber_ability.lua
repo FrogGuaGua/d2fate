@@ -751,7 +751,7 @@ function StrikeAirPush(keys)
 	local target = keys.target
 	local ability = keys.ability
 	--if (target:GetName() == "npc_dota_hero_bounty_hunter" and target.IsPFWAcquired) then return end
-	local totalDamage = 600 + (keys.caster:FindAbilityByName("saber_caliburn"):GetLevel() + keys.caster:FindAbilityByName("saber_invisible_air"):GetLevel()) * 125
+	local totalDamage = 600 + (keys.caster:FindAbilityByName("saber_caliburn"):GetLevel() + keys.caster:FindAbilityByName("saber_invisible_air"):GetLevel()) * 150
 	--if target:GetName() == "npc_dota_hero_juggernaut" then totalDamage = 0 end
 	local WallDamage = keys.WallDamage
 	local WallStun = keys.WallStun
@@ -805,9 +805,9 @@ function OnUpstreamProc(keys)
 	-- particle
 
 	-- apply knockup
-	local damage = caster:GetAttackDamage() * 1.3 + 150
+	local damage = caster:GetAgility() * keys.Damage + 150
 	--if target:GetName() == "npc_dota_hero_juggernaut" then damage = 0 end
-	DoDamage(caster, target, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	DoDamage(caster, target, damage, DAMAGE_TYPE_PURE, 0, ability, false)
 	ApplyAirborne(caster, target, 1.25)
 	local sound = RandomInt(1,2)
 	if sound == 1 then caster:EmitSound("Saber.StrikeAir_Release1") else caster:EmitSound("Saber.StrikeAir_Release2") end
@@ -821,9 +821,9 @@ function OnUpstreamHit(keys)
 	local ability = keys.ability
 	--if keys.target:GetName() == "npc_dota_hero_bounty_hunter" and keys.target.IsPFWAcquired then return end
 	-- particle
-	local damage = caster:GetAttackDamage() * 1.3 + 150
+	local damage = caster:GetAgility() * keys.Damage + 150
 	--if target:GetName() == "npc_dota_hero_juggernaut" then damage = 0 end
-	DoDamage(caster, target, damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	DoDamage(caster, target, damage, DAMAGE_TYPE_PURE, 0, ability, false)
 	ApplyAirborne(caster, target, 1.25)
 	caster:RemoveModifierByName("modifier_strike_air_upstream_ready")
 	local sound = RandomInt(1,2)

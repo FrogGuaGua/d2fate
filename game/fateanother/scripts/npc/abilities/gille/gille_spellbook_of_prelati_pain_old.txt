@@ -1,0 +1,71 @@
+//=================================================================================================================
+// Gille : Spellbook of Prelati Pain
+//=================================================================================================================
+
+"DOTAAbilities"
+{   
+    "gille_spellbook_of_prelati_pain"
+    {
+		    "BaseClass"						"ability_lua"
+        "ScriptFile"          "abilities/gille/gille_spellbook_of_prelati_pain"
+		    "MaxLevel"						"5"
+	    	"RequiredLevel"					"25"
+		    "LevelsBetweenUpgrades"			"1"
+		    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	    	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	    	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		    "AbilityTextureName"			"custom/gille_spellbook_of_prelati_pain"
+		    "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		    "AnimationPlaybackRate"			"1.0"
+        "AbilityCastRange"				"800"
+	     	"AbilityCastRangeBuffer"		"100"
+	    	"AbilityCastPoint"				"0.2"
+	    	"AbilityCooldown"				"10.0 10.0 10.0 10.0 10.0"
+	    	"AbilityManaCost"				"10"
+        
+
+    "precache"
+    {
+      "particle"                 "particles/custom/gille/gille_pain.vpcf"
+    }
+    
+	"AbilitySpecial"
+	{
+      "01"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "damage_TT"	            "400 500 600 700 800"
+      }
+      "02"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "damage_per_hit"		        "4 5 6 7 8"
+      }
+       "03"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "duration"		        "10.0"
+      }
+       "04"
+      {
+        "var_type"				"FIELD_FLOAT"
+        "interval"		        "0.1"
+      }
+       "04"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "contagion_aoe"		        "150"
+      }
+      "05"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "corpse_boom"		        "200 250 300 350 400"
+      }
+      "06"
+      {
+        "var_type"				"FIELD_INTEGER"
+        "corpse_boom_ratio"		        "300"
+      }
+	 }
+    }
+}

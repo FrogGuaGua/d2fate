@@ -293,7 +293,7 @@ function OnGOBHit(keys)
 	local caster = keys.caster
 	local damage = keys.Damage
 	if caster.IsSumerAcquired then
-		damage = damage + caster:GetAttackDamage()*0.30
+		damage = damage + caster:GetAttackDamage()*0.2
 	end
 	--if target:GetUnitName() == "gille_gigantic_horror" then damage = damage*2.5 end
 	DoDamage(keys.caster, keys.target, damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
@@ -321,7 +321,7 @@ end
 
 function OnSumerArrowHit(keys)
 
-	DoDamage(keys.caster:GetPlayerOwner():GetAssignedHero(), keys.target, 50, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	DoDamage(keys.caster:GetPlayerOwner():GetAssignedHero(), keys.target, 75, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 end
 
 

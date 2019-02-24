@@ -61,7 +61,7 @@ modifier_attr_main.RemoveOnDeath = function(self) return false end
     end
 
     function modifier_attr_main:GetModifierHealthBonus()
-        return self.str_hp_reduce * self:GetParent():GetStrength()
+        return self.str_hp_reduce * math.floor(self:GetParent():GetStrength())
     end
 
     function modifier_attr_main:GetModifierConstantHealthRegen()
@@ -85,11 +85,19 @@ modifier_attr_main.RemoveOnDeath = function(self) return false end
     end
     
     function modifier_attr_main:GetModifierConstantManaRegen()
-        return self.int_mana_regen_improve * self:GetParent():GetIntellect()
+       return self.int_mana_regen_improve * self:GetParent():GetIntellect()
     end
 
     function modifier_attr_main:GetModifierManaBonus()
-        return self.int_mana_reduce * self:GetParent():GetIntellect()
+        if self:GetParent():GetName() == "npc_dota_hero_shadow_shaman" then
+            if self:GetParent().IsMentalPolluted  then
+                return self:GetParent():GetIntellect() * (-12) + 111
+            else
+                return self:GetParent():GetIntellect() * (-12)  +11
+            end
+        else
+            return self.int_mana_reduce * self:GetParent():GetIntellect()
+        end
     end
 --end
 
