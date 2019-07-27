@@ -15,7 +15,9 @@ require('libraries/popups')
 require('libraries/animations')
 require('libraries/crowdcontrol')
 require('libraries/physics')
+print('----attachments1')
 require('libraries/attachments')
+print('----attachments2')
 --require('libraries/vector_target')
 require('hero_selection')
 require('libraries/servantstats')
@@ -24,7 +26,8 @@ require('libraries/alternateparticle')
 require('blink')
 --require('unit_voice')
 require('wrappers')
-
+require('behavior/require')
+require('GM')
 
 _G.IsPickPhase = true
 _G.IsPreRound = true
@@ -924,6 +927,8 @@ function FateGameMode:OnPlayerChat(keys)
         print(self.numberOfPlayersInTeam, "is the number of players in a team")
     end
 
+    GameRules.GM.parse(keys)
+
     local heroText = string.match(text, "^-pick (.+)")
     if heroText ~= nil then
         if GameRules:IsCheatMode() then
@@ -1187,6 +1192,11 @@ function FateGameMode:OnHeroInGame(hero)
     hero.defaultSendGold = 300
     hero.CStock = 10
     hero.ShardAmount = 0
+
+    hero:AddItem(CreateItem("item_a_scroll_ai", nil, nil))
+    hero:AddItem(CreateItem("item_b_scroll_ai", nil, nil))
+    hero:AddItem(CreateItem("item_c_scroll_ai", nil, nil))
+    hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
 
     Timers:CreateTimer(1.0, function()
         local team = hero:GetTeam()
@@ -1649,6 +1659,12 @@ function FateGameMode:OnAbilityUsed(keys)
     local abilityname = keys.abilityname
     local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
 
+    print('OnAbilityUsed',keys.abilityname)
+    if hero.ComboData then
+        hero.ComboData.waitskill = false
+    end
+    hero.waitcastskill = false
+
     if abilityname and abilityname == "nursery_rhyme_story_for_somebodys_sake" then
         local comboAbil = hero:FindAbilityByName("nursery_rhyme_story_for_somebodys_sake")
         --print( comboAbil:GetLevelSpecialValueFor("time_limit", 2) )
@@ -1789,11 +1805,16 @@ end
 
 -- An entity died
 function FateGameMode:OnEntityKilled( keys )
-    --print( '[BAREBONES] OnEntityKilled Called' )
-    --PrintTable( keys )
+    print( '[BAREBONES] OnEntityKilled Called' )
+    PrintTable( keys )
 
     -- The Unit that was Killed
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
+    local heroList = HeroList:GetAllHeroes()
+    for _ , hero in pairs(heroList) do
+        GameRules.AIFunc.onEntityDead(hero,killedUnit)
+    end
+
     -- The Killing entity
     local killerEntity = nil
 
