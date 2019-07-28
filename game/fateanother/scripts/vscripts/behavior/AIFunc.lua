@@ -15,7 +15,7 @@ AIFunc.IsDead = function(unit,target_type)
 end
 
 AIFunc.MoveTo = function(unit,args)
-	if unit:IsPhased() then return false end
+	if not isValidCastAbility(unit) then return false end
 	local target = AIFunc.GetTarget(unit,args[1])
 	print(string.format('MoveTo %s %s',args[1],target))
 	if target ==nil then return false end
@@ -32,43 +32,10 @@ end
 AIFunc.Distance = function(unit,args)
 	local target = AIFunc.GetTarget(unit,args[1])
 	if target == nil then return false end
-
+	print('Distance ',args[1],args[2],target)
 	local selfPos = unit:GetAbsOrigin()
 	local targetPos = target:GetAbsOrigin()
 	return #(selfPos - targetPos) < tonumber(args[2]) 
-end
-
-AIFunc.SetComboTarget = function(unit)
-	print('SetComboTarget')
-
-	local comboTargets = {}
-
-	local selfTeam = unit:GetTeam();
-	local selfPos = unit:GetAbsOrigin()
-	print('selfTeam ',selfTeam)
-
-	local heroList = HeroList:GetAllHeroes()
-	for _ , hero in pairs(heroList) do
-		print('hero:GetTeam() ',hero:GetTeam())
-        if hero:GetTeam() ~= selfTeam then
-        	local targetPos = hero:GetAbsOrigin()
-        	local dist = #(targetPos - selfPos)
-        	local comboID = getValidComboByRange(unit,dist)
-        	print('getValidComboByRange ',comboID ,dist)
-        	if comboID > 0 then
-        		table.insert(comboTargets,{target = hero , comboID = comboID , step = 1})
-        	end
-        end
-	end
-
-	if #comboTargets == 0 then 
-	 	unit.ComboData = nil
-	 	return false 
-	end
-
-	local r = math.random(1,#comboTargets)
-	unit.ComboData = comboTargets[r]
-	return true
 end
 
 local function getNearestTeamMatePlayer(unit)
@@ -96,7 +63,8 @@ end
 
 AIFunc.GetTarget = function(unit,targetType)
 	if targetType == 'combo' then
-		return unit.ComboData
+		if unit.ComboData == nil then return nil end
+		return unit.ComboData.target
 	elseif targetType == 'move' then
 		return unit.moveTarget
 	elseif targetType == 'near_player' then
@@ -105,13 +73,20 @@ AIFunc.GetTarget = function(unit,targetType)
 	return nil
 end
 AIFunc.HasTarget = function(unit,args)
-	local rst = AIFunc.GetTarget(unit,args[1]) ~= nil
-	print('AIFunc.HasTarget ',args[1],rst)
-	return rst
+	local target = AIFunc.GetTarget(unit,args[1])
+	if target == nil or not target:IsAlive() then return false end
+
+	if args[2] and tonumber(args[2]) then
+		local dist = tonumber(args[2]) 
+		local targetPos = target:GetAbsOrigin()
+		local selfPos = unit:GetAbsOrigin()
+		return #(targetPos-selfPos) < dist
+	end
+	return true
 end
 
 AIFunc.Combo = function(unit)
-	if unit:IsPhased() then return true end
+	if not isValidCastAbility(unit) then return true end
 	if not unit.ComboData or unit.nextskill > Time() then return true end
 
 	local ComboData = unit.ComboData
@@ -127,7 +102,7 @@ AIFunc.Combo = function(unit)
 		aiCastAbility(unit,target,getAbilityByVar(unit,abilityVars[step]))
 	end
 
-    ComboData.step = ComboData.step + 1
+    ComboData.step = step + 1
     if abilityVars[ComboData.step] == nil then
     	unit.ComboData = nil
     end
@@ -138,7 +113,7 @@ AIFunc.ClearAllData= function(unit)
 	unit.moveTarget =nil
 	unit.ComboData = nil
 	unit.castTarget = nil
-	unit.waitcastskill = false
+	unit.nextskill = 0
 end
 
 AIFunc.onEntityDead = function(unit,target)
@@ -154,25 +129,6 @@ AIFunc.onEntityDead = function(unit,target)
 		print('---moveTarget=nil')
 		unit.moveTarget =nil
 	end
-	if unit.castTarget == target then
-		print('---castTarget=nil')
-		unit.castTarget = nil
-		unit.waitcastskill = false
-	end
-end
-AIFunc.CheckComboValid = function(unit,args)
-	local mana = 0
-	for _ , arg in ipairs(args) do
-		local ability = getAbilityByVar(unit,arg)
-		if ability == nil or ability:GetCooldownTime() > 0 then
-			return false
-		end
-		if ability then
-			mana = mana + ability:GetManaCost(ability:GetLevel())
-		end
-	end
-
-	return unit:GetMana() > mana
 end
 
 local function getComboTargetData(unit,args)
@@ -185,16 +141,29 @@ local function getComboTargetData(unit,args)
 			if #data == 2 then 
 				data[2] = tonumber(data[2]) 
 			end
-			table.insert(abilityVars,data[1])
 			local ability = getAbilityByVar(unit,data[1])
-			if ability and data[2] then
-				range = range + ability:GetCastRange() * data[2]
+
+			local valid = isAbilityValid(unit,ability)
+
+			if not valid and data[3] ~= 'i' then
+				return ComboDatas
+			end
+
+			if valid then
+				table.insert(abilityVars,data[1])
+				if ability and data[2] then
+					local ability_range = ability:GetCastRange(unit:GetAbsOrigin() ,unit)
+					print(data[1],'ability_range ',ability_range)
+					range = range + ability_range * data[2]
+				end
 			end
 		end
 	end
-	if not AIFunc.CheckComboValid(unit,abilityVars) then
-		return ComboDatas
+	print('getComboTargetData->>')
+	for _ , var in ipairs(abilityVars) do
+		print(_,var)
 	end
+	print('getComboTargetData-<<')
 
 	local selfPos = unit:GetAbsOrigin()
 	local selfTeam = unit:GetTeam()
@@ -215,8 +184,17 @@ end
 AIFunc.SetComboTarget = function(unit,args)
 	local ComboDatas = getComboTargetData(unit,args)
 	if #ComboDatas > 0 then
-		local r = math.random(1,#ComboDatas)
-		unit.ComboData = ComboDatas[r]
+		local minHPData = ComboDatas[1]
+		local minHP = minHPData.target:GetHealth()
+		for _ , data in ipairs(ComboDatas) do
+			local hp = data.target:GetHealth()
+			if minHP > hp then
+				minHPData = data
+				minHP = hp
+			end
+		end
+
+		unit.ComboData = minHPData
 		return true
 	end
 	return false
@@ -235,12 +213,42 @@ AIFunc.ClearData = function(unit,args)
 end
 
 AIFunc.CastAbility = function(unit,args)
-	local ability = getAbilityByVar(args[1])
+	--print('CastAbility',args[1])
+	local ability = getAbilityByVar(unit,args[1])
 	if ability == nil then
 		return false
 	end
-
 	ability:CastAbility()
+	return true
+end
+
+AIFunc.HpCmp = function(unit,args)
+	local minHp = tonumber(args[1])/100
+	local maxHp = tonumber(args[2])/100
+	local selfHp = unit:GetHealth() / unit:GetMaxHealth()
+
+	return selfHp>minHp and selfHp < maxHp
+end
+
+AIFunc.ManaCmp = function(unit,args)
+	local minMana = tonumber(args[1])/100
+	local maxMana = tonumber(args[2])/100
+	local selfMana = unit:GetMana()/ unit:GetMaxMana()
+
+	return minMana < selfMana and maxMana > selfMana
+end
+
+AIFunc.HasModifier = function(unit,args)
+	local modName = args[1]
+	for _ ,modName in ipairs(args) do
+		if #modName > 0 then
+			local mod = unit:FindModifierByName(modName)
+			if mod == nil then
+				return false
+			end
+		end
+	end
+
 	return true
 end
 

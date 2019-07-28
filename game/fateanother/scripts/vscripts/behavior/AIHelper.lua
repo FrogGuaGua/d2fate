@@ -1,3 +1,4 @@
+require "behavior/aiData"
 local BTreeCMN = GameRules.BTreeCMN
 local AIHelper = {}
 GameRules.AIHelper = AIHelper
@@ -105,4 +106,16 @@ function AIHelper.RemoveAI(entity)
 	entity.AIMgr = nil
 	entity:SetContextThink("AIThink", function() return 0 end, 0.25)
 	GameRules.AIFunc.ClearAllData(entity)
+end
+
+function GameRules.AttachAI(entity)
+	local name = entity:GetName()
+	local btf = GameRules.aiFileName[name]
+	if btf then
+		AIHelper.InitEntityAI(entity,btf)
+	end
+end
+
+function GameRules.RemoveAI(entity)
+	AIHelper.RemoveAI(entity)
 end

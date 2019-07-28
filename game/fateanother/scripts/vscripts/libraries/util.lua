@@ -1864,8 +1864,8 @@ function OnHeroTakeDamage(keys)
 
     if attacker:GetAttackTarget() == hero then
         --print("Right click before armor reductions", damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue())))
-        attackerHero.ServStat:doDamageBeforeReduction(damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue())))
-        hero.ServStat:takeDamageBeforeReduction(damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue())))
+        attackerHero.ServStat:doDamageBeforeReduction(damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue(true))))
+        hero.ServStat:takeDamageBeforeReduction(damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue(true))))
     end
     --print("Actual damage from KV:", damageTaken)
     attackerHero.ServStat:doActualDamage(damageTaken)

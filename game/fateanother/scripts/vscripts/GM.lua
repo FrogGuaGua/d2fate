@@ -83,7 +83,7 @@ GM.ai = function(player,args)
 	local heroList = HeroList:GetAllHeroes()
 	for _ , hero in pairs(heroList) do
 		if hero ~= player:GetAssignedHero() then
-	        GameRules.AIHelper.InitEntityAI(hero,args[1])
+	        GameRules.AttachAI(hero)
 		end
 	end
 end
@@ -91,45 +91,34 @@ end
 GM.rai = function(player,args)
 	local heroList = HeroList:GetAllHeroes()
 	for _ , hero in pairs(heroList) do
-        GameRules.AIHelper.RemoveAI(hero)
+        GameRules.RemoveAI(hero)
 	end
 end
 
 GM.skill = function(player,args)
 	local hero = player:GetAssignedHero()
 	local idx = tonumber(args[1]) 
-	local ability
-	
-	for idx = 0 , 5 do
-		local ability = hero:GetAbilityByIndex(idx)
-		if ability then
-			print('ability ',idx,ability:GetBehavior())
-		end
-
-	end
-
-	for idx = 0 , 5 do
-		local item = hero:GetItemInSlot(idx)
-		if item then
-			print('ability ',idx,item:GetBehavior())
-		end
-	end
-	local target = nil
+	--local ability = hero:GetAbilityByIndex(idx)
 	local heroList = HeroList:GetAllHeroes()
-	for _ , _hero in pairs(heroList) do
-        if _hero ~= hero then
-        	target = _hero
-        end
-	end
-	local ability = getAbilityByVar(hero,'item_s_scroll_ai')
-	hero:CastAbilityOnTarget(target, ability, -1)
-	local behavior = ability:GetBehavior()
-	print(bit.band(behavior,DOTA_ABILITY_BEHAVIOR_POINT))
+	 for _ , target in pairs(heroList) do
+	 	if target:GetTeam() ~= hero:GetTeam() then
+	 		local ability_name = 'archer_5th_sword_barrage_retreat_shot'
+	 		aiCastAbility(hero,target,getAbilityByVar(hero,ability_name))
+
+	 		--aiCastAbility(hero,target,getAbilityByVar(hero,idx))
+	 		--aiCastAbility(target,hero,getAbilityByVar(hero,idx))
+	 		--aiCastAbility(target,hero,getAbilityByVar(hero,5))
+	 	end
+	 end
 end
 
 GM.getname = function(player,args)
-	local name = player:GetAssignedHero():GetName()
-	print('name',name)
+	local hero = player:GetAssignedHero()
+	local mods = hero:FindAllModifiers()
+	for _ , mod in ipairs(mods) do
+		print(_,mod:GetName())
+	end
+	print(player:GetAssignedHero():GetName())
 end
 
 GameRules.GM = GM

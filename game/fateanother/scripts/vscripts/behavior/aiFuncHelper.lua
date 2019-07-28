@@ -8,6 +8,7 @@ function _G.getAbilityData(unit)
 end
 
 function _G.getAbilityByVar(unit,var)
+	print('getAbilityByVar',var)
 	if tonumber(var) then
 		var = tonumber(var)
 	end
@@ -25,9 +26,9 @@ function _G.getAbilityByVar(unit,var)
 			local item = nil
 			for i=0,5 do
 				item = unit:GetItemInSlot(i)
-				if item then
-					print('getAbilityByVar ',i,item:GetName() ,'var', var)
-				end
+				-- if item then
+				-- 	print('getAbilityByVar ',i,item:GetName() ,'var', var)
+				-- end
 				if item and item:GetName() == var then
 					ability = item
 					break
@@ -39,69 +40,18 @@ function _G.getAbilityByVar(unit,var)
 	end
 end
 
-function _G.getComboByIdx(unit,idx)
-	local data = getAbilityData(unit)
-	local Combos = data.Combos
-	return Combos[idx]
-end
+function _G.isAbilityValid(unit,ability)
+	if ability == nil then return false end
 
-function _G.isComboValid(unit,idx)
-	local data = getAbilityData(unit)
-	local Combos = data.Combos
-	local ComboAbilitys = Combos[idx].abilitys
-	for _ , ability_name in ipairs(ComboAbilitys) do
-		local ability = getAbilityByVar(unit,ability_name)
-		if ability == nil or ability:GetCooldownTime() > 0 then
-			return false
-		end
+	if ability:GetCooldownTime() > 0 then
+		return false
+	end
+
+	if ability:GetManaCost(ability:GetLevel()) > unit:GetMana() then
+		return false
 	end
 
 	return true
-end
-
-function _G.getComboRangeByIdx(unit,idx)
-	local abilityData = getAbilityData(unit)
-	if abilityData == nil then return 0 end
-	local Combos = abilityData.Combos
-	
-	local ComboRangeData = Combos[idx].range
-	local dist = 0
-	for ability_name , data in pairs(ComboRangeData) do
-		local ability = getAbilityByVar(unit,ability_name)
-		if ability ~= nil then
-			print('getComboRangeByIdx ',ability_name)
-			dist = dist + ability:GetCastRange()*data.rate
-		end
-	end
-	return dist
-end
-
-function _G.getDashRange(unit)
-	local abilityData = getAbilityData(unit)
-	if abilityData == nil then return 0 end
-	local dashAbilitys = abilityData.DashAbilitys
-
-end
-
-function _G.getValidComboByRange(unit,range)
-	local abilityData = getAbilityData(unit)
-	if abilityData == nil then return 0 end
-
-	local Combos = abilityData.Combos
-	for comboID , combo_data in ipairs(Combos) do
-		local isvalid = isComboValid(unit,comboID)
-		print('isvalid ',isvalid)
-		if isvalid then
-			local comboRange = getComboRangeByIdx(unit,comboID) 
-			print('comboRange ',comboRange , 'range ',range)
-			if comboRange > range then
-				return comboID
-			end
-
-
-		end
-	end
-	return -1 
 end
 
 function _G.getValidFightAbilityByRange(unit,range)
@@ -125,9 +75,19 @@ end
 function _G.aiCastAbility(unit,target,ability)
 	
 	local behavior = ability:GetBehavior()
+	local targetPos = target:GetAbsOrigin()
+	
 	if bit.band(behavior,DOTA_ABILITY_BEHAVIOR_POINT) ~= 0 then
+		local selfPos = unit:GetAbsOrigin()
+		local vec = targetPos - selfPos
+		local castRange = ability:GetCastRange()
+		if #vec > castRange then
+			vec = vec:Normalized()
+			targetPos = selfPos + vec * castRange
+		end
+
 		print('cast ',ability:GetName())
-		unit:CastAbilityOnPosition(target:GetAbsOrigin(), ability, -1)
+		unit:CastAbilityOnPosition(targetPos, ability, -1)
 	elseif bit.band(behavior,DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) ~= 0 then
 		print('cast ',ability:GetName(),'target ',target)
 		unit:CastAbilityOnTarget(target, ability, -1)
@@ -137,24 +97,56 @@ function _G.aiCastAbility(unit,target,ability)
 		ability:CastAbility()
 		--print('no cast ',ability:GetName())
 	end
-
-	local delay = getAbilityDelay(ability)
+	local delay = getAbilityDelay(unit,targetPos,ability)
 	unit.nextskill = Time() + delay
 	return false
 end
 
-function _G.getAbilityDelay(ability)
+function _G.getAbilityDelay(unit,targetPos,ability)
 	local behavior = ability:GetBehavior()
 	local castPoint = ability:GetCastPoint()
+	local rate = 720
+	local selfPos = unit:GetAbsOrigin()
+	local forward = unit:GetForwardVector()
+	local vec = (targetPos-selfPos):Normalized()
+	local fDiff = VectorToAngles(vec)[2] - VectorToAngles(forward)[2]
+	fDiff = math.abs(fDiff)
+	print('fDiff',fDiff)
+	local rateTime = fDiff/rate
+	if rateTime < 0.1 then
+		rateTime = 0.1
+	end
+	print('rateTime ',rateTime)
 	if bit.band(behavior,DOTA_ABILITY_BEHAVIOR_POINT) ~= 0 then
-		return castPoint + 0.5
+		return castPoint + rateTime + 0.2
 	elseif bit.band(behavior,DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) ~= 0 then
-		print('cast ',ability:GetName(),'target ',target)
+		print('cast ',ability:GetName())
 	--hero:CastAbilityOnTarget(target, getAbilityByVar(hero,'item_s_scroll_ai'), -1)
-		return castPoint + 0.5
+		return castPoint + rateTime + 0.2
 	else
 		ability:CastAbility()
-		return castPoint + 0.1
+		return castPoint + 0.2
 		--print('no cast ',ability:GetName())
 	end
+end
+
+function _G.isValidCastAbility(unit)
+	if unit:IsPhased() then return false end
+	for id=0,12 do
+		local ability = unit:GetAbilityByIndex(id)
+		if ability and ability:IsChanneling() then
+			print(id,ability:GetName(),'ischanneling')
+			return false
+		end
+	end
+
+	for id=0,5 do
+		local ability = unit:GetItemInSlot(id)
+		if ability and ability:IsChanneling() then
+			print(id,ability:GetName(),'ischanneling')
+			return false
+		end
+	end
+
+	return true
 end
