@@ -632,7 +632,7 @@
 		"BaseClass"			"npc_dota_creature"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"	
 		"SoundSet"					"Creep_Good_Melee"
-
+        "ModelScale"		"1.4"
 		"Ability1"					"caster_5th_skeleton_passive"			// Ability 1
 		"Ability2"					"caster_5th_skeleton_bash"			// Ability 2
 		"Ability3"					""			// Ability 3
@@ -653,14 +653,14 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"100"		// Base health.
+		"StatusHealth"				"300"		// Base health.
 		"StatusHealthRegen"			"-5"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.	
 		
 		"BountyGoldMin"				"100"		// Gold earned min.
-		"BountyGoldMax"				"100"		// Gold earned max.
-		"BountyXP"					"10"	// Experience earn.
+		"BountyGoldMax"				"900"		// Gold earned max.
+		"BountyXP"					"250"	// Experience earn.
 
 		// Vision
 		//----------------------------------------------------------------
@@ -671,7 +671,7 @@
 	"caster_5th_skeleton_archer"
 	{
 		"Model"				"models/heroes/clinkz/clinkz.vmdl"
-		"ModelScale"		"0.80"
+		"ModelScale"		"1.4"
 		"BaseClass"			"npc_dota_creature"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"	
 		"SoundSet"					"Creep_Good_Range"
@@ -690,7 +690,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"			"15"								// Damage range min.
 		"AttackDamageMax"			"15"								// Damage range max.
-		"AttackRate"				"1.0"								// Speed of attack.
+		"AttackRate"				"0.5"								// Speed of attack.
 		"AttackAnimationPoint"		"0.3"								// Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"	"500"								// Range within a target can be acquired.
 		"AttackRange"				"500"								// Range within a target can be attacked.
@@ -699,13 +699,13 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"80"		// Base health.
+		"StatusHealth"				"200"		// Base health.
 		"StatusHealthRegen"			"-4"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.	
 		"BountyGoldMin"				"80"		// Gold earned min.
-		"BountyGoldMax"				"80"		// Gold earned max.
-		"BountyXP"					"8"	// Experience earn.
+		"BountyGoldMax"				"800"		// Gold earned max.
+		"BountyXP"					"200"	// Experience earn.
 
 		// Vision
 		//----------------------------------------------------------------

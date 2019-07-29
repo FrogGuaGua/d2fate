@@ -466,7 +466,7 @@ function OnTheatreStart(keys)
 		end
 		FxDestroyer(caster.theatreFx2, false)
 	end)	
-
+    asd()
 	local banners = CreateBannerInCircle(caster, caster:GetAbsOrigin(), keys.Radius)
 	--local blockers = CreateBlockerInCircle(caster:GetAbsOrigin(), keys.Radius)
 
@@ -740,7 +740,6 @@ function NeroTakeDamage(keys)
 	local ply = caster:GetPlayerOwner()
 	local damageTaken = keys.damageTaken
 	local healCounter = 0
-
 
 	if caster:GetHealth() == 0 and IsRevivePossible(caster) and caster.IsISAcquired and not caster:HasModifier("modifier_invictus_spiritus_cooldown") and not IsRevoked(caster) then
 		ApplyPurge(caster)

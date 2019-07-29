@@ -323,15 +323,17 @@ function OnGalatineStart(keys)
 			-- Explosion on allies
 			local targets = FindUnitsInRadius(caster:GetTeam(), galatineDummy:GetAbsOrigin(), nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false) 
 			for k,v in pairs(targets) do
-				v:ApplyHeal(keys.Damage * 30/100, caster)
-				if caster.IsSunlightAcquired then
-					local healTime = 0
-					Timers:CreateTimer(1.0, function()
-						if healTime == 10 then return end
-						v:ApplyHeal(keys.Damage * 3/50, caster)
-						healTime = healTime + 1
-						return 0.3
-					end)
+				if v:GetName() ~= "npc_dota_ward_base" then
+					v:ApplyHeal(keys.Damage * 30/100, caster)
+					if caster.IsSunlightAcquired then
+						local healTime = 0
+						Timers:CreateTimer(1.0, function()
+							if healTime == 10 then return end
+							v:ApplyHeal(keys.Damage * 3/50, caster)
+							healTime = healTime + 1
+							return 0.3
+						end)
+					end
 				end
 			end
 
@@ -511,7 +513,9 @@ function OnEmbraceTickAlly(keys)
 	if caster.IsSunlightAcquired then
 		local targets2 = FindUnitsInRadius(caster:GetTeam(), target:GetAbsOrigin(), nil, keys.Radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets2) do
-			v:ApplyHeal(keys.Damage/32, caster)
+			if v:GetName() ~= "npc_dota_ward_base" then
+				v:ApplyHeal(keys.Damage/32, caster)
+			end
 		end        
 	end
 end
@@ -529,7 +533,9 @@ function OnEmbraceTickEnemy(keys)
 	if caster.IsSunlightAcquired then
 		local targets2 = FindUnitsInRadius(caster:GetTeam(), target:GetAbsOrigin(), nil, keys.Radius - 200, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 		for k,v in pairs(targets2) do
-			v:ApplyHeal(keys.Damage/32, caster)
+			if v:GetName() ~= "npc_dota_ward_base" then
+				v:ApplyHeal(keys.Damage/32, caster)
+			end
 		end        
 	end
 end

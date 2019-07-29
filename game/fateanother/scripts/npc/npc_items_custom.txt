@@ -1326,6 +1326,7 @@
 	    
 	}
 
+
 	"item_c_scroll_ai" 
 	{
 	    "ID"           "1141"
@@ -1392,6 +1393,8 @@
 	    	"SpendCharge" {}
 	    }
 	}
+
+
 
 	"item_recipe_b_scroll"
 	{
@@ -1663,7 +1666,6 @@
 	    	}
 	    }
 	}
-
 	"item_a_scroll_ai" 
 	{
 	    "ID"           "1140"
@@ -1881,6 +1883,7 @@
 	    }
 	}
 
+
 	"item_s_scroll_ai" 
 	{
 	    "ID"           "1150"
@@ -1992,6 +1995,7 @@
 	    	}
 	    }
 	}
+
 
 	"item_recipe_ex_scroll"
 	{
@@ -2148,7 +2152,7 @@
 	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
 
 	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-	    "AbilityCooldown"		"2"
+	    "AbilityCooldown"		"60"
 	    "AbilityChannelTime"			"5"
 	    "precache"
 	    {
@@ -2160,22 +2164,22 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"health"			"100 110 120 130 140 150 160 170"
+				"health"			"200 300 400 500 600 700 800 900"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"20 25 30 35 40 45 50 55"
+				"damage"			"20 30 40 50 60 70 80 90"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"bonus_armor_multiplier"	"0.15"
+				"bonus_armor_multiplier"	"0.3"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"bonus_health_multiplier"	"5"
+				"bonus_health_multiplier"	"9"
 			}
 			"05"
 			{
@@ -2224,7 +2228,7 @@
 	    "ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
 
 	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-	    "AbilityCooldown"		"1"
+	    "AbilityCooldown"		"60"
 	    "AbilityChannelTime"			"5"
 	    "precache"
 	    {
@@ -2237,22 +2241,22 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"health"			"80 85 90 95 100 105 110 115"
+				"health"			"160 200 240 280 320 360 400 440"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"15 23 31 39 47 55 63 71"
+				"damage"			"40  55  60  65  70  75  80  85"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"bonus_damage_multiplier"	"0.6"
+				"bonus_damage_multiplier"	"1"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"bonus_health_multiplier"	"4.0"
+				"bonus_health_multiplier"	"6"
 			}
 			"05"
 			{

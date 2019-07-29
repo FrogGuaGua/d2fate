@@ -12,10 +12,11 @@
 #base "abilities/saber_alter/abilities.txt"
 #base "abilities/jeanne/abilities.txt"
 #base "abilities/tamamo/tamamo_abilities.txt"
-#base "abilities/nero/gladiusanus_blauserum.txt"
+#base "abilities/nero/nero.txt"
 #base "abilities/fa/minds_eye.txt"
 #base "abilities/lvbu/lvbu_abilities.txt"
 #base "abilities/gille/gille_abilities.txt"
+
 
 
 "DOTAAbilities"
@@ -143,7 +144,7 @@
 		{
 			"modifier_instinct_evasion"
 			{
-				"passive"		"1"
+				"Passive"		"1"
 				"IsHidden"		"0"
 				"Properties"
 				{
@@ -184,7 +185,7 @@
 			"03"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"crit_multiplier"	    "250"
+				"crit_multiplier"	    "225"
 			}
 			"04"
 			{
@@ -2166,7 +2167,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"reducecdfrome"			 "30 30 40 50 60"
+				"reducecdfrome"			 "30 40 50 60 70"
 			}
 			"06"
 			{
@@ -2244,7 +2245,6 @@
 		{
 			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
 			"particle"		"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
-			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
 			"particle"		"particles/custom/lancer/lancer_heart_break_txt.vpcf"
 			"particle"		"particles/items_fx/dagon.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
@@ -2345,10 +2345,9 @@
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
-			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
 			"particle"		"particles/custom/screen_red_splash.vpcf"
 			"particle"		"particles/custom/lancer/lancer_heart_break.vpcf"
-			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
 		}
 		
 		// Casting
@@ -4096,8 +4095,8 @@
 		}
 		
 		"AbilityCastPoint"				"0.0"
-		"AbilityCooldown"				"9 8 7 6 5"
-		"AbilityManaCost"				"100"
+		"AbilityCooldown"				"8 7 6 5 4"
+		"AbilityManaCost"				"25"
 		"AbilityDamage"					"120 140 160 180 200"
 		
 		"AbilitySpecial"
@@ -4455,7 +4454,7 @@
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1150"
+		"AbilityCastRange"				"1300"
 		"AbilityCastPoint"				"0.65"
 
 		// Time		
@@ -4477,18 +4476,18 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"700 1000 1300 1600 1900"
+				"damage"			"800 1150 1500 1850 2100"
 			}
 			
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"300"
+				"radius"			"400"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"range"				"1150"
+				"range"				"1300"
 			}
 			"05"
 			{
@@ -4585,7 +4584,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"belle_damage"			"200"
+				"belle_damage"			"300"
 			}
 			"02"
 			{
@@ -4804,7 +4803,6 @@
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
-			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill_b.vpcf"
 			"particle"		"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
 			"particle"		"particles/custom/lancer/lancer_heart_break.vpcf"
 			"particle"		"particles/econ/events/ti4/dagon_ti4.vpcf"
@@ -4897,7 +4895,7 @@
 		
 		"AbilityCastPoint"				"0.1"
 		"AbilityCastRange"				"750"
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"5"
 		"AbilityManaCost"				"100"
 		
 		"AbilitySpecial"
@@ -5894,15 +5892,15 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.1"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"28"
+		"AbilityCooldown"				"45"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"400"
+		"AbilityManaCost"				"300"
 		
 		"AbilitySpecial"
 		{
@@ -5914,12 +5912,12 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"charge_time"		"20"
+				"charge_time"	    	"20"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"int_ratio"				"15"
+				"int_ratio"				"24"
 			}
 			"04"
 			{
@@ -6126,7 +6124,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"14"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{
@@ -6322,7 +6320,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"12"
+		"AbilityManaCost"				"10"
 
 		"precache"
 		{
@@ -7156,7 +7154,7 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"12"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"13"
 				}
 
 				"OnDestroy"
@@ -11491,7 +11489,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_per_second"			"40"
+				"mana_per_second"			"50"
 			}
 			"03"
 			{
@@ -11506,7 +11504,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"int_ratio"				"0.8"
+				"int_ratio"				   "2"
 			}
 		}
 
@@ -11816,7 +11814,7 @@
 				} 
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"-2.5"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"		"-0.5"
 					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE"	"-100"
 				}
 		  	}
@@ -11838,7 +11836,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"bash_chance"				"30"
+				"bash_chance"				"60"
 			}
 			"02"
 			{
@@ -11916,8 +11914,8 @@
 		  	{
 		  		"IsDebuff"						"1"
 		  		"Duration"						"%duration"
-				"StatusEffectName"     "particles/status_fx/status_effect_frost.vpcf"
-				"StatusEffectPriority" "10"
+				"StatusEffectName"             "particles/status_fx/status_effect_frost.vpcf"
+				"StatusEffectPriority"         "10"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-%slow"
@@ -12073,7 +12071,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"damage"			"900 1000 1100 1200 1300 1400 1500 1600"
+				"damage"			"700 800 900 1000 1100 1200 1300 1400"
 			}
 			
 			"03"
@@ -12751,7 +12749,7 @@
 		"AbilityTextureName"			"custom/caster_5th_rule_breaker"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
 		"AnimationPlaybackRate" 		"1.8"
-		"AbilityCastPoint"				"0.75"
+		"AbilityCastPoint"				"0.65"
 		"AbilityCastRange"				"150"
 		"AbilityCastRangeBuffer"		"90"
 		"AbilityCooldown"				"35"
@@ -13988,7 +13986,6 @@
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
-			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill_b.vpcf"
 			"particle"		"particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
 			"particle"		"particles/custom/lancer/lancer_heart_break.vpcf"
 			"particle"		"particles/items_fx/dagon.vpcf"
@@ -14589,7 +14586,7 @@
 
 					"Random"
 					{
-						"Chance"	"25"
+						"Chance"	"100"
 						"OnSuccess"
 						{
 							"RunScript"
@@ -14607,7 +14604,7 @@
 				"IsHidden"		"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "250"
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"  "135"
 				}
 				"OnAttackLanded"
 				{
@@ -16619,7 +16616,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"19"
+		"AbilityCooldown"				"13"
 		"AbilityCastPoint"				"0.3"
 
 		// Cost
@@ -16888,7 +16885,6 @@
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_chaos_knight/chaos_knight_reality_rift.vpcf"
-			"particle"		"particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
 			"particle"		"particles/custom/diarmuid/diarmuid_gae_cast.vpcf"
 			"particle"		"particles/custom/diarmuid/diarmuid_gae_buidhe.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
@@ -17058,7 +17054,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
 		"AbilityCastRangeBuffer"		"250"
-		"AbilityCastPoint"				"1.1"
+		"AbilityCastPoint"				"1.0"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -17073,7 +17069,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"delay"			"1.1"
+				"delay"			"1.0"
 			}
 			"02"
 			{
@@ -17368,7 +17364,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"14"
+		"AbilityManaCost"				"10"
 
 		"precache"
 		{
@@ -20711,7 +20707,7 @@
 	//=================================================================================================================
 	// Nero : Imperial Privilege
 	//=================================================================================================================
-	"nero_imperial_privilege"
+	"nero_imperial_privilege_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -20752,7 +20748,7 @@
 		}
 	}
 
-	"nero_acquire_divinity"
+	"nero_acquire_divinity_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
@@ -20792,7 +20788,7 @@
 	//=================================================================================================================
 	// Nero : Golden Rule
 	//=================================================================================================================
-	"nero_acquire_golden_rule"
+	"nero_acquire_golden_rule_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
@@ -20839,7 +20835,7 @@
 	//=================================================================================================================
 	// Nero : Clairvoyance
 	//=================================================================================================================
-	"nero_acquire_clairvoyance"
+	"nero_acquire_clairvoyance_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
@@ -20890,7 +20886,7 @@
 	//=================================================================================================================
 	// Nero : Martial Arts
 	//=================================================================================================================
-	"nero_acquire_martial_arts"
+	"nero_acquire_martial_arts_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
@@ -20911,7 +20907,7 @@
 			}
 		}
 	}
-	"nero_close_spellbook"
+	"nero_close_spellbook_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
@@ -21154,7 +21150,7 @@
 	//=================================================================================================================
 	// Nero : Tres Fontaine Ardent
 	//=================================================================================================================
-	"nero_tres_fontaine_ardent"
+	"nero_tres_fontaine_ardent_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
@@ -21300,7 +21296,7 @@
 	//=================================================================================================================
 	// Nero : Rosa Ichthys
 	//=================================================================================================================
-	"nero_rosa_ichthys"
+	"nero_rosa_ichthys_old"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -21350,7 +21346,8 @@
 		{
 			"particle"			"particles/custom/archer/archer_overedge_slash.vpcf"
 			"particle"			"particles/units/heroes/hero_legion_commander/legion_duel_start_text_burst_flare.vpcf"
-			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+			"particle"          "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
 		}
 		
 		"OnSpellStart"
@@ -21508,7 +21505,7 @@
 	//=================================================================================================================
 	// Nero : Aestus Domus Aurea
 	//=================================================================================================================
-	"nero_aestus_domus_aurea"
+	"nero_aestus_domus_aurea_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -21531,7 +21528,7 @@
 			"particle"			"particles/items2_fx/radiance_owner.vpcf"
 			"particle"			"particles/units/heroes/hero_phoenix/phoenix_supernova_radiance.vpcf"
 			"particle"			"particles/custom/nero/nero_domus_ring_border.vpcf"
-			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
 		}
 		
 		"AbilityCooldown"				"54"
@@ -21658,7 +21655,7 @@
 	//=================================================================================================================
 	// Nero : Fiery Finale
 	//=================================================================================================================
-	"nero_fiery_finale"
+	"nero_fiery_finale_old"
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
@@ -21799,7 +21796,7 @@
 	//=======================================
 	// Nero Attribute : Pari Tenu Blauserum
 	//=======================================
-	"nero_attribute_pari_tenu_blauserum"
+	"nero_attribute_pari_tenu_blauserum_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -21853,7 +21850,7 @@
 	//=======================================
 	// Nero Attribute : Improve Imperial Privilege
 	//=======================================
-	"nero_attribute_improve_imperial_privilege"
+	"nero_attribute_improve_imperial_privilege_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -21991,7 +21988,7 @@
 	//=======================================
 	// Nero Attribute : Soverign's Glory
 	//=======================================
-	"nero_attribute_soverigns_glory"
+	"nero_attribute_soverigns_glory_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -22044,7 +22041,7 @@
 	//=======================================
 	// Nero Attribute : Pavillion of Falling Flowers
 	//=======================================
-	"nero_attribute_pavilion"
+	"nero_attribute_pavilion_old"
 	{
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
@@ -31048,6 +31045,8 @@
 		"precache"
 		{
 			"particle"		"particles/units/heroes/hero_grimstroke/grimstroke_cast_ink_swell.vpcf"
+			"model"			"models/jack/jack.vmdl"
+			"particle"		"particles/custom/jack/jack_ill2.vpcf"
 		}
 		
 		// Ability stats
@@ -31309,7 +31308,9 @@
 		"AnimationPlaybackRate" 		"0.5"
 		"precache"
 		{
-             "particle"		"particles/units/heroes/hero_grimstroke/grimstroke_cast_ink_swell.vpcf"
+			"model"			"models/jack/jack.vmdl"
+            "particle"		"particles/custom/jack/jack_shadow.vpcf"
+			"particle"		"particles/custom/jack/jack_ill.vpcf"
 		}
 		
 		// Ability stats
@@ -31453,7 +31454,7 @@
 		"AnimationPlaybackRate" 		"0.5"
 		"precache"
 		{
-             "particle"                 "particles/econ/items/legion/legion_overwhelming_odds_ti7/legion_commander_odds_ti7_ground_pillar_black.vpcf"
+             "particle"                 "particles/custom/jack/jack_bat_fallen_ground.vpcf"
 			 "particle"                 "particles/econ/events/fall_major_2015/teleport_end_fallmjr_2015_lvl2_black_b.vpcf"
 			 "particle"                 "particles/units/heroes/hero_grimstroke/grimstroke_sfm_ink_swell_reveal_swirl.vpcf"
 			 
@@ -31683,7 +31684,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/jack_the_mist"
 		"AbilityCastPoint"				"0.1"
-		"AbilityCooldown"				"280"
+		"AbilityCooldown"				"300"
 		"AbilityManaCost"				"200"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"precache"
@@ -31706,7 +31707,7 @@
 		{
 			"jack_the_mist_cd"
 			{   
-				"Duration"		"280"
+				"Duration"		"300"
 				"IsDebuff"		"1"
 				"Attributes"				"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
 			}

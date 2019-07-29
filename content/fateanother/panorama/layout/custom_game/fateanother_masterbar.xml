@@ -11,7 +11,7 @@
         <Panel id="MasterBar" hittest="false">
             <Panel id="MasterBarBacker" hittest="false">
                 <Panel id="MasterBarBG" hittest="false" />
-                <Panel id="MasterBarButton"/>
+                <Panel id="MasterBarButton" text="#MasterBar_open"/>
             </Panel>
             <Label id="MasterBarButtonLabel" text="#MasterBar_open" hittest="false"/>
             <Panel id="MasterBarSeals" hittest="false"/>

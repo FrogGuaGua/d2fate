@@ -1,3 +1,4 @@
+
 // Set up global variables
 var g_GameConfig = FindCustomUIRoot($.GetContextPanel());
 //g_GameConfig.curBGMentindex = 0;
@@ -74,7 +75,7 @@ function UpdateAttributeList(data)
 	if (!attributePanel || !statPanel || !shardPanel)
 		return;
 
-	//$.Msg("panels present. linking abilities...")
+	$.Msg("panels present. linking abilities...")
 	var queryUnit = data.masterUnit; //Players.GetLocalPlayerPortraitUnit();
 	var queryUnit2 = data.shardUnit;
 
@@ -193,17 +194,14 @@ function CreateErrorMessage(msg){
 (function()
 {
     //$.RegisterForUnhandledEvent( "DOTAAbility_LearnModeToggled", OnAbilityLearnModeToggled);
-
-	//GameEvents.Subscribe( "dota_portrait_ability_layout_changed", UpdateAbilityList );
-	//GameEvents.Subscribe( "dota_player_update_selected_unit", UpdateAbilityList );
-	//GameEvents.Subscribe( "dota_player_update_query_unit", UpdateAbilityList );
-	//GameEvents.Subscribe( "dota_ability_changed", UpdateAbilityList );
-	//GameEvents.Subscribe( "dota_hero_ability_points_changed", UpdateAbilityList );
 	GameUI.SetCameraDistance(1600);
+	OnCustomizeButtonPressed();
+	CreateFateTalentButton();
 	GameEvents.Subscribe( "player_selected_hero", UpdateAttributeList);
 	GameEvents.Subscribe( "servant_stats_updated", UpdateStatPanel );
 	GameEvents.Subscribe( "error_message_fired", CreateErrorMessage)
 	GameEvents.Subscribe( "player_chat_lua", PrintToClient );
-	OnCustomizeButtonPressed();
-	CreateFateTalentButton();
+
+	//GameEvents.Subscribe( "dota_player_update_selected_unit", UpdateAttributeList );
+	//GameEvents.Subscribe( "dota_player_update_query_unit", UpdateAttributeList );
 })();

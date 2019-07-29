@@ -151,7 +151,6 @@ function UpdateTimer()
 	OnUpdateHeroSelection();
 	GameEvents.Subscribe( "dota_player_hero_selection_dirty", OnUpdateHeroSelection );
 	GameEvents.Subscribe( "dota_player_update_hero_selection", OnUpdateHeroSelection );
-
 	UpdateTimer();
 })();
 

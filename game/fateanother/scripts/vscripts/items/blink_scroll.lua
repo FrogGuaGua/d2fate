@@ -17,8 +17,8 @@ function item_blink_scroll:GetCustomCastErrorLocation( vLocation )
     return "#Cannot_Blink"
 end
 
---if IsClient() then
+if IsClient() then
     function item_blink_scroll:GetCastRange(vLocation, hTarget)
         return 1000
     end
---end
+end

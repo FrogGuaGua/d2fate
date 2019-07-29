@@ -35,7 +35,7 @@
       "01"
       {
         "var_type"				"FIELD_INTEGER"
-        "damage_TT"	            "400 500 600 700 800"
+        "damage_TT"	            "400 525 650 775 900"
       }
       "02"
       {

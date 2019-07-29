@@ -10,9 +10,9 @@
 		"Dota_shared_content_available"				""		//"Players are sharing items in the Shared Content tab."
 
 		// Stat override
-		"DOTA_StatTooltip_StrengthBonus"	"- 每点增加16点生命值\n- 每点提升0.25点的生命回复速率\n"
+		"DOTA_StatTooltip_StrengthBonus"	"- 每点增加18点生命值\n- 每点提升0.25点的生命回复速率\n"
 		"DOTA_StatTooltip_AgilityBonus"		"- 每点增加0.3点护甲\n- 每点提升2点攻击速度\n"
-		"DOTA_StatTooltip_IntelligenceBonus"	"- 每点增加14点魔力值上限\n- 每点提升0.25点的魔力回复速率\n"
+		"DOTA_StatTooltip_IntelligenceBonus"	"- 每点增加13点魔力值上限\n- 每点提升0.35点的魔力回复速率\n"
 
 	    "DOTA_Chat_PlayerKilled"    ""
 	    "DOTA_Chat_PlayerKilledNearby"    ""

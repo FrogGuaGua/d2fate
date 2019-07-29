@@ -554,7 +554,7 @@ function CScroll(keys)
 		cdummy:CastAbilityOnTarget(keys.target, fire, pid)
 	end
 	hero.ServStat:useC()
-	--caster:RemoveItem(keys.ability)
+	caster:RemoveItem(keys.ability)
 
 	--[[Timers:CreateTimer(5.0, function()
 		if IsValidEntity(cdummy) and not cdummy:IsNull() then

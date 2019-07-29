@@ -1,0 +1,1010 @@
+"DOTAAbilities"
+{
+    "nero_rosa_ichthys"
+    {
+        "BaseClass"                                     "ability_lua"
+        "ScriptFile"                                    "abilities/nero/rosa_ichthys"
+
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			                "custom/nero_rosa_ichthys"
+		"AbilityCastAnimation" 		                 	"ACT_DOTA_ATTACK_EVENT"
+		"AnimationPlaybackRate" 	                 	"3.0"
+        "precache"
+		{
+			"particle"		"particles/custom/nero/nero_q.vpcf"
+		}
+
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "1"
+        "LevelsBetweenUpgrades"                         "1"
+        "AbilityCastRange"				                "700"
+        "AbilityCastPoint"                              "0.1"
+        "AbilityCooldown"                               "5 4.5 4 3.5 3"
+        "AbilityManaCost"                               "100"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "duration"                              "10"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "damage"                                "200 220 240 260 280"
+            }
+            "03"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "bonus_agi"                             "3 4 5 6 7"
+            }
+            "04"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "max_stack"                             "10"
+            }
+        }
+    }
+
+    "nero_gladiusanus_blauserum"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"6"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityTextureName"			"custom/nero_gladiusanus_blauserum"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+        "AbilityChannelTime"            "2.1"
+		"AbilityCastPoint"				"0.5"
+		"AbilityCooldown"				"13"
+		"AbilityManaCost"				"200"
+
+		"precache"
+		{
+			"particle"		"particles/custom/nero/nero_q.vpcf"
+			"particle"	    "particles/units/heroes/hero_disruptor/disruptor_kineticdischarge_aoe_discharge_c.vpcf"
+			"particle"	    "particles/econ/courier/courier_roshan_desert_sands/baby_roshan_desert_sands_ambient.vpcf"
+			"particle"      "particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_ti6_spray.vpcf"
+			"particle"      "particles/units/heroes/hero_treant/treant_overgrowth_hero_glow.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"300 370 440 510 580 640"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_range"			    "1000"
+			}	
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"			    "5"
+			}
+            "04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"agi_ratio"			    "4"
+			}	            	
+        }
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/nero/nero"
+				"Function"			"OnNeroGBStart"
+			}
+		}
+		
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/nero/nero"
+				"Function"			"OnNeroGBEnd"
+			}		
+		}
+
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"false"
+			"RunScript"
+			{
+			 	"ScriptFile"	"abilities/nero/nero"
+			 	"Function"		"OnNeroGBEndHit"
+			 	"damage"		"%damage"
+                "agi_ratio"     "%agi_ratio"
+			}		
+		}
+		"Modifiers"
+		{	
+            "modifier_gladiusanus_blauserum_bonus_damage"
+            {
+				"EffectName"		"particles/econ/courier/courier_roshan_desert_sands/baby_roshan_desert_sands_ambient.vpcf"
+				"EffectAttachType"	"follow_origin"
+                "Duration"				"3.0"
+				"States"
+	    		{
+	    			"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+	    		}
+            }
+			"jump_pause"
+			{
+				"TextureName"	"faceless_void_time_lock"
+				"States"
+				{
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+        }	
+	}
+
+    "nero_blade_dance"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName"			"custom/nero_blade_dance"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
+		"AnimationPlaybackRate" 		"1.0"
+        "AbilityChannelTime"            "1.8"
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"21"
+		"AbilityManaCost"				"400"
+		"AbilityCastRange"				"400"
+		"precache"
+		{
+			"soundfile"	   "soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"110 135 160 195 210"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_hit"			    "9 9 9 9 9"
+			}	  
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radiu"			        "500"
+			}        	
+        }
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/nero/nero"
+				"Function"			"OnNeroDBStart"
+				"max_hit"           "%max_hit"
+				"damage"	        "%damage"
+				"radiu"			    "%radiu"
+			}
+		}
+		"Modifiers"
+		{	
+			"unselect_state"
+			{
+				"TextureName"	                     "faceless_void_time_lock"
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"   "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_SILENCED"	    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"          "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"		    "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+        }	
+	}
+
+
+
+	"nero_aestus_domus_aurea"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"					"1"
+		"LevelsBetweenUpgrades"			"2"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+		"AbilityTextureName"			"custom/nero_aestus_domus_aurea"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AnimationPlaybackRate" 		"1.0"
+		
+		"precache"
+		{
+			"particle"			"particles/custom/nero/nero_domus_ring_energy.vpcf"
+			"particle"			"particles/custom/nero/nero_domus_ray.vpcf"
+			"particle"			"models/particle/legion_duel_banner.vmdl"
+			"particle"          "particles/custom/nero/nero_domus_ring_rope.vpcf"
+			"particle"			"particles/items2_fx/radiance_owner.vpcf"
+			"particle"			"particles/units/heroes/hero_phoenix/phoenix_supernova_radiance.vpcf"
+			"particle"			"particles/custom/nero/nero_domus_ring_border.vpcf"
+			"particle"		    "particles/custom/nero/nero_scorched_earth_child_embers_dominus.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+			"particle"          "particles/custom/nero/nero_ring_new.vpcf"
+			"particle"          "particles/custom/nero/nero_scorched_earth_child_embers_1.vpcf"
+		}
+		
+		"AbilityCooldown"				"54"
+		"AbilityManaCost"				"600"
+		"AbilityCastRange"				"1050"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cast_delay"			"1.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1050"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"10.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"debut_damage"			"400 500 600 700 800"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dot_damage"			"40 50 60 70 80"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnTheatreCast"
+				"Radius"		"%radius"
+				"debut_damage"	"%debut_damage"
+				"Duration"		"%duration"
+			}
+		}
+
+
+		"Modifiers"
+		{
+			"modifier_theatre_anim"
+			{
+				"Duration"		"1.5"
+				"OverrideAnimation"		"ACT_DOTA_CAST_ABILITY_4"
+			}
+			"modifier_aestus_domus_aurea"
+			{
+				"Duration"		"%duration"
+				"IsHidden"		"2"
+				"EffectName"			"particles/custom/nero/nero_scorched_earth_child_embers_dominus.vpcf"
+				"EffectAttachType"		"follow_origin"
+			}
+			"modifier_aestus_domus_aurea_debuff"
+			{
+				"Duration"		"0.25"
+				"IsDebuff"		"1"
+				"EffectName"			"particles/units/heroes/hero_phoenix/phoenix_supernova_radiance.vpcf"
+				"EffectAttachType"		"follow_origin"
+				"ThinkInterval" 		"0.25"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/nero/nero"
+						"Function"				"OnTheatreApplyDamage"
+						"Damage"				"%dot_damage"
+					}
+				}
+			}
+			"modifier_aestus_domus_aurea_focus"
+			{
+				"Duration"		"10"
+				"IsDebuff"		"1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/nero/nero"
+						"Function"			"OnFocusDamageTaken"
+					}
+				}
+			}
+			"modifier_aestus_domus_aurea_debuff_slow"
+			{
+				"Duration"		"0.25"
+				"IsHidden"		"1"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-40"
+				}
+			}
+		}
+	}
+
+
+	"nero_imperial_privilege"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/nero_imperial_privilege"
+		"MaxLevel"						"1"
+		"AbilityCooldown"				"0"
+		"precache"
+		{
+		}
+		
+		"AbilitySpecial"
+		{			
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/nero/nero"
+				"Function"			"OnIPStart"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_imperial_privilege"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnRespawn"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/nero/nero"
+						"Function"			"OnIPRespawn"
+					}
+				}
+			}
+		}
+	}
+
+	"nero_close_spellbook"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"silencer_last_word"
+		
+		"AbilityCastPoint"				"0.0"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnIPClose"
+			}
+		}
+	}
+
+
+	"nero_acquire_divinity"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/berserker_5th_divinity"
+		
+		"AbilityCastPoint"				"0.0"
+				
+		"precache"
+		{
+			"particle"			"particles/custom/generic/fate_green_shield.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pb"			        "80"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mb"				    "15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pa"				    "10"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hr"		           	"5"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnDivinityAcquired"
+			}
+		}
+        "Modifiers"
+		{
+			"nero_acquire_divinity_passive"
+			{
+				"EffectName"			"particles/custom/generic/fate_green_shield.vpcf"
+			    "EffectAttachType"		"follow_origin"
+				"Target"                "CASTER"
+				"ControlPointEntities"
+				{
+					"CASTER"	"follow_origin"
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK"	    "80"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"16.7"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	    "10"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"     "5"
+				}
+			}
+		}
+
+	}
+    
+	"nero_acquire_golden_rule"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/gilgamesh_golden_rule"		
+		"AbilityCastPoint"				"0.0"
+		"precache"
+		{
+			"particle"			"particles/custom/nero/nero_coins.vpcf"
+		}
+				"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mnatonce"			        "666"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ms"				    "66"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnGoldenRuleAcquired"
+			}
+		}
+
+
+		"Modifiers"
+		{
+			"nero_acquire_golden_rule_passive"
+			{
+				"ThinkInterval"		"1"
+				"OnCreated"
+				{
+					"EffectName"			"particles/custom/nero/nero_coins.vpcf"
+			        "EffectAttachType"		"follow_origin"
+					"Target"                "CASTER"
+					"ControlPointEntities"
+					{
+						"CASTER"	      "follow_origin"
+						"CASTER"	      "follow_origin"
+					}
+				}
+				 "OnIntervalThink"
+	         	{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/nero/nero"
+					 	"Function"		"OnGoldenRuleThink"
+					}
+				}	
+
+			}
+		}
+	}
+
+	"nero_acquire_martial_arts"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/lishuwen_martial_arts"
+		
+		"AbilityCastPoint"				"0.0"
+		"precache"
+		{
+			"particle"                  "particles/custom/nero/nero_material.vpcf"
+		}
+		"AbilitySpecial"
+		{
+
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnMartialArtsAcquired"
+			}
+		}
+		"Modifiers"
+		{
+			"nero_martial_arts_fx"
+			{
+				"IsHidden"                  "1"
+				"OnCreated"
+				{
+					"EffectName"			"particles/custom/nero/nero_material.vpcf"
+			        "EffectAttachType"		"follow_origin"
+					"Target"                "CASTER"
+					"ControlPointEntities"
+					{
+						"CASTER"	      "attach_sword"
+			    }
+			}
+		}
+		}
+	}
+
+	"nero_acquire_clairvoyance"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/archer_5th_clairvoyance"
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.0"
+		"precache"
+		{
+			"particle"					"particles/custom/archer/archer_clairvoyance_dust.vpcf"
+			"particle"					"particles/custom/archer/archer_clairvoyance_circle.vpcf"
+			"soundfile"			     	"soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnClairvoyanceAcquired"
+			}
+		}
+
+	}
+
+
+
+	"nero_fiery_finale"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"custom/nero_fiery_finale"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+
+		"AbilityCastPoint"				"0"
+		"AbilityCooldown"				"180"
+		"AbilityManaCost"				"200"
+
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_batrider/batrider_flamebreak_explosion_e.vpcf"
+			"particle"			"particles/custom/screen_lightred_splash.vpcf"
+			"particle"          "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_notarget_moonfall_gold.vpcf"
+			"particle"          "particles/custom/nero/nero_impact_2.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
+			"soundfile"		    "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+		
+		"AbilitySpecial"
+		{	
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"flame_damage"				"100"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"laus_slash_damage"		   "200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"laus_horizontal_slash_damage"		"1000"
+			}				
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/nero/nero"
+				"Function"			"OnNeroComboStart"
+				"FlameDamage"		"%flame_damage"
+				"SlashDamage"		"%laus_slash_damage"
+				"FinalDamage"		"%laus_horizontal_slash_damage"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"false"
+			
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/nero/nero"
+				"Function"      "OnLausHit"
+				"damage"		"%laus_horizontal_slash_damage"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_fiery_finale_cooldown"
+			{
+				"IsDebuff"	"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+			"modifier_laus_anim"
+			{
+				"OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_2"	
+				"Duration"			"0.8"
+				"IsHidden"			"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"3.0"
+				}
+			}
+		}
+	}
+
+
+	"nero_spring"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"2"
+		"RequiredLevel"					"25"
+		"LevelsBetweenUpgrades"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/nero_tres_fontaine_ardent"
+		"AbilityCastRange"				"1300"
+		"precache"
+		{
+			"particle"		"particles/items_fx/battlefury_cleave.vpcf"
+			"particle"		"particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"fire_damage"			"10 40"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cleave_radius"			"200 250"
+			}		
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"cleave_damage"		"10 15"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"5"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"regen"		    	"60 110"
+			}
+		}
+		
+		
+		"Modifiers"
+		{	
+			"nero_spring_passive"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_culling_blade_sprint.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+						"ControlPointEntities"
+						{
+							"CASTER"	"attach_sword"
+							"CASTER"	"attach_sword"
+						}
+					}
+				}
+				"Passive"           "1"
+				"OnAttackLanded"
+				{
+					"CleaveAttack"
+					{
+						"CleavePercent"		"%cleave_damage"
+						"CleaveRadius"		"%cleave_radius"
+						"CleaveEffect"		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave.vpcf"
+					}
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/nero/nero"
+						"Function"			"NeroSpringFire"
+						"damage"            "%fire_damage"
+					}
+				}
+			}
+
+			"modifier_invictus_spiritus_passive"
+			{
+				"Passive"                         "1"
+				"IsHidden"                        "1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "nero_ability"
+						"Function"      "NeroTakeDamage"
+						"DamageTaken"	"%attack_damage"
+					}
+				}
+		  	}
+
+			"modifier_invictus_spiritus"
+			{
+				"Duration"			"3.0"
+				"IsHidden"			"1"
+				"OverrideAnimation"     "ACT_DOTA_DIE"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+
+						"ControlPointEntities"
+						{
+							"CASTER"	"follow_origin"
+							"CASTER"	"follow_origin"
+						}
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"0.5"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-100"
+					"MODIFIER_PROPERTY_HEALTH_BONUS"				"99999"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"modifier_cheer"
+			{
+				"Duration"      "%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName"		"particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_ring_dc.vpcf"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	    	"%regen"
+				}
+			}
+
+
+		}
+	}
+
+
+	"nero_attribute_pavilion"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/nero_rosa_ichthys_attribute"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"13"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"extra_dmg"					"3"
+			}				
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"reduction"				   "0.8"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnPavilionAcquired"
+			}
+		}
+	}
+
+
+	"nero_attribute_improve_imperial_privilege"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/nero_attribute_improve_imperial_privilege"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnPrivilegeImproved"
+			}
+		}
+	}
+
+
+
+	"nero_attribute_soverigns_glory"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/nero_attribute_soverigns_glory"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"11"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnGloryAcquired"
+			}
+		}
+	}
+
+
+
+	"nero_attribute_pari_tenu_blauserum"
+	{
+		// General		//------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"custom/nero_attribute_pari_tenu_blauserum"
+		
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"9999"
+		"AbilityManaCost"				"12"
+
+		"precache"
+		{
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"dmg_improve"				"150"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slash_improve"				"1"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_improve"				"300"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/nero/nero"
+				"Function"		"OnPTBAcquired"
+			}
+		}
+	}
+}

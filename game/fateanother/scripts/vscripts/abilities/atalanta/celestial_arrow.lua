@@ -7,9 +7,9 @@ function atalanta_celestial_arrow:OnUpgrade()
     local ability = self    
 
     if IsServer() then
-        --[[local fCastTimeReduction = self:GetSpecialValueFor("casttime_reduction_per_stack")
-        local fAgility = self:GetSpecialValueFor("agility_per_stack")
-        CustomNetTables:SetTableValue("sync","atalanta_q", {fCastTimeReduction = fCastTimeReduction, fAgility = fAgility})]]
+        --local fCastTimeReduction = self:GetSpecialValueFor("casttime_reduction_per_stack")
+        --local fAgility = self:GetSpecialValueFor("agility_per_stack")
+        --CustomNetTables:SetTableValue("sync","atalanta_q", {fCastTimeReduction = fCastTimeReduction, fAgility = fAgility})]]
         if not caster.ArrowHit then
             function caster:ArrowHit(...)
                 ability:ArrowHit(...)
@@ -138,9 +138,10 @@ function atalanta_celestial_arrow:GrantQBuff(hAbility)
         local hModifier = hCaster:FindModifierByName("modifier_celestial_arrow_onhit")
         local iCurrentStack = hModifier and hModifier:GetStackCount() or 0
         if not hModifier then 
-            local fCastTimeReduction = self:GetSpecialValueFor("casttime_reduction_per_stack")
-            local fAgility = self:GetSpecialValueFor("agility_per_stack")
-            hCaster:AddNewModifier(hCaster, self, "modifier_celestial_arrow_onhit", {Duration = fOnHitBuffDuration, fAgility = fAgility, fCastTimeReduction = fCastTimeReduction})
+            --local fCastTimeReduction = self:GetSpecialValueFor("casttime_reduction_per_stack")
+            --local fAgility = self:GetSpecialValueFor("agility_per_stack")
+            --hCaster:AddNewModifier(hCaster, self, "modifier_celestial_arrow_onhit", {Duration = fOnHitBuffDuration, fAgility = fAgility, fCastTimeReduction = fCastTimeReduction})
+            hCaster:AddNewModifier(hCaster, self, "modifier_celestial_arrow_onhit", {Duration = fOnHitBuffDuration})
         else
             hModifier:SetDuration(fOnHitBuffDuration, true)
         end
@@ -178,7 +179,7 @@ function atalanta_celestial_arrow:ArrowHit(target, slow, bIsPhoebus)
     local huntDamage = damagePercent * stacks 
 
     if caster.HuntersMarkAcquired then
-        local physicalReduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
+        local physicalReduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue(false))
         huntDamage = huntDamage / (1 - physicalReduction)
     end
     

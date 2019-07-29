@@ -6,9 +6,9 @@
 		"addon_game_name"			"Fate/Another"
 
 		// Stat override
-		"DOTA_StatTooltip_StrengthBonus"	"- Each point increases hit points by 16\n- Each point increases hit point regen by 0.25\n"
+		"DOTA_StatTooltip_StrengthBonus"	"- Each point increases hit points by 18\n- Each point increases hit point regen by 0.25\n"
 		"DOTA_StatTooltip_AgilityBonus"		"- Each point increases armor by 0.3\n- Each point increases attack speed by 2\n"
-		"DOTA_StatTooltip_IntelligenceBonus"	"- Each point increases mana by 14\n- Each point increases mana regen by 0.25\n"
+		"DOTA_StatTooltip_IntelligenceBonus"	"- Each point increases mana by 13\n- Each point increases mana regen by 0.35\n"
 
 		// Bounty and other misc strings
 		"DOTA_Chat_NoBattlePoints_WrongLobby"		""		//"Battle Points will not be awarded for this match because it is a practice lobby."

@@ -317,6 +317,7 @@ function OnBelleStart(keys)
 	end
 	local dist = (origin - targetPoint):Length2D() 
 	local dmgdelay = dist * 0.000416
+	local herodelay = dist * 0.0004 + 1.3
 	
 	-- Attach particle
 	if caster.AltPart.r == 1 then
@@ -337,8 +338,8 @@ function OnBelleStart(keys)
 		end)
 	end
 	
-	if caster.IsRidingAcquired then keys.Damage = keys.Damage + 200 end 
-	giveUnitDataDrivenModifier(keys.caster, keys.caster, "jump_pause", 1.3)
+	if caster.IsRidingAcquired then keys.Damage = keys.Damage + 300 end 
+	giveUnitDataDrivenModifier(keys.caster, keys.caster, "jump_pause", herodelay)
 	Timers:CreateTimer(0.5, function()
 		EmitGlobalSound("Rider.Bellerophon") 
 	end)

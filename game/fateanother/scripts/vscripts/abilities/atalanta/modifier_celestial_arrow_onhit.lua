@@ -8,15 +8,14 @@ function modifier_celestial_arrow_onhit:DeclareFunctions()
 
   return funcs
 end
-function modifier_celestial_arrow_onhit:OnCreated(args)
-  self.fAgilityPerStack = args.fAgility
-  self.fCastTimeReductionPerStack = args.fCastTimeReduction
+function modifier_celestial_arrow_onhit:OnCreated()
+  self.kval = self:GetAbility():GetSpecialValueFor("agility_per_stack")
 end
 function modifier_celestial_arrow_onhit:GetModifierPercentageCasttime() 
-  return self:GetStackCount() * self.fCastTimeReductionPerStack
+  return self:GetStackCount() * self.kval
 end
 function modifier_celestial_arrow_onhit:GetModifierBonusStats_Agility()
-  return self:GetStackCount() * self.fAgilityPerStack
+  return self:GetStackCount() * self.kval
 end
 function modifier_celestial_arrow_onhit:GetAttributes() 
   return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE

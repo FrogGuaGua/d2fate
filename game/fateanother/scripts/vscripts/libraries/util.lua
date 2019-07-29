@@ -869,7 +869,7 @@ end
 -- Does what it says. damage post reduction -> pre reduction
 function CalculateDamagePreReduction(eDamageType, fDamage, hUnit)
 	if eDamageType == DAMAGE_TYPE_PHYSICAL then
-		local fArmor = hUnit:GetPhysicalArmorValue()
+		local fArmor = hUnit:GetPhysicalArmorValue(false)
 		local multiplier = 1 + 0.06 * fArmor / (1 + 0.06 * math.abs(fArmor))
 		return fDamage * multiplier
 	end
@@ -884,7 +884,7 @@ end
 
 function CalculateDamagePostReduction(eDamageType, fDamage, hUnit)
 	if eDamageType == DAMAGE_TYPE_PHYSICAL then
-		local fArmor = hUnit:GetPhysicalArmorValue()
+		local fArmor = hUnit:GetPhysicalArmorValue(false)
 		local multiplier = 1 - 0.06 * fArmor / (1 + 0.06 * math.abs(fArmor))
 		return fDamage * multiplier
 	end
@@ -1062,7 +1062,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         if target:HasModifier("modifier_l_rule_breaker") or target:HasModifier ("modifier_c_rule_breaker") and (dmg_type == DAMAGE_TYPE_PURE or dmg_type == DAMAGE_TYPE_PHYSICAL) then
             reduction = 1
         elseif dmg_type == DAMAGE_TYPE_PHYSICAL then
-            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
+            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue(false))
         elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             reduction = target:GetMagicalArmorValue() 
         end 
@@ -1088,7 +1088,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
   	    local modifier = target:FindModifierByName("modifier_cursed_lance") or target:FindModifierByName("modifier_cursed_lance_bp")
         local reduction = 0
         if dmg_type == DAMAGE_TYPE_PHYSICAL then
-            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
+            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue(false))
         elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             reduction = target:GetMagicalArmorValue()
         end
@@ -1116,7 +1116,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         elseif dmg_type == DAMAGE_TYPE_MAGICAL then
             incomingDmg = incomingDmg * (1-MR)
         elseif dmg_type == DAMAGE_TYPE_PHYSICAL then
-            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
+            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue(false))
             incomingDmg = incomingDmg * (1-reduction) 
         end
 
@@ -1136,9 +1136,9 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
     if not IsAbsorbed and target:HasModifier("modifier_argos_shield") then
         local reduction = 0
         if dmg_type == DAMAGE_TYPE_PHYSICAL then
-            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue())
+            reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue(false))
         elseif dmg_type == DAMAGE_TYPE_MAGICAL then
-            reduction = target:GetMagicalArmorValue() 
+            reduction = target:GetMagicalArmorValue(0) 
         end 
         local originalDamage = dmg - target.argosShieldAmount * 1/(1-reduction)
         target.argosShieldAmount = target.argosShieldAmount - dmg * (1-reduction)
@@ -1864,8 +1864,8 @@ function OnHeroTakeDamage(keys)
 
     if attacker:GetAttackTarget() == hero then
         --print("Right click before armor reductions", damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue())))
-        attackerHero.ServStat:doDamageBeforeReduction(damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue(true))))
-        hero.ServStat:takeDamageBeforeReduction(damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue(true))))
+        attackerHero.ServStat:doDamageBeforeReduction(damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue(false))))
+        hero.ServStat:takeDamageBeforeReduction(damageTaken * 1/(1-GetPhysicalDamageReduction(hero:GetPhysicalArmorValue(false))))
     end
     --print("Actual damage from KV:", damageTaken)
     attackerHero.ServStat:doActualDamage(damageTaken)

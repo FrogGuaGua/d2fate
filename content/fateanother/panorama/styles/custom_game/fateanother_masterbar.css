@@ -36,12 +36,12 @@
 {
     height: 64px;
     width: 20px;
-    vertical-align: bottom;
+    vertical-align: top;
     horizontal-align: right;
     border-top-right-radius: 16px 16px;
     border-bottom-right-radius: 16px 16px;
-    background-color: #171719fe;
-    box-shadow: #000000ff 0px 0px 3px 0px;
+    background-color: #000000fe;
+    box-shadow: #000000ff 0px 0px 0px 0px;
     opacity: 0.9;
     z-index: -2;
 }
@@ -53,9 +53,8 @@
     width: 56px;
     height: 50px;
     pre-transform-rotate2d: 90deg;
-    transform: rotateZ(90deg);
     z-index: 1000;
-    font-size: 16;
+    font-size: 17;
     text-transform: uppercase;
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
     color: #dbdbdb;

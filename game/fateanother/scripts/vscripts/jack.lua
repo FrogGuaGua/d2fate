@@ -291,6 +291,7 @@ function OnSnakeRaidHit(keys)
     if caster.IsMurderAcquired == true then
         caster:PerformAttack( target, true, true, true, true, false, false, true )
     end
+    local Fx2 = ParticleManager:CreateParticle( "particles/custom/jack/jack_ill2.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster )
     if caster.IsInformationErasureAcquired then
         OnMissThink(caster)
     end
@@ -311,6 +312,8 @@ function OnSnakeRaidHit(keys)
     Timers:CreateTimer(0.8,function()
         ParticleManager:DestroyParticle( Fx1, false )
         ParticleManager:ReleaseParticleIndex( Fx1 )
+        ParticleManager:DestroyParticle( Fx2, false )
+        ParticleManager:ReleaseParticleIndex( Fx2 )
     end)
     AddMairaCurseCount(keys)
     target:AddNewModifier(caster, caster, "modifier_stunned", {Duration = mini_stun})
@@ -568,13 +571,17 @@ function OnShadowStrikeStart(keys)
         DoDamage(caster,target, keys.damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
         caster:PerformAttack( target, true, true, true, true, false, false, true )
         target:AddNewModifier(caster, caster, "modifier_stunned", {Duration = keys.mini_stun})
-        local Fx1 = ParticleManager:CreateParticle( "particles/units/heroes/hero_grimstroke/grimstroke_cast_ink_swell.vpcf", PATTACH_CUSTOMORIGIN, target )
+        local Fx1 = ParticleManager:CreateParticle( "particles/custom/jack/jack_shadow.vpcf", PATTACH_CUSTOMORIGIN, target )
         ParticleManager:SetParticleControl( Fx1, 0, target:GetAbsOrigin() )
+        local Fx2 = ParticleManager:CreateParticle( "particles/custom/jack/jack_ill.vpcf", PATTACH_CUSTOMORIGIN, caster)
+        ParticleManager:SetParticleControl( Fx2, 0, caster:GetAbsOrigin() )
         local vc= target:GetForwardVector()
         ParticleManager:SetParticleControlForward( Fx1, 0, vc)
         Timers:CreateTimer(0.8,function()
             ParticleManager:DestroyParticle( Fx1, false )
             ParticleManager:ReleaseParticleIndex( Fx1 )
+            ParticleManager:DestroyParticle( Fx2, false )
+            ParticleManager:ReleaseParticleIndex( Fx2 )
         end)
     end
     if caster.IsInformationErasureAcquired then
@@ -688,7 +695,6 @@ function OnBatFallenStart(keys)
         damage = damage + 100
     end
     local bodyFxIndex = ParticleManager:CreateParticle("particles/econ/events/fall_major_2015/teleport_end_fallmjr_2015_lvl2_black_b.vpcf",PATTACH_CUSTOMORIGIN_FOLLOW, caster )
-    ParticleManager:SetParticleControl(bodyFxIndex, 3, caster:GetAbsOrigin()+Vector(0,0,400))
     Timers:CreateTimer(0.7,function()
         
         giveUnitDataDrivenModifier(caster, caster, "jump_pause", 0.7)
@@ -722,7 +728,7 @@ function OnBatFallenStart(keys)
                OnMissThink(caster)
             end
             local radius = keys.ratio
-            local circleFxIndex = ParticleManager:CreateParticle( "particles/econ/items/legion/legion_overwhelming_odds_ti7/legion_commander_odds_ti7_ground_pillar_black.vpcf", PATTACH_CUSTOMORIGIN, caster )
+            local circleFxIndex = ParticleManager:CreateParticle( "particles/custom/jack/jack_bat_fallen_ground.vpcf", PATTACH_CUSTOMORIGIN, caster )
             ParticleManager:SetParticleControl( circleFxIndex, 0, caster:GetAbsOrigin() )
             caster:EmitSound("Jack.BatFallen")
          end

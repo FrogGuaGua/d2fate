@@ -507,6 +507,14 @@ function OnGBComboHit(keys)
 
 							PlayNormalGBEffect(target)
 							if target:GetHealth() < HBThreshold then 
+							    local reduce = caster:FindAbilityByName("lancer_5th_relentless_spear"):GetSpecialValueFor("reducecdfrome")
+						     	local combocd=caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):GetCooldownTimeRemaining()
+						     	caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):EndCooldown()
+							    caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):StartCooldown(combocd-reduce)
+						 	    caster:RemoveModifierByName("modifier_wesen_gae_bolg_cooldown")
+						    	caster:FindAbilityByName("lancer_5th_wesen_gae_bolg"):ApplyDataDrivenModifier(caster, caster, "modifier_wesen_gae_bolg_cooldown", {duration = combocd-reduce})
+							    masterCombo:EndCooldown()
+							    masterCombo:StartCooldown(combocd-reduce)
 								PlayHeartBreakEffect(ability, caster, target)
 							end
 						end

@@ -76,8 +76,8 @@
     //background-image: url("file://{images}/custom_game/customization_background.png");
 	background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326ee ), to( #1c1d20ee ) );
 	box-shadow: #000000ff 0px 0px 8px 0px;
-    //border-radius: 50px 50px 50px 50px;
-    //border:3px solid #DAA520;
+    border-radius: 50px 50px 50px 50px;
+    border:3px solid #DAA520;
     //box-shadow: fill #fffb84 1px 3px 2px 2px; // outer, filled
     overflow: scroll;
     opacity: 0.95;

@@ -30,7 +30,7 @@ function OnPainThink (keys)
     local caster = keys.caster
     local target = keys.target
     local ability = keys.ability
-    DoDamage(caster, target, keys.damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+    DoDamage(caster, target, keys.damage , DAMAGE_TYPE_MAGICAL, 0, ability, false)
 end
 
 function OnPainDeath (keys)

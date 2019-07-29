@@ -75,5 +75,4 @@
             <Label id="CustomizationOpenButtonText" class="CustomizationText" text="#Fateanother_Customize" hittest="false"/>
         </Button>-->
     </Panel>
-
 </root>

@@ -356,19 +356,18 @@ function OnSummonSkeleton(keys)
 	spooky:SetOwner(caster:GetPlayerOwner():GetAssignedHero())
 	LevelAllAbility(spooky)
 	FindClearSpaceForUnit(spooky, spooky:GetAbsOrigin(), true)
-	spooky:AddNewModifier(caster, nil, "modifier_kill", {duration = 22})
+	spooky:AddNewModifier(caster, nil, "modifier_kill", {duration = 60})
 
 	-- Set skeletal stat according to parameters
-	spooky:SetMaxHealth(keys.Health)
-	spooky:SetBaseMaxHealth(keys.Health)
-	spooky:SetHealth(keys.Health)
+	local maxhp=keys.Health+hero:GetIntellect()*keys.HealthRatio
+	spooky:SetMaxHealth(maxhp)
+	spooky:SetBaseMaxHealth(maxhp)
+	spooky:SetHealth(maxhp)
 	spooky:SetBaseDamageMax(keys.Damage)
 	spooky:SetBaseDamageMin(keys.Damage)
-
 	-- Bonus properties(give it 0.1 sec delay just in case)
 	Timers:CreateTimer(0.1, function()
-	
-		spooky:SetMaxHealth(spooky:GetMaxHealth() + hero:GetIntellect()*keys.HealthRatio)
+	    spooky:SetMaxHealth(maxhp)
 		spooky:SetHealth(spooky:GetMaxHealth())
 		spooky:SetBaseMoveSpeed(spooky:GetBaseMoveSpeed() + hero:GetIntellect()*keys.MSRatio)
 		if unitname == "caster_5th_skeleton_warrior" then
@@ -377,10 +376,7 @@ function OnSummonSkeleton(keys)
 			spooky:SetBaseDamageMax(spooky:GetBaseDamageMin() + hero:GetIntellect()*keys.DamageRatio)
 			spooky:SetBaseDamageMin(spooky:GetBaseDamageMax() + hero:GetIntellect()*keys.DamageRatio)
 		end 
-	end)
-
-
-	
+	end)	
 end
 
 --[[

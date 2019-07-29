@@ -15,9 +15,7 @@ require('libraries/popups')
 require('libraries/animations')
 require('libraries/crowdcontrol')
 require('libraries/physics')
-print('----attachments1')
 require('libraries/attachments')
-print('----attachments2')
 --require('libraries/vector_target')
 require('hero_selection')
 require('libraries/servantstats')
@@ -26,6 +24,7 @@ require('libraries/alternateparticle')
 require('blink')
 --require('unit_voice')
 require('wrappers')
+
 require('behavior/require')
 require('GM')
 
@@ -92,7 +91,7 @@ SPAWN_POSITION_T4_TRIO = Vector(-888,1748,512)
 TRIO_RUMBLE_CENTER = Vector(2436,4132,1000)
 FFA_CENTER = Vector(368,3868,1000)
 mode = nil
-FATE_VERSION = "v1.29a"
+FATE_VERSION = "v1.30"
 roundQuest = nil
 IsGameStarted = false
 
@@ -334,7 +333,7 @@ This function is called once and only once after all players have loaded into th
     ]]
 function FateGameMode:OnAllPlayersLoaded()
     print("[BAREBONES] All Players have loaded into the game")
-    GameRules:SendCustomMessage("Fate/Another " .. FATE_VERSION .. " by Dun1007", 0, 0)
+    GameRules:SendCustomMessage("Fate/Another " .. FATE_VERSION .. " by Dun1007 Currect Dev Rind", 0, 0)
     --GameRules:SendCustomMessage("Game is currently in alpha phase of development and you may run into major issues that I hope to address ASAP. Please wait patiently for the official release.", 0, 0)
     GameRules:SendCustomMessage("#Fate_Choose_Hero_Alert_60", 0, 0)
     --FireGameEvent('cgm_timer_display', { timerMsg = "Hero Select", timerSeconds = 61, timerEnd = true, timerPosition = 100})
@@ -928,7 +927,6 @@ function FateGameMode:OnPlayerChat(keys)
     end
 
     GameRules.GM.parse(keys)
-
     local heroText = string.match(text, "^-pick (.+)")
     if heroText ~= nil then
         if GameRules:IsCheatMode() then
@@ -1349,9 +1347,11 @@ function FateGameMode:OnHeroInGame(hero)
 
         self:InitialiseMissingPanoramaData(hero:GetPlayerOwner())
     end)
-
-    CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "player_selected_hero", playerData)
     CustomGameEventManager:Send_ServerToAllClients("player_register_master_unit", playerData)
+    Timers:CreateTimer(3.0, function()
+        CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "player_selected_hero", playerData)
+    end
+    )
 
     -- Set music off
     SendToServerConsole("dota_music_battle_enable 0")
@@ -1805,16 +1805,16 @@ end
 
 -- An entity died
 function FateGameMode:OnEntityKilled( keys )
-    print( '[BAREBONES] OnEntityKilled Called' )
-    PrintTable( keys )
-
-    -- The Unit that was Killed
-    local killedUnit = EntIndexToHScript( keys.entindex_killed )
+    --print( '[BAREBONES] OnEntityKilled Called' )
+    --PrintTable( keys )
+    
     local heroList = HeroList:GetAllHeroes()
     for _ , hero in pairs(heroList) do
         GameRules.AIFunc.onEntityDead(hero,killedUnit)
     end
 
+    -- The Unit that was Killed
+    local killedUnit = EntIndexToHScript( keys.entindex_killed )
     -- The Killing entity
     local killerEntity = nil
 
@@ -1847,6 +1847,17 @@ function FateGameMode:OnEntityKilled( keys )
         -- if killed by illusion, change the killer to the owner of illusion instead
         if killerEntity:IsIllusion() then
             killerEntity = PlayerResource:GetPlayer(killerEntity:GetPlayerID()):GetAssignedHero()
+        end
+        
+
+        if killerEntity:GetName() == "npc_dota_hero_lina" then 
+            local springablilty = killerEntity:FindAbilityByName("nero_spring")
+            local cheertargets = FindUnitsInRadius(killerEntity:GetTeam(),killerEntity:GetAbsOrigin(),nil,1300,DOTA_UNIT_TARGET_TEAM_FRIENDLY,DOTA_UNIT_TARGET_ALL,0,FIND_ANY_ORDER,false)
+            for k, v in pairs(cheertargets) do
+                if v:IsHero() then
+                    springablilty:ApplyDataDrivenModifier(killerEntity,v, "modifier_cheer", {}) 
+                end
+            end
         end
 
         -- kickstart fate music

@@ -5,7 +5,6 @@ Layer0
 	shader "hero.vfx"
 
 	//---- Effect Proxies ----
-	F_USE_HERO_EFFECTS_PROXY 1
 	F_USE_STATUS_EFFECTS_PROXY 1
 
 	//---- Blend To Full ----
@@ -31,6 +30,7 @@ Layer0
 	TextureColor "materials/nero/saberextra_face.tga"
 
 	//---- Detail 1 ----
+	g_vDetail2ColorTint "[1.000000 1.000000 1.000000 0.000000]"
 	g_vDetailTexCoordScale "[1.000 1.000]"
 
 	//---- Detail 2 ----

@@ -1,4 +1,4 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf19:version{aafc65d8-7a5a-4e01-bd8d-3ac118422503} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -54,8 +54,8 @@
 	[
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 25.0
-			m_flRadiusMax = 25.0
+			m_flRadiusMin = 13.0
+			m_flRadiusMax = 13.0
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
@@ -69,9 +69,19 @@
 			m_flInitialRadius = 36.0
 		},
 		{
+			_class = "C_INIT_RandomTrailLength"
+			m_flMaxLength = 0.3
+			m_flMinLength = 0.3
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 139, 77, 21, 2 ]
+			m_ColorMin = [ 139, 71, 21, 2 ]
+		},
+		{
 			_class = "C_INIT_InitialVelocityNoise"
-			m_vecOutputMax = [ 0.0, 0.0, 150.0 ]
-			m_vecOutputMin = [ 0.0, 0.0, 150.0 ]
+			m_vecOutputMax = [ 0.0, 0.0, 60.0 ]
+			m_vecOutputMin = [ 0.0, 0.0, 40.0 ]
 		},
 		{
 			_class = "C_INIT_PositionWarp"
@@ -84,23 +94,21 @@
 			m_OffsetMin = [ 0.0, 0.0, 128.0 ]
 			m_OffsetMax = [ 0.0, 0.0, 128.0 ]
 		},
-		{
-			_class = "C_INIT_RandomTrailLength"
-			m_flMaxLength = 0.3
-			m_flMinLength = 0.3
-		},
-		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 139, 77, 21, 2 ]
-			m_ColorMin = [ 139, 71, 21, 2 ]
-		},
 	]
 	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmissionDuration = 0.3
-			m_flEmitRate = 200.0
+			m_flEmissionDuration = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.3
+			}
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 200.0
+			}
 		},
 	]
 	m_flConstantRadius = 1.0
@@ -125,4 +133,6 @@
 			m_ChildRef = resource:"particles/custom/nero/nero_impact.vpcf"
 		},
 	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 5
 }

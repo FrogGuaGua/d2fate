@@ -46,12 +46,12 @@
       "04"
       {
         "var_type"						"FIELD_FLOAT"
-        "agility_per_stack"		"2 2 3 3 4"
+        "agility_per_stack"		"2.0 2.0 3.0 3.0 4.0"
       }
       "05"
       {
         "var_type"						"FIELD_FLOAT"
-        "casttime_reduction_per_stack"		"1 1.75 2.5 3.25 4"
+        "casttime_reduction_per_stack"		"2.0 2.0 3.0 3.0 4.0"
       }
       "06"
       {

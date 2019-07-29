@@ -985,16 +985,36 @@
 			}
 		},
 	]
-	m_pAttachmentLists = [  ]
+	m_pAttachmentLists = 
+	[
+		{
+			m_pObject = 
+			{
+				m_name = ""
+				m_attachments = 
+				[
+					{
+						m_name = "follow"
+						m_influences = 
+						[
+							{
+								m_influenceName = "Character1_Head"
+								m_vTranslationOffset = [ 0.0, 0.0, 0.0 ]
+								m_vRotationOffset = [ 0.0, 0.0, 0.0 ]
+								m_flWeight = 1.0
+								m_bRoot = false
+							},
+						]
+					},
+				]
+			}
+		},
+	]
 	m_pAnimGroup = 
 	{
 		m_pObject = 
 		{
 			m_Name = ""
-			m_pReferenceSkeleton = 
-			{
-				m_pObject = null
-			}
 			m_pBoneFlagList = 
 			{
 				m_pObject = null
@@ -1389,6 +1409,10 @@
 			m_sScripts = [  ]
 			m_folderNames = [  ]
 			m_sCompileScripts = [  ]
+			m_pActivityWhiteList = 
+			{
+				m_pObject = null
+			}
 		}
 	}
 	m_pMaterialGroupList = 
@@ -1476,15 +1500,15 @@
 			},
 			{
 				m_sSearchMaterial = "mat_14.vmat"
-				m_sReplaceMaterial = "materials/jack/jack_14.vmat"
+				m_sReplaceMaterial = "materials/models/development/invisibletexture.vmat"
 			},
 			{
 				m_sSearchMaterial = "mat_15.vmat"
-				m_sReplaceMaterial = "materials/jack/jack_15.vmat"
+				m_sReplaceMaterial = "materials/models/development/invisibletexture.vmat"
 			},
 			{
 				m_sSearchMaterial = "mat_16.vmat"
-				m_sReplaceMaterial = "materials/jack/jack_16.vmat"
+				m_sReplaceMaterial = "materials/models/development/invisibletexture.vmat"
 			},
 			{
 				m_sSearchMaterial = "*"

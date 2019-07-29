@@ -119,6 +119,9 @@
         // Quickbuy
         var quickbuyUI = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("shop_launcher_block").FindChildTraverse("quickbuy").FindChildTraverse("QuickBuyRows");
 
+		//var NoTPScrollUI =  UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block");
+		//NoTPScrollUI.FindChildTraverse("inventory_tpscroll_container").style.visibility = "collapse";
+
         // Team Container
         var teamScoreUI = UIRoot.FindChildTraverse("HUDElements").FindChildTraverse("scoreboard");
 

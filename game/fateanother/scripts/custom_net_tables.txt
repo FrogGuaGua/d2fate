@@ -2,9 +2,9 @@
 {
   custom_net_tables =
   [
-//    "game_state",
+      "game_state",
       "selection",
       "score",
-	  "sync",
+  	  "sync",
   ]
 }

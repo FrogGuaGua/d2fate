@@ -1,0 +1,135 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf21:version{7a150ecc-d865-438f-ad53-5963fe1a2720} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_ConstantColor = [ 178, 34, 34, 255 ]
+	m_ConstantNormal = [ 1.0, 0.0, 0.0 ]
+	m_flConstantRadius = 30.0
+	m_flConstantLifespan = 0.5
+	m_nMaxParticles = 256
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.15
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+			m_flBias = 0.6
+		},
+		{
+			_class = "C_OP_MovementRotateParticleAroundAxis"
+			m_vecRotAxis = [ 0.0, 1.0, 0.0 ]
+			m_bDisableOperator = true
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "2"
+			m_bAdditive = true
+			m_nRefractBlurType = "2"
+			m_bDisableZBuffering = true
+			m_flOverbrightFactor = 4.0
+			m_hTexture = resource:"materials/particle/impact/fleks3.vtex"
+			m_ColorScale = [ 255, 255, 255 ]
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 120.0
+			m_flRadiusMax = 120.0
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.75
+			m_fLifetimeMax = 0.75
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomRotationSpeed"
+			m_flDegreesMin = 80.0
+			m_flDegreesMax = 120.0
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_fRadiusMin = 10.0
+			m_fRadiusMax = 10.0
+			m_fSpeedMin = 1200.0
+			m_fSpeedMax = 1200.0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+		},
+		{
+			_class = "C_INIT_CreateSpiralSphere"
+			m_nDensity = 1
+			m_flInitialRadius = 10.0
+			m_flInitialSpeedMin = 1200.0
+			m_flInitialSpeedMax = 1200.0
+			m_bUseParticleCount = true
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+		},
+		{
+			_class = "C_INIT_PositionWarp"
+			m_vecWarpMin = [ 5.0, 5.0, 1.0 ]
+			m_vecWarpMax = [ 5.0, 5.0, 1.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 200.0
+			}
+		},
+	]
+	m_ForceGenerators = 
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 12000.0
+			}
+			m_fFalloffPower = 0.0
+			m_flOpStartFadeInTime = 0.25
+			m_flOpEndFadeInTime = 0.25
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 7
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

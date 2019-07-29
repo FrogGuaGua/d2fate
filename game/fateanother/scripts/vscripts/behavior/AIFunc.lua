@@ -17,7 +17,7 @@ end
 AIFunc.MoveTo = function(unit,args)
 	if not isValidCastAbility(unit) then return false end
 	local target = AIFunc.GetTarget(unit,args[1])
-	print(string.format('MoveTo %s %s',args[1],target))
+	print(string.format('unit %s MoveTo %s %s',unit:GetName(),args[1],target))
 	if target ==nil then return false end
 	local selfTeam = unit:GetTeam()
 	local targetTeam = target:GetTeam()
