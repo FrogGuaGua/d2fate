@@ -92,7 +92,7 @@ function AIHelper.InitEntityAI(entity,btf)
 	local AIMgr = {}
 	AIMgr.timerMgr = TimerMgr.new()
 	AIMgr.intVarMgr = IntVarMgr.new()
-
+	GameRules.AIFunc.ClearAllData(entity)
 	entity.AIMgr = AIMgr
 	local root = GameRules.G_BehaviorTreeMgr:GetBtf(btf)
 	entity:SetContextThink( "AIThink",function(entity) 

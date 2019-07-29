@@ -54,24 +54,6 @@ function _G.isAbilityValid(unit,ability)
 	return true
 end
 
-function _G.getValidFightAbilityByRange(unit,range)
-	local abilityData = getAbilityData(unit)
-	if abilityData == nil then return end
-
-	local fightAbilitys = abilityData.FightAbilitys
-	for _ , var in ipairs(fightAbilitys) do
-		local ability = getAbilityByVar(unit,var)
-		if ability and ability:GetCooldownTime() <= 0 then
-			if ability:GetCastRange() > range then
-				print('ability',ability:GetName() , ability:GetCastRange())
-				return ability
-			end
-		end
-	end	
-
-	return
-end
-
 function _G.aiCastAbility(unit,target,ability)
 	
 	local behavior = ability:GetBehavior()
@@ -80,7 +62,7 @@ function _G.aiCastAbility(unit,target,ability)
 	if bit.band(behavior,DOTA_ABILITY_BEHAVIOR_POINT) ~= 0 then
 		local selfPos = unit:GetAbsOrigin()
 		local vec = targetPos - selfPos
-		local castRange = ability:GetCastRange()
+		local castRange = ability:GetCastRange(target:GetAbsOrigin(),target)
 		if #vec > castRange then
 			vec = vec:Normalized()
 			targetPos = selfPos + vec * castRange
