@@ -1,5 +1,12 @@
 require('behavior/aiFuncHelper')
+local AIData = GameRules.AIData
 local AIFunc = {}
+
+local function dp(...)
+	if true then
+		print(...)
+	end
+end
 
 AIFunc.IsDead = function(unit,target_type)
 	local target = unit
@@ -15,6 +22,7 @@ AIFunc.IsDead = function(unit,target_type)
 end
 
 AIFunc.MoveTo = function(unit,args)
+	dp('MoveTo')
 	if not isValidCastAbility(unit) then return false end
 	local target = AIFunc.GetTarget(unit,args[1])
 	print(string.format('unit %s MoveTo %s %s',unit:GetName(),args[1],target))
@@ -30,6 +38,7 @@ AIFunc.MoveTo = function(unit,args)
 end
 
 AIFunc.Distance = function(unit,args)
+	dp('Distance')
 	local target = AIFunc.GetTarget(unit,args[1])
 	if target == nil then return false end
 	print('Distance ',args[1],args[2],target)
@@ -73,6 +82,7 @@ AIFunc.GetTarget = function(unit,targetType)
 	return nil
 end
 AIFunc.HasTarget = function(unit,args)
+	dp('HasTarget')
 	local target = AIFunc.GetTarget(unit,args[1])
 	if target == nil or not target:IsAlive() then return false end
 
@@ -86,6 +96,7 @@ AIFunc.HasTarget = function(unit,args)
 end
 
 AIFunc.Combo = function(unit)
+	dp('Combo')
 	if not isValidCastAbility(unit) then return true end
 	if not unit.ComboData or unit.nextskill > Time() then return true end
 
@@ -114,9 +125,11 @@ AIFunc.ClearAllData= function(unit)
 	unit.ComboData = nil
 	unit.castTarget = nil
 	unit.nextskill = 0
+	--unit.refreshCD = 20
 end
 
 AIFunc.onEntityDead = function(unit,target)
+	dp('onEntityDead')
 	if unit.ComboData then
 		print('unit.ComboData.target ',unit.ComboData.target)
 		print('target ',target)
@@ -182,6 +195,7 @@ local function getComboTargetData(unit,args)
 	return ComboDatas
 end
 AIFunc.SetComboTarget = function(unit,args)
+	dp('SetComboTarget')
 	local ComboDatas = getComboTargetData(unit,args)
 	if #ComboDatas > 0 then
 		local minHPData = ComboDatas[1]
@@ -213,6 +227,7 @@ AIFunc.ClearData = function(unit,args)
 end
 
 AIFunc.CastAbility = function(unit,args)
+	dp('CastAbility')
 	--print('CastAbility',args[1])
 	local ability = getAbilityByVar(unit,args[1])
 	if ability == nil then
@@ -223,6 +238,7 @@ AIFunc.CastAbility = function(unit,args)
 end
 
 AIFunc.HpCmp = function(unit,args)
+	dp('HpCmp')
 	local minHp = tonumber(args[1])/100
 	local maxHp = tonumber(args[2])/100
 	local selfHp = unit:GetHealth() / unit:GetMaxHealth()
@@ -231,6 +247,7 @@ AIFunc.HpCmp = function(unit,args)
 end
 
 AIFunc.ManaCmp = function(unit,args)
+	dp('ManaCmp')
 	local minMana = tonumber(args[1])/100
 	local maxMana = tonumber(args[2])/100
 	local selfMana = unit:GetMana()/ unit:GetMaxMana()
@@ -239,6 +256,7 @@ AIFunc.ManaCmp = function(unit,args)
 end
 
 AIFunc.HasModifier = function(unit,args)
+	dp('HasModifier')
 	local modName = args[1]
 	for _ ,modName in ipairs(args) do
 		if #modName > 0 then
@@ -248,6 +266,39 @@ AIFunc.HasModifier = function(unit,args)
 			end
 		end
 	end
+	
+	return true
+end
+
+--刷新CD 有内置CD
+AIFunc.Refresh = function(unit,args)
+	if unit.lastRefreshTime == nil then
+		unit.lastRefreshTime = Time()
+	end
+
+	if unit.lastRefreshTime + unit.refreshCD > Time() then
+		return false
+	end
+
+	unit.lastRrefreshTime = unit.lastRefreshTime + unit.refreshCD
+
+	local name = unit:GetName()
+	local HeroHideAbility = AIData.HeroHideAbility
+	local hideAbility = HeroHideAbility[name]
+	for index=0 , 16 do
+		local ability = unit:GetAbilityByIndex(index)
+		if ability and ability:GetName() ~= hideAbility then
+			ability:EndCooldown()
+		end
+	end
+	for index=0 , 5 do
+		local ability = unit:GetItemInSlot(index)
+		if ability then
+			ability:EndCooldown()
+		end
+	end
+
+	unit:SetMana(unit:GetMaxMana())
 
 	return true
 end

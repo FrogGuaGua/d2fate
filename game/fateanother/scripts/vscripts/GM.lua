@@ -78,47 +78,94 @@ GM.file = function()
 	print("dir=", path)
 end
 
-GM.ai = function(player,args)
-	print('args[1] ',args[1])
+GM.lvl = function(player,args)
 	local heroList = HeroList:GetAllHeroes()
 	for _ , hero in pairs(heroList) do
-		if hero ~= player:GetAssignedHero() then
-	        GameRules.AttachAI(hero)
+		for lvl=1, 25 do
+			hero:HeroLevelUp(false)
+		end
+	end
+end
+
+GM.ai = function(player,args)
+	print('args[1] ',args[1])
+	--AttachAI(player:GetAssignedHero())
+	local playerHero = player:GetAssignedHero()
+	local heroList = HeroList:GetAllHeroes()
+	for _ , hero in pairs(heroList) do
+		print('hero',hero)
+		print('hero',hero:GetName())
+		if hero ~= playerHero then
+			print('-attach')
+			AttachAI(hero)
 		end
 	end
 end
 
 GM.rai = function(player,args)
+	RemoveAI(player:GetAssignedHero())
 	local heroList = HeroList:GetAllHeroes()
 	for _ , hero in pairs(heroList) do
-        GameRules.RemoveAI(hero)
+        RemoveAI(hero)
 	end
 end
 
 GM.skill = function(player,args)
-	local hero = player:GetAssignedHero()
-	local idx = tonumber(args[1]) 
-	--local ability = hero:GetAbilityByIndex(idx)
+	local playerHero = player:GetAssignedHero()
 	local heroList = HeroList:GetAllHeroes()
-	 for _ , target in pairs(heroList) do
-	 	if target:GetTeam() ~= hero:GetTeam() then
-	 		local ability_name = 'archer_5th_sword_barrage_retreat_shot'
-	 		aiCastAbility(hero,target,getAbilityByVar(hero,ability_name))
+	local myHero = nil
+	for _ , hero in pairs(heroList) do
+		--if hero:GetTeam() ~= playerHero:GetTeam() then
+		if hero:GetName() == 'npc_dota_hero_drow_ranger' then
+			myHero = hero
+		end
+		--end
+	end
 
-	 		--aiCastAbility(hero,target,getAbilityByVar(hero,idx))
-	 		--aiCastAbility(target,hero,getAbilityByVar(hero,idx))
-	 		--aiCastAbility(target,hero,getAbilityByVar(hero,5))
-	 	end
-	 end
+	local target = nil
+	for _ , hero in pairs(heroList) do
+		if hero:GetTeam() ~= playerHero:GetTeam() then
+			target = hero
+		end
+	end
+
+	local aiClass = AIClass[myHero:GetName()]
+	myHero.aiClass = aiClass.new(myHero)
+	-- local ability = myHero:FindAbilityByName("atalanta_traps")
+	-- myHero.aiClass:aiCastAbility(target,ability)
+	ability = myHero:FindAbilityByName("atalanta_celestial_arrow")
+	myHero.aiClass:aiCastAbility(target,ability)
+	-- ability = myHero:FindAbilityByName("atalanta_traps_close")
+	-- myHero.aiClass:aiCastAbility(target,ability)
 end
 
 GM.getname = function(player,args)
-	local hero = player:GetAssignedHero()
-	local mods = hero:FindAllModifiers()
-	for _ , mod in ipairs(mods) do
-		print(_,mod:GetName())
+	local heroList = HeroList:GetAllHeroes()
+	local playerHero = player:GetAssignedHero()
+	
+	local hero = nil
+	for _ , _hero in pairs(heroList) do
+		print('name ',_hero:GetName())
+
 	end
-	print(player:GetAssignedHero():GetName())
+	local playerTeam = playerHero:GetTeam()
+	local tb =FindUnitsInRadius(playerTeam,playerHero:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_ALL,DOTA_UNIT_TARGET_FLAG_NONE,0,false)
+	for _ , unit in pairs(tb) do
+		print('unit ',unit:GetUnitName())
+	end
+end
+
+GM.fog = function(player,args)
+	CDOTABaseGameMode:SetFogOfWarDisabled(true)
+end
+
+GM.kill = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	print('playerHero:IsAlive()',playerHero:IsAlive())
+	playerHero:ForceKill(true)
+	playerHero:SetContextThink('test', function()
+		print('playerHero:IsAlive()',playerHero:IsAlive())
+	end, 1)
 end
 
 GameRules.GM = GM

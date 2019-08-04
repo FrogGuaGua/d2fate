@@ -114,6 +114,8 @@ end
 
 function _G.isValidCastAbility(unit)
 	if unit:IsPhased() then return false end
+	if unit.nextskill > Time() then return false end
+
 	for id=0,12 do
 		local ability = unit:GetAbilityByIndex(id)
 		if ability and ability:IsChanneling() then
@@ -129,6 +131,7 @@ function _G.isValidCastAbility(unit)
 			return false
 		end
 	end
+
 
 	return true
 end

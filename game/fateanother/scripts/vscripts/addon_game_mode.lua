@@ -203,7 +203,7 @@ gameMaps = {
 
 
 if FateGameMode == nil then
-    FateGameMode = class({})
+    _G.FateGameMode = class({})
 end
 
 -- Create the game mode when we activate
@@ -1655,15 +1655,10 @@ local spellBooks = {
 -- An ability was used by a player
 function FateGameMode:OnAbilityUsed(keys)
     --print('[BAREBONES] AbilityUsed')
+    print(keys.abilityname)
     local player = EntIndexToHScript(keys.PlayerID)
     local abilityname = keys.abilityname
     local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
-
-    print('OnAbilityUsed',keys.abilityname)
-    if hero.ComboData then
-        hero.ComboData.waitskill = false
-    end
-    hero.waitcastskill = false
 
     if abilityname and abilityname == "nursery_rhyme_story_for_somebodys_sake" then
         local comboAbil = hero:FindAbilityByName("nursery_rhyme_story_for_somebodys_sake")
@@ -1807,16 +1802,23 @@ end
 function FateGameMode:OnEntityKilled( keys )
     --print( '[BAREBONES] OnEntityKilled Called' )
     --PrintTable( keys )
-    
-    local heroList = HeroList:GetAllHeroes()
-    for _ , hero in pairs(heroList) do
-        GameRules.AIFunc.onEntityDead(hero,killedUnit)
-    end
-
     -- The Unit that was Killed
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
     -- The Killing entity
     local killerEntity = nil
+
+    local heroList = HeroList:GetAllHeroes()
+    for _ , hero in pairs(heroList) do
+        if hero.aiClass then
+            hero:SetContextThink('AIOnUnitDead', function()
+                hero.aiClass:OnUnitDead(killedUnit)
+            end, 0.1) 
+        end
+    end
+
+    if killedUnit.aiClass then
+        killedUnit.aiClass:Clear()
+    end
 
     if keys.entindex_attacker ~= nil then
         killerEntity = EntIndexToHScript( keys.entindex_attacker )
@@ -2207,6 +2209,7 @@ function FateGameMode:InitGameMode()
     --ListenToGameEvent('dota_ability_channel_finished', Dynamic_Wrap(FateGameMode, 'OnAbilityChannelFinished'), self)
     ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(FateGameMode, 'OnPlayerLearnedAbility'), self)
     ListenToGameEvent('entity_killed', Dynamic_Wrap(FateGameMode, 'OnEntityKilled'), self)
+    ListenToGameEvent('physgun_pickup', Dynamic_Wrap(FateGameMode, 'OnPhysgunPickup'), self)
     ListenToGameEvent('player_connect_full', Dynamic_Wrap(FateGameMode, 'OnConnectFull'), self)
     ListenToGameEvent('player_disconnect', Dynamic_Wrap(FateGameMode, 'OnDisconnect'), self)
     ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(FateGameMode, 'OnItemPurchased'), self)
@@ -3106,4 +3109,9 @@ function my_http_post()
     end]]
     --json encode
     --http post
+end
+function OnPhysgunPickup(keys)
+    for key , v in pairs(keys) do
+        print(key,v)
+    end
 end

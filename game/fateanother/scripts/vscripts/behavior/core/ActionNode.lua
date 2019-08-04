@@ -54,6 +54,7 @@ do
 
   function AIFuncAction:process(entity)
     self.super.process(self,entity)
+    print('AIFuncAction',self.name)
     if self.func then
       return self.func(entity,self.args )
     end

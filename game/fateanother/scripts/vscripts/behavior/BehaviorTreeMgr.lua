@@ -10,6 +10,7 @@ end
 function BehaviorTreeMgr:LoadAllBtf(force)
 	local szDir = res_attribute.szDir
 	for _ , fileName in pairs(btfName) do
+		print('LoadAllBtf fileName',fileName)
 		local Dir = szDir .. fileName .. res_attribute.suffix
 		local btfData = dofile(Dir)
 		if btfData then

@@ -16,6 +16,7 @@ do
 		--BTreeCMN.Print(('------ SequenceNode %s',#self.m_children)
 
 		local m_children = self.m_children
+		print('SequenceNode #m_children',#m_children)
 		for i=1 , #m_children do
 			local child = m_children[i]
 			ret = child:process(entity)

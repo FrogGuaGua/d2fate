@@ -2,6 +2,7 @@ require "behavior/aiData"
 local BTreeCMN = GameRules.BTreeCMN
 local AIHelper = {}
 GameRules.AIHelper = AIHelper
+local AIData = GameRules.AIData
 
 local TimerMgr = BTreeCMN.Class('TimerMgr')
 function TimerMgr:ctor()
@@ -108,10 +109,13 @@ function AIHelper.RemoveAI(entity)
 	GameRules.AIFunc.ClearAllData(entity)
 end
 
-function GameRules.AttachAI(entity)
+function GameRules.AttachAI(entity,refreshCD)
+	if refreshCD == nil then refreshCD = 20 end 
+
 	local name = entity:GetName()
-	local btf = GameRules.aiFileName[name]
+	local btf = AIData.aiFileName[name]
 	if btf then
+		entity.refreshCD = refreshCD
 		AIHelper.InitEntityAI(entity,btf)
 	end
 end
