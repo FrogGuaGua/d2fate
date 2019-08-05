@@ -188,20 +188,25 @@ function BaseAIClass:OnUnitDead(unit)
 	end
 end
 
+local function MaxMasterUnit2Abilitys(unit)
+	local master2 = unit.MasterUnit2
+	if master2 then
+		for idx=0,14 do
+			local ability = master2:GetAbilityByIndex(idx)
+			if ability then
+				print('ability ',ability:GetName())
+				ability:CastAbility()
+			end
+		end
+	end
+end
+
 _G.AttachAI = function(unit)
 	local name = unit:GetName()
-	for key , v in pairs(AIClass) do
-		if 'npc_dota_hero_bloodseeker' == name then
-			print('true',AIClass[key])
-		else
-			print('false')
-		end
-		print(key,v)
-	end
 
 	local aiClass = AIClass[name]
-	print('AttachAI ',name , aiClass)
 	if aiClass then
+		MaxMasterUnit2Abilitys(unit)
 		unit.aiClass = aiClass.new(unit)
 		unit.aiClass:Enter()
 	end
