@@ -101,8 +101,8 @@ GM.ai = function(player,args)
 	print('args[1] ',args[1])
 	local heroList = HeroList:GetAllHeroes()
 	for _ , hero in pairs(heroList) do
-       if hero:GetName() == args[1] then
-			AttachAI(hero)
+       if hero:GetName() == args[2] then
+			AttachAI(hero,tonumber(args[1]))
        end
 	end
 end

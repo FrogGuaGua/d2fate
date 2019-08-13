@@ -48,7 +48,8 @@ _G.AILevel =
 	},
 	[2] = 
 	{
-		refreshCD = 20,
+		firstRefreshCD = 10, --第一次刷新时间
+		secondRefreshCD = 20,--刷新CD
 		items = 
 		{
 			'item_healing_scroll_ai', --群补

@@ -110,10 +110,10 @@ local function SwapAbilitys(unit)
 	unit:SwapAbilities(Q, E1, true, true)
 end
 
-function LancerAIClass:ctor(unit)
+function LancerAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('JuggAIClass self ',self)
-	self.super.ctor(self,unit)
+	self.super.ctor(self,unit,lvl)
 	self.secFightAbility = secFightAbility
 	self.combos = combos
 	self.hide_combos = hide_combos
@@ -121,6 +121,7 @@ function LancerAIClass:ctor(unit)
 	self.hide_ability_names = hide_ability_names
 	self.abilitys_behavior = abilitys_behavior
 	SwapAbilitys(unit)
+	self.lvl = lvl
 end
 
 print('load lancer ai',LancerAIClass)

@@ -114,10 +114,10 @@ function SkyWrathAIClass:LateTick()
 	return false
 end
 
-function SkyWrathAIClass:ctor(unit)
+function SkyWrathAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('JuggAIClass self ',self)
-	self.super.ctor(self,unit)
+	self.super.ctor(self,unit,lvl)
 	self.secFightAbility = secFightAbility
 	self.combos = combos
 	self.hide_combos = hide_combos

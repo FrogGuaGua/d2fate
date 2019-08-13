@@ -74,10 +74,10 @@ local combo_filters =
 	[hide_combos[3]] = IsHWValid,
 }
 
-function SpectreAIClass:ctor(unit)
+function SpectreAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('SpectreAIClass self ',self)
-	self.super.ctor(self,unit)
+	self.super.ctor(self,unit,lvl)
 	self.secFightAbility = secFightAbility
 	self.combos = combos
 	self.hide_combos = hide_combos

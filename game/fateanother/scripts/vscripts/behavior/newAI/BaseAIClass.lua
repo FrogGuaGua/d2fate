@@ -64,8 +64,8 @@ function BaseAIClass:ctor(unit,lvl)
 	--回合开始后时间
 	self.steps = {
 		wait = {0,20}, --挂机
-		guard = {20,100}, --巡逻
-		fight = {101,1800}, --主动出击
+		guard = {20,60}, --巡逻
+		fight = {61,1800}, --主动出击
 		--fight = {0,10000}, --主动出击
 
 		--wait = {0,5}, --挂机
@@ -108,6 +108,7 @@ function BaseAIClass:ctor(unit,lvl)
 
 	self.wushimoming = false
 
+	print('lvl',lvl)
 	self:InitAILevel(lvl)
 end
 
@@ -455,13 +456,13 @@ function BaseAIClass:MaxMasterUnit2Abilitys()
 	end
 end
 
-_G.AttachAI = function(unit)
+_G.AttachAI = function(unit,lvl)
 	local name = unit:GetName()
 
 	local aiClass = AIClass[name]
 	if aiClass then
-		print('--aiClass AttachAI')
-		unit.aiClass = aiClass.new(unit)
+		print('--aiClass AttachAI',lvl)
+		unit.aiClass = aiClass.new(unit,lvl)
 		unit.aiClass:MaxMasterUnit2Abilitys()
 		unit.aiClass:Enter()
 	end

@@ -73,10 +73,10 @@ function WindRunnerAIClass:PreTick()
 	return self.super:PreTick()
 end
 
-function WindRunnerAIClass:ctor(unit)
+function WindRunnerAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('WindRunnerAIClass self ',self)
-	self.super.ctor(self,unit)
+	self.super.ctor(self,unit,lvl)
 	self.secFightAbility = secFightAbility
 	self.combos = combos
 	self.hide_combos = hide_combos

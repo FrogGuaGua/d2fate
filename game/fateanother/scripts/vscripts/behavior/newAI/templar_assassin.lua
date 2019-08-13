@@ -56,10 +56,10 @@ local combos =
 }
 
 
-function TaAIClass:ctor(unit)
+function TaAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('TaAIClass self ',self)
-	self.super.ctor(self,unit)
+	self.super.ctor(self,unit,lvl)
 	self.secFightAbility = secFightAbility
 	self.combos = combos
 	self.hide_combos = hide_combos

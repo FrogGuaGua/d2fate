@@ -121,10 +121,10 @@ function DrowRangerAIClass:LateTick()
 	return false
 end
 
-function DrowRangerAIClass:ctor(unit)
+function DrowRangerAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('JuggAIClass self ',self)
-	self.super.ctor(self,unit)
+	self.super.ctor(self,unit,lvl)
 	self.secFightAbility = secFightAbility
 	self.combos = combos
 	self.hide_combos = hide_combos

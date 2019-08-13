@@ -108,10 +108,10 @@ function LCAIClass:OnRefreshCD()
 	end
 end
 
-function LCAIClass:ctor(unit)
+function LCAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('JuggAIClass self ',self)
-	self.super.ctor(self,unit)
+	self.super.ctor(self,unit,lvl)
 	self.secFightAbility = secFightAbility
 	self.combos = combos
 	self.hide_combos = hide_combos

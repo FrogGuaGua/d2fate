@@ -70,7 +70,7 @@ function HaskarAIClass:LateTick()
 	return false
 end
 
-function HaskarAIClass:ctor(unit)
+function HaskarAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('JuggAIClass self ',self)
 	self.super.ctor(self,unit)
@@ -80,6 +80,7 @@ function HaskarAIClass:ctor(unit)
 	self.combo_abilitys = combo_abilitys
 	self.hide_ability_names = hide_ability_names
 	self.abilitys_behavior = abilitys_behavior
+	self.lvl = lvl
 end
 
 print('load huskar ai',HaskarAIClass)

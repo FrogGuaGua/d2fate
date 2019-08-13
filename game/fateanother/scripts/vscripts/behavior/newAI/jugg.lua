@@ -71,7 +71,7 @@ local combos =
 }
 
 
-function JuggAIClass:ctor(unit)
+function JuggAIClass:ctor(unit,lvl)
 	print('unit',unit,unit:GetName())
 	print('JuggAIClass self ',self)
 	self.super.ctor(self,unit)
@@ -84,4 +84,5 @@ function JuggAIClass:ctor(unit)
 	self.master2 = master2
 	self.comboSelectType = 'hp'
 	self.wushimoming = true
+	self.lvl = lvl
 end

@@ -43,7 +43,7 @@ end
 function HeroSelection:CanPick(playerId)
     local player = PlayerResource:GetPlayer(playerId)
     local currentHero = player:GetAssignedHero()
-
+    print('CanPick ',playerId,player,currentHero)
     return self.Time <= 60 and currentHero ~= nil and currentHero:GetName() == "npc_dota_hero_wisp" and  not self.Picked[playerId]
 end
 
@@ -59,11 +59,12 @@ end
 function HeroSelection:OnSelect(args)
     local playerId = args.playerId
     local hero = args.hero
-
+    print('OnSelect->',self:CanPick(playerId),self.AvailableHeroes[hero])
     if not self:CanPick(playerId) or not self.AvailableHeroes[hero] then
+        print('OnSelect->1')
         return
     end
-
+    print('OnSelect->2')
     self.HoveredHeroes[playerId] = nil
     self.Picked[playerId] = hero
 
