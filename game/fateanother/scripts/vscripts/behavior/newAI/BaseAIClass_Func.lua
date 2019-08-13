@@ -1,4 +1,10 @@
 require "bit"
+LogOpen.BaseAIClass_Combo = false
+local function dp(...)
+	if LogOpen.BaseAIClass_Combo then
+		print(string.format(...))
+	end
+end
 
 function BaseAIClass:isValidCastAbility()
 	local unit = self.unit
@@ -9,7 +15,7 @@ function BaseAIClass:isValidCastAbility()
 	for id=0,12 do
 		local ability = unit:GetAbilityByIndex(id)
 		if ability and ability:IsChanneling() then
-			print(id,ability:GetName(),'ischanneling')
+			dp('isValidCastAbility | %s %s ischanneling',id,ability:GetName())
 			return false
 		end
 	end
@@ -17,7 +23,7 @@ function BaseAIClass:isValidCastAbility()
 	for id=0,5 do
 		local ability = unit:GetItemInSlot(id)
 		if ability and ability:IsChanneling() then
-			print(id,ability:GetName(),'ischanneling')
+			dp('isValidCastAbility | %s %s ischanneling',id,ability:GetName())
 			return false
 		end
 	end
@@ -45,13 +51,38 @@ end
 function BaseAIClass:isAbilityValid(ability,combo)
 	local unit = self.unit
 
-	if ability == nil then return false end
-	print("CD isAbilityValid ",ability:GetName(),ability:GetCooldownTime())
+	if ability == nil then 
+		dp('isAbilityValid | ability == nil')
+		return false
+	end
 	if ability:GetCooldownTime() > 0 then
+		dp('isAbilityValid | CD %s %s',ability:GetName(),ability:GetCooldownTime())
 		return false
 	end
 
 	if ability:GetManaCost(ability:GetLevel()) > unit:GetMana() then
+		dp('isAbilityValid | MANA %s %s',ability:GetName(),ability:GetCooldownTime())
+		return false
+	end
+
+	local abilityName = ability:GetName()
+
+	-- if not self:IsHideAbility(ability) and ability:IsHidden() then
+	-- 	return false
+	-- end
+
+	if  ability:IsHidden() then
+		dp('isAbilityValid | IsHidden %s %s',ability:GetName(),ability:GetCooldownTime())
+		return false
+	end
+
+	if not ability:IsActivated() then
+		dp('isAbilityValid | IsActivated %s %s',ability:GetName(),ability:GetCooldownTime())
+		return false
+	end
+	local special_ability_condition = self.special_ability_condition
+	local conditionFunc = special_ability_condition[abilityName]
+	if conditionFunc and not conditionFunc(self) then
 		return false
 	end
 
@@ -68,14 +99,14 @@ function BaseAIClass:isAbilityValid(ability,combo)
 				local idx = 1
 				for i=#abilitys , 1 , -1 do
 					local ability_name = abilitys[i]
-					print('isAbilityValid ',ability_name,ability_queue[idx].name)
+					dp('isAbilityValid | %s %s',ability_name,ability_queue[idx].name)
 					if ability_name ~= ability_queue[idx].name then
 						return false
 					end
 					idx = idx + 1
 				end
 				local interval = Time() - ability_queue[#abilitys].time
-				print('isAbilityValid interval ',interval)
+				dp('isAbilityValid | interval %s',interval)
 				if interval > combo_time then
 					return false
 				end
@@ -85,7 +116,8 @@ function BaseAIClass:isAbilityValid(ability,combo)
 
 		end
 	end
-	print("CD isAbilityValid true",ability:GetName(),ability:GetCooldownTime())
+
+	dp('isAbilityValid | true %s',ability:GetName())
 	return true
 end
 
@@ -100,40 +132,72 @@ PointFlag = bit.bor(PointFlag,DOTA_ABILITY_BEHAVIOR_POINT)
 PointFlag = bit.bor(PointFlag,DOTA_ABILITY_BEHAVIOR_AOE)
 PointFlag = bit.bor(PointFlag,DOTA_ABILITY_BEHAVIOR_DIRECTIONAL)
 
-function BaseAIClass:aiCastAbility(target,ability)
+function BaseAIClass:getAbilityBehavior(abilityName)
+	return self.abilitys_behavior[abilityName] or self.items_behavior[abilityName]
+end
+
+function BaseAIClass:aiCastAbility(target,ability,castPos)
 	if ability == nil then return end
 
 	if not self:isValidCastAbility() then
 		return false
 	end
-	print("aiCastAbility",ability:GetName())
+
+	if self.refreshCD == nil then
+		self.refreshCD = self.secondRefreshCD
+		self.nextRefreshTime = Time() + self.firstRefreshCD
+	end
+	local abilityName = ability:GetName()
 	local unit = self.unit
-	local behavior = ability:GetBehavior()
+	local behavior = self:getAbilityBehavior(abilityName)
 	local targetPos = target:GetAbsOrigin()
-	if bit.band(behavior,DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) ~= 0 then
-		print('cast ',ability:GetName(),'target ',target)
+	dp("aiCastAbility | %s %s",abilityName,behavior)
+
+	if behavior == 'target' then
+		dp('aiCastAbility | target %s %s',ability:GetName(),target:GetName())
 		unit:CastAbilityOnTarget(target, ability, -1)
-	elseif bit.band(behavior,PointFlag) ~= 0 then
+	elseif behavior == 'pos' then
 		local selfPos = unit:GetAbsOrigin()
-		local vec = targetPos - selfPos
-		local castRange = ability:GetCastRange(target:GetAbsOrigin(),target)*0.95
-		if #vec > castRange then
-			vec = vec:Normalized()
-			targetPos = selfPos + vec * castRange
+		if castPos == nil then
+			local vec = targetPos - selfPos
+			local castRange = ability:GetCastRange(target:GetAbsOrigin(),target)*0.95
+			if #vec > castRange then
+				vec = vec:Normalized()
+				targetPos = selfPos + vec * castRange
+			end
+			dp('aiCastAbility | pos %s %s',ability:GetName(),castRange)
+		else
+			targetPos = castPos
 		end
-		print('cast ',ability:GetName(),'castRange',castRange)
+		
 		unit:CastAbilityOnPosition(targetPos, ability, -1)
-	elseif ability:IsToggle() then
+	elseif behavior == 'back_pos' then
+		local selfPos = unit:GetAbsOrigin()
+		if castPos == nil then
+			local vec = targetPos - selfPos
+			local castRange = ability:GetCastRange(target:GetAbsOrigin(),target)*0.95
+			if #vec < 10 then
+				vec = Vector(1,0,0)
+			else
+				vec = -vec:Normalized()
+			end
+			targetPos = selfPos+vec*castRange
+			dp('aiCastAbility | back_pos %s %s',ability:GetName(),castRange)
+		else
+			targetPos = castPos
+		end
+		
+		unit:CastAbilityOnPosition(targetPos, ability, -1)
+	elseif behavior == 'toggle' then
 		ability:ToggleAbility()
-		print('ToggleAbility',ability:GetName())
+		dp('ToggleAbility | toggle %s',ability:GetName())
 	else
-		ability:CastAbility()
+		unit:CastAbilityNoTarget(ability,-1)
 		--print('no cast ',ability:GetName())
 	end
-	print('behavior ',behavior)
 	local delay = self:getAbilityDelay(targetPos,ability)
 	self.nextskill = Time() + delay
-
+	dp('ToggleAbility | %s %s %s',abilityName,Time(),delay)
 	if #self.ability_queue == 10 then
 		table.remove(self.ability_queue,10)
 	end
@@ -151,19 +215,18 @@ function BaseAIClass:getAbilityDelay(targetPos,ability)
 	local vec = (targetPos-selfPos):Normalized()
 	local fDiff = VectorToAngles(vec)[2] - VectorToAngles(forward)[2]
 	fDiff = math.abs(fDiff)
-	print('fDiff',fDiff)
 	local rateTime = fDiff/rate
 	if rateTime < 0.1 then
 		rateTime = 0.1
 	end
-	print('rateTime ',rateTime)
-	if bit.band(behavior,DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) ~= 0 then
-		print('cast ',ability:GetName())
-		return castPoint + rateTime+0.2
-	elseif bit.band(behavior,PointFlag) ~= 0 then
-		return castPoint + rateTime+0.2
+	local behavior = self:getAbilityBehavior(ability:GetName())
+
+	if behavior == 'target' then
+		return castPoint + rateTime+0.1
+	elseif behavior == 'pos'then
+		return castPoint + rateTime+0.1
 	else
-		return castPoint + 0.2
+		return castPoint + 0.1
 	end
 end
 
@@ -197,21 +260,33 @@ function BaseAIClass:FindNearestEnemy()
 	local unit = self.unit
 	local selfTeam = unit:GetTeam()
 	local selfPos = unit:GetAbsOrigin()
+	local range = self:GetSearchRange()
 	local target = nil
 	local minDist = 1000000
-
-	local heroList = HeroList:GetAllHeroes()
-	for _ , hero in pairs(heroList) do
-        if hero:GetTeam() ~= selfTeam then
-        	local targetPos = hero:GetAbsOrigin()
+	local tb =FindUnitsInRadius(selfTeam,selfPos,nil,range,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_ALL,DOTA_UNIT_TARGET_FLAG_NONE,0,false)
+	for _ , _target in ipairs(tb) do
+		if self:ValidTarget(_target) then
+			local targetPos = _target:GetAbsOrigin()
         	local dist = #(targetPos - selfPos)
-        	print("dist",dist,'self.searchRange',self.searchRange)
-        	if dist < self.searchRange and dist < minDist then
-        		target = hero
+        	if dist < range and dist < minDist then
+        		target = _target
         		minDist = dist
         	end
-        end
+		end
 	end
 
 	return target
+end
+
+function BaseAIClass:IsHideAbility(ability)
+	local name = ability:GetName()
+	local hide_ability_names = self.hide_ability_names
+
+	for _ , hname in ipairs(hide_hide_ability_namesabilitys) do
+		if hname == name then
+			return true
+		end
+	end
+
+	return false
 end

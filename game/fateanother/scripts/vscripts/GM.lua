@@ -42,6 +42,16 @@ GM.additem = function(player,args)
 	print(item)
 end
 
+GM.items = function(player,args)
+	local hero = player:GetAssignedHero()
+	for slot=0,5 do
+		local item = hero:GetItemInSlot(slot)
+		if item then
+			print(item:GetName())
+		end
+	end
+end
+
 GM.unpause = function (player,args)
 	local heroList = HeroList:GetAllHeroes()
 	for _ , hero in pairs(heroList) do
@@ -89,16 +99,11 @@ end
 
 GM.ai = function(player,args)
 	print('args[1] ',args[1])
-	--AttachAI(player:GetAssignedHero())
-	local playerHero = player:GetAssignedHero()
 	local heroList = HeroList:GetAllHeroes()
 	for _ , hero in pairs(heroList) do
-		print('hero',hero)
-		print('hero',hero:GetName())
-		if hero ~= playerHero then
-			print('-attach')
+       if hero:GetName() == args[1] then
 			AttachAI(hero)
-		end
+       end
 	end
 end
 
@@ -113,30 +118,35 @@ end
 GM.skill = function(player,args)
 	local playerHero = player:GetAssignedHero()
 	local heroList = HeroList:GetAllHeroes()
-	local myHero = nil
-	for _ , hero in pairs(heroList) do
-		--if hero:GetTeam() ~= playerHero:GetTeam() then
-		if hero:GetName() == 'npc_dota_hero_drow_ranger' then
-			myHero = hero
-		end
-		--end
-	end
-
 	local target = nil
 	for _ , hero in pairs(heroList) do
 		if hero:GetTeam() ~= playerHero:GetTeam() then
 			target = hero
+			break
 		end
 	end
 
-	local aiClass = AIClass[myHero:GetName()]
-	myHero.aiClass = aiClass.new(myHero)
-	-- local ability = myHero:FindAbilityByName("atalanta_traps")
-	-- myHero.aiClass:aiCastAbility(target,ability)
-	ability = myHero:FindAbilityByName("atalanta_celestial_arrow")
-	myHero.aiClass:aiCastAbility(target,ability)
-	-- ability = myHero:FindAbilityByName("atalanta_traps_close")
-	-- myHero.aiClass:aiCastAbility(target,ability)
+	for _ , hero in pairs(heroList) do
+		if hero:GetName() == "npc_dota_hero_spectre" then
+			local ability = hero:FindAbilityByName("saber_alter_unleashed_ferocity")
+			--ability:CastAbility()
+			hero:CastAbilityNoTarget(ability,-1)
+		end
+
+		if hero:GetName() == "npc_dota_hero_phantom_lancer" and hero:GetTeam() == playerHero:GetTeam() then
+			local aiClass = AIClass[hero:GetName()]
+			hero.aiClass = aiClass.new(hero)
+			local Q = 'lancer_5th_rune_magic'
+			local W1 = 'lancer_5th_rune_of_replenishment'
+			local E1 = 'lancer_5th_rune_of_trap'
+			hero:SwapAbilities(Q, W1, true, true)
+			hero:SwapAbilities(Q, E1, true, true)
+			local ability = hero:FindAbilityByName(E1)
+			--hero.aiClass:aiCastAbility(target,ability)
+			print("ability ",ability:IsHidden())
+			hero.aiClass:aiCastAbility(target, ability)
+		end
+	end
 end
 
 GM.getname = function(player,args)
@@ -149,9 +159,13 @@ GM.getname = function(player,args)
 
 	end
 	local playerTeam = playerHero:GetTeam()
-	local tb =FindUnitsInRadius(playerTeam,playerHero:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_ALL,DOTA_UNIT_TARGET_FLAG_NONE,0,false)
-	for _ , unit in pairs(tb) do
-		print('unit ',unit:GetUnitName())
+	local tb =FindUnitsInRadius(playerTeam,playerHero:GetAbsOrigin(),nil,3000,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_ALL,DOTA_UNIT_TARGET_FLAG_NONE,0,false)
+	for _ , unit in ipairs(tb) do
+		if playerHero:CanEntityBeSeenByMyTeam(unit) then
+			local name = unit:GetUnitName()
+			print('FindUnitsInRadius',name)
+		end
+
 	end
 end
 
@@ -166,6 +180,272 @@ GM.kill = function(player,args)
 	playerHero:SetContextThink('test', function()
 		print('playerHero:IsAlive()',playerHero:IsAlive())
 	end, 1)
+end
+
+GM.tianfu = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	local MasterUnit2 = playerHero.MasterUnit2
+	print('masterunit2')
+	for i=0 , 14 do
+		local ability = MasterUnit2:GetAbilityByIndex(i)
+		if ability then
+			print('ability ',ability:GetName())
+			ability:CastAbility()
+		end
+	end
+end
+
+GM.lz = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	local MasterUnit = playerHero.MasterUnit
+	local cmd_seal_2 = MasterUnit:FindAbilityByName("cmd_seal_2")
+	cmd_seal_2:CastAbility()
+	cmd_seal_2:EndCooldown()
+	local mod = playerHero:FindModifierByName('modifier_command_seal_2')
+	if mod then
+		print(mod)
+		playerHero:RemoveModifierByName('modifier_command_seal_2')
+	end
+end
+
+GM.getpos = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	local pos = player:GetAbsOrigin()
+	print('round ',GameRules.AddonTemplate.nCurrentRound)
+	print(pos,'team',playerHero:GetTeam())
+end
+
+GM.points = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	for idx=0 , 14 do
+		local ability = playerHero:GetAbilityByIndex(idx)
+		if ability then
+			for i=1 , 10 do
+				playerHero:UpgradeAbility(ability)
+			end
+		end
+	end
+end
+
+GM.particle = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	
+	local heroList = HeroList:GetAllHeroes()
+	for _ , _hero in pairs(heroList) do
+		if _hero:GetName() == 'npc_dota_hero_phantom_lancer' then
+			local ability = _hero:FindAbilityByName('lancer_5th_rune_of_trap')
+			if ability then
+				local range = ability:GetCastRange(_hero:GetAbsOrigin() ,_hero)
+				print('range ',range)
+			end
+		end
+	end
+	
+end
+
+local function loopmana(hero)
+	hero:SetMana(hero:GetMaxMana()) 
+	hero:SetContextThink('mana', function()
+				loopmana(hero) return 1 end, 1)
+end
+
+GM.sethp = function(player,args)
+	local playerHero = player:GetAssignedHero()
+
+	local heroList = HeroList:GetAllHeroes()
+	for _ , _hero in pairs(heroList) do
+		--if _hero:GetName() == 'npc_dota_hero_phantom_lancer' then
+		if playerHero == _hero then
+			_hero:SetBaseStrength(10000)
+			_hero:SetBaseIntellect(25)
+			_hero:SetBaseAgility(25)
+			--_hero:SetHealth(1000000)
+			print('name ',_hero:GetName())
+			loopmana(_hero)
+		end
+	end
+end
+
+GM.attack = function(player,args)
+	local target =nil
+	local heroList = HeroList:GetAllHeroes()
+	for _ , _hero in pairs(heroList) do
+		if _hero:GetName() == 'npc_dota_hero_queenofpain' then
+			target = _hero
+		end
+	end
+
+	local playerHero = player:GetAssignedHero()
+	playerHero:MoveToTargetToAttack(target)
+end
+GM.cai = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	local pos = playerHero:GetAbsOrigin()
+	local team = playerHero:GetTeam()
+	print('args[1] ',args[1])
+	local hero = CreateUnitByName(args[1],pos,true,nil,nil,team == 2 and 3 or 2 )
+	AttachAI(hero)
+end
+
+GM.mana = function(player,args)
+	local heroList = HeroList:GetAllHeroes()
+	for _ , _hero in pairs(heroList) do
+		_hero.MasterUnit2:SetMaxMana(1000)
+		local maxMana = _hero.MasterUnit2:GetMaxMana()
+		_hero.MasterUnit2:SetMana(maxMana)
+	end
+end
+
+GM.master = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	local heroList = HeroList:GetAllHeroes()
+
+	for _ , _hero in pairs(heroList) do
+		_hero.MasterUnit2:SetMaxMana(1000)
+		local maxMana = _hero.MasterUnit2:GetMaxMana()
+		_hero.MasterUnit2:SetMana(maxMana)
+		print('---',_hero:GetName())
+		local unit = _hero
+		local master2 = unit.MasterUnit2
+		print('master2',master2)
+		if master2 then
+			for idx=0,4 do
+				local ability = master2:GetAbilityByIndex(idx)
+				if ability then
+					local behavior = ability:GetBehavior()
+					print("ability",ability:GetName())
+					--if bit.band(behavior,DOTA_ABILITY_BEHAVIOR_NO_TARGET) == 1 then
+					ability:CastAbility()
+					--end
+				end
+			end
+		end
+	end
+
+	
+end
+
+GM.delhero = function(player,args)
+	local playerHero = player:GetAssignedHero()
+	local heroList = HeroList:GetAllHeroes()
+	for _ , hero in ipairs(heroList) do
+		if hero ~= playerHero then
+			hero:Destroy()
+		end
+	end
+end
+GM.mod = function(player,args)
+	local heroList = HeroList:GetAllHeroes()
+	for _ , hero in ipairs(heroList) do
+		--if hero:GetName() == 'npc_dota_hero_templar_assassin' then
+			print('hero',hero:GetName())
+			local modCnt = hero:GetModifierCount()
+			for i=0 , modCnt-1 do
+				local mod = hero:GetModifierNameByIndex(i)
+				print('mod',mod)
+			end
+		--end
+	end
+end
+
+local function getNoUseAIName()
+	local heroList = HeroList:GetAllHeroes()
+	for aiName , _ in pairs(AIClass) do
+		local ok =true
+		for _ , hero in ipairs(heroList) do
+			local name = hero:GetName()
+			if aiName == name then
+				ok = false
+				break
+			end
+		end
+		if ok then
+			return aiName
+		end
+	end
+end
+
+local leftRespawnPos = Vector(-3190,1185,259)
+local rightRespawnPos = Vector(5900,2180,263)
+
+GM.aiall = function(player,args)
+	local nCurrentRound = GameRules.AddonTemplate.nCurrentRound
+
+	local teamHeroCnt = 7
+	for teamID=2 , 3 do
+		local cnt = PlayerResource:GetPlayerCountForTeam(teamID)
+		for i=cnt+1 , teamHeroCnt do
+			local name = getNoUseAIName()
+			if teamID == 2 then
+				if math.mod(nCurrentRound,2) == 0 then
+					pos = rightRespawnPos
+				else
+					pos = leftRespawnPos
+				end
+			else
+				if math.mod(nCurrentRound,2) == 0 then
+					pos = leftRespawnPos
+				else
+					pos = rightRespawnPos
+				end
+			end 
+			print('----CreateUnitByName')
+			CreateUnitByName(name,pos,true,nil,nil,teamID)
+		end
+	end
+end
+GM.addbot = function(player,args)
+    GameRules.AddonTemplate:AddBots(tonumber(args[1]),tonumber(args[2]))
+    Timers:CreateTimer(2,function()
+    GameRules.AddonTemplate:AssignBotsTeam()
+    	end)
+end
+
+GM.find = function(player,args)
+end
+
+GM.bot = function(player,args)
+	SendToConsole("dota_create_fake_clients "..6)
+	Timers:CreateTimer(2,function()
+    	for playerId=0,6 do
+    		local fake = PlayerResource:IsFakeClient(playerId)
+    		if fake then
+    			for teamId = 0,10 do
+    				local cnt = PlayerResource:GetPlayerCountForTeam(teamId)
+    				if cnt == 0 then
+		                PlayerResource:SetCustomTeamAssignment(playerId,teamId)
+    				end
+    			end
+    		end
+    	end
+    	end)
+end
+
+GM.bc = function(player,args)
+	local playerId = tonumber(args[1]) 
+	PlayerResource:ReplaceHeroWith(playerId, args[2], 3000, 0)
+end
+
+GM.test = function(player,args)
+	for playerID=0,13 do
+		local player = PlayerResource:GetPlayer(playerID)
+		local hero = player:GetAssignedHero()
+		if PlayerResource:IsFakeClient(playerID) then
+			hero:SetControllableByPlayer(-1,true)
+		end
+	end
+end
+
+GM.log = function(player,args)
+	local open = args[1] == '1'
+	local m = args[2]
+	if m == nil then
+		for key , _ in pairs(LogOpen) do
+			LogOpen[key] = open
+		end
+	else
+		LogOpen[m] = open
+	end
 end
 
 GameRules.GM = GM

@@ -14,6 +14,12 @@ local D = ""
 local F = ""
 local R = ""
 
+
+
+local abilitys_behavior = {
+	
+}
+
 ----连招技能，需要特定顺序的技能才能使用
 local combo_abilitys = 
 {
@@ -33,7 +39,7 @@ local hide_condition ={agiltity=20,intellect=20,strength=20}
 
 local secFightAbility = 
 {
-	{A,2500},{B,3000},
+	{A,1800},{B,3000},
 }
 
 --隐藏技能组合
@@ -67,6 +73,7 @@ function AITempClass:ctor(unit)
 	self.hide_combos = hide_combos
 	self.combo_abilitys = combo_abilitys
 	self.hide_ability_names = hide_ability_names
+	self.abilitys_behavior = abilitys_behavior
 end
 
 print('load tempclass ai',AITempClass)

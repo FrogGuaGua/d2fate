@@ -56,7 +56,7 @@ if IsServer() then
   function modifier_rebellious_intent:OnStackCountChanged(iStackCount)
     local ability = self:GetAbility()
     local parent = self:GetParent()
-    if parent:IsAlive() then
+    if parent:IsAlive() and self.HP_PER_STR_FATE then
       local current_hp = parent:GetHealth()
       local max_hp = parent:GetMaxHealth()
       local str_per_stack = ability:GetSpecialValueFor("str_per_stack")
@@ -68,7 +68,7 @@ if IsServer() then
   --remove current hp gained per every STR stack already gained
   function modifier_rebellious_intent:OnRemoved()
     local parent = self:GetParent()
-    if parent:IsAlive() then 
+    if parent:IsAlive() and self.HP_PER_STR_FATE then 
       local ability = self:GetAbility()
       local str_per_stack = ability:GetSpecialValueFor("str_per_stack")
       for i=1, self:GetStackCount(), 1 do

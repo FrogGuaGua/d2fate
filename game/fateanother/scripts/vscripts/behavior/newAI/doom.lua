@@ -4,6 +4,7 @@ local C = 'item_c_scroll_ai'
 local A = 'item_a_scroll_ai'
 local B = 'item_b_scroll_ai'
 local Blink = 'item_blink_scroll'
+local HS = 'item_healing_scroll' --群补
 
 --技能
 local Q = "berserker_5th_fissure_strike"
@@ -15,34 +16,42 @@ local D = ""
 local F = ""
 local R = "berserker_5th_nine_lives"
 
+--技能释放方式
+local abilitys_behavior = {
+	[Q] = "pos",
+	[HW] = "self",
+	[W] = "self",
+	[E] = "self",
+	[R] = "pos", 
+}
+
+
 ----连招技能，需要特定顺序的技能才能使用
 local combo_abilitys = 
 {
-	[HW] = 
-	{ 
-		time=4,
-		abilitys = {Q,E},
-	}
+	-- [HW] = 
+	-- { 
+	-- 	time=4,
+	-- 	abilitys = {Q,E},
+	-- }
 }
 
 --隐藏技能
-local hide_ability_names = 
-{
-	HW,
-}
+local hide_ability_names = {[HW]=true}
 
 local hide_condition ={agiltity=20,intellect=20,strength=20}
 
 local secFightAbility = 
 {
-	{A,2500},{B,3000},{W,2000},
 }
 
 --隐藏技能组合
 local hide_combos =
 {	
-	{{Q},{E},{HW,1500}},
-	{{Blink,1000},{Q},{E},{HW,1500}},
+	[1] = {{HW,500}},
+	[2] = {{Blink,900},{HW,1500}},
+	[3] = {{Q,500},{E}},
+	[4] = {{Q,500},{E},{Blink,900}},
 }
 
 --技能组合
@@ -50,21 +59,44 @@ local hide_combos =
 --元素 {技能名字,施法距离比例}
 local combos = 
 {
-	{{C,800},{R}},
-	{{S,800},{R}},
-	{{Blink,1000},{S,800},{R}},
-	{{Blink,1000},{C,800},{R}},
-	{{Q,700},},
-	{{S,800},},
-	{{C,800},},
+	[1] = {{A,1800}},
+	[2] = {{B,3000}},
+	[3] = {{W,2000}},
+	[4] = {{E,800}},
+	[5] = {{C,500},{R}},
+	[6] = {{Blink,900},{C,500},{R}},
+	[7] = {{Q,700},},
+	[8] = {{S,800},},
+	[9] = {{C,800},},
+	[10] = {{R,700},},
+}
+
+local function IsHWValid(self)
+	local unit = self.unit
+	local HWAbility = unit:FindAbilityByName(HW)
+	print('IsHWValid ',HWAbility:IsCooldownReady())
+	return HWAbility:IsCooldownReady()
+end
+
+local function IsEValid(self)
+	local unit = self.unit
+	local hp = unit:GetHealth() / unit:GetMaxHealth()
+	return hp < 0.8
+end
+
+local combo_filters =
+{
+	[hide_combos[3]] = IsHWValid,
+	[hide_combos[4]] = IsHWValid,
+	[combos[4]] = IsEValid,
 }
 
 function DoomAIClass:PreTick()
-	local unit = self.unit
-	local hp = unit:GetHealthPercent()
-	if hp < 30 then
-		self:aiCastAbilityByName(self:GetEnemey(),E)
-	end
+	-- local unit = self.unit
+	-- local hp = unit:GetHealthPercent()
+	-- if hp < 70 then
+	-- 	self:aiCastAbilityByName(self:GetEnemy(),E)
+	-- end
 	return false
 end
 
@@ -81,6 +113,8 @@ function DoomAIClass:ctor(unit)
 	self.hide_combos = hide_combos
 	self.combo_abilitys = combo_abilitys
 	self.hide_ability_names = hide_ability_names
+	self.abilitys_behavior = abilitys_behavior
+	self.combo_filters = combo_filters
 end
 
 print('load tempclass ai',AITempClass)

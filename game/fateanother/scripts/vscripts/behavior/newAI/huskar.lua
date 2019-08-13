@@ -4,6 +4,7 @@ local C = 'item_c_scroll_ai'
 local A = 'item_a_scroll_ai'
 local B = 'item_b_scroll_ai'
 local Blink = 'item_blink_scroll'
+local HS = 'item_healing_scroll' --群补
 
 --技能
 local Q = "diarmuid_warriors_charge"
@@ -14,37 +15,33 @@ local D = "diarmuid_love_spot"
 local F = ""
 local R = "diarmuid_gae_dearg"
 
-----连招技能，需要特定顺序的技能才能使用
-local combo_abilitys = 
-{
-	[HW] = 
-	{ 
-		time=3,
-		abilitys = {D,},
-	}
+--技能释放方式
+local abilitys_behavior = {
+	[Q] = "target",
+	[W] = "self",
+	[HW] = "self",
+	[E] = "target",
+	[D] = "self", 
+	[R] = "target", 
 }
 
+local combo_abilitys = {}
+
 --隐藏技能
-local hide_ability_names = 
-{
-	HW
-}
+local hide_ability_names = {[HW]=true}
 
 local hide_condition ={agiltity=20,intellect=20,strength=20}
 
 local secFightAbility = 
 {
-	{A,2500},{B,3000},
+	
 }
 
 --隐藏技能组合
 local hide_combos =
 {	
-	{{C,200},{D,200},{HW}},
-	{{S,200},{D,200},{HW}},
-	{{D,200},{HW}},
-	{{D},{Blink,1000,true},{S},{HW}},
-	{{D},{Blink,1000,true},{C},{HW}},
+	{{HW,300}},
+	{{D,300},},
 }
 
 --技能组合
@@ -52,20 +49,16 @@ local hide_combos =
 --元素 {技能名字,施法距离比例}
 local combos = 
 {
-	{D,500},
-	{W,200},
-	{R,400},
-	{{B,1000},{S,300},{R}},
-	{{B,1000},{C,300},{R}},
-	{{Blink,1000},{Q,500},{E}},
-	{{Blink,1000},{Q,500},{S},{E}},
-	{{Blink,1000},{Q,500},{C},{E}},
-	{{Q,500},{E}},
-	{{Q,500},{S},{E}},
-	{{Q,500},{C},{E}},
-	{{Q,500}},
-	{{D,300}},
+	{{A,1800}},
+	{{B,3000}},
+	{{D,800},},
+	{{C,500},{R,500}},
+	{{E,300},},
+	{{R,400}},
+	{{Blink,900},{C,500},{R}},
 	{{S,800},},
+	{{Q,500},},
+	{{W,350},},
 	{{C,800},},
 }
 
@@ -86,6 +79,7 @@ function HaskarAIClass:ctor(unit)
 	self.hide_combos = hide_combos
 	self.combo_abilitys = combo_abilitys
 	self.hide_ability_names = hide_ability_names
+	self.abilitys_behavior = abilitys_behavior
 end
 
 print('load huskar ai',HaskarAIClass)

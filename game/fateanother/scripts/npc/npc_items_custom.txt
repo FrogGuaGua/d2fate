@@ -1203,6 +1203,95 @@
 	    }
 	}
 
+	"item_healing_scroll_ai" 
+	{
+	    "ID"           "1112"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityTextureName" "custom/healing_scroll"
+	    "Model"        "models/props_gameplay/tpscroll01.vmdl" 
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+
+	    "ItemCost"     "750"
+	    "ItemKillable" "1" 
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "1"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_FULLY_SHAREABLE_STACKING"
+	    "ItemPermanent" "1"
+
+	    "SideShop"     "1" 
+	    "SecretShop"   "0"
+
+	    "ItemInitialCharges" "1"
+	    "ItemStackable" "1"
+
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"				"60"
+        "AbilityCastRange"				"600"
+	    "precache"
+	    {
+	    	"particle"			"particles/units/heroes/hero_omniknight/omniknight_purification_g.vpcf"
+	    	"particle"			"particles/units/heroes/hero_lich/lich_frost_armor_model.vpcf"
+	    }
+	    "AbilitySpecial"
+	    {
+	   		"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"				"500"
+			}
+	   		"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_block_amount"		"80"
+			}
+	   		"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_duration"				"10"
+			}
+	   		"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"600"
+			}
+		}
+	    "OnSpellStart"
+	    {
+	    	"SpendCharge" {}
+	    	"FireSound"
+	    	{
+	    		"EffectName"	"DOTA_Item.Mekansm.Activate"
+	    		"Target"
+				{
+					"Center"	"CASTER"
+					"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+	    	}
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"HealingScroll"
+			}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_healing_scroll"
+	    	{	
+	    		"Attributes"	"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+	    		"TextureName" "custom/healing_scroll"
+				"EffectName"	"particles/units/heroes/hero_lich/lich_frost_armor_model.vpcf"
+				"EffectAttachType"	"follow_overhead"
+	    		"Duration"		"5.0"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK"	 "%armor_block_amount"
+	    		}
+	    	}
+	    }
+	}
+
 	"item_blink_scroll_old" 
 	{
 	    "ID"           "1113"

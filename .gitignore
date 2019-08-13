@@ -4,3 +4,26 @@
 # IntelliJ Idea project files
 .idea/*
 *.iml
+game/fateanother/scripts/vscripts/behavior/ai/savejf2def.lua
+game/fateanother/scripts/tool/BehaviorTree/BehaviorTreeTool.exe
+game/fateanother/scripts/vscripts/test.bat
+game/fateanother/scripts/vscripts/behavior/test.bat
+game/fateanother/scripts/vscripts/behavior/StageHelper.lua
+game/fateanother/scripts/vscripts/behavior/ai/lancer.btf
+game/fateanother/scripts/vscripts/behavior/ai/json2lua.lua
+game/fateanother/scripts/vscripts/behavior/ai/json.lua
+game/fateanother/scripts/vscripts/behavior/ai/generate.bat
+game/fateanother/scripts/vscripts/behavior/ai/ember_spirit.btf
+game/fateanother/scripts/vscripts/behavior/ai/doom.btf
+game/fateanother/scripts/tool/BehaviorTree/WeifenLuo.WinFormsUI.Docking.pdb
+game/fateanother/scripts/tool/BehaviorTree/WeifenLuo.WinFormsUI.Docking.dll
+game/fateanother/scripts/tool/BehaviorTree/Newtonsoft.Json.xml
+game/fateanother/scripts/tool/BehaviorTree/Newtonsoft.Json.dll
+game/fateanother/scripts/tool/BehaviorTree/license.txt
+game/fateanother/scripts/tool/BehaviorTree/DockPanel.config
+game/fateanother/scripts/tool/BehaviorTree/config.xml
+game/fateanother/scripts/tool/BehaviorTree/BehaviorTreeTool.vshost.exe.manifest
+game/fateanother/scripts/tool/BehaviorTree/BehaviorTreeTool.vshost.exe.config
+game/fateanother/scripts/tool/BehaviorTree/BehaviorTreeTool.vshost.exe
+game/fateanother/scripts/tool/BehaviorTree/BehaviorTreeTool.pdb
+game/fateanother/scripts/tool/BehaviorTree/BehaviorTreeTool.exe.config

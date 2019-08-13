@@ -11,7 +11,12 @@ function false_assassin_minds_eye:OnSpellStart()
 end
 
 function false_assassin_minds_eye:GetCastRange(vLocation, hTarget)
-    return self:GetCaster():GetAttackRange()
+    local caster = self:GetCaster()
+    print('false_assassin_minds_eye:GetCastRange |',caster:GetUnitName())
+    local range = caster:GetBaseAttackRange()
+    local addrange = caster:GetAttackRangeBuffer()
+    print('range',range ,'addrange',addrange)
+    return range + addrange
 end
 
 function false_assassin_minds_eye:GetIntrinsicModifierName()

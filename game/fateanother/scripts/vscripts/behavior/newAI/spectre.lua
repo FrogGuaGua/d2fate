@@ -4,38 +4,41 @@ local C = 'item_c_scroll_ai'
 local A = 'item_a_scroll_ai'
 local B = 'item_b_scroll_ai'
 local Blink = 'item_blink_scroll'
+local HS = 'item_healing_scroll' --群补
 
 --技能
 local Q = 'saber_alter_derange'
 local W = 'saber_alter_mana_burst'
-local W1 = 'saber_alter_max_mana_burst'
+local HW = 'saber_alter_max_mana_burst'
 local E = 'saber_alter_vortigern'
 local F = 'saber_alter_unleashed_ferocity'
 local R = 'saber_alter_excalibur'
 
---隐藏技能,AI刷新无法刷新
-local hide_ability_names = {saber_alter_max_mana_burst=true}
-
-----连招技能，需要特定顺序的技能才能使用
-local combo_abilitys = {
-	[W1] = 
-	{
-		time = 5,
-		abilitys = {Q,F},
-	},
+--技能释放方式
+local abilitys_behavior = {
+	[Q] = "self",
+	[W] = "self",
+	[HW] = "self",
+	[E] = "pos",
+	[F] = "self", 
+	[R] = "pos", 
 }
+
+--隐藏技能,AI刷新无法刷新
+local hide_ability_names = {[HW]=true}
+local combo_abilitys = {}
 
 local secFightAbility = 
 {
-	{A,2500},{B,3000},{Q,1000},
+	
 }
 
 --隐藏技能需要满足隐藏条件才会考虑
 local hide_combos =
 {
-	{{Q,1700},{F},},
-	{{W1,750},},
-	{{Blink,1000},{W1,750},},
+	[1]={{HW,200},},
+	[2]={{Q,200},{F},},
+	[3]={{Q,200},{F},{Blink,900}},
 }
 
 --技能组合
@@ -43,20 +46,33 @@ local hide_combos =
 --元素 {技能名字,施法距离比例}
 local combos = 
 {
-	{{E,400}},
-	{{R,600}},
-	{{S,800},{R}},
-	{{C,800},{R}},
-	{{Blink,1000},{S,800},{R}},
-	{{Blink,1000},{C,800},{R}},
-	{{Blink,1000},{E,500}},
-	{{F},{Blink,1100}},
+	{{A,1800}},
+	{{B,3000}},
+	{{R,1100}},
+	{{F,400}},
+	{{F,300},{Blink,900},},
+	{{E,500}},
+	{{Blink,900},{E,400}},
+	{{C,500},{W,200}},
 	{{W,200}},
-	{{Blink,1000},{W,100}},
+	{{Q,8000}},
 	{{S,800},},
 	{{C,800},},
 }
 
+local function IsHWValid(self)
+	local ability = self.unit:FindAbilityByName(HW)
+	if ability:IsCooldownReady() then
+		return true
+	end
+	return false
+end
+
+local combo_filters =
+{
+	[hide_combos[2]] = IsHWValid,
+	[hide_combos[3]] = IsHWValid,
+}
 
 function SpectreAIClass:ctor(unit)
 	print('unit',unit,unit:GetName())
@@ -67,4 +83,6 @@ function SpectreAIClass:ctor(unit)
 	self.hide_combos = hide_combos
 	self.hide_ability_names = hide_ability_names
 	self.combo_abilitys = combo_abilitys
+	self.combo_filters = combo_filters
+	self.abilitys_behavior = abilitys_behavior
 end

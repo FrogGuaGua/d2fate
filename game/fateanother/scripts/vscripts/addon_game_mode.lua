@@ -327,6 +327,10 @@ function FateGameMode:OnFirstPlayerLoaded()
     print("[BAREBONES] First Player has loaded")
 end
 
+function FillAllPlayers()
+
+end
+
 --[[
 This function is called once and only once after all players have loaded into the game, right as the hero selection time begins.
     It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
@@ -698,7 +702,9 @@ function FateGameMode:OnPlayerChat(keys)
         CustomGameEventManager:Send_ServerToPlayer( ply, "fate_disable_voice", {})
     end
 
-    hero.AltPart:Switch(text)
+    if hero then
+        hero.AltPart:Switch(text)
+    end
 
     local rollText = string.match(text, "^-roll (%d+)")
     if rollText ~= nil then
@@ -1074,34 +1080,123 @@ function DistributeGoldV2(hero, cutoff)
     end
 end
 
+_G.needPlayerCnt = 0
+_G.botLvl = 1
+--添加机器人
+function FateGameMode:AddBots(botCnt,lvl)
+    --if GameMap ~= "fate_elim_7v7" then return end
+    local cnt = PlayerResource:GetPlayerCount()
+    needPlayerCnt = botCnt + cnt
+    botLvl = lvl
+    if cnt < needPlayerCnt then
+        SendToServerConsole("dota_create_fake_clients "..tostring(needPlayerCnt))
+    end
+end
+
+function FateGameMode:AssignBotsTeam()
+    if GameMap ~= "fate_elim_7v7" then return end
+    local needCnt = needPlayerCnt/2
+    local team2Cnt = needCnt - PlayerResource:GetPlayerCountForTeam(2)
+    local team3Cnt = needCnt - PlayerResource:GetPlayerCountForTeam(3)
+
+    for playerId=0,13 do
+        local isfake = PlayerResource:IsFakeClient(playerId)
+        local player = PlayerResource:GetPlayer(playerId)
+        if isfake then
+            local name = 'npc_dota_hero_wisp'
+            if team2Cnt > 0 then
+                PlayerResource:SetCustomTeamAssignment(playerId,2)
+                --CreateHeroForPlayer(name,player)
+                team2Cnt = team2Cnt -1
+            elseif team3Cnt > 0 then
+                PlayerResource:SetCustomTeamAssignment(playerId,3)
+                --CreateHeroForPlayer(name,player)
+                team3Cnt = team3Cnt -1
+            else
+                break
+            end
+        end
+    end
+end
+
+function FateGameMode:LoopAttachAI(player)
+    local hero = player:GetAssignedHero()
+    print('LoopAttachAI ',hero)
+    if hero and hero:GetName() ~= 'npc_dota_hero_wisp' and hero.aiClass == nil then
+        hero:SetControllableByPlayer(-1,true)
+        AttachAI(hero,botLvl)
+        return
+    end
+
+    Timers:CreateTimer(1,function()self:LoopAttachAI(player) end)
+end
+
+function FateGameMode:AssignBotsHero()
+    if GameMap ~= "fate_elim_7v7" then return end
+    
+    for playerId=0,13 do
+        local args = {}
+        args.playerId = playerId
+        args.hero = GetAIRandName()
+        local isfake = PlayerResource:IsFakeClient(playerId)
+        if isfake then
+            Selection:AssignHero(playerId,args.hero)
+            Timers:CreateTimer(1,function()self:LoopAttachAI(PlayerResource:GetPlayer(playerId)) end)
+        end
+    end
+end
+
+function FateGameMode:AssignBotsAI()
+    for playerId=0,13 do
+        local isfake = PlayerResource:IsFakeClient(playerId)
+        if isfake then
+            local player = PlayerResource:GetPlayer(playerId)
+            local hero = player:GetAssignedHero()
+            hero:SetControllableByPlayer(-1,true)
+            print('---FateGameMode:AttachAI')
+            AttachAI(hero)
+        end
+    end
+end
+
 -- The overall game state has changed
 function FateGameMode:OnGameRulesStateChange(keys)
-    print("[BAREBONES] GameRules State Changed")
+    print("[BAREBONES] GameRules State Changed",GameRules:State_Get())
 
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
         self.bSeenWaitForPlayers = true
+    elseif newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+        Timers:CreateTimer(2, function()
+           self:AssignBotsTeam()
+        end)
     elseif newState == DOTA_GAMERULES_STATE_INIT then 
     elseif newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
 	--SendToConsole("r_farz 5000")
     --Convars:SetInt("r_farz", 3300)
-        Timers:CreateTimer(2, function()
+        Timers:CreateTimer(5, function()
+            print('----OnAllPlayersLoaded')
+            self:AssignBotsHero() 
             FateGameMode:OnAllPlayersLoaded()
+            
         end)
-
-        Selection = HeroSelection()
+        print('--HeroSelection')
+        _G.Selection = HeroSelection()
         Selection:UpdateTime()
     elseif newState == DOTA_GAMERULES_STATE_STRATEGY_TIME then
+        print('DOTA_GAMERULES_STATE_STRATEGY_TIME')
         -- screw 7.00
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        print('DOTA_GAMERULES_STATE_GAME_IN_PROGRESS',GameRules.firstSelectHero)
         FateGameMode:OnGameInProgress()
     end
 end
 
 -- An NPC has spawned somewhere in game. This includes heroes
 function FateGameMode:OnNPCSpawned(keys)
-    --print("[BAREBONES] NPC Spawned")
+    print("[BAREBONES] NPC Spawned")
     local hero = EntIndexToHScript(keys.entindex)
+    print("hero",hero:GetName())
 	Wrappers.WrapUnit(hero)
 
     -- Apply attributes that were bought while dead
@@ -1190,11 +1285,6 @@ function FateGameMode:OnHeroInGame(hero)
     hero.defaultSendGold = 300
     hero.CStock = 10
     hero.ShardAmount = 0
-
-    hero:AddItem(CreateItem("item_a_scroll_ai", nil, nil))
-    hero:AddItem(CreateItem("item_b_scroll_ai", nil, nil))
-    hero:AddItem(CreateItem("item_c_scroll_ai", nil, nil))
-    hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
 
     Timers:CreateTimer(1.0, function()
         local team = hero:GetTeam()
@@ -1348,6 +1438,7 @@ function FateGameMode:OnHeroInGame(hero)
         self:InitialiseMissingPanoramaData(hero:GetPlayerOwner())
     end)
     CustomGameEventManager:Send_ServerToAllClients("player_register_master_unit", playerData)
+    print('Send_ServerToPlayer')
     Timers:CreateTimer(3.0, function()
         CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "player_selected_hero", playerData)
     end
@@ -2250,8 +2341,8 @@ function FateGameMode:InitGameMode()
     CustomGameEventManager:RegisterListener( "config_option_4_checked", OnConfig4Checked )
     -- CustomGameEventManager:RegisterListener( "player_chat_panorama", OnPlayerChat )
     CustomGameEventManager:RegisterListener( "player_alt_click", OnPlayerAltClick )
-    CustomGameEventManager:RegisterListener("player_remove_buff", OnPlayerRemoveBuff )
-    CustomGameEventManager:RegisterListener("player_cast_seal", OnPlayerCastSeal )
+    CustomGameEventManager:RegisterListener( "player_remove_buff", OnPlayerRemoveBuff )
+    CustomGameEventManager:RegisterListener( "player_cast_seal", OnPlayerCastSeal )
     -- LUA modifiers
     LinkLuaModifier("modifier_ms_cap", "modifiers/modifier_ms_cap", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_beam_thinker", "modifiers/modifier_beam_thinker", LUA_MODIFIER_MOTION_NONE)
@@ -2771,6 +2862,13 @@ function FateGameMode:FinishRound(IsTimeOut, winner)
     CreateUITimer(("Round " .. self.nCurrentRound), 0, "round_timer" .. self.nCurrentRound)
     CreateUITimer("Pre-Round", 0, "pregame_timer")
 
+    local heroList = HeroList:GetAllHeroes()
+    for _ , hero in ipairs(heroList) do
+        if hero.aiClass then
+            hero.aiClass:Clear()
+        end
+    end
+
     -- clean up marbles and pause heroes for 5 seconds(as well as NR combo)
     self:LoopOverPlayers(function(player, playerID, playerHero)
         if playerHero:IsAlive() then
@@ -3061,8 +3159,8 @@ end
 -- This function is called once when the player fully connects and becomes "Ready" during Loading
 -- Assign players
 function FateGameMode:OnConnectFull(keys)
-    --print ('[BAREBONES] OnConnectFull')
-    --PrintTable(keys)
+    print ('[BAREBONES] OnConnectFull')
+    PrintTable(keys)
     FateGameMode:CaptureGameMode()
 
     local entIndex = keys.index+1

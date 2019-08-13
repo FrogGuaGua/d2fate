@@ -4,27 +4,38 @@ local C = 'item_c_scroll_ai'
 local A = 'item_a_scroll_ai'
 local B = 'item_b_scroll_ai'
 local Blink = 'item_blink_scroll'
+local HS = 'item_healing_scroll' --群补
 
 --技能
 local Q = 'rider_5th_nail_swing'
 local W = 'rider_5th_breaker_gorgon'
 local E = 'rider_5th_bloodfort_andromeda'
-local E1 = 'rider_5th_bellerophon_2'
+local HE = 'rider_5th_bellerophon_2'
 local R = 'rider_5th_bellerophon'
 
+--技能释放方式
+local abilitys_behavior = {
+	[Q] = 'self',
+	[W] = 'pos',
+	[E] = 'self',
+	[HE] = 'pos',
+	[R] = 'pos',
+}
+
 --隐藏技能
-local hide_ability_names = {}
+local hide_ability_names = {[HE]=true}
 
 local secFightAbility = 
 {
-	{A,2500},{B,3000},
+	
 }
 
 --隐藏技能需要满足隐藏条件才会考虑
 local hide_combos =
 {
-	{{Q},{W},{E1,2000}},
-	{{Q},{W},{Blink,1000},{E1,2000}},
+	{{Q,2000},{W},},
+	{{Q,2000},{W},{Blink,900}},
+	{{HE,2000}},
 }
 
 --技能组合
@@ -32,18 +43,16 @@ local hide_combos =
 --元素 {技能名字,施法距离比例}
 local combos = 
 {
-	{{S,1000},{R}},
-	{{C,900},{R}},
-	{{Q,450},{W},{E}},
-	{{Blink,1000},{Q,450},{W},{E}},
-	{{S,300},{E}},
-	{{C,300},{E}},
-	{{S,800},},
-	{{C,800},},
-	{{R,1300},},
+	{{A,1800},},
+	{{B,3000},},
+	{{S,600},},
+	{{R,1200},},
+	{{Blink,900},{R,1200},},
 	{{Q,400},},
-	{{W,200},},
-	{{E,100},},
+	{{W,400},},
+	{{C,800},{E},},
+	{{E,500},},
+	{{S,800},},
 }
 
 
@@ -55,4 +64,5 @@ function TaAIClass:ctor(unit)
 	self.combos = combos
 	self.hide_combos = hide_combos
 	self.hide_ability_names = hide_ability_names
+	self.abilitys_behavior = abilitys_behavior
 end

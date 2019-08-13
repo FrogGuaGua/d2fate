@@ -1138,7 +1138,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         if dmg_type == DAMAGE_TYPE_PHYSICAL then
             reduction = GetPhysicalDamageReduction(target:GetPhysicalArmorValue(false))
         elseif dmg_type == DAMAGE_TYPE_MAGICAL then
-            reduction = target:GetMagicalArmorValue(0) 
+            reduction = target:GetMagicalArmorValue() 
         end 
         local originalDamage = dmg - target.argosShieldAmount * 1/(1-reduction)
         target.argosShieldAmount = target.argosShieldAmount - dmg * (1-reduction)
