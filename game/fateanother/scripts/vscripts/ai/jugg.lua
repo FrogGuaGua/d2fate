@@ -115,4 +115,8 @@ function JuggAIClass:ctor(unit,lvl)
 	self.wushimoming = true
 	self.hide_condition = hide_condition
 	self:InitBaseAtb(base_atb)
+	--过滤mod
+	self.filterMod = {
+		modifier_avalon = true , -- 无敌
+	}
 end

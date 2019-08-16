@@ -266,8 +266,6 @@ function BaseAIClass:FindNearestEnemy(needSee)
 	local tb =FindUnitsInRadius(selfTeam,selfPos,nil,range,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_ALL,DOTA_UNIT_TARGET_FLAG_NONE,0,false)
 	for _ , _target in ipairs(tb) do
 		if self:ValidTarget(_target) then
-			print('needSee',needSee)
-			print('CanEntityBeSeenByMyTeam',unit:CanEntityBeSeenByMyTeam(_target))
 			if not needSee or unit:CanEntityBeSeenByMyTeam(_target) then
 				local targetPos = _target:GetAbsOrigin()
 	        	local dist = #(targetPos - selfPos)

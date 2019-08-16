@@ -255,14 +255,14 @@ GM.sethp = function(player,args)
 	local heroList = HeroList:GetAllHeroes()
 	for _ , _hero in pairs(heroList) do
 		--if _hero:GetName() == 'npc_dota_hero_phantom_lancer' then
-		if playerHero == _hero then
+		--if 0 == _hero:GetPlayerOwnerID() then
 			_hero:SetBaseStrength(10000)
 			_hero:SetBaseIntellect(25)
 			_hero:SetBaseAgility(25)
 			--_hero:SetHealth(1000000)
 			print('name ',_hero:GetName())
 			loopmana(_hero)
-		end
+		--end
 	end
 end
 
@@ -446,6 +446,28 @@ GM.log = function(player,args)
 	else
 		LogOpen[m] = open
 	end
+end
+
+GM.rf = function(player,args)
+	local heroList = HeroList:GetAllHeroes()
+	for _ , hero in pairs(heroList) do
+		for index=0 , 16 do
+			local ability = hero:GetAbilityByIndex(index)
+			if ability then
+				ability:EndCooldown()
+			end
+		end
+	end
+end
+
+GM.cd = function(player,args)
+	local hero = player:GetAssignedHero()
+	local ability = hero:GetAbilityByIndex(0)
+	if args[1] == '1' then
+		ability:EndCooldown()
+	end
+
+	print("ability cd",ability:GetCooldownTime())
 end
 
 GameRules.GM = GM

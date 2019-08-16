@@ -107,6 +107,7 @@ function BaseAIClass:ctor(unit,lvl)
 	self.combo_filters = {}
 
 	self.wushimoming = false
+	self.wushiwuming = false
 
 	self:InitAILevel(lvl)
 
@@ -122,6 +123,14 @@ function BaseAIClass:ctor(unit,lvl)
 	self.ignoreUnit = {
 		scout_familiar = true , --鸟
 	}
+
+	--过滤mod
+	self.filterMod = {
+		modifier_avalon = true , -- 无敌
+		modifier_magic_immunity = true, -- 魔免
+	}
+
+	self.firstTickTime = nil
 end
 
 function BaseAIClass:InitAILevel(lvl)
@@ -254,14 +263,23 @@ function BaseAIClass:IgnoreUnit(unit)
 	return self.ignoreUnit[name] ~= nil
 end
 
+function BaseAIClass:TargetFilterMod(unit)
+	local filterMod = self.filterMod
+	for name in pairs(filterMod) do
+		local mod = unit:FindModifierByName(name)
+		if mod then
+			return true
+		end
+	end
+
+	return false
+end
+
 function BaseAIClass:ValidTarget(unit)
 	if unit and IsValidEntity(unit) and unit:IsAlive() and not self:IgnoreUnit(unit) then
-		if not self.wushimoming then
-			local mod = self.unit:FindModifierByName("modifier_magic_immunity")
-			if mod then
-				dp('ValidTarget | 1')
-				return false
-			end
+		if self:TargetFilterMod(unit) then
+			dp('TargetFilterMod | 1')
+			return false
 		end
 		dp('ValidTarget | 2')
 		return true
@@ -273,18 +291,15 @@ end
 function BaseAIClass:GetEnemy()
 	local target = self.curCombo.target
 	if self:ValidTarget(target) then
-		print('GetEnemy | curCombo')
 		return target
 	end
 
 	target = self:getLastComboTarget()
 	if self:ValidTarget(target) then
-		print('GetEnemy | getLastComboTarget')
 		return target
 	end
 	target = self.nearEnemy
 	if self:ValidTarget(target)  then
-		print('GetEnemy | nearEnemy')
 		return target
 	end
 
@@ -366,6 +381,16 @@ function BaseAIClass:Tick()
     if pauseMod or not self.unit:IsAlive() then
     	return
     end
+
+    if self.firstTickTime == nil then
+    	self.firstTickTime = GameRules:GetGameTime()
+    	return
+    end
+    
+    if self.firstTickTime + 5 > GameRules:GetGameTime() then
+    	return
+    end
+
 	self.nearEnemy = self:FindNearestEnemy(self.curStep ~= 'fight')
 	if self:RefreshCD() then
 		return
@@ -390,8 +415,8 @@ function BaseAIClass:Tick()
 	if self:LateTick() then
 		return
 	end
-	dp('self:LateTick()-->')
-	local duration =Time()-RoundStartTime
+	local duration =GameRules:GetGameTime()-RoundStartTime
+	--print('RoundStartTime',RoundStartTime,GameRules:GetGameTime())
 	local steps = self.steps
 	local step = 'begin'
 	for s , range in pairs(steps) do
@@ -400,7 +425,10 @@ function BaseAIClass:Tick()
 			break
 		end
 	end
-	
+	if GameRules:GetGameTime() < 85 then
+		return
+	end
+
 	if self.curStep ~= step then
 		self.curStep = step
 	end
@@ -455,7 +483,6 @@ function BaseAIClass:GetGuardVec()
 	local y = math.random(-self.guardH,self.guardH) 
 	x = c.x + x
 	y = c.y + y
-	print('x')
 	return Vector(x,y,c.z)
 end
 
@@ -489,8 +516,12 @@ function BaseAIClass:UpgradeAbilityMasterUnit2()
 	if self.NextMasterTime > Time() then
 		return
 	end
+
+	if self.MasterAbilityIndex > 6 then
+		return
+	end
+
 	self.NextMasterTime = Time() + self.MasterTimeInterval
-	print('UpgradeAbilityMasterUnit2',self.NextMasterTime)
 
 	local unit = self.unit
 	local master2 = unit.MasterUnit2
@@ -500,7 +531,6 @@ function BaseAIClass:UpgradeAbilityMasterUnit2()
 		local idx = self.MasterAbilityIndex
 		local ability = master2:GetAbilityByIndex(idx)
 		if ability then
-			print('UpgradeAbilityMasterUnit2',idx)
 			ability:CastAbility()
 		end
 		self.MasterAbilityIndex = idx + 1
@@ -527,7 +557,6 @@ _G.AttachAI = function(unit,lvl)
 
 	local aiClass = AIClass[name]
 	if aiClass then
-		print('--aiClass AttachAI',lvl)
 		unit.aiClass = aiClass.new(unit,lvl)
 		--unit.aiClass:MaxMasterUnit2Abilitys()
 		unit.aiClass:Enter()

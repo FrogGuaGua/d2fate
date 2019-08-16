@@ -6,6 +6,10 @@ function HeroSelection:constructor()
     local heroList = LoadKeyValues("scripts/npc/herolist.txt")
     heroList["npc_dota_hero_wisp"] = nil
     self.AvailableHeroes = heroList
+    print('HeroSelection:constructor')
+    for name in pairs(self.AvailableHeroes) do
+        print('name ',name)
+    end
 
     self.HoveredHeroes = {}
 
@@ -114,7 +118,7 @@ function HeroSelection:AssignHero(playerId, hero)
 
         UTIL_Remove(oldHero)
     end)
-
+    print('hero ',hero)
     self.AvailableHeroes[hero] = nil
     CustomNetTables:SetTableValue("selection", "available", self.AvailableHeroes)
     CustomNetTables:SetTableValue("selection", "picked", self.Picked)

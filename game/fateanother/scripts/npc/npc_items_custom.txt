@@ -1,4 +1,5 @@
 #base "items/item_blink_scroll.txt"
+#base "items/item_blink_scroll_ai.txt"
 #base "items/item_mana_essence.txt"
 #base "items/item_shard_of_replenishment.txt"
 #base "items/item_smoke.txt"

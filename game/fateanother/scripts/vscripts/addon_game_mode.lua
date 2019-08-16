@@ -25,8 +25,8 @@ require('blink')
 --require('unit_voice')
 require('wrappers')
 
-require('behavior/require')
 require('GM')
+require('ai/_require')
 
 _G.IsPickPhase = true
 _G.IsPreRound = true
@@ -1121,7 +1121,6 @@ end
 
 function FateGameMode:LoopAttachAI(player)
     local hero = player:GetAssignedHero()
-    print('LoopAttachAI ',hero)
     if hero and hero:GetName() ~= 'npc_dota_hero_wisp' and hero.aiClass == nil then
         hero:SetControllableByPlayer(-1,true)
         AttachAI(hero,botLvl)
@@ -1135,11 +1134,11 @@ function FateGameMode:AssignBotsHero()
     if GameMap ~= "fate_elim_7v7" then return end
     
     for playerId=0,13 do
-        local args = {}
-        args.playerId = playerId
-        args.hero = GetAIRandName()
         local isfake = PlayerResource:IsFakeClient(playerId)
         if isfake then
+            local args = {}
+            args.playerId = playerId
+            args.hero = GetAIRandName()
             Selection:AssignHero(playerId,args.hero)
             Timers:CreateTimer(1,function()self:LoopAttachAI(PlayerResource:GetPlayer(playerId)) end)
         end
@@ -1174,7 +1173,7 @@ function FateGameMode:OnGameRulesStateChange(keys)
     elseif newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
 	--SendToConsole("r_farz 5000")
     --Convars:SetInt("r_farz", 3300)
-        Timers:CreateTimer(5, function()
+        Timers:CreateTimer(AIPICKTIME, function()
             print('----OnAllPlayersLoaded')
             self:AssignBotsHero() 
             FateGameMode:OnAllPlayersLoaded()
@@ -1259,7 +1258,10 @@ function FateGameMode:OnHeroInGame(hero)
     Timers:CreateTimer(0.5, function() hero:SwapItems(DOTA_ITEM_SLOT_2, DOTA_ITEM_SLOT_8) end)
     Timers:CreateTimer(0.75, function()
         hero:SwapItems(DOTA_ITEM_SLOT_3, DOTA_ITEM_SLOT_9)
-        hero:AddItem(CreateItem("item_blink_scroll", nil, nil) ) -- Give blink scroll
+        local pid = hero:GetPlayerID()
+        if not PlayerResource:IsFakeClient(pid) then
+            hero:AddItem(CreateItem("item_blink_scroll", nil, nil) ) -- Give blink scroll
+        end
     end)
 
     -- Removing Talents
@@ -1409,12 +1411,12 @@ function FateGameMode:OnHeroInGame(hero)
 
     if Convars:GetBool("sv_cheats") then
         -- hero:RemoveModifierByName("round_pause")
-        hero.MasterUnit:SetMana(hero.MasterUnit:GetMaxMana())
-        hero.MasterUnit2:SetMana(hero.MasterUnit2:GetMaxMana())
+        -- hero.MasterUnit:SetMana(hero.MasterUnit:GetMaxMana())
+        -- hero.MasterUnit2:SetMana(hero.MasterUnit2:GetMaxMana())
 
-        hero:SetBaseStrength(20)
-        hero:SetBaseAgility(20)
-        hero:SetBaseIntellect(20)
+        -- hero:SetBaseStrength(20)
+        -- hero:SetBaseAgility(20)
+        -- hero:SetBaseIntellect(20)
     end
 
 
