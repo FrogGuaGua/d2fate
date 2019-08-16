@@ -131,6 +131,12 @@ function BaseAIClass:ctor(unit,lvl)
 	}
 
 	self.firstTickTime = nil
+
+	self.unit:SetAbilityPoints(8) --初始8个技能点
+	self.unit.MasterUnit:SetAbsOrigin(Vector(-10000,-10000,-1000))
+	self.unit.MasterUnit2:SetAbsOrigin(Vector(-10000,-10000,-1000))
+	--SetRenderingEnabled(self.unit.MasterUnit:GetEntityHandle(),false)
+	--SetRenderingEnabled(self.unit.MasterUnit2:GetEntityHandle(),false)
 end
 
 function BaseAIClass:InitAILevel(lvl)
@@ -251,6 +257,7 @@ function BaseAIClass:Clear()
 	self.lastComboData = {target = nil , time = 0}
 	self.moveToTarget = nil
 	self.curStep = "begin"
+	self.firstTickTime = nil
 end
 
 function BaseAIClass:GetSearchRange()
@@ -259,7 +266,7 @@ function BaseAIClass:GetSearchRange()
 end
 
 function BaseAIClass:IgnoreUnit(unit)
-	local name = unit:GetName()
+	local name = unit:GetUnitName()
 	return self.ignoreUnit[name] ~= nil
 end
 
@@ -360,17 +367,43 @@ end
 function BaseAIClass:UpgradeAbility()
 	if self.nextUpgradeAbilityTime < Time() then
 		self.nextUpgradeAbilityTime = Time() + self.UpgradeAbilityCD
+		local ability_upgrade = self.ability_upgrade
 		local unit = self.unit
-		for idx=0 , 14 do
-			local ability = unit:GetAbilityByIndex(idx)
-			if ability then
-				for i=1 , 10 do
-					if unit:GetAbilityPoints() > 0 then
-						unit:UpgradeAbility(ability)
+
+		for idx , data in ipairs(ability_upgrade) do
+			for abilityName , needPoint in pairs(data) do
+				local ability = unit:FindAbilityByName(abilityName)
+				if ability and needPoint > 0 then
+					for i=1 , needPoint do
+						if unit:GetAbilityPoints() > 0 then
+							unit:UpgradeAbility(ability)
+							data[abilityName] = data[abilityName] -1
+						end
 					end
 				end
 			end
 		end
+	end
+end
+
+--C鸟
+function BaseAIClass:TickCBird()
+	local unit = self.unit
+	local selfTeam = unit:GetTeam()
+	local selfPos = unit:GetAbsOrigin()
+	local range = 800
+	local tb =FindUnitsInRadius(selfTeam,selfPos,nil,range,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_ALL,DOTA_UNIT_TARGET_FLAG_NONE,0,false)
+	for _ , _target in ipairs(tb) do
+			print('_target:GetUnitName()',_target:GetUnitName())
+		--if self:ValidTarget(_target) then
+			--if  unit:CanEntityBeSeenByMyTeam(_target) then
+				if _target:GetUnitName() == "scout_familiar" then --鸟
+					local ability = self:getAbilityByName("item_c_scroll_ai")
+					unit:CastAbilityOnTarget(_target, ability, -1)
+					break
+				end
+			--end
+		--end
 	end
 end
 
@@ -387,7 +420,7 @@ function BaseAIClass:Tick()
     	return
     end
     
-    if self.firstTickTime + 5 > GameRules:GetGameTime() then
+    if self.firstTickTime + 10 > GameRules:GetGameTime() then
     	return
     end
 
@@ -434,7 +467,6 @@ function BaseAIClass:Tick()
 	end
 
 	local enemy = self:GetEnemy()
-
 	if enemy then
 		if self.lastpos == self.unit:GetAbsOrigin()
 			or enemy ~= self.lastenemy then
@@ -453,7 +485,7 @@ function BaseAIClass:Tick()
 		elseif step == 'fight' then
 		end
 	end
-
+	self:TickCBird()
 	self.lastpos = self.unit:GetAbsOrigin()
 	self.lastenemy = enemy
 	--self:MoveTo("near_player")

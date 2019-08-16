@@ -14,6 +14,13 @@ local D = "saber_strike_air"
 local F = "saber_improved_instinct"
 local R = "saber_avalon"
 
+local ATT = 'attribute_bonus_custom'
+--升级技能表
+local ability_upgrade =
+{
+	{[Q] = 4}, {[W] = 4}, {[E] = 4}, {[R] = 4}, {[ATT] = 7},
+}
+
 --初始属性
 local base_atb = {
 	agiltity=5,	--敏捷
@@ -125,6 +132,7 @@ function LCAIClass:ctor(unit,lvl)
 	self.hide_ability_names = hide_ability_names
 	self.abilitys_behavior = abilitys_behavior
 	self:InitBaseAtb(base_atb)
+	self.ability_upgrade = ability_upgrade
 end
 
 print('load LCAIClass ai',LCAIClass)

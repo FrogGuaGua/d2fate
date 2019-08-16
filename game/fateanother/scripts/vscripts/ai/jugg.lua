@@ -14,6 +14,13 @@ local E = 'false_assassin_windblade'
 local D = 'false_assassin_minds_eye'
 local R = 'false_assassin_tsubame_gaeshi'
 
+local ATT = 'attribute_bonus_custom'
+--升级技能表
+local ability_upgrade =
+{
+	{[Q] = 4}, {[W] = 4}, {[E] = 4}, {[R] = 4}, {[ATT] = 7},
+}
+
 local master2 = {0,1,2,4,5}
 
 --初始属性
@@ -119,4 +126,5 @@ function JuggAIClass:ctor(unit,lvl)
 	self.filterMod = {
 		modifier_avalon = true , -- 无敌
 	}
+	self.ability_upgrade = ability_upgrade
 end

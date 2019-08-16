@@ -1,1 +1,0 @@
-GameRules.btfName = {'doom','lancer','ember_spirit',}

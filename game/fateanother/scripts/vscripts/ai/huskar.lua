@@ -14,6 +14,13 @@ local D = "diarmuid_love_spot"
 local F = ""
 local R = "diarmuid_gae_dearg"
 
+local ATT = 'attribute_bonus_custom'
+--升级技能表
+local ability_upgrade =
+{
+	{[Q] = 4}, {[W] = 4}, {[E] = 4}, {[R] = 4}, {[ATT] = 7},
+}
+
 --初始属性
 local base_atb = {
 	agiltity=5,	--敏捷
@@ -88,6 +95,11 @@ function HaskarAIClass:ctor(unit,lvl)
 	self.abilitys_behavior = abilitys_behavior
 	self.lvl = lvl
 	self:InitBaseAtb(base_atb)
+	--过滤mod
+	self.filterMod = {
+		modifier_avalon = true , -- 无敌
+	}
+	self.ability_upgrade = ability_upgrade
 end
 
 print('load huskar ai',HaskarAIClass)

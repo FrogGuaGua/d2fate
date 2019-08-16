@@ -14,6 +14,13 @@ local D = "vlad_transfusion"
 local D1 = "vlad_impale"
 local R = "vlad_kazikli_bey"
 
+local ATT = 'attribute_bonus_custom'
+--升级技能表
+local ability_upgrade =
+{
+	{[Q] = 4}, {[W] = 4}, {[E] = 4}, {[R] = 4}, {[ATT] = 7},
+}
+
 --初始属性
 local base_atb = {
 	agiltity=5,	--敏捷
@@ -133,6 +140,7 @@ function THAIClass:ctor(unit,lvl)
 	self.abilitys_behavior = abilitys_behavior
 	self.combo_filters = combo_filters
 	self:InitBaseAtb(base_atb)
+	self.ability_upgrade = ability_upgrade
 end
 
 print('load thClass ai',THAIClass)

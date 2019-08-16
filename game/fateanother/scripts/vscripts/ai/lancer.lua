@@ -6,6 +6,7 @@ local B = 'item_b_scroll_ai'
 local Blink = 'item_blink_scroll_ai'
 
 --技能
+local Q = "lancer_5th_rune_magic"
 local Q1 = "lancer_5th_rune_of_disengage"
 local W = "lancer_5th_relentless_spear"
 local W1 = "lancer_5th_rune_of_replenishment"
@@ -16,6 +17,13 @@ local D = "lancer_5th_soaring_spear"
 local F = ""
 local R = "lancer_5th_gae_bolg_jump"
 local R1 = "lancer_5th_rune_of_conversion"
+
+local ATT = 'attribute_bonus_custom'
+--升级技能表
+local ability_upgrade =
+{
+	{[Q] = 4}, {[W] = 4}, {[E] = 4}, {[R] = 4}, {[ATT] = 7},
+}
 
 --初始属性
 local base_atb = {
@@ -128,6 +136,7 @@ function LancerAIClass:ctor(unit,lvl)
 	self.abilitys_behavior = abilitys_behavior
 	SwapAbilitys(unit)
 	self:InitBaseAtb(base_atb)
+	self.ability_upgrade = ability_upgrade
 end
 
 print('load lancer ai',LancerAIClass)

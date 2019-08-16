@@ -17,6 +17,14 @@ local F1 = "nero_acquire_martial_arts"
 local F2 = "nero_close_spellbook"
 local R = "nero_aestus_domus_aurea"
 local R1 = "nero_acquire_clairvoyance"
+
+local ATT = 'attribute_bonus_custom'
+--升级技能表
+local ability_upgrade =
+{
+	{[Q] = 4}, {[W] = 4}, {[E] = 4}, {[R] = 4}, {[ATT] = 7},
+}
+
 --技能释放方式
 local abilitys_behavior = {
 	[Q] = "target",
@@ -158,6 +166,7 @@ function LinaAIClass:ctor(unit,lvl)
 	self.abilitys_behavior = abilitys_behavior
 	self:InitBaseAtb(base_atb)
 	self.special_ability_condition = special_ability_condition
+	self.ability_upgrade = ability_upgrade
 end
 
 print('load lina ai',LinaAIClass)

@@ -14,6 +14,13 @@ local D = 'nursery_rhyme_shapeshift'
 local F = 'nursery_rhyme_nameless_forest'
 local R = 'nursery_rhyme_queens_glass_game'
 
+local ATT = 'attribute_bonus_custom'
+--升级技能表
+local ability_upgrade =
+{
+	{[Q] = 4}, {[W] = 4}, {[E] = 4}, {[R] = 4}, {[ATT] = 7},
+}
+
 --初始属性
 local base_atb = {
 	agiltity=5,	--敏捷
@@ -97,6 +104,7 @@ function WindRunnerAIClass:ctor(unit,lvl)
 	self.abilitys_behavior = abilitys_behavior
 	self.combo_filters = combo_filters
 	self:InitBaseAtb(base_atb)
+	self.ability_upgrade = ability_upgrade
 end
 
 print('load windrunner ai',WindRunnerAIClass)
