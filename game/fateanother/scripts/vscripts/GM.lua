@@ -26,6 +26,12 @@ GM.parse = function(keys)
 	
 	local player = PlayerInstanceFromIndex(keys.userid)
 
+	local tool  = IsInToolsMode()
+	if tool then
+	elseif funcName ~= 'addbot' then
+		return
+	end 
+
 	if GM[funcName] then
 		GM[funcName](player,funcArgs)
 	else
