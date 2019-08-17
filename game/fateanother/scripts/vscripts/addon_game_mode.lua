@@ -1080,6 +1080,9 @@ function DistributeGoldV2(hero, cutoff)
     end
 end
 _G.AIPrint =function(...)
+    if true then
+        return
+    end
     local str = string.format(...)
     GameRules:SendCustomMessage(str, DOTA_TEAM_GOODGUYS,0)
 end
@@ -1093,9 +1096,25 @@ function FateGameMode:AddBots(botCnt,lvl)
     needPlayerCnt = botCnt + cnt
     botLvl = lvl
     AIPrint("AddBots %s %s",cnt,needPlayerCnt)
+    local needCnt = needPlayerCnt/2
+    
     if cnt < needPlayerCnt then
+        for i=cnt+1 , needPlayerCnt do
+            local team2Cnt = needCnt - PlayerResource:GetPlayerCountForTeam(2)
+            local team3Cnt = needCnt - PlayerResource:GetPlayerCountForTeam(3)
+            local addSuccess = Tutorial:AddBot("", "", "", false)
+            if addSuccess then
+                if team2Cnt >= needCnt then
+                    PlayerResource:SetCustomTeamAssignment(i-1,3)
+                elseif team3Cnt >=needCnt then
+                    PlayerResource:SetCustomTeamAssignment(i-1,2)
+                end
+            end
+             print('addSuccess',addSuccess)
+        end
+
     AIPrint("dota_create_fake_clients %s",needPlayerCnt)
-        SendToServerConsole("dota_create_fake_clients "..tostring(needPlayerCnt))
+        --SendToServerConsole("dota_create_fake_clients "..tostring(needPlayerCnt))
     end
 end
 

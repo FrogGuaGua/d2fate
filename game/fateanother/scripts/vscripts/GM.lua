@@ -472,4 +472,8 @@ GM.cd = function(player,args)
 	print("ability cd",ability:GetCooldownTime())
 end
 
+GM.bottest = function(player,args)
+	 PlayerResource:SetCustomTeamAssignment(tonumber(args[1]),tonumber(args[2]))
+end
+
 GameRules.GM = GM
