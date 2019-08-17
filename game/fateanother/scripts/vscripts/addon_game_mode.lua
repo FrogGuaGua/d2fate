@@ -1079,6 +1079,10 @@ function DistributeGoldV2(hero, cutoff)
         end
     end
 end
+_G.AIPrint =function(...)
+    local str = string.format(...)
+    GameRules:SendCustomMessage(str, DOTA_TEAM_GOODGUYS,0)
+end
 
 _G.needPlayerCnt = 0
 _G.botLvl = 1
@@ -1088,7 +1092,9 @@ function FateGameMode:AddBots(botCnt,lvl)
     local cnt = PlayerResource:GetPlayerCount()
     needPlayerCnt = botCnt + cnt
     botLvl = lvl
+    AIPrint("AddBots %s %s",cnt,needPlayerCnt)
     if cnt < needPlayerCnt then
+    AIPrint("dota_create_fake_clients %s",needPlayerCnt)
         SendToServerConsole("dota_create_fake_clients "..tostring(needPlayerCnt))
     end
 end
