@@ -1095,7 +1095,7 @@ function FateGameMode:AddBots(botCnt,lvl)
     local cnt = PlayerResource:GetPlayerCount()
     needPlayerCnt = botCnt + cnt
     botLvl = lvl
-    AIPrint("AddBots %s %s",cnt,needPlayerCnt)
+    --AIPrint("AddBots %s %s",cnt,needPlayerCnt)
     local needCnt = needPlayerCnt/2
     
     if cnt < needPlayerCnt then
@@ -1115,7 +1115,7 @@ function FateGameMode:AddBots(botCnt,lvl)
              print('addSuccess',addSuccess)
         end
 
-    AIPrint("dota_create_fake_clients %s",needPlayerCnt)
+    --AIPrint("dota_create_fake_clients %s",needPlayerCnt)
         --SendToServerConsole("dota_create_fake_clients "..tostring(needPlayerCnt))
     end
 end

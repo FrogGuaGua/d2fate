@@ -395,10 +395,10 @@ GM.aiall = function(player,args)
 	end
 end
 GM.addbot = function(player,args)
-    AIPrint("addbot |AddBots");
+    --AIPrint("addbot |AddBots");
     GameRules.AddonTemplate:AddBots(tonumber(args[1]),tonumber(args[2]))
     Timers:CreateTimer(2,function()
-    AIPrint("addbot| AssignBotsTeam");
+    --AIPrint("addbot| AssignBotsTeam");
     GameRules.AddonTemplate:AssignBotsTeam()
     	end)
 end
