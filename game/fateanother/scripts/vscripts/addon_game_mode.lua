@@ -1100,14 +1100,16 @@ function FateGameMode:AddBots(botCnt,lvl)
     
     if cnt < needPlayerCnt then
         for i=cnt+1 , needPlayerCnt do
-            local team2Cnt = needCnt - PlayerResource:GetPlayerCountForTeam(2)
-            local team3Cnt = needCnt - PlayerResource:GetPlayerCountForTeam(3)
+            local team2Cnt = PlayerResource:GetPlayerCountForTeam(2)
+            local team3Cnt = PlayerResource:GetPlayerCountForTeam(3)
             local addSuccess = Tutorial:AddBot("", "", "", false)
             if addSuccess then
-                if team2Cnt >= needCnt then
-                    PlayerResource:SetCustomTeamAssignment(i-1,3)
-                elseif team3Cnt >=needCnt then
+                if team2Cnt < needCnt then
+                    print('team2Cnt',team2Cnt)
                     PlayerResource:SetCustomTeamAssignment(i-1,2)
+                else
+                    print('team3Cnt',team3Cnt)
+                    PlayerResource:SetCustomTeamAssignment(i-1,3)
                 end
             end
              print('addSuccess',addSuccess)
