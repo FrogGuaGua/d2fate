@@ -37,9 +37,9 @@ local abilitys_behavior = {
 
 --初始属性
 local base_atb = {
-	agiltity=5,	--敏捷
-	intellect=5,--智力
-	strength=5  --力量
+	agiltity=10,	--敏捷
+	intellect=10,--智力
+	strength=10  --力量
 }
 
 local function isRValid(self)
@@ -146,7 +146,8 @@ function LinaAIClass:PreTick()
 	if HEAbility:IsHidden() then
 		unit:SwapAbilities(HE,E, true, true)
 	end
-	return false
+	
+	return self.super.PreTick(self)
 end
 
 function LinaAIClass:LateTick()

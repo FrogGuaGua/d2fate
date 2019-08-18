@@ -1,4 +1,4 @@
-_G.AIClass = 
+﻿_G.AIClass = 
 {
 	npc_dota_hero_spectre = SpectreAIClass,
 	npc_dota_hero_templar_assassin = TaAIClass,
@@ -30,31 +30,75 @@ function _G.GetAIRandName()
 	end
 end 
 
-_G.AIPICKTIME = 10 --AI选人时间
+_G.AIPICKTIME = 40 --AI选人时间
 
 --AI难度
 _G.AILevel = 
 {
 	[1] = 
 	{
+		firstRefreshCD = 9999, --第一次刷新时间
+		secondRefreshCD = 30,--刷新CD
+		items = 
+		{
+			'item_blink_scroll_ai',
+            'item_c_scroll_ai', --C卷
+		},
+	},
+	[2] = 
+	{
+		firstRefreshCD = 9999, --第一次刷新时间
+		secondRefreshCD = 30,--刷新CD
+		items = 
+		{
+			'item_blink_scroll_ai',
+			'item_c_scroll_ai', --C卷
+			'item_a_scroll_ai', --A卷
+		},
+	},
+	[3] = 
+	{
 		firstRefreshCD = 10, --第一次刷新时间
 		secondRefreshCD = 30,--刷新CD
 		items = 
 		{
 			'item_blink_scroll_ai',
+			'item_c_scroll_ai', --C卷
+			'item_a_scroll_ai', --A卷
+			'item_s_scroll_ai', --S卷
 		},
 	},
-	[2] = 
+	[4] = 
 	{
 		firstRefreshCD = 10, --第一次刷新时间
-		secondRefreshCD = 20,--刷新CD
+		secondRefreshCD = 15,--刷新CD
 		items = 
 		{
 			'item_blink_scroll_ai',
-			'item_condensed_mana_essence_ai', --速效魔力精华
+			'item_condensed_mana_essence_ai', --大药
+			'item_a_scroll_ai', --A卷
+			'item_c_scroll_ai', --C卷
+			'item_s_scroll_ai', --S卷
+		},
+	},
+	[5] = 
+	{
+		firstRefreshCD = 10, --第一次刷新时间
+		secondRefreshCD = 11,--刷新CD
+		items = 
+		{
+			'item_blink_scroll_ai',
+			'item_condensed_mana_essence_ai', --大药
+			'item_healing_scroll_ai', --群补
+			'item_a_scroll_ai', --A卷
+			'item_c_scroll_ai', --C卷
+			'item_s_scroll_ai', --S卷
 		},
 	},
 }
+
+WUMING_BUFF = "modifier_avalon"
+MOMING_BUFF = "modifier_magic_immunity"
 
 WUMING_BUFF = "modifier_avalon" -- 物免
 MOMING_BUFF = "modifier_magic_immunity" --魔免

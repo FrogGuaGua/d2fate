@@ -27,9 +27,9 @@ local ability_upgrade =
 
 --初始属性
 local base_atb = {
-	agiltity=5,	--敏捷
-	intellect=5,--智力
-	strength=5  --力量
+	agiltity=10,	--敏捷
+	intellect=10,--智力
+	strength=10  --力量
 }
 
 local abilitys_behavior = {
@@ -94,7 +94,7 @@ function CMAIClass:PreTick()
 		unit:SwapAbilities(W, E1, false, true)
 	end
 
-	
+	self.super.PreTick(self)
 	return false
 end
 

@@ -26,8 +26,8 @@ local master2 = {0,1,2,4,5}
 --初始属性
 local base_atb = {
 	agiltity=5,	--敏捷
-	intellect=5,--智力
-	strength=5  --力量
+	intellect=0,--智力
+	strength=12  --力量
 }
 
 --技能释放方式
@@ -102,7 +102,7 @@ function JuggAIClass:PreTick()
 	if abilityW:GetCooldownTime() > 30 then
 		abilityW:EndCooldown()
 	end
-
+	return self.super.PreTick(self)
 end
 
 

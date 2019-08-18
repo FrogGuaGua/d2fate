@@ -1285,10 +1285,6 @@ function FateGameMode:OnHeroInGame(hero)
     Timers:CreateTimer(1.0, function() 
         hero:SwapItems(DOTA_ITEM_SLOT_4, 15) 
         hero:AddItem(CreateItem("item_blink_scroll", nil, nil)) 
-        hero:AddItem(CreateItem("item_a_scroll_ai", nil, nil))
-        --hero:AddItem(CreateItem("item_b_scroll_ai", nil, nil))
-        hero:AddItem(CreateItem("item_c_scroll_ai", nil, nil))
-        hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
     end)
     -- Removing Talents
     for i=0,23 do
@@ -1313,8 +1309,6 @@ function FateGameMode:OnHeroInGame(hero)
     hero.defaultSendGold = 300
     hero.CStock = 10
     hero.ShardAmount = 0
-
-
 
     Timers:CreateTimer(1.0, function()
         local team = hero:GetTeam()

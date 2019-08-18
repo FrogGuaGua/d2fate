@@ -77,8 +77,8 @@ function BaseAIClass:ctor(unit,lvl)
 	self.guardCenterLeft = Vector(-2057,1690,256) --左边巡逻中心
 	self.guardCenterRight = Vector(3780,1690,284) --右边巡逻中心
 	self.guardCenter = self.guardCenterLeft
-	self.guardW = 700 --巡逻范围 宽
-	self.guardH = 2000 --巡逻范围 长
+	self.guardW = 1300 --巡逻范围 宽
+	self.guardH = 3000 --巡逻范围 长
 	self.guardCD =10
 	self.guardNextTime = 0
 	self.lastpos = unit:GetAbsOrigin()
@@ -111,13 +111,13 @@ function BaseAIClass:ctor(unit,lvl)
 
 	self:InitAILevel(lvl)
 
-	self.MasterTimeInterval = 300 --御主技能升级间隔时间
+	self.MasterTimeInterval = 180 --御主技能升级间隔时间
 	self.NextMasterTime = Time() + self.MasterTimeInterval
 	self.MasterAbilityIndex = 0
 
 	self.nextAddManaTime = Time() 
 	self.addManaCD = 1
-	self.addMana = 100
+	self.addMana = 200
 
 
 	self.ignoreUnit = {
@@ -166,9 +166,9 @@ end
 function BaseAIClass:InitBaseAtb(atb)
 	print('InitBaseAtb')
 	local unit = self.unit
-	unit:SetBaseStrength(atb.strength+unit:GetBaseStrength())  --力量
-	unit:SetBaseAgility(atb.agiltity+unit:GetBaseAgility())  --力量
-	unit:SetBaseIntellect(atb.intellect+unit:GetBaseAgility())  --力量
+	unit:SetBaseStrength(atb.strength)  --力量
+	unit:SetBaseAgility(atb.agiltity)  --力量
+	unit:SetBaseIntellect(atb.intellect)  --力量
 end
 
 function BaseAIClass:HasNearEnemy()
@@ -354,10 +354,20 @@ end
 
 function BaseAIClass:PreTick()
 	local unit = self.unit
-	local hp = unit:GetHealth() / unit:GetMaxHealth()
-	if hp < 0.7 then
-		local ability = self:getAbilityByName("item_healing_scroll")
+	--local hp = unit:GetHealth() / unit:GetMaxHealth()
+	local mana = unit:GetManaPercent()
+	local hp = unit:GetHealthPercent()
+	if hp < 80 or mana < 70 then
+		local ability = self:getAbilityByName("item_condensed_mana_essence_ai")
 		if self:isAbilityValid(ability,true) then
+			print('PreTick',ability:GetName())
+			return self:aiCastAbility(unit,ability)
+		end
+	end
+	if hp < 70 then
+		local ability = self:getAbilityByName("item_healing_scroll_ai")
+		if self:isAbilityValid(ability,true) then
+			print('PreTick',ability:GetName())
 			return self:aiCastAbility(unit,ability)
 		end
 	end

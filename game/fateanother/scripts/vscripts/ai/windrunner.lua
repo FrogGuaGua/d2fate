@@ -23,9 +23,9 @@ local ability_upgrade =
 
 --初始属性
 local base_atb = {
-	agiltity=5,	--敏捷
-	intellect=5,--智力
-	strength=5  --力量
+	agiltity=0,	--敏捷
+	intellect=15,--智力
+	strength=25  --力量
 }
 
 ----连招技能，需要特定顺序的技能才能使用
@@ -61,7 +61,7 @@ local combos =
 	[ 1]={{R,800}},
 	[ 2]={{A,1800}},
 	[ 3]={{B,3000}},
-	[ 4]={{D,800}},
+	[ 4]={{D,1500}},
 	[ 5]={{E,800}},
 	[ 6]={{Q,800}},
 	[ 7]={{W,800}},
@@ -90,6 +90,8 @@ function WindRunnerAIClass:PreTick()
 		local abilityR = unit:FindAbilityByName(R)
 		abilityR:EndChannel(true)
 	end
+
+	return self.super.PreTick(self)
 end
 
 function WindRunnerAIClass:ctor(unit,lvl)
