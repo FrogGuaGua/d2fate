@@ -486,7 +486,7 @@ function BaseAIClass:Tick()
 		if step == 'wait' then
 			
 		elseif step == 'guard' then
-			if self.lastpos == self.unit:GetAbsOrigin() then
+			if self.lastpos == self.unit:GetAbsOrigin() or enemy ~= self.lastenemy then
 				self.guardNextTime = Time() + self.guardCD
 				self.unit:MoveToPosition(self:GetGuardVec())
 			else
