@@ -401,12 +401,24 @@ GM.aiall = function(player,args)
 	end
 end
 GM.addbot = function(player,args)
-    AIPrint("addbot |AddBots");
     GameRules.AddonTemplate:AddBots(tonumber(args[1]),tonumber(args[2]))
     Timers:CreateTimer(2,function()
-    AIPrint("addbot| AssignBotsTeam");
     GameRules.AddonTemplate:AssignBotsTeam()
     	end)
+end
+
+GM.allbot = function(player,args)
+	if args[1] == nil then args[1] = 3 end
+
+	local cnt = PlayerResource:GetPlayerCount()
+	local needCnt = 14 - cnt
+	if needCnt > 0 then
+		local botlvl = tonumber(args[1])
+		GameRules.AddonTemplate:AddBots(needCnt,botlvl)
+	    Timers:CreateTimer(2,function()
+	    GameRules.AddonTemplate:AssignBotsTeam()
+	    	end)
+	end
 end
 
 GM.find = function(player,args)
