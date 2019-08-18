@@ -1,5 +1,9 @@
+
+LinkLuaModifier("modifier_sex_scroll_slow","items/modifiers/modifier_sex_scroll_slow", LUA_MODIFIER_MOTION_NONE)
+
 ---@class modifier_sex_scroll_root_delay : CDOTA_Modifier_Lua
 modifier_sex_scroll_root_delay = class({})
+
 
 if IsServer() then
     function modifier_sex_scroll_root_delay:OnDestroy()
@@ -9,6 +13,7 @@ if IsServer() then
 end
 
 modifier_sex_scroll_root_delay.IsHidden = function() return true end
+
 
 ---@class modifier_sex_scroll_root : CDOTA_Modifier_Lua
 modifier_sex_scroll_root = class({})
@@ -37,3 +42,11 @@ end
 function modifier_sex_scroll_root:IsDebuff()
     return true
 end
+if IsServer() then
+function modifier_sex_scroll_root:OnDestroy()
+    local ability = self:GetAbility()
+    self:GetParent():AddNewModifier(self:GetCaster(), ability, "modifier_sex_scroll_slow", {})
+end
+
+end
+

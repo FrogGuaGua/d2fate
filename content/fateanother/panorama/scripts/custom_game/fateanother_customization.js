@@ -20,6 +20,7 @@ function GetTalentButton()
 {
 	var root = GetHUDRootUI();
 	var talentButton = root.FindChildTraverse("HUDElements").FindChildTraverse("lower_hud").FindChildTraverse("center_with_stats").FindChildTraverse("center_block").FindChildTraverse("AbilitiesAndStatBranch").FindChildTraverse("StatBranch");
+	$.Msg("GetTalentButton()")
 	return talentButton;
 }
 
@@ -36,7 +37,7 @@ function OnCustomizeButtonPressed()
 
 function CreateFateTalentButton(){
 	var fateButton = GetTalentButton()
-	
+	$.Msg("GetTalentButton()")
 	fateButton.SetPanelEvent("onmouseover", OnCustomizeButtonShowTooltip);
 	fateButton.SetPanelEvent("onmouseout", OnCustomizeButtonHideTooltip);
 	fateButton.SetPanelEvent("onactivate", OnCustomizeButtonPressed);
@@ -65,6 +66,16 @@ function RemoveChilds(panel)
 	}
 }
 
+function DeleteHeroSec()
+{
+	var root = GetHUDRootUI();
+	var HeroSec = root.FindChildTraverse("CustomUIRoot").FindChildTraverse("CustomUIContainer_Hud").FindChildTraverse("HeroSelection CustomUIState_HUD");
+	$.Msg("111111111111111111111111111111")
+	HeroSec.AddClass("Hidden"); 
+	HeroSec.SetHasClass("Hidden", 1 == 1);
+	$.Msg("111111111111111111111111111111")
+}
+
 function UpdateAttributeList(data)
 {
 	$.Msg("updating attribute list")
@@ -90,7 +101,10 @@ function UpdateAttributeList(data)
 	for(i=6; i<10; i++) {
 		CreateAbilityPanel(shardPanel, queryUnit2, i, true);
 	}
+	DeleteHeroSec()
 }
+
+
 
 
 // create an ability context button, which does not reference existing ability of unit
@@ -111,6 +125,8 @@ function UpdateStatPanel(data)
 	$("#MPREGAmount").text = (data.MPREG || 0 ) +  " / 50";
 	$("#MSAmount").text = (data.MS || 0 ) +  " / 50";
 	$("#CustomizationShardNumber").text = data.ShardAmount;
+
+	DeleteHeroSec();
 }
 
 function OnCustomizeButtonShowTooltip()

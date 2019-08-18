@@ -1,0 +1,65 @@
+"DOTAAbilities"
+{
+    	"item_condensed_mana_essence_ai" 
+	{
+	    "ID"           "1802"
+	    "BaseClass"    "item_datadriven"
+	    "AbilityTextureName" "custom/bottle_haste"
+	    "Model"        "models/props_gameplay/salve_red.vmdl" 
+	    "Effect"       "particles/generic_gameplay/dropped_item.vpcf"
+
+	    "ItemKillable" "1" 
+	    "ItemSellable" "1"
+	    "ItemPurchasable" "1"
+	    "ItemDroppable" "1"
+	    "ItemShareability" "ITEM_FULLY_SHAREABLE"
+
+
+	    "SideShop"     "1" 
+	    "SecretShop"   "0"
+
+	    "ItemInitialCharges" "1"
+	    "ItemStackable" "0"
+	    "ItemPermanent" "1"
+	   	"ItemDisassembleRule" "DOTA_ITEM_DISASSEMBLE_NEVER"
+
+	    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"				"40"
+	    "precache"
+	    {
+	    	"particle"		"particles/units/heroes/hero_omniknight/omniknight_purification_g.vpcf"
+	    }
+	    "AbilitySpecial"
+	    {
+	   		"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_heal"				"800"
+			}
+	   		"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_heal"				"0"
+			}
+		}
+	    "OnSpellStart"
+	    {
+
+	    	"RunScript"
+			{
+				"ScriptFile"	"items"
+				"Function"		"PotInstantHeal"
+				"health_heal"   "%health_heal"
+				"mana_heal"     "%mana_heal"
+			}
+					
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.HealingSalve.Activate"
+				"Target"		"CASTER"
+			}
+
+            "SpendCharge" {}
+	    }
+	} 
+} 

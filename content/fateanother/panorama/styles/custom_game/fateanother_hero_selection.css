@@ -4,12 +4,64 @@
 }
 
 .heroes {
-    flow-children: right-wrap;
+    
+    
 }
+
+
+.EasyHero {
+    flow-children: right-wrap;
+    vertical-align: top;
+    horizontal-align: left;
+    padding: 30px;
+}
+
+
+
+.Easy {
+    flow-children: right-wrap;
+    vertical-align: top;
+    horizontal-align: left;
+    padding: 30px;
+}
+
+
+.NormalHero {
+    flow-children: right-wrap;
+    vertical-align: top;
+    padding: 30px;
+    margin-top: 40%;
+}
+
+
+.Normal {
+    horizontal-align: left;
+    font-size: 30px;
+    transform-origin: 50% 50%;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    color: rgba(118, 177, 40, 0.795);
+}
+
+.HardHero {
+    flow-children: right-wrap;
+    vertical-align: top;
+    padding: 30px;
+    margin-top: 75%; 
+}
+
+
+.Hard {
+    horizontal-align: center;
+    font-size: 30px;
+    transform-origin: 50% 50%;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    color: rgba(192, 23, 23, 0.795);
+}
+
 
 .hero {
     margin: 10px;
-    transition: transform 0.1s ease 0.0s;
+    transition: transform 0.2s ease 0.0s;
 }
 
 .hero:hover {
@@ -20,9 +72,10 @@
     flow-children: down;
     width: 70%;
     margin-left: 15%;
-    margin-top: 30%;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #111111 ), color-stop( 0.01, #202327 ), color-stop( 0.2, #141619 ), to( #000000 ) );
+    margin-top: 10%;
+    background-color: gradient( linear, 0% 0%, 100% 100%, from( #474747 ), color-stop( 0.01, #141414 ), color-stop( 0.2, #141619 ), to( #000000 ) );
     padding: 30px;
+    opacity: 0.98;
 }
 
 .pickStatus {

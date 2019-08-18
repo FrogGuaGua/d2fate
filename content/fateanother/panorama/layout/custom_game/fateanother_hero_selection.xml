@@ -65,6 +65,7 @@
 				 <Image src="file://{images}/custom_game/portrait/npc_dota_hero_phantom_assassin.png"/>
                  <Image src="file://{images}/custom_game/portrait/npc_dota_hero_storm_spirit.png"/>
 
+                 <Image src="file://{images}/custom_game/game_info_kotomine_png.png"/>
 
          </Panel>
          <Panel id="container" class="container">
@@ -76,6 +77,10 @@
                  </Panel>
              </Panel>
              <Panel id="heroes" class="heroes">
+                <Panel id="EasyHero" class="EasyHero" hittest="false">
+                </Panel>
+                <Panel id="NormalHero" class="NormalHero" hittest="false"> 
+                </Panel>
              </Panel>
          </Panel>
     </Panel>

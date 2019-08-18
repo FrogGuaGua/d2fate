@@ -28432,6 +28432,7 @@
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
 			"particle"			"particles/custom/astolfo/la_black_luna/la_black_luna_shockwave.vpcf"
+			"particle"			"particles/custom/astolfo/astolfo_hron.vpcf"
 		}
 
 		"AbilitySpecial"
@@ -28454,7 +28455,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"damage"		"5 7 9 11 13"
+				"damage"		"60 80 100 120 140"
 			}		
 			"05"
 			{
@@ -28555,7 +28556,7 @@
 		"RequiredLevel"					"1"
 		"LevelsBetweenUpgrades"			"2"
 
-		"AbilityCooldown"				"38"
+		"AbilityCooldown"				"30"
 		"AbilityManaCost"				"800"
 		"AbilityCastRange"				"2500"
 		"AbilityCastPoint"				"0.5"
@@ -28612,7 +28613,7 @@
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"second_impact_damage"		"600 775 950 1125 1300"
+				"second_impact_damage"		"600 750 900 1050 1200"
 			}
 			"09"
 			{
@@ -31166,6 +31167,7 @@
 		{   
 			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
 			"particle"   	"particles/custom/jack/maria_the_ripper_curse.vpcf"
+			"particle"   	"particles/custom/jack/jack_max.vpcf"
 			"soundfile"		"soundevents/hero_jack.vsndevts"
 			"particle"      "particles/econ/items/dark_willow/dark_willow_ti8_immortal_head/dw_crimson_ti8_immortal_cursed_crownmarker.vpcf"
 			"particle"      "particles/econ/items/dark_willow/dark_willow_ti8_immortal_head/dw_crimson_ti8_immortal_cursed_crownenergy.vpcf"

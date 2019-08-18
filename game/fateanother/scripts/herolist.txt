@@ -31,5 +31,4 @@
 	"npc_dota_hero_drow_ranger"			"1"
 	"npc_dota_hero_tidehunter"			"1"
 	"npc_dota_hero_storm_spirit"        "1"
-	"npc_dota_hero_axe"                 "1"
 }

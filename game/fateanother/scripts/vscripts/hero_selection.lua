@@ -6,10 +6,6 @@ function HeroSelection:constructor()
     local heroList = LoadKeyValues("scripts/npc/herolist.txt")
     heroList["npc_dota_hero_wisp"] = nil
     self.AvailableHeroes = heroList
-    print('HeroSelection:constructor')
-    for name in pairs(self.AvailableHeroes) do
-        print('name ',name)
-    end
 
     self.HoveredHeroes = {}
 
@@ -47,7 +43,7 @@ end
 function HeroSelection:CanPick(playerId)
     local player = PlayerResource:GetPlayer(playerId)
     local currentHero = player:GetAssignedHero()
-    print('CanPick ',playerId,player,currentHero)
+
     return self.Time <= 60 and currentHero ~= nil and currentHero:GetName() == "npc_dota_hero_wisp" and  not self.Picked[playerId]
 end
 
@@ -63,12 +59,11 @@ end
 function HeroSelection:OnSelect(args)
     local playerId = args.playerId
     local hero = args.hero
-    print('OnSelect->',self:CanPick(playerId),self.AvailableHeroes[hero])
+
     if not self:CanPick(playerId) or not self.AvailableHeroes[hero] then
-        print('OnSelect->1')
         return
     end
-    print('OnSelect->2')
+
     self.HoveredHeroes[playerId] = nil
     self.Picked[playerId] = hero
 
@@ -118,7 +113,7 @@ function HeroSelection:AssignHero(playerId, hero)
 
         UTIL_Remove(oldHero)
     end)
-    print('hero ',hero)
+
     self.AvailableHeroes[hero] = nil
     CustomNetTables:SetTableValue("selection", "available", self.AvailableHeroes)
     CustomNetTables:SetTableValue("selection", "picked", self.Picked)

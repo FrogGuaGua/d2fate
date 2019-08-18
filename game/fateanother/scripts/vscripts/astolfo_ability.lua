@@ -96,9 +96,9 @@ function OnVanishDebuffEnd(keys)
 		giveUnitDataDrivenModifier(caster, target, "stunned", 0.5)
 	end
 
-	--[[if target:GetName() == "npc_dota_hero_queenofpain" then
-		Attachments:AttachProp(target, "attach_sword", "models/astolfo/astolfo_sword.vmdl")
-	end]]
+	--if target:GetName() == "npc_dota_hero_queenofpain" then
+		--Attachments:AttachProp(target, "attach_sword", "models/astolfo/astolfo_sword.vmdl")
+	--end
 end
 
 function OnDownStart(keys)
@@ -218,10 +218,13 @@ function OnHornStart(keys)
 	AstolfoCheckCombo(caster, ability)
 	caster.currentHornManaCost = ability:GetManaCost(ability:GetLevel())
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_la_black_luna", {})
+	--caster.hornik = ParticleManager:CreateParticle("particles/custom/astolfo/astolfo_hron.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+	--ParticleManager:SetParticleControlEnt(caster.hornik , 0, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_horn", caster:GetAbsOrigin(), true)
 
 	StartAnimation(caster, {duration=1.0, activity=ACT_DOTA_CAST_ABILITY_3_END, rate=1.0})
-	Attachments:AttachProp(caster, "attach_horn", "models/astolfo/astolfo_horn.vmdl")
+	caster.horn = Attachments:AttachProp(caster, "attach_horn", "models/astolfo/astolfo_horn.vmdl")
 	--caster:EmitSound("Hero_LegionCommander.PressTheAttack")
+
     LoopOverPlayers(function(player, playerID, playerHero)
     	--print("looping through " .. playerHero:GetName())
         if playerHero:GetTeamNumber() == caster:GetTeamNumber() then
@@ -274,7 +277,7 @@ function OnHornThink(keys)
     local damageTargets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, damageRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	for k,v in pairs(damageTargets) do
 		-- apply damage
-		DoDamage(caster, v, v:GetHealth() * damage/100, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+		DoDamage(caster, v, keys.Damage, DAMAGE_TYPE_MAGICAL, 0, ability, false)
     end
 
     local silenceTargets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, silenceRadius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
@@ -291,7 +294,8 @@ function OnHornInterrupted(keys)
 	
 	CustomGameEventManager:Send_ServerToAllClients("stop_horn_sound", {})
 	caster:RemoveModifierByName("modifier_la_black_luna")
-	local prop = Attachments:GetCurrentAttachment(caster, "attach_horn")
+	--FxDestroyer(caster.hornik, false)
+	local prop = caster.horn
 	if not prop:IsNull() then prop:RemoveSelf() end
 	-- loop through players
 		-- stop sound on client

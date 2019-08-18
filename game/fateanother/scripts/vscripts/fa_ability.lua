@@ -28,7 +28,6 @@ function OnMindsEyeAttacked(keys)
 end
 
 function OnGKStart(keys)
-	print('--OnGKStart')
 	local caster = keys.caster
 	local ability = keys.ability
 	local ply = caster:GetPlayerOwner()
@@ -214,7 +213,6 @@ function OnPCEnd(keys)
             cd = vlua.select(cd < 0, 0, cd)
             ability:EndCooldown()
             ability:StartCooldown(cd)
-            print('OnPCEnd ',ability:GetName(),cd)
         end
     end
 end
@@ -520,7 +518,6 @@ function OnWBStart(keys)
 
 		-- 1.24 change : Vitrification removes GCD from Heart regardless
 		if not caster.IsVitrificationAcquired then 
-			print(' caster.IsVitrificationAcquired11')
 			caster:FindAbilityByName("false_assassin_heart_of_harmony"):StartCooldown(keys.GCD) 
 		end		
 
@@ -625,7 +622,6 @@ function OnTGStart(keys)
 
 		-- 1.24c change Vitrification prevents GCD on Heart
 		if not caster.IsVitrificationAcquired then
-			print('---caster.IsVitrificationAcquired')
 			caster:FindAbilityByName("false_assassin_heart_of_harmony"):StartCooldown(keys.GCD) 
 		end
 
@@ -786,10 +782,6 @@ end
 
 function FACheckCombo(caster, ability)
 	if caster:GetStrength() >= 24.1 and caster:GetAgility() >= 24.1 then
-		local rst = ability == caster:FindAbilityByName("false_assassin_gate_keeper")
-		local rst1 = caster:FindAbilityByName("false_assassin_heart_of_harmony"):IsCooldownReady()
-		local rst2 = caster:FindAbilityByName("false_assassin_tsubame_mai"):IsCooldownReady()
-		print('FACheckCombo',rst,rst1,rst2)
 		if ability == caster:FindAbilityByName("false_assassin_gate_keeper") and caster:FindAbilityByName("false_assassin_heart_of_harmony"):IsCooldownReady() and caster:FindAbilityByName("false_assassin_tsubame_mai"):IsCooldownReady() then
 			caster:SwapAbilities("false_assassin_heart_of_harmony", "false_assassin_tsubame_mai", false, true) 
 			Timers:CreateTimer({

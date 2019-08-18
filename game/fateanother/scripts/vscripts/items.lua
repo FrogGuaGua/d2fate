@@ -175,8 +175,8 @@ function PotInstantHeal(keys)
 		RefundItem(caster, ability)
 		return
 	end
-	caster:ApplyHeal(500, caster)
-	caster:GiveMana(300)
+	caster:ApplyHeal(keys.health_heal, caster)
+	caster:GiveMana(keys.mana_heal)
 
 	local healFx = ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_purification_g.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(healFx, 1, caster:GetAbsOrigin()) -- target effect location
@@ -554,9 +554,43 @@ function CScroll(keys)
 		cdummy:CastAbilityOnTarget(keys.target, fire, pid)
 	end
 	hero.ServStat:useC()
-	if not PlayerResource:IsFakeClient(pid) then
-		caster:RemoveItem(keys.ability)
+	caster:RemoveItem(keys.ability)
+
+	--[[Timers:CreateTimer(5.0, function()
+		if IsValidEntity(cdummy) and not cdummy:IsNull() then
+			cdummy:RemoveSelf()
+		end
+	end)]]
+
+end
+
+function CScrollNew(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if caster:HasModifier("jump_pause_nosilence") then
+		ability:EndCooldown()
+		return
 	end
+	local gold = hero:GetGold()
+	if gold < 100 then 
+		ability:EndCooldown()
+		SendErrorMessage(caster:GetPlayerOwnerID(), "#Need more money")
+		return 
+	end
+	hero:ModifyGold(-100, true , 0)
+	local pid = caster:GetPlayerID()
+	cdummy = CreateUnitByName("dummy_unit", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
+	cdummy:AddNewModifier(caster, caster, "modifier_kill", {duration = 10})
+	local dummy_passive = cdummy:FindAbilityByName("dummy_unit_passive")
+	dummy_passive:SetLevel(1)
+	local fire = cdummy:FindAbilityByName("dummy_c_scroll")
+	fire:SetLevel(1)
+	if fire:IsFullyCastable() then
+		cdummy:CastAbilityOnTarget(keys.target, fire, pid)
+	end
+	hero.ServStat:useC()
+	--caster:RemoveItem(keys.ability)
 
 	--[[Timers:CreateTimer(5.0, function()
 		if IsValidEntity(cdummy) and not cdummy:IsNull() then
@@ -606,6 +640,31 @@ function BScroll(keys)
 
 end
 
+function BScrollNew(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if caster:HasModifier("jump_pause_nosilence") then
+		print("jump_pause_nosilence")
+		ability:EndCooldown()
+		return
+	end
+	local gold = hero:GetGold()
+	if gold < 200 then 
+		ability:EndCooldown()
+		SendErrorMessage(caster:GetPlayerOwnerID(), "#Need more money")
+		return 
+	end
+	
+	hero:ModifyGold(-200, true , 0)
+
+	hero.ServStat:useB()
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_b_scroll", {})
+	caster.BShieldAmount = keys.ShieldAmount
+	caster:EmitSound("DOTA_Item.ArcaneBoots.Activate")
+
+end
+
 function AScroll(keys)
 	local caster = keys.caster
 	local ability = keys.ability
@@ -615,6 +674,29 @@ function AScroll(keys)
 		RefundItem(caster, ability)
 		return
 	end
+
+	hero.ServStat:useA()
+	ability:ApplyDataDrivenModifier(caster, caster, "modifier_a_scroll", {})
+	caster:EmitSound("Hero_Oracle.FatesEdict.Cast")
+end
+
+
+function AScrollNew(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if caster:HasModifier("jump_pause_nosilence") then
+		ability:EndCooldown()
+		return
+	end
+
+	local gold = hero:GetGold()
+	if gold < 400 then 
+		ability:EndCooldown()
+		SendErrorMessage(caster:GetPlayerOwnerID(), "#Need more money")
+		return 
+	end
+	hero:ModifyGold(-400, true , 0)
 
 	hero.ServStat:useA()
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_a_scroll", {})
@@ -632,22 +714,74 @@ function SScroll(keys)
 		RefundItem(caster, ability)
 		return
 	end
+
 	local target = keys.target
 	hero.ServStat:useS()
 	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
 
-	DoDamage(caster, target, 400, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	ApplyPurge(target)
+	DoDamage(caster, target, 400, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	--ApplyPurge(target)
+	
 
-
-	Timers:CreateTimer(0.1, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
+	--Timers:CreateTimer(0.1, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
 	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
 	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
-	if not IsImmuneToSlow(target) then
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
+	--if not IsImmuneToSlow(target) then
+		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
+		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
+	--end
+
+	local boltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
+	ParticleManager:SetParticleControl(boltFx, 1, Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z+((target:GetBoundingMaxs().z - target:GetBoundingMins().z)/2)))
+
+	local lightningBoltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf", PATTACH_ABSORIGIN, target)
+	ParticleManager:SetParticleControl(lightningBoltFx,0, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(lightningBoltFx,1, target:GetAbsOrigin())
+
+	--[[
+	Timers:CreateTimer(2.0, function()
+		ParticleManager:DestroyParticle(boltFx, false)
+		ParticleManager:DestroyParticle(lightningBoltFx, false)
+	end)]]
+	ParticleManager:ReleaseParticleIndex(boltFx)
+	ParticleManager:ReleaseParticleIndex(lightningBoltFx)
+
+	target:EmitSound("Hero_Zuus.GodsWrath.Target")
+end
+
+function SScrollNew(keys)
+	local caster = keys.caster
+	local ability = keys.ability
+	local hero = keys.caster:GetPlayerOwner():GetAssignedHero()
+	if caster:HasModifier("jump_pause_nosilence") then
+		ability:EndCooldown()
+		return
 	end
+
+	local gold = hero:GetGold()
+	if gold < 1500 then 
+		ability:EndCooldown()
+		SendErrorMessage(caster:GetPlayerOwnerID(), "#Need more money")
+		return 
+	end
+	hero:ModifyGold(-1500, true , 0)
+	local target = keys.target
+	hero.ServStat:useS()
+	target:TriggerSpellReflect(ability)
+	if IsSpellBlocked(keys.target) then return end
+	ApplyPurge(target)
+	DoDamage(caster, target, 400, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	--ApplyPurge(target)
+	--Timers:CreateTimer(0.1, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
+	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
+	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
+	--if not IsImmuneToSlow(target) then
+		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
+		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
+	--end
+
 
 	local boltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
 	ParticleManager:SetParticleControl(boltFx, 1, Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z+((target:GetBoundingMaxs().z - target:GetBoundingMins().z)/2)))
@@ -682,22 +816,22 @@ function EXScroll(keys)
 	local lightning = {
 		attacker = caster,
 		victim = target,
-		damage = 600,
+		damage = 800,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		damage_flags = 0,
 		ability = ability
 	}
-	DoDamage(caster, target, 600, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	ApplyPurge(target)
-
-	Timers:CreateTimer(0.1, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
+	DoDamage(caster, target, 800, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	--ApplyPurge(target)
+	--Timers:CreateTimer(0.15, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
 	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
 	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
-	if not IsImmuneToSlow(target) then
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
-		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
-	end
-
+	--target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
+	--if not IsImmuneToSlow(target) then
+		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
+		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
+	--end
 	local boltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
 	--local lightningBoltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf", PATTACH_ABSORIGIN, target)
 	ParticleManager:SetParticleControl(boltFx, 1, Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z+((target:GetBoundingMaxs().z - target:GetBoundingMins().z)/2)))

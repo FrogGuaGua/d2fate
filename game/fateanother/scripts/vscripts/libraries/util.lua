@@ -315,8 +315,8 @@ itemComp = {
     {"item_a_scroll", "item_a_scroll", "item_s_scroll"},
     {"item_s_scroll", "item_s_scroll", "item_ex_scroll"},
     {"item_mana_essence", "item_mana_essence", "item_condensed_mana_essence"},
-    {"item_mana_essence", "item_recipe_healing_scroll", "item_healing_scroll"},
-    {"item_a_scroll", "item_recipe_a_plus_scroll", "item_a_plus_scroll"}
+    --{"item_mana_essence", "item_recipe_healing_scroll", "item_healing_scroll"},
+    --{"item_a_scroll", "item_recipe_a_plus_scroll", "item_a_plus_scroll"}
 }
 
 tItemComboTable = {

@@ -130,13 +130,13 @@ function WriteKV(file, firstLine, t, indent, done)
 end
 
 if not Attachments then
-  Attachments = class({})
+  _G.Attachments = class({})
 end
 
 function Attachments:start()
 
   local src = debug.getinfo(1).source
-  --print(src)
+
 
   self.gameDir = ""
   self.addonName = ""
@@ -179,6 +179,7 @@ function Attachments:start()
     self.doAttach = true
     self.doSphere = false
     self.attachDB = LoadKeyValues("scripts/attachments.txt")
+    --self.attachDB = ast_attach
   end
 end
 
@@ -371,6 +372,9 @@ function Attachments:Attachment_LoadAttach(args)
   end
 
   Attachments.attachDB = LoadKeyValues("scripts/attachments.txt")
+  --Attachments.attachDB = ast_attach
+  print(Attachments.attachDB)
+
 
   local db = Attachments.attachDB
   if not db[unitModel] or not db[unitModel][attach] or not db[unitModel][attach][model] then
@@ -484,8 +488,8 @@ function Attachments:AttachProp(unit, attachPoint, model, scale, properties)
 
     local unitModel = unit:GetModelName()
     local propModel = model
-
-    local db = Attachments.attachDB
+    local db = LoadKeyValues("scripts/attachments.txt")
+    --PrintTable(db)
     if propModel.GetModelName then propModel = propModel:GetModelName() end
     if not properties then
       if not db[unitModel] or not db[unitModel][attachPoint] or not db[unitModel][attachPoint][propModel] then
@@ -579,8 +583,8 @@ function Attachments:AttachProp(unit, attachPoint, model, scale, properties)
     end)
 
 
-    if not Attachments.currentAttach[unit:GetEntityIndex()] then Attachments.currentAttach[unit:GetEntityIndex()] = {} end
-    Attachments.currentAttach[unit:GetEntityIndex()][attachPoint] = prop
+    --if not Attachments.currentAttach[unit:GetEntityIndex()] then Attachments.currentAttach[unit:GetEntityIndex()] = {} end
+    Attachments.currentAttach= prop
 
     return prop
 end

@@ -19,7 +19,7 @@
         "RequiredLevel"                                 "1"
         "LevelsBetweenUpgrades"                         "2"
         
-        "AbilityCastRange"                              "2000"
+        "AbilityCastRange"                              "1900"
         "AbilityCastPoint"                              "0.2"
         "AbilityCooldown"                               "37"
         "AbilityManaCost"                               "400"
@@ -29,7 +29,7 @@
             "01"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "damage"                            "600 800 1000 1200 1400"
+                "damage"                            "600 775 950 1125 1300"
             }
             "02"
             {
@@ -39,7 +39,7 @@
             "03"
             {
                 "var_type"                          "FIELD_INTEGER"
-                "width"                             "600"
+                "width"                             "475"
             }
             "04"
             {

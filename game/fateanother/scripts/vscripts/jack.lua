@@ -816,7 +816,7 @@ function OnCurseTrigger(keys)
 
     if i == 3 and not (caster:HasModifier("modifier_max_maria_cd"))then
         DoDamage(caster, target, 30000, DAMAGE_TYPE_MAGICAL, 0, ability, false)
-        local bloodfx = ParticleManager:CreateParticleForPlayer("particles/econ/events/killbanners/screen_killbanner_compendium16_firstblood_splatter1.vpcf", PATTACH_MAIN_VIEW, target,target:GetPlayerOwner())
+        local bloodfx = ParticleManager:CreateParticleForPlayer("particles/custom/jack/jack_max.vpcf", PATTACH_MAIN_VIEW, target,target:GetPlayerOwner())
         Timers:CreateTimer(5,function()
             ParticleManager:DestroyParticle( bloodfx, false )
             ParticleManager:ReleaseParticleIndex( bloodfx )

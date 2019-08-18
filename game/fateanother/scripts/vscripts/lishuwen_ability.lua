@@ -318,8 +318,6 @@ function OnTigerStrike2Start(keys)
 end
 
 function OnTigerStrike3Start(keys)
-	if not IsServer() then return end
-
 	local caster = keys.caster
 	local target = caster.tigerStrikeTarget
 	local ability = keys.ability

@@ -327,10 +327,6 @@ function FateGameMode:OnFirstPlayerLoaded()
     print("[BAREBONES] First Player has loaded")
 end
 
-function FillAllPlayers()
-
-end
-
 --[[
 This function is called once and only once after all players have loaded into the game, right as the hero selection time begins.
     It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
@@ -1079,6 +1075,8 @@ function DistributeGoldV2(hero, cutoff)
         end
     end
 end
+
+
 _G.AIPrint =function(...)
     if true then
         return
@@ -1105,14 +1103,14 @@ function FateGameMode:AddBots(botCnt,lvl)
             local addSuccess = Tutorial:AddBot("", "", "", false)
             if addSuccess then
                 if team2Cnt < needCnt then
-                    print('team2Cnt',team2Cnt)
+                   -- print('team2Cnt',team2Cnt)
                     PlayerResource:SetCustomTeamAssignment(i-1,2)
                 else
-                    print('team3Cnt',team3Cnt)
+                   -- print('team3Cnt',team3Cnt)
                     PlayerResource:SetCustomTeamAssignment(i-1,3)
                 end
             end
-             print('addSuccess',addSuccess)
+             --print('addSuccess',addSuccess)
         end
 
     --AIPrint("dota_create_fake_clients %s",needPlayerCnt)
@@ -1185,9 +1183,12 @@ function FateGameMode:AssignBotsAI()
     end
 end
 
+
+
+
 -- The overall game state has changed
 function FateGameMode:OnGameRulesStateChange(keys)
-    print("[BAREBONES] GameRules State Changed",GameRules:State_Get())
+    print("[BAREBONES] GameRules State Changed")
 
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD then
@@ -1201,28 +1202,24 @@ function FateGameMode:OnGameRulesStateChange(keys)
 	--SendToConsole("r_farz 5000")
     --Convars:SetInt("r_farz", 3300)
         Timers:CreateTimer(AIPICKTIME, function()
-            print('----OnAllPlayersLoaded')
+
             self:AssignBotsHero() 
             FateGameMode:OnAllPlayersLoaded()
-            
         end)
-        print('--HeroSelection')
         _G.Selection = HeroSelection()
+        --Selection = HeroSelection()
         Selection:UpdateTime()
     elseif newState == DOTA_GAMERULES_STATE_STRATEGY_TIME then
-        print('DOTA_GAMERULES_STATE_STRATEGY_TIME')
         -- screw 7.00
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        print('DOTA_GAMERULES_STATE_GAME_IN_PROGRESS',GameRules.firstSelectHero)
         FateGameMode:OnGameInProgress()
     end
 end
 
 -- An NPC has spawned somewhere in game. This includes heroes
 function FateGameMode:OnNPCSpawned(keys)
-    print("[BAREBONES] NPC Spawned")
+    --print("[BAREBONES] NPC Spawned")
     local hero = EntIndexToHScript(keys.entindex)
-    print("hero",hero:GetName())
 	Wrappers.WrapUnit(hero)
 
     -- Apply attributes that were bought while dead
@@ -1278,19 +1275,21 @@ function FateGameMode:OnHeroInGame(hero)
     hero:SetGold(0, false)
     hero.OriginalModel = hero:GetModelName()
     LevelAllAbility(hero)
-    hero:AddItem(CreateItem("item_dummy_item_unusable", hero, hero))
-    hero:AddItem(CreateItem("item_dummy_item_unusable", hero, hero))
-    hero:AddItem(CreateItem("item_dummy_item_unusable", hero, hero))
-    Timers:CreateTimer(0.25, function() hero:SwapItems(DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_7) end)
-    Timers:CreateTimer(0.5, function() hero:SwapItems(DOTA_ITEM_SLOT_2, DOTA_ITEM_SLOT_8) end)
-    Timers:CreateTimer(0.75, function()
-        hero:SwapItems(DOTA_ITEM_SLOT_3, DOTA_ITEM_SLOT_9)
-        local pid = hero:GetPlayerID()
-        if not PlayerResource:IsFakeClient(pid) then
-            hero:AddItem(CreateItem("item_blink_scroll", nil, nil) ) -- Give blink scroll
-        end
+    --hero:AddItem(CreateItem("item_dummy_item_unusable", hero, hero))
+    --hero:AddItem(CreateItem("item_dummy_item_unusable", hero, hero))
+    --hero:AddItem(CreateItem("item_dummy_item_unusable", hero, hero))
+    --hero:AddItem(CreateItem("item_dummy_item_unusable", hero, hero))
+    --Timers:CreateTimer(0.25, function() hero:SwapItems(DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_7) end)
+    --Timers:CreateTimer(0.5, function() hero:SwapItems(DOTA_ITEM_SLOT_2, DOTA_ITEM_SLOT_8) end)
+    --Timers:CreateTimer(0.75, function() hero:SwapItems(DOTA_ITEM_SLOT_3, DOTA_ITEM_SLOT_9) end)
+    Timers:CreateTimer(1.0, function() 
+        hero:SwapItems(DOTA_ITEM_SLOT_4, 15) 
+        hero:AddItem(CreateItem("item_blink_scroll", nil, nil)) 
+        hero:AddItem(CreateItem("item_a_scroll_ai", nil, nil))
+        --hero:AddItem(CreateItem("item_b_scroll_ai", nil, nil))
+        hero:AddItem(CreateItem("item_c_scroll_ai", nil, nil))
+        hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
     end)
-
     -- Removing Talents
     for i=0,23 do
         if hero:GetAbilityByIndex(i) ~= nil then
@@ -1314,6 +1313,8 @@ function FateGameMode:OnHeroInGame(hero)
     hero.defaultSendGold = 300
     hero.CStock = 10
     hero.ShardAmount = 0
+
+
 
     Timers:CreateTimer(1.0, function()
         local team = hero:GetTeam()
@@ -1438,12 +1439,11 @@ function FateGameMode:OnHeroInGame(hero)
 
     if Convars:GetBool("sv_cheats") then
         -- hero:RemoveModifierByName("round_pause")
-        -- hero.MasterUnit:SetMana(hero.MasterUnit:GetMaxMana())
-        -- hero.MasterUnit2:SetMana(hero.MasterUnit2:GetMaxMana())
-
-        -- hero:SetBaseStrength(20)
-        -- hero:SetBaseAgility(20)
-        -- hero:SetBaseIntellect(20)
+        --hero.MasterUnit:SetMana(hero.MasterUnit:GetMaxMana())
+        --hero.MasterUnit2:SetMana(hero.MasterUnit2:GetMaxMana())
+        --hero:SetBaseStrength(20)
+        --hero:SetBaseAgility(20)
+        --hero:SetBaseIntellect(20)
     end
 
 
@@ -1467,7 +1467,6 @@ function FateGameMode:OnHeroInGame(hero)
         self:InitialiseMissingPanoramaData(hero:GetPlayerOwner())
     end)
     CustomGameEventManager:Send_ServerToAllClients("player_register_master_unit", playerData)
-    print('Send_ServerToPlayer')
     Timers:CreateTimer(3.0, function()
         CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "player_selected_hero", playerData)
     end
@@ -1775,10 +1774,15 @@ local spellBooks = {
 -- An ability was used by a player
 function FateGameMode:OnAbilityUsed(keys)
     --print('[BAREBONES] AbilityUsed')
-    print(keys.abilityname)
     local player = EntIndexToHScript(keys.PlayerID)
     local abilityname = keys.abilityname
     local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+
+    print('OnAbilityUsed',keys.abilityname)
+    --if hero.ComboData then
+        --hero.ComboData.waitskill = false
+    --end
+    --hero.waitcastskill = false
 
     if abilityname and abilityname == "nursery_rhyme_story_for_somebodys_sake" then
         local comboAbil = hero:FindAbilityByName("nursery_rhyme_story_for_somebodys_sake")
@@ -1922,6 +1926,12 @@ end
 function FateGameMode:OnEntityKilled( keys )
     --print( '[BAREBONES] OnEntityKilled Called' )
     --PrintTable( keys )
+    
+    --local heroList = HeroList:GetAllHeroes()
+    --for _ , hero in pairs(heroList) do
+        --GameRules.AIFunc.onEntityDead(hero,killedUnit)
+    --end
+
     -- The Unit that was Killed
     local killedUnit = EntIndexToHScript( keys.entindex_killed )
     -- The Killing entity
@@ -1939,7 +1949,6 @@ function FateGameMode:OnEntityKilled( keys )
     if killedUnit.aiClass then
         killedUnit.aiClass:Clear()
     end
-
     if keys.entindex_attacker ~= nil then
         killerEntity = EntIndexToHScript( keys.entindex_attacker )
     end
@@ -2329,7 +2338,7 @@ function FateGameMode:InitGameMode()
     --ListenToGameEvent('dota_ability_channel_finished', Dynamic_Wrap(FateGameMode, 'OnAbilityChannelFinished'), self)
     ListenToGameEvent('dota_player_learned_ability', Dynamic_Wrap(FateGameMode, 'OnPlayerLearnedAbility'), self)
     ListenToGameEvent('entity_killed', Dynamic_Wrap(FateGameMode, 'OnEntityKilled'), self)
-    ListenToGameEvent('physgun_pickup', Dynamic_Wrap(FateGameMode, 'OnPhysgunPickup'), self)
+    ListenToGameEvent('physgun_pickup', Dynamic_Wrap(FateGameMode, 'OnPhysgunPickup'), self)  --new
     ListenToGameEvent('player_connect_full', Dynamic_Wrap(FateGameMode, 'OnConnectFull'), self)
     ListenToGameEvent('player_disconnect', Dynamic_Wrap(FateGameMode, 'OnDisconnect'), self)
     ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(FateGameMode, 'OnItemPurchased'), self)
@@ -2370,8 +2379,9 @@ function FateGameMode:InitGameMode()
     CustomGameEventManager:RegisterListener( "config_option_4_checked", OnConfig4Checked )
     -- CustomGameEventManager:RegisterListener( "player_chat_panorama", OnPlayerChat )
     CustomGameEventManager:RegisterListener( "player_alt_click", OnPlayerAltClick )
-    CustomGameEventManager:RegisterListener( "player_remove_buff", OnPlayerRemoveBuff )
-    CustomGameEventManager:RegisterListener( "player_cast_seal", OnPlayerCastSeal )
+    CustomGameEventManager:RegisterListener("player_remove_buff", OnPlayerRemoveBuff )
+    CustomGameEventManager:RegisterListener("player_cast_seal", OnPlayerCastSeal )
+    
     -- LUA modifiers
     LinkLuaModifier("modifier_ms_cap", "modifiers/modifier_ms_cap", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_beam_thinker", "modifiers/modifier_beam_thinker", LUA_MODIFIER_MOTION_NONE)
@@ -2772,14 +2782,14 @@ function FateGameMode:InitializeRound()
         -- Grant gold
         if self.nCurrentRound > 1 then
             hero.CStock = 10
-            if hero:GetGold() < 5000 then --
+            --if hero:GetGold() < 5000 then --
                 --print("[FateGameMode] " .. hero:GetName() .. " gained 3000 gold at the start of round")
                 if hero.AvariceCount ~= nil then
-                    hero:ModifyGold(3000 + hero.AvariceCount * 1500, true, 0)
+                    hero:ModifyGold(2500 + hero.AvariceCount * 1500, true, 0)
                 else
-                    hero:ModifyGold(3000, true, 0)
+                    hero:ModifyGold(2500, true, 0)
                 end
-            end
+           -- end
 
             hero:AddExperience(self.nCurrentRound * 50, false, false)
         end
@@ -3188,8 +3198,8 @@ end
 -- This function is called once when the player fully connects and becomes "Ready" during Loading
 -- Assign players
 function FateGameMode:OnConnectFull(keys)
-    print ('[BAREBONES] OnConnectFull')
-    PrintTable(keys)
+    --print ('[BAREBONES] OnConnectFull')
+    --PrintTable(keys)
     FateGameMode:CaptureGameMode()
 
     local entIndex = keys.index+1
@@ -3210,10 +3220,18 @@ function FateGameMode:OnConnectFull(keys)
     --print(self.vPlayerList[keys.userid])]]
 end
 
+function OnPhysgunPickup(keys)
+    for key , v in pairs(keys) do
+        print(key,v)
+    end
+end
+
 function FateGameMode:MakeDraw()
     print("draw")
     self:FinishRound(false,2)
 end
+
+
 
 function my_http_post()
     SendChatToPanorama("Work in Progress")
@@ -3236,9 +3254,4 @@ function my_http_post()
     end]]
     --json encode
     --http post
-end
-function OnPhysgunPickup(keys)
-    for key , v in pairs(keys) do
-        print(key,v)
-    end
 end

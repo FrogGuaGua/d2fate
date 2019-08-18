@@ -84,7 +84,8 @@ function gilgamesh_enuma_elish:AfterThinkChargeIncr()
   --self:GetTestPrints()
 
   if self.channel_charge == 14 then
-    caster:EmitSound("Hero_Weaver.CrimsonPique.Layer")
+    EmitGlobalSound("Hero_Weaver.CrimsonPique.Layer") 
+    --caster:EmitSound("Hero_Weaver.CrimsonPique.Layer")
   elseif self.channel_charge == 15 then   
     FreezeAnimation(self:GetCaster())
   elseif self.channel_charge == 29 then   

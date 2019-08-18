@@ -42,9 +42,6 @@ _G.AILevel =
 		items = 
 		{
 			'item_blink_scroll_ai',
-			'item_mana_essence_ai', --魔力精华
-			'item_a_scroll_ai', --A卷
-			'item_b_scroll_ai', --B卷
 		},
 	},
 	[2] = 
@@ -54,11 +51,7 @@ _G.AILevel =
 		items = 
 		{
 			'item_blink_scroll_ai',
-			'item_mana_essence_ai', --魔力精华
-			'item_a_scroll_ai', --A卷
-			'item_b_scroll_ai', --B卷
-			'item_c_scroll_ai', --C卷
-			'item_s_scroll_ai', --S卷
+			'item_condensed_mana_essence_ai', --速效魔力精华
 		},
 	},
 }
