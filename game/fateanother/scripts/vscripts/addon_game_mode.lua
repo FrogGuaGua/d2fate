@@ -1284,7 +1284,14 @@ function FateGameMode:OnHeroInGame(hero)
     --Timers:CreateTimer(0.75, function() hero:SwapItems(DOTA_ITEM_SLOT_3, DOTA_ITEM_SLOT_9) end)
     Timers:CreateTimer(1.0, function() 
         hero:SwapItems(DOTA_ITEM_SLOT_4, 15) 
-        hero:AddItem(CreateItem("item_blink_scroll", nil, nil)) 
+        local pid = hero:GetPlayerID();
+        if not PlayerResource:IsFakeClient(pid) then
+            hero:AddItem(CreateItem("item_blink_scroll", nil, nil)) 
+            hero:AddItem(CreateItem("item_a_scroll_ai", nil, nil))
+            --hero:AddItem(CreateItem("item_b_scroll_ai", nil, nil))
+            hero:AddItem(CreateItem("item_c_scroll_ai", nil, nil))
+            hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
+        end
     end)
     -- Removing Talents
     for i=0,23 do
