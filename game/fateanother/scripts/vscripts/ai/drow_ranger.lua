@@ -8,14 +8,14 @@ local Blink = 'item_blink_scroll_ai'
 --技能
 local Q = "atalanta_celestial_arrow"
 local W = "atalanta_calydonian_hunt"
-local W1= "atalanta_cobweb_shot"
+local W1= "atalanta_cobweb_shot"    --蜘蛛网
 local HW= "atalanta_phoebus_catastrophe_snipe"
 local E = "atalanta_traps"
 local E1= "atalanta_entangling_trap"       --陷阱
 local HE = ""
 local D = "atalanta_crossing_arcadia"
 local F = "atalanta_traps_close"
-local F1 = "atalanta_phoebus_catastrophe_barrage"
+local F1 = "atalanta_phoebus_catastrophe_barrage"   --箭雨
 local R = "atalanta_tauropolos_new"
 local R1 = "atalanta_golden_apple"        --金苹果
 
@@ -23,7 +23,7 @@ local ATT = 'attribute_bonus_custom'
 --升级技能表
 local ability_upgrade =
 {
-	{[Q] = 4}, {[W] = 4}, {[E] = 4}, {[R] = 4}, {[ATT] = 7},
+	{[Q] = 4}, {[W] = 4},{[R] = 4} ,{[E] = 4} , {[ATT] = 7},
 }
 
 --初始属性
@@ -76,13 +76,12 @@ local combos =
 	[3] ={{D,400}},
 	[4] ={{F1,2000}},
 	[5] ={{W,5000}},
-	[6] ={{W1,2000},},
-	[7] ={{E1,2000}},
-	[12]={{C,900},},
+	[6] ={{E1,2000}},
+	[7]={{C,900},},
 	[8] ={{R,2000}},
 	[9] ={{R1,2000}},
-	[11] ={{S,900},},
-	[10] ={{Q,900}},
+	[10] ={{S,900},},
+	[11] ={{Q,900}},
 	
 	
 }

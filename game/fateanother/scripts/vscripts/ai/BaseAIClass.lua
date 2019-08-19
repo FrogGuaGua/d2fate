@@ -22,7 +22,7 @@ function BaseAIClass:ctor(unit,lvl)
 	self.unit = unit
 	self.curCombo = {target = nil, combo = nil , step = 0}
 	self.lastComboData = { target = nil , time = 0}
-	self.lastComboTimeLimit = 3
+	self.lastComboTimeLimit = 1
 	self.comboSelectType = 'dist' --距离优先
 
 	self.nearEnemy = nil
@@ -132,7 +132,7 @@ function BaseAIClass:ctor(unit,lvl)
 
 	self.firstTickTime = nil
 
-	self.unit:SetAbilityPoints(8) --初始8个技能点
+	self.unit:SetAbilityPoints(8) --初始4个技能点
 	self.unit.MasterUnit:SetAbsOrigin(Vector(-10000,-10000,-1000))
 	self.unit.MasterUnit2:SetAbsOrigin(Vector(-10000,-10000,-1000))
 	--SetRenderingEnabled(self.unit.MasterUnit:GetEntityHandle(),false)
