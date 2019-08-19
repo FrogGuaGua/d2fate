@@ -150,6 +150,7 @@ function BaseAIClass:aiCastAbility(target,ability,castPos)
 	local abilityName = ability:GetName()
 	local unit = self.unit
 	local behavior = self:getAbilityBehavior(abilityName)
+	if target == nil then target = unit end
 	local targetPos = target:GetAbsOrigin()
 	dp("aiCastAbility | %s %s",abilityName,behavior)
 

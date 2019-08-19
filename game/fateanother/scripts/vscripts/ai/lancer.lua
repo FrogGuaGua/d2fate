@@ -104,16 +104,16 @@ function LancerAIClass:LateTick()
 	local unit = self.unit
 	local hp = unit:GetHealthPercent()
 	if hp < 80 then
-		self:aiCastAbilityByName(W1)
-		return true
+		self:aiCastAbilityByName(unit,W1)
+		return false
 	end
 
 	local MP = unit:GetMana();
 	local maxMP = unit:GetMaxMana()
 	local MPPrecent = MP / maxMP * 100
 	if hp > 60 and MPPrecent < 50 then
-		self:aiCastAbilityByName(self:GetEnemy(),R1)
-		return true
+		self:aiCastAbilityByName(unit,R1)
+		return false
 	end
 
 	return false
