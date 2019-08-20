@@ -63,8 +63,8 @@ function BaseAIClass:ctor(unit,lvl)
 
 	--回合开始后时间
 	self.steps = {
-		wait = {0,1}, --挂机
-		guard = {1,60}, --巡逻
+		wait = {0,10}, --挂机
+		guard = {11,60}, --巡逻
 		fight = {61,1800}, --主动出击
 		--fight = {0,10000}, --主动出击
 
