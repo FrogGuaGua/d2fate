@@ -19,15 +19,20 @@
 _G.HasRandName = {}
 
 function _G.GetAIRandName()
+	local visibleNames = {}
 	for name in pairs(AIClass) do
 		print('-GetAIRandName ',name)
 		if Selection.AvailableHeroes[name] ~= nil then
 			if HasRandName[name] == nil then
-				HasRandName[name] = true
-				return name
+				table.insert(visibleNames,name)
 			end
 		end
 	end
+
+	local idx = math.random(1,#visibleNames)
+	local name = visibleNames[idx]
+	HasRandName[name] = true
+	return name
 end 
 
 _G.AIPICKTIME = 40 --AI选人时间
