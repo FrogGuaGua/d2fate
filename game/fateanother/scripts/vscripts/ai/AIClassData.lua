@@ -76,7 +76,7 @@ _G.AILevel =
 	[4] = 
 	{
 		firstRefreshCD = 10, --第一次刷新时间
-		secondRefreshCD = 15,--刷新CD
+		secondRefreshCD = 20,--刷新CD
 		items = 
 		{
 			'item_blink_scroll_ai',
@@ -89,7 +89,7 @@ _G.AILevel =
 	[5] = 
 	{
 		firstRefreshCD = 10, --第一次刷新时间
-		secondRefreshCD = 11,--刷新CD
+		secondRefreshCD = 15,--刷新CD
 		items = 
 		{
 			'item_blink_scroll_ai',

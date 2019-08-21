@@ -117,7 +117,7 @@ function BaseAIClass:ctor(unit,lvl)
 
 	self.nextAddManaTime = Time() 
 	self.addManaCD = 1
-	self.addMana = 200
+	self.addMana = 50
 
 
 	self.ignoreUnit = {
@@ -131,8 +131,11 @@ function BaseAIClass:ctor(unit,lvl)
 	}
 
 	self.firstTickTime = nil
-
-	self.unit:SetAbilityPoints(8) --初始4个技能点
+	if self.unit:GetName() == "npc_dota_hero_drow_ranger" then 
+		self.unit:SetAbilityPoints(4)
+	else
+		self.unit:SetAbilityPoints(0) --初始0个技能点
+	end
 	self.unit.MasterUnit:SetAbsOrigin(Vector(-10000,-10000,-1000))
 	self.unit.MasterUnit2:SetAbsOrigin(Vector(-10000,-10000,-1000))
 	--SetRenderingEnabled(self.unit.MasterUnit:GetEntityHandle(),false)

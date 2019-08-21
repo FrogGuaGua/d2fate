@@ -1283,14 +1283,14 @@ function FateGameMode:OnHeroInGame(hero)
     --Timers:CreateTimer(0.5, function() hero:SwapItems(DOTA_ITEM_SLOT_2, DOTA_ITEM_SLOT_8) end)
     --Timers:CreateTimer(0.75, function() hero:SwapItems(DOTA_ITEM_SLOT_3, DOTA_ITEM_SLOT_9) end)
     Timers:CreateTimer(1.0, function() 
-        hero:SwapItems(DOTA_ITEM_SLOT_4, 15) 
+        --hero:SwapItems(DOTA_ITEM_SLOT_4, 15) 
         local pid = hero:GetPlayerID();
         if not PlayerResource:IsFakeClient(pid) then
-            hero:AddItem(CreateItem("item_blink_scroll", nil, nil)) 
-            hero:AddItem(CreateItem("item_a_scroll_ai", nil, nil))
-            --hero:AddItem(CreateItem("item_b_scroll_ai", nil, nil))
-            hero:AddItem(CreateItem("item_c_scroll_ai", nil, nil))
-            hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
+        --hero:AddItem(CreateItem("item_b_scroll_ai", nil, nil))
+        hero:AddItem(CreateItem("item_c_scroll_ai", nil, nil))
+        hero:AddItem(CreateItem("item_a_scroll_ai", nil, nil))
+        hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
+        hero:AddItem(CreateItem("item_blink_scroll", nil, nil)) 
         end
     end)
     -- Removing Talents
@@ -1316,6 +1316,8 @@ function FateGameMode:OnHeroInGame(hero)
     hero.defaultSendGold = 300
     hero.CStock = 10
     hero.ShardAmount = 0
+
+
 
     Timers:CreateTimer(1.0, function()
         local team = hero:GetTeam()

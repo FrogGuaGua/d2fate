@@ -1,4 +1,3 @@
----@class item_blink_scroll : CDOTA_Item_Lua
 item_blink_scroll_ai = class({})
 
 function item_blink_scroll_ai:OnSpellStart()
