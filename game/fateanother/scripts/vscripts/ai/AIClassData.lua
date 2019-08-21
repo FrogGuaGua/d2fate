@@ -35,7 +35,7 @@ function _G.GetAIRandName()
 	return name
 end 
 
-_G.AIPICKTIME = 40 --AI选人时间
+_G.AIPICKTIME = 30 --AI选人时间
 
 --AI难度
 _G.AILevel = 

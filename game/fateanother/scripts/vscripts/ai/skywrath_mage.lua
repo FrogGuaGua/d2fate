@@ -19,7 +19,7 @@ local ATT = 'attribute_bonus_custom'
 --升级技能表
 local ability_upgrade =
 {
-	{[Q] = 4},  {[E] = 4}, {[R] = 4},{[W] = 4}, {[ATT] = 7},
+	{[Q] = 4},  {[E] = 4}, {[ATT] = 7}, {[W] = 4},{[R] = 4},
 }
 
 --初始属性
@@ -98,7 +98,7 @@ local combos =
 	{{F,600}},
 	{{S,800},},
 	{{C,800},},
-	{{R,1000}},
+	
 }
 
 function SkyWrathAIClass:OnRefreshCD()
