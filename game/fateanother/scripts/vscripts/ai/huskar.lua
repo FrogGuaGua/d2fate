@@ -41,7 +41,7 @@ local abilitys_behavior = {
 local combo_abilitys = {}
 
 --隐藏技能
-local hide_ability_names = {[HW]=true}
+local hide_ability_names = {[HW]=true,[D]=true}
 
 local hide_condition ={agiltity=20,intellect=20,strength=20}
 

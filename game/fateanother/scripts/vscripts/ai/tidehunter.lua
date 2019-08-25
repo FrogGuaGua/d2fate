@@ -13,6 +13,7 @@ local E = "vlad_cursed_lance"
 local D = "vlad_transfusion"
 local D1 = "vlad_impale"
 local R = "vlad_kazikli_bey"
+local F = "vlad_battle_continuation"
 
 local ATT = 'attribute_bonus_custom'
 --升级技能表
@@ -36,13 +37,14 @@ local abilitys_behavior = {
 	[D] = "self", 
 	[D1] = "pos", 
 	[R] = "self", 
+	[F] = "self", 
 }
 
 ----连招技能，需要特定顺序的技能才能使用
 local combo_abilitys = {}
 
 --隐藏技能
-local hide_ability_names = {[HW]=true,[D1]=true}
+local hide_ability_names = {[HW]=true,[D1]=true,[F]=true}
 
 local hide_condition ={agiltity=20,intellect=20,strength=20}
 
