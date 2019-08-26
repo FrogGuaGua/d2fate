@@ -38,8 +38,8 @@ local abilitys_behavior = {
 --初始属性
 local base_atb = {
 	agiltity=10,	--敏捷
-	intellect=10,--智力
-	strength=10  --力量
+	intellect=12,--智力
+	strength=12  --力量
 }
 
 local function isRValid(self)

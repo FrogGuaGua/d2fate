@@ -111,7 +111,7 @@ function BaseAIClass:ctor(unit,lvl)
 
 	self:InitAILevel(lvl)
 
-	self.MasterTimeInterval = 180 --御主技能升级间隔时间
+	self.MasterTimeInterval = 150 --御主技能升级间隔时间
 	self.NextMasterTime = Time() + self.MasterTimeInterval
 	self.MasterAbilityIndex = 0
 

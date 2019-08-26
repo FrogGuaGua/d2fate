@@ -27,7 +27,7 @@ local master2 = {0,1,2,4,5}
 local base_atb = {
 	agiltity=10,	--敏捷
 	intellect=0,--智力
-	strength=15  --力量
+	strength=17  --力量
 }
 
 --技能释放方式
