@@ -23,9 +23,9 @@ local ability_upgrade =
 
 --初始属性
 local base_atb = {
-	agiltity=0,	--敏捷
-	intellect=15,--智力
-	strength=25  --力量
+	agiltity=12,	--敏捷
+	intellect=5,--智力
+	strength=15  --力量
 }
 
 ----连招技能，需要特定顺序的技能才能使用

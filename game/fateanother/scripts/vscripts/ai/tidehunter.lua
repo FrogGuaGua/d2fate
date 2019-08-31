@@ -19,7 +19,7 @@ local ATT = 'attribute_bonus_custom'
 --升级技能表
 local ability_upgrade =
 {
-	{[E] = 4}, {[R] = 4}, {[Q] = 4}, {[W] = 4}, {[ATT] = 7},
+	{[R] = 4}, {[E] = 4}, {[Q] = 4}, {[W] = 4}, {[ATT] = 7},
 }
 
 --初始属性

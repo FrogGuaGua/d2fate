@@ -962,7 +962,7 @@
 		"DrawParticlesWhileHidden" "1"
 
 		"AbilityLayout"			"6"
-		"Ability1"				"iskander_forward"
+		"Ability1"				"iskander_strategy_ambush"
 		"Ability2"				"iskander_phalanx"
 		"Ability3"				"iskander_gordius_wheel"
 		"Ability4"				"iskander_drift_toggle"

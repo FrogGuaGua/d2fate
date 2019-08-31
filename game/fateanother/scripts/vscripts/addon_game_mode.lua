@@ -1165,7 +1165,9 @@ function FateGameMode:AssignBotsHero()
             args.playerId = playerId
             args.hero = GetAIRandName()
             Selection:AssignHero(playerId,args.hero)
-            Timers:CreateTimer(1,function()self:LoopAttachAI(PlayerResource:GetPlayer(playerId)) end)
+            Timers:CreateTimer(1,function()
+                self:LoopAttachAI(PlayerResource:GetPlayer(playerId)) 
+            end)
         end
     end
 end

@@ -1,0 +1,77 @@
+"DOTAAbilities"
+{
+    "iskander_strategy_ambush"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_strategy_ambush"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.5"
+        "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_3"
+		"AnimationPlaybackRate" 		"1.0"
+
+        "precache"
+		{
+
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"				    "2.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"40.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 125 150 175 200"
+			}	
+            "04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 125 150 175 200"
+			}	
+            "05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ambush_count"			"5"
+			}
+            "06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"silence_duration"		"2.0 2.2 2.4 2.6 2.8"
+			}
+            "07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ambush_atk"	    	"40 60 80 100 120"
+			}
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/ambush"
+				"Function"			"OnAmbushStart"
+                "Target"	     	"POINT"
+			}
+		}
+
+    }
+}

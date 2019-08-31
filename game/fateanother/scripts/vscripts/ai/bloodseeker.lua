@@ -27,7 +27,7 @@ local ability_upgrade =
 
 --初始属性
 local base_atb = {
-	agiltity=9,	--敏捷
+	agiltity=4,	--敏捷
 	intellect=12,--智力
 	strength=12  --力量
 }

@@ -18,7 +18,7 @@ local ATT = 'attribute_bonus_custom'
 --升级技能表
 local ability_upgrade =
 {
-	 {[E] = 4},{[R] = 4},{[W] = 4},   {[ATT] = 7},{[Q] = 4},
+	 {[E] = 4},{[R] = 4},{[ATT] = 7}, {[W] = 4},{[Q] = 4},
 }
 
 local master2 = {0,1,2,4,5}

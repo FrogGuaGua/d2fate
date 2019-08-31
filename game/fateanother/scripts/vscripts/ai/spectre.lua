@@ -17,14 +17,14 @@ local ATT = 'attribute_bonus_custom'
 --升级技能表
 local ability_upgrade =
 {
-	{[W] = 4}, {[E] = 4}, {[R] = 4}, {[Q] = 4}, {[ATT] = 7},
+	{[W] = 4}, {[R] = 4}, {[E] = 4}, {[Q] = 4}, {[ATT] = 7},
 }
 
 --初始属性
 local base_atb = {
-	agiltity=12,	--敏捷
+	agiltity=14,	--敏捷
 	intellect=12,--智力
-	strength=12  --力量
+	strength=1  --力量
 }
 
 --技能释放方式
