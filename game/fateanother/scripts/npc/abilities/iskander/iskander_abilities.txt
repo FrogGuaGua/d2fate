@@ -1,2 +1,4 @@
 #base "iskander_drift_toggle.txt"
-#base "iskander_strategy_ambush.txt"
+#base "iskander_strategy.txt"
+#base "iskander_cypriot.txt"
+#base "iskander_aotk_ability.txt"

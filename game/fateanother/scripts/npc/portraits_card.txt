@@ -193,6 +193,37 @@
 			}
 		}
 	}
+	"models/jack/jack.vmdl"
+	{
+		"PortraitLightPosition"		"93.67 -34.45 200.88"
+		"PortraitLightAngles"		"39.39 135.58 0.00"
+		"PortraitLightFOV"		"67"
+		"PortraitLightDistance"		"153"
+		"PortraitLightColor"		"254 238 234"
+		"PortraitShadowColor"		"74 79 104"
+		"PortraitShadowScale"		"5.000000"
+		"PortraitAmbientColor"		"126 157 248"
+		"PortraitAmbientScale"		"5.000000"
+		"PortraitSpecularColor"		"251 74 84"
+		"PortraitBackgroundTexture"		"materials/vgui/hud/heroportraits/portraitbackground_gradient_top.vmat"
+		"PortraitBackgroundColor1"		".1 .1 1"
+		"PortraitBackgroundColor2"		".1 .5 .6"
+		"PortraitBackgroundColor3"		"1 1 .8"
+		"PortraitBackgroundColor4"		"1 1 1"
+		"PortraitLightScale"		"1.450000"
+		"PortraitGroundShadowScale"		"1.500000"
+		"PortraitAmbientDirection"		"9.930 35.110 -34.480"
+		"PortraitAnimationActivity"		"ACT_DOTA_IDLE"
+		"cameras"
+		{
+			"default"
+			{
+				"PortraitPosition"		"0.00 0.00 0.00"
+				"PortraitAngles"		"0.00 0.00 0.00"
+				"PortraitFOV"		"10"
+			}
+		}
+	}
 
 	"models/nero/nero.vmdl"
 	{

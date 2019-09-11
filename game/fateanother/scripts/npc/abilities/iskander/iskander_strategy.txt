@@ -1,0 +1,434 @@
+"DOTAAbilities"
+{
+	"iskander_strategy_open_spellbook"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"5"
+		"RequiredLevel"                 "1"
+        "LevelsBetweenUpgrades"         "1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName"			"silencer_last_word"
+		
+		"AbilityCastPoint"				"0.0"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/iskander/strategy"
+				"Function"		"StrategyOpen"
+			}
+		}
+		"OnUpgrade"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/iskander/strategy"
+				"Function"		"StrategyLevelUp"
+			}
+		}
+	}
+
+
+
+	"iskander_strategy_close_spellbook"
+	{
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"			"silencer_last_word"
+		
+		"AbilityCastPoint"				"0.0"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/iskander/strategy"
+				"Function"		"StrategyClose"
+			}
+		}
+	}
+
+
+
+    "iskander_strategy_ambush"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_strategy_ambush"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT |  DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.5"
+        "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+
+        "precache"
+		{
+			"particle"    "particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"				    "2.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"40.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100"
+			}	
+            "04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100"
+			}	
+            "05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ambush_count"			"5"
+			}
+            "06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"silence_duration"		"2.0"
+			}
+            "07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ambush_atk"	    	"40"
+			}
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/ambush"
+				"Function"			"OnAmbushStart"
+                "Target"	     	"POINT"
+				"duration"		    "%duration"
+			}
+		}
+    }
+
+	"iskander_ambush_trap_passive"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_strategy_ambush"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			                ""
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+
+
+
+        "precache"
+		{
+			"particle"    "particles/custom/iskandar/iskandar_qe.vpcf"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type" 		"FIELD_INTEGER"
+				"damage"		"100"
+			}
+		}
+
+		"Modifiers"
+		{
+			"iskander_ambush_trap_passive_mod"
+			{		
+				"Passive"			"1"
+
+				"EffectName"		"particles/custom/iskandar/iskandar_qe.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"ThinkInterval"		"0.7"
+	            "OnIntervalThink"
+	         	{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/iskander/ambush"
+					 	"Function"		"OnAmbushThink"
+					}
+				}	
+			}
+		}
+
+    }
+
+
+	"iskander_strategy_operational_research"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_strategy_operational_research"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+
+        "AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+		"AbilityCastPoint"				"0.1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+
+        "precache"
+		{
+			"particle"			"particles/custom/iskandar/iskandar_qq.vpcf"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"				    "5.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"40.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"threshold"		    	"400 450 500 550 600"
+			}	
+            "04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"shield"				"800 900 1000 1100 1200"
+			}	
+            "05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"shield_duration"		"2"
+			}
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/operational_research"
+				"Function"			"OnPRStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"iskander_strategy_operational_research_tier1"
+			{		
+				"Duration"		"%delay"
+				"IsHidden"		"1"
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/iskander/operational_research"
+						"Function"			"OnPRDamageTaken"
+						"DamageTaken"		"%attack_damage"
+						"threshold"		    "%threshold"
+						"shield"            "%shield"
+					}
+				}
+			}
+			"iskander_strategy_operational_research_tier2"
+			{		
+				"Duration"		"%shield_duration"
+				"IsHidden"		"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/iskander/operational_research"
+					 	"Function"		"OnPRInit"
+						"shield"        "%shield"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/iskander/operational_research"
+					 	"Function"		"OnPRDestroy"
+					}
+				}
+			}
+		}
+    }
+
+
+	"iskander_strategy_bravado"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_strategy_operational_research"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+        "MaxLevel"                                      "1"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+
+        "AbilityCooldown"				"30"
+		"AbilityManaCost"				"100"
+		"AbilityCastPoint"				"0.1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+
+        "precache"
+		{
+			"particle"    "particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"
+			"model"       "models/saber/saber.vmdl"
+            "model"       "models/lancer/lancer2.vmdl"
+            "model"       "models/saber_alter/sbr_alter.vmdl"
+            "model"       "models/archer/archertest.vmdl"
+            "model"       "models/rider/rider.vmdl"
+            "model"       "models/berserker/berserker.vmdl"
+            "model"       "models/assassin/asn.vmdl"
+            "model"       "models/true_assassin/ta.vmdl"
+            "model"       "models/caster/caster.vmdl"
+            "model"       "models/gilgamesh/gilgamesh.vmdl"
+            "model" "models/lancelot/lancelot.vmdl"
+            "model" "models/avenger/avenger.vmdl"
+            "model" "models/diarmuid/diarmuid2.vmdl"
+            "model" "models/iskander/iskander.vmdl"
+            "model" "models/zc/gille.vmdl"
+            "model" "models/nero/nero.vmdl"
+            "model" "models/gawain/gawain.vmdl"
+            "model" "models/tamamo/tamamo.vmdl"
+            "model""models/lishuen/lishuen.vmdl"
+            "model" "models/jeanne/jeanne.vmdl"
+            "model" "models/astolfo/astolfo.vmdl"
+            "model" "models/jack/jack.vmdl"
+            "model" "models/lvbu/lvbu.vmdl"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"5.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"5.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ill_duration"			"10.0"
+			}
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/bravado"
+				"Function"			"OnBravadoStart"
+				"target"		    "TARGET"
+				"ill_duration"	    "%ill_duration"		
+			}
+		}
+
+		"Modifiers"
+		{
+			"iskander_strategy_bravado_invis"
+			{		
+				"Duration"		"%duration"
+				"IsHidden"		"0"
+				"EffectName"				"particles\units\heroes\hero_pugna\pugna_decrepify.vpcf"	
+				"EffectAttachType"			"follow_overhead"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/iskander/bravado"
+						"Function"			"OnBravadoRemoveB"
+					}
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/iskander/bravado"
+						"Function"			"OnBravadoRemoveC"
+					}
+				}
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }	
+			}
+			"iskander_strategy_bravado_model"
+			{		
+				"Duration"		"%ill_duration"
+				"IsHidden"		"0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/iskander/bravado"
+					 	"Function"		"OnBMInit"
+					}
+				}
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/iskander/bravado"
+						"Function"			"OnBMRemoveB"
+					}
+				}
+				"OnAttackStart"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/iskander/bravado"
+						"Function"			"OnBMRemoveC"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+					 	"ScriptFile"	"abilities/iskander/bravado"
+					 	"Function"		"OnBMDestroy"
+					}
+				}
+			}
+		}
+    }
+}

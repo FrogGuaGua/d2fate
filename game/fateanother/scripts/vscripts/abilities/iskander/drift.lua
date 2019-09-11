@@ -17,8 +17,8 @@ modifier_iskander_drift.IsHidden = function() return true end
 if IsServer() then
     function modifier_iskander_drift:OnIntervalThink()
         local parent = self:GetParent()
-        if self:GetAbility():GetToggleState() then
-            local next = parent:GetAbsOrigin() + parent:GetForwardVector() * parent:GetMoveSpeedModifier(parent:GetBaseMoveSpeed()) * FrameTime() 
+        if self:GetAbility():GetToggleState() and not self:GetCaster():HasModifier("pause_sealdisabled") then
+            local next = parent:GetAbsOrigin() + parent:GetForwardVector() * parent:GetIdealSpeed() * FrameTime() 
             FindClearSpaceForUnit(parent, next, true)
         end
 
@@ -41,7 +41,7 @@ if IsServer() then
 
     function modifier_iskander_drift:OnAbilityFullyCast(args)
         if args.ability == self:GetParent():FindAbilityByName("iskander_gordius_wheel") then
-            self:StartIntervalThink(FrameTime())
+            self:StartIntervalThink(FrameTime() )
         end
     end
 end

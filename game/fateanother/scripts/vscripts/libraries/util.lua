@@ -1026,6 +1026,7 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
     end
     -- END
 
+
     if dmg_type == DAMAGE_TYPE_MAGICAL then
         -- if target has Sun's Embrace modifier, reduce damage by MR before calculation
         if target:HasModifier("modifier_suns_embrace_ally") then
@@ -1035,6 +1036,17 @@ function DoDamage(source, target , dmg, dmg_type, dmg_flag, abil, isLoop)
         -- Process B scroll
         for k,v in pairs(goesthruB) do
             if abil:GetAbilityName() == v then IsBScrollIgnored = true break end
+        end
+        if target:HasModifier("iskander_strategy_operational_research_tier2") then 
+            local originalDamage1 = dmg - target.operational_research_shield
+            target.operational_research_shield = target.operational_research_shield - dmg
+            if target.operational_research_shield <= 0 then
+                dmg = originalDamage1
+                target:RemoveModifierByName("iskander_strategy_operational_research_tier2")
+            else 
+                dmg = 0
+                IsAbsorbed = true
+            end   
         end
         if IsBScrollIgnored == false and target:HasModifier("modifier_b_scroll") then 
             local originalDamage = dmg - target.BShieldAmount

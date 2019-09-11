@@ -1,0 +1,318 @@
+"DOTAAbilities"
+{
+    "iskander_aotk_command_attack"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+        "AbilityCooldown"				"2"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.2"
+        "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"300"
+
+        "precache"
+		{
+			"particle"    "particles/ui_mouseactions/range_finder_targeted_aoe_rings.vpcf"
+			"particle"    "particles/custom/iskandar/iskandar_rd.vpcf"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_reduction"			"-4 -5 -6 -7 -8"
+			}	
+            "02"
+            {
+                "var_type"				"FIELD_INTEGER"
+				"duration"			   "5"
+            }
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/aotkability"
+				"Function"			"OnCommandAttack"
+                "Target"	     	"POINT"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_battle_horn_armor_reduction"
+			{
+				"Duration"		"5.0"
+				"IsDebuff"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"     		"%armor_reduction"
+				}
+			}
+			"modifier_battle_horn_movespeed_buff"
+			{	
+				"EffectName"			"particles/ui_mouseactions/range_finder_targeted_aoe_rings.vpcf"
+				"Duration"				"1.0"
+				"EffectAttachType"		"follow_origin"			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"999"
+				}
+			}
+		}
+    }
+
+    "iskander_aotk_command_salvo"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			                "DOTA_UNIT_TARGET_ALL"
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+        "AbilityCooldown"				"3.5"
+		"AbilityManaCost"				"75"
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.2"
+        "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+
+        "precache"
+		{
+
+			"particle"  "particles/units/heroes/hero_tusk/tusk_snowball_target_arrow.vpcf"
+			"particle"  "particles/custom/iskandar/iskandar_rr.vpcf"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"		    	"30 35 40 45 50"
+			}	
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/aotkability"
+				"Function"			"OnCommandSalvo"
+                "target"	     	"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_aotk_salvo"
+			{	
+				"EffectName"			"particles/units/heroes/hero_tusk/tusk_snowball_target_arrow.vpcf"
+				"Duration"				"2.0"
+				"EffectAttachType"		"follow_origin"			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	    "%damage"
+				}
+			}
+		}
+    }
+
+	"iskander_aotk_command_suppress"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			                "DOTA_UNIT_TARGET_ALL"
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+        "AbilityCooldown"				"12"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.2"
+        "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"450"
+
+        "precache"
+		{
+
+			"particle" "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+			"particle" "particles/custom/iskandar/iskandar_rw.vpcf"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"		    	"3"
+			}	
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"		        	"-50 -60 -70 -80 -90"
+			}
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/aotkability"
+				"Function"			"OnCommandSuppress"
+                "Target"	     	"POINT"
+				"duration"		    	"%duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_aotk_suppress_slow"
+			{	
+				"EffectName"			"particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+				"Duration"				"%duration"
+				"EffectAttachType"		"follow_origin"			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"    "%slow"
+				}
+				//"States"
+				//{
+					//"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				//}
+			}
+		}
+    }
+
+	"iskander_aotk_command_reinforce"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			                "DOTA_UNIT_TARGET_ALL"
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+        "AbilityCooldown"				"12"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"1500"
+		"AbilityCastPoint"				"0.2"
+        "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"450"
+
+        "precache"
+		{
+			"particle" "particles/custom/iskandar/iskandar_re.vpcf"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"number"		    	"3 4 5 6 7"
+			}	
+
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/aotkability"
+				"Function"			"OnCommandReinforce"
+                "Target"	     	"POINT"
+				"number"		    "%number"
+			}
+		}
+
+		"Modifiers"
+		{
+
+		}
+    }
+
+	"iskander_aotk_command_assault"
+    {
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			                "DOTA_UNIT_TARGET_ALL"
+        "MaxLevel"                                      "5"
+        "RequiredLevel"                                 "25"
+        "LevelsBetweenUpgrades"                         "1"
+        "AbilityCooldown"				"8"
+		"AbilityManaCost"				"100"
+		"AbilityCastRange"				"1500"
+		"AbilityCastPoint"				"0.2"
+        "AbilityCastAnimation" 			"ACT_DOTA_ATTACK_EVENT"
+		"AnimationPlaybackRate" 		"1.0"
+		"AOERadius"						"300"
+
+        "precache"
+		{
+			"particle"      "particles/econ/items/tinker/boots_of_travel/teleport_end_bots_dust.vpcf"
+		}
+
+
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"		    	"50 70 90 110 130"
+			}	
+
+		}
+
+        "OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"        "abilities/iskander/aotkability"
+				"Function"			"OnCommandAssault"
+                "Target"	     	"POINT"
+			}
+		}
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"			"false"
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/iskander/aotkability"
+				"Function"		"OnCommandAssaultHit"
+				"damage"		"%damage"
+			}
+		}
+
+		"Modifiers"
+		{
+
+		}
+    }
+}

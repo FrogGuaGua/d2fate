@@ -51,6 +51,29 @@
 			}
 		}
 	}
+
+	"soldier_passive"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			""
+		"MaxLevel"						"1"
+		//"DisplayAdditionalHeroes"   	"1"
+		
+		"Modifiers"
+		{
+			"modifier_dummy_pause"
+			{
+				"Passive"				"1"
+				"IsHidden"				"1"
+                "States"
+                {
+                    "MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+			}
+		}
+	}
 	//=================================================================================================================
 	// Saber : Charisma
 	//=================================================================================================================
@@ -17453,17 +17476,24 @@
 		"MaxLevel"                      "1"
 		"AbilityCastRange"				"1000"
 
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_legion_commander/legion_commander_press_sphere.vpcf"
+			"particle"			"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
+			"particle"			"particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_gold_hero_heal_ember.vpcf"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+		}
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"1000"
+				"radius"			"99999"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"bonus_ms"			"20"
+				"bonus_attr"		"20"
 			}
 		}	
 		"Modifiers"
@@ -17499,23 +17529,30 @@
 					}
 				}				
 		  	}
-			"modifier_charisma_movespeed"
+			"modifier_charisma_attribute"
 			{	
 				"Duration"				"0.25"		
 				"IsHidden"				"1"	
+				"EffectName"			"particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_gold_hero_heal_ember.vpcf"
+				"EffectAttachType"		"follow_origin"	
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"20"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"1"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"1"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"1"
 				}
 			}
 			"modifier_charisma_improved"
 			{	
 				"Duration"				"0.25"		
 				"IsHidden"				"1"	
+				"EffectName"			"particles/econ/items/juggernaut/jugg_fortunes_tout/jugg_healling_ward_fortunes_tout_gold_hero_heal_ember.vpcf"
+				"EffectAttachType"		"follow_origin"	
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"30"
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"20"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"3"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"3"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"3"
 				}
 			}
 		}
@@ -17524,27 +17561,26 @@
 	//========================================
 	// Iskander - Forward!
 	//========================================
-	"iskander_forward"
+	"iskander_strategy_forward"
 	{
 		"BaseClass"						"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE| DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/iskander_forward"
-		"MaxLevel"						"5"
-		"RequiredLevel"					"1"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"25"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
 		"precache"
 		{
-			"particle"			"particles/units/heroes/hero_legion_commander/legion_commander_press_sphere.vpcf"
 			"particle"			"particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
 		}
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16 15 14 13 12"
-		"AbilityCastRange"				"500 575 650 725 800"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"30"
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -17555,17 +17591,17 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"duration"			"3.0 3.5 4.0 4.5 5.0"
+				"duration"			"2.0"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"movespeed"			"25 30 35 40 45"
+				"movespeed"			"800"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"500 575 650 725 800"
+				"radius"			"1000"
 			}
 		}
 		
@@ -17588,8 +17624,9 @@
 				"Duration"				"%duration"			
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed"
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	    "%movespeed"
 				}
+
 			}
 		}
 	}
@@ -17615,7 +17652,7 @@
 		"precache"
 		{
 			"particle"			"particles/items_fx/aegis_respawn.vpcf"
-			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
 		}
 		
 		// Casting
@@ -17690,13 +17727,14 @@
 		"precache"
 		{
 			"model"				"models/iskander/iskander_chariot.vmdl"
-			"particle"			"particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
+			"particle"			"particles/custom/iskandar/iskandar_el2.vpcf"
 			"particle"			"particles/items_fx/aegis_respawn.vpcf"
 			"particle"			"particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start.vpcf"
 			"particle"			"particles/units/heroes/hero_disruptor/disruptor_thunder_strike_bolt.vpcf"
 			"particle"			"particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
-			"particle"			"particles/units/heroes/hero_jakiro/jakiro_macropyre_lava_a.vpcf"
+			"particle"          "particles/custom/iskandar/iskandar_el.vpcf"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_razor.vsndevts"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
 			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
 		}
@@ -17735,7 +17773,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"movespeed_per_second"			"15"
+				"movespeed_per_int"			"10"
 			}
 			"06"
 			{
@@ -17745,12 +17783,7 @@
 			"07"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"max_damage"			"300 350 400 450 500"
-			}
-			"08"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"min_damage"			"100 150 200 250 300"
+				"damage"			"260 290 320 350 380"
 			}
 		}
 		
@@ -17761,32 +17794,32 @@
 				"ScriptFile"		"iskander_ability"
 				"Function"			"OnChariotStart"
 				"Duration"			"%duration"
-				"MinDamage"			"%min_damage"
-				"MaxDamage"			"%max_damage"
+				"damage"			"%damage"
+				//"MaxDamage"			"%max_damage"
 				"Radius"			"%radius"
 			}
 		}
 
 		"Modifiers"
 		{
-			"modifier_gordius_wheel"
-			{		
-				"Duration"		"11"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"		"-350"
-					"MODIFIER_PROPERTY_MOVESPEED_MAX"				"5000"
-					"MODIFIER_PROPERTY_MOVESPEED_LIMIT"				"5000"
-				}
-				"OnDestroy"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"iskander_ability"
-						"Function"			"OnChariotEnd"
-					}				
-				}
-			}
+			//"modifier_gordius_wheel"
+			//{		
+				//"Duration"		"11"
+				//"Properties"
+				//{
+					//"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"		"-350"
+					//"MODIFIER_PROPERTY_MOVESPEED_MAX"				"5000"
+					//"MODIFIER_PROPERTY_MOVESPEED_LIMIT"				"5000"
+				//}
+				//"OnDestroy"
+				//{
+					//"RunScript"
+					//{
+					//	"ScriptFile"		"iskander_ability"
+						//"Function"			"OnChariotEnd"
+				//	}				
+				//}
+			//}
 			"modifier_gordius_wheel_anim"
 			{
 				"Duration"		"1.0"
@@ -17798,15 +17831,15 @@
 					"MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE"		"0.5"
 				}
 			}
-			"modifier_gordius_wheel_speed_boost"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_per_second"
-				}	
-			}
+			//"modifier_gordius_wheel_speed_boost"
+			//{
+				//"IsHidden"		"1"
+				//"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				//"Properties"
+				//{
+				//	"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%movespeed_per_second"
+				//}	
+			//}
 			"modifier_gordius_wheel_mitigation_tier1"
 			{		
 				"Duration"		"2.5"
@@ -18000,17 +18033,17 @@
 			"04"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"sustain_limit"		"5"
+				"sustain_limit"		"99"
 			}
 			"05"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"infantry_bonus_health"		"150 300 450 600 750"
+				"infantry_bonus_health"		"100 200 300 400 500"
 			}
 			"06"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"archer_bonus_damage"		"20 30 40 50 60"
+				"archer_bonus_damage"		"5 10 15 20 25"
 			}
 			"07"
 			{
@@ -18020,7 +18053,7 @@
 			"08"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"maharaja_bonus_damage"		"50 75 100 125 150"	
+				"maharaja_bonus_damage"		"25 50 75 100 125"	
 			}
 			"09"
 			{
@@ -18030,22 +18063,22 @@
 			"10"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"infantry_bonus_damage"		"0 20 40 60 80"
+				"infantry_bonus_damage"		"20 28 36 44 52"
 			}
 			"11"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"cavalry_bonus_health"		"200 400 600 800 1000"
+				"cavalry_bonus_health"		"125 250 375 500 625"
 			}
 			"12"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"cavalry_bonus_damage"		"5 10 15 20 25"	
+				"cavalry_bonus_damage"		"10 20 30 40 50"	
 			}
 			"13"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"hepha_bonus_health"		"300 600 900 1200 1500"
+				"hepha_bonus_health"		"250 500 750 1000 1250"
 			}
 			"14"
 			{
@@ -18055,12 +18088,12 @@
 			"15"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"mage_bonus_health"		"100 200 300 400 500"
+				"mage_bonus_health"		"50 100 150 200 250"
 			}
 			"16"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"mage_bonus_damage"		"4 8 12 16 20"	
+				"mage_bonus_damage"		"10 20 30 40 50"	
 			}
 			"17"
 			{
@@ -18070,7 +18103,7 @@
 			"18"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"waver_bonus_damage"		"15 30 45 60 75"	
+				"waver_bonus_damage"		"15 20 25 30 35"	
 			}
 		}
 		
@@ -18997,6 +19030,11 @@
                 "EffectName" "particles/custom/iskandar/iskandar_combo_invul.vpcf"
                 "EffectAttachType" "follow_origin"
 				"Duration" 	"12.0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	    "650"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"50"
+				}
 				"States"
 				{
 					"MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
