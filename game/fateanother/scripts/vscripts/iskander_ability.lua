@@ -46,6 +46,33 @@ function OnForwardStart(keys)
 		keys.Radius = 20000
 	end
 	
+	local qq = "iskander_strategy_operational_research"
+    local qw = "iskander_strategy_bravado"
+    local qe = "iskander_strategy_ambush"
+    local qr = "iskander_strategy_forward"
+    local qf = "iskander_strategy_close_spellbook"
+
+    local q = "iskander_strategy_open_spellbook"
+    local w = "iskander_cypriot"
+    local e = "iskander_gordius_wheel"
+	local r = "iskander_army_of_the_king"
+    local f = "iskander_charisma"
+	caster:SwapAbilities(q, qq, true, false) 
+	caster:SwapAbilities(w, qw, true, false) 
+	caster:SwapAbilities(e, qe, true, false)
+	if caster.IsStrategyImproved then
+        caster:FindAbilityByName(q):StartCooldown(1)
+    else
+        caster:FindAbilityByName(q):StartCooldown(30)
+    end   
+	if caster:HasModifier("modifier_gordius_wheel") then
+		caster:SwapAbilities("iskander_via_expugnatio", qr, true, false) 
+    else
+        caster:SwapAbilities(r, qr, true, false) 
+    end
+	caster:SwapAbilities(f, qf, true, false) 
+
+
 	local targets = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, keys.Radius
         , DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 
@@ -203,6 +230,11 @@ LinkLuaModifier("modifier_gordius_wheel", "abilities/iskander/modifier_gordius_w
 
 function OnChariotStart(keys)
 	local caster = keys.caster
+	if caster.IsStrategyImproved and caster:HasModifier("iskander_strategy_operational_research_tier1") then
+		caster.operational_research_shield = caster:FindAbilityByName("iskander_strategy_operational_research"):GetSpecialValueFor("shield")
+		caster:RemoveModifierByName("iskander_strategy_operational_research_tier1")
+		caster:FindAbilityByName("iskander_strategy_operational_research"):ApplyDataDrivenModifier(caster, caster, "iskander_strategy_operational_research_tier2", {})
+	end
 	if caster:HasModifier("modifier_gordius_wheel") or caster:HasModifier("modifier_army_of_the_king_death_checker") then 
 		FireGameEvent( 'custom_error_show', { player_ID = caster:GetPlayerOwnerID(), _error = "Cannot Cast Now" } )
 		caster:GiveMana(400)
@@ -294,7 +326,7 @@ function OnChariotRide(keys)
 		        local thunderTarget = thunderTargets[math.random(#thunderTargets)]
 		        if thunderTarget ~= nil then
 		        	--print(thunderTarget:GetUnitName())
-		        	DoDamage(caster, thunderTarget, 10 + caster:GetIntellect() * 0.2, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+		        	DoDamage(caster, thunderTarget, 10 + caster:GetIntellect() * 0.1, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 		        	--thunderTarget:AddNewModifier(caster, thunderTarget, "modifier_stunned", {Duration = 0.1})
 				
 				--if not IsImmuneToSlow(thunderTarget) then 
@@ -488,6 +520,11 @@ end
 function OnAOTKCastStart(keys)
 	-- initialize stuffs
 	local caster = keys.caster
+	if caster.IsStrategyImproved and caster:HasModifier("iskander_strategy_operational_research_tier1") then
+		caster.operational_research_shield = caster:FindAbilityByName("iskander_strategy_operational_research"):GetSpecialValueFor("shield")
+		caster:RemoveModifierByName("iskander_strategy_operational_research_tier1")
+		caster:FindAbilityByName("iskander_strategy_operational_research"):ApplyDataDrivenModifier(caster, caster, "iskander_strategy_operational_research_tier2", {})
+	end
 	if caster:GetAbsOrigin().y < -3500 then
 		FireGameEvent( 'custom_error_show', { player_ID = caster:GetPlayerOwnerID(), _error = "Already Within Reality Marble" } )
 		caster:SetMana(caster:GetMana() + 800)
@@ -1263,8 +1300,20 @@ function OnIskanderCharismaImproved(keys)
     local caster = keys.caster
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
-    hero.IsCharismaImproved = true
-    modName = "modifier_charisma_improved"
+	hero.IsCharismaImproved = true
+	hero.FindAbilityByName("iskander_charisma").SetLevel(2)
+    --modName = "modifier_charisma_improved"
+    -- Set master 1's mana 
+    local master = hero.MasterUnit
+    master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))
+end
+
+function OnIskanderStrategyImproved(keys)
+    local caster = keys.caster
+    local ply = caster:GetPlayerOwner()
+    local hero = caster:GetPlayerOwner():GetAssignedHero()
+	hero.IsStrategyImproved = true
+    --modName = "modifier_charisma_improved"
     -- Set master 1's mana 
     local master = hero.MasterUnit
     master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))

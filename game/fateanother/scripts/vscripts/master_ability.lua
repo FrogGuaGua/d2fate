@@ -122,12 +122,13 @@ DiarmuidAttribute = {
 }
 
 IskanderAttribute = {
-	"iskander_attribute_improve_charisma",
+	"iskander_attribute_improve_strategy",
 	"iskander_attribute_thundergods_wrath",
 	"iskander_attribute_via_expugnatio",
 	"iskander_attribute_bond_beyond_time",
+	"iskander_attribute_improve_charisma",
 	"iskander_annihilate",
-	attrCount = 4
+	attrCount = 5
 }
 
 GillesAttribute = {

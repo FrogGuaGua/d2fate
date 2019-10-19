@@ -18,7 +18,7 @@ if IsServer() then
     function modifier_iskander_drift:OnIntervalThink()
         local parent = self:GetParent()
         if self:GetAbility():GetToggleState() and not self:GetCaster():HasModifier("pause_sealdisabled") then
-            local next = parent:GetAbsOrigin() + parent:GetForwardVector() * parent:GetIdealSpeed() * FrameTime() 
+            local next = parent:GetAbsOrigin() + parent:GetForwardVector() * parent:GetIdealSpeed() * 0.03 
             FindClearSpaceForUnit(parent, next, true)
         end
 
@@ -41,7 +41,7 @@ if IsServer() then
 
     function modifier_iskander_drift:OnAbilityFullyCast(args)
         if args.ability == self:GetParent():FindAbilityByName("iskander_gordius_wheel") then
-            self:StartIntervalThink(FrameTime() )
+            self:StartIntervalThink(0.03)
         end
     end
 end

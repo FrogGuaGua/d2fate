@@ -3,7 +3,7 @@
     "iskander_aotk_command_attack"
     {
         "BaseClass"                                     "ability_datadriven"
-        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityTextureName"                            "custom/iskander_aotk_command_attack"
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
         "MaxLevel"                                      "5"
         "RequiredLevel"                                 "25"
@@ -75,7 +75,7 @@
     "iskander_aotk_command_salvo"
     {
         "BaseClass"                                     "ability_datadriven"
-        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityTextureName"                            "custom/iskander_aotk_command_salvo"
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			                "DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			                "DOTA_UNIT_TARGET_ALL"
@@ -135,7 +135,7 @@
 	"iskander_aotk_command_suppress"
     {
         "BaseClass"                                     "ability_datadriven"
-        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityTextureName"                            "custom/iskander_aotk_command_suppress"
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			                "DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			                "DOTA_UNIT_TARGET_ALL"
@@ -206,7 +206,7 @@
 	"iskander_aotk_command_reinforce"
     {
         "BaseClass"                                     "ability_datadriven"
-        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityTextureName"                            "custom/iskander_aotk_command_reinforce"
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			                "DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			                "DOTA_UNIT_TARGET_ALL"
@@ -258,7 +258,7 @@
 	"iskander_aotk_command_assault"
     {
         "BaseClass"                                     "ability_datadriven"
-        "AbilityTextureName"                            "custom/iskander_cypriot"
+        "AbilityTextureName"                            "custom/iskander_aotk_command_assault"
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			                "DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			                "DOTA_UNIT_TARGET_ALL"

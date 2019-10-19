@@ -984,11 +984,12 @@
 		"Ability20"				"iskander_strategy_close_spellbook"
 
 		"Combo"						"iskander_annihilate"
-		"AttributeNumber"			"4"
-		"Attribute1"				"iskander_attribute_improve_charisma"
+		"AttributeNumber"			"5"
+		"Attribute1"				"iskander_attribute_improve_strategy"
 		"Attribute2"				"iskander_attribute_thundergods_wrath"
 		"Attribute3"				"iskander_attribute_via_expugnatio"
 		"Attribute4"				"iskander_attribute_bond_beyond_time"
+		"Attribute5"				"iskander_attribute_improve_charisma"
 
 		"StatusHealth"					"1250"
 		"StatusHealthRegen"				"10"

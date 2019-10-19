@@ -572,13 +572,6 @@ function CScrollNew(keys)
 		ability:EndCooldown()
 		return
 	end
-	local gold = hero:GetGold()
-	if gold < 100 then 
-		ability:EndCooldown()
-		SendErrorMessage(caster:GetPlayerOwnerID(), "#Need more money")
-		return 
-	end
-	hero:ModifyGold(-100, true , 0)
 	local pid = caster:GetPlayerID()
 	cdummy = CreateUnitByName("dummy_unit", caster:GetAbsOrigin(), true, caster, caster, caster:GetTeamNumber())
 	cdummy:AddNewModifier(caster, caster, "modifier_kill", {duration = 10})
@@ -759,14 +752,6 @@ function SScrollNew(keys)
 		ability:EndCooldown()
 		return
 	end
-
-	local gold = hero:GetGold()
-	if gold < 1500 then 
-		ability:EndCooldown()
-		SendErrorMessage(caster:GetPlayerOwnerID(), "#Need more money")
-		return 
-	end
-	hero:ModifyGold(-1500, true , 0)
 	local target = keys.target
 	hero.ServStat:useS()
 	target:TriggerSpellReflect(ability)
@@ -799,6 +784,10 @@ function SScrollNew(keys)
 	ParticleManager:ReleaseParticleIndex(lightningBoltFx)
 
 	target:EmitSound("Hero_Zuus.GodsWrath.Target")
+	if not PlayerResource:IsFakeClient(hero:GetPlayerID()) then
+		hero:RemoveItem(keys.ability)
+	end
+
 end
 
 function EXScroll(keys)

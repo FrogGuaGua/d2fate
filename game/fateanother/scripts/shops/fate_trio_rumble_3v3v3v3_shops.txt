@@ -3,6 +3,7 @@
 	"consumables"
 	{
 		"item"		"item_mana_essence"
+		"item"		"item_s_scroll_ai"
 		"item"		"item_ward_familiar"
 		"item"		"item_scout_familiar"
 		"item"		"item_berserk_scroll"

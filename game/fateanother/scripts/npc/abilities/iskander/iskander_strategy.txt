@@ -7,7 +7,7 @@
 		"RequiredLevel"                 "1"
         "LevelsBetweenUpgrades"         "1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityTextureName"			"silencer_last_word"
+		"AbilityTextureName"			"custom/iskander_strategy"
 		
 		"AbilityCastPoint"				"0.0"
 
@@ -173,6 +173,11 @@
 					 	"Function"		"OnAmbushThink"
 					}
 				}	
+				"States"
+			    {
+				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+			    }	
 			}
 		}
 
@@ -287,7 +292,7 @@
 	"iskander_strategy_bravado"
     {
         "BaseClass"                                     "ability_datadriven"
-        "AbilityTextureName"                            "custom/iskander_strategy_operational_research"
+        "AbilityTextureName"                            "custom/iskander_strategy_bravado"
         "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 
         "MaxLevel"                                      "1"

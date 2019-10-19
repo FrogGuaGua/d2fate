@@ -7,6 +7,12 @@ function OnCypriotStart(keys)
     local num = math.modf(route / 200)
     local ability = keys.ability
     local start = 0
+    local damage = keys.damage
+    local p_damage =damage * 0.35
+    if caster.IsThundergodAcquired then
+        damage = damage + caster:GetIntellect()*2
+        p_damage =p_damage + caster:GetIntellect()*2
+    end
     Timers:CreateTimer(
         function()
             if start >= num then
@@ -18,7 +24,7 @@ function OnCypriotStart(keys)
                 keys.radius,
                 DOTA_UNIT_TARGET_TEAM_ENEMY,
                 DOTA_UNIT_TARGET_ALL,
-                DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+                0,
                 FIND_ANY_ORDER,
                 false
                 )
@@ -49,7 +55,7 @@ function OnCypriotStart(keys)
                 )
 
                 for k,v in pairs(endtargets) do
-                    DoDamage(caster, v, keys.damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+                    DoDamage(caster, v, damage , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
                     ability:ApplyDataDrivenModifier(caster,v, "modifier_cypriot_slow", {})
                 end
 
@@ -65,7 +71,7 @@ function OnCypriotStart(keys)
                 keys.radius_2,
                 DOTA_UNIT_TARGET_TEAM_ENEMY,
                 DOTA_UNIT_TARGET_ALL,
-                DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+                0,
                 FIND_ANY_ORDER,
                 false
             )
@@ -79,7 +85,7 @@ function OnCypriotStart(keys)
                 end
             )
             for k,v in pairs(targets) do
-                DoDamage(caster, v, keys.damage * 0.3 , DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+                DoDamage(caster, v, p_damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
                 ability:ApplyDataDrivenModifier(caster,v, "modifier_cypriot_slow", {})
             end
             start = start + 1 

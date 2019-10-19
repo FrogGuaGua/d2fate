@@ -1,7 +1,27 @@
+
+qq = "iskander_strategy_operational_research"
+qw = "iskander_strategy_bravado"
+qe = "iskander_strategy_ambush"
+qr = "iskander_strategy_forward"
+qf = "iskander_strategy_close_spellbook"
+
+q = "iskander_strategy_open_spellbook"
+w = "iskander_cypriot"
+e = "iskander_gordius_wheel"
+r = "iskander_army_of_the_king"
+f = "iskander_charisma"
+
+
 function OnPRStart(keys)
     local caster = keys.caster
     local ability = keys.ability
     ability:ApplyDataDrivenModifier(caster, caster, "iskander_strategy_operational_research_tier1", {})
+    StrategyClose(caster)
+    if caster.IsStrategyImproved then
+        caster:FindAbilityByName(q):StartCooldown(1)
+    else
+        caster:FindAbilityByName(q):StartCooldown(30)
+    end   
 end
 
 
@@ -33,3 +53,16 @@ end
 function OnPRDestroy(keys)
     keys.caster.operational_research_shield = 0
 end
+
+function StrategyClose(caster)
+    caster:SwapAbilities(q, qq, true, false) 
+	caster:SwapAbilities(w, qw, true, false) 
+    caster:SwapAbilities(e, qe, true, false)
+	if caster:HasModifier("modifier_gordius_wheel") then
+		caster:SwapAbilities("iskander_via_expugnatio", qr, true, false) 
+    else
+        caster:SwapAbilities(r, qr, true, false) 
+    end
+	caster:SwapAbilities(f, qf, true, false) 
+end
+

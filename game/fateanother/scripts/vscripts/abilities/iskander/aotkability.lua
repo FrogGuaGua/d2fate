@@ -244,6 +244,9 @@ function OnCommandAssaultHit(keys)
     local caster =keys.caster
     local pos = target:GetAbsOrigin()
     local cpos =caster:GetAbsOrigin()
+    if caster.IsBeyondTimeAcquired then
+        keys.damage = keys.damage + 20
+    end	
     DoDamage(keys.caster, target,keys.damage, DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
     giveUnitDataDrivenModifier(caster,target, "stunned", 0.5)
     local phyunit = Physics:Unit(target)

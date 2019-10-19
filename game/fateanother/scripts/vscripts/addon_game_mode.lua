@@ -1291,7 +1291,7 @@ function FateGameMode:OnHeroInGame(hero)
         --hero:AddItem(CreateItem("item_b_scroll_ai", nil, nil))
         hero:AddItem(CreateItem("item_c_scroll_ai", nil, nil))
         hero:AddItem(CreateItem("item_a_scroll_ai", nil, nil))
-        hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
+        --hero:AddItem(CreateItem("item_s_scroll_ai", nil, nil))
         hero:AddItem(CreateItem("item_blink_scroll", nil, nil)) 
         end
     end)
