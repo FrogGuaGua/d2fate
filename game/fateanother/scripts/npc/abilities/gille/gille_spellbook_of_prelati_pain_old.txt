@@ -9,7 +9,7 @@
 		    "BaseClass"						"ability_lua"
         "ScriptFile"          "abilities/gille/gille_spellbook_of_prelati_pain"
 		    "MaxLevel"						"5"
-	    	"RequiredLevel"					"25"
+	    	"RequiredLevel"					"31"
 		    "LevelsBetweenUpgrades"			"1"
 		    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 	    	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"

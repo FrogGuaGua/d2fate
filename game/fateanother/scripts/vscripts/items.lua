@@ -361,7 +361,7 @@ function BecomeWard(keys)
 end
 
 function SpiritLink(keys)
-	--print("Spirit Link Used")
+	if true then return end
 	local caster = keys.caster
 	local ability = keys.ability
 	local hero = keys.caster:GetPlayerOwner():GetAssignedHero()
@@ -683,13 +683,13 @@ function AScrollNew(keys)
 		return
 	end
 
-	local gold = hero:GetGold()
-	if gold < 400 then 
-		ability:EndCooldown()
-		SendErrorMessage(caster:GetPlayerOwnerID(), "#Need more money")
-		return 
-	end
-	hero:ModifyGold(-400, true , 0)
+	--local gold = hero:GetGold()
+	--if gold < 400 then 
+		--ability:EndCooldown()
+		--SendErrorMessage(caster:GetPlayerOwnerID(), "#Need more money")
+		--return 
+	--end
+	--hero:ModifyGold(-400, true , 0)
 
 	hero.ServStat:useA()
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_a_scroll", {})
@@ -713,18 +713,18 @@ function SScroll(keys)
 	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
 
-	ApplyPurge(target)
-	DoDamage(caster, target, 400, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	--ApplyPurge(target)
+	DoDamage(caster, target, 400, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	ApplyPurge(target)
 	
 
-	--Timers:CreateTimer(0.1, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
+	Timers:CreateTimer(0.1, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
 	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
-	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
-	--if not IsImmuneToSlow(target) then
-		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
-		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
-	--end
+	--target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
+	if not IsImmuneToSlow(target) then
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
+	end
 
 	local boltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
 	ParticleManager:SetParticleControl(boltFx, 1, Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z+((target:GetBoundingMaxs().z - target:GetBoundingMins().z)/2)))
@@ -756,16 +756,16 @@ function SScrollNew(keys)
 	hero.ServStat:useS()
 	target:TriggerSpellReflect(ability)
 	if IsSpellBlocked(keys.target) then return end
-	ApplyPurge(target)
-	DoDamage(caster, target, 400, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	--ApplyPurge(target)
-	--Timers:CreateTimer(0.1, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
+	DoDamage(caster, target, 400, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+	ApplyPurge(target)
+	Timers:CreateTimer(0.1, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
 	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
-	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
-	--if not IsImmuneToSlow(target) then
-		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
-		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
-	--end
+	--target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
+	if not IsImmuneToSlow(target) then
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
+	end
 
 
 	local boltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
@@ -810,17 +810,17 @@ function EXScroll(keys)
 		damage_flags = 0,
 		ability = ability
 	}
-	ApplyPurge(target)
+	--ApplyPurge(target)
 	DoDamage(caster, target, 800, DAMAGE_TYPE_MAGICAL, 0, ability, false)
 	--ApplyPurge(target)
-	--Timers:CreateTimer(0.15, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
+	Timers:CreateTimer(0.15, function() ability:ApplyDataDrivenModifier(caster, target, "modifier_purge", {}) end)
 	local rootModifier = vlua.select(target:HasModifier("modifier_sex_scroll_root_delay"), "modifier_sex_scroll_root", "modifier_sex_scroll_root_delay")
 	target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
 	--target:AddNewModifier(caster, ability, rootModifier, {duration = 0.25})
-	--if not IsImmuneToSlow(target) then
-		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
-		--ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
-	--end
+	if not IsImmuneToSlow(target) then
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier1", {})
+		ability:ApplyDataDrivenModifier(caster, target, "modifier_slow_tier2", {})
+	end
 	local boltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
 	--local lightningBoltFx = ParticleManager:CreateParticle("particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf", PATTACH_ABSORIGIN, target)
 	ParticleManager:SetParticleControl(boltFx, 1, Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z+((target:GetBoundingMaxs().z - target:GetBoundingMins().z)/2)))

@@ -517,7 +517,7 @@ function OnUBWStart(keys)
 				ParticleManager:SetParticleControl( swordFxIndex, 1, swordVector * 5000 )
 				Timers:CreateTimer(0.1, function()
 					if swordTarget:IsAlive() and not swordTarget:HasModifier("modifier_lancer_protection_from_arrows_active") then
-						DoDamage(caster, swordTarget, ATTR_PROJECTION_PASSIVE_WEAPON_DAMAGE+caster:GetIntellect()*0.5 , DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+						DoDamage(caster, swordTarget, ATTR_PROJECTION_PASSIVE_WEAPON_DAMAGE+caster:GetIntellect() , DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
 					end
 					ParticleManager:DestroyParticle( swordFxIndex, false )
 					ParticleManager:ReleaseParticleIndex( swordFxIndex )
@@ -566,7 +566,7 @@ function OnUBWWeaponHit(keys)
 	local caster = keys.caster
 	local target = keys.target 
 	if ubwdummies ~= nil then
-		DoDamage(caster, keys.target, 50+caster:GetIntellect()*0.5 , DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
+		DoDamage(caster, keys.target, 75+caster:GetIntellect() , DAMAGE_TYPE_PHYSICAL, 0, keys.ability, false)
 	end
 end
 
@@ -1363,7 +1363,6 @@ function OnShroudOfMartinAcquired(keys)
 	hero:SetBaseMagicalResistanceValue(15)
 	hero.IsMartinAcquired = true
 	hero.ExtraARMORgained = 10
-
 	-- Set master 1's mana 
 	local master = hero.MasterUnit
 	master:SetMana(master:GetMana() - keys.ability:GetManaCost(keys.ability:GetLevel()))

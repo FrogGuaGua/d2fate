@@ -439,7 +439,7 @@ function OnMindEyeStart(keys)
 		else
 			sightdummy:SetAbsOrigin(caster.MasterUnit:GetAbsOrigin())
 		end
-		return 0.2
+		return 0.1
 	end)
 end
 

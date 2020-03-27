@@ -60,7 +60,7 @@ function OnDirkPoisonTick(keys)
 	local target = keys.target
 	local dmg = target:GetMaxHealth() / 100 * keys.Damage
 	if caster.IsWeakeningVenomAcquired then
-		DoDamage(keys.caster, keys.target,dmg + caster:GetIntellect() * 0.5, DAMAGE_TYPE_PURE, 0, keys.ability, false)
+		DoDamage(keys.caster, keys.target,dmg + caster:GetIntellect(), DAMAGE_TYPE_PURE, 0, keys.ability, false)
 	else
 		DoDamage(keys.caster, keys.target,dmg, DAMAGE_TYPE_PURE, 0, keys.ability, false)
 	end

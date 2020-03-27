@@ -18,7 +18,6 @@ function OnBarrageStart(keys)
 		-- Main variables
 		local delay = 0.5				-- Delay before damage
 		local speed = 3000				-- Movespeed of the sword
-			
 		-- Side variables
 		local distance = delay * speed
 		local height = distance * math.tan( 60 / 180 * math.pi )
@@ -75,7 +74,9 @@ end
 function OnGoldenRuleThink(keys)
 	local caster = keys.caster
 	local ply = caster:GetPlayerOwner()
-    if caster:IsAlive() and GameRules:GetGameTime() > 75 then keys.caster:ModifyGold(keys.GoldGain, true, 0) end
+	if caster:IsAlive() and GameRules:GetGameTime() > 75 then 
+		keys.caster:ModifyGold(keys.GoldGain/100 * caster:GetGold(), true, 0) 
+	end
 end
 
 
@@ -258,6 +259,9 @@ function OnGOBThink(keys)
 		unit:RemoveModifierByName("modifier_gob_thinker")
 		return
 	end
+	if caster.IsGoldenRuleImproved and toggleAbil:GetToggleState() then
+		caster:ModifyGold(-caster:GetGold() * 0.005, true, 0)
+	end
 	if caster.IsSumerAcquired and unit == caster.LatestGOB and toggleAbil:GetToggleState() then
 		origin = caster:GetAbsOrigin()
 		frontward = caster:GetForwardVector()
@@ -294,6 +298,9 @@ function OnGOBHit(keys)
 	local damage = keys.Damage
 	if caster.IsSumerAcquired then
 		damage = damage + caster:GetAttackDamage()*0.2
+	end
+	if caster.IsGoldenRuleImproved then
+		damage = damage + caster:GetGold() * 0.001
 	end
 	--if target:GetUnitName() == "gille_gigantic_horror" then damage = damage*2.5 end
 	DoDamage(keys.caster, keys.target, damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)

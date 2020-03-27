@@ -1301,7 +1301,7 @@ function OnIskanderCharismaImproved(keys)
     local ply = caster:GetPlayerOwner()
     local hero = caster:GetPlayerOwner():GetAssignedHero()
 	hero.IsCharismaImproved = true
-	hero.FindAbilityByName("iskander_charisma").SetLevel(2)
+	hero:FindAbilityByName("iskander_charisma"):SetLevel(2)
     --modName = "modifier_charisma_improved"
     -- Set master 1's mana 
     local master = hero.MasterUnit

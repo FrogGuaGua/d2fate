@@ -13,7 +13,7 @@
         "SpellImmunityType"                             "SPELL_IMMUNITY_ENEMIES_YES"
 
         "MaxLevel"                                      "2"
-        "RequiredLevel"                                 "25"
+        "RequiredLevel"                                 "31"
         "LevelsBetweenUpgrades"                         "1"
 
         "AbilityCooldown"                               "0.7 0.3"

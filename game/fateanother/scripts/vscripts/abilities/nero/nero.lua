@@ -119,16 +119,16 @@ function OnNeroGBEndHit(keys)
         PATTACH_ABSORIGIN,
         target
     )
-    Timers:CreateTimer(
-        0.6,
-        function()
+    --Timers:CreateTimer(
+        --0.6,
+        --function()
             DoDamage(caster, target, damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
             ParticleManager:DestroyParticle(fx, false)
             ParticleManager:ReleaseParticleIndex(fx)
             ParticleManager:DestroyParticle(fx2, false)
             ParticleManager:ReleaseParticleIndex(fx2)
-        end
-    )
+        --end
+    --)
     target:AddNewModifier(caster, caster, "modifier_stunned", {Duration = 0.8})
 end
 
@@ -325,13 +325,13 @@ function OnTheatreStart(keys)
     )
     for k, v in pairs(pushtargets) do
         DoDamage(caster, v, keys.debut_damage, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
-        ApplyAirborne(caster, v, 0.5)
+        ApplyAirborne(caster, v, 0.2)
         if v ~= target then
             local pushTarget = Physics:Unit(v)
             local initialUnitOrigin = v:GetAbsOrigin()
             local diff = (initialUnitOrigin - centerabs):Normalized() -- yun dong fang xiang
             local length = 1050 - (centerabs - initialUnitOrigin):Length2D()
-            if length >= 200 then length = 200 end
+            if length >= 100 then length = 100 end
             v:PreventDI()
             v:SetPhysicsFriction(0)
             v:SetPhysicsVelocity(diff:Normalized() * 5000)

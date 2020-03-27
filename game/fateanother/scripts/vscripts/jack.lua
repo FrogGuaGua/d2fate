@@ -470,7 +470,7 @@ function OnWaspStingStart(keys)
             Ability = keys.ability,
             EffectName = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf",
             vSpawnOrigin = caster:GetAbsOrigin(),
-            iMoveSpeed = 1700
+            iMoveSpeed = 1300
         }
         ProjectileManager:CreateTrackingProjectile(info) 
     end
@@ -596,6 +596,10 @@ function OnShadowStrikeStart(keys)
     Timers:RemoveTimer('jack_sting_chain')
 end
 
+function RemoveInv(keys)
+    print("asd")
+    keys.caster:RemoveModifierByName("modifier_curse_maria_casting")
+end
 function GetBwteenPoint(startpoint,endpoint,distance)
     local normal = (startpoint - endpoint):Normalized()
     local retpoint = normal * distance + startpoint
@@ -695,6 +699,8 @@ function OnBatFallenStart(keys)
         damage = damage + 100
     end
     local bodyFxIndex = ParticleManager:CreateParticle("particles/econ/events/fall_major_2015/teleport_end_fallmjr_2015_lvl2_black_b.vpcf",PATTACH_CUSTOMORIGIN_FOLLOW, caster )
+
+    giveUnitDataDrivenModifier(caster,caster, "silenced", 0.7)
     Timers:CreateTimer(0.7,function()
         
         giveUnitDataDrivenModifier(caster, caster, "jump_pause", 0.7)
@@ -800,18 +806,17 @@ function OnCurseTrigger(keys)
     
     local i = 0
     if IsFemaleServant(target) then 
-        currectdmg = currectdmg * 1.3 
+        currectdmg = currectdmg * 1.3
         i = i +1
     end
     if not GameRules:IsDaytime() then 
-        currectdmg = currectdmg * 1.3 
+        currectdmg = currectdmg * 1.3
         i = i +1
     end
     if target:HasModifier("jack_the_mist_effect") then
         currectdmg = currectdmg * 1.3 
         i = i +1
     end
-    -- if in frog then i = i + 1 end
 
 
     if i == 3 and not (caster:HasModifier("modifier_max_maria_cd"))then
@@ -825,15 +830,18 @@ function OnCurseTrigger(keys)
         ability:ApplyDataDrivenModifier(caster,caster,"modifier_max_maria_cd",{Duration = 20})
     end
     DoDamage(caster, target, currectdmg, DAMAGE_TYPE_MAGICAL, 0, ability, false)
+    --print(currectdmg)
+    currectdmg = currectdmg * (1-target:GetMagicalArmorValue())
+    --print(currectdmg)
     if caster.IsFemaleSlayerAcquired and IsFemaleServant(target) then
         DoDamage(caster, target, currectdmg*0.3, DAMAGE_TYPE_PURE, 0, ability, false)
     end
     if caster.IsMurderAcquired then
-        if not GameRules:IsDaytime() then 
-            DoDamage(caster, target, currectdmg*0.3, DAMAGE_TYPE_PURE, 0, ability, false)
+        if not GameRules:IsDaytime()  then 
+            DoDamage(caster, target, currectdmg*0.3, DAMAGE_TYPE_MAGICAL ,0, ability, false)
         end
-        if target:HasModifier("jack_the_mist_effect") then
-            DoDamage(caster, target, currectdmg*0.3, DAMAGE_TYPE_PURE, 0, ability, false)
+        if target:HasModifier("jack_the_mist_effect") then 
+            DoDamage(caster, target, currectdmg*0.3, DAMAGE_TYPE_MAGICAL, 0, ability, false)
         end
     end
     local targetFx = ParticleManager:CreateParticle( "particles/econ/items/dark_willow/dark_willow_ti8_immortal_head/dw_crimson_ti8_immortal_cursed_crownmarker.vpcf", PATTACH_ABSORIGIN_FOLLOW, target )

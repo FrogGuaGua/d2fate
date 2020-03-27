@@ -8,7 +8,7 @@
     {
 		    "BaseClass"						"ability_datadriven"
 		    "MaxLevel"						"5"
-	    	"RequiredLevel"					"25"
+	    	"RequiredLevel"					"31"
 		    "LevelsBetweenUpgrades"			"1"
 		    "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN |  DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 	    	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -16,11 +16,11 @@
 		    "AbilityTextureName"			"custom/gille_spellbook_of_prelati_pain"
 		    "AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
 		    "AnimationPlaybackRate"			"1.0"
-            "AbilityCastRange"				"800"
+            "AbilityCastRange"				"1000"
 	     	"AbilityCastRangeBuffer"		"100"
 	    	"AbilityCastPoint"				"0.2"
 	    	"AbilityCooldown"				"5.0 5.0 5.0 5.0 5.0"
-	    	"AbilityManaCost"				"30"
+	    	"AbilityManaCost"				"40"
         
 
             "precache"
@@ -35,7 +35,7 @@
       "01"
       {
         "var_type"				"FIELD_INTEGER"
-        "damage_TT"	            "400 525 650 775 900"
+        "damage_TT"	            "400 500 600 700 800"
       }
       "02"
       {
@@ -55,7 +55,7 @@
        "04"
       {
         "var_type"				"FIELD_INTEGER"
-        "contagion_aoe"		        "350"
+        "contagion_aoe"		        "300"
       }
       "05"
       {
@@ -70,7 +70,7 @@
       "07"
       {
         "var_type"				"FIELD_INTEGER"
-        "intratio"		        "4"
+        "intratio"		        "5"
       }
 	 }
 
@@ -100,7 +100,9 @@
 				{
 					"ScriptFile"	"abilities/gille/gille_spellbook_of_prelati_pain"
 					"Function"		"OnPainThink"
-                    "damage"        "%damage_per_hit"
+          "damage"        "%damage_per_hit"
+          "Target"			"TARGET"
+
 				}
 			}
             "OnDeath"

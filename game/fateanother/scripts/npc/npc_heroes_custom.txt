@@ -724,7 +724,7 @@
 		"Attribute4"				"lancelot_attribute_total_assault"
 
 		
-		"StatusHealth"					"1400"
+		"StatusHealth"					"1450"
 		"StatusHealthRegen"				"10"
 		"StatusMana"					"1000"
 		"StatusManaRegen"				"6.0"
@@ -740,11 +740,11 @@
 		
 		"AttributePrimary"				"DOTA_ATTRIBUTE_AGILITY"
 		"AttributeBaseStrength"			"0"
-		"AttributeStrengthGain"			"1.0"
+		"AttributeStrengthGain"			"1.5"
 		"AttributeBaseAgility"			"0"
-		"AttributeAgilityGain"			"1.7"
+		"AttributeAgilityGain"			"2.7"
 		"AttributeBaseIntelligence"		"0"
-		"AttributeIntelligenceGain"		"0.3"
+		"AttributeIntelligenceGain"		"0.1"
 		
 		"MovementSpeed"					"335"
 		"MovementTurnRate"				"0.8"

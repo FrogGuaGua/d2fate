@@ -760,7 +760,7 @@ function NeroTakeDamage(keys)
 		end)
 		caster:EmitSound("Hero_SkeletonKing.Reincarnate")
 		giveUnitDataDrivenModifier(keys.caster, keys.caster, "rb_sealdisabled", 4.5)
-		caster:FindAbilityByName("nero_invictus_spiritus"):ApplyDataDrivenModifier(caster, caster, "modifier_invictus_spiritus_cooldown", {duration = 60})
+		caster:FindAbilityByName("nero_invictus_spiritus"):ApplyDataDrivenModifier(caster, caster, "modifier_invictus_spiritus_cooldown", {duration = 120})
 	end
 end
 

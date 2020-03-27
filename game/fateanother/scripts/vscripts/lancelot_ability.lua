@@ -10,9 +10,11 @@ function OnEternalStart(keys)
     end
 
     if IsRevoked(caster) then
-        keys.ability:EndCooldown()
-        SendErrorMessage(caster:GetPlayerOwnerID(), "#Revoked_Error")
+        if not caster.IsEternalImproved then
+           keys.ability:EndCooldown()
+           SendErrorMessage(caster:GetPlayerOwnerID(), "#Revoked_Error")
         return
+        end
     end
 
     caster:EmitSound("Hero_Abaddon.AphoticShield.Cast")
@@ -608,9 +610,9 @@ function OnEAMDmgTaken(keys)
     local caster= keys.caster
     local dmg = keys.DamageTaken
     if caster.IsEternalImproved then
-        heal=dmg * 0.07
+        heal=dmg * 0.1
     else
-        heal=dmg * 0.03
+        heal=dmg * 0.06
     end
     caster:ApplyHeal(heal, caster)
 end

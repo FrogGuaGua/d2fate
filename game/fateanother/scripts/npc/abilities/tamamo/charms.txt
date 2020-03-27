@@ -12,7 +12,7 @@
         "AbilityTextureName"                            "custom/tamamo_fiery_heaven"
         "AbilityCooldown"                               "12"
         "MaxLevel"                                      "5"
-        "RequiredLevel"                                 "25"
+        "RequiredLevel"                                 "31"
         "LevelsBetweenUpgrades"                         "1"
 
         "AbilitySpecial"
@@ -67,7 +67,7 @@
         "AbilityTextureName"                            "custom/tamamo_frigid_heaven"
         "AbilityCooldown"                               "12"
         "MaxLevel"                                      "5"
-        "RequiredLevel"                                 "25"
+        "RequiredLevel"                                 "31"
         "LevelsBetweenUpgrades"                         "1"
 
         "AbilitySpecial"
@@ -112,7 +112,7 @@
         "AbilityTextureName"                            "custom/tamamo_gust_heaven"
         "AbilityCooldown"                               "12"
         "MaxLevel"                                      "5"
-        "RequiredLevel"                                 "25"
+        "RequiredLevel"                                 "31"
         "LevelsBetweenUpgrades"                         "1"
 
         "AbilitySpecial"

@@ -165,7 +165,7 @@
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_2"
 		"AnimationPlaybackRate" 		"1.0"
         "AbilityChannelTime"            "1.8"
-		"AbilityCastPoint"				"0"
+		"AbilityCastPoint"				"0.15"
 		"AbilityCooldown"				"21"
 		"AbilityManaCost"				"400"
 		"AbilityCastRange"				"400"
@@ -179,7 +179,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"110 135 160 195 210"
+				"damage"				"110 130 150 170 190"
 			}
 			"02"
 			{
@@ -277,12 +277,12 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"debut_damage"			"400 500 600 700 800"
+				"debut_damage"			"400 450 500 550 600"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"dot_damage"			"40 50 60 70 80"
+				"dot_damage"			"40 45 50 55 60"
 			}
 		}
 
@@ -709,7 +709,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/nero_tres_fontaine_ardent"

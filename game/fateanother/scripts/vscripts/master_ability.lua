@@ -1033,7 +1033,7 @@ function OnProsperityAcquired(keys)
 
 	for i=1,5 do
 		local level = hero:GetLevel()
-		if level ~= 24 then
+		if level < 24 then
 			hero:AddExperience(_G.XP_PER_LEVEL_TABLE[level], false, false)
 			--hero:AddExperience(XP_BOUNTY_PER_LEVEL_TABLE[killedUnit:GetLevel()]/realHeroCount, false, false)
 		else

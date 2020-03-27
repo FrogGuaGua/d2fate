@@ -24,7 +24,6 @@ require('libraries/alternateparticle')
 require('blink')
 --require('unit_voice')
 require('wrappers')
-
 require('GM')
 require('ai/_require')
 
@@ -34,6 +33,8 @@ _G.RoundStartTime = 0
 _G.nCountdown = 0
 _G.CurrentGameState = "FATE_PRE_GAME"
 _G.GameMap = ""
+
+
 
 ENABLE_HERO_RESPAWN = false -- Should the heroes automatically respawn on a timer or stay dead until manually respawned
 UNIVERSAL_SHOP_MODE = true -- Should the main shop contain Secret Shop items as well as regular items
@@ -1356,7 +1357,7 @@ function FateGameMode:OnHeroInGame(hero)
     end)
     hero.bIsDirectTransferEnabled = true -- True by default
     --Attributes:ModifyBonuses(hero)
-    init_attributes(hero)
+    
 
     -- Create Command Seal master for hero
     master = CreateUnitByName("master_1", Vector(4500 + hero:GetPlayerID()*270,-7050,0), true, hero, hero, hero:GetTeamNumber())
@@ -1476,7 +1477,12 @@ function FateGameMode:OnHeroInGame(hero)
         CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "player_selected_hero", playerData)
     end
     )
-
+    CustomGameEventManager:Send_ServerToAllClients("player_register_master_unit", playerData)
+    Timers:CreateTimer(4.0, function()
+        init_attributes(hero)
+    end
+    )
+    
     -- Set music off
     SendToServerConsole("dota_music_battle_enable 0")
     SendToConsole("dota_music_battle_enable 0")
@@ -1869,8 +1875,7 @@ end
 function FateGameMode:OnPlayerLevelUp(keys)
     --print ('[BAREBONES] OnPlayerLevelUp')
     --PrintTable(keys)
-
-    local player = EntIndexToHScript(keys.player)
+    local player = PlayerResource:GetPlayer(keys.player_id)
     local hero = player:GetAssignedHero()
     local level = keys.level
     hero.ServStat:getLvl(hero)
@@ -1962,7 +1967,7 @@ function FateGameMode:OnEntityKilled( keys )
         local targets = FindUnitsInRadius(0, killedUnit:GetAbsOrigin(), nil, 800, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
         for k,v in pairs(targets) do
             if v:GetName() == "npc_dota_hero_shadow_shaman" then
-                AdjustMadnessStack(v, 1)
+                AdjustMadnessStack(v, 100)
             end
         end
     end
@@ -2323,6 +2328,7 @@ function FateGameMode:InitGameMode()
     GameRules:SetCustomGameSetupTimeout(20)
     GameRules:SetFirstBloodActive(false)
     GameRules:SetCustomGameEndDelay(30)
+    
     GameRules:SetCustomVictoryMessageDuration(30)
 
     --GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN_PERCENT, 0)
@@ -2552,14 +2558,15 @@ function FateGameMode:TakeDamageFilter(filterTable)
         -- calculate return damage
         local vergHandle = victim:FindAbilityByName("avenger_verg_avesta")
         local multiplier = vergHandle:GetLevelSpecialValueFor("multiplier", vergHandle:GetLevel()-1)
-        if victim.IsDIAcquired then multiplier = multiplier + 25 end
+        if victim.IsDIAcquired then multiplier = multiplier + 15 end
         local returnDamage = damage * multiplier / 100
-        if attacker:IsMagicImmune() then
-            returnDamage = returnDamage * (100 - attacker:GetMagicalArmorValue())/100
-            DoDamage(victim, attacker, returnDamage, DAMAGE_TYPE_PURE, DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY, vergHandle, false)
-        else
-            DoDamage(victim, attacker, returnDamage, DAMAGE_TYPE_MAGICAL, DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY, vergHandle, false)
-        end
+        --if attacker:IsMagicImmune() then
+            --returnDamage = returnDamage * (100 - attacker:GetMagicalArmorValue())/100
+            --DoDamage(victim, attacker, returnDamage, DAMAGE_TYPE_PURE, DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY, vergHandle, false)
+        --else
+            --DoDamage(victim, attacker, returnDamage, DAMAGE_TYPE_MAGICAL, DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY, vergHandle, false)
+        --end
+        DoDamage(victim, attacker, returnDamage, DAMAGE_TYPE_PURE, DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY, vergHandle, false)
         if attacker:IsRealHero() then attacker:EmitSound("Hero_WitchDoctor.Maledict_Tick") end
         local particle = ParticleManager:CreateParticle("particles/econ/items/sniper/sniper_charlie/sniper_assassinate_impact_blood_charlie.vpcf", PATTACH_CUSTOMORIGIN, nil)
         ParticleManager:SetParticleControl(particle, 1, attacker:GetAbsOrigin())
@@ -2790,9 +2797,9 @@ function FateGameMode:InitializeRound()
             --if hero:GetGold() < 5000 then --
                 --print("[FateGameMode] " .. hero:GetName() .. " gained 3000 gold at the start of round")
                 if hero.AvariceCount ~= nil then
-                    hero:ModifyGold(2500 + hero.AvariceCount * 1500, true, 0)
+                    hero:ModifyGold(2000 + hero.AvariceCount * 1500, true, 0)
                 else
-                    hero:ModifyGold(2500, true, 0)
+                    hero:ModifyGold(2000, true, 0)
                 end
            -- end
 
@@ -3165,7 +3172,8 @@ function FateGameMode:CaptureGameMode()
         mode:SetCustomBuybackCooldownEnabled( CUSTOM_BUYBACK_COOLDOWN_ENABLED )
         mode:SetBuybackEnabled( BUYBACK_ENABLED )
         mode:SetTopBarTeamValuesVisible( TOP_BAR_VISIBLE )
-        mode:SetUseCustomHeroLevels ( true )
+        mode:SetUseCustomHeroLevels (USE_CUSTOM_HERO_LEVELS)
+
         mode:SetCustomXPRequiredToReachNextLevel( XP_TABLE )
         mode:SetFogOfWarDisabled(DISABLE_FOG_OF_WAR_ENTIRELY)
         mode:SetGoldSoundDisabled( true )
@@ -3173,8 +3181,9 @@ function FateGameMode:CaptureGameMode()
         mode:SetStashPurchasingDisabled ( false )
         mode:SetAnnouncerDisabled( true )
         mode:SetLoseGoldOnDeath( false )
+        mode:SetCustomHeroMaxLevel(25)
         mode:SetExecuteOrderFilter( Dynamic_Wrap( FateGameMode, "ExecuteOrderFilter" ), FateGameMode )
-        mode:SetItemAddedToInventoryFilter(Dynamic_Wrap(FateGameMode, "ItemAddedFilter"), FateGameMode)
+        --mode:SetItemAddedToInventoryFilter(Dynamic_Wrap(FateGameMode, "ItemAddedFilter"), FateGameMode)
         mode:SetModifyGoldFilter(Dynamic_Wrap(FateGameMode, "ModifyGoldFilter"), FateGameMode)
         mode:SetDamageFilter(Dynamic_Wrap(FateGameMode, "TakeDamageFilter"), FateGameMode)
         mode:SetModifyExperienceFilter(Dynamic_Wrap(FateGameMode, "ModifyExperienceFilter"), FateGameMode)

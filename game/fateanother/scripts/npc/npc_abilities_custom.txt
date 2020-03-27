@@ -66,6 +66,10 @@
 			{
 				"Passive"				"1"
 				"IsHidden"				"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"50"
+				}
                 "States"
                 {
                     "MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
@@ -1850,7 +1854,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"phantom_lancer_juxtapose"
@@ -1901,7 +1905,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"omniknight_purification"
@@ -1954,7 +1958,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AOERadius"						"%radius"
@@ -2014,7 +2018,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"keeper_of_the_light_chakra_magic"
@@ -2051,7 +2055,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"keeper_of_the_light_blinding_light"
@@ -2072,7 +2076,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"huskar_burning_spear"
@@ -2778,7 +2782,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/saber_alter_mana_shroud"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		
 		"AbilitySpecial"
@@ -2839,7 +2843,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE "
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
@@ -3977,7 +3981,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/rider_5th_mystic_eye"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"precache"
 		{
@@ -4744,7 +4748,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/archer_5th_clairvoyance"
@@ -4813,7 +4817,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET "
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -5356,7 +5360,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -5442,7 +5446,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -5463,7 +5467,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1500"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.05"
 		"AbilityChannelTime"			"5"		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -5542,7 +5546,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -5619,7 +5623,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/archer_5th_sword_barrage_confine"
@@ -5699,7 +5703,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -5722,7 +5726,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"700"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -5817,7 +5821,7 @@
 			"particle"			"particles/custom/screen_brown_splash.vpcf"
 		}
 		
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastPoint"				"0.05"
 		"AbilityCooldown"				"180"
 		"AbilityManaCost"				"400"
 		
@@ -5915,7 +5919,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastPoint"				"0.05"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -6207,7 +6211,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"mr_bonus"			"5"
+				"mr_bonus"			"10"
 			}
 			"02"
 			{
@@ -6266,7 +6270,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"sword_int_ratio"			"0.5"
+				"sword_int_ratio"			"1"
 			}
 		}
 		
@@ -6386,7 +6390,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/berserker_5th_divinity"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 
 		"AbilitySpecial"
@@ -7421,7 +7425,7 @@
 		"AbilityTextureName"			"custom/false_assassin_minds_eye"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"precache"
 		{
@@ -8925,7 +8929,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_OPTIONAL_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -9071,7 +9075,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -9637,7 +9641,7 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"%range"
 		"AbilityCooldown"				"18"
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"300"
 		
 		"precache"
 		{
@@ -9652,26 +9656,25 @@
 				"var_type"				"FIELD_INTEGER"
 				"damage"				"20 22 24 26 28"
 			}
-
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_steal"				"-12 -14 -16 -18 -20"
+				"str_steal"				"-10 -12 -14 -16 -18"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"8.0 11.0 14.0 17.0 20.0"
+				"duration"				"8.0 9.0 10.0 11.0 12.0"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_gain"				"12 14 16 18 20"
+				"str_gain"				"30 35 40 45 50"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range"					"200 275 350 425 500"
+				"range"					"400 425 450 475 500"
 			}
 			"06"
 			{
@@ -9681,7 +9684,7 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"set_vision"			"250"
+				"set_vision"			"0"
 			}
 		}
 		"OnAbilityPhaseStart"
@@ -9784,11 +9787,11 @@
 		}
 		
 		"AbilityCastPoint"				"1.0"
-		"AbilityCastRange"				"600"
+		"AbilityCastRange"				"700"
 		"AbilityCastRangeBuffer"		"250"
 		"AbilityCooldown"				"36"
 		"AbilityDamage"					"700 900 1100 1300 1500"
-		"AbilityManaCost"				"800"
+		"AbilityManaCost"				"700"
 		
 		"precache"
 		{
@@ -10150,15 +10153,15 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/gilgamesh_golden_rule"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"gold_gain"				"15 30"
+				"var_type"				"FIELD_FLOAT"
+				"gold_gain"				"0.2 0.4"
 			}
 		}
 		
@@ -11306,7 +11309,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"3"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/caster_5th_item_construction"
@@ -11957,7 +11960,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"8"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
@@ -12053,7 +12056,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"8"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
@@ -12305,7 +12308,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"dragon_knight_breathe_fire"
@@ -12369,7 +12372,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -12440,7 +12443,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -12505,7 +12508,7 @@
 		"BaseClass"             		"ability_datadriven"
 		"AbilityTextureName"			"omniknight_guardian_angel"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -12675,7 +12678,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -13310,7 +13313,7 @@
 			"02"
 			{
 				"var_type"              "FIELD_INTEGER"
-		        "pect"                  "3 7"
+		        "pect"                  "6 10"
 			}
 		}
 		
@@ -13411,7 +13414,7 @@
 				}
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	    "30"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	    "1000"
 				}
 
 	    	}
@@ -13748,7 +13751,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		//"RequiredLevel"					"25"
+		//"RequiredLevel"					"31"
 		//"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
@@ -13901,7 +13904,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"3"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY" 
@@ -13996,7 +13999,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"3"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -14087,7 +14090,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"3"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -14234,7 +14237,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"3"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -14327,7 +14330,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"3"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -14419,7 +14422,7 @@
 				"Duration"	"1.0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"-100"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"0"
 				}
 			}
 		}
@@ -14707,7 +14710,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"16"
+		"AbilityManaCost"				"11"
 
 		"precache"
 		{
@@ -14873,7 +14876,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"2"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -15294,7 +15297,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/avenger_unlimited_remains"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_6"
 
@@ -15528,7 +15531,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -15827,7 +15830,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/avenger_demon_core"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 
 		"precache"
@@ -15893,7 +15896,7 @@
 	{
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"custom/avenger_verg_avesta"
 		"MaxLevel"						"5"
 		"RequiredLevel"					"1"
@@ -15923,7 +15926,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"multiplier"		"135 145 155 165 175"
+				"multiplier"		"70 80 90 100 110"
 			}
 			"02"
 			{
@@ -16399,7 +16402,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"return_bonus"			"25"
+				"return_bonus"			"15"
 			}
 			"01"
 			{
@@ -17436,7 +17439,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/diarmuid_attribute_double_spear_strike"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 
 		"precache"
@@ -17474,7 +17477,7 @@
 		"BaseClass" 					"ability_datadriven"
 		"AbilityTextureName"            "custom/iskander_charisma"
 		"MaxLevel"                      "2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"AbilityCastRange"				"1000"
 
 		"precache"
@@ -17568,7 +17571,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE| DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/iskander_forward"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
 		"precache"
@@ -17774,7 +17777,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"movespeed_per_int"			"10"
+				"movespeed_per_int"			"12"
 			}
 			"06"
 			{
@@ -17892,7 +17895,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -18387,7 +18390,7 @@
 		"BaseClass" 					"ability_datadriven"
 		"AbilityTextureName"            "custom/iskander_phalanx"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 
 		"AbilitySpecial"
@@ -18429,7 +18432,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"legion_commander_press_the_attack"
@@ -18521,7 +18524,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/iskander_summon_hephaestion"
@@ -18582,7 +18585,7 @@
 		"BaseClass" 					"ability_datadriven"
 		"AbilityTextureName"            "custom/iskander_phalanx"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 
 		"AbilitySpecial"
@@ -18624,7 +18627,7 @@
 		"BaseClass" 					"ability_datadriven"
 		"AbilityTextureName"            "custom/iskander_phalanx"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 
 		"AbilitySpecial"
@@ -18665,7 +18668,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"chaos_knight_phantasm"
@@ -18724,7 +18727,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/iskander_summon_waver"
@@ -18786,7 +18789,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"keeper_of_the_light_illuminate"
@@ -19260,7 +19263,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/gille_spellbook_of_prelati"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"25"
 		"AbilityCooldown"				"25"
 		"AbilityCastPoint"				"0.3"
@@ -19414,7 +19417,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/gille_throw_corpse"
@@ -19639,7 +19642,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityTextureName"			"custom/gille_torment"
@@ -19659,7 +19662,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.5"
+		"AbilityCastPoint"				"0.2"
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -20072,7 +20075,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"8"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"custom/zc_tentacle_of_destruction"
@@ -20144,7 +20147,7 @@
 		"BaseClass" 					"ability_datadriven"
 		"AbilityTextureName"            "custom/undying_decay"
 		"MaxLevel"						"8"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"precache"
 		{
@@ -20345,7 +20348,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"8"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName"			"tidehunter_ravage"
@@ -20427,7 +20430,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/gille_larret_de_mort"
@@ -22166,7 +22169,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/gawain_solar_embodiment"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"precache"
 		{
@@ -23738,7 +23741,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"custom/tamamo_armed_up"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityCooldown"				"45"
 		"precache"
@@ -23775,7 +23778,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"custom/tamamo_fiery_heaven"
@@ -23853,7 +23856,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"custom/tamamo_frigid_heaven"
@@ -23953,7 +23956,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"			"custom/tamamo_gust_heaven"
@@ -24080,7 +24083,7 @@
 		// General		//------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/tamamo_void_cleft"
@@ -25370,7 +25373,7 @@
 		"AbilityCastAnimation" 			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityCooldown"				"30"
 		"AnimationPlaybackRate" 		"1.0"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"MaxLevel"                      "2"
 
@@ -25561,7 +25564,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strbonus"			"20"
+				"strbonus"			"60"
 			}
 			"03"
 			{
@@ -25618,8 +25621,8 @@
 		
 		// Cast
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.8"
-		"AbilityCooldown"				"30 26 22 18 14"
+		"AbilityCastPoint"				"1.2 1.0 0.8 0.6 0.4"
+		"AbilityCooldown"				"5 4 3 2 1"
 		"AbilityManaCost"				"100"
 		
 		// Ability Special
@@ -25741,7 +25744,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"resist_duration"				"0.3 0.4 0.5 0.6 0.7"
+				"resist_duration"				"0.8 0.9 1.0 1.1 1.2"
 			}
 			"02"
 			{
@@ -25751,12 +25754,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"armor_bonus"		"50"
+				"armor_bonus"		"100"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"active_bonus_aspd"		"15 30 45 60 75"
+				"active_bonus_aspd"		"70 80 90 100 110"
 			}
 			"05"
 			{
@@ -25785,7 +25788,7 @@
 			"modifier_lishuwen_cosmic_orbit_passive"
 			{
 				"Passive"		"1"
-				"IsHidden"		"1"
+				"IsHidden"		"0"
 				"OnAttackLanded"
 				{
 					"RunScript"
@@ -25967,7 +25970,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -26085,7 +26088,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/lishuwen_fierce_tiger_strike_3"
@@ -26223,7 +26226,7 @@
 		"AbilityCastRangeBuffer"		"100"
 		"AbilityCastPoint"				"0.75"
 		"AbilityCooldown"				"30"
-		"AbilityManaCost"				"800"
+		"AbilityManaCost"				"600"
 		
 		// Ability special
 		//-------------------------------------------------------------------------------------------------------------
@@ -26237,7 +26240,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"initial_damage"	"650 700 750 800 850"
+				"initial_damage"	"700 750 800 850 900"
 			}
 			"03"
 			{
@@ -26345,7 +26348,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -26493,7 +26496,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -26622,7 +26625,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -26880,7 +26883,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"strbonus"			"20"
+				"strbonus"			"60"
 			}
 			"03"
 			{
@@ -26962,7 +26965,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/jeanne_magic_resistance_ex"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 
 		"AbilitySpecial"
@@ -27052,7 +27055,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/jeanne_saint"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 
 		"precache"
@@ -27494,8 +27497,7 @@
 			"modifier_gods_resolution"
 			{		
 				"Passive"		"1"
-				"IsHidden"	"1"
-				"Passive"	"1"
+				"IsHidden"	    "1"
 				"OnAttackLanded"
 				{
 					"Random"
@@ -27612,12 +27614,12 @@
 			"05"
 			{
 			    "var_type"          "FIELD_INTEGER"
-			    "armor_bonus"       "10 20 30 40 50"
+			    "armor_bonus"       "10 13 16 19 22"
 			}
 			"06"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"flag_health"			"8 10 12 14 16"
+				"flag_health"			"8 9 10 11 12"
 			}
 			"07"
 			{
@@ -27632,12 +27634,12 @@
 			"09"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"mres_bonus_imp"	"30 35 40 45 50"
+				"mres_bonus_imp"	"20 25 30 35 40"
 			}
 			"10"
 			{
 			    "var_type"          "FIELD_INTEGER"
-			    "armor_bonus_imp"   "20 30 40 50 60"
+			    "armor_bonus_imp"   "10 13 16 19 22"
 			}
 		}
 		
@@ -27815,7 +27817,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/jeanne_la_pucelle"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityCooldown"				"240"
 		"precache"
@@ -28126,7 +28128,7 @@
 		"AbilityTextureName"			"custom/astolfo_casa_di_logistilla"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityCooldown"				"60"
 		"AbilityManaCost"				"0"
@@ -29124,7 +29126,7 @@
 		
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"9999"
-		"AbilityManaCost"				"16"
+		"AbilityManaCost"				"5"
 
 		"precache"
 		{
@@ -29218,7 +29220,7 @@
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"2"
 		"RequiredLevel"					"1"
-		"LevelsBetweenUpgrades"			"25"
+		"LevelsBetweenUpgrades"			"30"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
 		"AbilityTextureName"			"custom/nursery_rhyme_shapeshift"
@@ -29467,7 +29469,7 @@
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"2"
 		"RequiredLevel"					"1"
-		"LevelsBetweenUpgrades"			"25"
+		"LevelsBetweenUpgrades"			"30"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
@@ -30795,7 +30797,7 @@
 		"AbilityTextureName"			"custom/jack_backstab"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"MaxLevel"						"2"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityCooldown"				"5 1"
 		"precache"
@@ -30900,7 +30902,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"2"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -31005,7 +31007,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/jack_snake_step"
@@ -31020,7 +31022,7 @@
 		
 		// Ability stats
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.1"
+		"AbilityCastPoint"				"0.2"
 		"AbilityCooldown"				"7"
 		"AbilityManaCost"				"50"
 		
@@ -31129,12 +31131,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage"		    "120 140 160 180 200"
+				"damage"		    "100 120 140 160 180"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"mini_stun"			"0.4 0.45 0.5 0.55 0.6"
+				"mini_stun"			"0.3 0.35 0.4 0.45 0.5"
 			}
 			"03"
 			{
@@ -31257,7 +31259,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"0.1"
+				"stun_duration"		"0.2"
 			}
 			"02"
 			{
@@ -31367,7 +31369,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"5"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"2"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/jack_shadow_strike"
@@ -31394,7 +31396,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage"		    "300 350 400 450 500"
+				"damage"		    "250 300 350 400 450"
 			}
 			"02"
 			{
@@ -31541,7 +31543,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"damage"		    "400 475 550 625 700"
+				"damage"		    "400 470 540 610 680"
 			}
 			"02"
 			{
@@ -31655,26 +31657,21 @@
 				    "MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
 				    "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
 			    }
-				"OnAbilityCast"
+				"OnAbilityExecuted"
 				{
-					"RemoveModifier"
+					"RunScript"
 					{
-						"ModifierName"	"modifier_curse_maria_casting"
-						"Target"
- 						{
- 							"Center"	"CASTER"
- 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
- 						}
+						"ScriptFile"		"jack"
+						"Function"			"RemoveInv"
 					}
 				}
 				"OnAttackStart"
 				{
-					"ModifierName"	"modifier_curse_maria_casting"
-						"Target"
- 						{
- 							"Center"	"CASTER"
- 							"Flags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
- 						}
+					"RunScript"
+					{
+						"ScriptFile"		"jack"
+						"Function"			"RemoveInv"
+					}
 				}
 		   }
 			"jack_maria_the_ripper_start"
@@ -31700,7 +31697,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
+		"RequiredLevel"					"31"
 		"LevelsBetweenUpgrades"			"2"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/jack_maria_curse_tigger"
@@ -31747,8 +31744,8 @@
 		"BaseClass"						"ability_datadriven"
 		"ScriptFile"					"abilities/jack/jack_the_mist"
 		"MaxLevel"						"1"
-		"RequiredLevel"					"25"
-		"LevelsBetweenUpgrades"			"25"
+		"RequiredLevel"					"31"
+		"LevelsBetweenUpgrades"			"31"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityTextureName"			"custom/jack_the_mist"
 		"AbilityCastPoint"				"0.1"

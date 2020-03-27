@@ -201,7 +201,7 @@ function OnOceanicThink(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local damage = keys.Damage
-	DoDamage(caster, target, 4, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
+	DoDamage(caster, target, 10, DAMAGE_TYPE_MAGICAL, 0, keys.ability, false)
 end
 
 function OnTormentThink(keys)

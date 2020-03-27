@@ -525,9 +525,9 @@ function OnLEAllyDamageTaken(keys)
 	local ability = keys.ability
 	local victim = keys.unit
 	local attacker = keys.attacker
-	if caster.IsSaintImproved and caster:HasModifier("modifier_saint_buff") then
-		return
-	end
+	--if caster.IsSaintImproved and caster:HasModifier("modifier_saint_buff") then
+		--return
+	--end
 
 	if not caster.CurrentFlag:IsNull() then
 		caster.CurrentFlagHealth = caster.CurrentFlagHealth - 1

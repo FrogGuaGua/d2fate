@@ -101,7 +101,6 @@ function OnBerserkStart(keys)
     end)
 end
 
-
 function OnConcealmentStart(keys)
 	local caster = keys.caster
 	local ability = keys.ability
